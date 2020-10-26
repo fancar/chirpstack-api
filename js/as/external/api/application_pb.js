@@ -12270,7 +12270,8 @@ proto.api.IntegrationKind = {
 proto.api.Marshaler = {
   JSON: 0,
   PROTOBUF: 1,
-  JSON_V3: 2
+  JSON_V3: 2,
+  ACTILITY_JSON: 3
 };
 
 /**
