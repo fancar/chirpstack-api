@@ -1894,7 +1894,8 @@
       "enum": [
         "JSON",
         "PROTOBUF",
-        "JSON_V3"
+        "JSON_V3",
+        "ACTILITY_JSON"
       ],
       "default": "JSON"
     },
