@@ -342,7 +342,7 @@ enum Marshaler {
     JSON = 0;
     PROTOBUF = 1;
     JSON_V3 = 2;
-    ACTILITY_JSON = 3;    
+    ACTILITY_JSON = 3; // modificaton for ex.actility customers
 }
 
 message Application {

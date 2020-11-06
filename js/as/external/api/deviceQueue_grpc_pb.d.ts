@@ -11,6 +11,7 @@ interface IDeviceQueueServiceService extends grpc.ServiceDefinition<grpc.Untyped
   enqueue: grpc.MethodDefinition<as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemResponse>;
   flush: grpc.MethodDefinition<as_external_api_deviceQueue_pb.FlushDeviceQueueRequest, google_protobuf_empty_pb.Empty>;
   list: grpc.MethodDefinition<as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>;
+  actilityEnqueue: grpc.MethodDefinition<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>;
 }
 
 export const DeviceQueueServiceService: IDeviceQueueServiceService;
@@ -26,4 +27,7 @@ export class DeviceQueueServiceClient extends grpc.Client {
   list(argument: as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>): grpc.ClientUnaryCall;
   list(argument: as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>): grpc.ClientUnaryCall;
   list(argument: as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>): grpc.ClientUnaryCall;
+  actilityEnqueue(argument: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>): grpc.ClientUnaryCall;
+  actilityEnqueue(argument: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>): grpc.ClientUnaryCall;
+  actilityEnqueue(argument: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>): grpc.ClientUnaryCall;
 }

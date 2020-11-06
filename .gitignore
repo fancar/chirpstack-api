@@ -1,6 +1,9 @@
 # hidden files
 .*
 
+# joe backup files
+*~
+
 # rust
 /rust/target
 

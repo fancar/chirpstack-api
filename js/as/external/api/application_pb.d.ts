@@ -1721,6 +1721,7 @@ export interface MarshalerMap {
   JSON: 0;
   PROTOBUF: 1;
   JSON_V3: 2;
+  ACTILITY_JSON: 3;
 }
 
 export const Marshaler: MarshalerMap;
