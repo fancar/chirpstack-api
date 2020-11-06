@@ -6,6 +6,28 @@ var as_external_api_deviceQueue_pb = require('../../../as/external/api/deviceQue
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 
+function serialize_api_EnqueueDeviceQueueActilityItemRequest(arg) {
+  if (!(arg instanceof as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest)) {
+    throw new Error('Expected argument of type api.EnqueueDeviceQueueActilityItemRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_EnqueueDeviceQueueActilityItemRequest(buffer_arg) {
+  return as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_EnqueueDeviceQueueActilityItemResponse(arg) {
+  if (!(arg instanceof as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse)) {
+    throw new Error('Expected argument of type api.EnqueueDeviceQueueActilityItemResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_EnqueueDeviceQueueActilityItemResponse(buffer_arg) {
+  return as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_api_EnqueueDeviceQueueItemRequest(arg) {
   if (!(arg instanceof as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemRequest)) {
     throw new Error('Expected argument of type api.EnqueueDeviceQueueItemRequest');
@@ -110,6 +132,18 @@ var DeviceQueueServiceService = exports.DeviceQueueServiceService = {
     requestDeserialize: deserialize_api_ListDeviceQueueItemsRequest,
     responseSerialize: serialize_api_ListDeviceQueueItemsResponse,
     responseDeserialize: deserialize_api_ListDeviceQueueItemsResponse,
+  },
+  // ActilityEnqueue adds the given item to the device-queue with actility-styled request\response.
+  actilityEnqueue: {
+    path: '/api.DeviceQueueService/ActilityEnqueue',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest,
+    responseType: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse,
+    requestSerialize: serialize_api_EnqueueDeviceQueueActilityItemRequest,
+    requestDeserialize: deserialize_api_EnqueueDeviceQueueActilityItemRequest,
+    responseSerialize: serialize_api_EnqueueDeviceQueueActilityItemResponse,
+    responseDeserialize: deserialize_api_EnqueueDeviceQueueActilityItemResponse,
   },
 };
 

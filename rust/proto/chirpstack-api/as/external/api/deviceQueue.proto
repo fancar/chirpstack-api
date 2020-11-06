@@ -31,6 +31,14 @@ service DeviceQueueService {
             get: "/api/devices/{dev_eui}/queue"
         };
     }
+
+    // ActilityEnqueue adds the given item to the device-queue with actility-styled request\response.
+    rpc ActilityEnqueue(EnqueueDeviceQueueActilityItemRequest) returns (EnqueueDeviceQueueActilityItemResponse) {
+        option(google.api.http) = {
+            post: "/api/devices/{dev_eui}/queue/actilitystyle"
+            body: "*"
+        };
+    }
 }
 
 message DeviceQueueItem {
@@ -87,4 +95,34 @@ message ListDeviceQueueItemsResponse {
 
     // Total number of items in the queue.
     uint32 total_count = 2;
+}
+
+
+message EnqueueDeviceQueueActilityItemRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+
+    // Set this to true when an acknowledgement from the device is required.
+    // Please note that this must not be used to guarantee a delivery.
+    bool confirm_downlink = 2;
+
+    // Indicates to flush the LRC downlink queue before adding the new message to the queue.
+    // Default is false.
+    bool flush_downlink_queue = 3;
+
+    // Payload of the message in hexadecimal format.
+    string payload_hex = 4;
+
+    // LoRa port(s) targetted by the message.
+    string target_ports = 5;
+
+}
+
+message EnqueueDeviceQueueActilityItemResponse {
+    // Frame-counter for the enqueued payload.
+    bool confirm_downlink = 1;
+    bool flush_downlink_queue = 2;
+    string payload_hex = 3;
+    string target_ports = 4;
+    string status = 5;
 }

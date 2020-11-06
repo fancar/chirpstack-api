@@ -73,6 +73,40 @@
         ]
       }
     },
+    "/api/devices/{dev_eui}/queue/actilitystyle": {
+      "post": {
+        "summary": "ActilityEnqueue adds the given item to the device-queue with actility-styled request\\response.",
+        "operationId": "ActilityEnqueue",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiEnqueueDeviceQueueActilityItemResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiEnqueueDeviceQueueActilityItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceQueueService"
+        ]
+      }
+    },
     "/api/devices/{device_queue_item.dev_eui}/queue": {
       "post": {
         "summary": "Enqueue adds the given item to the device-queue.",
@@ -139,6 +173,56 @@
         "jsonObject": {
           "type": "string",
           "description": "JSON object (string).\nOnly use this when an application codec has been configured that can convert\nthis object into binary form."
+        }
+      }
+    },
+    "apiEnqueueDeviceQueueActilityItemRequest": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "confirmDownlink": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
+        },
+        "flushDownlinkQueue": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Indicates to flush the LRC downlink queue before adding the new message to the queue.\nDefault is false."
+        },
+        "payloadHex": {
+          "type": "string",
+          "description": "Payload of the message in hexadecimal format."
+        },
+        "targetPorts": {
+          "type": "string",
+          "description": "LoRa port(s) targetted by the message."
+        }
+      }
+    },
+    "apiEnqueueDeviceQueueActilityItemResponse": {
+      "type": "object",
+      "properties": {
+        "confirmDownlink": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Frame-counter for the enqueued payload."
+        },
+        "flushDownlinkQueue": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "payloadHex": {
+          "type": "string"
+        },
+        "targetPorts": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
         }
       }
     },

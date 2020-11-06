@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+
+import "google/api/annotations.proto";
+// import "google/protobuf/empty.proto";
+
+
+// DeviceQueueServiceActility is the service managing the downlink data queue with Actility styled message (legacy).
+service DeviceQueueServiceActility {
+    // Enqueue adds the given item to the device-queue.
+    rpc ActilityEnqueue(EnqueueDeviceQueueActilityItemRequest) returns (EnqueueDeviceQueueActilityItemResponse) {
+        option(google.api.http) = {
+            post: "/api/devices/{dev_eui}/actility_style/queue"
+            body: "*"
+        };
+    }
+}
+
+message EnqueueDeviceQueueActilityItemRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+
+    // Set this to true when an acknowledgement from the device is required.
+    // Please note that this must not be used to guarantee a delivery.
+    bool confirm_downlink = 2;
+
+    // Indicates to flush the LRC downlink queue before adding the new message to the queue.
+    // Default is false.
+    bool flush_downlink_queue = 3;
+
+    // Payload of the message in hexadecimal format.
+    string payload_hex = 4;
+
+    // LoRa port(s) targetted by the message.
+    string target_ports = 5;
+
+}
+
+message EnqueueDeviceQueueActilityItemResponse {
+    // Frame-counter for the enqueued payload.
+    bool confirm_downlink = 1;
+    bool flush_downlink_queue = 2;
+    string payload_hex = 3;
+    string target_ports = 4;
+    string status = 5;
+}
