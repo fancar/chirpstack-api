@@ -628,6 +628,9 @@ message UplinkFrameLog {
 
     // RX meta-data.
     repeated gw.UplinkRXInfo rx_info = 3;
+    
+    // mark if packet not in time (late for more than 120 seconds)
+    bool late = 4;    
 }
 
 message DownlinkFrameLog {
