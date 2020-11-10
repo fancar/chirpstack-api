@@ -114,6 +114,15 @@ message HandleUplinkDataRequest {
 
     // Uplink was of type confirmed.
     bool confirmed_uplink = 11;
+
+    // true if recieved more than 2 minutes after. Modification
+    bool late = 12;
+
+    // Mic. Modification
+    bytes mic = 13;    
+
+    // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
+    google.protobuf.Timestamp time = 14;        
 }
 
 message HandleProprietaryUplinkRequest {

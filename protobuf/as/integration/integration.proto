@@ -5,6 +5,7 @@ package integration;
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/integration";
 
 import "common/common.proto";
+import "google/protobuf/timestamp.proto";
 import "gw/gw.proto";
 
 enum ErrorType {
@@ -88,6 +89,15 @@ message UplinkEvent {
 
     // Device address.
     bytes dev_addr = 15;
+
+    // mic for legacy. actility users. Modification
+    bytes mic = 16;
+
+    // true if packer late for more than 2min. Modification
+    bool late = 17;
+
+    // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
+    google.protobuf.Timestamp time = 18;    
 }
 
 // JoinEvent is the message sent when a device joined the network.
