@@ -7,6 +7,203 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 import * as common_common_pb from "../common/common_pb";
 import * as gw_gw_pb from "../gw/gw_pb";
 
+export class ListOrganizationRequest extends jspb.Message {
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  getOffset(): number;
+  setOffset(value: number): void;
+
+  getSearch(): string;
+  setSearch(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOrganizationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOrganizationRequest): ListOrganizationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListOrganizationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOrganizationRequest;
+  static deserializeBinaryFromReader(message: ListOrganizationRequest, reader: jspb.BinaryReader): ListOrganizationRequest;
+}
+
+export namespace ListOrganizationRequest {
+  export type AsObject = {
+    limit: number,
+    offset: number,
+    search: string,
+  }
+}
+
+export class ListOrganizationResponse extends jspb.Message {
+  getTotalCount(): number;
+  setTotalCount(value: number): void;
+
+  clearResultList(): void;
+  getResultList(): Array<OrganizationListItem>;
+  setResultList(value: Array<OrganizationListItem>): void;
+  addResult(value?: OrganizationListItem, index?: number): OrganizationListItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOrganizationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOrganizationResponse): ListOrganizationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListOrganizationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOrganizationResponse;
+  static deserializeBinaryFromReader(message: ListOrganizationResponse, reader: jspb.BinaryReader): ListOrganizationResponse;
+}
+
+export namespace ListOrganizationResponse {
+  export type AsObject = {
+    totalCount: number,
+    resultList: Array<OrganizationListItem.AsObject>,
+  }
+}
+
+export class OrganizationListItem extends jspb.Message {
+  getId(): number;
+  setId(value: number): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getDisplayName(): string;
+  setDisplayName(value: string): void;
+
+  getCanHaveGateways(): boolean;
+  setCanHaveGateways(value: boolean): void;
+
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): void;
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasUpdatedAt(): boolean;
+  clearUpdatedAt(): void;
+  getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OrganizationListItem.AsObject;
+  static toObject(includeInstance: boolean, msg: OrganizationListItem): OrganizationListItem.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OrganizationListItem, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OrganizationListItem;
+  static deserializeBinaryFromReader(message: OrganizationListItem, reader: jspb.BinaryReader): OrganizationListItem;
+}
+
+export namespace OrganizationListItem {
+  export type AsObject = {
+    id: number,
+    name: string,
+    displayName: string,
+    canHaveGateways: boolean,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class GetDevicesSummaryRequest extends jspb.Message {
+  getOrganizationId(): number;
+  setOrganizationId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDevicesSummaryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDevicesSummaryRequest): GetDevicesSummaryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDevicesSummaryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDevicesSummaryRequest;
+  static deserializeBinaryFromReader(message: GetDevicesSummaryRequest, reader: jspb.BinaryReader): GetDevicesSummaryRequest;
+}
+
+export namespace GetDevicesSummaryRequest {
+  export type AsObject = {
+    organizationId: number,
+  }
+}
+
+export class GetDevicesSummaryResponse extends jspb.Message {
+  getActiveCount(): number;
+  setActiveCount(value: number): void;
+
+  getInactiveCount(): number;
+  setInactiveCount(value: number): void;
+
+  getDrCountMap(): jspb.Map<number, number>;
+  clearDrCountMap(): void;
+  getNeverSeenCount(): number;
+  setNeverSeenCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDevicesSummaryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDevicesSummaryResponse): GetDevicesSummaryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDevicesSummaryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDevicesSummaryResponse;
+  static deserializeBinaryFromReader(message: GetDevicesSummaryResponse, reader: jspb.BinaryReader): GetDevicesSummaryResponse;
+}
+
+export namespace GetDevicesSummaryResponse {
+  export type AsObject = {
+    activeCount: number,
+    inactiveCount: number,
+    drCountMap: Array<[number, number]>,
+    neverSeenCount: number,
+  }
+}
+
+export class GetGatewaysSummaryRequest extends jspb.Message {
+  getOrganizationId(): number;
+  setOrganizationId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetGatewaysSummaryRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetGatewaysSummaryRequest): GetGatewaysSummaryRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetGatewaysSummaryRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetGatewaysSummaryRequest;
+  static deserializeBinaryFromReader(message: GetGatewaysSummaryRequest, reader: jspb.BinaryReader): GetGatewaysSummaryRequest;
+}
+
+export namespace GetGatewaysSummaryRequest {
+  export type AsObject = {
+    organizationId: number,
+  }
+}
+
+export class GetGatewaysSummaryResponse extends jspb.Message {
+  getActiveCount(): number;
+  setActiveCount(value: number): void;
+
+  getInactiveCount(): number;
+  setInactiveCount(value: number): void;
+
+  getNeverSeenCount(): number;
+  setNeverSeenCount(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetGatewaysSummaryResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetGatewaysSummaryResponse): GetGatewaysSummaryResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetGatewaysSummaryResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetGatewaysSummaryResponse;
+  static deserializeBinaryFromReader(message: GetGatewaysSummaryResponse, reader: jspb.BinaryReader): GetGatewaysSummaryResponse;
+}
+
+export namespace GetGatewaysSummaryResponse {
+  export type AsObject = {
+    activeCount: number,
+    inactiveCount: number,
+    neverSeenCount: number,
+  }
+}
+
 export class DeviceActivationContext extends jspb.Message {
   getDevAddr(): Uint8Array | string;
   getDevAddr_asU8(): Uint8Array;
@@ -81,6 +278,19 @@ export class HandleUplinkDataRequest extends jspb.Message {
   getConfirmedUplink(): boolean;
   setConfirmedUplink(value: boolean): void;
 
+  getLate(): boolean;
+  setLate(value: boolean): void;
+
+  getMic(): Uint8Array | string;
+  getMic_asU8(): Uint8Array;
+  getMic_asB64(): string;
+  setMic(value: Uint8Array | string): void;
+
+  hasTime(): boolean;
+  clearTime(): void;
+  getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HandleUplinkDataRequest.AsObject;
   static toObject(includeInstance: boolean, msg: HandleUplinkDataRequest): HandleUplinkDataRequest.AsObject;
@@ -104,6 +314,9 @@ export namespace HandleUplinkDataRequest {
     data: Uint8Array | string,
     deviceActivationContext?: DeviceActivationContext.AsObject,
     confirmedUplink: boolean,
+    late: boolean,
+    mic: Uint8Array | string,
+    time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

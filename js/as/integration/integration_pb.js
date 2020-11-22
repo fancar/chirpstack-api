@@ -10,6 +10,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var common_common_pb = require('../../common/common_pb.js');
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var gw_gw_pb = require('../../gw/gw_pb.js');
 goog.exportSymbol('proto.integration.AckEvent', null, global);
 goog.exportSymbol('proto.integration.ErrorEvent', null, global);
@@ -88,7 +89,10 @@ proto.integration.UplinkEvent.toObject = function(includeInstance, msg) {
     objectJson: msg.getObjectJson(),
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     confirmedUplink: msg.getConfirmedUplink(),
-    devAddr: msg.getDevAddr_asB64()
+    devAddr: msg.getDevAddr_asB64(),
+    mic: msg.getMic_asB64(),
+    late: msg.getLate(),
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -189,6 +193,19 @@ proto.integration.UplinkEvent.deserializeBinaryFromReader = function(msg, reader
     case 15:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setDevAddr(value);
+      break;
+    case 16:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setMic(value);
+      break;
+    case 17:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setLate(value);
+      break;
+    case 18:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTime(value);
       break;
     default:
       reader.skipField();
@@ -330,6 +347,28 @@ proto.integration.UplinkEvent.prototype.serializeBinaryToWriter = function (writ
     writer.writeBytes(
       15,
       f
+    );
+  }
+  f = this.getMic_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      16,
+      f
+    );
+  }
+  f = this.getLate();
+  if (f) {
+    writer.writeBool(
+      17,
+      f
+    );
+  }
+  f = this.getTime();
+  if (f != null) {
+    writer.writeMessage(
+      18,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -663,6 +702,92 @@ proto.integration.UplinkEvent.prototype.getDevAddr_asU8 = function() {
 /** @param {!(string|Uint8Array)} value  */
 proto.integration.UplinkEvent.prototype.setDevAddr = function(value) {
   jspb.Message.setField(this, 15, value);
+};
+
+
+/**
+ * optional bytes mic = 16;
+ * @return {!(string|Uint8Array)}
+ */
+proto.integration.UplinkEvent.prototype.getMic = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 16, ""));
+};
+
+
+/**
+ * optional bytes mic = 16;
+ * This is a type-conversion wrapper around `getMic()`
+ * @return {string}
+ */
+proto.integration.UplinkEvent.prototype.getMic_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getMic()));
+};
+
+
+/**
+ * optional bytes mic = 16;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getMic()`
+ * @return {!Uint8Array}
+ */
+proto.integration.UplinkEvent.prototype.getMic_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getMic()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.integration.UplinkEvent.prototype.setMic = function(value) {
+  jspb.Message.setField(this, 16, value);
+};
+
+
+/**
+ * optional bool late = 17;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.integration.UplinkEvent.prototype.getLate = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 17, false));
+};
+
+
+/** @param {boolean} value  */
+proto.integration.UplinkEvent.prototype.setLate = function(value) {
+  jspb.Message.setField(this, 17, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp time = 18;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.UplinkEvent.prototype.getTime = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 18));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.UplinkEvent.prototype.setTime = function(value) {
+  jspb.Message.setWrapperField(this, 18, value);
+};
+
+
+proto.integration.UplinkEvent.prototype.clearTime = function() {
+  this.setTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.UplinkEvent.prototype.hasTime = function() {
+  return jspb.Message.getField(this, 18) != null;
 };
 
 

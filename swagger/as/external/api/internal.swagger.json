@@ -152,6 +152,51 @@
         ]
       }
     },
+    "/api/internal/devices/summarylog": {
+      "get": {
+        "summary": "GetDevicesSummaryLog returns an aggregated summary logs of the devices.",
+        "operationId": "GetDevicesSummaryLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetDeviceCountersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "description": "organisation that handles the devices.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "aggregation",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
     "/api/internal/gateways/summary": {
       "get": {
         "summary": "GetGatewaysSummary returns an aggregated summary of the gateways.",
@@ -655,6 +700,46 @@
         "note": {
           "type": "string",
           "description": "Optional note to store with the user."
+        }
+      }
+    },
+    "hrDeviceCounters": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "activeCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Active count."
+        },
+        "inactiveCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Inactive count."
+        },
+        "neverSeenCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Never seen count."
+        }
+      }
+    },
+    "hrGetDeviceCountersResponse": {
+      "type": "object",
+      "properties": {
+        "organizationId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "counters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrDeviceCounters"
+          }
         }
       }
     }

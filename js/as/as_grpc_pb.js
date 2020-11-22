@@ -8,6 +8,50 @@ var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/time
 var common_common_pb = require('../common/common_pb.js');
 var gw_gw_pb = require('../gw/gw_pb.js');
 
+function serialize_as_GetDevicesSummaryRequest(arg) {
+  if (!(arg instanceof as_as_pb.GetDevicesSummaryRequest)) {
+    throw new Error('Expected argument of type as.GetDevicesSummaryRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetDevicesSummaryRequest(buffer_arg) {
+  return as_as_pb.GetDevicesSummaryRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetDevicesSummaryResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetDevicesSummaryResponse)) {
+    throw new Error('Expected argument of type as.GetDevicesSummaryResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetDevicesSummaryResponse(buffer_arg) {
+  return as_as_pb.GetDevicesSummaryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetGatewaysSummaryRequest(arg) {
+  if (!(arg instanceof as_as_pb.GetGatewaysSummaryRequest)) {
+    throw new Error('Expected argument of type as.GetGatewaysSummaryRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetGatewaysSummaryRequest(buffer_arg) {
+  return as_as_pb.GetGatewaysSummaryRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetGatewaysSummaryResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetGatewaysSummaryResponse)) {
+    throw new Error('Expected argument of type as.GetGatewaysSummaryResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetGatewaysSummaryResponse(buffer_arg) {
+  return as_as_pb.GetGatewaysSummaryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_as_HandleDownlinkACKRequest(arg) {
   if (!(arg instanceof as_as_pb.HandleDownlinkACKRequest)) {
     throw new Error('Expected argument of type as.HandleDownlinkACKRequest');
@@ -72,6 +116,28 @@ function serialize_as_HandleUplinkDataRequest(arg) {
 
 function deserialize_as_HandleUplinkDataRequest(buffer_arg) {
   return as_as_pb.HandleUplinkDataRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_ListOrganizationRequest(arg) {
+  if (!(arg instanceof as_as_pb.ListOrganizationRequest)) {
+    throw new Error('Expected argument of type as.ListOrganizationRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_ListOrganizationRequest(buffer_arg) {
+  return as_as_pb.ListOrganizationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_ListOrganizationResponse(arg) {
+  if (!(arg instanceof as_as_pb.ListOrganizationResponse)) {
+    throw new Error('Expected argument of type as.ListOrganizationResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_ListOrganizationResponse(buffer_arg) {
+  return as_as_pb.ListOrganizationResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_as_SetDeviceLocationRequest(arg) {
@@ -205,6 +271,42 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     requestDeserialize: deserialize_as_SetDeviceLocationRequest,
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  // SetDeviceLocation updates the device-location for a device.
+  getDevicesSummary: {
+    path: '/as.ApplicationServerService/GetDevicesSummary',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetDevicesSummaryRequest,
+    responseType: as_as_pb.GetDevicesSummaryResponse,
+    requestSerialize: serialize_as_GetDevicesSummaryRequest,
+    requestDeserialize: deserialize_as_GetDevicesSummaryRequest,
+    responseSerialize: serialize_as_GetDevicesSummaryResponse,
+    responseDeserialize: deserialize_as_GetDevicesSummaryResponse,
+  },
+  // SetDeviceLocation updates the device-location for a device.
+  getGatewaysSummary: {
+    path: '/as.ApplicationServerService/GetGatewaysSummary',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetGatewaysSummaryRequest,
+    responseType: as_as_pb.GetGatewaysSummaryResponse,
+    requestSerialize: serialize_as_GetGatewaysSummaryRequest,
+    requestDeserialize: deserialize_as_GetGatewaysSummaryRequest,
+    responseSerialize: serialize_as_GetGatewaysSummaryResponse,
+    responseDeserialize: deserialize_as_GetGatewaysSummaryResponse,
+  },
+  // SetDeviceLocation updates the device-location for a device.
+  listOrganisation: {
+    path: '/as.ApplicationServerService/ListOrganisation',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.ListOrganizationRequest,
+    responseType: as_as_pb.ListOrganizationResponse,
+    requestSerialize: serialize_as_ListOrganizationRequest,
+    requestDeserialize: deserialize_as_ListOrganizationRequest,
+    responseSerialize: serialize_as_ListOrganizationResponse,
+    responseDeserialize: deserialize_as_ListOrganizationResponse,
   },
 };
 

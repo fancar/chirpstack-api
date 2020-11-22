@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package hr;
+
+option go_package = "github.com/brocaar/chirpstack-api/handyrusty";
+
+import "google/protobuf/timestamp.proto";
+// import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+// import "common/common.proto";
+// import "gw/gw.proto";
+// import "ns/profiles.proto";
+
+
+// HandyRustyService provides the "handy-rusty additional enforta tools" API methods.
+service HandyRustyService {
+    // GetDeviceCounters returns the summary-counters log-items for given organisation_id
+    rpc GetDeviceCounters(GetDeviceCountersRequest) returns (GetDeviceCountersResponse) {}
+
+    // GetDeviceCounters returns the summary-counters log-items for given organisation_id
+    rpc GetGatewayCounters(GetGatewayCountersRequest) returns (GetGatewayCountersResponse) {}
+
+    // GetVersion returns the ChirpStack Network Server version.
+    rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {}
+}
+
+
+message GetDeviceCountersRequest {
+    // organisation that handles the devices
+    uint32 organization_id = 1;
+    string start = 2;
+    string end = 3;
+    string aggregation = 4;
+
+}
+
+message GetDeviceCountersResponse {
+    uint32 organization_id = 1;
+    repeated DeviceCounters counters = 2;
+}
+
+//
+
+message GetGatewayCountersRequest {
+    // organisation that handles the devices
+    uint32 organization_id = 1;
+}
+
+message GetGatewayCountersResponse {
+    uint32 some_id = 1;
+}
+
+
+message GetVersionResponse {
+    // ChirpStack Network Server version.
+    string version = 1;
+}
+
+
+message DeviceCounters {
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 1;
+
+    // Active count.
+    uint32 active_count = 2;
+
+    // Inactive count.
+    uint32 inactive_count = 3;
+
+    // Never seen count.
+    uint32 never_seen_count = 4;
+}

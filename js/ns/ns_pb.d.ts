@@ -1431,6 +1431,9 @@ export class UplinkFrameLog extends jspb.Message {
   setRxInfoList(value: Array<gw_gw_pb.UplinkRXInfo>): void;
   addRxInfo(value?: gw_gw_pb.UplinkRXInfo, index?: number): gw_gw_pb.UplinkRXInfo;
 
+  getLate(): boolean;
+  setLate(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UplinkFrameLog.AsObject;
   static toObject(includeInstance: boolean, msg: UplinkFrameLog): UplinkFrameLog.AsObject;
@@ -1446,6 +1449,7 @@ export namespace UplinkFrameLog {
     phyPayload: Uint8Array | string,
     txInfo?: gw_gw_pb.UplinkTXInfo.AsObject,
     rxInfoList: Array<gw_gw_pb.UplinkRXInfo.AsObject>,
+    late: boolean,
   }
 }
 

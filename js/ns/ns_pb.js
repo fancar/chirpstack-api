@@ -11510,7 +11510,8 @@ proto.ns.UplinkFrameLog.toObject = function(includeInstance, msg) {
     phyPayload: msg.getPhyPayload_asB64(),
     txInfo: (f = msg.getTxInfo()) && gw_gw_pb.UplinkTXInfo.toObject(includeInstance, f),
     rxInfoList: jspb.Message.toObjectList(msg.getRxInfoList(),
-    gw_gw_pb.UplinkRXInfo.toObject, includeInstance)
+    gw_gw_pb.UplinkRXInfo.toObject, includeInstance),
+    late: msg.getLate()
   };
 
   if (includeInstance) {
@@ -11561,6 +11562,10 @@ proto.ns.UplinkFrameLog.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,gw_gw_pb.UplinkRXInfo.deserializeBinaryFromReader);
       msg.getRxInfoList().push(value);
       msg.setRxInfoList(msg.getRxInfoList());
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setLate(value);
       break;
     default:
       reader.skipField();
@@ -11621,6 +11626,13 @@ proto.ns.UplinkFrameLog.prototype.serializeBinaryToWriter = function (writer) {
       3,
       f,
       gw_gw_pb.UplinkRXInfo.serializeBinaryToWriter
+    );
+  }
+  f = this.getLate();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
     );
   }
 };
@@ -11724,6 +11736,23 @@ proto.ns.UplinkFrameLog.prototype.setRxInfoList = function(value) {
 
 proto.ns.UplinkFrameLog.prototype.clearRxInfoList = function() {
   this.setRxInfoList([]);
+};
+
+
+/**
+ * optional bool late = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.UplinkFrameLog.prototype.getLate = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 4, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.UplinkFrameLog.prototype.setLate = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 

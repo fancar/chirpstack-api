@@ -7,6 +7,7 @@ var google_api_annotations_pb = require('../../../google/api/annotations_pb.js')
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var as_external_api_user_pb = require('../../../as/external/api/user_pb.js');
+var handyrusty_hr_pb = require('../../../handyrusty/hr_pb.js');
 
 function serialize_api_CreateAPIKeyRequest(arg) {
   if (!(arg instanceof as_external_api_internal_pb.CreateAPIKeyRequest)) {
@@ -206,6 +207,28 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
   return google_protobuf_empty_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hr_GetDeviceCountersRequest(arg) {
+  if (!(arg instanceof handyrusty_hr_pb.GetDeviceCountersRequest)) {
+    throw new Error('Expected argument of type hr.GetDeviceCountersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hr_GetDeviceCountersRequest(buffer_arg) {
+  return handyrusty_hr_pb.GetDeviceCountersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hr_GetDeviceCountersResponse(arg) {
+  if (!(arg instanceof handyrusty_hr_pb.GetDeviceCountersResponse)) {
+    throw new Error('Expected argument of type hr.GetDeviceCountersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hr_GetDeviceCountersResponse(buffer_arg) {
+  return handyrusty_hr_pb.GetDeviceCountersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // InternalService is the service providing API endpoints for internal usage.
 var InternalServiceService = exports.InternalServiceService = {
@@ -316,6 +339,18 @@ var InternalServiceService = exports.InternalServiceService = {
     requestDeserialize: deserialize_api_GetDevicesSummaryRequest,
     responseSerialize: serialize_api_GetDevicesSummaryResponse,
     responseDeserialize: deserialize_api_GetDevicesSummaryResponse,
+  },
+  // GetDevicesSummaryLog returns an aggregated summary logs of the devices.
+  getDevicesSummaryLog: {
+    path: '/api.InternalService/GetDevicesSummaryLog',
+    requestStream: false,
+    responseStream: false,
+    requestType: handyrusty_hr_pb.GetDeviceCountersRequest,
+    responseType: handyrusty_hr_pb.GetDeviceCountersResponse,
+    requestSerialize: serialize_hr_GetDeviceCountersRequest,
+    requestDeserialize: deserialize_hr_GetDeviceCountersRequest,
+    responseSerialize: serialize_hr_GetDeviceCountersResponse,
+    responseDeserialize: deserialize_hr_GetDeviceCountersResponse,
   },
   // GetGatewaysSummary returns an aggregated summary of the gateways.
   getGatewaysSummary: {

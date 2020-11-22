@@ -3,7 +3,7 @@
 GRPC_GW_PATH := $(shell go list -f '{{ .Dir }}' github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway)
 GOOGLEAPIS_PATH := "$(GRPC_GW_PATH)/../third_party/googleapis"
 
-all: requirements common gw geo nc ns as as-integration as-external-api
+all: requirements common gw geo nc ns as as-integration as-external-api hr
 
 requirements:
 	@go mod download
@@ -31,6 +31,9 @@ as:
 
 as-integration:
 	protoc -I=../protobuf -I=../protobuf/as/integration --go_out=plugins=grpc,paths=source_relative:. as/integration/integration.proto
+
+hr:
+	protoc -I=../protobuf -I=../protobuf/handyrusty --go_out=plugins=grpc,paths=source_relative:. handyrusty/hr.proto
 
 as-external-api:
 	# gRPC

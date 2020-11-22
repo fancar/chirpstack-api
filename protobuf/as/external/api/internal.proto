@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "as/external/api/user.proto";
+import "handyrusty/hr.proto";
 
 
 // InternalService is the service providing API endpoints for internal usage.
@@ -76,6 +77,13 @@ service InternalService {
             get: "/api/internal/devices/summary"
         };
     }
+
+    // GetDevicesSummaryLog returns log of aggregated summary.
+    rpc GetDevicesSummaryLog(hr.GetDeviceCountersRequest) returns (hr.GetDeviceCountersResponse) {
+        option(google.api.http) = {
+            get: "/api/internal/devices/summarylog"
+        };
+    }    
 
     // GetGatewaysSummary returns an aggregated summary of the gateways.
     rpc GetGatewaysSummary(GetGatewaysSummaryRequest) returns (GetGatewaysSummaryResponse) {
