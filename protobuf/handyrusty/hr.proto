@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package hr;
 
-option go_package = "github.com/brocaar/chirpstack-api/handyrusty";
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/handyrusty";
 
-import "google/protobuf/timestamp.proto";
+// import "google/protobuf/timestamp.proto";
 // import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 // import "common/common.proto";
@@ -26,15 +26,21 @@ service HandyRustyService {
 
 
 message GetDeviceCountersRequest {
-    // organisation that handles the devices
+    // Id (number). If Zero - all organisations (allowed for admin)
     uint32 organization_id = 1;
-    string start = 2;
-    string end = 3;
-    string aggregation = 4;
 
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 2;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 3;
+
+    // aggregation of the data: HOUR,DAY,WEEK,MONTH
+    string aggregation = 4;
 }
 
 message GetDeviceCountersResponse {
+    // id of the organisation that handles the devices
     uint32 organization_id = 1;
     repeated DeviceCounters counters = 2;
 }
@@ -42,12 +48,24 @@ message GetDeviceCountersResponse {
 //
 
 message GetGatewayCountersRequest {
-    // organisation that handles the devices
+    // Id (number). If Zero - all organisations (allowed for admin)
     uint32 organization_id = 1;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 2;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 3;
+
+    // aggregation of the data: HOUR,DAY,WEEK,MONTH
+    string aggregation = 4;
 }
 
 message GetGatewayCountersResponse {
-    uint32 some_id = 1;
+    // id of the organisation that handles the devices
+    uint32 organization_id = 1;
+    // log of counters
+    repeated DeviceCounters counters = 2;    
 }
 
 
@@ -58,15 +76,20 @@ message GetVersionResponse {
 
 
 message DeviceCounters {
-    // Created at timestamp.
-    google.protobuf.Timestamp created_at = 1;
+    // id of the organisation that handles the devices
+    uint32 organization_id = 1;
+
+    // google.protobuf.Timestamp created_at = 2;
+
+    // Created at unix timestamp.
+    uint32 created_at = 2;
 
     // Active count.
-    uint32 active_count = 2;
+    uint32 active_count = 3;
 
     // Inactive count.
-    uint32 inactive_count = 3;
+    uint32 inactive_count = 4;
 
     // Never seen count.
-    uint32 never_seen_count = 4;
+    uint32 never_seen_count = 5;
 }

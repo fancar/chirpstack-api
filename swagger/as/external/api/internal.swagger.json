@@ -154,7 +154,7 @@
     },
     "/api/internal/devices/summarylog": {
       "get": {
-        "summary": "GetDevicesSummaryLog returns an aggregated summary logs of the devices.",
+        "summary": "GetDevicesSummaryLog returns log of aggregated summary.",
         "operationId": "GetDevicesSummaryLog",
         "responses": {
           "200": {
@@ -167,7 +167,7 @@
         "parameters": [
           {
             "name": "organizationId",
-            "description": "organisation that handles the devices.",
+            "description": "Id (number). If Zero - all organisations (allowed for admin).",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -175,18 +175,21 @@
           },
           {
             "name": "start",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "end",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "aggregation",
+            "description": "aggregation of the data: HOUR,DAY,WEEK,MONTH.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -217,6 +220,54 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          }
+        ],
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
+    "/api/internal/gateways/summarylog": {
+      "get": {
+        "summary": "GetGatewaysSummaryLog returns log of aggregated summary.",
+        "operationId": "GetGatewaysSummaryLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetGatewayCountersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "description": "Id (number). If Zero - all organisations (allowed for admin).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "start",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "aggregation",
+            "description": "aggregation of the data: HOUR,DAY,WEEK,MONTH.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -706,10 +757,15 @@
     "hrDeviceCounters": {
       "type": "object",
       "properties": {
+        "organizationId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "id of the organisation that handles the devices"
+        },
         "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Created at timestamp."
+          "type": "integer",
+          "format": "int64",
+          "description": "Created at unix timestamp."
         },
         "activeCount": {
           "type": "integer",
@@ -733,13 +789,31 @@
       "properties": {
         "organizationId": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "title": "id of the organisation that handles the devices"
         },
         "counters": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/hrDeviceCounters"
           }
+        }
+      }
+    },
+    "hrGetGatewayCountersResponse": {
+      "type": "object",
+      "properties": {
+        "organizationId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "id of the organisation that handles the devices"
+        },
+        "counters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrDeviceCounters"
+          },
+          "title": "log of counters"
         }
       }
     }
