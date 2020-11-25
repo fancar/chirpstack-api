@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "handyrusty/hr.proto";
+
+
+// HandyRustyService is the service managing additional erth  tools, such as clickhouse storage and logger.
+service HandyRustyService {
+    // GetFrameCounters returns frame counters by type for the given range. Aggregation: day
+    rpc GetFrameCounters(hr.GetFrameCountersRequest) returns (hr.GetFrameCountersResponse) {
+        option(google.api.http) = {
+            post: "/api/handy-rusty/frames/counters"
+            body: "*"
+        };
+    }
+
+    // GetFrameSpeed returns rx+tx frames per minute
+    rpc GetFrameSpeed(hr.GetFrameSpeedRequest) returns (hr.GetFrameSpeedResponse) {
+        option(google.api.http) = {
+            post: "/api/handy-rusty/frames/speed"
+            body: "*"
+        };
+    }
+}

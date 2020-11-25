@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/handyrusty.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/handy-rusty/frames/counters": {
+      "post": {
+        "summary": "GetFrameCounters returns frame counters by type for the given range. Aggregation: day",
+        "operationId": "GetFrameCounters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetFrameCountersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hrGetFrameCountersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
+    "/api/handy-rusty/frames/speed": {
+      "post": {
+        "summary": "GetFrameSpeed returns rx+tx frames per minute",
+        "operationId": "GetFrameSpeed",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetFrameSpeedResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hrGetFrameSpeedRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "hrFrameCounters": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date: the metrics counted for."
+        },
+        "rxCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RxCnt: total recieved frames counted"
+        },
+        "txCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "TxCnt: total transmitted frames counted"
+        },
+        "totalCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "TotalCnt: both TxCnt and RxCnt counted"
+        },
+        "unknownType": {
+          "type": "integer",
+          "format": "int64",
+          "title": "UnknownType:"
+        },
+        "joinRequest": {
+          "type": "integer",
+          "format": "int64",
+          "title": "JoinRequest"
+        },
+        "rejoinRequest": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RejoinRequest"
+        },
+        "joinAccept": {
+          "type": "integer",
+          "format": "int64",
+          "title": "JoinAccept"
+        },
+        "unconfirmedDataUp": {
+          "type": "integer",
+          "format": "int64",
+          "title": "UnconfirmedDataUp"
+        },
+        "unconfirmedDataDown": {
+          "type": "integer",
+          "format": "int64",
+          "title": "UnconfirmedDataDown"
+        },
+        "confirmedDataUp": {
+          "type": "integer",
+          "format": "int64",
+          "title": "ConfirmedDataUp"
+        },
+        "confirmedDataDown": {
+          "type": "integer",
+          "format": "int64",
+          "title": "ConfirmedDataDown"
+        },
+        "proprietary": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Proprietary"
+        }
+      }
+    },
+    "hrFrameSpeed": {
+      "type": "object",
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "format": "int64",
+          "description": "Created at timestamp."
+        },
+        "totalCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "TotalCnt: both TxCnt and RxCnt counted frames"
+        }
+      }
+    },
+    "hrGetFrameCountersRequest": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "title": "format RFC3339: 2006-01-02T15:04:05.000Z"
+        },
+        "end": {
+          "type": "string",
+          "title": "format RFC3339: 2006-01-02T15:04:05.000Z"
+        }
+      }
+    },
+    "hrGetFrameCountersResponse": {
+      "type": "object",
+      "properties": {
+        "counters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrFrameCounters"
+          },
+          "title": "list counters with frame counters by type"
+        }
+      }
+    },
+    "hrGetFrameSpeedRequest": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "title": "format RFC3339: 2006-01-02T15:04:05.000Z"
+        },
+        "end": {
+          "type": "string",
+          "title": "format RFC3339: 2006-01-02T15:04:05.000Z"
+        }
+      }
+    },
+    "hrGetFrameSpeedResponse": {
+      "type": "object",
+      "properties": {
+        "counters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrFrameSpeed"
+          },
+          "title": "list counters with frames speed"
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ package hr;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/handyrusty";
 
-// import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 // import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 // import "common/common.proto";
@@ -14,16 +14,47 @@ import "google/protobuf/empty.proto";
 
 // HandyRustyService provides the "handy-rusty additional enforta tools" API methods.
 service HandyRustyService {
+    // GetVersion returns the ChirpStack Network Server version.
+    rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {}
+
     // GetDeviceCounters returns the summary-counters log-items for given organisation_id
     rpc GetDeviceCounters(GetDeviceCountersRequest) returns (GetDeviceCountersResponse) {}
 
     // GetDeviceCounters returns the summary-counters log-items for given organisation_id
     rpc GetGatewayCounters(GetGatewayCountersRequest) returns (GetGatewayCountersResponse) {}
 
-    // GetVersion returns the ChirpStack Network Server version.
-    rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {}
+    // GetFrameCounters returns the summary-counters of frames by type
+    rpc GetFrameCounters(GetFrameCountersRequest) returns (GetFrameCountersResponse) {}
+
+    // GetFramesSpeed returns the frames per minute array for given timedate gap
+    rpc GetFrameSpeed(GetFrameSpeedRequest) returns (GetFrameSpeedResponse) {}    
 }
 
+message GetFrameCountersRequest {
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 1;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 2;
+}
+
+message GetFrameCountersResponse {
+     // list counters with frame counters by type
+    repeated FrameCounters counters = 1;
+}
+
+message GetFrameSpeedRequest {
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 1;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 2;
+}
+
+message GetFrameSpeedResponse {
+    // list counters with frames speed
+    repeated FrameSpeed counters = 1;
+}
 
 message GetDeviceCountersRequest {
     // Id (number). If Zero - all organisations (allowed for admin)
@@ -75,6 +106,9 @@ message GetVersionResponse {
 }
 
 
+
+// counters
+
 message DeviceCounters {
     // id of the organisation that handles the devices
     uint32 organization_id = 1;
@@ -92,4 +126,53 @@ message DeviceCounters {
 
     // Never seen count.
     uint32 never_seen_count = 5;
+}
+
+message FrameCounters {
+    // Date: the metrics counted for.
+    int64 date = 1;
+
+    // RxCnt: total recieved frames counted
+    uint32 rx_cnt = 2;
+
+    // TxCnt: total transmitted frames counted
+    uint32 tx_cnt = 3;
+
+    // TotalCnt: both TxCnt and RxCnt counted
+    uint32  total_cnt = 4;
+
+    // UnknownType:
+    uint32 unknown_type = 5;    
+
+    // JoinRequest
+    uint32 join_request = 6;
+
+    // RejoinRequest
+    uint32  rejoin_request = 7;
+
+    // JoinAccept
+    uint32  join_accept = 8;
+
+    // UnconfirmedDataUp
+    uint32  unconfirmed_data_up = 9;
+
+    // UnconfirmedDataDown
+    uint32  unconfirmed_data_down = 10;
+
+    // ConfirmedDataUp
+    uint32  confirmed_data_up = 11;
+
+    // ConfirmedDataDown
+    uint32  confirmed_data_down = 12;
+    // Proprietary
+    uint32  proprietary = 13;
+}    
+
+message FrameSpeed {
+    // Created at timestamp.
+    int64 date_time = 1;
+    // google.protobuf.Timestamp date_time = 1;
+
+    // TotalCnt: both TxCnt and RxCnt counted frames
+    uint32  total_cnt = 2; 
 }

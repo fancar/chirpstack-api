@@ -8,6 +8,7 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,14 +26,192 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type GetFrameCountersRequest struct {
+	// format RFC3339: 2006-01-02T15:04:05.000Z
+	Start string `protobuf:"bytes,1,opt,name=start,proto3" json:"start,omitempty"`
+	// format RFC3339: 2006-01-02T15:04:05.000Z
+	End                  string   `protobuf:"bytes,2,opt,name=end,proto3" json:"end,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetFrameCountersRequest) Reset()         { *m = GetFrameCountersRequest{} }
+func (m *GetFrameCountersRequest) String() string { return proto.CompactTextString(m) }
+func (*GetFrameCountersRequest) ProtoMessage()    {}
+func (*GetFrameCountersRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_97d7a55acfa39588, []int{0}
+}
+
+func (m *GetFrameCountersRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetFrameCountersRequest.Unmarshal(m, b)
+}
+func (m *GetFrameCountersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetFrameCountersRequest.Marshal(b, m, deterministic)
+}
+func (m *GetFrameCountersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetFrameCountersRequest.Merge(m, src)
+}
+func (m *GetFrameCountersRequest) XXX_Size() int {
+	return xxx_messageInfo_GetFrameCountersRequest.Size(m)
+}
+func (m *GetFrameCountersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetFrameCountersRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetFrameCountersRequest proto.InternalMessageInfo
+
+func (m *GetFrameCountersRequest) GetStart() string {
+	if m != nil {
+		return m.Start
+	}
+	return ""
+}
+
+func (m *GetFrameCountersRequest) GetEnd() string {
+	if m != nil {
+		return m.End
+	}
+	return ""
+}
+
+type GetFrameCountersResponse struct {
+	// list counters with frame counters by type
+	Counters             []*FrameCounters `protobuf:"bytes,1,rep,name=counters,proto3" json:"counters,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *GetFrameCountersResponse) Reset()         { *m = GetFrameCountersResponse{} }
+func (m *GetFrameCountersResponse) String() string { return proto.CompactTextString(m) }
+func (*GetFrameCountersResponse) ProtoMessage()    {}
+func (*GetFrameCountersResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_97d7a55acfa39588, []int{1}
+}
+
+func (m *GetFrameCountersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetFrameCountersResponse.Unmarshal(m, b)
+}
+func (m *GetFrameCountersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetFrameCountersResponse.Marshal(b, m, deterministic)
+}
+func (m *GetFrameCountersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetFrameCountersResponse.Merge(m, src)
+}
+func (m *GetFrameCountersResponse) XXX_Size() int {
+	return xxx_messageInfo_GetFrameCountersResponse.Size(m)
+}
+func (m *GetFrameCountersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetFrameCountersResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetFrameCountersResponse proto.InternalMessageInfo
+
+func (m *GetFrameCountersResponse) GetCounters() []*FrameCounters {
+	if m != nil {
+		return m.Counters
+	}
+	return nil
+}
+
+type GetFrameSpeedRequest struct {
+	// format RFC3339: 2006-01-02T15:04:05.000Z
+	Start string `protobuf:"bytes,1,opt,name=start,proto3" json:"start,omitempty"`
+	// format RFC3339: 2006-01-02T15:04:05.000Z
+	End                  string   `protobuf:"bytes,2,opt,name=end,proto3" json:"end,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetFrameSpeedRequest) Reset()         { *m = GetFrameSpeedRequest{} }
+func (m *GetFrameSpeedRequest) String() string { return proto.CompactTextString(m) }
+func (*GetFrameSpeedRequest) ProtoMessage()    {}
+func (*GetFrameSpeedRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_97d7a55acfa39588, []int{2}
+}
+
+func (m *GetFrameSpeedRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetFrameSpeedRequest.Unmarshal(m, b)
+}
+func (m *GetFrameSpeedRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetFrameSpeedRequest.Marshal(b, m, deterministic)
+}
+func (m *GetFrameSpeedRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetFrameSpeedRequest.Merge(m, src)
+}
+func (m *GetFrameSpeedRequest) XXX_Size() int {
+	return xxx_messageInfo_GetFrameSpeedRequest.Size(m)
+}
+func (m *GetFrameSpeedRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetFrameSpeedRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetFrameSpeedRequest proto.InternalMessageInfo
+
+func (m *GetFrameSpeedRequest) GetStart() string {
+	if m != nil {
+		return m.Start
+	}
+	return ""
+}
+
+func (m *GetFrameSpeedRequest) GetEnd() string {
+	if m != nil {
+		return m.End
+	}
+	return ""
+}
+
+type GetFrameSpeedResponse struct {
+	// list counters with frames speed
+	Counters             []*FrameSpeed `protobuf:"bytes,1,rep,name=counters,proto3" json:"counters,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *GetFrameSpeedResponse) Reset()         { *m = GetFrameSpeedResponse{} }
+func (m *GetFrameSpeedResponse) String() string { return proto.CompactTextString(m) }
+func (*GetFrameSpeedResponse) ProtoMessage()    {}
+func (*GetFrameSpeedResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_97d7a55acfa39588, []int{3}
+}
+
+func (m *GetFrameSpeedResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetFrameSpeedResponse.Unmarshal(m, b)
+}
+func (m *GetFrameSpeedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetFrameSpeedResponse.Marshal(b, m, deterministic)
+}
+func (m *GetFrameSpeedResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetFrameSpeedResponse.Merge(m, src)
+}
+func (m *GetFrameSpeedResponse) XXX_Size() int {
+	return xxx_messageInfo_GetFrameSpeedResponse.Size(m)
+}
+func (m *GetFrameSpeedResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetFrameSpeedResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetFrameSpeedResponse proto.InternalMessageInfo
+
+func (m *GetFrameSpeedResponse) GetCounters() []*FrameSpeed {
+	if m != nil {
+		return m.Counters
+	}
+	return nil
+}
+
 type GetDeviceCountersRequest struct {
-	// organisation that handles the devices
+	// Id (number). If Zero - all organisations (allowed for admin)
 	OrganizationId uint32 `protobuf:"varint,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
-	// start from time and date
+	// format RFC3339: 2006-01-02T15:04:05.000Z
 	Start string `protobuf:"bytes,2,opt,name=start,proto3" json:"start,omitempty"`
-	// end time and date
+	// format RFC3339: 2006-01-02T15:04:05.000Z
 	End string `protobuf:"bytes,3,opt,name=end,proto3" json:"end,omitempty"`
-	// aggregation of data: HOUR,DAY,WEEK,MONTH
+	// aggregation of the data: HOUR,DAY,WEEK,MONTH
 	Aggregation          string   `protobuf:"bytes,4,opt,name=aggregation,proto3" json:"aggregation,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -43,7 +222,7 @@ func (m *GetDeviceCountersRequest) Reset()         { *m = GetDeviceCountersReque
 func (m *GetDeviceCountersRequest) String() string { return proto.CompactTextString(m) }
 func (*GetDeviceCountersRequest) ProtoMessage()    {}
 func (*GetDeviceCountersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_97d7a55acfa39588, []int{0}
+	return fileDescriptor_97d7a55acfa39588, []int{4}
 }
 
 func (m *GetDeviceCountersRequest) XXX_Unmarshal(b []byte) error {
@@ -105,7 +284,7 @@ func (m *GetDeviceCountersResponse) Reset()         { *m = GetDeviceCountersResp
 func (m *GetDeviceCountersResponse) String() string { return proto.CompactTextString(m) }
 func (*GetDeviceCountersResponse) ProtoMessage()    {}
 func (*GetDeviceCountersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_97d7a55acfa39588, []int{1}
+	return fileDescriptor_97d7a55acfa39588, []int{5}
 }
 
 func (m *GetDeviceCountersResponse) XXX_Unmarshal(b []byte) error {
@@ -141,13 +320,13 @@ func (m *GetDeviceCountersResponse) GetCounters() []*DeviceCounters {
 }
 
 type GetGatewayCountersRequest struct {
-	// organisation that handles the devices
+	// Id (number). If Zero - all organisations (allowed for admin)
 	OrganizationId uint32 `protobuf:"varint,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
-	// start from time and date
+	// format RFC3339: 2006-01-02T15:04:05.000Z
 	Start string `protobuf:"bytes,2,opt,name=start,proto3" json:"start,omitempty"`
-	// end time and date
+	// format RFC3339: 2006-01-02T15:04:05.000Z
 	End string `protobuf:"bytes,3,opt,name=end,proto3" json:"end,omitempty"`
-	// aggregation of data: HOUR,DAY,WEEK,MONTH
+	// aggregation of the data: HOUR,DAY,WEEK,MONTH
 	Aggregation          string   `protobuf:"bytes,4,opt,name=aggregation,proto3" json:"aggregation,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -158,7 +337,7 @@ func (m *GetGatewayCountersRequest) Reset()         { *m = GetGatewayCountersReq
 func (m *GetGatewayCountersRequest) String() string { return proto.CompactTextString(m) }
 func (*GetGatewayCountersRequest) ProtoMessage()    {}
 func (*GetGatewayCountersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_97d7a55acfa39588, []int{2}
+	return fileDescriptor_97d7a55acfa39588, []int{6}
 }
 
 func (m *GetGatewayCountersRequest) XXX_Unmarshal(b []byte) error {
@@ -221,7 +400,7 @@ func (m *GetGatewayCountersResponse) Reset()         { *m = GetGatewayCountersRe
 func (m *GetGatewayCountersResponse) String() string { return proto.CompactTextString(m) }
 func (*GetGatewayCountersResponse) ProtoMessage()    {}
 func (*GetGatewayCountersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_97d7a55acfa39588, []int{3}
+	return fileDescriptor_97d7a55acfa39588, []int{7}
 }
 
 func (m *GetGatewayCountersResponse) XXX_Unmarshal(b []byte) error {
@@ -268,7 +447,7 @@ func (m *GetVersionResponse) Reset()         { *m = GetVersionResponse{} }
 func (m *GetVersionResponse) String() string { return proto.CompactTextString(m) }
 func (*GetVersionResponse) ProtoMessage()    {}
 func (*GetVersionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_97d7a55acfa39588, []int{4}
+	return fileDescriptor_97d7a55acfa39588, []int{8}
 }
 
 func (m *GetVersionResponse) XXX_Unmarshal(b []byte) error {
@@ -316,7 +495,7 @@ func (m *DeviceCounters) Reset()         { *m = DeviceCounters{} }
 func (m *DeviceCounters) String() string { return proto.CompactTextString(m) }
 func (*DeviceCounters) ProtoMessage()    {}
 func (*DeviceCounters) Descriptor() ([]byte, []int) {
-	return fileDescriptor_97d7a55acfa39588, []int{5}
+	return fileDescriptor_97d7a55acfa39588, []int{9}
 }
 
 func (m *DeviceCounters) XXX_Unmarshal(b []byte) error {
@@ -372,13 +551,216 @@ func (m *DeviceCounters) GetNeverSeenCount() uint32 {
 	return 0
 }
 
+type FrameCounters struct {
+	// Date: the metrics counted for.
+	Date int64 `protobuf:"varint,1,opt,name=date,proto3" json:"date,omitempty"`
+	// RxCnt: total recieved frames counted
+	RxCnt uint32 `protobuf:"varint,2,opt,name=rx_cnt,json=rxCnt,proto3" json:"rx_cnt,omitempty"`
+	// TxCnt: total transmitted frames counted
+	TxCnt uint32 `protobuf:"varint,3,opt,name=tx_cnt,json=txCnt,proto3" json:"tx_cnt,omitempty"`
+	// TotalCnt: both TxCnt and RxCnt counted
+	TotalCnt uint32 `protobuf:"varint,4,opt,name=total_cnt,json=totalCnt,proto3" json:"total_cnt,omitempty"`
+	// UnknownType:
+	UnknownType uint32 `protobuf:"varint,5,opt,name=unknown_type,json=unknownType,proto3" json:"unknown_type,omitempty"`
+	// JoinRequest
+	JoinRequest uint32 `protobuf:"varint,6,opt,name=join_request,json=joinRequest,proto3" json:"join_request,omitempty"`
+	// RejoinRequest
+	RejoinRequest uint32 `protobuf:"varint,7,opt,name=rejoin_request,json=rejoinRequest,proto3" json:"rejoin_request,omitempty"`
+	// JoinAccept
+	JoinAccept uint32 `protobuf:"varint,8,opt,name=join_accept,json=joinAccept,proto3" json:"join_accept,omitempty"`
+	// UnconfirmedDataUp
+	UnconfirmedDataUp uint32 `protobuf:"varint,9,opt,name=unconfirmed_data_up,json=unconfirmedDataUp,proto3" json:"unconfirmed_data_up,omitempty"`
+	// UnconfirmedDataDown
+	UnconfirmedDataDown uint32 `protobuf:"varint,10,opt,name=unconfirmed_data_down,json=unconfirmedDataDown,proto3" json:"unconfirmed_data_down,omitempty"`
+	// ConfirmedDataUp
+	ConfirmedDataUp uint32 `protobuf:"varint,11,opt,name=confirmed_data_up,json=confirmedDataUp,proto3" json:"confirmed_data_up,omitempty"`
+	// ConfirmedDataDown
+	ConfirmedDataDown uint32 `protobuf:"varint,12,opt,name=confirmed_data_down,json=confirmedDataDown,proto3" json:"confirmed_data_down,omitempty"`
+	// Proprietary
+	Proprietary          uint32   `protobuf:"varint,13,opt,name=proprietary,proto3" json:"proprietary,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FrameCounters) Reset()         { *m = FrameCounters{} }
+func (m *FrameCounters) String() string { return proto.CompactTextString(m) }
+func (*FrameCounters) ProtoMessage()    {}
+func (*FrameCounters) Descriptor() ([]byte, []int) {
+	return fileDescriptor_97d7a55acfa39588, []int{10}
+}
+
+func (m *FrameCounters) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FrameCounters.Unmarshal(m, b)
+}
+func (m *FrameCounters) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FrameCounters.Marshal(b, m, deterministic)
+}
+func (m *FrameCounters) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FrameCounters.Merge(m, src)
+}
+func (m *FrameCounters) XXX_Size() int {
+	return xxx_messageInfo_FrameCounters.Size(m)
+}
+func (m *FrameCounters) XXX_DiscardUnknown() {
+	xxx_messageInfo_FrameCounters.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FrameCounters proto.InternalMessageInfo
+
+func (m *FrameCounters) GetDate() int64 {
+	if m != nil {
+		return m.Date
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetRxCnt() uint32 {
+	if m != nil {
+		return m.RxCnt
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetTxCnt() uint32 {
+	if m != nil {
+		return m.TxCnt
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetTotalCnt() uint32 {
+	if m != nil {
+		return m.TotalCnt
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetUnknownType() uint32 {
+	if m != nil {
+		return m.UnknownType
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetJoinRequest() uint32 {
+	if m != nil {
+		return m.JoinRequest
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetRejoinRequest() uint32 {
+	if m != nil {
+		return m.RejoinRequest
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetJoinAccept() uint32 {
+	if m != nil {
+		return m.JoinAccept
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetUnconfirmedDataUp() uint32 {
+	if m != nil {
+		return m.UnconfirmedDataUp
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetUnconfirmedDataDown() uint32 {
+	if m != nil {
+		return m.UnconfirmedDataDown
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetConfirmedDataUp() uint32 {
+	if m != nil {
+		return m.ConfirmedDataUp
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetConfirmedDataDown() uint32 {
+	if m != nil {
+		return m.ConfirmedDataDown
+	}
+	return 0
+}
+
+func (m *FrameCounters) GetProprietary() uint32 {
+	if m != nil {
+		return m.Proprietary
+	}
+	return 0
+}
+
+type FrameSpeed struct {
+	// Created at timestamp.
+	DateTime int64 `protobuf:"varint,1,opt,name=date_time,json=dateTime,proto3" json:"date_time,omitempty"`
+	// TotalCnt: both TxCnt and RxCnt counted frames
+	TotalCnt             uint32   `protobuf:"varint,2,opt,name=total_cnt,json=totalCnt,proto3" json:"total_cnt,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FrameSpeed) Reset()         { *m = FrameSpeed{} }
+func (m *FrameSpeed) String() string { return proto.CompactTextString(m) }
+func (*FrameSpeed) ProtoMessage()    {}
+func (*FrameSpeed) Descriptor() ([]byte, []int) {
+	return fileDescriptor_97d7a55acfa39588, []int{11}
+}
+
+func (m *FrameSpeed) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FrameSpeed.Unmarshal(m, b)
+}
+func (m *FrameSpeed) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FrameSpeed.Marshal(b, m, deterministic)
+}
+func (m *FrameSpeed) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FrameSpeed.Merge(m, src)
+}
+func (m *FrameSpeed) XXX_Size() int {
+	return xxx_messageInfo_FrameSpeed.Size(m)
+}
+func (m *FrameSpeed) XXX_DiscardUnknown() {
+	xxx_messageInfo_FrameSpeed.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FrameSpeed proto.InternalMessageInfo
+
+func (m *FrameSpeed) GetDateTime() int64 {
+	if m != nil {
+		return m.DateTime
+	}
+	return 0
+}
+
+func (m *FrameSpeed) GetTotalCnt() uint32 {
+	if m != nil {
+		return m.TotalCnt
+	}
+	return 0
+}
+
 func init() {
+	proto.RegisterType((*GetFrameCountersRequest)(nil), "hr.GetFrameCountersRequest")
+	proto.RegisterType((*GetFrameCountersResponse)(nil), "hr.GetFrameCountersResponse")
+	proto.RegisterType((*GetFrameSpeedRequest)(nil), "hr.GetFrameSpeedRequest")
+	proto.RegisterType((*GetFrameSpeedResponse)(nil), "hr.GetFrameSpeedResponse")
 	proto.RegisterType((*GetDeviceCountersRequest)(nil), "hr.GetDeviceCountersRequest")
 	proto.RegisterType((*GetDeviceCountersResponse)(nil), "hr.GetDeviceCountersResponse")
 	proto.RegisterType((*GetGatewayCountersRequest)(nil), "hr.GetGatewayCountersRequest")
 	proto.RegisterType((*GetGatewayCountersResponse)(nil), "hr.GetGatewayCountersResponse")
 	proto.RegisterType((*GetVersionResponse)(nil), "hr.GetVersionResponse")
 	proto.RegisterType((*DeviceCounters)(nil), "hr.DeviceCounters")
+	proto.RegisterType((*FrameCounters)(nil), "hr.FrameCounters")
+	proto.RegisterType((*FrameSpeed)(nil), "hr.FrameSpeed")
 }
 
 func init() {
@@ -386,37 +768,58 @@ func init() {
 }
 
 var fileDescriptor_97d7a55acfa39588 = []byte{
-	// 467 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x54, 0x4f, 0x6f, 0xd3, 0x4e,
-	0x10, 0xad, 0x93, 0xf6, 0xf7, 0x23, 0x13, 0x12, 0xda, 0x05, 0x55, 0xc6, 0x50, 0x14, 0x2c, 0x21,
-	0x72, 0x61, 0x2d, 0xa5, 0x9c, 0x91, 0xf8, 0xa7, 0xc0, 0xd5, 0x15, 0x1c, 0xb8, 0x44, 0x1b, 0x7b,
-	0xb0, 0x57, 0xd0, 0x5d, 0xb3, 0x3b, 0x36, 0x0a, 0xdf, 0x01, 0x3e, 0x19, 0x9f, 0x09, 0x21, 0xef,
-	0x26, 0x69, 0x1b, 0x12, 0xa9, 0x17, 0x24, 0x6e, 0xd9, 0xb7, 0x6f, 0x66, 0x5e, 0xde, 0xec, 0x33,
-	0xdc, 0x2e, 0x85, 0xca, 0x17, 0xa6, 0xb6, 0xb4, 0x48, 0x4a, 0xc3, 0x2b, 0xa3, 0x49, 0xb3, 0x4e,
-	0x69, 0xa2, 0x7b, 0x85, 0xd6, 0xc5, 0x67, 0x4c, 0x1c, 0x32, 0xaf, 0x3f, 0x26, 0x78, 0x5e, 0xd1,
-	0xc2, 0x13, 0xe2, 0xef, 0x01, 0x84, 0x53, 0xa4, 0x57, 0xd8, 0xc8, 0x0c, 0x5f, 0xea, 0x5a, 0x11,
-	0x1a, 0x9b, 0xe2, 0x97, 0x1a, 0x2d, 0xb1, 0xc7, 0x70, 0x4b, 0x9b, 0x42, 0x28, 0xf9, 0x4d, 0x90,
-	0xd4, 0x6a, 0x26, 0xf3, 0x30, 0x18, 0x05, 0xe3, 0x41, 0x3a, 0xbc, 0x0c, 0xbf, 0xcd, 0xd9, 0x1d,
-	0x38, 0xb0, 0x24, 0x0c, 0x85, 0x9d, 0x51, 0x30, 0xee, 0xa5, 0xfe, 0xc0, 0x0e, 0xa1, 0x8b, 0x2a,
-	0x0f, 0xbb, 0x0e, 0x6b, 0x7f, 0xb2, 0x11, 0xf4, 0x45, 0x51, 0x18, 0x2c, 0x5c, 0x61, 0xb8, 0xef,
-	0x6e, 0x2e, 0x43, 0x31, 0xc1, 0xdd, 0x2d, 0x72, 0x6c, 0xa5, 0x95, 0xc5, 0xeb, 0xeb, 0xe1, 0x70,
-	0x23, 0x5b, 0x16, 0x87, 0x9d, 0x51, 0x77, 0xdc, 0x9f, 0x30, 0x5e, 0x1a, 0xbe, 0xd1, 0x76, 0xcd,
-	0x89, 0x7f, 0x04, 0x6e, 0xec, 0x54, 0x10, 0x7e, 0x15, 0x8b, 0x7f, 0xc0, 0x86, 0x1a, 0xa2, 0x6d,
-	0x7a, 0xfe, 0xb6, 0x0f, 0x1c, 0xd8, 0x14, 0xe9, 0x3d, 0x1a, 0x2b, 0xb5, 0x5a, 0x8f, 0x0b, 0xe1,
-	0xff, 0xc6, 0x43, 0x6e, 0x4c, 0x2f, 0x5d, 0x1d, 0xe3, 0x9f, 0x01, 0x0c, 0xaf, 0x36, 0xbb, 0xbe,
-	0xb6, 0x13, 0x80, 0xcc, 0xa0, 0x20, 0xcc, 0x67, 0xc2, 0x3b, 0x36, 0x48, 0x7b, 0x4b, 0xe4, 0x39,
-	0xb1, 0x87, 0x70, 0x53, 0x64, 0x24, 0x1b, 0x9c, 0x39, 0x75, 0xce, 0xbe, 0x41, 0xda, 0xf7, 0x98,
-	0x9b, 0xc6, 0x1e, 0xc1, 0x50, 0xaa, 0x2b, 0xa4, 0x7d, 0x47, 0x1a, 0xac, 0x50, 0x4f, 0x1b, 0xc3,
-	0xa1, 0xc2, 0x06, 0xcd, 0xcc, 0x22, 0xaa, 0x25, 0xf1, 0xc0, 0x4b, 0x72, 0xf8, 0x19, 0xa2, 0x72,
-	0xcc, 0xc9, 0xaf, 0x00, 0x8e, 0xde, 0xb4, 0x29, 0x4a, 0xdb, 0x14, 0x9d, 0xa1, 0x69, 0xff, 0x19,
-	0x4b, 0xe1, 0xe8, 0x8f, 0x27, 0xc9, 0xee, 0xb7, 0x3e, 0xee, 0x0a, 0x4e, 0x74, 0xb2, 0xe3, 0xd6,
-	0x1b, 0x1a, 0xef, 0xb1, 0x77, 0xce, 0xe8, 0x8d, 0xfd, 0xb2, 0x55, 0xd9, 0xf6, 0x77, 0x18, 0x3d,
-	0xd8, 0x75, 0xbd, 0x6e, 0xfb, 0x0c, 0xe0, 0x62, 0x7f, 0xec, 0x98, 0xfb, 0xe4, 0xf3, 0x55, 0xf2,
-	0xf9, 0xeb, 0x36, 0xf9, 0xd1, 0xf1, 0xb2, 0xcf, 0xc6, 0x9e, 0xe3, 0xbd, 0x17, 0x4f, 0x3f, 0x4c,
-	0x0a, 0x49, 0x65, 0x3d, 0xe7, 0x99, 0x3e, 0x4f, 0xe6, 0x46, 0x67, 0x42, 0x98, 0x24, 0x2b, 0xa5,
-	0xa9, 0x2c, 0x89, 0xec, 0xd3, 0x13, 0x51, 0xc9, 0xa4, 0xd0, 0x49, 0x73, 0x9a, 0x5c, 0x7c, 0x6d,
-	0xe6, 0xff, 0xb9, 0xfe, 0xa7, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x96, 0xb0, 0xaa, 0xea, 0x82,
-	0x04, 0x00, 0x00,
+	// 805 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x56, 0xc1, 0x6e, 0xdb, 0x46,
+	0x10, 0xad, 0x24, 0xdb, 0x91, 0x46, 0x96, 0x62, 0xad, 0xe2, 0x94, 0xa1, 0x93, 0x46, 0x21, 0x10,
+	0xd4, 0x08, 0x10, 0x12, 0x50, 0x7a, 0x0e, 0xe0, 0xda, 0xb5, 0x9b, 0x53, 0x01, 0x3a, 0xe9, 0xa1,
+	0x17, 0x62, 0x45, 0x4e, 0x28, 0x36, 0xd1, 0x2e, 0xbb, 0x5c, 0x4a, 0x51, 0xff, 0xa1, 0xbd, 0xf6,
+	0xa7, 0xfa, 0x0d, 0xfd, 0x96, 0x62, 0x77, 0x49, 0x49, 0x14, 0x19, 0xc0, 0x3d, 0x14, 0xc8, 0x4d,
+	0x7c, 0xf3, 0x66, 0xf6, 0xf1, 0x0d, 0x67, 0x47, 0x30, 0x9e, 0x53, 0x16, 0xad, 0x45, 0x9e, 0xc9,
+	0xb5, 0x37, 0x17, 0x6e, 0x2a, 0xb8, 0xe4, 0xa4, 0x3d, 0x17, 0xf6, 0xd3, 0x98, 0xf3, 0xf8, 0x23,
+	0x7a, 0x1a, 0x99, 0xe5, 0xef, 0x3d, 0x99, 0x2c, 0x30, 0x93, 0x74, 0x91, 0x1a, 0x92, 0x7d, 0xb6,
+	0x4f, 0xc0, 0x45, 0x2a, 0xd7, 0x26, 0xe8, 0x5c, 0xc0, 0xd7, 0x37, 0x28, 0xaf, 0x05, 0x5d, 0xe0,
+	0x25, 0xcf, 0x99, 0x44, 0x91, 0xf9, 0xf8, 0x5b, 0x8e, 0x99, 0x24, 0x0f, 0xe0, 0x30, 0x93, 0x54,
+	0x48, 0xab, 0x35, 0x69, 0x9d, 0xf7, 0x7c, 0xf3, 0x40, 0x4e, 0xa0, 0x83, 0x2c, 0xb2, 0xda, 0x1a,
+	0x53, 0x3f, 0x9d, 0x37, 0x60, 0xd5, 0x4b, 0x64, 0x29, 0x67, 0x19, 0x92, 0x97, 0xd0, 0x0d, 0x0b,
+	0xcc, 0x6a, 0x4d, 0x3a, 0xe7, 0xfd, 0xe9, 0xc8, 0x9d, 0x0b, 0xb7, 0x4a, 0xde, 0x50, 0x9c, 0xd7,
+	0xf0, 0xa0, 0x2c, 0x75, 0x9b, 0x22, 0x46, 0xff, 0x55, 0xca, 0x25, 0x9c, 0xee, 0xe5, 0x17, 0x3a,
+	0x5e, 0xd4, 0x74, 0x0c, 0x37, 0x3a, 0x0c, 0x73, 0x2b, 0xe2, 0x8f, 0x96, 0x7e, 0xa1, 0x2b, 0x5c,
+	0x26, 0x61, 0xcd, 0x94, 0x6f, 0xe1, 0x3e, 0x17, 0x31, 0x65, 0xc9, 0xef, 0x54, 0x26, 0x9c, 0x05,
+	0x49, 0xa4, 0x35, 0x0d, 0xfc, 0xe1, 0x2e, 0xfc, 0x26, 0xda, 0x4a, 0x6e, 0x37, 0x48, 0xee, 0x6c,
+	0x24, 0x93, 0x09, 0xf4, 0x69, 0x1c, 0x0b, 0x8c, 0x75, 0xa2, 0x75, 0xa0, 0x23, 0xbb, 0x90, 0x23,
+	0xe1, 0x51, 0x83, 0x9c, 0xe2, 0xc5, 0xee, 0xac, 0xc7, 0xdd, 0x71, 0xa0, 0xad, 0x1d, 0x20, 0xca,
+	0x81, 0xbd, 0xb2, 0x5b, 0x17, 0xfe, 0x6c, 0xe9, 0x63, 0x6f, 0xa8, 0xc4, 0x15, 0x5d, 0x7f, 0x01,
+	0x36, 0xe4, 0x60, 0x37, 0xe9, 0xf9, 0xbf, 0x7d, 0x70, 0x81, 0xdc, 0xa0, 0xfc, 0x19, 0x45, 0x96,
+	0x70, 0xb6, 0x39, 0xce, 0x82, 0x7b, 0x4b, 0x03, 0x15, 0x9f, 0x64, 0xf9, 0xe8, 0xfc, 0xdd, 0x82,
+	0x61, 0xb5, 0xd8, 0xdd, 0xb5, 0x3d, 0x01, 0x08, 0x05, 0x52, 0x89, 0x51, 0x40, 0x8d, 0x63, 0x03,
+	0xbf, 0x57, 0x20, 0x17, 0x92, 0x3c, 0x83, 0x63, 0x1a, 0xca, 0x64, 0x89, 0x81, 0x56, 0xa7, 0xed,
+	0x1b, 0xf8, 0x7d, 0x83, 0xe9, 0xd3, 0xc8, 0x73, 0x18, 0x26, 0xac, 0x42, 0x3a, 0xd0, 0xa4, 0x41,
+	0x89, 0x1a, 0xda, 0x39, 0x9c, 0x30, 0x5c, 0xa2, 0x08, 0x32, 0x44, 0x56, 0x10, 0x0f, 0x8d, 0x24,
+	0x8d, 0xdf, 0x22, 0x32, 0xcd, 0x74, 0xfe, 0xe9, 0xc0, 0xa0, 0x32, 0xad, 0x84, 0xc0, 0x41, 0x44,
+	0x25, 0xea, 0x57, 0xe8, 0xf8, 0xfa, 0x37, 0x39, 0x85, 0x23, 0xf1, 0x29, 0x08, 0x59, 0x29, 0xfa,
+	0x50, 0x7c, 0xba, 0x64, 0x52, 0xc1, 0xd2, 0xc0, 0x46, 0xea, 0xa1, 0xd4, 0xf0, 0x19, 0xf4, 0x24,
+	0x97, 0xf4, 0xa3, 0x8e, 0x18, 0x7d, 0x5d, 0x0d, 0xa8, 0xe0, 0x33, 0x38, 0xce, 0xd9, 0x07, 0xc6,
+	0x57, 0x2c, 0x90, 0xeb, 0x14, 0x0b, 0x59, 0xfd, 0x02, 0x7b, 0xbb, 0x4e, 0x51, 0x51, 0x7e, 0xe5,
+	0x09, 0x0b, 0x84, 0xf9, 0x18, 0xad, 0x23, 0x43, 0x51, 0x58, 0xf9, 0x7d, 0x3e, 0x87, 0xa1, 0xc0,
+	0x0a, 0xe9, 0x9e, 0xf1, 0xc1, 0xa0, 0x25, 0xed, 0x29, 0xe8, 0xac, 0x80, 0x86, 0x21, 0xa6, 0xd2,
+	0xea, 0x6a, 0x0e, 0x28, 0xe8, 0x42, 0x23, 0xc4, 0x85, 0x71, 0xce, 0x42, 0xce, 0xde, 0x27, 0x62,
+	0x81, 0x51, 0x10, 0x51, 0x49, 0x83, 0x3c, 0xb5, 0x7a, 0x9a, 0x38, 0xda, 0x09, 0x5d, 0x51, 0x49,
+	0xdf, 0xa5, 0x64, 0x0a, 0xa7, 0x35, 0x7e, 0xc4, 0x57, 0xcc, 0x02, 0x9d, 0x31, 0xde, 0xcb, 0xb8,
+	0xe2, 0x2b, 0x46, 0x5e, 0xc0, 0xa8, 0x7e, 0x42, 0x5f, 0xf3, 0xef, 0xef, 0xd7, 0x77, 0x61, 0xdc,
+	0x54, 0xfd, 0xd8, 0xe8, 0xa9, 0xd7, 0x9e, 0x40, 0x3f, 0x15, 0x3c, 0x15, 0x09, 0x4a, 0x2a, 0xd6,
+	0xd6, 0xc0, 0x38, 0xb5, 0x03, 0x39, 0xd7, 0x00, 0xdb, 0x5b, 0x50, 0xb5, 0x46, 0x35, 0x34, 0x50,
+	0x3b, 0xa4, 0xe8, 0x70, 0x57, 0x01, 0x6f, 0x93, 0x05, 0x56, 0xfb, 0xd6, 0xae, 0xf6, 0x6d, 0xfa,
+	0x57, 0x07, 0x46, 0x3f, 0xaa, 0x15, 0xe5, 0xab, 0x15, 0x75, 0x8b, 0x42, 0x8d, 0x00, 0x79, 0x0d,
+	0xb0, 0x9d, 0x1e, 0xf2, 0xd0, 0x35, 0xab, 0xc8, 0x2d, 0x57, 0x91, 0xfb, 0x83, 0x5a, 0x45, 0xf6,
+	0x43, 0x35, 0x81, 0xf5, 0x29, 0x73, 0xbe, 0x22, 0x3e, 0x8c, 0x6a, 0x77, 0x1f, 0x79, 0x5c, 0xd0,
+	0x1b, 0x6f, 0x68, 0xfb, 0xc9, 0x67, 0xa2, 0x9b, 0x9a, 0xef, 0xf4, 0x44, 0xef, 0x5d, 0x24, 0xa4,
+	0x4c, 0x6b, 0xbe, 0xf0, 0xec, 0x6f, 0x3e, 0x17, 0xde, 0x94, 0xfd, 0x09, 0x4e, 0xf6, 0xd7, 0x20,
+	0x39, 0x2b, 0xb2, 0x9a, 0xf6, 0xab, 0xfd, 0xb8, 0x39, 0xb8, 0x29, 0x78, 0x0d, 0x83, 0xca, 0x32,
+	0x23, 0xd6, 0x6e, 0xc2, 0xee, 0x7e, 0xb4, 0x1f, 0x35, 0x44, 0xca, 0x3a, 0xdf, 0x7f, 0xf7, 0xcb,
+	0x34, 0x4e, 0xe4, 0x3c, 0x9f, 0xb9, 0x21, 0x5f, 0x78, 0x33, 0xc1, 0x43, 0x4a, 0x85, 0x17, 0xce,
+	0x13, 0x91, 0x66, 0x92, 0x86, 0x1f, 0x5e, 0xd2, 0x34, 0xf1, 0x62, 0xee, 0x2d, 0x5f, 0x79, 0xdb,
+	0xff, 0x18, 0xb3, 0x23, 0xdd, 0xa3, 0x57, 0xff, 0x06, 0x00, 0x00, 0xff, 0xff, 0xed, 0x24, 0x0e,
+	0x01, 0x78, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -431,12 +834,16 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HandyRustyServiceClient interface {
+	// GetVersion returns the ChirpStack Network Server version.
+	GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
 	GetDeviceCounters(ctx context.Context, in *GetDeviceCountersRequest, opts ...grpc.CallOption) (*GetDeviceCountersResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
 	GetGatewayCounters(ctx context.Context, in *GetGatewayCountersRequest, opts ...grpc.CallOption) (*GetGatewayCountersResponse, error)
-	// GetVersion returns the ChirpStack Network Server version.
-	GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
+	// GetFrameCounters returns the summary-counters of frames by type
+	GetFrameCounters(ctx context.Context, in *GetFrameCountersRequest, opts ...grpc.CallOption) (*GetFrameCountersResponse, error)
+	// GetFramesSpeed returns the frames per minute array for given timedate gap
+	GetFrameSpeed(ctx context.Context, in *GetFrameSpeedRequest, opts ...grpc.CallOption) (*GetFrameSpeedResponse, error)
 }
 
 type handyRustyServiceClient struct {
@@ -445,6 +852,15 @@ type handyRustyServiceClient struct {
 
 func NewHandyRustyServiceClient(cc grpc.ClientConnInterface) HandyRustyServiceClient {
 	return &handyRustyServiceClient{cc}
+}
+
+func (c *handyRustyServiceClient) GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
+	out := new(GetVersionResponse)
+	err := c.cc.Invoke(ctx, "/hr.HandyRustyService/GetVersion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *handyRustyServiceClient) GetDeviceCounters(ctx context.Context, in *GetDeviceCountersRequest, opts ...grpc.CallOption) (*GetDeviceCountersResponse, error) {
@@ -465,9 +881,18 @@ func (c *handyRustyServiceClient) GetGatewayCounters(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (c *handyRustyServiceClient) GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
-	out := new(GetVersionResponse)
-	err := c.cc.Invoke(ctx, "/hr.HandyRustyService/GetVersion", in, out, opts...)
+func (c *handyRustyServiceClient) GetFrameCounters(ctx context.Context, in *GetFrameCountersRequest, opts ...grpc.CallOption) (*GetFrameCountersResponse, error) {
+	out := new(GetFrameCountersResponse)
+	err := c.cc.Invoke(ctx, "/hr.HandyRustyService/GetFrameCounters", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *handyRustyServiceClient) GetFrameSpeed(ctx context.Context, in *GetFrameSpeedRequest, opts ...grpc.CallOption) (*GetFrameSpeedResponse, error) {
+	out := new(GetFrameSpeedResponse)
+	err := c.cc.Invoke(ctx, "/hr.HandyRustyService/GetFrameSpeed", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -476,30 +901,58 @@ func (c *handyRustyServiceClient) GetVersion(ctx context.Context, in *empty.Empt
 
 // HandyRustyServiceServer is the server API for HandyRustyService service.
 type HandyRustyServiceServer interface {
+	// GetVersion returns the ChirpStack Network Server version.
+	GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
 	GetDeviceCounters(context.Context, *GetDeviceCountersRequest) (*GetDeviceCountersResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
 	GetGatewayCounters(context.Context, *GetGatewayCountersRequest) (*GetGatewayCountersResponse, error)
-	// GetVersion returns the ChirpStack Network Server version.
-	GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error)
+	// GetFrameCounters returns the summary-counters of frames by type
+	GetFrameCounters(context.Context, *GetFrameCountersRequest) (*GetFrameCountersResponse, error)
+	// GetFramesSpeed returns the frames per minute array for given timedate gap
+	GetFrameSpeed(context.Context, *GetFrameSpeedRequest) (*GetFrameSpeedResponse, error)
 }
 
 // UnimplementedHandyRustyServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedHandyRustyServiceServer struct {
 }
 
+func (*UnimplementedHandyRustyServiceServer) GetVersion(ctx context.Context, req *empty.Empty) (*GetVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
+}
 func (*UnimplementedHandyRustyServiceServer) GetDeviceCounters(ctx context.Context, req *GetDeviceCountersRequest) (*GetDeviceCountersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceCounters not implemented")
 }
 func (*UnimplementedHandyRustyServiceServer) GetGatewayCounters(ctx context.Context, req *GetGatewayCountersRequest) (*GetGatewayCountersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayCounters not implemented")
 }
-func (*UnimplementedHandyRustyServiceServer) GetVersion(ctx context.Context, req *empty.Empty) (*GetVersionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
+func (*UnimplementedHandyRustyServiceServer) GetFrameCounters(ctx context.Context, req *GetFrameCountersRequest) (*GetFrameCountersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFrameCounters not implemented")
+}
+func (*UnimplementedHandyRustyServiceServer) GetFrameSpeed(ctx context.Context, req *GetFrameSpeedRequest) (*GetFrameSpeedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFrameSpeed not implemented")
 }
 
 func RegisterHandyRustyServiceServer(s *grpc.Server, srv HandyRustyServiceServer) {
 	s.RegisterService(&_HandyRustyService_serviceDesc, srv)
+}
+
+func _HandyRustyService_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HandyRustyServiceServer).GetVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hr.HandyRustyService/GetVersion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HandyRustyServiceServer).GetVersion(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _HandyRustyService_GetDeviceCounters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -538,20 +991,38 @@ func _HandyRustyService_GetGatewayCounters_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HandyRustyService_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+func _HandyRustyService_GetFrameCounters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFrameCountersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HandyRustyServiceServer).GetVersion(ctx, in)
+		return srv.(HandyRustyServiceServer).GetFrameCounters(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hr.HandyRustyService/GetVersion",
+		FullMethod: "/hr.HandyRustyService/GetFrameCounters",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HandyRustyServiceServer).GetVersion(ctx, req.(*empty.Empty))
+		return srv.(HandyRustyServiceServer).GetFrameCounters(ctx, req.(*GetFrameCountersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HandyRustyService_GetFrameSpeed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFrameSpeedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HandyRustyServiceServer).GetFrameSpeed(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hr.HandyRustyService/GetFrameSpeed",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HandyRustyServiceServer).GetFrameSpeed(ctx, req.(*GetFrameSpeedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -561,6 +1032,10 @@ var _HandyRustyService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*HandyRustyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "GetVersion",
+			Handler:    _HandyRustyService_GetVersion_Handler,
+		},
+		{
 			MethodName: "GetDeviceCounters",
 			Handler:    _HandyRustyService_GetDeviceCounters_Handler,
 		},
@@ -569,8 +1044,12 @@ var _HandyRustyService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _HandyRustyService_GetGatewayCounters_Handler,
 		},
 		{
-			MethodName: "GetVersion",
-			Handler:    _HandyRustyService_GetVersion_Handler,
+			MethodName: "GetFrameCounters",
+			Handler:    _HandyRustyService_GetFrameCounters_Handler,
+		},
+		{
+			MethodName: "GetFrameSpeed",
+			Handler:    _HandyRustyService_GetFrameSpeed_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
