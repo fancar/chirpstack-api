@@ -229,6 +229,28 @@ function deserialize_hr_GetDeviceCountersResponse(buffer_arg) {
   return handyrusty_hr_pb.GetDeviceCountersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_hr_GetGatewayCountersRequest(arg) {
+  if (!(arg instanceof handyrusty_hr_pb.GetGatewayCountersRequest)) {
+    throw new Error('Expected argument of type hr.GetGatewayCountersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hr_GetGatewayCountersRequest(buffer_arg) {
+  return handyrusty_hr_pb.GetGatewayCountersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_hr_GetGatewayCountersResponse(arg) {
+  if (!(arg instanceof handyrusty_hr_pb.GetGatewayCountersResponse)) {
+    throw new Error('Expected argument of type hr.GetGatewayCountersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_hr_GetGatewayCountersResponse(buffer_arg) {
+  return handyrusty_hr_pb.GetGatewayCountersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // InternalService is the service providing API endpoints for internal usage.
 var InternalServiceService = exports.InternalServiceService = {
@@ -340,7 +362,7 @@ var InternalServiceService = exports.InternalServiceService = {
     responseSerialize: serialize_api_GetDevicesSummaryResponse,
     responseDeserialize: deserialize_api_GetDevicesSummaryResponse,
   },
-  // GetDevicesSummaryLog returns an aggregated summary logs of the devices.
+  // GetDevicesSummaryLog returns log of aggregated summary.
   getDevicesSummaryLog: {
     path: '/api.InternalService/GetDevicesSummaryLog',
     requestStream: false,
@@ -351,6 +373,18 @@ var InternalServiceService = exports.InternalServiceService = {
     requestDeserialize: deserialize_hr_GetDeviceCountersRequest,
     responseSerialize: serialize_hr_GetDeviceCountersResponse,
     responseDeserialize: deserialize_hr_GetDeviceCountersResponse,
+  },
+  // GetGatewaysSummaryLog returns log of aggregated summary.
+  getGatewaysSummaryLog: {
+    path: '/api.InternalService/GetGatewaysSummaryLog',
+    requestStream: false,
+    responseStream: false,
+    requestType: handyrusty_hr_pb.GetGatewayCountersRequest,
+    responseType: handyrusty_hr_pb.GetGatewayCountersResponse,
+    requestSerialize: serialize_hr_GetGatewayCountersRequest,
+    requestDeserialize: deserialize_hr_GetGatewayCountersRequest,
+    responseSerialize: serialize_hr_GetGatewayCountersResponse,
+    responseDeserialize: deserialize_hr_GetGatewayCountersResponse,
   },
   // GetGatewaysSummary returns an aggregated summary of the gateways.
   getGatewaysSummary: {

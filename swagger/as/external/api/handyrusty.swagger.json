@@ -144,15 +144,15 @@
     "hrFrameSpeed": {
       "type": "object",
       "properties": {
-        "dateTime": {
+        "t": {
           "type": "string",
           "format": "int64",
-          "description": "Created at timestamp."
+          "description": "T: Created at timestamp unix."
         },
-        "totalCnt": {
+        "y": {
           "type": "integer",
           "format": "int64",
-          "title": "TotalCnt: both TxCnt and RxCnt counted frames"
+          "title": "Y: TotalCnt: both TxCnt and RxCnt frames counted for the amount of time"
         }
       }
     },

@@ -19,6 +19,7 @@ interface IInternalServiceService extends grpc.ServiceDefinition<grpc.UntypedSer
   openIDConnectLogin: grpc.MethodDefinition<as_external_api_internal_pb.OpenIDConnectLoginRequest, as_external_api_internal_pb.OpenIDConnectLoginResponse>;
   getDevicesSummary: grpc.MethodDefinition<as_external_api_internal_pb.GetDevicesSummaryRequest, as_external_api_internal_pb.GetDevicesSummaryResponse>;
   getDevicesSummaryLog: grpc.MethodDefinition<handyrusty_hr_pb.GetDeviceCountersRequest, handyrusty_hr_pb.GetDeviceCountersResponse>;
+  getGatewaysSummaryLog: grpc.MethodDefinition<handyrusty_hr_pb.GetGatewayCountersRequest, handyrusty_hr_pb.GetGatewayCountersResponse>;
   getGatewaysSummary: grpc.MethodDefinition<as_external_api_internal_pb.GetGatewaysSummaryRequest, as_external_api_internal_pb.GetGatewaysSummaryResponse>;
 }
 
@@ -56,6 +57,9 @@ export class InternalServiceClient extends grpc.Client {
   getDevicesSummaryLog(argument: handyrusty_hr_pb.GetDeviceCountersRequest, callback: grpc.requestCallback<handyrusty_hr_pb.GetDeviceCountersResponse>): grpc.ClientUnaryCall;
   getDevicesSummaryLog(argument: handyrusty_hr_pb.GetDeviceCountersRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<handyrusty_hr_pb.GetDeviceCountersResponse>): grpc.ClientUnaryCall;
   getDevicesSummaryLog(argument: handyrusty_hr_pb.GetDeviceCountersRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<handyrusty_hr_pb.GetDeviceCountersResponse>): grpc.ClientUnaryCall;
+  getGatewaysSummaryLog(argument: handyrusty_hr_pb.GetGatewayCountersRequest, callback: grpc.requestCallback<handyrusty_hr_pb.GetGatewayCountersResponse>): grpc.ClientUnaryCall;
+  getGatewaysSummaryLog(argument: handyrusty_hr_pb.GetGatewayCountersRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<handyrusty_hr_pb.GetGatewayCountersResponse>): grpc.ClientUnaryCall;
+  getGatewaysSummaryLog(argument: handyrusty_hr_pb.GetGatewayCountersRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<handyrusty_hr_pb.GetGatewayCountersResponse>): grpc.ClientUnaryCall;
   getGatewaysSummary(argument: as_external_api_internal_pb.GetGatewaysSummaryRequest, callback: grpc.requestCallback<as_external_api_internal_pb.GetGatewaysSummaryResponse>): grpc.ClientUnaryCall;
   getGatewaysSummary(argument: as_external_api_internal_pb.GetGatewaysSummaryRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_internal_pb.GetGatewaysSummaryResponse>): grpc.ClientUnaryCall;
   getGatewaysSummary(argument: as_external_api_internal_pb.GetGatewaysSummaryRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_internal_pb.GetGatewaysSummaryResponse>): grpc.ClientUnaryCall;
