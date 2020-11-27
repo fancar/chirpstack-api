@@ -4,9 +4,9 @@ package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
 
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
-import "common/common.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/duration.proto";
+// import "common/common.proto";
 import "gw/gw.proto";
 
 

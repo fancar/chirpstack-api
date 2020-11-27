@@ -169,8 +169,8 @@ message FrameCounters {
 }    
 
 message FrameSpeed {
-    // T: Created at timestamp string (format "2006-01-02 15:04:05").
-    string t = 1;
+    // T: Created at timestamp unix.
+    int64 t = 1;
     // google.protobuf.Timestamp date_time = 1;
 
     // Y: TotalCnt: both TxCnt and RxCnt frames counted for the amount of time 

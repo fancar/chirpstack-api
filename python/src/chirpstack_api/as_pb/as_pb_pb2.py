@@ -24,7 +24,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z*github.com/brocaar/chirpstack-api/go/v3/as',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n chirpstack-api/as_pb/as_pb.proto\x12\x02\x61s\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\"chirpstack-api/common/common.proto\x1a\x1a\x63hirpstack-api/gw/gw.proto\"S\n\x17\x44\x65viceActivationContext\x12\x10\n\x08\x64\x65v_addr\x18\x01 \x01(\x0c\x12&\n\tapp_s_key\x18\x02 \x01(\x0b\x32\x13.common.KeyEnvelope\"\xa2\x02\n\x17HandleUplinkDataRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08join_eui\x18\x02 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x03 \x01(\r\x12\x0e\n\x06\x66_port\x18\x04 \x01(\r\x12\x0b\n\x03\x61\x64r\x18\x05 \x01(\x08\x12\n\n\x02\x64r\x18\x06 \x01(\r\x12!\n\x07tx_info\x18\x07 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x08 \x03(\x0b\x32\x10.gw.UplinkRXInfo\x12\x0c\n\x04\x64\x61ta\x18\t \x01(\x0c\x12>\n\x19\x64\x65vice_activation_context\x18\n \x01(\x0b\x32\x1b.as.DeviceActivationContext\x12\x18\n\x10\x63onfirmed_uplink\x18\x0b \x01(\x08\"\x88\x01\n\x1eHandleProprietaryUplinkRequest\x12\x13\n\x0bmac_payload\x18\x01 \x01(\x0c\x12\x0b\n\x03mic\x18\x02 \x01(\x0c\x12!\n\x07tx_info\x18\x03 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x04 \x03(\x0b\x32\x10.gw.UplinkRXInfo\"`\n\x12HandleErrorRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x1b\n\x04type\x18\x03 \x01(\x0e\x32\r.as.ErrorType\x12\r\n\x05\x65rror\x18\x04 \x01(\t\x12\r\n\x05\x66_cnt\x18\x05 \x01(\r\"P\n\x18HandleDownlinkACKRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x14\n\x0c\x61\x63knowledged\x18\x03 \x01(\x08\"\xa3\x01\n\x16SetDeviceStatusRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\r\x12\x0e\n\x06margin\x18\x03 \x01(\x05\x12\x1d\n\x15\x65xternal_power_source\x18\x04 \x01(\x08\x12!\n\x19\x62\x61ttery_level_unavailable\x18\x05 \x01(\x08\x12\x15\n\rbattery_level\x18\x06 \x01(\x02\"c\n\x18SetDeviceLocationRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\"\n\x08location\x18\x02 \x01(\x0b\x32\x10.common.Location\x12\x12\n\nuplink_ids\x18\x03 \x03(\x0c\"\xf5\x02\n\x19HandleGatewayStatsRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\x0c\x12\x10\n\x08stats_id\x18\x02 \x01(\x0c\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13rx_packets_received\x18\x05 \x01(\r\x12\x1e\n\x16rx_packets_received_ok\x18\x06 \x01(\r\x12\x1b\n\x13tx_packets_received\x18\x07 \x01(\r\x12\x1a\n\x12tx_packets_emitted\x18\x08 \x01(\r\x12=\n\x08metadata\x18\t \x03(\x0b\x32+.as.HandleGatewayStatsRequest.MetadataEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"4\n\x12HandleTxAckRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r*\x1c\n\x08RXWindow\x12\x07\n\x03RX1\x10\x00\x12\x07\n\x03RX2\x10\x01*\xbb\x01\n\tErrorType\x12\x0b\n\x07GENERIC\x10\x00\x12\x08\n\x04OTAA\x10\x01\x12\x16\n\x12\x44\x41TA_UP_FCNT_RESET\x10\x02\x12\x0f\n\x0b\x44\x41TA_UP_MIC\x10\x03\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_SIZE\x10\x04\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_FCNT\x10\x05\x12\x1f\n\x1b\x44\x41TA_UP_FCNT_RETRANSMISSION\x10\x06\x12\x15\n\x11\x44\x41TA_DOWN_GATEWAY\x10\x07\x32\xf2\x04\n\x18\x41pplicationServerService\x12I\n\x10HandleUplinkData\x12\x1b.as.HandleUplinkDataRequest\x1a\x16.google.protobuf.Empty\"\x00\x12W\n\x17HandleProprietaryUplink\x12\".as.HandleProprietaryUplinkRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleError\x12\x16.as.HandleErrorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11HandleDownlinkACK\x12\x1c.as.HandleDownlinkACKRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x12HandleGatewayStats\x12\x1d.as.HandleGatewayStatsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleTxAck\x12\x16.as.HandleTxAckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n\x0fSetDeviceStatus\x12\x1a.as.SetDeviceStatusRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11SetDeviceLocation\x12\x1c.as.SetDeviceLocationRequest\x1a\x16.google.protobuf.Empty\"\x00\x42,Z*github.com/brocaar/chirpstack-api/go/v3/asb\x06proto3'
+  serialized_pb=b'\n chirpstack-api/as_pb/as_pb.proto\x12\x02\x61s\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\"chirpstack-api/common/common.proto\x1a\x1a\x63hirpstack-api/gw/gw.proto\"H\n\x17ListOrganizationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\x0e\n\x06search\x18\x03 \x01(\t\"Y\n\x18ListOrganizationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.as.OrganizationListItem\"\xc1\x01\n\x14OrganizationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x19\n\x11\x63\x61n_have_gateways\x18\x04 \x01(\x08\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x18GetDevicesSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"\xd1\x01\n\x19GetDevicesSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12<\n\x08\x64r_count\x18\x03 \x03(\x0b\x32*.as.GetDevicesSummaryResponse.DrCountEntry\x12\x18\n\x10never_seen_count\x18\x04 \x01(\r\x1a.\n\x0c\x44rCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"D\n\x19GetGatewaysSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"d\n\x1aGetGatewaysSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12\x18\n\x10never_seen_count\x18\x03 \x01(\r\"S\n\x17\x44\x65viceActivationContext\x12\x10\n\x08\x64\x65v_addr\x18\x01 \x01(\x0c\x12&\n\tapp_s_key\x18\x02 \x01(\x0b\x32\x13.common.KeyEnvelope\"\xe7\x02\n\x17HandleUplinkDataRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08join_eui\x18\x02 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x03 \x01(\r\x12\x0e\n\x06\x66_port\x18\x04 \x01(\r\x12\x0b\n\x03\x61\x64r\x18\x05 \x01(\x08\x12\n\n\x02\x64r\x18\x06 \x01(\r\x12!\n\x07tx_info\x18\x07 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x08 \x03(\x0b\x32\x10.gw.UplinkRXInfo\x12\x0c\n\x04\x64\x61ta\x18\t \x01(\x0c\x12>\n\x19\x64\x65vice_activation_context\x18\n \x01(\x0b\x32\x1b.as.DeviceActivationContext\x12\x18\n\x10\x63onfirmed_uplink\x18\x0b \x01(\x08\x12\x0c\n\x04late\x18\x0c \x01(\x08\x12\x0b\n\x03mic\x18\r \x01(\x0c\x12(\n\x04time\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x88\x01\n\x1eHandleProprietaryUplinkRequest\x12\x13\n\x0bmac_payload\x18\x01 \x01(\x0c\x12\x0b\n\x03mic\x18\x02 \x01(\x0c\x12!\n\x07tx_info\x18\x03 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x04 \x03(\x0b\x32\x10.gw.UplinkRXInfo\"`\n\x12HandleErrorRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x1b\n\x04type\x18\x03 \x01(\x0e\x32\r.as.ErrorType\x12\r\n\x05\x65rror\x18\x04 \x01(\t\x12\r\n\x05\x66_cnt\x18\x05 \x01(\r\"P\n\x18HandleDownlinkACKRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x14\n\x0c\x61\x63knowledged\x18\x03 \x01(\x08\"\xa3\x01\n\x16SetDeviceStatusRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\r\x12\x0e\n\x06margin\x18\x03 \x01(\x05\x12\x1d\n\x15\x65xternal_power_source\x18\x04 \x01(\x08\x12!\n\x19\x62\x61ttery_level_unavailable\x18\x05 \x01(\x08\x12\x15\n\rbattery_level\x18\x06 \x01(\x02\"c\n\x18SetDeviceLocationRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\"\n\x08location\x18\x02 \x01(\x0b\x32\x10.common.Location\x12\x12\n\nuplink_ids\x18\x03 \x03(\x0c\"\xf5\x02\n\x19HandleGatewayStatsRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\x0c\x12\x10\n\x08stats_id\x18\x02 \x01(\x0c\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13rx_packets_received\x18\x05 \x01(\r\x12\x1e\n\x16rx_packets_received_ok\x18\x06 \x01(\r\x12\x1b\n\x13tx_packets_received\x18\x07 \x01(\r\x12\x1a\n\x12tx_packets_emitted\x18\x08 \x01(\r\x12=\n\x08metadata\x18\t \x03(\x0b\x32+.as.HandleGatewayStatsRequest.MetadataEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"4\n\x12HandleTxAckRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r*\x1c\n\x08RXWindow\x12\x07\n\x03RX1\x10\x00\x12\x07\n\x03RX2\x10\x01*\xbb\x01\n\tErrorType\x12\x0b\n\x07GENERIC\x10\x00\x12\x08\n\x04OTAA\x10\x01\x12\x16\n\x12\x44\x41TA_UP_FCNT_RESET\x10\x02\x12\x0f\n\x0b\x44\x41TA_UP_MIC\x10\x03\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_SIZE\x10\x04\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_FCNT\x10\x05\x12\x1f\n\x1b\x44\x41TA_UP_FCNT_RETRANSMISSION\x10\x06\x12\x15\n\x11\x44\x41TA_DOWN_GATEWAY\x10\x07\x32\xee\x06\n\x18\x41pplicationServerService\x12I\n\x10HandleUplinkData\x12\x1b.as.HandleUplinkDataRequest\x1a\x16.google.protobuf.Empty\"\x00\x12W\n\x17HandleProprietaryUplink\x12\".as.HandleProprietaryUplinkRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleError\x12\x16.as.HandleErrorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11HandleDownlinkACK\x12\x1c.as.HandleDownlinkACKRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x12HandleGatewayStats\x12\x1d.as.HandleGatewayStatsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleTxAck\x12\x16.as.HandleTxAckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n\x0fSetDeviceStatus\x12\x1a.as.SetDeviceStatusRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11SetDeviceLocation\x12\x1c.as.SetDeviceLocationRequest\x1a\x16.google.protobuf.Empty\"\x00\x12R\n\x11GetDevicesSummary\x12\x1c.as.GetDevicesSummaryRequest\x1a\x1d.as.GetDevicesSummaryResponse\"\x00\x12U\n\x12GetGatewaysSummary\x12\x1d.as.GetGatewaysSummaryRequest\x1a\x1e.as.GetGatewaysSummaryResponse\"\x00\x12O\n\x10ListOrganisation\x12\x1b.as.ListOrganizationRequest\x1a\x1c.as.ListOrganizationResponse\"\x00\x42,Z*github.com/brocaar/chirpstack-api/go/v3/asb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,chirpstack__api_dot_common_dot_common__pb2.DESCRIPTOR,chirpstack__api_dot_gw_dot_gw__pb2.DESCRIPTOR,])
 
@@ -48,8 +48,8 @@ _RXWINDOW = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1560,
-  serialized_end=1588,
+  serialized_start=2443,
+  serialized_end=2471,
 )
 _sym_db.RegisterEnumDescriptor(_RXWINDOW)
 
@@ -104,8 +104,8 @@ _ERRORTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1591,
-  serialized_end=1778,
+  serialized_start=2474,
+  serialized_end=2661,
 )
 _sym_db.RegisterEnumDescriptor(_ERRORTYPE)
 
@@ -121,6 +121,359 @@ DEVICE_QUEUE_ITEM_FCNT = 5
 DATA_UP_FCNT_RETRANSMISSION = 6
 DATA_DOWN_GATEWAY = 7
 
+
+
+_LISTORGANIZATIONREQUEST = _descriptor.Descriptor(
+  name='ListOrganizationRequest',
+  full_name='as.ListOrganizationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='limit', full_name='as.ListOrganizationRequest.limit', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='offset', full_name='as.ListOrganizationRequest.offset', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='search', full_name='as.ListOrganizationRequest.search', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=166,
+  serialized_end=238,
+)
+
+
+_LISTORGANIZATIONRESPONSE = _descriptor.Descriptor(
+  name='ListOrganizationResponse',
+  full_name='as.ListOrganizationResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='total_count', full_name='as.ListOrganizationResponse.total_count', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='result', full_name='as.ListOrganizationResponse.result', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=240,
+  serialized_end=329,
+)
+
+
+_ORGANIZATIONLISTITEM = _descriptor.Descriptor(
+  name='OrganizationListItem',
+  full_name='as.OrganizationListItem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='as.OrganizationListItem.id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='as.OrganizationListItem.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='display_name', full_name='as.OrganizationListItem.display_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='can_have_gateways', full_name='as.OrganizationListItem.can_have_gateways', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created_at', full_name='as.OrganizationListItem.created_at', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='updated_at', full_name='as.OrganizationListItem.updated_at', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=332,
+  serialized_end=525,
+)
+
+
+_GETDEVICESSUMMARYREQUEST = _descriptor.Descriptor(
+  name='GetDevicesSummaryRequest',
+  full_name='as.GetDevicesSummaryRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='as.GetDevicesSummaryRequest.organization_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='organizationID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=527,
+  serialized_end=594,
+)
+
+
+_GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY = _descriptor.Descriptor(
+  name='DrCountEntry',
+  full_name='as.GetDevicesSummaryResponse.DrCountEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.GetDevicesSummaryResponse.DrCountEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.GetDevicesSummaryResponse.DrCountEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=760,
+  serialized_end=806,
+)
+
+_GETDEVICESSUMMARYRESPONSE = _descriptor.Descriptor(
+  name='GetDevicesSummaryResponse',
+  full_name='as.GetDevicesSummaryResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='active_count', full_name='as.GetDevicesSummaryResponse.active_count', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inactive_count', full_name='as.GetDevicesSummaryResponse.inactive_count', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dr_count', full_name='as.GetDevicesSummaryResponse.dr_count', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='never_seen_count', full_name='as.GetDevicesSummaryResponse.never_seen_count', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=597,
+  serialized_end=806,
+)
+
+
+_GETGATEWAYSSUMMARYREQUEST = _descriptor.Descriptor(
+  name='GetGatewaysSummaryRequest',
+  full_name='as.GetGatewaysSummaryRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='as.GetGatewaysSummaryRequest.organization_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='organizationID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=808,
+  serialized_end=876,
+)
+
+
+_GETGATEWAYSSUMMARYRESPONSE = _descriptor.Descriptor(
+  name='GetGatewaysSummaryResponse',
+  full_name='as.GetGatewaysSummaryResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='active_count', full_name='as.GetGatewaysSummaryResponse.active_count', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inactive_count', full_name='as.GetGatewaysSummaryResponse.inactive_count', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='never_seen_count', full_name='as.GetGatewaysSummaryResponse.never_seen_count', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=878,
+  serialized_end=978,
+)
 
 
 _DEVICEACTIVATIONCONTEXT = _descriptor.Descriptor(
@@ -157,8 +510,8 @@ _DEVICEACTIVATIONCONTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=166,
-  serialized_end=249,
+  serialized_start=980,
+  serialized_end=1063,
 )
 
 
@@ -247,6 +600,27 @@ _HANDLEUPLINKDATAREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='late', full_name='as.HandleUplinkDataRequest.late', index=11,
+      number=12, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='mic', full_name='as.HandleUplinkDataRequest.mic', index=12,
+      number=13, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='as.HandleUplinkDataRequest.time', index=13,
+      number=14, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -259,8 +633,8 @@ _HANDLEUPLINKDATAREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=252,
-  serialized_end=542,
+  serialized_start=1066,
+  serialized_end=1425,
 )
 
 
@@ -312,8 +686,8 @@ _HANDLEPROPRIETARYUPLINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=545,
-  serialized_end=681,
+  serialized_start=1428,
+  serialized_end=1564,
 )
 
 
@@ -365,8 +739,8 @@ _HANDLEERRORREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=683,
-  serialized_end=779,
+  serialized_start=1566,
+  serialized_end=1662,
 )
 
 
@@ -411,8 +785,8 @@ _HANDLEDOWNLINKACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=781,
-  serialized_end=861,
+  serialized_start=1664,
+  serialized_end=1744,
 )
 
 
@@ -478,8 +852,8 @@ _SETDEVICESTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=864,
-  serialized_end=1027,
+  serialized_start=1747,
+  serialized_end=1910,
 )
 
 
@@ -524,8 +898,8 @@ _SETDEVICELOCATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1029,
-  serialized_end=1128,
+  serialized_start=1912,
+  serialized_end=2011,
 )
 
 
@@ -563,8 +937,8 @@ _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1457,
-  serialized_end=1504,
+  serialized_start=2340,
+  serialized_end=2387,
 )
 
 _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
@@ -650,8 +1024,8 @@ _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1131,
-  serialized_end=1504,
+  serialized_start=2014,
+  serialized_end=2387,
 )
 
 
@@ -689,14 +1063,20 @@ _HANDLETXACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1506,
-  serialized_end=1558,
+  serialized_start=2389,
+  serialized_end=2441,
 )
 
+_LISTORGANIZATIONRESPONSE.fields_by_name['result'].message_type = _ORGANIZATIONLISTITEM
+_ORGANIZATIONLISTITEM.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_ORGANIZATIONLISTITEM.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY.containing_type = _GETDEVICESSUMMARYRESPONSE
+_GETDEVICESSUMMARYRESPONSE.fields_by_name['dr_count'].message_type = _GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY
 _DEVICEACTIVATIONCONTEXT.fields_by_name['app_s_key'].message_type = chirpstack__api_dot_common_dot_common__pb2._KEYENVELOPE
 _HANDLEUPLINKDATAREQUEST.fields_by_name['tx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKTXINFO
 _HANDLEUPLINKDATAREQUEST.fields_by_name['rx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKRXINFO
 _HANDLEUPLINKDATAREQUEST.fields_by_name['device_activation_context'].message_type = _DEVICEACTIVATIONCONTEXT
+_HANDLEUPLINKDATAREQUEST.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _HANDLEPROPRIETARYUPLINKREQUEST.fields_by_name['tx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKTXINFO
 _HANDLEPROPRIETARYUPLINKREQUEST.fields_by_name['rx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKRXINFO
 _HANDLEERRORREQUEST.fields_by_name['type'].enum_type = _ERRORTYPE
@@ -705,6 +1085,13 @@ _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY.containing_type = _HANDLEGATEWAYSTATSRE
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['location'].message_type = chirpstack__api_dot_common_dot_common__pb2._LOCATION
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['metadata'].message_type = _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY
+DESCRIPTOR.message_types_by_name['ListOrganizationRequest'] = _LISTORGANIZATIONREQUEST
+DESCRIPTOR.message_types_by_name['ListOrganizationResponse'] = _LISTORGANIZATIONRESPONSE
+DESCRIPTOR.message_types_by_name['OrganizationListItem'] = _ORGANIZATIONLISTITEM
+DESCRIPTOR.message_types_by_name['GetDevicesSummaryRequest'] = _GETDEVICESSUMMARYREQUEST
+DESCRIPTOR.message_types_by_name['GetDevicesSummaryResponse'] = _GETDEVICESSUMMARYRESPONSE
+DESCRIPTOR.message_types_by_name['GetGatewaysSummaryRequest'] = _GETGATEWAYSSUMMARYREQUEST
+DESCRIPTOR.message_types_by_name['GetGatewaysSummaryResponse'] = _GETGATEWAYSSUMMARYRESPONSE
 DESCRIPTOR.message_types_by_name['DeviceActivationContext'] = _DEVICEACTIVATIONCONTEXT
 DESCRIPTOR.message_types_by_name['HandleUplinkDataRequest'] = _HANDLEUPLINKDATAREQUEST
 DESCRIPTOR.message_types_by_name['HandleProprietaryUplinkRequest'] = _HANDLEPROPRIETARYUPLINKREQUEST
@@ -717,6 +1104,63 @@ DESCRIPTOR.message_types_by_name['HandleTxAckRequest'] = _HANDLETXACKREQUEST
 DESCRIPTOR.enum_types_by_name['RXWindow'] = _RXWINDOW
 DESCRIPTOR.enum_types_by_name['ErrorType'] = _ERRORTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+ListOrganizationRequest = _reflection.GeneratedProtocolMessageType('ListOrganizationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTORGANIZATIONREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ListOrganizationRequest)
+  })
+_sym_db.RegisterMessage(ListOrganizationRequest)
+
+ListOrganizationResponse = _reflection.GeneratedProtocolMessageType('ListOrganizationResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTORGANIZATIONRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ListOrganizationResponse)
+  })
+_sym_db.RegisterMessage(ListOrganizationResponse)
+
+OrganizationListItem = _reflection.GeneratedProtocolMessageType('OrganizationListItem', (_message.Message,), {
+  'DESCRIPTOR' : _ORGANIZATIONLISTITEM,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.OrganizationListItem)
+  })
+_sym_db.RegisterMessage(OrganizationListItem)
+
+GetDevicesSummaryRequest = _reflection.GeneratedProtocolMessageType('GetDevicesSummaryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETDEVICESSUMMARYREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetDevicesSummaryRequest)
+  })
+_sym_db.RegisterMessage(GetDevicesSummaryRequest)
+
+GetDevicesSummaryResponse = _reflection.GeneratedProtocolMessageType('GetDevicesSummaryResponse', (_message.Message,), {
+
+  'DrCountEntry' : _reflection.GeneratedProtocolMessageType('DrCountEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.GetDevicesSummaryResponse.DrCountEntry)
+    })
+  ,
+  'DESCRIPTOR' : _GETDEVICESSUMMARYRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetDevicesSummaryResponse)
+  })
+_sym_db.RegisterMessage(GetDevicesSummaryResponse)
+_sym_db.RegisterMessage(GetDevicesSummaryResponse.DrCountEntry)
+
+GetGatewaysSummaryRequest = _reflection.GeneratedProtocolMessageType('GetGatewaysSummaryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETGATEWAYSSUMMARYREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetGatewaysSummaryRequest)
+  })
+_sym_db.RegisterMessage(GetGatewaysSummaryRequest)
+
+GetGatewaysSummaryResponse = _reflection.GeneratedProtocolMessageType('GetGatewaysSummaryResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETGATEWAYSSUMMARYRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetGatewaysSummaryResponse)
+  })
+_sym_db.RegisterMessage(GetGatewaysSummaryResponse)
 
 DeviceActivationContext = _reflection.GeneratedProtocolMessageType('DeviceActivationContext', (_message.Message,), {
   'DESCRIPTOR' : _DEVICEACTIVATIONCONTEXT,
@@ -791,6 +1235,7 @@ _sym_db.RegisterMessage(HandleTxAckRequest)
 
 
 DESCRIPTOR._options = None
+_GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY._options = None
 _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY._options = None
 
 _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
@@ -800,8 +1245,8 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1781,
-  serialized_end=2407,
+  serialized_start=2664,
+  serialized_end=3542,
   methods=[
   _descriptor.MethodDescriptor(
     name='HandleUplinkData',
@@ -880,6 +1325,36 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_SETDEVICELOCATIONREQUEST,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetDevicesSummary',
+    full_name='as.ApplicationServerService.GetDevicesSummary',
+    index=8,
+    containing_service=None,
+    input_type=_GETDEVICESSUMMARYREQUEST,
+    output_type=_GETDEVICESSUMMARYRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetGatewaysSummary',
+    full_name='as.ApplicationServerService.GetGatewaysSummary',
+    index=9,
+    containing_service=None,
+    input_type=_GETGATEWAYSSUMMARYREQUEST,
+    output_type=_GETGATEWAYSSUMMARYRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListOrganisation',
+    full_name='as.ApplicationServerService.ListOrganisation',
+    index=10,
+    containing_service=None,
+    input_type=_LISTORGANIZATIONREQUEST,
+    output_type=_LISTORGANIZATIONRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

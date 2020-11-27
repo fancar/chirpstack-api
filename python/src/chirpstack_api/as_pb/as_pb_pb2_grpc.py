@@ -56,6 +56,21 @@ class ApplicationServerServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.SetDeviceLocationRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.GetDevicesSummary = channel.unary_unary(
+                '/as.ApplicationServerService/GetDevicesSummary',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDevicesSummaryRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDevicesSummaryResponse.FromString,
+                )
+        self.GetGatewaysSummary = channel.unary_unary(
+                '/as.ApplicationServerService/GetGatewaysSummary',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGatewaysSummaryRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGatewaysSummaryResponse.FromString,
+                )
+        self.ListOrganisation = channel.unary_unary(
+                '/as.ApplicationServerService/ListOrganisation',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationResponse.FromString,
+                )
 
 
 class ApplicationServerServiceServicer(object):
@@ -118,6 +133,27 @@ class ApplicationServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDevicesSummary(self, request, context):
+        """SetDeviceLocation updates the device-location for a device.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGatewaysSummary(self, request, context):
+        """SetDeviceLocation updates the device-location for a device.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListOrganisation(self, request, context):
+        """SetDeviceLocation updates the device-location for a device.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ApplicationServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -160,6 +196,21 @@ def add_ApplicationServerServiceServicer_to_server(servicer, server):
                     servicer.SetDeviceLocation,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.SetDeviceLocationRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetDevicesSummary': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDevicesSummary,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDevicesSummaryRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDevicesSummaryResponse.SerializeToString,
+            ),
+            'GetGatewaysSummary': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGatewaysSummary,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGatewaysSummaryRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGatewaysSummaryResponse.SerializeToString,
+            ),
+            'ListOrganisation': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListOrganisation,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -305,5 +356,56 @@ class ApplicationServerService(object):
         return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/SetDeviceLocation',
             chirpstack__api_dot_as__pb_dot_as__pb__pb2.SetDeviceLocationRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDevicesSummary(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetDevicesSummary',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDevicesSummaryRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDevicesSummaryResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGatewaysSummary(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetGatewaysSummary',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGatewaysSummaryRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGatewaysSummaryResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListOrganisation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/ListOrganisation',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
