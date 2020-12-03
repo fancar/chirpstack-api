@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "handyrusty/hr.proto";
+import "gw/gw.proto";
 
 
 // HandyRustyService is the service managing additional erth  tools, such as clickhouse storage and logger.
@@ -27,4 +28,12 @@ service HandyRustyService {
             body: "*"
         };
     }
+
+    // ExecCommand sends the command to execute on gw and returns string it responses
+    rpc ExecCommand(gw.GatewayCommandExecRequest) returns (gw.GatewayCommandExecResponse) {
+        option(google.api.http) = {
+            post: "/api/handy-rusty/rc/exec-command"
+            body: "*"
+        };
+    }    
 }

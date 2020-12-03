@@ -68,9 +68,96 @@
           "HandyRustyService"
         ]
       }
+    },
+    "/api/handy-rusty/rc/exec-command": {
+      "post": {
+        "summary": "ExecCommand sends the command to execute on gw and returns string it responses",
+        "operationId": "ExecCommand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gwGatewayCommandExecResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gwGatewayCommandExecRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
     }
   },
   "definitions": {
+    "gwGatewayCommandExecRequest": {
+      "type": "object",
+      "properties": {
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID."
+        },
+        "command": {
+          "type": "string",
+          "description": "Command to execute.\nThis command must be pre-configured in the LoRa Gateway Bridge configuration."
+        },
+        "execID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Execution request ID (UUID).\nThe same token will be returned when the execution of the command has\ncompleted."
+        },
+        "stdin": {
+          "type": "string",
+          "format": "byte",
+          "description": "Standard input."
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables."
+        }
+      }
+    },
+    "gwGatewayCommandExecResponse": {
+      "type": "object",
+      "properties": {
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID."
+        },
+        "execID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Execution request ID (UUID)."
+        },
+        "stdout": {
+          "type": "string",
+          "format": "byte",
+          "description": "Standard output."
+        },
+        "stderr": {
+          "type": "string",
+          "format": "byte",
+          "description": "Standard error."
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message."
+        }
+      }
+    },
     "hrFrameCounters": {
       "type": "object",
       "properties": {
