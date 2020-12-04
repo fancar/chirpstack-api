@@ -387,6 +387,14 @@
             "type": "string"
           },
           "description": "Metadata (provided by the gateway)."
+        },
+        "address": {
+          "type": "string",
+          "title": "Address where the device is"
+        },
+        "serno": {
+          "type": "string",
+          "title": "Serno - serial number of the device"
         }
       }
     },
@@ -455,6 +463,10 @@
         "networkServerName": {
           "type": "string",
           "description": "Network-server name."
+        },
+        "radio": {
+          "type": "string",
+          "title": "the status of radio (if the packet forwarder is running)"
         }
       }
     },
