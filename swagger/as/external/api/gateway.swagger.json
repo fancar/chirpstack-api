@@ -395,6 +395,11 @@
         "serno": {
           "type": "string",
           "title": "Serno - serial number of the device"
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "the status calculated by last_seen_at parameter (now - stats_interval*1.5 \u003c= last_seen)"
         }
       }
     },
