@@ -87,7 +87,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/gwGatewayCommandExecRequest"
+              "$ref": "#/definitions/hrExecCommandRequest"
             }
           }
         ],
@@ -98,37 +98,6 @@
     }
   },
   "definitions": {
-    "gwGatewayCommandExecRequest": {
-      "type": "object",
-      "properties": {
-        "gatewayID": {
-          "type": "string",
-          "format": "byte",
-          "description": "Gateway ID."
-        },
-        "command": {
-          "type": "string",
-          "description": "Command to execute.\nThis command must be pre-configured in the LoRa Gateway Bridge configuration."
-        },
-        "execID": {
-          "type": "string",
-          "format": "byte",
-          "description": "Execution request ID (UUID).\nThe same token will be returned when the execution of the command has\ncompleted."
-        },
-        "stdin": {
-          "type": "string",
-          "format": "byte",
-          "description": "Standard input."
-        },
-        "environment": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Environment variables."
-        }
-      }
-    },
     "gwGatewayCommandExecResponse": {
       "type": "object",
       "properties": {
@@ -155,6 +124,19 @@
         "error": {
           "type": "string",
           "description": "Error message."
+        }
+      }
+    },
+    "hrExecCommandRequest": {
+      "type": "object",
+      "properties": {
+        "gatewayId": {
+          "type": "string",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "command": {
+          "type": "string",
+          "title": "command that will be executed on gateway (according to the gw config)"
         }
       }
     },

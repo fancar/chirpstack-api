@@ -30,7 +30,7 @@ service HandyRustyService {
     }
 
     // ExecCommand sends the command to execute on gw and returns string it responses
-    rpc ExecCommand(gw.GatewayCommandExecRequest) returns (gw.GatewayCommandExecResponse) {
+    rpc ExecCommand(hr.ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/rc/exec-command"
             body: "*"

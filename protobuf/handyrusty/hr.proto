@@ -30,16 +30,16 @@ service HandyRustyService {
     rpc GetFrameSpeed(GetFrameSpeedRequest) returns (GetFrameSpeedResponse) {}  
 
     // ExecCommand sends command to the gateway and returns the answer
-    rpc ExecCommand(gw.GatewayCommandExecRequest) returns (gw.GatewayCommandExecResponse) {}       
+    rpc ExecCommand(ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {}       
 }
 
-// message ExecCommandRequest {
-//     // Gateway ID.
-//     bytes gateway_id = 1 [json_name = "gatewayID"];
+message ExecCommandRequest {
+    // Gateway ID (HEX encoded).
+    string gateway_id = 1;
 
-//     // command that will be executed on gateway (according to the gw config)
-//     string command = 2;
-// }
+    // command that will be executed on gateway (according to the gw config)
+    string command = 2;
+}
 
 // message ExecCommandResponse {
 //     // Gateway ID.

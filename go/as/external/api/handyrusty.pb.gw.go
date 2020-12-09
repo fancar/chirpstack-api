@@ -13,7 +13,6 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/brocaar/chirpstack-api/go/v3/gw"
 	"github.com/brocaar/chirpstack-api/go/v3/handyrusty"
 	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
@@ -102,7 +101,7 @@ func local_request_HandyRustyService_GetFrameSpeed_0(ctx context.Context, marsha
 }
 
 func request_HandyRustyService_ExecCommand_0(ctx context.Context, marshaler runtime.Marshaler, client HandyRustyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq gw.GatewayCommandExecRequest
+	var protoReq handyrusty.ExecCommandRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -119,7 +118,7 @@ func request_HandyRustyService_ExecCommand_0(ctx context.Context, marshaler runt
 }
 
 func local_request_HandyRustyService_ExecCommand_0(ctx context.Context, marshaler runtime.Marshaler, server HandyRustyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq gw.GatewayCommandExecRequest
+	var protoReq handyrusty.ExecCommandRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
