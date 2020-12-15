@@ -400,6 +400,10 @@
           "type": "boolean",
           "format": "boolean",
           "title": "the status calculated by last_seen_at parameter (now - stats_interval*1.5 \u003c= last_seen)"
+        },
+        "phone": {
+          "type": "string",
+          "title": "Mobile phone number of SIM-card for the device"
         }
       }
     },
