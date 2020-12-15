@@ -215,7 +215,8 @@
       "properties": {
         "t": {
           "type": "string",
-          "description": "T: Created at timestamp string (format \"2006-01-02 15:04:05\")."
+          "format": "int64",
+          "title": "T: Created at timestamp (unix)"
         },
         "y": {
           "type": "integer",
