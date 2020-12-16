@@ -42,6 +42,33 @@
         ]
       }
     },
+    "/api/handy-rusty/frames/logs/device-frames": {
+      "post": {
+        "summary": "GetDeviceFramesLog returns an array with device-frame logs",
+        "operationId": "GetDeviceFramesLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetDeviceFramesLogResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hrGetDeviceFramesLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
     "/api/handy-rusty/frames/speed": {
       "post": {
         "summary": "GetFrameSpeed returns rx+tx frames per minute",
@@ -98,6 +125,59 @@
     }
   },
   "definitions": {
+    "commonLocation": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Latitude."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Longitude."
+        },
+        "altitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Altitude."
+        },
+        "source": {
+          "$ref": "#/definitions/commonLocationSource",
+          "description": "Location source."
+        },
+        "accuracy": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Accuracy (in meters)."
+        }
+      }
+    },
+    "commonLocationSource": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "GPS",
+        "CONFIG",
+        "GEO_RESOLVER_TDOA",
+        "GEO_RESOLVER_RSSI",
+        "GEO_RESOLVER_GNSS",
+        "GEO_RESOLVER_WIFI"
+      ],
+      "default": "UNKNOWN",
+      "description": " - UNKNOWN: Unknown.\n - GPS: GPS.\n - CONFIG: Manually configured.\n - GEO_RESOLVER_TDOA: Geo resolver (TDOA).\n - GEO_RESOLVER_RSSI: Geo resolver (RSSI).\n - GEO_RESOLVER_GNSS: Geo resolver (GNSS).\n - GEO_RESOLVER_WIFI: Geo resolver (WIFI)."
+    },
+    "gwFineTimestampType": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "ENCRYPTED",
+        "PLAIN"
+      ],
+      "default": "NONE",
+      "description": " - NONE: No fine-timestamp available.\n - ENCRYPTED: Encrypted fine-timestamp.\n - PLAIN: Plain fine-timestamp."
+    },
     "gwGatewayCommandExecResponse": {
       "type": "object",
       "properties": {
@@ -126,6 +206,74 @@
           "description": "Error message."
         }
       }
+    },
+    "hrDeviceFrameLog": {
+      "type": "object",
+      "properties": {
+        "direction": {
+          "type": "string"
+        },
+        "dateTime": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "mType": {
+          "type": "string"
+        },
+        "devAddr": {
+          "type": "string"
+        },
+        "devEUI": {
+          "type": "string"
+        },
+        "rxRssi": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rxSnr": {
+          "type": "number",
+          "format": "double"
+        },
+        "rxChannel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "rxRfChain": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gw": {
+          "type": "string"
+        },
+        "txInfo": {
+          "type": "string"
+        },
+        "rxInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrRXInfo"
+          }
+        },
+        "PhyPayloadJson": {
+          "type": "string",
+          "title": "google.protobuf.Any tx_info = 12;\nrepeated google.protobuf.Any rx_info = 13;"
+        },
+        "airtime": {
+          "type": "number",
+          "format": "double"
+        },
+        "esp": {
+          "type": "number",
+          "format": "double"
+        },
+        "late": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "for storage"
     },
     "hrExecCommandRequest": {
       "type": "object",
@@ -225,6 +373,53 @@
         }
       }
     },
+    "hrGetDeviceFramesLogRequest": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "you can specify offset (for pagination)"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "you can specify rows limit"
+        },
+        "start": {
+          "type": "string",
+          "title": "You can specify start DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z"
+        },
+        "end": {
+          "type": "string",
+          "title": "You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z"
+        },
+        "filters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Additional sql filters (key,value): allowed: Direction,DevEUI,MType,Gw,DevAddr"
+        }
+      }
+    },
+    "hrGetDeviceFramesLogResponse": {
+      "type": "object",
+      "properties": {
+        "itemsTotal": {
+          "type": "integer",
+          "format": "int64",
+          "title": "total numner of selected rows"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrDeviceFrameLog"
+          },
+          "title": "the array of selected device-frames logs"
+        }
+      }
+    },
     "hrGetFrameCountersRequest": {
       "type": "object",
       "properties": {
@@ -274,6 +469,59 @@
           "title": "list counters with frames speed"
         }
       }
+    },
+    "hrRXInfo": {
+      "type": "object",
+      "properties": {
+        "gateway_id": {
+          "type": "string",
+          "title": "GatewayID"
+        },
+        "rssi": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lora_snr": {
+          "type": "number",
+          "format": "double"
+        },
+        "channel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "rf_chain": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "board": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gateway_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation"
+        },
+        "gateway_id": {
+          "$ref": "#/definitions/gwFineTimestampType"
+        },
+        "gps_timestamp": {
+          "type": "string"
+        },
+        "fine_timestamp": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
+        "uplink_id": {
+          "type": "string",
+          "description": "Unique and random ID which can be used to correlate the uplink across multiple logs."
+        }
+      },
+      "title": "for RXInfo in uplink frames"
     }
   }
 }

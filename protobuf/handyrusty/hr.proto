@@ -7,7 +7,8 @@ option go_package = "github.com/brocaar/chirpstack-api/go/v3/handyrusty";
 import "google/protobuf/timestamp.proto";
 // import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
-// import "common/common.proto";
+import "google/protobuf/any.proto";
+import "common/common.proto";
 import "gw/gw.proto";
 // import "ns/profiles.proto";
 
@@ -30,8 +31,41 @@ service HandyRustyService {
     rpc GetFrameSpeed(GetFrameSpeedRequest) returns (GetFrameSpeedResponse) {}  
 
     // ExecCommand sends command to the gateway and returns the answer
-    rpc ExecCommand(ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {}       
+    rpc ExecCommand(ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {}
+
+    // GetDeviceFramesLog returns an array with device-frame logs
+    rpc GetDeviceFramesLog(GetDeviceFramesLogRequest) returns (GetDeviceFramesLogResponse) {}         
 }
+
+message GetDeviceFramesLogRequest {
+    // you can specify offset (for pagination)
+    uint32 offset = 1;
+
+    // you can specify rows limit
+    uint32 limit = 2;
+
+    // You can specify start DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 3;
+
+    // You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 4;
+
+    // Additional sql filters (key,value): allowed: Direction,DevEUI,MType,Gw,DevAddr
+    map<string, string> filters = 5; 
+}
+
+// message ListOfINfilrets {
+//    repeated string filtersIN = 1;
+// }
+
+message GetDeviceFramesLogResponse {
+    // total numner of selected rows
+    uint32 items_total = 1;
+     // the array of selected device-frames logs
+    repeated DeviceFrameLog data = 2;
+}
+
+
 
 message ExecCommandRequest {
     // Gateway ID (HEX encoded).
@@ -40,14 +74,6 @@ message ExecCommandRequest {
     // command that will be executed on gateway (according to the gw config)
     string command = 2;
 }
-
-// message ExecCommandResponse {
-//     // Gateway ID.
-//     bytes gateway_id = 1 [json_name = "gatewayID"];
-
-//     // the response from the command executed
-//     strings response = 2;
-// }
 
 message GetFrameCountersRequest {
     // format RFC3339: 2006-01-02T15:04:05.000Z
@@ -193,4 +219,48 @@ message FrameSpeed {
 
     // Y: TotalCnt: both TxCnt and RxCnt frames counted for the amount of time 
     uint32  y = 2; 
+}
+
+// for storage
+message DeviceFrameLog {
+    string direction = 1;
+    string date_time = 2;
+    string date = 3;
+    string mType = 4;
+    string dev_addr = 5;
+    string devEUI = 6;
+    int32  rxRssi = 7;
+    double  rx_snr = 8;
+    uint32 rx_channel = 9;
+    uint32 rx_rf_chain = 10;
+    string gw = 11;
+    string tx_info = 12;
+    repeated RXInfo rx_info = 13;
+    // google.protobuf.Any tx_info = 12;
+    // repeated google.protobuf.Any rx_info = 13;
+    string phy_payloadJSON = 14 [json_name = "PhyPayloadJson"];;
+    double  airtime = 15;
+    double  esp = 16;
+    uint32  late = 17;
+    // repeated gw.UplinkRXInfo uplink_rx_info = 18;
+}
+
+// for RXInfo in uplink frames
+message RXInfo {
+    // GatewayID
+    string  GatewayID = 1       [json_name = "gateway_id"];
+    int32   Rssi = 2            [json_name = "rssi"];
+    double  LoraSnr = 3         [json_name = "lora_snr"];
+    uint32  Channel = 4         [json_name = "channel"];
+    uint32  RfChain = 5         [json_name = "rf_chain"];
+    uint32  Board = 6           [json_name = "board"];
+    uint32  Antenna = 7         [json_name = "gateway_id"];
+    common.Location Location = 8                  [json_name = "location"];
+    gw.FineTimestampType FineTimestampType = 9  [json_name = "gateway_id"];
+    string  GpsTimestamp = 10   [json_name = "gps_timestamp"];
+    string  FineTimestamp = 11  [json_name = "fine_timestamp"];
+    string  Context = 12        [json_name = "context"];
+
+    // Unique and random ID which can be used to correlate the uplink across multiple logs.
+    string  UplinkID = 13       [json_name = "uplink_id"];
 }
