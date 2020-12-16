@@ -50,7 +50,7 @@ message GetDeviceFramesLogRequest {
     // You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
     string end = 4;
 
-    // Additional sql filters (key,value): allowed: Direction,DevEUI,MType,Gw,DevAddr
+    // Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr
     map<string, string> filters = 5; 
 }
 
