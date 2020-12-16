@@ -399,7 +399,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "title": "Additional sql filters (key,value): allowed: Direction,DevEUI,MType,Gw,DevAddr"
+          "title": "Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr"
         }
       }
     },
@@ -497,14 +497,14 @@
           "type": "integer",
           "format": "int64"
         },
-        "gateway_id": {
+        "antenna": {
           "type": "integer",
           "format": "int64"
         },
         "location": {
           "$ref": "#/definitions/commonLocation"
         },
-        "gateway_id": {
+        "FineTimestampType": {
           "$ref": "#/definitions/gwFineTimestampType"
         },
         "gps_timestamp": {

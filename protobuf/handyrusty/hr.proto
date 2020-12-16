@@ -254,9 +254,9 @@ message RXInfo {
     uint32  Channel = 4         [json_name = "channel"];
     uint32  RfChain = 5         [json_name = "rf_chain"];
     uint32  Board = 6           [json_name = "board"];
-    uint32  Antenna = 7         [json_name = "gateway_id"];
-    common.Location Location = 8                  [json_name = "location"];
-    gw.FineTimestampType FineTimestampType = 9  [json_name = "gateway_id"];
+    uint32  Antenna = 7         [json_name = "antenna"];
+    common.Location Location = 8 [json_name = "location"];
+    gw.FineTimestampType FineTimestampType = 9;
     string  GpsTimestamp = 10   [json_name = "gps_timestamp"];
     string  FineTimestamp = 11  [json_name = "fine_timestamp"];
     string  Context = 12        [json_name = "context"];
