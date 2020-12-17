@@ -782,7 +782,8 @@
           "format": "int64",
           "description": "Never seen count."
         }
-      }
+      },
+      "title": "counters"
     },
     "hrGetDeviceCountersResponse": {
       "type": "object",

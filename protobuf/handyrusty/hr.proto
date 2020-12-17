@@ -54,10 +54,6 @@ message GetDeviceFramesLogRequest {
     map<string, string> filters = 5; 
 }
 
-// message ListOfINfilrets {
-//    repeated string filtersIN = 1;
-// }
-
 message GetDeviceFramesLogResponse {
     // total numner of selected rows
     uint32 items_total = 1;
@@ -150,10 +146,13 @@ message GetVersionResponse {
     string version = 1;
 }
 
-
+// temp message just to check some thing
+message GetBullshitResponse {
+    // ChirpStack Network Server version.
+    string xyu = 1;
+}
 
 // counters
-
 message DeviceCounters {
     // id of the organisation that handles the devices
     uint32 organization_id = 1;
