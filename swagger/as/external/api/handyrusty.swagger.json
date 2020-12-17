@@ -44,7 +44,7 @@
     },
     "/api/handy-rusty/frames/logs/device-frames": {
       "post": {
-        "summary": "GetDeviceFramesLog returns an array with device-frame logs",
+        "summary": "GetDeviceFramesLog returns an array with recieved and transmitted device's frames",
         "operationId": "GetDeviceFramesLog",
         "responses": {
           "200": {
@@ -71,7 +71,7 @@
     },
     "/api/handy-rusty/frames/speed": {
       "post": {
-        "summary": "GetFrameSpeed returns rx+tx frames per minute",
+        "summary": "GetFrameSpeed returns an array with rx+tx frames per minute measurments",
         "operationId": "GetFrameSpeed",
         "responses": {
           "200": {
@@ -98,7 +98,7 @@
     },
     "/api/handy-rusty/rc/exec-command": {
       "post": {
-        "summary": "ExecCommand sends the command to execute on gw and returns string it responses",
+        "summary": "ExecCommand sends the command to execute on gw. It waits 2 mins for the answer from gw",
         "operationId": "ExecCommand",
         "responses": {
           "200": {
@@ -211,7 +211,8 @@
       "type": "object",
       "properties": {
         "direction": {
-          "type": "string"
+          "type": "string",
+          "title": "RX (uplink -recieved from devices) or TX (downlink - transmitted from NS)"
         },
         "dateTime": {
           "type": "string"
@@ -230,7 +231,8 @@
         },
         "rxRssi": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "params from base station with best SNR"
         },
         "rxSnr": {
           "type": "number",
@@ -245,20 +247,23 @@
           "format": "int64"
         },
         "gw": {
-          "type": "string"
+          "type": "string",
+          "title": "id of base station with best SNR"
         },
         "txInfo": {
-          "type": "string"
+          "type": "string",
+          "title": "json-string"
         },
         "rxInfo": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/hrRXInfo"
-          }
+          },
+          "title": "RXInfo an array with info from BS recieved the frame"
         },
         "PhyPayloadJson": {
           "type": "string",
-          "title": "google.protobuf.Any tx_info = 12;\nrepeated google.protobuf.Any rx_info = 13;"
+          "title": "json-string with LORA payload"
         },
         "airtime": {
           "type": "number",
@@ -521,7 +526,7 @@
           "description": "Unique and random ID which can be used to correlate the uplink across multiple logs."
         }
       },
-      "title": "for RXInfo in uplink frames"
+      "title": "for RXInfo item in uplink frames"
     }
   }
 }

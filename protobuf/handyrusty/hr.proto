@@ -223,21 +223,30 @@ message FrameSpeed {
 
 // for storage
 message DeviceFrameLog {
+    // RX (uplink -recieved from devices) or TX (downlink - transmitted from NS)
     string direction = 1;
     string date_time = 2;
     string date = 3;
     string mType = 4;
     string dev_addr = 5;
     string devEUI = 6;
+
+    // params from base station with best SNR
     int32  rxRssi = 7;
     double  rx_snr = 8;
     uint32 rx_channel = 9;
     uint32 rx_rf_chain = 10;
+
+    // id of base station with best SNR
     string gw = 11;
+
+    // json-string
     string tx_info = 12;
+
+    // RXInfo an array with info from BS recieved the frame
     repeated RXInfo rx_info = 13;
-    // google.protobuf.Any tx_info = 12;
-    // repeated google.protobuf.Any rx_info = 13;
+
+    // json-string with LORA payload
     string phy_payloadJSON = 14 [json_name = "PhyPayloadJson"];;
     double  airtime = 15;
     double  esp = 16;
@@ -245,7 +254,7 @@ message DeviceFrameLog {
     // repeated gw.UplinkRXInfo uplink_rx_info = 18;
 }
 
-// for RXInfo in uplink frames
+// for RXInfo item in uplink frames
 message RXInfo {
     // GatewayID
     string  GatewayID = 1       [json_name = "gateway_id"];

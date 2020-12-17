@@ -927,21 +927,25 @@ func (m *FrameSpeed) GetY() uint32 {
 
 // for storage
 type DeviceFrameLog struct {
-	Direction string    `protobuf:"bytes,1,opt,name=direction,proto3" json:"direction,omitempty"`
-	DateTime  string    `protobuf:"bytes,2,opt,name=date_time,json=dateTime,proto3" json:"date_time,omitempty"`
-	Date      string    `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
-	MType     string    `protobuf:"bytes,4,opt,name=mType,proto3" json:"mType,omitempty"`
-	DevAddr   string    `protobuf:"bytes,5,opt,name=dev_addr,json=devAddr,proto3" json:"dev_addr,omitempty"`
-	DevEUI    string    `protobuf:"bytes,6,opt,name=devEUI,proto3" json:"devEUI,omitempty"`
-	RxRssi    int32     `protobuf:"varint,7,opt,name=rxRssi,proto3" json:"rxRssi,omitempty"`
-	RxSnr     float64   `protobuf:"fixed64,8,opt,name=rx_snr,json=rxSnr,proto3" json:"rx_snr,omitempty"`
-	RxChannel uint32    `protobuf:"varint,9,opt,name=rx_channel,json=rxChannel,proto3" json:"rx_channel,omitempty"`
-	RxRfChain uint32    `protobuf:"varint,10,opt,name=rx_rf_chain,json=rxRfChain,proto3" json:"rx_rf_chain,omitempty"`
-	Gw        string    `protobuf:"bytes,11,opt,name=gw,proto3" json:"gw,omitempty"`
-	TxInfo    string    `protobuf:"bytes,12,opt,name=tx_info,json=txInfo,proto3" json:"tx_info,omitempty"`
-	RxInfo    []*RXInfo `protobuf:"bytes,13,rep,name=rx_info,json=rxInfo,proto3" json:"rx_info,omitempty"`
-	// google.protobuf.Any tx_info = 12;
-	// repeated google.protobuf.Any rx_info = 13;
+	// RX (uplink -recieved from devices) or TX (downlink - transmitted from NS)
+	Direction string `protobuf:"bytes,1,opt,name=direction,proto3" json:"direction,omitempty"`
+	DateTime  string `protobuf:"bytes,2,opt,name=date_time,json=dateTime,proto3" json:"date_time,omitempty"`
+	Date      string `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
+	MType     string `protobuf:"bytes,4,opt,name=mType,proto3" json:"mType,omitempty"`
+	DevAddr   string `protobuf:"bytes,5,opt,name=dev_addr,json=devAddr,proto3" json:"dev_addr,omitempty"`
+	DevEUI    string `protobuf:"bytes,6,opt,name=devEUI,proto3" json:"devEUI,omitempty"`
+	// params from base station with best SNR
+	RxRssi    int32   `protobuf:"varint,7,opt,name=rxRssi,proto3" json:"rxRssi,omitempty"`
+	RxSnr     float64 `protobuf:"fixed64,8,opt,name=rx_snr,json=rxSnr,proto3" json:"rx_snr,omitempty"`
+	RxChannel uint32  `protobuf:"varint,9,opt,name=rx_channel,json=rxChannel,proto3" json:"rx_channel,omitempty"`
+	RxRfChain uint32  `protobuf:"varint,10,opt,name=rx_rf_chain,json=rxRfChain,proto3" json:"rx_rf_chain,omitempty"`
+	// id of base station with best SNR
+	Gw string `protobuf:"bytes,11,opt,name=gw,proto3" json:"gw,omitempty"`
+	// json-string
+	TxInfo string `protobuf:"bytes,12,opt,name=tx_info,json=txInfo,proto3" json:"tx_info,omitempty"`
+	// RXInfo an array with info from BS recieved the frame
+	RxInfo []*RXInfo `protobuf:"bytes,13,rep,name=rx_info,json=rxInfo,proto3" json:"rx_info,omitempty"`
+	// json-string with LORA payload
 	PhyPayloadJSON       string   `protobuf:"bytes,14,opt,name=phy_payloadJSON,json=PhyPayloadJson,proto3" json:"phy_payloadJSON,omitempty"`
 	Airtime              float64  `protobuf:"fixed64,15,opt,name=airtime,proto3" json:"airtime,omitempty"`
 	Esp                  float64  `protobuf:"fixed64,16,opt,name=esp,proto3" json:"esp,omitempty"`
@@ -1095,7 +1099,7 @@ func (m *DeviceFrameLog) GetLate() uint32 {
 	return 0
 }
 
-// for RXInfo in uplink frames
+// for RXInfo item in uplink frames
 type RXInfo struct {
 	// GatewayID
 	GatewayID         string               `protobuf:"bytes,1,opt,name=GatewayID,json=gateway_id,proto3" json:"GatewayID,omitempty"`

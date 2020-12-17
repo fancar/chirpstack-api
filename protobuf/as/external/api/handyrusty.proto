@@ -21,7 +21,7 @@ service HandyRustyService {
         };
     }
 
-    // GetFrameSpeed returns rx+tx frames per minute
+    // GetFrameSpeed returns an array with rx+tx frames per minute measurments
     rpc GetFrameSpeed(hr.GetFrameSpeedRequest) returns (hr.GetFrameSpeedResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/frames/speed"
@@ -29,7 +29,7 @@ service HandyRustyService {
         };
     }
 
-    // ExecCommand sends the command to execute on gw and returns string it responses
+    // ExecCommand sends the command to execute on gw. It waits 2 mins for the answer from gw
     rpc ExecCommand(hr.ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/rc/exec-command"
@@ -37,7 +37,7 @@ service HandyRustyService {
         };
     }
 
-    // GetDeviceFramesLog returns an array with device-frame logs
+    // GetDeviceFramesLog returns an array with recieved and transmitted device's frames
     rpc GetDeviceFramesLog(hr.GetDeviceFramesLogRequest) returns (hr.GetDeviceFramesLogResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/frames/logs/device-frames"

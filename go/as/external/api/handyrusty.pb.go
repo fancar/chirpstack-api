@@ -76,11 +76,11 @@ const _ = grpc.SupportPackageIsVersion6
 type HandyRustyServiceClient interface {
 	// GetFrameCounters returns frame counters by type for the given range. Aggregation: day
 	GetFrameCounters(ctx context.Context, in *handyrusty.GetFrameCountersRequest, opts ...grpc.CallOption) (*handyrusty.GetFrameCountersResponse, error)
-	// GetFrameSpeed returns rx+tx frames per minute
+	// GetFrameSpeed returns an array with rx+tx frames per minute measurments
 	GetFrameSpeed(ctx context.Context, in *handyrusty.GetFrameSpeedRequest, opts ...grpc.CallOption) (*handyrusty.GetFrameSpeedResponse, error)
-	// ExecCommand sends the command to execute on gw and returns string it responses
+	// ExecCommand sends the command to execute on gw. It waits 2 mins for the answer from gw
 	ExecCommand(ctx context.Context, in *handyrusty.ExecCommandRequest, opts ...grpc.CallOption) (*gw.GatewayCommandExecResponse, error)
-	// GetDeviceFramesLog returns an array with device-frame logs
+	// GetDeviceFramesLog returns an array with recieved and transmitted device's frames
 	GetDeviceFramesLog(ctx context.Context, in *handyrusty.GetDeviceFramesLogRequest, opts ...grpc.CallOption) (*handyrusty.GetDeviceFramesLogResponse, error)
 }
 
@@ -132,11 +132,11 @@ func (c *handyRustyServiceClient) GetDeviceFramesLog(ctx context.Context, in *ha
 type HandyRustyServiceServer interface {
 	// GetFrameCounters returns frame counters by type for the given range. Aggregation: day
 	GetFrameCounters(context.Context, *handyrusty.GetFrameCountersRequest) (*handyrusty.GetFrameCountersResponse, error)
-	// GetFrameSpeed returns rx+tx frames per minute
+	// GetFrameSpeed returns an array with rx+tx frames per minute measurments
 	GetFrameSpeed(context.Context, *handyrusty.GetFrameSpeedRequest) (*handyrusty.GetFrameSpeedResponse, error)
-	// ExecCommand sends the command to execute on gw and returns string it responses
+	// ExecCommand sends the command to execute on gw. It waits 2 mins for the answer from gw
 	ExecCommand(context.Context, *handyrusty.ExecCommandRequest) (*gw.GatewayCommandExecResponse, error)
-	// GetDeviceFramesLog returns an array with device-frame logs
+	// GetDeviceFramesLog returns an array with recieved and transmitted device's frames
 	GetDeviceFramesLog(context.Context, *handyrusty.GetDeviceFramesLogRequest) (*handyrusty.GetDeviceFramesLogResponse, error)
 }
 
