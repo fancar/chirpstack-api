@@ -705,12 +705,12 @@ message LoRaCloudIntegration {
     string das_token = 14;
 
     // Device Application Services modem port (FPort).
-    // ChirpStack Application Server will only forward the FRMPayload to DAS
+    // Application Server will only forward the FRMPayload to DAS
     // when the uplink FPort is equal to this value.
     uint32 das_modem_port = 15;
 
     // Device Application Services GNSS port (FPort).
-    // ChirpStack Application Server will forward the FRMPayload to DAS when
+    // Application Server will forward the FRMPayload to DAS when
     // as GNSS payload when the uplink FPort is equal to this value.
     uint32 das_gnss_port = 16 [json_name = "dasGNSSPort"];
 
@@ -722,7 +722,7 @@ message LoRaCloudIntegration {
     // Device Application Services streaming geoloc work-around.
     // This is a temporarily work-around for processing streaming geolocation
     // data. When enabled, stream records (expected in TLV format) are scanned
-    // for GNSS data (0x06 or 0x07). If found, the ChirpStack Application Server
+    // for GNSS data (0x06 or 0x07). If found, the Application Server
     // will make an additional call to the DAS API for resolving the location
     // using the detected payload.
     bool das_streaming_geoloc_workaround = 18;

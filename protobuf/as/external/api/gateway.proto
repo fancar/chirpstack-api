@@ -65,7 +65,7 @@ service GatewayService {
 	}
 
     // GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-    // This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+    // This endpoint can ony be used when Network Server is configured with a gateway
     // CA certificate and key, which is used for signing the TLS certificate. The returned TLS
     // certificate will have the Gateway ID as Common Name.
     rpc GenerateGatewayClientCertificate(GenerateGatewayClientCertificateRequest) returns (GenerateGatewayClientCertificateResponse) {
@@ -114,7 +114,7 @@ message Gateway {
 	// Gateway boards configuration (optional).
     // This is (currently) only needed when the gateway supports the fine-timestamp
     // and you you would like to add the FPGA ID to the gateway meta-data or would
-	// like ChirpStack Network Server to decrypt the fine-timestamp.
+	// like Network Server to decrypt the fine-timestamp.
 	repeated GatewayBoard boards = 9;
 
     // Tags (user defined).

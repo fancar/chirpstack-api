@@ -138,10 +138,10 @@ message GetNetworkServerResponse {
     // Last update timestamp.
     google.protobuf.Timestamp updated_at = 3;
 
-    // The ChirpStack Network Server version.
+    // The Network Server version.
     string version = 4;
 
-    // The ChirpStack Network Server region configured.
+    // The Network Server region configured.
     string region = 5;
 }
 
