@@ -210,11 +210,11 @@
         },
         "version": {
           "type": "string",
-          "description": "The ChirpStack Network Server version."
+          "description": "The Network Server version."
         },
         "region": {
           "type": "string",
-          "description": "The ChirpStack Network Server region configured."
+          "description": "The Network Server region configured."
         }
       }
     },

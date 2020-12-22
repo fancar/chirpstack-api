@@ -509,7 +509,7 @@ func (m *LoginRequest) GetPassword() string {
 }
 
 type LoginResponse struct {
-	// The JWT tag to be used to access chirpstack-application-server interfaces.
+	// The JWT tag to be used to access application-server interfaces.
 	Jwt                  string   `protobuf:"bytes,1,opt,name=jwt,proto3" json:"jwt,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

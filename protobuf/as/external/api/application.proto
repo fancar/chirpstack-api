@@ -368,6 +368,9 @@ message ApplicationListItem {
 
 	// Service-profile name.
 	string service_profile_name = 6;
+
+    // device count of the application
+    int64 dev_cnt = 7;    
 }
 
 

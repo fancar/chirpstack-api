@@ -1263,6 +1263,11 @@
         "serviceProfileName": {
           "type": "string",
           "description": "Service-profile name."
+        },
+        "devCnt": {
+          "type": "string",
+          "format": "int64",
+          "title": "device count of the application"
         }
       }
     },
@@ -1731,12 +1736,12 @@
         "dasModemPort": {
           "type": "integer",
           "format": "int64",
-          "description": "Device Application Services modem port (FPort).\nChirpStack Application Server will only forward the FRMPayload to DAS\nwhen the uplink FPort is equal to this value."
+          "description": "Device Application Services modem port (FPort).\nApplication Server will only forward the FRMPayload to DAS\nwhen the uplink FPort is equal to this value."
         },
         "dasGNSSPort": {
           "type": "integer",
           "format": "int64",
-          "description": "Device Application Services GNSS port (FPort).\nChirpStack Application Server will forward the FRMPayload to DAS when\nas GNSS payload when the uplink FPort is equal to this value."
+          "description": "Device Application Services GNSS port (FPort).\nApplication Server will forward the FRMPayload to DAS when\nas GNSS payload when the uplink FPort is equal to this value."
         },
         "dasGNSSUseRxTime": {
           "type": "boolean",
@@ -1746,7 +1751,7 @@
         "dasStreamingGeolocWorkaround": {
           "type": "boolean",
           "format": "boolean",
-          "description": "Device Application Services streaming geoloc work-around.\nThis is a temporarily work-around for processing streaming geolocation\ndata. When enabled, stream records (expected in TLV format) are scanned\nfor GNSS data (0x06 or 0x07). If found, the ChirpStack Application Server\nwill make an additional call to the DAS API for resolving the location\nusing the detected payload."
+          "description": "Device Application Services streaming geoloc work-around.\nThis is a temporarily work-around for processing streaming geolocation\ndata. When enabled, stream records (expected in TLV format) are scanned\nfor GNSS data (0x06 or 0x07). If found, the Application Server\nwill make an additional call to the DAS API for resolving the location\nusing the detected payload."
         }
       }
     },

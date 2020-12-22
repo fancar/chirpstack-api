@@ -49,7 +49,7 @@ type Gateway struct {
 	// Gateway boards configuration (optional).
 	// This is (currently) only needed when the gateway supports the fine-timestamp
 	// and you you would like to add the FPGA ID to the gateway meta-data or would
-	// like ChirpStack Network Server to decrypt the fine-timestamp.
+	// like Network Server to decrypt the fine-timestamp.
 	Boards []*GatewayBoard `protobuf:"bytes,9,rep,name=boards,proto3" json:"boards,omitempty"`
 	// Tags (user defined).
 	Tags map[string]string `protobuf:"bytes,10,rep,name=tags,proto3" json:"tags,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
@@ -1509,7 +1509,7 @@ type GatewayServiceClient interface {
 	// GetLastPing returns the last emitted ping and gateways receiving this ping.
 	GetLastPing(ctx context.Context, in *GetLastPingRequest, opts ...grpc.CallOption) (*GetLastPingResponse, error)
 	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-	// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+	// This endpoint can ony be used when Network Server is configured with a gateway
 	// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
 	// certificate will have the Gateway ID as Common Name.
 	GenerateGatewayClientCertificate(ctx context.Context, in *GenerateGatewayClientCertificateRequest, opts ...grpc.CallOption) (*GenerateGatewayClientCertificateResponse, error)
@@ -1649,7 +1649,7 @@ type GatewayServiceServer interface {
 	// GetLastPing returns the last emitted ping and gateways receiving this ping.
 	GetLastPing(context.Context, *GetLastPingRequest) (*GetLastPingResponse, error)
 	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-	// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+	// This endpoint can ony be used when Network Server is configured with a gateway
 	// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
 	// certificate will have the Gateway ID as Common Name.
 	GenerateGatewayClientCertificate(context.Context, *GenerateGatewayClientCertificateRequest) (*GenerateGatewayClientCertificateResponse, error)

@@ -617,7 +617,7 @@
       "properties": {
         "jwt": {
           "type": "string",
-          "description": "The JWT tag to be used to access chirpstack-application-server interfaces."
+          "description": "The JWT tag to be used to access application-server interfaces."
         }
       }
     },
