@@ -556,6 +556,15 @@
         "email": {
           "type": "string",
           "description": "Email (only used on get)."
+        },
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "false if the user inactive"
+        },
+        "note": {
+          "type": "string",
+          "description": "Optional note to store with the user."
         }
       }
     },
@@ -595,6 +604,11 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "false if the user inactive"
         }
       }
     },

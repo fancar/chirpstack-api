@@ -203,6 +203,12 @@ message OrganizationUser {
 
 	// Email (only used on get).
 	string email = 4;
+
+	// false if the user inactive
+	bool is_active = 7;
+
+	// Optional note to store with the user.
+	string note = 8;	
 }
 
 message OrganizationUserListItem {
@@ -230,6 +236,9 @@ message OrganizationUserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 5;
+
+	// false if the user inactive
+	bool is_active = 8;
 }
 
 message AddOrganizationUserRequest {
