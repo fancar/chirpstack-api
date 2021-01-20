@@ -51,7 +51,10 @@ message GetDeviceFramesLogRequest {
     string end = 4;
 
     // Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr
-    map<string, string> filters = 5; 
+    map<string, string> filters = 5;
+
+    // You can set the id to 0 if admin
+    int64 organization_id = 6;    
 }
 
 message GetDeviceFramesLogResponse {
