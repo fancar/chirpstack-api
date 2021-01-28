@@ -405,6 +405,11 @@
             "type": "string"
           },
           "title": "Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64",
+          "title": "You can set the id to 0 if admin"
         }
       }
     },

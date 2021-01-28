@@ -300,6 +300,56 @@
           "GatewayService"
         ]
       }
+    },
+    "/api/monitoring/gateways/actility_styled": {
+      "get": {
+        "summary": "ListActilityStyled lists the gateways with legacy [Actility] json-format.",
+        "operationId": "ListActilityStyled",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListGwActilityStyledResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of nodes to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "description": "Offset of the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "organizationID",
+            "description": "ID of the organization for which to filter on, when left blank the\nresponse will return all gateways to which the user has access to.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "description": "Search on name or gateway MAC (optional).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -598,6 +648,34 @@
         }
       }
     },
+    "apiGwItemActilityStyled": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string",
+          "title": "ID. (max hex as integer)"
+        },
+        "id": {
+          "type": "string",
+          "title": "GW ID (last 4 bytes MSB)"
+        },
+        "name": {
+          "type": "string",
+          "title": "name of the gateway"
+        },
+        "administrationState": {
+          "type": "string",
+          "title": "state of the gw: ACTIVE or SUSPENDED"
+        },
+        "owner": {
+          "type": "string",
+          "title": "name of the gateway"
+        },
+        "statistics": {
+          "$ref": "#/definitions/apiStatsItemActilityStyled"
+        }
+      }
+    },
     "apiListGatewayResponse": {
       "type": "object",
       "properties": {
@@ -610,6 +688,23 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiGatewayListItem"
+          },
+          "description": "Nodes within this result-set."
+        }
+      }
+    },
+    "apiListGwActilityStyledResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of nodes available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGwItemActilityStyled"
           },
           "description": "Nodes within this result-set."
         }
@@ -646,6 +741,24 @@
           "type": "number",
           "format": "double",
           "description": "Altitude of the gateway in meters."
+        }
+      }
+    },
+    "apiStatsItemActilityStyled": {
+      "type": "object",
+      "properties": {
+        "creationTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Create timestamp."
+        },
+        "connectionState": {
+          "type": "string",
+          "title": "CNX: it works, DISC: unreachable, NEVERCNX: never seen"
+        },
+        "healthState": {
+          "type": "string",
+          "title": "present errors on GW: ACTIVE, BACKHAUL_CNX_ERROR"
         }
       }
     },

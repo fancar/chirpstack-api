@@ -50,6 +50,13 @@ service GatewayService {
 		};
 	}
 
+	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
+	rpc ListActilityStyled(ListGatewayRequest) returns (ListGwActilityStyledResponse) {
+		option (google.api.http) = {
+			get: "/api/monitoring/gateways/actility_styled"
+		};
+	}	
+
 	// GetStats lists the gateway stats given the query parameters.
 	rpc GetStats(GetGatewayStatsRequest) returns (GetGatewayStatsResponse) {
 		option (google.api.http) = {
@@ -249,6 +256,37 @@ message GatewayListItem {
     bool active = 13;      
 }
 
+message StatsItemActilityStyled {
+	// Create timestamp.
+	google.protobuf.Timestamp creation_time = 1 [json_name = "creationTime"];
+
+	// CNX: it works, DISC: unreachable, NEVERCNX: never seen
+	string connection_state = 2 [json_name = "connectionState"];
+
+	// present errors on GW: ACTIVE, BACKHAUL_CNX_ERROR
+	string health_state = 3 [json_name = "healthState"];
+}
+
+message GwItemActilityStyled {
+	// ID. (max hex as integer)
+	string ref = 1;
+	
+	// GW ID (last 4 bytes MSB)
+	string id = 2;
+	
+	// name of the gateway
+	string name = 3;
+
+	// state of the gw: ACTIVE or SUSPENDED
+	string administration_state = 4 [json_name = "administrationState"];
+
+	// name of the gateway
+	string owner = 5;
+
+	StatsItemActilityStyled statistics = 6;     
+}
+
+
 message ListGatewayResponse {
 	// Total number of nodes available within the result-set.
 	int64 total_count = 1;
@@ -257,6 +295,14 @@ message ListGatewayResponse {
 	repeated GatewayListItem result = 2;
 }
 
+
+message ListGwActilityStyledResponse {
+	// Total number of nodes available within the result-set.
+	int64 total_count = 1;
+
+	// Nodes within this result-set.
+	repeated GwItemActilityStyled result = 2;
+}
 
 message UpdateGatewayRequest {
 	// Gateway object to update.
