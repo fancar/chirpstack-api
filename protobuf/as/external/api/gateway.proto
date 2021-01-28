@@ -300,7 +300,7 @@ message ListGwActilityStyledResponse {
 	// Total number of nodes available within the result-set.
 	int64 total_count = 1;
 
-	// Nodes within this result-set.
+	// result array
 	repeated GwItemActilityStyled result = 2;
 }
 
