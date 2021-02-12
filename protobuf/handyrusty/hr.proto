@@ -54,7 +54,7 @@ message GetDeviceFramesLogRequest {
     map<string, string> filters = 5;
 
     // You can set the id to 0 if admin
-    int64 organization_id = 6;    
+    int64 organization_id = 6;
 }
 
 message GetDeviceFramesLogResponse {
@@ -249,10 +249,11 @@ message DeviceFrameLog {
     repeated RXInfo rx_info = 13;
 
     // json-string with LORA payload
-    string phy_payloadJSON = 14 [json_name = "PhyPayloadJson"];;
+    string phy_payloadJSON = 14 [json_name = "PhyPayloadJson"];
     double  airtime = 15;
     double  esp = 16;
     uint32  late = 17;
+    string frm_payload = 18;
     // repeated gw.UplinkRXInfo uplink_rx_info = 18;
 }
 

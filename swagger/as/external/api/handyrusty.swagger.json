@@ -276,6 +276,9 @@
         "late": {
           "type": "integer",
           "format": "int64"
+        },
+        "frmPayload": {
+          "type": "string"
         }
       },
       "title": "for storage"

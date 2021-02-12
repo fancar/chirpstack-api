@@ -45,13 +45,22 @@ service ApplicationServerService {
     // SetDeviceLocation updates the device-location for a device.
     rpc ListOrganisation(ListOrganizationRequest) returns (ListOrganizationResponse) {}
 
-    // GetOrgByDevEUI returns organization ia by devEUI. Modification.
-    rpc GetOrgByDevEUI(GetOrgByDevEUIRequest) returns (GetOrgByDevEUIResponse) {}      
+    // GetOrgByDevEUI returns organization id by devEUI. Modification.
+    rpc GetOrgByDevEUI(GetOrgByDevEUIRequest) returns (GetOrgByDevEUIResponse) {}
+
+    // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
+    rpc GetDeviceAppSKey(GetOrgByDevEUIRequest) returns (GetDeviceAppSKeyResponse) {} 
 }
+
 
 message GetOrgByDevEUIRequest {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];   
+}
+
+message GetDeviceAppSKeyResponse {
+    // AppSKey is a AES128Key for the device
+    bytes value = 1;
 }
 
 message GetOrgByDevEUIResponse {

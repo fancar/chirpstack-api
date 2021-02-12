@@ -955,7 +955,7 @@ func (m *ListGatewayResponse) GetResult() []*GatewayListItem {
 type ListGwActilityStyledResponse struct {
 	// Total number of nodes available within the result-set.
 	TotalCount int64 `protobuf:"varint,1,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
-	// Nodes within this result-set.
+	// result array
 	Result               []*GwItemActilityStyled `protobuf:"bytes,2,rep,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
 	XXX_unrecognized     []byte                  `json:"-"`

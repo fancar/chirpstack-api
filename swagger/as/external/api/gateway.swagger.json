@@ -706,7 +706,7 @@
           "items": {
             "$ref": "#/definitions/apiGwItemActilityStyled"
           },
-          "description": "Nodes within this result-set."
+          "title": "result array"
         }
       }
     },
