@@ -15,6 +15,56 @@
     "application/json"
   ],
   "paths": {
+    "/api/user-logs": {
+      "get": {
+        "summary": "ListLogs returns a list of user-activity logs",
+        "operationId": "ListLogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListUserLogsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of user to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "description": "Offset in the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "organizationId",
+            "description": "an organization where the user action been detected.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "description": "search field by username.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/api/users": {
       "get": {
         "summary": "Get user list.",
@@ -248,6 +298,23 @@
         }
       }
     },
+    "apiListUserLogsResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of logs in db."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiUserLogListItem"
+          },
+          "description": "Result-set."
+        }
+      }
+    },
     "apiListUserResponse": {
       "type": "object",
       "properties": {
@@ -357,6 +424,47 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        }
+      }
+    },
+    "apiUserLogListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Log ID.\nset automatically on create."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "userId": {
+          "type": "string",
+          "format": "int64",
+          "description": "id of user who operated."
+        },
+        "userName": {
+          "type": "string",
+          "description": "id of user who operated."
+        },
+        "event": {
+          "type": "string",
+          "title": "the name of event that happend"
+        },
+        "statePrev": {
+          "type": "string",
+          "title": "previous state of an object that changed or deleted (json)"
+        },
+        "stateCur": {
+          "type": "string",
+          "title": "current state of an object that created, changed or deleted (json)"
+        },
+        "organizationId": {
+          "type": "string",
+          "format": "int64",
+          "title": "an organization where the user action been detected"
         }
       }
     },

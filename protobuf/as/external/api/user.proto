@@ -56,6 +56,12 @@ service UserService {
 		};
 	}
 
+	// ListLogs returns a list of user-activity logs
+	rpc ListLogs(ListUserLogsRequest) returns (ListUserLogsResponse) {
+		option(google.api.http) = {
+			get: "/api/user-logs"
+		};
+	}
 }
 
 message User {
@@ -101,6 +107,33 @@ message UserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 9;
+}
+
+message UserLogListItem {
+	// Log ID.
+	// set automatically on create.
+	int64 id = 1;
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 2;
+
+	// id of user who operated.
+	int64 user_id = 3;
+
+	// id of user who operated.
+	string user_name = 4;
+
+	// the name of event that happend
+	string event = 5;
+
+	// previous state of an object that changed or deleted (json)
+	string state_prev = 6;
+
+	// current state of an object that created, changed or deleted (json)
+	string state_cur = 7;
+
+	// an organization where the user action been detected
+	int64 organization_id = 8;	
 }
 
 message UserOrganization {
@@ -175,6 +208,28 @@ message ListUserResponse {
 
 	// Result-set.
 	repeated UserListItem result = 2;
+}
+
+message ListUserLogsRequest {
+	// Max number of user to return in the result-set.
+	int64 limit = 1;
+
+	// Offset in the result-set (for pagination).
+	int64 offset = 2;
+
+	// an organization where the user action been detected
+	int64 organization_id = 3;
+
+	// search field by username
+	string search = 4;		
+}
+
+message ListUserLogsResponse {
+	// Total number of logs in db.
+	int64 total_count = 1;
+
+	// Result-set.
+	repeated UserLogListItem result = 2;
 }
 
 message UpdateUserPasswordRequest {

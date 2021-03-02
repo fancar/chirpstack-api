@@ -55,6 +55,9 @@ message GetDeviceFramesLogRequest {
 
     // You can set the id to 0 if admin
     int64 organization_id = 6;
+
+    // here user sends his local timezone. 
+    int64 timezone = 7;    
 }
 
 message GetDeviceFramesLogResponse {

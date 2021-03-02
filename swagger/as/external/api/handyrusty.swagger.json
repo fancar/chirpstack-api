@@ -413,6 +413,11 @@
           "type": "string",
           "format": "int64",
           "title": "You can set the id to 0 if admin"
+        },
+        "timezone": {
+          "type": "string",
+          "format": "int64",
+          "description": "here user sends his local timezone."
         }
       }
     },
