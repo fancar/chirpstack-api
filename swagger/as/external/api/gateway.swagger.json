@@ -15,6 +15,32 @@
     "application/json"
   ],
   "paths": {
+    "/api/gateway-status/{id}": {
+      "get": {
+        "summary": "GetStatus returns the gateway status for the requested mac address.",
+        "operationId": "GetStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetGatewayStatusResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
     "/api/gateways": {
       "get": {
         "summary": "List lists the gateways.",
@@ -618,6 +644,25 @@
           "items": {
             "$ref": "#/definitions/apiGatewayStats"
           }
+        }
+      }
+    },
+    "apiGetGatewayStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Gateway status."
+        },
+        "lastSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last seen at timestamp."
         }
       }
     },

@@ -28,6 +28,13 @@ service GatewayService {
 		};
 	}
 
+	// GetStatus returns the gateway status for the requested mac address.
+	rpc GetStatus(GetGatewayRequest) returns (GetGatewayStatusResponse) {
+		option (google.api.http) = {
+			get: "/api/gateway-status/{id}"
+		};
+	}	
+
 	// Update updates the gateway matching the given mac address.
 	rpc Update(UpdateGatewayRequest) returns (google.protobuf.Empty) {
 		option (google.api.http) = {
@@ -176,6 +183,17 @@ message GetGatewayResponse {
 	
 	// Last seen at timestamp.
 	google.protobuf.Timestamp last_seen_at = 5;
+};
+
+message GetGatewayStatusResponse {
+	// Gateway ID (HEX encoded).
+	string id = 1;
+
+	// Gateway status.
+	bool active = 2;
+	
+	// Last seen at timestamp.
+	google.protobuf.Timestamp last_seen_at = 3;
 };
 
 message DeleteGatewayRequest {
