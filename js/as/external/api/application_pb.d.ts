@@ -72,6 +72,9 @@ export class ApplicationListItem extends jspb.Message {
   getServiceProfileName(): string;
   setServiceProfileName(value: string): void;
 
+  getDevCnt(): number;
+  setDevCnt(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ApplicationListItem.AsObject;
   static toObject(includeInstance: boolean, msg: ApplicationListItem): ApplicationListItem.AsObject;
@@ -90,6 +93,7 @@ export namespace ApplicationListItem {
     organizationId: number,
     serviceProfileId: string,
     serviceProfileName: string,
+    devCnt: number,
   }
 }
 

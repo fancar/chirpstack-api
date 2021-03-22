@@ -10,9 +10,11 @@ import * as grpc from "grpc";
 interface IGatewayServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   create: grpc.MethodDefinition<as_external_api_gateway_pb.CreateGatewayRequest, google_protobuf_empty_pb.Empty>;
   get: grpc.MethodDefinition<as_external_api_gateway_pb.GetGatewayRequest, as_external_api_gateway_pb.GetGatewayResponse>;
+  getStatus: grpc.MethodDefinition<as_external_api_gateway_pb.GetGatewayRequest, as_external_api_gateway_pb.GetGatewayStatusResponse>;
   update: grpc.MethodDefinition<as_external_api_gateway_pb.UpdateGatewayRequest, google_protobuf_empty_pb.Empty>;
   delete: grpc.MethodDefinition<as_external_api_gateway_pb.DeleteGatewayRequest, google_protobuf_empty_pb.Empty>;
   list: grpc.MethodDefinition<as_external_api_gateway_pb.ListGatewayRequest, as_external_api_gateway_pb.ListGatewayResponse>;
+  listActilityStyled: grpc.MethodDefinition<as_external_api_gateway_pb.ListGatewayRequest, as_external_api_gateway_pb.ListGwActilityStyledResponse>;
   getStats: grpc.MethodDefinition<as_external_api_gateway_pb.GetGatewayStatsRequest, as_external_api_gateway_pb.GetGatewayStatsResponse>;
   getLastPing: grpc.MethodDefinition<as_external_api_gateway_pb.GetLastPingRequest, as_external_api_gateway_pb.GetLastPingResponse>;
   generateGatewayClientCertificate: grpc.MethodDefinition<as_external_api_gateway_pb.GenerateGatewayClientCertificateRequest, as_external_api_gateway_pb.GenerateGatewayClientCertificateResponse>;
@@ -29,6 +31,9 @@ export class GatewayServiceClient extends grpc.Client {
   get(argument: as_external_api_gateway_pb.GetGatewayRequest, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayResponse>): grpc.ClientUnaryCall;
   get(argument: as_external_api_gateway_pb.GetGatewayRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayResponse>): grpc.ClientUnaryCall;
   get(argument: as_external_api_gateway_pb.GetGatewayRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayResponse>): grpc.ClientUnaryCall;
+  getStatus(argument: as_external_api_gateway_pb.GetGatewayRequest, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayStatusResponse>): grpc.ClientUnaryCall;
+  getStatus(argument: as_external_api_gateway_pb.GetGatewayRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayStatusResponse>): grpc.ClientUnaryCall;
+  getStatus(argument: as_external_api_gateway_pb.GetGatewayRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayStatusResponse>): grpc.ClientUnaryCall;
   update(argument: as_external_api_gateway_pb.UpdateGatewayRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   update(argument: as_external_api_gateway_pb.UpdateGatewayRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   update(argument: as_external_api_gateway_pb.UpdateGatewayRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
@@ -38,6 +43,9 @@ export class GatewayServiceClient extends grpc.Client {
   list(argument: as_external_api_gateway_pb.ListGatewayRequest, callback: grpc.requestCallback<as_external_api_gateway_pb.ListGatewayResponse>): grpc.ClientUnaryCall;
   list(argument: as_external_api_gateway_pb.ListGatewayRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.ListGatewayResponse>): grpc.ClientUnaryCall;
   list(argument: as_external_api_gateway_pb.ListGatewayRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.ListGatewayResponse>): grpc.ClientUnaryCall;
+  listActilityStyled(argument: as_external_api_gateway_pb.ListGatewayRequest, callback: grpc.requestCallback<as_external_api_gateway_pb.ListGwActilityStyledResponse>): grpc.ClientUnaryCall;
+  listActilityStyled(argument: as_external_api_gateway_pb.ListGatewayRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.ListGwActilityStyledResponse>): grpc.ClientUnaryCall;
+  listActilityStyled(argument: as_external_api_gateway_pb.ListGatewayRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.ListGwActilityStyledResponse>): grpc.ClientUnaryCall;
   getStats(argument: as_external_api_gateway_pb.GetGatewayStatsRequest, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayStatsResponse>): grpc.ClientUnaryCall;
   getStats(argument: as_external_api_gateway_pb.GetGatewayStatsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayStatsResponse>): grpc.ClientUnaryCall;
   getStats(argument: as_external_api_gateway_pb.GetGatewayStatsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_gateway_pb.GetGatewayStatsResponse>): grpc.ClientUnaryCall;

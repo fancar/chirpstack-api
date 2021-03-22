@@ -301,6 +301,12 @@ export class OrganizationUser extends jspb.Message {
   getEmail(): string;
   setEmail(value: string): void;
 
+  getIsActive(): boolean;
+  setIsActive(value: boolean): void;
+
+  getNote(): string;
+  setNote(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrganizationUser.AsObject;
   static toObject(includeInstance: boolean, msg: OrganizationUser): OrganizationUser.AsObject;
@@ -319,6 +325,8 @@ export namespace OrganizationUser {
     isDeviceAdmin: boolean,
     isGatewayAdmin: boolean,
     email: string,
+    isActive: boolean,
+    note: string,
   }
 }
 
@@ -348,6 +356,9 @@ export class OrganizationUserListItem extends jspb.Message {
   getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getIsActive(): boolean;
+  setIsActive(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OrganizationUserListItem.AsObject;
   static toObject(includeInstance: boolean, msg: OrganizationUserListItem): OrganizationUserListItem.AsObject;
@@ -367,6 +378,7 @@ export namespace OrganizationUserListItem {
     isGatewayAdmin: boolean,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    isActive: boolean,
   }
 }
 

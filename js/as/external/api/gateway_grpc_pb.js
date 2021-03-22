@@ -97,6 +97,17 @@ function deserialize_api_GetGatewayStatsResponse(buffer_arg) {
   return as_external_api_gateway_pb.GetGatewayStatsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_api_GetGatewayStatusResponse(arg) {
+  if (!(arg instanceof as_external_api_gateway_pb.GetGatewayStatusResponse)) {
+    throw new Error('Expected argument of type api.GetGatewayStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetGatewayStatusResponse(buffer_arg) {
+  return as_external_api_gateway_pb.GetGatewayStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_api_GetLastPingRequest(arg) {
   if (!(arg instanceof as_external_api_gateway_pb.GetLastPingRequest)) {
     throw new Error('Expected argument of type api.GetLastPingRequest');
@@ -139,6 +150,17 @@ function serialize_api_ListGatewayResponse(arg) {
 
 function deserialize_api_ListGatewayResponse(buffer_arg) {
   return as_external_api_gateway_pb.ListGatewayResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_ListGwActilityStyledResponse(arg) {
+  if (!(arg instanceof as_external_api_gateway_pb.ListGwActilityStyledResponse)) {
+    throw new Error('Expected argument of type api.ListGwActilityStyledResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_ListGwActilityStyledResponse(buffer_arg) {
+  return as_external_api_gateway_pb.ListGwActilityStyledResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_api_StreamGatewayFrameLogsRequest(arg) {
@@ -212,6 +234,18 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseSerialize: serialize_api_GetGatewayResponse,
     responseDeserialize: deserialize_api_GetGatewayResponse,
   },
+  // GetStatus returns the gateway status for the requested mac address.
+  getStatus: {
+    path: '/api.GatewayService/GetStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_gateway_pb.GetGatewayRequest,
+    responseType: as_external_api_gateway_pb.GetGatewayStatusResponse,
+    requestSerialize: serialize_api_GetGatewayRequest,
+    requestDeserialize: deserialize_api_GetGatewayRequest,
+    responseSerialize: serialize_api_GetGatewayStatusResponse,
+    responseDeserialize: deserialize_api_GetGatewayStatusResponse,
+  },
   // Update updates the gateway matching the given mac address.
   update: {
     path: '/api.GatewayService/Update',
@@ -248,6 +282,18 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseSerialize: serialize_api_ListGatewayResponse,
     responseDeserialize: deserialize_api_ListGatewayResponse,
   },
+  // ListActilityStyled lists the gateways with legacy [Actility] json-format.
+  listActilityStyled: {
+    path: '/api.GatewayService/ListActilityStyled',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_gateway_pb.ListGatewayRequest,
+    responseType: as_external_api_gateway_pb.ListGwActilityStyledResponse,
+    requestSerialize: serialize_api_ListGatewayRequest,
+    requestDeserialize: deserialize_api_ListGatewayRequest,
+    responseSerialize: serialize_api_ListGwActilityStyledResponse,
+    responseDeserialize: deserialize_api_ListGwActilityStyledResponse,
+  },
   // GetStats lists the gateway stats given the query parameters.
   getStats: {
     path: '/api.GatewayService/GetStats',
@@ -273,7 +319,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_api_GetLastPingResponse,
   },
   // GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-  // This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+  // This endpoint can ony be used when Network Server is configured with a gateway
   // CA certificate and key, which is used for signing the TLS certificate. The returned TLS
   // certificate will have the Gateway ID as Common Name.
   generateGatewayClientCertificate: {

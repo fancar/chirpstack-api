@@ -94,6 +94,56 @@ export namespace UserListItem {
   }
 }
 
+export class UserLogListItem extends jspb.Message {
+  getId(): number;
+  setId(value: number): void;
+
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): void;
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getUserId(): number;
+  setUserId(value: number): void;
+
+  getUserName(): string;
+  setUserName(value: string): void;
+
+  getEvent(): string;
+  setEvent(value: string): void;
+
+  getStatePrev(): string;
+  setStatePrev(value: string): void;
+
+  getStateCur(): string;
+  setStateCur(value: string): void;
+
+  getOrganizationId(): number;
+  setOrganizationId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserLogListItem.AsObject;
+  static toObject(includeInstance: boolean, msg: UserLogListItem): UserLogListItem.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UserLogListItem, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserLogListItem;
+  static deserializeBinaryFromReader(message: UserLogListItem, reader: jspb.BinaryReader): UserLogListItem;
+}
+
+export namespace UserLogListItem {
+  export type AsObject = {
+    id: number,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    userId: number,
+    userName: string,
+    event: string,
+    statePrev: string,
+    stateCur: string,
+    organizationId: number,
+  }
+}
+
 export class UserOrganization extends jspb.Message {
   getOrganizationId(): number;
   setOrganizationId(value: number): void;
@@ -321,6 +371,64 @@ export namespace ListUserResponse {
   export type AsObject = {
     totalCount: number,
     resultList: Array<UserListItem.AsObject>,
+  }
+}
+
+export class ListUserLogsRequest extends jspb.Message {
+  getLimit(): number;
+  setLimit(value: number): void;
+
+  getOffset(): number;
+  setOffset(value: number): void;
+
+  getOrganizationId(): number;
+  setOrganizationId(value: number): void;
+
+  getSearch(): string;
+  setSearch(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListUserLogsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListUserLogsRequest): ListUserLogsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListUserLogsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListUserLogsRequest;
+  static deserializeBinaryFromReader(message: ListUserLogsRequest, reader: jspb.BinaryReader): ListUserLogsRequest;
+}
+
+export namespace ListUserLogsRequest {
+  export type AsObject = {
+    limit: number,
+    offset: number,
+    organizationId: number,
+    search: string,
+  }
+}
+
+export class ListUserLogsResponse extends jspb.Message {
+  getTotalCount(): number;
+  setTotalCount(value: number): void;
+
+  clearResultList(): void;
+  getResultList(): Array<UserLogListItem>;
+  setResultList(value: Array<UserLogListItem>): void;
+  addResult(value?: UserLogListItem, index?: number): UserLogListItem;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListUserLogsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListUserLogsResponse): ListUserLogsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListUserLogsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListUserLogsResponse;
+  static deserializeBinaryFromReader(message: ListUserLogsResponse, reader: jspb.BinaryReader): ListUserLogsResponse;
+}
+
+export namespace ListUserLogsResponse {
+  export type AsObject = {
+    totalCount: number,
+    resultList: Array<UserLogListItem.AsObject>,
   }
 }
 

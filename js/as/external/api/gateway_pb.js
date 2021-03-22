@@ -26,11 +26,15 @@ goog.exportSymbol('proto.api.GetGatewayRequest', null, global);
 goog.exportSymbol('proto.api.GetGatewayResponse', null, global);
 goog.exportSymbol('proto.api.GetGatewayStatsRequest', null, global);
 goog.exportSymbol('proto.api.GetGatewayStatsResponse', null, global);
+goog.exportSymbol('proto.api.GetGatewayStatusResponse', null, global);
 goog.exportSymbol('proto.api.GetLastPingRequest', null, global);
 goog.exportSymbol('proto.api.GetLastPingResponse', null, global);
+goog.exportSymbol('proto.api.GwItemActilityStyled', null, global);
 goog.exportSymbol('proto.api.ListGatewayRequest', null, global);
 goog.exportSymbol('proto.api.ListGatewayResponse', null, global);
+goog.exportSymbol('proto.api.ListGwActilityStyledResponse', null, global);
 goog.exportSymbol('proto.api.PingRX', null, global);
+goog.exportSymbol('proto.api.StatsItemActilityStyled', null, global);
 goog.exportSymbol('proto.api.StreamGatewayFrameLogsRequest', null, global);
 goog.exportSymbol('proto.api.StreamGatewayFrameLogsResponse', null, global);
 goog.exportSymbol('proto.api.UpdateGatewayRequest', null, global);
@@ -98,7 +102,11 @@ proto.api.Gateway.toObject = function(includeInstance, msg) {
     boardsList: jspb.Message.toObjectList(msg.getBoardsList(),
     proto.api.GatewayBoard.toObject, includeInstance),
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
-    metadataMap: (f = msg.getMetadataMap(true)) ? f.toArray() : []
+    metadataMap: (f = msg.getMetadataMap(true)) ? f.toArray() : [],
+    address: msg.getAddress(),
+    serno: msg.getSerno(),
+    active: msg.getActive(),
+    phone: msg.getPhone()
   };
 
   if (includeInstance) {
@@ -185,6 +193,22 @@ proto.api.Gateway.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSerno(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
+      break;
+    case 15:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhone(value);
       break;
     default:
       reader.skipField();
@@ -296,6 +320,34 @@ proto.api.Gateway.prototype.serializeBinaryToWriter = function (writer) {
   f = this.getMetadataMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(11, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = this.getAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = this.getSerno();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = this.getActive();
+  if (f) {
+    writer.writeBool(
+      14,
+      f
+    );
+  }
+  f = this.getPhone();
+  if (f.length > 0) {
+    writer.writeString(
+      15,
+      f
+    );
   }
 };
 
@@ -492,6 +544,68 @@ proto.api.Gateway.prototype.getMetadataMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
       jspb.Message.getMapField(this, 11, opt_noLazyCreate,
       null));
+};
+
+
+/**
+ * optional string address = 12;
+ * @return {string}
+ */
+proto.api.Gateway.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 12, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.Gateway.prototype.setAddress = function(value) {
+  jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * optional string serno = 13;
+ * @return {string}
+ */
+proto.api.Gateway.prototype.getSerno = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 13, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.Gateway.prototype.setSerno = function(value) {
+  jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * optional bool active = 14;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.api.Gateway.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 14, false));
+};
+
+
+/** @param {boolean} value  */
+proto.api.Gateway.prototype.setActive = function(value) {
+  jspb.Message.setField(this, 14, value);
+};
+
+
+/**
+ * optional string phone = 15;
+ * @return {string}
+ */
+proto.api.Gateway.prototype.getPhone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 15, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.Gateway.prototype.setPhone = function(value) {
+  jspb.Message.setField(this, 15, value);
 };
 
 
@@ -1379,6 +1493,238 @@ proto.api.GetGatewayResponse.prototype.hasLastSeenAt = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.api.GetGatewayStatusResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.api.GetGatewayStatusResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.GetGatewayStatusResponse.displayName = 'proto.api.GetGatewayStatusResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.GetGatewayStatusResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.GetGatewayStatusResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.GetGatewayStatusResponse} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.GetGatewayStatusResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: msg.getId(),
+    active: msg.getActive(),
+    lastSeenAt: (f = msg.getLastSeenAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.GetGatewayStatusResponse}
+ */
+proto.api.GetGatewayStatusResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.GetGatewayStatusResponse;
+  return proto.api.GetGatewayStatusResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.GetGatewayStatusResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.GetGatewayStatusResponse}
+ */
+proto.api.GetGatewayStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastSeenAt(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.GetGatewayStatusResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GetGatewayStatusResponse.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.GetGatewayStatusResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GetGatewayStatusResponse.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = this.getActive();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+  f = this.getLastSeenAt();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.GetGatewayStatusResponse} The clone.
+ */
+proto.api.GetGatewayStatusResponse.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.GetGatewayStatusResponse} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.api.GetGatewayStatusResponse.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 1, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GetGatewayStatusResponse.prototype.setId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional bool active = 2;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.api.GetGatewayStatusResponse.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 2, false));
+};
+
+
+/** @param {boolean} value  */
+proto.api.GetGatewayStatusResponse.prototype.setActive = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_seen_at = 3;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.GetGatewayStatusResponse.prototype.getLastSeenAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.GetGatewayStatusResponse.prototype.setLastSeenAt = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.api.GetGatewayStatusResponse.prototype.clearLastSeenAt = function() {
+  this.setLastSeenAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.GetGatewayStatusResponse.prototype.hasLastSeenAt = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.api.DeleteGatewayRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -2195,7 +2541,9 @@ proto.api.GatewayListItem.toObject = function(includeInstance, msg) {
     organizationId: msg.getOrganizationId(),
     networkServerId: msg.getNetworkServerId(),
     location: (f = msg.getLocation()) && common_common_pb.Location.toObject(includeInstance, f),
-    networkServerName: msg.getNetworkServerName()
+    networkServerName: msg.getNetworkServerName(),
+    radio: msg.getRadio(),
+    active: msg.getActive()
   };
 
   if (includeInstance) {
@@ -2280,6 +2628,14 @@ proto.api.GatewayListItem.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setNetworkServerName(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRadio(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setActive(value);
       break;
     default:
       reader.skipField();
@@ -2398,6 +2754,20 @@ proto.api.GatewayListItem.prototype.serializeBinaryToWriter = function (writer) 
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = this.getRadio();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = this.getActive();
+  if (f) {
+    writer.writeBool(
+      13,
       f
     );
   }
@@ -2653,6 +3023,579 @@ proto.api.GatewayListItem.prototype.setNetworkServerName = function(value) {
 };
 
 
+/**
+ * optional string radio = 12;
+ * @return {string}
+ */
+proto.api.GatewayListItem.prototype.getRadio = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 12, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GatewayListItem.prototype.setRadio = function(value) {
+  jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * optional bool active = 13;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.api.GatewayListItem.prototype.getActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 13, false));
+};
+
+
+/** @param {boolean} value  */
+proto.api.GatewayListItem.prototype.setActive = function(value) {
+  jspb.Message.setField(this, 13, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.api.StatsItemActilityStyled = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.api.StatsItemActilityStyled, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.StatsItemActilityStyled.displayName = 'proto.api.StatsItemActilityStyled';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.StatsItemActilityStyled.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.StatsItemActilityStyled.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.StatsItemActilityStyled} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.StatsItemActilityStyled.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    creationTime: (f = msg.getCreationTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    connectionState: msg.getConnectionState(),
+    healthState: msg.getHealthState()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.StatsItemActilityStyled}
+ */
+proto.api.StatsItemActilityStyled.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.StatsItemActilityStyled;
+  return proto.api.StatsItemActilityStyled.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.StatsItemActilityStyled} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.StatsItemActilityStyled}
+ */
+proto.api.StatsItemActilityStyled.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreationTime(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConnectionState(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHealthState(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.StatsItemActilityStyled} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.StatsItemActilityStyled.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.StatsItemActilityStyled.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.StatsItemActilityStyled.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getCreationTime();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = this.getConnectionState();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = this.getHealthState();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.StatsItemActilityStyled} The clone.
+ */
+proto.api.StatsItemActilityStyled.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.StatsItemActilityStyled} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional google.protobuf.Timestamp creation_time = 1;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.StatsItemActilityStyled.prototype.getCreationTime = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.StatsItemActilityStyled.prototype.setCreationTime = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.api.StatsItemActilityStyled.prototype.clearCreationTime = function() {
+  this.setCreationTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.StatsItemActilityStyled.prototype.hasCreationTime = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string connection_state = 2;
+ * @return {string}
+ */
+proto.api.StatsItemActilityStyled.prototype.getConnectionState = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 2, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.StatsItemActilityStyled.prototype.setConnectionState = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string health_state = 3;
+ * @return {string}
+ */
+proto.api.StatsItemActilityStyled.prototype.getHealthState = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 3, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.StatsItemActilityStyled.prototype.setHealthState = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.api.GwItemActilityStyled = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.api.GwItemActilityStyled, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.GwItemActilityStyled.displayName = 'proto.api.GwItemActilityStyled';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.GwItemActilityStyled.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.GwItemActilityStyled.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.GwItemActilityStyled} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.GwItemActilityStyled.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    ref: msg.getRef(),
+    id: msg.getId(),
+    name: msg.getName(),
+    administrationState: msg.getAdministrationState(),
+    owner: msg.getOwner(),
+    statistics: (f = msg.getStatistics()) && proto.api.StatsItemActilityStyled.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.GwItemActilityStyled}
+ */
+proto.api.GwItemActilityStyled.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.GwItemActilityStyled;
+  return proto.api.GwItemActilityStyled.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.GwItemActilityStyled} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.GwItemActilityStyled}
+ */
+proto.api.GwItemActilityStyled.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRef(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAdministrationState(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOwner(value);
+      break;
+    case 6:
+      var value = new proto.api.StatsItemActilityStyled;
+      reader.readMessage(value,proto.api.StatsItemActilityStyled.deserializeBinaryFromReader);
+      msg.setStatistics(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.GwItemActilityStyled} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GwItemActilityStyled.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.GwItemActilityStyled.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GwItemActilityStyled.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getRef();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = this.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = this.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = this.getAdministrationState();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+  f = this.getOwner();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = this.getStatistics();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.api.StatsItemActilityStyled.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.GwItemActilityStyled} The clone.
+ */
+proto.api.GwItemActilityStyled.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.GwItemActilityStyled} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional string ref = 1;
+ * @return {string}
+ */
+proto.api.GwItemActilityStyled.prototype.getRef = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 1, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GwItemActilityStyled.prototype.setRef = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string id = 2;
+ * @return {string}
+ */
+proto.api.GwItemActilityStyled.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 2, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GwItemActilityStyled.prototype.setId = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string name = 3;
+ * @return {string}
+ */
+proto.api.GwItemActilityStyled.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 3, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GwItemActilityStyled.prototype.setName = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional string administration_state = 4;
+ * @return {string}
+ */
+proto.api.GwItemActilityStyled.prototype.getAdministrationState = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 4, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GwItemActilityStyled.prototype.setAdministrationState = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional string owner = 5;
+ * @return {string}
+ */
+proto.api.GwItemActilityStyled.prototype.getOwner = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 5, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GwItemActilityStyled.prototype.setOwner = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional StatsItemActilityStyled statistics = 6;
+ * @return {proto.api.StatsItemActilityStyled}
+ */
+proto.api.GwItemActilityStyled.prototype.getStatistics = function() {
+  return /** @type{proto.api.StatsItemActilityStyled} */ (
+    jspb.Message.getWrapperField(this, proto.api.StatsItemActilityStyled, 6));
+};
+
+
+/** @param {proto.api.StatsItemActilityStyled|undefined} value  */
+proto.api.GwItemActilityStyled.prototype.setStatistics = function(value) {
+  jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+proto.api.GwItemActilityStyled.prototype.clearStatistics = function() {
+  this.setStatistics(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.GwItemActilityStyled.prototype.hasStatistics = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2854,6 +3797,211 @@ proto.api.ListGatewayResponse.prototype.setResultList = function(value) {
 
 
 proto.api.ListGatewayResponse.prototype.clearResultList = function() {
+  this.setResultList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.api.ListGwActilityStyledResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.ListGwActilityStyledResponse.repeatedFields_, null);
+};
+goog.inherits(proto.api.ListGwActilityStyledResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.ListGwActilityStyledResponse.displayName = 'proto.api.ListGwActilityStyledResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.api.ListGwActilityStyledResponse.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.ListGwActilityStyledResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.ListGwActilityStyledResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.ListGwActilityStyledResponse} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.ListGwActilityStyledResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    totalCount: msg.getTotalCount(),
+    resultList: jspb.Message.toObjectList(msg.getResultList(),
+    proto.api.GwItemActilityStyled.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.ListGwActilityStyledResponse}
+ */
+proto.api.ListGwActilityStyledResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.ListGwActilityStyledResponse;
+  return proto.api.ListGwActilityStyledResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.ListGwActilityStyledResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.ListGwActilityStyledResponse}
+ */
+proto.api.ListGwActilityStyledResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setTotalCount(value);
+      break;
+    case 2:
+      var value = new proto.api.GwItemActilityStyled;
+      reader.readMessage(value,proto.api.GwItemActilityStyled.deserializeBinaryFromReader);
+      msg.getResultList().push(value);
+      msg.setResultList(msg.getResultList());
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.ListGwActilityStyledResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.ListGwActilityStyledResponse.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.ListGwActilityStyledResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.ListGwActilityStyledResponse.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getTotalCount();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = this.getResultList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.api.GwItemActilityStyled.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.ListGwActilityStyledResponse} The clone.
+ */
+proto.api.ListGwActilityStyledResponse.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.ListGwActilityStyledResponse} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional int64 total_count = 1;
+ * @return {number}
+ */
+proto.api.ListGwActilityStyledResponse.prototype.getTotalCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 1, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.ListGwActilityStyledResponse.prototype.setTotalCount = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * repeated GwItemActilityStyled result = 2;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * @return {!Array.<!proto.api.GwItemActilityStyled>}
+ */
+proto.api.ListGwActilityStyledResponse.prototype.getResultList = function() {
+  return /** @type{!Array.<!proto.api.GwItemActilityStyled>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.api.GwItemActilityStyled, 2));
+};
+
+
+/** @param {Array.<!proto.api.GwItemActilityStyled>} value  */
+proto.api.ListGwActilityStyledResponse.prototype.setResultList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+proto.api.ListGwActilityStyledResponse.prototype.clearResultList = function() {
   this.setResultList([]);
 };
 

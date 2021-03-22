@@ -29,7 +29,7 @@ service HandyRustyService {
         };
     }
 
-    // ExecCommand sends the command to execute on gw. It waits 2 mins for the answer from gw
+    // ExecCommand sends the command to execute on gw. It waits 30 sec for an answer from gw
     rpc ExecCommand(hr.ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/rc/exec-command"
@@ -42,6 +42,16 @@ service HandyRustyService {
         option(google.api.http) = {
             post: "/api/handy-rusty/frames/logs/device-frames"
             body: "*"
+        };
+    }
+
+    // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
+    //   * The data is transferred by chunks (stream);
+    //   * This endpoint does not work from a web-browser!
+    rpc StreamDeviceFramesLogCSV(hr.GetDeviceFramesLogRequest) returns (stream hr.StreamDeviceFramesLogCSVResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/frames/logs/device-frames/csv"
+            // body: "*"
         };
     }    
 }

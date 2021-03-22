@@ -7,6 +7,68 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 import * as common_common_pb from "../common/common_pb";
 import * as gw_gw_pb from "../gw/gw_pb";
 
+export class GetOrgByDevEUIRequest extends jspb.Message {
+  getDevEui(): string;
+  setDevEui(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrgByDevEUIRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrgByDevEUIRequest): GetOrgByDevEUIRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrgByDevEUIRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrgByDevEUIRequest;
+  static deserializeBinaryFromReader(message: GetOrgByDevEUIRequest, reader: jspb.BinaryReader): GetOrgByDevEUIRequest;
+}
+
+export namespace GetOrgByDevEUIRequest {
+  export type AsObject = {
+    devEui: string,
+  }
+}
+
+export class GetDeviceAppSKeyResponse extends jspb.Message {
+  getValue(): Uint8Array | string;
+  getValue_asU8(): Uint8Array;
+  getValue_asB64(): string;
+  setValue(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDeviceAppSKeyResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDeviceAppSKeyResponse): GetDeviceAppSKeyResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDeviceAppSKeyResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDeviceAppSKeyResponse;
+  static deserializeBinaryFromReader(message: GetDeviceAppSKeyResponse, reader: jspb.BinaryReader): GetDeviceAppSKeyResponse;
+}
+
+export namespace GetDeviceAppSKeyResponse {
+  export type AsObject = {
+    value: Uint8Array | string,
+  }
+}
+
+export class GetOrgByDevEUIResponse extends jspb.Message {
+  getId(): number;
+  setId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetOrgByDevEUIResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetOrgByDevEUIResponse): GetOrgByDevEUIResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetOrgByDevEUIResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetOrgByDevEUIResponse;
+  static deserializeBinaryFromReader(message: GetOrgByDevEUIResponse, reader: jspb.BinaryReader): GetOrgByDevEUIResponse;
+}
+
+export namespace GetOrgByDevEUIResponse {
+  export type AsObject = {
+    id: number,
+  }
+}
+
 export class ListOrganizationRequest extends jspb.Message {
   getLimit(): number;
   setLimit(value: number): void;

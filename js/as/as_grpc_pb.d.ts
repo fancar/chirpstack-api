@@ -19,6 +19,8 @@ interface IApplicationServerServiceService extends grpc.ServiceDefinition<grpc.U
   getDevicesSummary: grpc.MethodDefinition<as_as_pb.GetDevicesSummaryRequest, as_as_pb.GetDevicesSummaryResponse>;
   getGatewaysSummary: grpc.MethodDefinition<as_as_pb.GetGatewaysSummaryRequest, as_as_pb.GetGatewaysSummaryResponse>;
   listOrganisation: grpc.MethodDefinition<as_as_pb.ListOrganizationRequest, as_as_pb.ListOrganizationResponse>;
+  getOrgByDevEUI: grpc.MethodDefinition<as_as_pb.GetOrgByDevEUIRequest, as_as_pb.GetOrgByDevEUIResponse>;
+  getDeviceAppSKey: grpc.MethodDefinition<as_as_pb.GetOrgByDevEUIRequest, as_as_pb.GetDeviceAppSKeyResponse>;
 }
 
 export const ApplicationServerServiceService: IApplicationServerServiceService;
@@ -58,4 +60,10 @@ export class ApplicationServerServiceClient extends grpc.Client {
   listOrganisation(argument: as_as_pb.ListOrganizationRequest, callback: grpc.requestCallback<as_as_pb.ListOrganizationResponse>): grpc.ClientUnaryCall;
   listOrganisation(argument: as_as_pb.ListOrganizationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.ListOrganizationResponse>): grpc.ClientUnaryCall;
   listOrganisation(argument: as_as_pb.ListOrganizationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.ListOrganizationResponse>): grpc.ClientUnaryCall;
+  getOrgByDevEUI(argument: as_as_pb.GetOrgByDevEUIRequest, callback: grpc.requestCallback<as_as_pb.GetOrgByDevEUIResponse>): grpc.ClientUnaryCall;
+  getOrgByDevEUI(argument: as_as_pb.GetOrgByDevEUIRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.GetOrgByDevEUIResponse>): grpc.ClientUnaryCall;
+  getOrgByDevEUI(argument: as_as_pb.GetOrgByDevEUIRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.GetOrgByDevEUIResponse>): grpc.ClientUnaryCall;
+  getDeviceAppSKey(argument: as_as_pb.GetOrgByDevEUIRequest, callback: grpc.requestCallback<as_as_pb.GetDeviceAppSKeyResponse>): grpc.ClientUnaryCall;
+  getDeviceAppSKey(argument: as_as_pb.GetOrgByDevEUIRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.GetDeviceAppSKeyResponse>): grpc.ClientUnaryCall;
+  getDeviceAppSKey(argument: as_as_pb.GetOrgByDevEUIRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.GetDeviceAppSKeyResponse>): grpc.ClientUnaryCall;
 }

@@ -34,7 +34,23 @@ service HandyRustyService {
     rpc ExecCommand(ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {}
 
     // GetDeviceFramesLog returns an array with device-frame logs
-    rpc GetDeviceFramesLog(GetDeviceFramesLogRequest) returns (GetDeviceFramesLogResponse) {}         
+    rpc GetDeviceFramesLog(GetDeviceFramesLogRequest) returns (GetDeviceFramesLogResponse) {}
+
+    // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
+    rpc StreamDeviceFramesLogCSV(GetDeviceFramesLogRequest) returns (stream StreamDeviceFramesLogCSVResponse) {}
+}
+
+message StreamDeviceFramesLogCSVResponse {
+    oneof size {
+        uint32 current = 1;
+        uint32 total = 2;
+    }
+
+    oneof data {
+        uint32 rows = 3;
+        bytes chunk = 4;
+    }
+    
 }
 
 message GetDeviceFramesLogRequest {

@@ -44,6 +44,18 @@ export class Gateway extends jspb.Message {
   clearTagsMap(): void;
   getMetadataMap(): jspb.Map<string, string>;
   clearMetadataMap(): void;
+  getAddress(): string;
+  setAddress(value: string): void;
+
+  getSerno(): string;
+  setSerno(value: string): void;
+
+  getActive(): boolean;
+  setActive(value: boolean): void;
+
+  getPhone(): string;
+  setPhone(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Gateway.AsObject;
   static toObject(includeInstance: boolean, msg: Gateway): Gateway.AsObject;
@@ -67,6 +79,10 @@ export namespace Gateway {
     boardsList: Array<GatewayBoard.AsObject>,
     tagsMap: Array<[string, string]>,
     metadataMap: Array<[string, string]>,
+    address: string,
+    serno: string,
+    active: boolean,
+    phone: string,
   }
 }
 
@@ -178,6 +194,36 @@ export namespace GetGatewayResponse {
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     firstSeenAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastSeenAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class GetGatewayStatusResponse extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getActive(): boolean;
+  setActive(value: boolean): void;
+
+  hasLastSeenAt(): boolean;
+  clearLastSeenAt(): void;
+  getLastSeenAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastSeenAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetGatewayStatusResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetGatewayStatusResponse): GetGatewayStatusResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetGatewayStatusResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetGatewayStatusResponse;
+  static deserializeBinaryFromReader(message: GetGatewayStatusResponse, reader: jspb.BinaryReader): GetGatewayStatusResponse;
+}
+
+export namespace GetGatewayStatusResponse {
+  export type AsObject = {
+    id: string,
+    active: boolean,
     lastSeenAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
@@ -326,6 +372,12 @@ export class GatewayListItem extends jspb.Message {
   getNetworkServerName(): string;
   setNetworkServerName(value: string): void;
 
+  getRadio(): string;
+  setRadio(value: string): void;
+
+  getActive(): boolean;
+  setActive(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GatewayListItem.AsObject;
   static toObject(includeInstance: boolean, msg: GatewayListItem): GatewayListItem.AsObject;
@@ -349,6 +401,80 @@ export namespace GatewayListItem {
     networkServerId: number,
     location?: common_common_pb.Location.AsObject,
     networkServerName: string,
+    radio: string,
+    active: boolean,
+  }
+}
+
+export class StatsItemActilityStyled extends jspb.Message {
+  hasCreationTime(): boolean;
+  clearCreationTime(): void;
+  getCreationTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreationTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getConnectionState(): string;
+  setConnectionState(value: string): void;
+
+  getHealthState(): string;
+  setHealthState(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): StatsItemActilityStyled.AsObject;
+  static toObject(includeInstance: boolean, msg: StatsItemActilityStyled): StatsItemActilityStyled.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: StatsItemActilityStyled, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): StatsItemActilityStyled;
+  static deserializeBinaryFromReader(message: StatsItemActilityStyled, reader: jspb.BinaryReader): StatsItemActilityStyled;
+}
+
+export namespace StatsItemActilityStyled {
+  export type AsObject = {
+    creationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    connectionState: string,
+    healthState: string,
+  }
+}
+
+export class GwItemActilityStyled extends jspb.Message {
+  getRef(): string;
+  setRef(value: string): void;
+
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getAdministrationState(): string;
+  setAdministrationState(value: string): void;
+
+  getOwner(): string;
+  setOwner(value: string): void;
+
+  hasStatistics(): boolean;
+  clearStatistics(): void;
+  getStatistics(): StatsItemActilityStyled | undefined;
+  setStatistics(value?: StatsItemActilityStyled): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GwItemActilityStyled.AsObject;
+  static toObject(includeInstance: boolean, msg: GwItemActilityStyled): GwItemActilityStyled.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GwItemActilityStyled, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GwItemActilityStyled;
+  static deserializeBinaryFromReader(message: GwItemActilityStyled, reader: jspb.BinaryReader): GwItemActilityStyled;
+}
+
+export namespace GwItemActilityStyled {
+  export type AsObject = {
+    ref: string,
+    id: string,
+    name: string,
+    administrationState: string,
+    owner: string,
+    statistics?: StatsItemActilityStyled.AsObject,
   }
 }
 
@@ -375,6 +501,32 @@ export namespace ListGatewayResponse {
   export type AsObject = {
     totalCount: number,
     resultList: Array<GatewayListItem.AsObject>,
+  }
+}
+
+export class ListGwActilityStyledResponse extends jspb.Message {
+  getTotalCount(): number;
+  setTotalCount(value: number): void;
+
+  clearResultList(): void;
+  getResultList(): Array<GwItemActilityStyled>;
+  setResultList(value: Array<GwItemActilityStyled>): void;
+  addResult(value?: GwItemActilityStyled, index?: number): GwItemActilityStyled;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListGwActilityStyledResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListGwActilityStyledResponse): ListGwActilityStyledResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListGwActilityStyledResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListGwActilityStyledResponse;
+  static deserializeBinaryFromReader(message: ListGwActilityStyledResponse, reader: jspb.BinaryReader): ListGwActilityStyledResponse;
+}
+
+export namespace ListGwActilityStyledResponse {
+  export type AsObject = {
+    totalCount: number,
+    resultList: Array<GwItemActilityStyled.AsObject>,
   }
 }
 

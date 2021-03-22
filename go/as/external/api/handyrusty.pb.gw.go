@@ -168,6 +168,34 @@ func local_request_HandyRustyService_GetDeviceFramesLog_0(ctx context.Context, m
 
 }
 
+var (
+	filter_HandyRustyService_StreamDeviceFramesLogCSV_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_HandyRustyService_StreamDeviceFramesLogCSV_0(ctx context.Context, marshaler runtime.Marshaler, client HandyRustyServiceClient, req *http.Request, pathParams map[string]string) (HandyRustyService_StreamDeviceFramesLogCSVClient, runtime.ServerMetadata, error) {
+	var protoReq handyrusty.GetDeviceFramesLogRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_HandyRustyService_StreamDeviceFramesLogCSV_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	stream, err := client.StreamDeviceFramesLogCSV(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+
+}
+
 // RegisterHandyRustyServiceHandlerServer registers the http handlers for service HandyRustyService to "mux".
 // UnaryRPC     :call HandyRustyServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -251,6 +279,13 @@ func RegisterHandyRustyServiceHandlerServer(ctx context.Context, mux *runtime.Se
 
 		forward_HandyRustyService_GetDeviceFramesLog_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
+	})
+
+	mux.Handle("GET", pattern_HandyRustyService_StreamDeviceFramesLogCSV_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
 	})
 
 	return nil
@@ -374,6 +409,26 @@ func RegisterHandyRustyServiceHandlerClient(ctx context.Context, mux *runtime.Se
 
 	})
 
+	mux.Handle("GET", pattern_HandyRustyService_StreamDeviceFramesLogCSV_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_HandyRustyService_StreamDeviceFramesLogCSV_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_HandyRustyService_StreamDeviceFramesLogCSV_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -385,6 +440,8 @@ var (
 	pattern_HandyRustyService_ExecCommand_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "handy-rusty", "rc", "exec-command"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_HandyRustyService_GetDeviceFramesLog_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "handy-rusty", "frames", "logs", "device-frames"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_HandyRustyService_StreamDeviceFramesLogCSV_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"api", "handy-rusty", "frames", "logs", "device-frames", "csv"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -395,4 +452,6 @@ var (
 	forward_HandyRustyService_ExecCommand_0 = runtime.ForwardResponseMessage
 
 	forward_HandyRustyService_GetDeviceFramesLog_0 = runtime.ForwardResponseMessage
+
+	forward_HandyRustyService_StreamDeviceFramesLogCSV_0 = runtime.ForwardResponseStream
 )

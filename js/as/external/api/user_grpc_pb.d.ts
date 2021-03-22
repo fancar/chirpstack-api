@@ -14,6 +14,7 @@ interface IUserServiceService extends grpc.ServiceDefinition<grpc.UntypedService
   update: grpc.MethodDefinition<as_external_api_user_pb.UpdateUserRequest, google_protobuf_empty_pb.Empty>;
   delete: grpc.MethodDefinition<as_external_api_user_pb.DeleteUserRequest, google_protobuf_empty_pb.Empty>;
   updatePassword: grpc.MethodDefinition<as_external_api_user_pb.UpdateUserPasswordRequest, google_protobuf_empty_pb.Empty>;
+  listLogs: grpc.MethodDefinition<as_external_api_user_pb.ListUserLogsRequest, as_external_api_user_pb.ListUserLogsResponse>;
 }
 
 export const UserServiceService: IUserServiceService;
@@ -38,4 +39,7 @@ export class UserServiceClient extends grpc.Client {
   updatePassword(argument: as_external_api_user_pb.UpdateUserPasswordRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   updatePassword(argument: as_external_api_user_pb.UpdateUserPasswordRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   updatePassword(argument: as_external_api_user_pb.UpdateUserPasswordRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  listLogs(argument: as_external_api_user_pb.ListUserLogsRequest, callback: grpc.requestCallback<as_external_api_user_pb.ListUserLogsResponse>): grpc.ClientUnaryCall;
+  listLogs(argument: as_external_api_user_pb.ListUserLogsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_user_pb.ListUserLogsResponse>): grpc.ClientUnaryCall;
+  listLogs(argument: as_external_api_user_pb.ListUserLogsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_user_pb.ListUserLogsResponse>): grpc.ClientUnaryCall;
 }

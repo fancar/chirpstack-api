@@ -475,7 +475,8 @@ proto.api.ApplicationListItem.toObject = function(includeInstance, msg) {
     description: msg.getDescription(),
     organizationId: msg.getOrganizationId(),
     serviceProfileId: msg.getServiceProfileId(),
-    serviceProfileName: msg.getServiceProfileName()
+    serviceProfileName: msg.getServiceProfileName(),
+    devCnt: msg.getDevCnt()
   };
 
   if (includeInstance) {
@@ -535,6 +536,10 @@ proto.api.ApplicationListItem.deserializeBinaryFromReader = function(msg, reader
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setServiceProfileName(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setDevCnt(value);
       break;
     default:
       reader.skipField();
@@ -613,6 +618,13 @@ proto.api.ApplicationListItem.prototype.serializeBinaryToWriter = function (writ
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = this.getDevCnt();
+  if (f !== 0) {
+    writer.writeInt64(
+      7,
       f
     );
   }
@@ -715,6 +727,21 @@ proto.api.ApplicationListItem.prototype.getServiceProfileName = function() {
 /** @param {string} value  */
 proto.api.ApplicationListItem.prototype.setServiceProfileName = function(value) {
   jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional int64 dev_cnt = 7;
+ * @return {number}
+ */
+proto.api.ApplicationListItem.prototype.getDevCnt = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 7, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.ApplicationListItem.prototype.setDevCnt = function(value) {
+  jspb.Message.setField(this, 7, value);
 };
 
 

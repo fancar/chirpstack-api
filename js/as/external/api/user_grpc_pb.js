@@ -62,6 +62,28 @@ function deserialize_api_GetUserResponse(buffer_arg) {
   return as_external_api_user_pb.GetUserResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_api_ListUserLogsRequest(arg) {
+  if (!(arg instanceof as_external_api_user_pb.ListUserLogsRequest)) {
+    throw new Error('Expected argument of type api.ListUserLogsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_ListUserLogsRequest(buffer_arg) {
+  return as_external_api_user_pb.ListUserLogsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_ListUserLogsResponse(arg) {
+  if (!(arg instanceof as_external_api_user_pb.ListUserLogsResponse)) {
+    throw new Error('Expected argument of type api.ListUserLogsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_ListUserLogsResponse(buffer_arg) {
+  return as_external_api_user_pb.ListUserLogsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_api_ListUserRequest(arg) {
   if (!(arg instanceof as_external_api_user_pb.ListUserRequest)) {
     throw new Error('Expected argument of type api.ListUserRequest');
@@ -191,6 +213,18 @@ var UserServiceService = exports.UserServiceService = {
     requestDeserialize: deserialize_api_UpdateUserPasswordRequest,
     responseSerialize: serialize_google_protobuf_Empty,
     responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  // ListLogs returns a list of user-activity logs
+  listLogs: {
+    path: '/api.UserService/ListLogs',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_user_pb.ListUserLogsRequest,
+    responseType: as_external_api_user_pb.ListUserLogsResponse,
+    requestSerialize: serialize_api_ListUserLogsRequest,
+    requestDeserialize: deserialize_api_ListUserLogsRequest,
+    responseSerialize: serialize_api_ListUserLogsResponse,
+    responseDeserialize: deserialize_api_ListUserLogsResponse,
   },
 };
 

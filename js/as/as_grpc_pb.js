@@ -8,6 +8,17 @@ var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/time
 var common_common_pb = require('../common/common_pb.js');
 var gw_gw_pb = require('../gw/gw_pb.js');
 
+function serialize_as_GetDeviceAppSKeyResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetDeviceAppSKeyResponse)) {
+    throw new Error('Expected argument of type as.GetDeviceAppSKeyResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetDeviceAppSKeyResponse(buffer_arg) {
+  return as_as_pb.GetDeviceAppSKeyResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_as_GetDevicesSummaryRequest(arg) {
   if (!(arg instanceof as_as_pb.GetDevicesSummaryRequest)) {
     throw new Error('Expected argument of type as.GetDevicesSummaryRequest');
@@ -50,6 +61,28 @@ function serialize_as_GetGatewaysSummaryResponse(arg) {
 
 function deserialize_as_GetGatewaysSummaryResponse(buffer_arg) {
   return as_as_pb.GetGatewaysSummaryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetOrgByDevEUIRequest(arg) {
+  if (!(arg instanceof as_as_pb.GetOrgByDevEUIRequest)) {
+    throw new Error('Expected argument of type as.GetOrgByDevEUIRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetOrgByDevEUIRequest(buffer_arg) {
+  return as_as_pb.GetOrgByDevEUIRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetOrgByDevEUIResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetOrgByDevEUIResponse)) {
+    throw new Error('Expected argument of type as.GetOrgByDevEUIResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetOrgByDevEUIResponse(buffer_arg) {
+  return as_as_pb.GetOrgByDevEUIResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_as_HandleDownlinkACKRequest(arg) {
@@ -307,6 +340,30 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     requestDeserialize: deserialize_as_ListOrganizationRequest,
     responseSerialize: serialize_as_ListOrganizationResponse,
     responseDeserialize: deserialize_as_ListOrganizationResponse,
+  },
+  // GetOrgByDevEUI returns organization id by devEUI. Modification.
+  getOrgByDevEUI: {
+    path: '/as.ApplicationServerService/GetOrgByDevEUI',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetOrgByDevEUIRequest,
+    responseType: as_as_pb.GetOrgByDevEUIResponse,
+    requestSerialize: serialize_as_GetOrgByDevEUIRequest,
+    requestDeserialize: deserialize_as_GetOrgByDevEUIRequest,
+    responseSerialize: serialize_as_GetOrgByDevEUIResponse,
+    responseDeserialize: deserialize_as_GetOrgByDevEUIResponse,
+  },
+  // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
+  getDeviceAppSKey: {
+    path: '/as.ApplicationServerService/GetDeviceAppSKey',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetOrgByDevEUIRequest,
+    responseType: as_as_pb.GetDeviceAppSKeyResponse,
+    requestSerialize: serialize_as_GetOrgByDevEUIRequest,
+    requestDeserialize: deserialize_as_GetOrgByDevEUIRequest,
+    responseSerialize: serialize_as_GetDeviceAppSKeyResponse,
+    responseDeserialize: deserialize_as_GetDeviceAppSKeyResponse,
   },
 };
 

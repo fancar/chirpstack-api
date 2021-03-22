@@ -1,4 +1,4 @@
-.PHONY: requirements common gw geo nc ns as as-integration as-external-api publish
+.PHONY: requirements common gw geo nc ns as as-integration as-external-api hr publish
 
 GOOGLEAPIS_PATH := "/googleapis"
 
@@ -38,6 +38,9 @@ as-integration:
 	protoc -I=../protobuf -I=../protobuf/as/integration $(PROTOC_ARGS) ../protobuf/as/integration/integration.proto
 
 
+hr:
+	protoc -I=../protobuf -I=../protobuf/handyrusty $(PROTOC_ARGS) ../protobuf/handyrusty/hr.proto
+
 as-external-api:
 	# gRPC
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/application.proto
@@ -55,6 +58,7 @@ as-external-api:
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/profiles.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/serviceProfile.proto
 	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/user.proto
+	protoc -I=$(GOOGLEAPIS_PATH) -I=../protobuf -I=../protobuf/as/external/api $(PROTOC_ARGS) ../protobuf/as/external/api/handyrusty.proto
 
 google-api:
 	protoc -I=$(GOOGLEAPIS_PATH) $(PROTOC_ARGS) $(GOOGLEAPIS_PATH)/google/api/*.proto
