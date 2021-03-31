@@ -108,11 +108,22 @@ service InternalService {
 }
 
 message GetInfoResponse {
+    //api version 
+    string api = 1;
     // application server verson.
-    string app_server = 1;
-
-    // Inactive count.
-    string net_server = 2;
+    string app_server = 2;
+    // network server version
+    string net_server = 3;
+    // network server version
+    string handyrusty = 4;
+     // clickhouse version
+    string clickhouse = 5;
+     // postgres version
+    string postgres = 6;
+     // redis version
+    string redis = 7;
+     // mosquito version
+    string mosquito = 8;
 }
 
 message APIKey {
