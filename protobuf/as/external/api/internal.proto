@@ -98,6 +98,21 @@ service InternalService {
             get: "/api/internal/gateways/summary"
         };
     }
+
+    // GetInfo returns summary about versions and so on.
+    rpc GetInfo(google.protobuf.Empty) returns (GetInfoResponse) {
+        option(google.api.http) = {
+            get: "/api/internal/info"
+        };
+    }    
+}
+
+message GetInfoResponse {
+    // application server verson.
+    string app_server = 1;
+
+    // Inactive count.
+    string net_server = 2;
 }
 
 message APIKey {

@@ -275,6 +275,23 @@
         ]
       }
     },
+    "/api/internal/info": {
+      "get": {
+        "summary": "GetInfo returns summary about versions and so on.",
+        "operationId": "GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetInfoResponse"
+            }
+          }
+        },
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
     "/api/internal/login": {
       "post": {
         "summary": "Log in a user",
@@ -521,6 +538,19 @@
           "type": "integer",
           "format": "int64",
           "description": "Never seen count."
+        }
+      }
+    },
+    "apiGetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "appServer": {
+          "type": "string",
+          "description": "application server verson."
+        },
+        "netServer": {
+          "type": "string",
+          "description": "Inactive count."
         }
       }
     },
