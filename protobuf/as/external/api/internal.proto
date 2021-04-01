@@ -100,7 +100,7 @@ service InternalService {
     }
 
     // GetInfo returns summary about versions and so on.
-    rpc GetInfo(GetDevicesSummaryRequest) returns (GetInfoResponse) {
+    rpc GetInfo(google.protobuf.Empty) returns (GetInfoResponse) {
         option(google.api.http) = {
             get: "/api/internal/info"
         };
