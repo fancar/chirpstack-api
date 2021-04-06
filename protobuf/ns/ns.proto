@@ -651,6 +651,67 @@ message DownlinkFrameLog {
     bytes gateway_id = 5 [json_name = "gatewayID"];
 }
 
+// RX (uplink) frame data to save in CLICKHOUSE
+message RXFrameForHandyRusty {
+    // PHYPayload.
+    bytes phy_payload = 1;
+
+    // TX meta-data.
+    gw.UplinkTXInfo tx_info = 2;
+
+    // RX meta-data.
+    repeated gw.UplinkRXInfo rx_info = 3;
+    
+    // mark if packet not in time (late for more than 120 seconds)
+    bool late = 4; 
+
+    // some information from current device-session
+    DeviceSession device_session = 5;
+
+    // context id 
+    string ctx_id = 6;
+}
+
+// TX (downlink) frame data to save in CLICKHOUSE
+message TXFrameForHandyRusty {
+    // PHYPayload.
+    bytes phy_payload = 1;
+
+    // TX meta-data.
+    gw.DownlinkTXInfo tx_info = 2;
+
+    // Token (uint16 value).
+    // Deprecated: replaced by downlink_id.
+    uint32 token = 3;
+
+    // Downlink ID (UUID).
+    bytes downlink_id = 4 [json_name = "downlinkID"];
+
+    // Gateway ID.
+    bytes gateway_id = 5 [json_name = "gatewayID"];
+}
+
+// DeviceSession cropped data from DeviceSession to save in CLICKHOUSE
+message DeviceSession {
+    // FCntUp
+    uint32 f_cnt_up = 1;
+
+    // NFCntDown
+    uint32 nf_cnt_down = 2;
+
+    // AFCntDown
+    uint32 af_cnt_down = 3;
+
+    // ConfFCnt
+    uint32 conf_f_cnt = 4;
+
+    // Data from KeyEnvelope (if exists during first data packet): KEKLabel string
+    string KEK_label = 5;
+
+    // Data from KeyEnvelope (exists during first data packet): AESKey   []byte
+    bytes AES_key = 6;
+}
+
 message StreamFrameLogsForGatewayRequest {
     // MAC address of the gateway.
     bytes gateway_id = 1;
