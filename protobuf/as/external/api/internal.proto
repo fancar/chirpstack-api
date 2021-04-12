@@ -118,12 +118,14 @@ message GetInfoResponse {
     string handyrusty = 4;
      // clickhouse version
     string clickhouse = 5;
-     // postgres version
-    string postgres = 6;
+     // postgres version of application server
+    string app_postgres = 6;
+     // postgres version of network server
+    string net_postgres = 7;
      // redis version
-    string redis = 7;
+    string redis = 8;
      // mosquito version
-    string mosquito = 8;
+    string mosquito = 9;
 }
 
 message APIKey {

@@ -544,13 +544,41 @@
     "apiGetInfoResponse": {
       "type": "object",
       "properties": {
+        "api": {
+          "type": "string",
+          "title": "api version"
+        },
         "appServer": {
           "type": "string",
           "description": "application server verson."
         },
         "netServer": {
           "type": "string",
-          "description": "Inactive count."
+          "title": "network server version"
+        },
+        "handyrusty": {
+          "type": "string",
+          "title": "network server version"
+        },
+        "clickhouse": {
+          "type": "string",
+          "title": "clickhouse version"
+        },
+        "appPostgres": {
+          "type": "string",
+          "title": "postgres version of application server"
+        },
+        "netPostgres": {
+          "type": "string",
+          "title": "postgres version of network server"
+        },
+        "redis": {
+          "type": "string",
+          "title": "redis version"
+        },
+        "mosquito": {
+          "type": "string",
+          "title": "mosquito version"
         }
       }
     },
