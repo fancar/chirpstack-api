@@ -575,10 +575,6 @@
         "redis": {
           "type": "string",
           "title": "redis version"
-        },
-        "mosquito": {
-          "type": "string",
-          "title": "mosquito version"
         }
       }
     },

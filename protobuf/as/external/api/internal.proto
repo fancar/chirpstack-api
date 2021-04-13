@@ -125,7 +125,7 @@ message GetInfoResponse {
      // redis version
     string redis = 8;
      // mosquito version
-    string mosquito = 9;
+    // string mosquito = 9;
 }
 
 message APIKey {
