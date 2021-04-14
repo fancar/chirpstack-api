@@ -764,9 +764,9 @@ type ListUserLogsRequest struct {
 	OrganizationId int64 `protobuf:"varint,3,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	// search field by username
 	Search string `protobuf:"bytes,4,opt,name=search,proto3" json:"search,omitempty"`
-	// search field by username
+	// sort list by name
 	OrderBy string `protobuf:"bytes,5,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
-	// search field by username
+	// sort direction
 	Order                string   `protobuf:"bytes,6,opt,name=order,proto3" json:"order,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

@@ -294,6 +294,12 @@ message ListDeviceRequest {
 
     // Tags to filter on.
     map<string, string> tags = 7;
+
+    // sort list by name
+	string orderBy = 8;		
+
+	// sort direction
+	string order = 9;	
 }
 
 message ListDeviceResponse {

@@ -72,6 +72,20 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "description": "sort list by name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "sort direction.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

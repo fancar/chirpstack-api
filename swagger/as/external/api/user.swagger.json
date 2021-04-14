@@ -61,14 +61,14 @@
           },
           {
             "name": "orderBy",
-            "description": "search field by username.",
+            "description": "sort list by name.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "search field by username.",
+            "description": "sort direction.",
             "in": "query",
             "required": false,
             "type": "string"
