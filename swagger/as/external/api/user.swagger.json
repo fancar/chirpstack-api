@@ -58,6 +58,20 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "description": "search field by username.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "search field by username.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
