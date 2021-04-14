@@ -223,10 +223,10 @@ message ListUserLogsRequest {
 	// search field by username
 	string search = 4;		
 
-	// search field by username
+	// sort list by name
 	string orderBy = 5;		
 
-	// search field by username
+	// sort direction
 	string order = 6;		
 }
 
