@@ -5,7 +5,7 @@ package api;
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
 
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
+// import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "handyrusty/hr.proto";
 import "gw/gw.proto";
@@ -53,5 +53,10 @@ service HandyRustyService {
             get: "/api/handy-rusty/frames/logs/device-frames/csv"
             // body: "*"
         };
-    }    
+    }
+    rpc GetCurrentState(google.protobuf.Empty) returns (hr.GetCurrentStateResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/current-state"
+        };        
+    } 
 }

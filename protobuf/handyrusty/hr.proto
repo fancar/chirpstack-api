@@ -38,6 +38,14 @@ service HandyRustyService {
 
     // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
     rpc StreamDeviceFramesLogCSV(GetDeviceFramesLogRequest) returns (stream StreamDeviceFramesLogCSVResponse) {}
+
+    // GetCurrentState returns items for monitoring purposes.
+    rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}    
+}
+
+message GetCurrentStateResponse {
+    // DateTime of last packet saved in wireless-loger
+    string wl_last_packet = 1;
 }
 
 message StreamDeviceFramesLogCSVResponse {
