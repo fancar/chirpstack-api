@@ -222,6 +222,12 @@ message ListUserLogsRequest {
 
 	// search field by username
 	string search = 4;		
+
+	// sort list by name
+	string orderBy = 5;		
+
+	// sort direction
+	string order = 6;		
 }
 
 message ListUserLogsResponse {
