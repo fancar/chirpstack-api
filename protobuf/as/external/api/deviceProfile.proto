@@ -121,6 +121,12 @@ message ListDeviceProfileRequest {
 
     // Application id to filter on.
     int64 application_id = 4 [json_name = "applicationID"];
+    
+	// sort list by name
+	string orderBy = 5;		
+
+	// sort direction
+	string order = 6;	
 }
 
 message ListDeviceProfileResponse {
