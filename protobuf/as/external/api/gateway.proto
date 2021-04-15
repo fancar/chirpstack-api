@@ -231,6 +231,12 @@ message ListGatewayRequest {
 
 	// Search on name or gateway MAC (optional).
 	string search = 4;
+
+	// sort list by name
+	string orderBy = 5;		
+
+	// sort direction
+	string order = 6;		
 }
 
 message GatewayListItem {
