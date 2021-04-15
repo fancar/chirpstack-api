@@ -200,6 +200,12 @@ message ListUserRequest {
 
 	// Offset in the result-set (for pagination).
 	int64 offset = 2;
+
+	// sort list by name
+	string orderBy = 3;		
+
+	// sort direction
+	string order = 4;	
 }
 
 message ListUserResponse {
