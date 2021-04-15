@@ -48,7 +48,7 @@ message GetCurrentStateResponse {
     string wl_last_packet = 1;
 
     // the same as previuos in unixTime format
-    int64 wl_last_packet_UT = 2;
+    int64 wl_last_packet_unix = 2;
 
 }
 
