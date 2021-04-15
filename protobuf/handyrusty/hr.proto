@@ -46,6 +46,10 @@ service HandyRustyService {
 message GetCurrentStateResponse {
     // DateTime of last packet saved in wireless-loger
     string wl_last_packet = 1;
+
+    // the same as previuos in unixTime format
+    int64 wl_last_packet_UT = 2;
+
 }
 
 message StreamDeviceFramesLogCSVResponse {

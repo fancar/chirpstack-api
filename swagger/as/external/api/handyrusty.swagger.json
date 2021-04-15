@@ -468,6 +468,11 @@
         "wlLastPacket": {
           "type": "string",
           "title": "DateTime of last packet saved in wireless-loger"
+        },
+        "wlLastPacketUT": {
+          "type": "string",
+          "format": "int64",
+          "title": "the same as previuos in unixTime format"
         }
       }
     },
