@@ -174,6 +174,12 @@ message ListOrganizationRequest {
 	// When provided, the given string will be used to search on
 	// displayName.
 	string search = 3;
+
+	// sort list by name
+	string orderBy = 4;		
+
+	// sort direction
+	string order = 5;	
 }
 
 message ListOrganizationResponse {
