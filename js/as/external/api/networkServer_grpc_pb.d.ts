@@ -13,9 +13,19 @@ interface INetworkServerServiceService extends grpc.ServiceDefinition<grpc.Untyp
   update: grpc.MethodDefinition<as_external_api_networkServer_pb.UpdateNetworkServerRequest, google_protobuf_empty_pb.Empty>;
   delete: grpc.MethodDefinition<as_external_api_networkServer_pb.DeleteNetworkServerRequest, google_protobuf_empty_pb.Empty>;
   list: grpc.MethodDefinition<as_external_api_networkServer_pb.ListNetworkServerRequest, as_external_api_networkServer_pb.ListNetworkServerResponse>;
+  getADRAlgorithms: grpc.MethodDefinition<as_external_api_networkServer_pb.GetADRAlgorithmsRequest, as_external_api_networkServer_pb.GetADRAlgorithmsResponse>;
 }
 
 export const NetworkServerServiceService: INetworkServerServiceService;
+
+export interface INetworkServerServiceServer extends grpc.UntypedServiceImplementation {
+  create: grpc.handleUnaryCall<as_external_api_networkServer_pb.CreateNetworkServerRequest, as_external_api_networkServer_pb.CreateNetworkServerResponse>;
+  get: grpc.handleUnaryCall<as_external_api_networkServer_pb.GetNetworkServerRequest, as_external_api_networkServer_pb.GetNetworkServerResponse>;
+  update: grpc.handleUnaryCall<as_external_api_networkServer_pb.UpdateNetworkServerRequest, google_protobuf_empty_pb.Empty>;
+  delete: grpc.handleUnaryCall<as_external_api_networkServer_pb.DeleteNetworkServerRequest, google_protobuf_empty_pb.Empty>;
+  list: grpc.handleUnaryCall<as_external_api_networkServer_pb.ListNetworkServerRequest, as_external_api_networkServer_pb.ListNetworkServerResponse>;
+  getADRAlgorithms: grpc.handleUnaryCall<as_external_api_networkServer_pb.GetADRAlgorithmsRequest, as_external_api_networkServer_pb.GetADRAlgorithmsResponse>;
+}
 
 export class NetworkServerServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
@@ -34,4 +44,7 @@ export class NetworkServerServiceClient extends grpc.Client {
   list(argument: as_external_api_networkServer_pb.ListNetworkServerRequest, callback: grpc.requestCallback<as_external_api_networkServer_pb.ListNetworkServerResponse>): grpc.ClientUnaryCall;
   list(argument: as_external_api_networkServer_pb.ListNetworkServerRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_networkServer_pb.ListNetworkServerResponse>): grpc.ClientUnaryCall;
   list(argument: as_external_api_networkServer_pb.ListNetworkServerRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_networkServer_pb.ListNetworkServerResponse>): grpc.ClientUnaryCall;
+  getADRAlgorithms(argument: as_external_api_networkServer_pb.GetADRAlgorithmsRequest, callback: grpc.requestCallback<as_external_api_networkServer_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
+  getADRAlgorithms(argument: as_external_api_networkServer_pb.GetADRAlgorithmsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_networkServer_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
+  getADRAlgorithms(argument: as_external_api_networkServer_pb.GetADRAlgorithmsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_networkServer_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
 }

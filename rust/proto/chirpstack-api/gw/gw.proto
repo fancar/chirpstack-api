@@ -4,6 +4,8 @@ package gw;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/gw";
 option java_package = "io.chirpstack.api.gw";
+option java_multiple_files = true;
+option java_outer_classname = "GatewayProto";
 
 import "common/common.proto";
 import "google/protobuf/timestamp.proto";
@@ -368,7 +370,7 @@ message DownlinkTXAck {
 
 message DownlinkTXAckItem {
     // The Ack status of this item.
-    TxAckStatus status = 1; 
+    TxAckStatus status = 1;
 }
 
 message GatewayConfiguration {
@@ -486,4 +488,17 @@ message RawPacketForwarderCommand {
 
     // Payload contains the raw payload.
     bytes payload = 3;
+}
+
+// ConnState contains the connection state of a gateway.
+message ConnState {
+    // Gateway ID.
+    bytes gateway_id = 1 [json_name = "gatewayID"];
+
+    enum State {
+        OFFLINE = 0;
+        ONLINE = 1;
+    }
+
+    State state = 2;
 }
