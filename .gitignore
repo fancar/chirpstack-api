@@ -1,6 +1,9 @@
 # hidden files
 .*
 
+# joe backup files
+*~
+
 # rust
 /rust/target
 
@@ -10,4 +13,6 @@
 /python/src/*.egg-info/
 /python/src/build/
 /python/src/dist/
-/java
+
+# java
+/java/build/

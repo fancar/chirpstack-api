@@ -211,7 +211,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // GatewayService is the service managing the gateways.
 var GatewayServiceService = exports.GatewayServiceService = {
   // Create creates the given gateway.
-  create: {
+create: {
     path: '/api.GatewayService/Create',
     requestStream: false,
     responseStream: false,
@@ -223,7 +223,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Get returns the gateway for the requested mac address.
-  get: {
+get: {
     path: '/api.GatewayService/Get',
     requestStream: false,
     responseStream: false,
@@ -247,7 +247,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_api_GetGatewayStatusResponse,
   },
   // Update updates the gateway matching the given mac address.
-  update: {
+update: {
     path: '/api.GatewayService/Update',
     requestStream: false,
     responseStream: false,
@@ -259,7 +259,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Delete deletes the gateway matching the given mac address.
-  delete: {
+delete: {
     path: '/api.GatewayService/Delete',
     requestStream: false,
     responseStream: false,
@@ -271,7 +271,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // List lists the gateways.
-  list: {
+list: {
     path: '/api.GatewayService/List',
     requestStream: false,
     responseStream: false,
@@ -295,7 +295,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_api_ListGwActilityStyledResponse,
   },
   // GetStats lists the gateway stats given the query parameters.
-  getStats: {
+getStats: {
     path: '/api.GatewayService/GetStats',
     requestStream: false,
     responseStream: false,
@@ -307,7 +307,7 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_api_GetGatewayStatsResponse,
   },
   // GetLastPing returns the last emitted ping and gateways receiving this ping.
-  getLastPing: {
+getLastPing: {
     path: '/api.GatewayService/GetLastPing',
     requestStream: false,
     responseStream: false,
@@ -319,10 +319,17 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_api_GetLastPingResponse,
   },
   // GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
+<<<<<<< HEAD
   // This endpoint can ony be used when Network Server is configured with a gateway
   // CA certificate and key, which is used for signing the TLS certificate. The returned TLS
   // certificate will have the Gateway ID as Common Name.
   generateGatewayClientCertificate: {
+=======
+// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
+// certificate will have the Gateway ID as Common Name.
+generateGatewayClientCertificate: {
+>>>>>>> master
     path: '/api.GatewayService/GenerateGatewayClientCertificate',
     requestStream: false,
     responseStream: false,
@@ -334,10 +341,10 @@ var GatewayServiceService = exports.GatewayServiceService = {
     responseDeserialize: deserialize_api_GenerateGatewayClientCertificateResponse,
   },
   // StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.
-  // Notes:
-  //   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
-  //   * This endpoint does not work from a web-browser.
-  streamFrameLogs: {
+// Notes:
+//   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
+//   * This endpoint does not work from a web-browser.
+streamFrameLogs: {
     path: '/api.GatewayService/StreamFrameLogs',
     requestStream: false,
     responseStream: true,

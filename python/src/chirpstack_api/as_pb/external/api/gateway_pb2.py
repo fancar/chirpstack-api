@@ -22,9 +22,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='chirpstack-api/as_pb/external/api/gateway.proto',
   package='api',
   syntax='proto3',
-  serialized_options=b'Z7github.com/brocaar/chirpstack-api/go/v3/as/external/api',
+  serialized_options=b'\n!io.chirpstack.api.as.external.apiB\014GatewayProtoP\001Z7github.com/brocaar/chirpstack-api/go/v3/as/external/api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n/chirpstack-api/as_pb/external/api/gateway.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\"chirpstack-api/common/common.proto\x1a\x30\x63hirpstack-api/as_pb/external/api/frameLog.proto\"\xcf\x03\n\x07Gateway\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\'\n\x0forganization_id\x18\x05 \x01(\x03R\x0eorganizationID\x12\x19\n\x11\x64iscovery_enabled\x18\x06 \x01(\x08\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12,\n\x12gateway_profile_id\x18\x08 \x01(\tR\x10gatewayProfileID\x12!\n\x06\x62oards\x18\t \x03(\x0b\x32\x11.api.GatewayBoard\x12$\n\x04tags\x18\n \x03(\x0b\x32\x16.api.Gateway.TagsEntry\x12,\n\x08metadata\x18\x0b \x03(\x0b\x32\x1a.api.Gateway.MetadataEntry\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"C\n\x0cGatewayBoard\x12\x17\n\x07\x66pga_id\x18\x01 \x01(\tR\x06\x66pgaID\x12\x1a\n\x12\x66ine_timestamp_key\x18\x02 \x01(\t\"5\n\x14\x43reateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\x1f\n\x11GetGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\xf8\x01\n\x12GetGatewayResponse\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\"\n\x14\x44\x65leteGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"=\n\'GenerateGatewayClientCertificateRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\t\"^\n(GenerateGatewayClientCertificateResponse\x12\x10\n\x08tls_cert\x18\x01 \x01(\t\x12\x0f\n\x07tls_key\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\"l\n\x12ListGatewayRequest\x12\r\n\x05limit\x18\x01 \x01(\x05\x12\x0e\n\x06offset\x18\x02 \x01(\x05\x12\'\n\x0forganization_id\x18\x03 \x01(\x03R\x0eorganizationID\x12\x0e\n\x06search\x18\x04 \x01(\t\"\x9b\x03\n\x0fGatewayListItem\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x0forganization_id\x18\x06 \x01(\x03R\x0eorganizationID\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12\"\n\x08location\x18\n \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13network_server_name\x18\x0b \x01(\t\"P\n\x13ListGatewayResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12$\n\x06result\x18\x02 \x03(\x0b\x32\x14.api.GatewayListItem\"5\n\x14UpdateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\xc8\x01\n\x0cGatewayStats\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x13rx_packets_received\x18\x02 \x01(\x05\x12\x33\n\x16rx_packets_received_ok\x18\x03 \x01(\x05R\x13rxPacketsReceivedOK\x12\x1b\n\x13tx_packets_received\x18\x04 \x01(\x05\x12\x1a\n\x12tx_packets_emitted\x18\x05 \x01(\x05\"\xb1\x01\n\x16GetGatewayStatsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x10\n\x08interval\x18\x02 \x01(\t\x12\x33\n\x0fstart_timestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rend_timestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"<\n\x17GetGatewayStatsResponse\x12!\n\x06result\x18\x01 \x03(\x0b\x32\x11.api.GatewayStats\"\x87\x01\n\x06PingRX\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x0c\n\x04rssi\x18\x02 \x01(\x05\x12\x19\n\x08lora_snr\x18\x03 \x01(\x01R\x07loRaSNR\x12\x10\n\x08latitude\x18\x04 \x01(\x01\x12\x11\n\tlongitude\x18\x05 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x06 \x01(\x01\"3\n\x12GetLastPingRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x8a\x01\n\x13GetLastPingResponse\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\tfrequency\x18\x02 \x01(\r\x12\n\n\x02\x64r\x18\x03 \x01(\r\x12$\n\x07ping_rx\x18\x04 \x03(\x0b\x32\x0b.api.PingRXR\x06pingRX\">\n\x1dStreamGatewayFrameLogsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x87\x01\n\x1eStreamGatewayFrameLogsResponse\x12+\n\x0cuplink_frame\x18\x01 \x01(\x0b\x32\x13.api.UplinkFrameLogH\x00\x12/\n\x0e\x64ownlink_frame\x18\x02 \x01(\x0b\x32\x15.api.DownlinkFrameLogH\x00\x42\x07\n\x05\x66rame2\xf1\x07\n\x0eGatewayService\x12U\n\x06\x43reate\x12\x19.api.CreateGatewayRequest\x1a\x16.google.protobuf.Empty\"\x18\x82\xd3\xe4\x93\x02\x12\"\r/api/gateways:\x01*\x12R\n\x03Get\x12\x16.api.GetGatewayRequest\x1a\x17.api.GetGatewayResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/gateways/{id}\x12\x62\n\x06Update\x12\x19.api.UpdateGatewayRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\x1a\x1a/api/gateways/{gateway.id}:\x01*\x12W\n\x06\x44\x65lete\x12\x19.api.DeleteGatewayRequest\x1a\x16.google.protobuf.Empty\"\x1a\x82\xd3\xe4\x93\x02\x14*\x12/api/gateways/{id}\x12P\n\x04List\x12\x17.api.ListGatewayRequest\x1a\x18.api.ListGatewayResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/api/gateways\x12o\n\x08GetStats\x12\x1b.api.GetGatewayStatsRequest\x1a\x1c.api.GetGatewayStatsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/gateways/{gateway_id}/stats\x12o\n\x0bGetLastPing\x12\x17.api.GetLastPingRequest\x1a\x18.api.GetLastPingResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/api/gateways/{gateway_id}/pings/last\x12\xb8\x01\n GenerateGatewayClientCertificate\x12,.api.GenerateGatewayClientCertificateRequest\x1a-.api.GenerateGatewayClientCertificateResponse\"7\x82\xd3\xe4\x93\x02\x31\"//api/gateways/{gateway_id}/generate-certificate\x12\x87\x01\n\x0fStreamFrameLogs\x12\".api.StreamGatewayFrameLogsRequest\x1a#.api.StreamGatewayFrameLogsResponse\")\x82\xd3\xe4\x93\x02#\x12!/api/gateways/{gateway_id}/frames0\x01\x42\x39Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
+  serialized_pb=b'\n/chirpstack-api/as_pb/external/api/gateway.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\"chirpstack-api/common/common.proto\x1a\x30\x63hirpstack-api/as_pb/external/api/frameLog.proto\"\xbc\x04\n\x07Gateway\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\'\n\x0forganization_id\x18\x05 \x01(\x03R\x0eorganizationID\x12\x19\n\x11\x64iscovery_enabled\x18\x06 \x01(\x08\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12,\n\x12gateway_profile_id\x18\x08 \x01(\tR\x10gatewayProfileID\x12!\n\x06\x62oards\x18\t \x03(\x0b\x32\x11.api.GatewayBoard\x12$\n\x04tags\x18\n \x03(\x0b\x32\x16.api.Gateway.TagsEntry\x12,\n\x08metadata\x18\x0b \x03(\x0b\x32\x1a.api.Gateway.MetadataEntry\x12\x0f\n\x07\x61\x64\x64ress\x18\x0c \x01(\t\x12\r\n\x05serno\x18\r \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x0e \x01(\x08\x12\r\n\x05phone\x18\x0f \x01(\t\x12,\n\x12service_profile_id\x18\x10 \x01(\tR\x10serviceProfileID\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"C\n\x0cGatewayBoard\x12\x17\n\x07\x66pga_id\x18\x01 \x01(\tR\x06\x66pgaID\x12\x1a\n\x12\x66ine_timestamp_key\x18\x02 \x01(\t\"5\n\x14\x43reateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\x1f\n\x11GetGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\xf8\x01\n\x12GetGatewayResponse\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"h\n\x18GetGatewayStatusResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x02 \x01(\x08\x12\x30\n\x0clast_seen_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\"\n\x14\x44\x65leteGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"=\n\'GenerateGatewayClientCertificateRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\t\"\x8e\x01\n(GenerateGatewayClientCertificateResponse\x12\x10\n\x08tls_cert\x18\x01 \x01(\t\x12\x0f\n\x07tls_key\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x8c\x01\n\x12ListGatewayRequest\x12\r\n\x05limit\x18\x01 \x01(\x05\x12\x0e\n\x06offset\x18\x02 \x01(\x05\x12\'\n\x0forganization_id\x18\x03 \x01(\x03R\x0eorganizationID\x12\x0e\n\x06search\x18\x04 \x01(\t\x12\x0f\n\x07orderBy\x18\x05 \x01(\t\x12\r\n\x05order\x18\x06 \x01(\t\"\xba\x03\n\x0fGatewayListItem\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x0forganization_id\x18\x06 \x01(\x03R\x0eorganizationID\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12\"\n\x08location\x18\n \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13network_server_name\x18\x0b \x01(\t\x12\r\n\x05radio\x18\x0c \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\r \x01(\x08\"\xa8\x01\n\x17StatsItemActilityStyled\x12?\n\rcreation_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0c\x63reationTime\x12)\n\x10\x63onnection_state\x18\x02 \x01(\tR\x0f\x63onnectionState\x12!\n\x0chealth_state\x18\x03 \x01(\tR\x0bhealthState\"\xb1\x01\n\x14GwItemActilityStyled\x12\x0b\n\x03ref\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x31\n\x14\x61\x64ministration_state\x18\x04 \x01(\tR\x13\x61\x64ministrationState\x12\r\n\x05owner\x18\x05 \x01(\t\x12\x30\n\nstatistics\x18\x06 \x01(\x0b\x32\x1c.api.StatsItemActilityStyled\"P\n\x13ListGatewayResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12$\n\x06result\x18\x02 \x03(\x0b\x32\x14.api.GatewayListItem\"^\n\x1cListGwActilityStyledResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12)\n\x06result\x18\x02 \x03(\x0b\x32\x19.api.GwItemActilityStyled\"5\n\x14UpdateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\xc8\x01\n\x0cGatewayStats\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x13rx_packets_received\x18\x02 \x01(\x05\x12\x33\n\x16rx_packets_received_ok\x18\x03 \x01(\x05R\x13rxPacketsReceivedOK\x12\x1b\n\x13tx_packets_received\x18\x04 \x01(\x05\x12\x1a\n\x12tx_packets_emitted\x18\x05 \x01(\x05\"\xb1\x01\n\x16GetGatewayStatsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x10\n\x08interval\x18\x02 \x01(\t\x12\x33\n\x0fstart_timestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rend_timestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"<\n\x17GetGatewayStatsResponse\x12!\n\x06result\x18\x01 \x03(\x0b\x32\x11.api.GatewayStats\"\x87\x01\n\x06PingRX\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x0c\n\x04rssi\x18\x02 \x01(\x05\x12\x19\n\x08lora_snr\x18\x03 \x01(\x01R\x07loRaSNR\x12\x10\n\x08latitude\x18\x04 \x01(\x01\x12\x11\n\tlongitude\x18\x05 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x06 \x01(\x01\"3\n\x12GetLastPingRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x8a\x01\n\x13GetLastPingResponse\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\tfrequency\x18\x02 \x01(\r\x12\n\n\x02\x64r\x18\x03 \x01(\r\x12$\n\x07ping_rx\x18\x04 \x03(\x0b\x32\x0b.api.PingRXR\x06pingRX\">\n\x1dStreamGatewayFrameLogsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x87\x01\n\x1eStreamGatewayFrameLogsResponse\x12+\n\x0cuplink_frame\x18\x01 \x01(\x0b\x32\x13.api.UplinkFrameLogH\x00\x12/\n\x0e\x64ownlink_frame\x18\x02 \x01(\x0b\x32\x15.api.DownlinkFrameLogH\x00\x42\x07\n\x05\x66rame2\xdc\t\n\x0eGatewayService\x12U\n\x06\x43reate\x12\x19.api.CreateGatewayRequest\x1a\x16.google.protobuf.Empty\"\x18\x82\xd3\xe4\x93\x02\x12\"\r/api/gateways:\x01*\x12R\n\x03Get\x12\x16.api.GetGatewayRequest\x1a\x17.api.GetGatewayResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/gateways/{id}\x12\x64\n\tGetStatus\x12\x16.api.GetGatewayRequest\x1a\x1d.api.GetGatewayStatusResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/gateway-status/{id}\x12\x62\n\x06Update\x12\x19.api.UpdateGatewayRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\x1a\x1a/api/gateways/{gateway.id}:\x01*\x12W\n\x06\x44\x65lete\x12\x19.api.DeleteGatewayRequest\x1a\x16.google.protobuf.Empty\"\x1a\x82\xd3\xe4\x93\x02\x14*\x12/api/gateways/{id}\x12P\n\x04List\x12\x17.api.ListGatewayRequest\x1a\x18.api.ListGatewayResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/api/gateways\x12\x82\x01\n\x12ListActilityStyled\x12\x17.api.ListGatewayRequest\x1a!.api.ListGwActilityStyledResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/monitoring/gateways/actility_styled\x12o\n\x08GetStats\x12\x1b.api.GetGatewayStatsRequest\x1a\x1c.api.GetGatewayStatsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/gateways/{gateway_id}/stats\x12o\n\x0bGetLastPing\x12\x17.api.GetLastPingRequest\x1a\x18.api.GetLastPingResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/api/gateways/{gateway_id}/pings/last\x12\xb8\x01\n GenerateGatewayClientCertificate\x12,.api.GenerateGatewayClientCertificateRequest\x1a-.api.GenerateGatewayClientCertificateResponse\"7\x82\xd3\xe4\x93\x02\x31\"//api/gateways/{gateway_id}/generate-certificate\x12\x87\x01\n\x0fStreamFrameLogs\x12\".api.StreamGatewayFrameLogsRequest\x1a#.api.StreamGatewayFrameLogsResponse\")\x82\xd3\xe4\x93\x02#\x12!/api/gateways/{gateway_id}/frames0\x01\x42l\n!io.chirpstack.api.as.external.apiB\x0cGatewayProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,chirpstack__api_dot_common_dot_common__pb2.DESCRIPTOR,chirpstack__api_dot_as__pb_dot_external_dot_api_dot_frameLog__pb2.DESCRIPTOR,])
 
@@ -65,8 +65,8 @@ _GATEWAY_TAGSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=606,
-  serialized_end=649,
+  serialized_start=715,
+  serialized_end=758,
 )
 
 _GATEWAY_METADATAENTRY = _descriptor.Descriptor(
@@ -103,8 +103,8 @@ _GATEWAY_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=651,
-  serialized_end=698,
+  serialized_start=760,
+  serialized_end=807,
 )
 
 _GATEWAY = _descriptor.Descriptor(
@@ -192,6 +192,41 @@ _GATEWAY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='address', full_name='api.Gateway.address', index=11,
+      number=12, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='serno', full_name='api.Gateway.serno', index=12,
+      number=13, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='active', full_name='api.Gateway.active', index=13,
+      number=14, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='phone', full_name='api.Gateway.phone', index=14,
+      number=15, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='service_profile_id', full_name='api.Gateway.service_profile_id', index=15,
+      number=16, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='serviceProfileID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -205,7 +240,7 @@ _GATEWAY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=235,
-  serialized_end=698,
+  serialized_end=807,
 )
 
 
@@ -243,8 +278,8 @@ _GATEWAYBOARD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=700,
-  serialized_end=767,
+  serialized_start=809,
+  serialized_end=876,
 )
 
 
@@ -275,8 +310,8 @@ _CREATEGATEWAYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=769,
-  serialized_end=822,
+  serialized_start=878,
+  serialized_end=931,
 )
 
 
@@ -307,8 +342,8 @@ _GETGATEWAYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=824,
-  serialized_end=855,
+  serialized_start=933,
+  serialized_end=964,
 )
 
 
@@ -367,8 +402,54 @@ _GETGATEWAYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=858,
-  serialized_end=1106,
+  serialized_start=967,
+  serialized_end=1215,
+)
+
+
+_GETGATEWAYSTATUSRESPONSE = _descriptor.Descriptor(
+  name='GetGatewayStatusResponse',
+  full_name='api.GetGatewayStatusResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='api.GetGatewayStatusResponse.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='active', full_name='api.GetGatewayStatusResponse.active', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='last_seen_at', full_name='api.GetGatewayStatusResponse.last_seen_at', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1217,
+  serialized_end=1321,
 )
 
 
@@ -399,8 +480,8 @@ _DELETEGATEWAYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1108,
-  serialized_end=1142,
+  serialized_start=1323,
+  serialized_end=1357,
 )
 
 
@@ -431,8 +512,8 @@ _GENERATEGATEWAYCLIENTCERTIFICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1144,
-  serialized_end=1205,
+  serialized_start=1359,
+  serialized_end=1420,
 )
 
 
@@ -465,6 +546,13 @@ _GENERATEGATEWAYCLIENTCERTIFICATERESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='expires_at', full_name='api.GenerateGatewayClientCertificateResponse.expires_at', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -477,8 +565,8 @@ _GENERATEGATEWAYCLIENTCERTIFICATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1207,
-  serialized_end=1301,
+  serialized_start=1423,
+  serialized_end=1565,
 )
 
 
@@ -518,6 +606,20 @@ _LISTGATEWAYREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='orderBy', full_name='api.ListGatewayRequest.orderBy', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='order', full_name='api.ListGatewayRequest.order', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -530,8 +632,8 @@ _LISTGATEWAYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1303,
-  serialized_end=1411,
+  serialized_start=1568,
+  serialized_end=1708,
 )
 
 
@@ -620,6 +722,20 @@ _GATEWAYLISTITEM = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='radio', full_name='api.GatewayListItem.radio', index=11,
+      number=12, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='active', full_name='api.GatewayListItem.active', index=12,
+      number=13, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -632,8 +748,121 @@ _GATEWAYLISTITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1414,
-  serialized_end=1825,
+  serialized_start=1711,
+  serialized_end=2153,
+)
+
+
+_STATSITEMACTILITYSTYLED = _descriptor.Descriptor(
+  name='StatsItemActilityStyled',
+  full_name='api.StatsItemActilityStyled',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='creation_time', full_name='api.StatsItemActilityStyled.creation_time', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='creationTime', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='connection_state', full_name='api.StatsItemActilityStyled.connection_state', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='connectionState', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='health_state', full_name='api.StatsItemActilityStyled.health_state', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='healthState', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2156,
+  serialized_end=2324,
+)
+
+
+_GWITEMACTILITYSTYLED = _descriptor.Descriptor(
+  name='GwItemActilityStyled',
+  full_name='api.GwItemActilityStyled',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ref', full_name='api.GwItemActilityStyled.ref', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='api.GwItemActilityStyled.id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='api.GwItemActilityStyled.name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='administration_state', full_name='api.GwItemActilityStyled.administration_state', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='administrationState', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='owner', full_name='api.GwItemActilityStyled.owner', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='statistics', full_name='api.GwItemActilityStyled.statistics', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2327,
+  serialized_end=2504,
 )
 
 
@@ -671,8 +900,47 @@ _LISTGATEWAYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1827,
-  serialized_end=1907,
+  serialized_start=2506,
+  serialized_end=2586,
+)
+
+
+_LISTGWACTILITYSTYLEDRESPONSE = _descriptor.Descriptor(
+  name='ListGwActilityStyledResponse',
+  full_name='api.ListGwActilityStyledResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='total_count', full_name='api.ListGwActilityStyledResponse.total_count', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='result', full_name='api.ListGwActilityStyledResponse.result', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2588,
+  serialized_end=2682,
 )
 
 
@@ -703,8 +971,8 @@ _UPDATEGATEWAYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1909,
-  serialized_end=1962,
+  serialized_start=2684,
+  serialized_end=2737,
 )
 
 
@@ -763,8 +1031,8 @@ _GATEWAYSTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1965,
-  serialized_end=2165,
+  serialized_start=2740,
+  serialized_end=2940,
 )
 
 
@@ -816,8 +1084,8 @@ _GETGATEWAYSTATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2168,
-  serialized_end=2345,
+  serialized_start=2943,
+  serialized_end=3120,
 )
 
 
@@ -848,8 +1116,8 @@ _GETGATEWAYSTATSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2347,
-  serialized_end=2407,
+  serialized_start=3122,
+  serialized_end=3182,
 )
 
 
@@ -915,8 +1183,8 @@ _PINGRX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2410,
-  serialized_end=2545,
+  serialized_start=3185,
+  serialized_end=3320,
 )
 
 
@@ -947,8 +1215,8 @@ _GETLASTPINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2547,
-  serialized_end=2598,
+  serialized_start=3322,
+  serialized_end=3373,
 )
 
 
@@ -1000,8 +1268,8 @@ _GETLASTPINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2601,
-  serialized_end=2739,
+  serialized_start=3376,
+  serialized_end=3514,
 )
 
 
@@ -1032,8 +1300,8 @@ _STREAMGATEWAYFRAMELOGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2741,
-  serialized_end=2803,
+  serialized_start=3516,
+  serialized_end=3578,
 )
 
 
@@ -1076,8 +1344,8 @@ _STREAMGATEWAYFRAMELOGSRESPONSE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=2806,
-  serialized_end=2941,
+  serialized_start=3581,
+  serialized_end=3716,
 )
 
 _GATEWAY_TAGSENTRY.containing_type = _GATEWAY
@@ -1092,12 +1360,17 @@ _GETGATEWAYRESPONSE.fields_by_name['created_at'].message_type = google_dot_proto
 _GETGATEWAYRESPONSE.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GETGATEWAYRESPONSE.fields_by_name['first_seen_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GETGATEWAYRESPONSE.fields_by_name['last_seen_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GETGATEWAYSTATUSRESPONSE.fields_by_name['last_seen_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GENERATEGATEWAYCLIENTCERTIFICATERESPONSE.fields_by_name['expires_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GATEWAYLISTITEM.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GATEWAYLISTITEM.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GATEWAYLISTITEM.fields_by_name['first_seen_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GATEWAYLISTITEM.fields_by_name['last_seen_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GATEWAYLISTITEM.fields_by_name['location'].message_type = chirpstack__api_dot_common_dot_common__pb2._LOCATION
+_STATSITEMACTILITYSTYLED.fields_by_name['creation_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GWITEMACTILITYSTYLED.fields_by_name['statistics'].message_type = _STATSITEMACTILITYSTYLED
 _LISTGATEWAYRESPONSE.fields_by_name['result'].message_type = _GATEWAYLISTITEM
+_LISTGWACTILITYSTYLEDRESPONSE.fields_by_name['result'].message_type = _GWITEMACTILITYSTYLED
 _UPDATEGATEWAYREQUEST.fields_by_name['gateway'].message_type = _GATEWAY
 _GATEWAYSTATS.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GETGATEWAYSTATSREQUEST.fields_by_name['start_timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -1118,12 +1391,16 @@ DESCRIPTOR.message_types_by_name['GatewayBoard'] = _GATEWAYBOARD
 DESCRIPTOR.message_types_by_name['CreateGatewayRequest'] = _CREATEGATEWAYREQUEST
 DESCRIPTOR.message_types_by_name['GetGatewayRequest'] = _GETGATEWAYREQUEST
 DESCRIPTOR.message_types_by_name['GetGatewayResponse'] = _GETGATEWAYRESPONSE
+DESCRIPTOR.message_types_by_name['GetGatewayStatusResponse'] = _GETGATEWAYSTATUSRESPONSE
 DESCRIPTOR.message_types_by_name['DeleteGatewayRequest'] = _DELETEGATEWAYREQUEST
 DESCRIPTOR.message_types_by_name['GenerateGatewayClientCertificateRequest'] = _GENERATEGATEWAYCLIENTCERTIFICATEREQUEST
 DESCRIPTOR.message_types_by_name['GenerateGatewayClientCertificateResponse'] = _GENERATEGATEWAYCLIENTCERTIFICATERESPONSE
 DESCRIPTOR.message_types_by_name['ListGatewayRequest'] = _LISTGATEWAYREQUEST
 DESCRIPTOR.message_types_by_name['GatewayListItem'] = _GATEWAYLISTITEM
+DESCRIPTOR.message_types_by_name['StatsItemActilityStyled'] = _STATSITEMACTILITYSTYLED
+DESCRIPTOR.message_types_by_name['GwItemActilityStyled'] = _GWITEMACTILITYSTYLED
 DESCRIPTOR.message_types_by_name['ListGatewayResponse'] = _LISTGATEWAYRESPONSE
+DESCRIPTOR.message_types_by_name['ListGwActilityStyledResponse'] = _LISTGWACTILITYSTYLEDRESPONSE
 DESCRIPTOR.message_types_by_name['UpdateGatewayRequest'] = _UPDATEGATEWAYREQUEST
 DESCRIPTOR.message_types_by_name['GatewayStats'] = _GATEWAYSTATS
 DESCRIPTOR.message_types_by_name['GetGatewayStatsRequest'] = _GETGATEWAYSTATSREQUEST
@@ -1186,6 +1463,13 @@ GetGatewayResponse = _reflection.GeneratedProtocolMessageType('GetGatewayRespons
   })
 _sym_db.RegisterMessage(GetGatewayResponse)
 
+GetGatewayStatusResponse = _reflection.GeneratedProtocolMessageType('GetGatewayStatusResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETGATEWAYSTATUSRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+  # @@protoc_insertion_point(class_scope:api.GetGatewayStatusResponse)
+  })
+_sym_db.RegisterMessage(GetGatewayStatusResponse)
+
 DeleteGatewayRequest = _reflection.GeneratedProtocolMessageType('DeleteGatewayRequest', (_message.Message,), {
   'DESCRIPTOR' : _DELETEGATEWAYREQUEST,
   '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
@@ -1221,12 +1505,33 @@ GatewayListItem = _reflection.GeneratedProtocolMessageType('GatewayListItem', (_
   })
 _sym_db.RegisterMessage(GatewayListItem)
 
+StatsItemActilityStyled = _reflection.GeneratedProtocolMessageType('StatsItemActilityStyled', (_message.Message,), {
+  'DESCRIPTOR' : _STATSITEMACTILITYSTYLED,
+  '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+  # @@protoc_insertion_point(class_scope:api.StatsItemActilityStyled)
+  })
+_sym_db.RegisterMessage(StatsItemActilityStyled)
+
+GwItemActilityStyled = _reflection.GeneratedProtocolMessageType('GwItemActilityStyled', (_message.Message,), {
+  'DESCRIPTOR' : _GWITEMACTILITYSTYLED,
+  '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+  # @@protoc_insertion_point(class_scope:api.GwItemActilityStyled)
+  })
+_sym_db.RegisterMessage(GwItemActilityStyled)
+
 ListGatewayResponse = _reflection.GeneratedProtocolMessageType('ListGatewayResponse', (_message.Message,), {
   'DESCRIPTOR' : _LISTGATEWAYRESPONSE,
   '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
   # @@protoc_insertion_point(class_scope:api.ListGatewayResponse)
   })
 _sym_db.RegisterMessage(ListGatewayResponse)
+
+ListGwActilityStyledResponse = _reflection.GeneratedProtocolMessageType('ListGwActilityStyledResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTGWACTILITYSTYLEDRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+  # @@protoc_insertion_point(class_scope:api.ListGwActilityStyledResponse)
+  })
+_sym_db.RegisterMessage(ListGwActilityStyledResponse)
 
 UpdateGatewayRequest = _reflection.GeneratedProtocolMessageType('UpdateGatewayRequest', (_message.Message,), {
   'DESCRIPTOR' : _UPDATEGATEWAYREQUEST,
@@ -1303,8 +1608,8 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2944,
-  serialized_end=3953,
+  serialized_start=3719,
+  serialized_end=4963,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -1327,9 +1632,19 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetStatus',
+    full_name='api.GatewayService.GetStatus',
+    index=2,
+    containing_service=None,
+    input_type=_GETGATEWAYREQUEST,
+    output_type=_GETGATEWAYSTATUSRESPONSE,
+    serialized_options=b'\202\323\344\223\002\032\022\030/api/gateway-status/{id}',
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='Update',
     full_name='api.GatewayService.Update',
-    index=2,
+    index=3,
     containing_service=None,
     input_type=_UPDATEGATEWAYREQUEST,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
@@ -1339,7 +1654,7 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='Delete',
     full_name='api.GatewayService.Delete',
-    index=3,
+    index=4,
     containing_service=None,
     input_type=_DELETEGATEWAYREQUEST,
     output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
@@ -1349,7 +1664,7 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='List',
     full_name='api.GatewayService.List',
-    index=4,
+    index=5,
     containing_service=None,
     input_type=_LISTGATEWAYREQUEST,
     output_type=_LISTGATEWAYRESPONSE,
@@ -1357,9 +1672,19 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='ListActilityStyled',
+    full_name='api.GatewayService.ListActilityStyled',
+    index=6,
+    containing_service=None,
+    input_type=_LISTGATEWAYREQUEST,
+    output_type=_LISTGWACTILITYSTYLEDRESPONSE,
+    serialized_options=b'\202\323\344\223\002*\022(/api/monitoring/gateways/actility_styled',
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='GetStats',
     full_name='api.GatewayService.GetStats',
-    index=5,
+    index=7,
     containing_service=None,
     input_type=_GETGATEWAYSTATSREQUEST,
     output_type=_GETGATEWAYSTATSRESPONSE,
@@ -1369,7 +1694,7 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetLastPing',
     full_name='api.GatewayService.GetLastPing',
-    index=6,
+    index=8,
     containing_service=None,
     input_type=_GETLASTPINGREQUEST,
     output_type=_GETLASTPINGRESPONSE,
@@ -1379,7 +1704,7 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GenerateGatewayClientCertificate',
     full_name='api.GatewayService.GenerateGatewayClientCertificate',
-    index=7,
+    index=9,
     containing_service=None,
     input_type=_GENERATEGATEWAYCLIENTCERTIFICATEREQUEST,
     output_type=_GENERATEGATEWAYCLIENTCERTIFICATERESPONSE,
@@ -1389,7 +1714,7 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='StreamFrameLogs',
     full_name='api.GatewayService.StreamFrameLogs',
-    index=8,
+    index=10,
     containing_service=None,
     input_type=_STREAMGATEWAYFRAMELOGSREQUEST,
     output_type=_STREAMGATEWAYFRAMELOGSRESPONSE,

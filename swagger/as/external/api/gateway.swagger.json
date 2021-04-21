@@ -508,6 +508,10 @@
         "phone": {
           "type": "string",
           "title": "Mobile phone number of SIM-card for the device"
+        },
+        "serviceProfileID": {
+          "type": "string",
+          "description": "Service-profile ID (UUID string, optional)."
         }
       }
     },
@@ -632,6 +636,11 @@
         "caCert": {
           "type": "string",
           "description": "CA certificate."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Expires at defines the expiration date of the certificate."
         }
       }
     },

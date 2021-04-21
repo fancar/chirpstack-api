@@ -3,6 +3,9 @@ syntax = "proto3";
 package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "GatewayProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -42,7 +45,7 @@ service GatewayService {
 			body: "*"
 		};
 	}
-	
+
 	// Delete deletes the gateway matching the given mac address.
 	rpc Delete(DeleteGatewayRequest) returns (google.protobuf.Empty) {
 		option (google.api.http) = {
@@ -105,7 +108,7 @@ message Gateway {
 
 	// Gateway name.
 	string name = 2;
-	
+
 	// Gateway description.
 	string description = 3;
 
@@ -148,6 +151,9 @@ message Gateway {
 
     // Mobile phone number of SIM-card for the device
     string phone = 15;     
+
+    // Service-profile ID (UUID string, optional).
+    string service_profile_id = 16 [json_name = "serviceProfileID"];
 }
 
 message GatewayBoard {
@@ -171,16 +177,16 @@ message GetGatewayRequest {
 message GetGatewayResponse {
 	// Gateway object.
 	Gateway gateway = 1;
-	
+
 	// Created at timestamp.
 	google.protobuf.Timestamp created_at = 2;
-	
+
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 3;
-	
+
 	// First seen at timestamp.
 	google.protobuf.Timestamp first_seen_at = 4;
-	
+
 	// Last seen at timestamp.
 	google.protobuf.Timestamp last_seen_at = 5;
 };
@@ -215,6 +221,9 @@ message GenerateGatewayClientCertificateResponse {
 
     // CA certificate.
     string ca_cert = 3;
+
+    // Expires at defines the expiration date of the certificate.
+    google.protobuf.Timestamp expires_at = 4;
 }
 
 
@@ -242,16 +251,16 @@ message ListGatewayRequest {
 message GatewayListItem {
 	// Gateway ID (HEX encoded).
 	string id = 1;
-	
+
 	// A name for the gateway
 	string name = 2;
-	
+
 	// A description for the gateway
 	string description = 3;
 
 	// Create timestamp.
 	google.protobuf.Timestamp created_at = 4;
-	
+
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 5;
 
@@ -381,10 +390,10 @@ message PingRX {
 
 	// Latitude of the gateway -90.0 to 90.0.
 	double latitude = 4;
-	
+
 	// Longitude of the gateway -180.0 to 180.0.
 	double longitude = 5;
-	
+
 	// Altitude of the gateway in meters.
 	double altitude = 6;
 }

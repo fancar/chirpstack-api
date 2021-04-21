@@ -265,6 +265,12 @@ export class ListDeviceRequest extends jspb.Message {
 
   getTagsMap(): jspb.Map<string, string>;
   clearTagsMap(): void;
+  getOrderby(): string;
+  setOrderby(value: string): void;
+
+  getOrder(): string;
+  setOrder(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDeviceRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListDeviceRequest): ListDeviceRequest.AsObject;
@@ -284,6 +290,8 @@ export namespace ListDeviceRequest {
     multicastGroupId: string,
     serviceProfileId: string,
     tagsMap: Array<[string, string]>,
+    orderby: string,
+    order: string,
   }
 }
 

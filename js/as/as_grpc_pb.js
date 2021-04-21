@@ -173,6 +173,28 @@ function deserialize_as_ListOrganizationResponse(buffer_arg) {
   return as_as_pb.ListOrganizationResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_as_ReEncryptDeviceQueueItemsRequest(arg) {
+  if (!(arg instanceof as_as_pb.ReEncryptDeviceQueueItemsRequest)) {
+    throw new Error('Expected argument of type as.ReEncryptDeviceQueueItemsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_ReEncryptDeviceQueueItemsRequest(buffer_arg) {
+  return as_as_pb.ReEncryptDeviceQueueItemsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_ReEncryptDeviceQueueItemsResponse(arg) {
+  if (!(arg instanceof as_as_pb.ReEncryptDeviceQueueItemsResponse)) {
+    throw new Error('Expected argument of type as.ReEncryptDeviceQueueItemsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_ReEncryptDeviceQueueItemsResponse(buffer_arg) {
+  return as_as_pb.ReEncryptDeviceQueueItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_as_SetDeviceLocationRequest(arg) {
   if (!(arg instanceof as_as_pb.SetDeviceLocationRequest)) {
     throw new Error('Expected argument of type as.SetDeviceLocationRequest');
@@ -210,7 +232,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // ApplicationServerService is the service providing the application-server interface.
 var ApplicationServerServiceService = exports.ApplicationServerServiceService = {
   // HandleUplinkData handles uplink data received from an end-device.
-  handleUplinkData: {
+handleUplinkData: {
     path: '/as.ApplicationServerService/HandleUplinkData',
     requestStream: false,
     responseStream: false,
@@ -222,7 +244,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // HandleProprietaryUplink handles proprietary uplink payloads.
-  handleProprietaryUplink: {
+handleProprietaryUplink: {
     path: '/as.ApplicationServerService/HandleProprietaryUplink',
     requestStream: false,
     responseStream: false,
@@ -234,7 +256,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // HandleError handles an error message.
-  handleError: {
+handleError: {
     path: '/as.ApplicationServerService/HandleError',
     requestStream: false,
     responseStream: false,
@@ -246,7 +268,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // HandleDownlinkACK handles a downlink ACK or nACK response.
-  handleDownlinkACK: {
+handleDownlinkACK: {
     path: '/as.ApplicationServerService/HandleDownlinkACK',
     requestStream: false,
     responseStream: false,
@@ -258,7 +280,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // HandleGatewayStats handles the given gateway stats.
-  handleGatewayStats: {
+handleGatewayStats: {
     path: '/as.ApplicationServerService/HandleGatewayStats',
     requestStream: false,
     responseStream: false,
@@ -270,7 +292,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // HandleTXACK handles the TX acknowledgement.
-  handleTxAck: {
+handleTxAck: {
     path: '/as.ApplicationServerService/HandleTxAck',
     requestStream: false,
     responseStream: false,
@@ -282,7 +304,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // SetDeviceStatus updates the device-status for a device.
-  setDeviceStatus: {
+setDeviceStatus: {
     path: '/as.ApplicationServerService/SetDeviceStatus',
     requestStream: false,
     responseStream: false,
@@ -294,7 +316,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // SetDeviceLocation updates the device-location for a device.
-  setDeviceLocation: {
+setDeviceLocation: {
     path: '/as.ApplicationServerService/SetDeviceLocation',
     requestStream: false,
     responseStream: false,
@@ -306,7 +328,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // SetDeviceLocation updates the device-location for a device.
-  getDevicesSummary: {
+getDevicesSummary: {
     path: '/as.ApplicationServerService/GetDevicesSummary',
     requestStream: false,
     responseStream: false,
@@ -318,7 +340,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_as_GetDevicesSummaryResponse,
   },
   // SetDeviceLocation updates the device-location for a device.
-  getGatewaysSummary: {
+getGatewaysSummary: {
     path: '/as.ApplicationServerService/GetGatewaysSummary',
     requestStream: false,
     responseStream: false,
@@ -330,7 +352,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_as_GetGatewaysSummaryResponse,
   },
   // SetDeviceLocation updates the device-location for a device.
-  listOrganisation: {
+listOrganisation: {
     path: '/as.ApplicationServerService/ListOrganisation',
     requestStream: false,
     responseStream: false,
@@ -342,7 +364,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_as_ListOrganizationResponse,
   },
   // GetOrgByDevEUI returns organization id by devEUI. Modification.
-  getOrgByDevEUI: {
+getOrgByDevEUI: {
     path: '/as.ApplicationServerService/GetOrgByDevEUI',
     requestStream: false,
     responseStream: false,
@@ -354,7 +376,7 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     responseDeserialize: deserialize_as_GetOrgByDevEUIResponse,
   },
   // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
-  getDeviceAppSKey: {
+getDeviceAppSKey: {
     path: '/as.ApplicationServerService/GetDeviceAppSKey',
     requestStream: false,
     responseStream: false,
@@ -364,6 +386,25 @@ var ApplicationServerServiceService = exports.ApplicationServerServiceService = 
     requestDeserialize: deserialize_as_GetOrgByDevEUIRequest,
     responseSerialize: serialize_as_GetDeviceAppSKeyResponse,
     responseDeserialize: deserialize_as_GetDeviceAppSKeyResponse,
+  },
+  // ReEncryptDeviceQueueItems requests the application-server to re-encrypt
+// the given payload items using the new parameters. This request is
+// for example triggered when the associated frame-counter of a downlink
+// payload will be used by a mac-layer only payload, e.g. when the NS has
+// mac-commands (or ACKs) to send to the device and combining this with
+// an application-layer payload would exceed the max. payload size.
+// Note there is no requirement that the number of returned items must be
+// equal to the number of requested items.
+reEncryptDeviceQueueItems: {
+    path: '/as.ApplicationServerService/ReEncryptDeviceQueueItems',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.ReEncryptDeviceQueueItemsRequest,
+    responseType: as_as_pb.ReEncryptDeviceQueueItemsResponse,
+    requestSerialize: serialize_as_ReEncryptDeviceQueueItemsRequest,
+    requestDeserialize: deserialize_as_ReEncryptDeviceQueueItemsRequest,
+    responseSerialize: serialize_as_ReEncryptDeviceQueueItemsResponse,
+    responseDeserialize: deserialize_as_ReEncryptDeviceQueueItemsResponse,
   },
 };
 

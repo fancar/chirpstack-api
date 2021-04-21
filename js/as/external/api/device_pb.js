@@ -1862,7 +1862,9 @@ proto.api.ListDeviceRequest.toObject = function(includeInstance, msg) {
     search: msg.getSearch(),
     multicastGroupId: msg.getMulticastGroupId(),
     serviceProfileId: msg.getServiceProfileId(),
-    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : []
+    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
+    orderby: msg.getOrderby(),
+    order: msg.getOrder()
   };
 
   if (includeInstance) {
@@ -1928,6 +1930,14 @@ proto.api.ListDeviceRequest.deserializeBinaryFromReader = function(msg, reader) 
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrderby(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrder(value);
       break;
     default:
       reader.skipField();
@@ -2012,6 +2022,20 @@ proto.api.ListDeviceRequest.prototype.serializeBinaryToWriter = function (writer
   f = this.getTagsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = this.getOrderby();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = this.getOrder();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
   }
 };
 
@@ -2125,6 +2149,36 @@ proto.api.ListDeviceRequest.prototype.getTagsMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
       jspb.Message.getMapField(this, 7, opt_noLazyCreate,
       null));
+};
+
+
+/**
+ * optional string orderBy = 8;
+ * @return {string}
+ */
+proto.api.ListDeviceRequest.prototype.getOrderby = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 8, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceRequest.prototype.setOrderby = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional string order = 9;
+ * @return {string}
+ */
+proto.api.ListDeviceRequest.prototype.getOrder = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 9, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceRequest.prototype.setOrder = function(value) {
+  jspb.Message.setField(this, 9, value);
 };
 
 

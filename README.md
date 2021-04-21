@@ -1,5 +1,7 @@
 # ChirpStack API
 
+![Tests](https://github.com/brocaar/chirpstack-api/actions/workflows/main.yml/badge.svg?branch=master)
+
 This repository contains the [Protobuf](https://developers.google.com/protocol-buffers/)
 and [gRPC](https://grpc.io/) API definitions for the [ChirpStack](https://www.chirpstack.io)
 components.
@@ -41,6 +43,10 @@ See: https://pypi.org/project/chirpstack-api/.
 
 See: https://crates.io/crates/chirpstack_api.
 
+### Java
+
+See the README in /java subfolder: https://github.com/brocaar/chirpstack-api/tree/master/java.
+
 ## Generating client libraries
 
 These instructions require [Docker](https://docs.docker.com/install/) and
@@ -61,4 +67,7 @@ make python
 
 # only (re)generate Swagger definitions
 make swagger
+
+# only (re)generate Java definitions
+make java
 ```

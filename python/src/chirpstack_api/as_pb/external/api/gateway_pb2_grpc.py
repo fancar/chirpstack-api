@@ -26,6 +26,11 @@ class GatewayServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayResponse.FromString,
                 )
+        self.GetStatus = channel.unary_unary(
+                '/api.GatewayService/GetStatus',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayStatusResponse.FromString,
+                )
         self.Update = channel.unary_unary(
                 '/api.GatewayService/Update',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.UpdateGatewayRequest.SerializeToString,
@@ -40,6 +45,11 @@ class GatewayServiceStub(object):
                 '/api.GatewayService/List',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayResponse.FromString,
+                )
+        self.ListActilityStyled = channel.unary_unary(
+                '/api.GatewayService/ListActilityStyled',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.FromString,
                 )
         self.GetStats = channel.unary_unary(
                 '/api.GatewayService/GetStats',
@@ -81,6 +91,13 @@ class GatewayServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetStatus(self, request, context):
+        """GetStatus returns the gateway status for the requested mac address.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Update(self, request, context):
         """Update updates the gateway matching the given mac address.
         """
@@ -102,6 +119,13 @@ class GatewayServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListActilityStyled(self, request, context):
+        """ListActilityStyled lists the gateways with legacy [Actility] json-format.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetStats(self, request, context):
         """GetStats lists the gateway stats given the query parameters.
         """
@@ -118,7 +142,7 @@ class GatewayServiceServicer(object):
 
     def GenerateGatewayClientCertificate(self, request, context):
         """GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
-        This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
+        This endpoint can ony be used when Network Server is configured with a gateway
         CA certificate and key, which is used for signing the TLS certificate. The returned TLS
         certificate will have the Gateway ID as Common Name.
         """
@@ -149,6 +173,11 @@ def add_GatewayServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayResponse.SerializeToString,
             ),
+            'GetStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetStatus,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayStatusResponse.SerializeToString,
+            ),
             'Update': grpc.unary_unary_rpc_method_handler(
                     servicer.Update,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.UpdateGatewayRequest.FromString,
@@ -163,6 +192,11 @@ def add_GatewayServiceServicer_to_server(servicer, server):
                     servicer.List,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayResponse.SerializeToString,
+            ),
+            'ListActilityStyled': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListActilityStyled,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.SerializeToString,
             ),
             'GetStats': grpc.unary_unary_rpc_method_handler(
                     servicer.GetStats,
@@ -230,6 +264,23 @@ class GatewayService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.GatewayService/GetStatus',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def Update(request,
             target,
             options=(),
@@ -277,6 +328,23 @@ class GatewayService(object):
         return grpc.experimental.unary_unary(request, target, '/api.GatewayService/List',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListActilityStyled(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.GatewayService/ListActilityStyled',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

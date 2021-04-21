@@ -201,10 +201,35 @@ class ApplicationServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.DeleteAzureServiceBusIntegrationRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
+        self.CreatePilotThingsIntegration = channel.unary_unary(
+                '/api.ApplicationService/CreatePilotThingsIntegration',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.CreatePilotThingsIntegrationRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.GetPilotThingsIntegration = channel.unary_unary(
+                '/api.ApplicationService/GetPilotThingsIntegration',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GetPilotThingsIntegrationRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GetPilotThingsIntegrationResponse.FromString,
+                )
+        self.UpdatePilotThingsIntegration = channel.unary_unary(
+                '/api.ApplicationService/UpdatePilotThingsIntegration',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.UpdatePilotThingsIntegrationRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.DeletePilotThingsIntegration = channel.unary_unary(
+                '/api.ApplicationService/DeletePilotThingsIntegration',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.DeletePilotThingsIntegrationRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.ListIntegrations = channel.unary_unary(
                 '/api.ApplicationService/ListIntegrations',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.ListIntegrationRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.ListIntegrationResponse.FromString,
+                )
+        self.GenerateMQTTIntegrationClientCertificate = channel.unary_unary(
+                '/api.ApplicationService/GenerateMQTTIntegrationClientCertificate',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GenerateMQTTIntegrationClientCertificateRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GenerateMQTTIntegrationClientCertificateResponse.FromString,
                 )
 
 
@@ -471,8 +496,44 @@ class ApplicationServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreatePilotThingsIntegration(self, request, context):
+        """CreatePilotThingsIntegration creates an Pilot Things application-integration.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPilotThingsIntegration(self, request, context):
+        """GetPilotThingsIntegration returns the Pilot Things application-integration.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdatePilotThingsIntegration(self, request, context):
+        """UpdatePilotThingsIntegration updates the Pilot Things application-integration.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeletePilotThingsIntegration(self, request, context):
+        """DeletePilotThingsIntegration deletes the Pilot Things application-integration.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListIntegrations(self, request, context):
         """ListIntegrations lists all configured integrations.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GenerateMQTTIntegrationClientCertificate(self, request, context):
+        """GenerateMQTTIntegrationClientCertificate generates an application ID specific TLS certificate
+        to connect to the MQTT broker.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -666,10 +727,35 @@ def add_ApplicationServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.DeleteAzureServiceBusIntegrationRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
+            'CreatePilotThingsIntegration': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreatePilotThingsIntegration,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.CreatePilotThingsIntegrationRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetPilotThingsIntegration': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPilotThingsIntegration,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GetPilotThingsIntegrationRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GetPilotThingsIntegrationResponse.SerializeToString,
+            ),
+            'UpdatePilotThingsIntegration': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdatePilotThingsIntegration,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.UpdatePilotThingsIntegrationRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'DeletePilotThingsIntegration': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeletePilotThingsIntegration,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.DeletePilotThingsIntegrationRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'ListIntegrations': grpc.unary_unary_rpc_method_handler(
                     servicer.ListIntegrations,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.ListIntegrationRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.ListIntegrationResponse.SerializeToString,
+            ),
+            'GenerateMQTTIntegrationClientCertificate': grpc.unary_unary_rpc_method_handler(
+                    servicer.GenerateMQTTIntegrationClientCertificate,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GenerateMQTTIntegrationClientCertificateRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GenerateMQTTIntegrationClientCertificateResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1312,6 +1398,74 @@ class ApplicationService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def CreatePilotThingsIntegration(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.ApplicationService/CreatePilotThingsIntegration',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.CreatePilotThingsIntegrationRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPilotThingsIntegration(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.ApplicationService/GetPilotThingsIntegration',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GetPilotThingsIntegrationRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GetPilotThingsIntegrationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdatePilotThingsIntegration(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.ApplicationService/UpdatePilotThingsIntegration',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.UpdatePilotThingsIntegrationRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeletePilotThingsIntegration(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.ApplicationService/DeletePilotThingsIntegration',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.DeletePilotThingsIntegrationRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def ListIntegrations(request,
             target,
             options=(),
@@ -1325,5 +1479,22 @@ class ApplicationService(object):
         return grpc.experimental.unary_unary(request, target, '/api.ApplicationService/ListIntegrations',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.ListIntegrationRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.ListIntegrationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GenerateMQTTIntegrationClientCertificate(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.ApplicationService/GenerateMQTTIntegrationClientCertificate',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GenerateMQTTIntegrationClientCertificateRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_application__pb2.GenerateMQTTIntegrationClientCertificateResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

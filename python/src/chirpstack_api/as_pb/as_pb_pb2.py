@@ -22,9 +22,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='chirpstack-api/as_pb/as_pb.proto',
   package='as',
   syntax='proto3',
-  serialized_options=b'Z*github.com/brocaar/chirpstack-api/go/v3/as',
+  serialized_options=b'\n\024io.chirpstack.api.asB\026ApplicationServerProtoP\001Z*github.com/brocaar/chirpstack-api/go/v3/as',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n chirpstack-api/as_pb/as_pb.proto\x12\x02\x61s\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\"chirpstack-api/common/common.proto\x1a\x1a\x63hirpstack-api/gw/gw.proto\"H\n\x17ListOrganizationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\x0e\n\x06search\x18\x03 \x01(\t\"Y\n\x18ListOrganizationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.as.OrganizationListItem\"\xc1\x01\n\x14OrganizationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x19\n\x11\x63\x61n_have_gateways\x18\x04 \x01(\x08\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x18GetDevicesSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"\xd1\x01\n\x19GetDevicesSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12<\n\x08\x64r_count\x18\x03 \x03(\x0b\x32*.as.GetDevicesSummaryResponse.DrCountEntry\x12\x18\n\x10never_seen_count\x18\x04 \x01(\r\x1a.\n\x0c\x44rCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"D\n\x19GetGatewaysSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"d\n\x1aGetGatewaysSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12\x18\n\x10never_seen_count\x18\x03 \x01(\r\"S\n\x17\x44\x65viceActivationContext\x12\x10\n\x08\x64\x65v_addr\x18\x01 \x01(\x0c\x12&\n\tapp_s_key\x18\x02 \x01(\x0b\x32\x13.common.KeyEnvelope\"\xe7\x02\n\x17HandleUplinkDataRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08join_eui\x18\x02 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x03 \x01(\r\x12\x0e\n\x06\x66_port\x18\x04 \x01(\r\x12\x0b\n\x03\x61\x64r\x18\x05 \x01(\x08\x12\n\n\x02\x64r\x18\x06 \x01(\r\x12!\n\x07tx_info\x18\x07 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x08 \x03(\x0b\x32\x10.gw.UplinkRXInfo\x12\x0c\n\x04\x64\x61ta\x18\t \x01(\x0c\x12>\n\x19\x64\x65vice_activation_context\x18\n \x01(\x0b\x32\x1b.as.DeviceActivationContext\x12\x18\n\x10\x63onfirmed_uplink\x18\x0b \x01(\x08\x12\x0c\n\x04late\x18\x0c \x01(\x08\x12\x0b\n\x03mic\x18\r \x01(\x0c\x12(\n\x04time\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x88\x01\n\x1eHandleProprietaryUplinkRequest\x12\x13\n\x0bmac_payload\x18\x01 \x01(\x0c\x12\x0b\n\x03mic\x18\x02 \x01(\x0c\x12!\n\x07tx_info\x18\x03 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x04 \x03(\x0b\x32\x10.gw.UplinkRXInfo\"`\n\x12HandleErrorRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x1b\n\x04type\x18\x03 \x01(\x0e\x32\r.as.ErrorType\x12\r\n\x05\x65rror\x18\x04 \x01(\t\x12\r\n\x05\x66_cnt\x18\x05 \x01(\r\"P\n\x18HandleDownlinkACKRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x14\n\x0c\x61\x63knowledged\x18\x03 \x01(\x08\"\xa3\x01\n\x16SetDeviceStatusRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\r\x12\x0e\n\x06margin\x18\x03 \x01(\x05\x12\x1d\n\x15\x65xternal_power_source\x18\x04 \x01(\x08\x12!\n\x19\x62\x61ttery_level_unavailable\x18\x05 \x01(\x08\x12\x15\n\rbattery_level\x18\x06 \x01(\x02\"c\n\x18SetDeviceLocationRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\"\n\x08location\x18\x02 \x01(\x0b\x32\x10.common.Location\x12\x12\n\nuplink_ids\x18\x03 \x03(\x0c\"\xf5\x02\n\x19HandleGatewayStatsRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\x0c\x12\x10\n\x08stats_id\x18\x02 \x01(\x0c\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13rx_packets_received\x18\x05 \x01(\r\x12\x1e\n\x16rx_packets_received_ok\x18\x06 \x01(\r\x12\x1b\n\x13tx_packets_received\x18\x07 \x01(\r\x12\x1a\n\x12tx_packets_emitted\x18\x08 \x01(\r\x12=\n\x08metadata\x18\t \x03(\x0b\x32+.as.HandleGatewayStatsRequest.MetadataEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"4\n\x12HandleTxAckRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r*\x1c\n\x08RXWindow\x12\x07\n\x03RX1\x10\x00\x12\x07\n\x03RX2\x10\x01*\xbb\x01\n\tErrorType\x12\x0b\n\x07GENERIC\x10\x00\x12\x08\n\x04OTAA\x10\x01\x12\x16\n\x12\x44\x41TA_UP_FCNT_RESET\x10\x02\x12\x0f\n\x0b\x44\x41TA_UP_MIC\x10\x03\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_SIZE\x10\x04\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_FCNT\x10\x05\x12\x1f\n\x1b\x44\x41TA_UP_FCNT_RETRANSMISSION\x10\x06\x12\x15\n\x11\x44\x41TA_DOWN_GATEWAY\x10\x07\x32\xee\x06\n\x18\x41pplicationServerService\x12I\n\x10HandleUplinkData\x12\x1b.as.HandleUplinkDataRequest\x1a\x16.google.protobuf.Empty\"\x00\x12W\n\x17HandleProprietaryUplink\x12\".as.HandleProprietaryUplinkRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleError\x12\x16.as.HandleErrorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11HandleDownlinkACK\x12\x1c.as.HandleDownlinkACKRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x12HandleGatewayStats\x12\x1d.as.HandleGatewayStatsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleTxAck\x12\x16.as.HandleTxAckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n\x0fSetDeviceStatus\x12\x1a.as.SetDeviceStatusRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11SetDeviceLocation\x12\x1c.as.SetDeviceLocationRequest\x1a\x16.google.protobuf.Empty\"\x00\x12R\n\x11GetDevicesSummary\x12\x1c.as.GetDevicesSummaryRequest\x1a\x1d.as.GetDevicesSummaryResponse\"\x00\x12U\n\x12GetGatewaysSummary\x12\x1d.as.GetGatewaysSummaryRequest\x1a\x1e.as.GetGatewaysSummaryResponse\"\x00\x12O\n\x10ListOrganisation\x12\x1b.as.ListOrganizationRequest\x1a\x1c.as.ListOrganizationResponse\"\x00\x42,Z*github.com/brocaar/chirpstack-api/go/v3/asb\x06proto3'
+  serialized_pb=b'\n chirpstack-api/as_pb/as_pb.proto\x12\x02\x61s\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\"chirpstack-api/common/common.proto\x1a\x1a\x63hirpstack-api/gw/gw.proto\"0\n\x15GetOrgByDevEUIRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\")\n\x18GetDeviceAppSKeyResponse\x12\r\n\x05value\x18\x01 \x01(\x0c\"$\n\x16GetOrgByDevEUIResponse\x12\n\n\x02id\x18\x01 \x01(\x03\"H\n\x17ListOrganizationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\x0e\n\x06search\x18\x03 \x01(\t\"Y\n\x18ListOrganizationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.as.OrganizationListItem\"\xc1\x01\n\x14OrganizationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x19\n\x11\x63\x61n_have_gateways\x18\x04 \x01(\x08\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x18GetDevicesSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"\xd1\x01\n\x19GetDevicesSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12<\n\x08\x64r_count\x18\x03 \x03(\x0b\x32*.as.GetDevicesSummaryResponse.DrCountEntry\x12\x18\n\x10never_seen_count\x18\x04 \x01(\r\x1a.\n\x0c\x44rCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"D\n\x19GetGatewaysSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"d\n\x1aGetGatewaysSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12\x18\n\x10never_seen_count\x18\x03 \x01(\r\"S\n\x17\x44\x65viceActivationContext\x12\x10\n\x08\x64\x65v_addr\x18\x01 \x01(\x0c\x12&\n\tapp_s_key\x18\x02 \x01(\x0b\x32\x13.common.KeyEnvelope\"\xe7\x02\n\x17HandleUplinkDataRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08join_eui\x18\x02 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x03 \x01(\r\x12\x0e\n\x06\x66_port\x18\x04 \x01(\r\x12\x0b\n\x03\x61\x64r\x18\x05 \x01(\x08\x12\n\n\x02\x64r\x18\x06 \x01(\r\x12!\n\x07tx_info\x18\x07 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x08 \x03(\x0b\x32\x10.gw.UplinkRXInfo\x12\x0c\n\x04\x64\x61ta\x18\t \x01(\x0c\x12>\n\x19\x64\x65vice_activation_context\x18\n \x01(\x0b\x32\x1b.as.DeviceActivationContext\x12\x18\n\x10\x63onfirmed_uplink\x18\x0b \x01(\x08\x12\x0c\n\x04late\x18\x0c \x01(\x08\x12\x0b\n\x03mic\x18\r \x01(\x0c\x12(\n\x04time\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x88\x01\n\x1eHandleProprietaryUplinkRequest\x12\x13\n\x0bmac_payload\x18\x01 \x01(\x0c\x12\x0b\n\x03mic\x18\x02 \x01(\x0c\x12!\n\x07tx_info\x18\x03 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x04 \x03(\x0b\x32\x10.gw.UplinkRXInfo\"`\n\x12HandleErrorRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x1b\n\x04type\x18\x03 \x01(\x0e\x32\r.as.ErrorType\x12\r\n\x05\x65rror\x18\x04 \x01(\t\x12\r\n\x05\x66_cnt\x18\x05 \x01(\r\"P\n\x18HandleDownlinkACKRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x14\n\x0c\x61\x63knowledged\x18\x03 \x01(\x08\"\xa3\x01\n\x16SetDeviceStatusRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\r\x12\x0e\n\x06margin\x18\x03 \x01(\x05\x12\x1d\n\x15\x65xternal_power_source\x18\x04 \x01(\x08\x12!\n\x19\x62\x61ttery_level_unavailable\x18\x05 \x01(\x08\x12\x15\n\rbattery_level\x18\x06 \x01(\x02\"c\n\x18SetDeviceLocationRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\"\n\x08location\x18\x02 \x01(\x0b\x32\x10.common.Location\x12\x12\n\nuplink_ids\x18\x03 \x03(\x0c\"\xf5\x02\n\x19HandleGatewayStatsRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\x0c\x12\x10\n\x08stats_id\x18\x02 \x01(\x0c\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13rx_packets_received\x18\x05 \x01(\r\x12\x1e\n\x16rx_packets_received_ok\x18\x06 \x01(\r\x12\x1b\n\x13tx_packets_received\x18\x07 \x01(\r\x12\x1a\n\x12tx_packets_emitted\x18\x08 \x01(\r\x12=\n\x08metadata\x18\t \x03(\x0b\x32+.as.HandleGatewayStatsRequest.MetadataEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"m\n\x12HandleTxAckRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x12\n\ngateway_id\x18\x03 \x01(\x0c\x12#\n\x07tx_info\x18\x04 \x01(\x0b\x32\x12.gw.DownlinkTXInfo\"\x87\x01\n ReEncryptDeviceQueueItemsRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08\x64\x65v_addr\x18\x02 \x01(\x0c\x12\x13\n\x0b\x66_cnt_start\x18\x03 \x01(\r\x12+\n\x05items\x18\x04 \x03(\x0b\x32\x1c.as.ReEncryptDeviceQueueItem\"R\n!ReEncryptDeviceQueueItemsResponse\x12-\n\x05items\x18\x01 \x03(\x0b\x32\x1e.as.ReEncryptedDeviceQueueItem\"a\n\x18ReEncryptDeviceQueueItem\x12\x13\n\x0b\x66rm_payload\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x11\n\tconfirmed\x18\x04 \x01(\x08\"c\n\x1aReEncryptedDeviceQueueItem\x12\x13\n\x0b\x66rm_payload\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x11\n\tconfirmed\x18\x04 \x01(\x08*\x1c\n\x08RXWindow\x12\x07\n\x03RX1\x10\x00\x12\x07\n\x03RX2\x10\x01*\xbb\x01\n\tErrorType\x12\x0b\n\x07GENERIC\x10\x00\x12\x08\n\x04OTAA\x10\x01\x12\x16\n\x12\x44\x41TA_UP_FCNT_RESET\x10\x02\x12\x0f\n\x0b\x44\x41TA_UP_MIC\x10\x03\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_SIZE\x10\x04\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_FCNT\x10\x05\x12\x1f\n\x1b\x44\x41TA_UP_FCNT_RETRANSMISSION\x10\x06\x12\x15\n\x11\x44\x41TA_DOWN_GATEWAY\x10\x07\x32\xf4\x08\n\x18\x41pplicationServerService\x12I\n\x10HandleUplinkData\x12\x1b.as.HandleUplinkDataRequest\x1a\x16.google.protobuf.Empty\"\x00\x12W\n\x17HandleProprietaryUplink\x12\".as.HandleProprietaryUplinkRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleError\x12\x16.as.HandleErrorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11HandleDownlinkACK\x12\x1c.as.HandleDownlinkACKRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x12HandleGatewayStats\x12\x1d.as.HandleGatewayStatsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleTxAck\x12\x16.as.HandleTxAckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n\x0fSetDeviceStatus\x12\x1a.as.SetDeviceStatusRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11SetDeviceLocation\x12\x1c.as.SetDeviceLocationRequest\x1a\x16.google.protobuf.Empty\"\x00\x12R\n\x11GetDevicesSummary\x12\x1c.as.GetDevicesSummaryRequest\x1a\x1d.as.GetDevicesSummaryResponse\"\x00\x12U\n\x12GetGatewaysSummary\x12\x1d.as.GetGatewaysSummaryRequest\x1a\x1e.as.GetGatewaysSummaryResponse\"\x00\x12O\n\x10ListOrganisation\x12\x1b.as.ListOrganizationRequest\x1a\x1c.as.ListOrganizationResponse\"\x00\x12I\n\x0eGetOrgByDevEUI\x12\x19.as.GetOrgByDevEUIRequest\x1a\x1a.as.GetOrgByDevEUIResponse\"\x00\x12M\n\x10GetDeviceAppSKey\x12\x19.as.GetOrgByDevEUIRequest\x1a\x1c.as.GetDeviceAppSKeyResponse\"\x00\x12j\n\x19ReEncryptDeviceQueueItems\x12$.as.ReEncryptDeviceQueueItemsRequest\x1a%.as.ReEncryptDeviceQueueItemsResponse\"\x00\x42\\\n\x14io.chirpstack.api.asB\x16\x41pplicationServerProtoP\x01Z*github.com/brocaar/chirpstack-api/go/v3/asb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,chirpstack__api_dot_common_dot_common__pb2.DESCRIPTOR,chirpstack__api_dot_gw_dot_gw__pb2.DESCRIPTOR,])
 
@@ -48,8 +48,8 @@ _RXWINDOW = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2443,
-  serialized_end=2471,
+  serialized_start=3053,
+  serialized_end=3081,
 )
 _sym_db.RegisterEnumDescriptor(_RXWINDOW)
 
@@ -104,8 +104,8 @@ _ERRORTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2474,
-  serialized_end=2661,
+  serialized_start=3084,
+  serialized_end=3271,
 )
 _sym_db.RegisterEnumDescriptor(_ERRORTYPE)
 
@@ -121,6 +121,102 @@ DEVICE_QUEUE_ITEM_FCNT = 5
 DATA_UP_FCNT_RETRANSMISSION = 6
 DATA_DOWN_GATEWAY = 7
 
+
+
+_GETORGBYDEVEUIREQUEST = _descriptor.Descriptor(
+  name='GetOrgByDevEUIRequest',
+  full_name='as.GetOrgByDevEUIRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dev_eui', full_name='as.GetOrgByDevEUIRequest.dev_eui', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='devEUI', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=166,
+  serialized_end=214,
+)
+
+
+_GETDEVICEAPPSKEYRESPONSE = _descriptor.Descriptor(
+  name='GetDeviceAppSKeyResponse',
+  full_name='as.GetDeviceAppSKeyResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.GetDeviceAppSKeyResponse.value', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=216,
+  serialized_end=257,
+)
+
+
+_GETORGBYDEVEUIRESPONSE = _descriptor.Descriptor(
+  name='GetOrgByDevEUIResponse',
+  full_name='as.GetOrgByDevEUIResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='as.GetOrgByDevEUIResponse.id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=259,
+  serialized_end=295,
+)
 
 
 _LISTORGANIZATIONREQUEST = _descriptor.Descriptor(
@@ -164,8 +260,8 @@ _LISTORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=166,
-  serialized_end=238,
+  serialized_start=297,
+  serialized_end=369,
 )
 
 
@@ -203,8 +299,8 @@ _LISTORGANIZATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=240,
-  serialized_end=329,
+  serialized_start=371,
+  serialized_end=460,
 )
 
 
@@ -270,8 +366,8 @@ _ORGANIZATIONLISTITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=332,
-  serialized_end=525,
+  serialized_start=463,
+  serialized_end=656,
 )
 
 
@@ -302,8 +398,8 @@ _GETDEVICESSUMMARYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=527,
-  serialized_end=594,
+  serialized_start=658,
+  serialized_end=725,
 )
 
 
@@ -341,8 +437,8 @@ _GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=760,
-  serialized_end=806,
+  serialized_start=891,
+  serialized_end=937,
 )
 
 _GETDEVICESSUMMARYRESPONSE = _descriptor.Descriptor(
@@ -393,8 +489,8 @@ _GETDEVICESSUMMARYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=597,
-  serialized_end=806,
+  serialized_start=728,
+  serialized_end=937,
 )
 
 
@@ -425,8 +521,8 @@ _GETGATEWAYSSUMMARYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=808,
-  serialized_end=876,
+  serialized_start=939,
+  serialized_end=1007,
 )
 
 
@@ -471,8 +567,8 @@ _GETGATEWAYSSUMMARYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=878,
-  serialized_end=978,
+  serialized_start=1009,
+  serialized_end=1109,
 )
 
 
@@ -510,8 +606,8 @@ _DEVICEACTIVATIONCONTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=980,
-  serialized_end=1063,
+  serialized_start=1111,
+  serialized_end=1194,
 )
 
 
@@ -633,8 +729,8 @@ _HANDLEUPLINKDATAREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1066,
-  serialized_end=1425,
+  serialized_start=1197,
+  serialized_end=1556,
 )
 
 
@@ -686,8 +782,8 @@ _HANDLEPROPRIETARYUPLINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1428,
-  serialized_end=1564,
+  serialized_start=1559,
+  serialized_end=1695,
 )
 
 
@@ -739,8 +835,8 @@ _HANDLEERRORREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1566,
-  serialized_end=1662,
+  serialized_start=1697,
+  serialized_end=1793,
 )
 
 
@@ -785,8 +881,8 @@ _HANDLEDOWNLINKACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1664,
-  serialized_end=1744,
+  serialized_start=1795,
+  serialized_end=1875,
 )
 
 
@@ -852,8 +948,8 @@ _SETDEVICESTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1747,
-  serialized_end=1910,
+  serialized_start=1878,
+  serialized_end=2041,
 )
 
 
@@ -898,8 +994,8 @@ _SETDEVICELOCATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1912,
-  serialized_end=2011,
+  serialized_start=2043,
+  serialized_end=2142,
 )
 
 
@@ -937,8 +1033,8 @@ _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2340,
-  serialized_end=2387,
+  serialized_start=2471,
+  serialized_end=2518,
 )
 
 _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
@@ -1024,8 +1120,8 @@ _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2014,
-  serialized_end=2387,
+  serialized_start=2145,
+  serialized_end=2518,
 )
 
 
@@ -1051,6 +1147,20 @@ _HANDLETXACKREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='gateway_id', full_name='as.HandleTxAckRequest.gateway_id', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_info', full_name='as.HandleTxAckRequest.tx_info', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1063,8 +1173,199 @@ _HANDLETXACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2389,
-  serialized_end=2441,
+  serialized_start=2520,
+  serialized_end=2629,
+)
+
+
+_REENCRYPTDEVICEQUEUEITEMSREQUEST = _descriptor.Descriptor(
+  name='ReEncryptDeviceQueueItemsRequest',
+  full_name='as.ReEncryptDeviceQueueItemsRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dev_eui', full_name='as.ReEncryptDeviceQueueItemsRequest.dev_eui', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dev_addr', full_name='as.ReEncryptDeviceQueueItemsRequest.dev_addr', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_cnt_start', full_name='as.ReEncryptDeviceQueueItemsRequest.f_cnt_start', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='items', full_name='as.ReEncryptDeviceQueueItemsRequest.items', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2632,
+  serialized_end=2767,
+)
+
+
+_REENCRYPTDEVICEQUEUEITEMSRESPONSE = _descriptor.Descriptor(
+  name='ReEncryptDeviceQueueItemsResponse',
+  full_name='as.ReEncryptDeviceQueueItemsResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='items', full_name='as.ReEncryptDeviceQueueItemsResponse.items', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2769,
+  serialized_end=2851,
+)
+
+
+_REENCRYPTDEVICEQUEUEITEM = _descriptor.Descriptor(
+  name='ReEncryptDeviceQueueItem',
+  full_name='as.ReEncryptDeviceQueueItem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='frm_payload', full_name='as.ReEncryptDeviceQueueItem.frm_payload', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_cnt', full_name='as.ReEncryptDeviceQueueItem.f_cnt', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_port', full_name='as.ReEncryptDeviceQueueItem.f_port', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='confirmed', full_name='as.ReEncryptDeviceQueueItem.confirmed', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2853,
+  serialized_end=2950,
+)
+
+
+_REENCRYPTEDDEVICEQUEUEITEM = _descriptor.Descriptor(
+  name='ReEncryptedDeviceQueueItem',
+  full_name='as.ReEncryptedDeviceQueueItem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='frm_payload', full_name='as.ReEncryptedDeviceQueueItem.frm_payload', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_cnt', full_name='as.ReEncryptedDeviceQueueItem.f_cnt', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_port', full_name='as.ReEncryptedDeviceQueueItem.f_port', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='confirmed', full_name='as.ReEncryptedDeviceQueueItem.confirmed', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2952,
+  serialized_end=3051,
 )
 
 _LISTORGANIZATIONRESPONSE.fields_by_name['result'].message_type = _ORGANIZATIONLISTITEM
@@ -1085,6 +1386,12 @@ _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY.containing_type = _HANDLEGATEWAYSTATSRE
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['location'].message_type = chirpstack__api_dot_common_dot_common__pb2._LOCATION
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['metadata'].message_type = _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY
+_HANDLETXACKREQUEST.fields_by_name['tx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._DOWNLINKTXINFO
+_REENCRYPTDEVICEQUEUEITEMSREQUEST.fields_by_name['items'].message_type = _REENCRYPTDEVICEQUEUEITEM
+_REENCRYPTDEVICEQUEUEITEMSRESPONSE.fields_by_name['items'].message_type = _REENCRYPTEDDEVICEQUEUEITEM
+DESCRIPTOR.message_types_by_name['GetOrgByDevEUIRequest'] = _GETORGBYDEVEUIREQUEST
+DESCRIPTOR.message_types_by_name['GetDeviceAppSKeyResponse'] = _GETDEVICEAPPSKEYRESPONSE
+DESCRIPTOR.message_types_by_name['GetOrgByDevEUIResponse'] = _GETORGBYDEVEUIRESPONSE
 DESCRIPTOR.message_types_by_name['ListOrganizationRequest'] = _LISTORGANIZATIONREQUEST
 DESCRIPTOR.message_types_by_name['ListOrganizationResponse'] = _LISTORGANIZATIONRESPONSE
 DESCRIPTOR.message_types_by_name['OrganizationListItem'] = _ORGANIZATIONLISTITEM
@@ -1101,9 +1408,34 @@ DESCRIPTOR.message_types_by_name['SetDeviceStatusRequest'] = _SETDEVICESTATUSREQ
 DESCRIPTOR.message_types_by_name['SetDeviceLocationRequest'] = _SETDEVICELOCATIONREQUEST
 DESCRIPTOR.message_types_by_name['HandleGatewayStatsRequest'] = _HANDLEGATEWAYSTATSREQUEST
 DESCRIPTOR.message_types_by_name['HandleTxAckRequest'] = _HANDLETXACKREQUEST
+DESCRIPTOR.message_types_by_name['ReEncryptDeviceQueueItemsRequest'] = _REENCRYPTDEVICEQUEUEITEMSREQUEST
+DESCRIPTOR.message_types_by_name['ReEncryptDeviceQueueItemsResponse'] = _REENCRYPTDEVICEQUEUEITEMSRESPONSE
+DESCRIPTOR.message_types_by_name['ReEncryptDeviceQueueItem'] = _REENCRYPTDEVICEQUEUEITEM
+DESCRIPTOR.message_types_by_name['ReEncryptedDeviceQueueItem'] = _REENCRYPTEDDEVICEQUEUEITEM
 DESCRIPTOR.enum_types_by_name['RXWindow'] = _RXWINDOW
 DESCRIPTOR.enum_types_by_name['ErrorType'] = _ERRORTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+GetOrgByDevEUIRequest = _reflection.GeneratedProtocolMessageType('GetOrgByDevEUIRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETORGBYDEVEUIREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetOrgByDevEUIRequest)
+  })
+_sym_db.RegisterMessage(GetOrgByDevEUIRequest)
+
+GetDeviceAppSKeyResponse = _reflection.GeneratedProtocolMessageType('GetDeviceAppSKeyResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETDEVICEAPPSKEYRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetDeviceAppSKeyResponse)
+  })
+_sym_db.RegisterMessage(GetDeviceAppSKeyResponse)
+
+GetOrgByDevEUIResponse = _reflection.GeneratedProtocolMessageType('GetOrgByDevEUIResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETORGBYDEVEUIRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetOrgByDevEUIResponse)
+  })
+_sym_db.RegisterMessage(GetOrgByDevEUIResponse)
 
 ListOrganizationRequest = _reflection.GeneratedProtocolMessageType('ListOrganizationRequest', (_message.Message,), {
   'DESCRIPTOR' : _LISTORGANIZATIONREQUEST,
@@ -1233,6 +1565,34 @@ HandleTxAckRequest = _reflection.GeneratedProtocolMessageType('HandleTxAckReques
   })
 _sym_db.RegisterMessage(HandleTxAckRequest)
 
+ReEncryptDeviceQueueItemsRequest = _reflection.GeneratedProtocolMessageType('ReEncryptDeviceQueueItemsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _REENCRYPTDEVICEQUEUEITEMSREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ReEncryptDeviceQueueItemsRequest)
+  })
+_sym_db.RegisterMessage(ReEncryptDeviceQueueItemsRequest)
+
+ReEncryptDeviceQueueItemsResponse = _reflection.GeneratedProtocolMessageType('ReEncryptDeviceQueueItemsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _REENCRYPTDEVICEQUEUEITEMSRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ReEncryptDeviceQueueItemsResponse)
+  })
+_sym_db.RegisterMessage(ReEncryptDeviceQueueItemsResponse)
+
+ReEncryptDeviceQueueItem = _reflection.GeneratedProtocolMessageType('ReEncryptDeviceQueueItem', (_message.Message,), {
+  'DESCRIPTOR' : _REENCRYPTDEVICEQUEUEITEM,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ReEncryptDeviceQueueItem)
+  })
+_sym_db.RegisterMessage(ReEncryptDeviceQueueItem)
+
+ReEncryptedDeviceQueueItem = _reflection.GeneratedProtocolMessageType('ReEncryptedDeviceQueueItem', (_message.Message,), {
+  'DESCRIPTOR' : _REENCRYPTEDDEVICEQUEUEITEM,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ReEncryptedDeviceQueueItem)
+  })
+_sym_db.RegisterMessage(ReEncryptedDeviceQueueItem)
+
 
 DESCRIPTOR._options = None
 _GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY._options = None
@@ -1245,8 +1605,8 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=2664,
-  serialized_end=3542,
+  serialized_start=3274,
+  serialized_end=4414,
   methods=[
   _descriptor.MethodDescriptor(
     name='HandleUplinkData',
@@ -1355,6 +1715,36 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_LISTORGANIZATIONREQUEST,
     output_type=_LISTORGANIZATIONRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetOrgByDevEUI',
+    full_name='as.ApplicationServerService.GetOrgByDevEUI',
+    index=11,
+    containing_service=None,
+    input_type=_GETORGBYDEVEUIREQUEST,
+    output_type=_GETORGBYDEVEUIRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetDeviceAppSKey',
+    full_name='as.ApplicationServerService.GetDeviceAppSKey',
+    index=12,
+    containing_service=None,
+    input_type=_GETORGBYDEVEUIREQUEST,
+    output_type=_GETDEVICEAPPSKEYRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ReEncryptDeviceQueueItems',
+    full_name='as.ApplicationServerService.ReEncryptDeviceQueueItems',
+    index=13,
+    containing_service=None,
+    input_type=_REENCRYPTDEVICEQUEUEITEMSREQUEST,
+    output_type=_REENCRYPTDEVICEQUEUEITEMSRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

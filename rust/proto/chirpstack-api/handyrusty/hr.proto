@@ -7,8 +7,9 @@ option go_package = "github.com/brocaar/chirpstack-api/go/v3/handyrusty";
 import "google/protobuf/timestamp.proto";
 // import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
-// import "common/common.proto";
-// import "gw/gw.proto";
+import "google/protobuf/any.proto";
+import "common/common.proto";
+import "gw/gw.proto";
 // import "ns/profiles.proto";
 
 
@@ -27,7 +28,81 @@ service HandyRustyService {
     rpc GetFrameCounters(GetFrameCountersRequest) returns (GetFrameCountersResponse) {}
 
     // GetFramesSpeed returns the frames per minute array for given timedate gap
-    rpc GetFrameSpeed(GetFrameSpeedRequest) returns (GetFrameSpeedResponse) {}    
+    rpc GetFrameSpeed(GetFrameSpeedRequest) returns (GetFrameSpeedResponse) {}  
+
+    // ExecCommand sends command to the gateway and returns the answer
+    rpc ExecCommand(ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {}
+
+    // GetDeviceFramesLog returns an array with device-frame logs
+    rpc GetDeviceFramesLog(GetDeviceFramesLogRequest) returns (GetDeviceFramesLogResponse) {}
+
+    // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
+    rpc StreamDeviceFramesLogCSV(GetDeviceFramesLogRequest) returns (stream StreamDeviceFramesLogCSVResponse) {}
+
+    // GetCurrentState returns items for monitoring purposes.
+    rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}    
+}
+
+message GetCurrentStateResponse {
+    // DateTime of last packet saved in wireless-loger
+    string wl_last_packet = 1;
+
+    // the same as previuos in unixTime format
+    int64 wl_last_packet_unix = 2;
+
+}
+
+message StreamDeviceFramesLogCSVResponse {
+    oneof size {
+        uint32 current = 1;
+        uint32 total = 2;
+    }
+
+    oneof data {
+        uint32 rows = 3;
+        bytes chunk = 4;
+    }
+    
+}
+
+message GetDeviceFramesLogRequest {
+    // you can specify offset (for pagination)
+    uint32 offset = 1;
+
+    // you can specify rows limit
+    uint32 limit = 2;
+
+    // You can specify start DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 3;
+
+    // You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 4;
+
+    // Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr
+    map<string, string> filters = 5;
+
+    // You can set the id to 0 if admin
+    int64 organization_id = 6;
+
+    // here user sends his local timezone. 
+    int64 timezone = 7;    
+}
+
+message GetDeviceFramesLogResponse {
+    // total numner of selected rows
+    uint32 items_total = 1;
+     // the array of selected device-frames logs
+    repeated DeviceFrameLog data = 2;
+}
+
+
+
+message ExecCommandRequest {
+    // Gateway ID (HEX encoded).
+    string gateway_id = 1;
+
+    // command that will be executed on gateway (according to the gw config)
+    string command = 2;
 }
 
 message GetFrameCountersRequest {
@@ -105,10 +180,13 @@ message GetVersionResponse {
     string version = 1;
 }
 
-
+// temp message just to check some thing
+message GetBullshitResponse {
+    // ChirpStack Network Server version.
+    string xyu = 1;
+}
 
 // counters
-
 message DeviceCounters {
     // id of the organisation that handles the devices
     uint32 organization_id = 1;
@@ -169,10 +247,63 @@ message FrameCounters {
 }    
 
 message FrameSpeed {
-    // T: Created at timestamp unix.
+    // T: Created at timestamp (unix)
     int64 t = 1;
-    // google.protobuf.Timestamp date_time = 1;
 
     // Y: TotalCnt: both TxCnt and RxCnt frames counted for the amount of time 
     uint32  y = 2; 
+}
+
+// for storage
+message DeviceFrameLog {
+    // RX (uplink -recieved from devices) or TX (downlink - transmitted from NS)
+    string direction = 1;
+    string date_time = 2;
+    string date = 3;
+    string mType = 4;
+    string dev_addr = 5;
+    string devEUI = 6;
+
+    // params from base station with best SNR
+    int32  rxRssi = 7;
+    double  rx_snr = 8;
+    uint32 rx_channel = 9;
+    uint32 rx_rf_chain = 10;
+
+    // id of base station with best SNR
+    string gw = 11;
+
+    // json-string
+    string tx_info = 12;
+
+    // RXInfo an array with info from BS recieved the frame
+    repeated RXInfo rx_info = 13;
+
+    // json-string with LORA payload
+    string phy_payloadJSON = 14 [json_name = "PhyPayloadJson"];
+    double  airtime = 15;
+    double  esp = 16;
+    uint32  late = 17;
+    string frm_payload = 18;
+    // repeated gw.UplinkRXInfo uplink_rx_info = 18;
+}
+
+// for RXInfo item in uplink frames
+message RXInfo {
+    // GatewayID
+    string  GatewayID = 1       [json_name = "gateway_id"];
+    int32   Rssi = 2            [json_name = "rssi"];
+    double  LoraSnr = 3         [json_name = "lora_snr"];
+    uint32  Channel = 4         [json_name = "channel"];
+    uint32  RfChain = 5         [json_name = "rf_chain"];
+    uint32  Board = 6           [json_name = "board"];
+    uint32  Antenna = 7         [json_name = "antenna"];
+    common.Location Location = 8 [json_name = "location"];
+    gw.FineTimestampType FineTimestampType = 9;
+    string  GpsTimestamp = 10   [json_name = "gps_timestamp"];
+    string  FineTimestamp = 11  [json_name = "fine_timestamp"];
+    string  Context = 12        [json_name = "context"];
+
+    // Unique and random ID which can be used to correlate the uplink across multiple logs.
+    string  UplinkID = 13       [json_name = "uplink_id"];
 }

@@ -3,6 +3,9 @@ syntax = "proto3";
 package ns;
 
 option go_package = "github.com/brocaar/chirpstack-api/ns";
+option java_package = "io.chirpstack.api.ns";
+option java_multiple_files = true;
+option java_outer_classname = "NetworkServerProto";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
@@ -163,6 +166,9 @@ service NetworkServerService {
 
     // GetVersion returns the ChirpStack Network Server version.
     rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {}
+
+    // GetADRAlgorithms returns the available ADR algorithms.
+    rpc GetADRAlgorithms(google.protobuf.Empty) returns (GetADRAlgorithmsResponse) {}
 }
 
 enum RXWindow {
@@ -449,6 +455,9 @@ message Gateway {
     // The routing-profile ID defines to which application-server statistical
     // data for this gateway is forwarded.
     bytes routing_profile_id = 5;
+
+    // Service-profile ID (optional).
+    bytes service_profile_id = 6;
 }
 
 message GatewayBoard {
@@ -510,6 +519,9 @@ message GenerateGatewayClientCertificateResponse {
 
     // CA certificate.
     bytes ca_cert = 3;
+
+    // Expires at defines the expiration date of the certificate.
+    google.protobuf.Timestamp expires_at = 4;
 }
 
 enum AggregationInterval {
@@ -628,9 +640,15 @@ message UplinkFrameLog {
 
     // RX meta-data.
     repeated gw.UplinkRXInfo rx_info = 3;
-    
-    // mark if packet not in time (late for more than 120 seconds)
-    bool late = 4;    
+
+    // Message type.
+    common.MType m_type = 4;
+
+    // Device address (optional).
+    bytes dev_addr = 5;
+
+    // Device EUI (optional).
+    bytes dev_eui = 6;
 }
 
 message DownlinkFrameLog {
@@ -649,6 +667,76 @@ message DownlinkFrameLog {
 
     // Gateway ID.
     bytes gateway_id = 5 [json_name = "gatewayID"];
+
+    // Message type.
+    common.MType m_type = 6;
+
+    // Device address (optional).
+    bytes dev_addr = 7;
+
+    // Device EUI (optional).
+    bytes dev_eui = 8;
+}
+
+// RX (uplink) frame data to save in CLICKHOUSE
+message RXFrameForHandyRusty {
+    // PHYPayload.
+    bytes phy_payload = 1;
+
+    // TX meta-data.
+    gw.UplinkTXInfo tx_info = 2;
+
+    // RX meta-data.
+    repeated gw.UplinkRXInfo rx_info = 3;
+    
+    // mark if packet not in time (late for more than 120 seconds)
+    bool late = 4; 
+
+    // some information from current device-session
+    DeviceSession device_session = 5;
+
+    // context id 
+    string ctx_id = 6;
+}
+
+// TX (downlink) frame data to save in CLICKHOUSE
+message TXFrameForHandyRusty {
+    // PHYPayload.
+    bytes phy_payload = 1;
+
+    // TX meta-data.
+    gw.DownlinkTXInfo tx_info = 2;
+
+    // Token (uint16 value).
+    // Deprecated: replaced by downlink_id.
+    uint32 token = 3;
+
+    // Downlink ID (UUID).
+    bytes downlink_id = 4 [json_name = "downlinkID"];
+
+    // Gateway ID.
+    bytes gateway_id = 5 [json_name = "gatewayID"];
+}
+
+// DeviceSession cropped data from DeviceSession to save in CLICKHOUSE
+message DeviceSession {
+    // FCntUp
+    uint32 f_cnt_up = 1;
+
+    // NFCntDown
+    uint32 nf_cnt_down = 2;
+
+    // AFCntDown
+    uint32 af_cnt_down = 3;
+
+    // ConfFCnt
+    uint32 conf_f_cnt = 4;
+
+    // Data from KeyEnvelope (if exists during first data packet): KEKLabel string
+    string KEK_label = 5;
+
+    // Data from KeyEnvelope (exists during first data packet): AESKey   []byte
+    bytes AES_key = 6;
 }
 
 message StreamFrameLogsForGatewayRequest {
@@ -886,4 +974,16 @@ message GetMulticastQueueItemsForMulticastGroupRequest {
 
 message GetMulticastQueueItemsForMulticastGroupResponse {
     repeated MulticastQueueItem multicast_queue_items = 1;
+}
+
+message GetADRAlgorithmsResponse {
+    repeated ADRAlgorithm adr_algorithms = 1;
+}
+
+message ADRAlgorithm {
+    // ADR algorithm ID.
+    string id = 1;
+
+    // ADR algorithm name.
+    string name = 2;
 }

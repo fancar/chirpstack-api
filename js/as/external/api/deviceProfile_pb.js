@@ -1519,7 +1519,9 @@ proto.api.ListDeviceProfileRequest.toObject = function(includeInstance, msg) {
     limit: msg.getLimit(),
     offset: msg.getOffset(),
     organizationId: msg.getOrganizationId(),
-    applicationId: msg.getApplicationId()
+    applicationId: msg.getApplicationId(),
+    orderby: msg.getOrderby(),
+    order: msg.getOrder()
   };
 
   if (includeInstance) {
@@ -1571,6 +1573,14 @@ proto.api.ListDeviceProfileRequest.deserializeBinaryFromReader = function(msg, r
     case 4:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setApplicationId(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrderby(value);
+      break;
+    case 6:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrder(value);
       break;
     default:
       reader.skipField();
@@ -1635,6 +1645,20 @@ proto.api.ListDeviceProfileRequest.prototype.serializeBinaryToWriter = function 
   if (f !== 0) {
     writer.writeInt64(
       4,
+      f
+    );
+  }
+  f = this.getOrderby();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
+      f
+    );
+  }
+  f = this.getOrder();
+  if (f.length > 0) {
+    writer.writeString(
+      6,
       f
     );
   }
@@ -1707,6 +1731,36 @@ proto.api.ListDeviceProfileRequest.prototype.getApplicationId = function() {
 /** @param {number} value  */
 proto.api.ListDeviceProfileRequest.prototype.setApplicationId = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional string orderBy = 5;
+ * @return {string}
+ */
+proto.api.ListDeviceProfileRequest.prototype.getOrderby = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 5, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceProfileRequest.prototype.setOrderby = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string order = 6;
+ * @return {string}
+ */
+proto.api.ListDeviceProfileRequest.prototype.getOrder = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 6, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceProfileRequest.prototype.setOrder = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 

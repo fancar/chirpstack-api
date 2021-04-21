@@ -21,9 +21,27 @@ interface IApplicationServerServiceService extends grpc.ServiceDefinition<grpc.U
   listOrganisation: grpc.MethodDefinition<as_as_pb.ListOrganizationRequest, as_as_pb.ListOrganizationResponse>;
   getOrgByDevEUI: grpc.MethodDefinition<as_as_pb.GetOrgByDevEUIRequest, as_as_pb.GetOrgByDevEUIResponse>;
   getDeviceAppSKey: grpc.MethodDefinition<as_as_pb.GetOrgByDevEUIRequest, as_as_pb.GetDeviceAppSKeyResponse>;
+  reEncryptDeviceQueueItems: grpc.MethodDefinition<as_as_pb.ReEncryptDeviceQueueItemsRequest, as_as_pb.ReEncryptDeviceQueueItemsResponse>;
 }
 
 export const ApplicationServerServiceService: IApplicationServerServiceService;
+
+export interface IApplicationServerServiceServer extends grpc.UntypedServiceImplementation {
+  handleUplinkData: grpc.handleUnaryCall<as_as_pb.HandleUplinkDataRequest, google_protobuf_empty_pb.Empty>;
+  handleProprietaryUplink: grpc.handleUnaryCall<as_as_pb.HandleProprietaryUplinkRequest, google_protobuf_empty_pb.Empty>;
+  handleError: grpc.handleUnaryCall<as_as_pb.HandleErrorRequest, google_protobuf_empty_pb.Empty>;
+  handleDownlinkACK: grpc.handleUnaryCall<as_as_pb.HandleDownlinkACKRequest, google_protobuf_empty_pb.Empty>;
+  handleGatewayStats: grpc.handleUnaryCall<as_as_pb.HandleGatewayStatsRequest, google_protobuf_empty_pb.Empty>;
+  handleTxAck: grpc.handleUnaryCall<as_as_pb.HandleTxAckRequest, google_protobuf_empty_pb.Empty>;
+  setDeviceStatus: grpc.handleUnaryCall<as_as_pb.SetDeviceStatusRequest, google_protobuf_empty_pb.Empty>;
+  setDeviceLocation: grpc.handleUnaryCall<as_as_pb.SetDeviceLocationRequest, google_protobuf_empty_pb.Empty>;
+  getDevicesSummary: grpc.handleUnaryCall<as_as_pb.GetDevicesSummaryRequest, as_as_pb.GetDevicesSummaryResponse>;
+  getGatewaysSummary: grpc.handleUnaryCall<as_as_pb.GetGatewaysSummaryRequest, as_as_pb.GetGatewaysSummaryResponse>;
+  listOrganisation: grpc.handleUnaryCall<as_as_pb.ListOrganizationRequest, as_as_pb.ListOrganizationResponse>;
+  getOrgByDevEUI: grpc.handleUnaryCall<as_as_pb.GetOrgByDevEUIRequest, as_as_pb.GetOrgByDevEUIResponse>;
+  getDeviceAppSKey: grpc.handleUnaryCall<as_as_pb.GetOrgByDevEUIRequest, as_as_pb.GetDeviceAppSKeyResponse>;
+  reEncryptDeviceQueueItems: grpc.handleUnaryCall<as_as_pb.ReEncryptDeviceQueueItemsRequest, as_as_pb.ReEncryptDeviceQueueItemsResponse>;
+}
 
 export class ApplicationServerServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
@@ -66,4 +84,7 @@ export class ApplicationServerServiceClient extends grpc.Client {
   getDeviceAppSKey(argument: as_as_pb.GetOrgByDevEUIRequest, callback: grpc.requestCallback<as_as_pb.GetDeviceAppSKeyResponse>): grpc.ClientUnaryCall;
   getDeviceAppSKey(argument: as_as_pb.GetOrgByDevEUIRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.GetDeviceAppSKeyResponse>): grpc.ClientUnaryCall;
   getDeviceAppSKey(argument: as_as_pb.GetOrgByDevEUIRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.GetDeviceAppSKeyResponse>): grpc.ClientUnaryCall;
+  reEncryptDeviceQueueItems(argument: as_as_pb.ReEncryptDeviceQueueItemsRequest, callback: grpc.requestCallback<as_as_pb.ReEncryptDeviceQueueItemsResponse>): grpc.ClientUnaryCall;
+  reEncryptDeviceQueueItems(argument: as_as_pb.ReEncryptDeviceQueueItemsRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.ReEncryptDeviceQueueItemsResponse>): grpc.ClientUnaryCall;
+  reEncryptDeviceQueueItems(argument: as_as_pb.ReEncryptDeviceQueueItemsRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_as_pb.ReEncryptDeviceQueueItemsResponse>): grpc.ClientUnaryCall;
 }

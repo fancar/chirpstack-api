@@ -895,6 +895,11 @@ export class Gateway extends jspb.Message {
   getRoutingProfileId_asB64(): string;
   setRoutingProfileId(value: Uint8Array | string): void;
 
+  getServiceProfileId(): Uint8Array | string;
+  getServiceProfileId_asU8(): Uint8Array;
+  getServiceProfileId_asB64(): string;
+  setServiceProfileId(value: Uint8Array | string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Gateway.AsObject;
   static toObject(includeInstance: boolean, msg: Gateway): Gateway.AsObject;
@@ -912,6 +917,7 @@ export namespace Gateway {
     gatewayProfileId: Uint8Array | string,
     boardsList: Array<GatewayBoard.AsObject>,
     routingProfileId: Uint8Array | string,
+    serviceProfileId: Uint8Array | string,
   }
 }
 
@@ -1115,6 +1121,11 @@ export class GenerateGatewayClientCertificateResponse extends jspb.Message {
   getCaCert_asB64(): string;
   setCaCert(value: Uint8Array | string): void;
 
+  hasExpiresAt(): boolean;
+  clearExpiresAt(): void;
+  getExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setExpiresAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GenerateGatewayClientCertificateResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GenerateGatewayClientCertificateResponse): GenerateGatewayClientCertificateResponse.AsObject;
@@ -1130,6 +1141,7 @@ export namespace GenerateGatewayClientCertificateResponse {
     tlsCert: Uint8Array | string,
     tlsKey: Uint8Array | string,
     caCert: Uint8Array | string,
+    expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -1431,8 +1443,18 @@ export class UplinkFrameLog extends jspb.Message {
   setRxInfoList(value: Array<gw_gw_pb.UplinkRXInfo>): void;
   addRxInfo(value?: gw_gw_pb.UplinkRXInfo, index?: number): gw_gw_pb.UplinkRXInfo;
 
-  getLate(): boolean;
-  setLate(value: boolean): void;
+  getMType(): common_common_pb.MTypeMap[keyof common_common_pb.MTypeMap];
+  setMType(value: common_common_pb.MTypeMap[keyof common_common_pb.MTypeMap]): void;
+
+  getDevAddr(): Uint8Array | string;
+  getDevAddr_asU8(): Uint8Array;
+  getDevAddr_asB64(): string;
+  setDevAddr(value: Uint8Array | string): void;
+
+  getDevEui(): Uint8Array | string;
+  getDevEui_asU8(): Uint8Array;
+  getDevEui_asB64(): string;
+  setDevEui(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UplinkFrameLog.AsObject;
@@ -1449,7 +1471,9 @@ export namespace UplinkFrameLog {
     phyPayload: Uint8Array | string,
     txInfo?: gw_gw_pb.UplinkTXInfo.AsObject,
     rxInfoList: Array<gw_gw_pb.UplinkRXInfo.AsObject>,
-    late: boolean,
+    mType: common_common_pb.MTypeMap[keyof common_common_pb.MTypeMap],
+    devAddr: Uint8Array | string,
+    devEui: Uint8Array | string,
   }
 }
 
@@ -1477,6 +1501,19 @@ export class DownlinkFrameLog extends jspb.Message {
   getGatewayId_asB64(): string;
   setGatewayId(value: Uint8Array | string): void;
 
+  getMType(): common_common_pb.MTypeMap[keyof common_common_pb.MTypeMap];
+  setMType(value: common_common_pb.MTypeMap[keyof common_common_pb.MTypeMap]): void;
+
+  getDevAddr(): Uint8Array | string;
+  getDevAddr_asU8(): Uint8Array;
+  getDevAddr_asB64(): string;
+  setDevAddr(value: Uint8Array | string): void;
+
+  getDevEui(): Uint8Array | string;
+  getDevEui_asU8(): Uint8Array;
+  getDevEui_asB64(): string;
+  setDevEui(value: Uint8Array | string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DownlinkFrameLog.AsObject;
   static toObject(includeInstance: boolean, msg: DownlinkFrameLog): DownlinkFrameLog.AsObject;
@@ -1494,6 +1531,143 @@ export namespace DownlinkFrameLog {
     token: number,
     downlinkId: Uint8Array | string,
     gatewayId: Uint8Array | string,
+    mType: common_common_pb.MTypeMap[keyof common_common_pb.MTypeMap],
+    devAddr: Uint8Array | string,
+    devEui: Uint8Array | string,
+  }
+}
+
+export class RXFrameForHandyRusty extends jspb.Message {
+  getPhyPayload(): Uint8Array | string;
+  getPhyPayload_asU8(): Uint8Array;
+  getPhyPayload_asB64(): string;
+  setPhyPayload(value: Uint8Array | string): void;
+
+  hasTxInfo(): boolean;
+  clearTxInfo(): void;
+  getTxInfo(): gw_gw_pb.UplinkTXInfo | undefined;
+  setTxInfo(value?: gw_gw_pb.UplinkTXInfo): void;
+
+  clearRxInfoList(): void;
+  getRxInfoList(): Array<gw_gw_pb.UplinkRXInfo>;
+  setRxInfoList(value: Array<gw_gw_pb.UplinkRXInfo>): void;
+  addRxInfo(value?: gw_gw_pb.UplinkRXInfo, index?: number): gw_gw_pb.UplinkRXInfo;
+
+  getLate(): boolean;
+  setLate(value: boolean): void;
+
+  hasDeviceSession(): boolean;
+  clearDeviceSession(): void;
+  getDeviceSession(): DeviceSession | undefined;
+  setDeviceSession(value?: DeviceSession): void;
+
+  getCtxId(): string;
+  setCtxId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RXFrameForHandyRusty.AsObject;
+  static toObject(includeInstance: boolean, msg: RXFrameForHandyRusty): RXFrameForHandyRusty.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RXFrameForHandyRusty, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RXFrameForHandyRusty;
+  static deserializeBinaryFromReader(message: RXFrameForHandyRusty, reader: jspb.BinaryReader): RXFrameForHandyRusty;
+}
+
+export namespace RXFrameForHandyRusty {
+  export type AsObject = {
+    phyPayload: Uint8Array | string,
+    txInfo?: gw_gw_pb.UplinkTXInfo.AsObject,
+    rxInfoList: Array<gw_gw_pb.UplinkRXInfo.AsObject>,
+    late: boolean,
+    deviceSession?: DeviceSession.AsObject,
+    ctxId: string,
+  }
+}
+
+export class TXFrameForHandyRusty extends jspb.Message {
+  getPhyPayload(): Uint8Array | string;
+  getPhyPayload_asU8(): Uint8Array;
+  getPhyPayload_asB64(): string;
+  setPhyPayload(value: Uint8Array | string): void;
+
+  hasTxInfo(): boolean;
+  clearTxInfo(): void;
+  getTxInfo(): gw_gw_pb.DownlinkTXInfo | undefined;
+  setTxInfo(value?: gw_gw_pb.DownlinkTXInfo): void;
+
+  getToken(): number;
+  setToken(value: number): void;
+
+  getDownlinkId(): Uint8Array | string;
+  getDownlinkId_asU8(): Uint8Array;
+  getDownlinkId_asB64(): string;
+  setDownlinkId(value: Uint8Array | string): void;
+
+  getGatewayId(): Uint8Array | string;
+  getGatewayId_asU8(): Uint8Array;
+  getGatewayId_asB64(): string;
+  setGatewayId(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TXFrameForHandyRusty.AsObject;
+  static toObject(includeInstance: boolean, msg: TXFrameForHandyRusty): TXFrameForHandyRusty.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TXFrameForHandyRusty, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TXFrameForHandyRusty;
+  static deserializeBinaryFromReader(message: TXFrameForHandyRusty, reader: jspb.BinaryReader): TXFrameForHandyRusty;
+}
+
+export namespace TXFrameForHandyRusty {
+  export type AsObject = {
+    phyPayload: Uint8Array | string,
+    txInfo?: gw_gw_pb.DownlinkTXInfo.AsObject,
+    token: number,
+    downlinkId: Uint8Array | string,
+    gatewayId: Uint8Array | string,
+  }
+}
+
+export class DeviceSession extends jspb.Message {
+  getFCntUp(): number;
+  setFCntUp(value: number): void;
+
+  getNfCntDown(): number;
+  setNfCntDown(value: number): void;
+
+  getAfCntDown(): number;
+  setAfCntDown(value: number): void;
+
+  getConfFCnt(): number;
+  setConfFCnt(value: number): void;
+
+  getKekLabel(): string;
+  setKekLabel(value: string): void;
+
+  getAesKey(): Uint8Array | string;
+  getAesKey_asU8(): Uint8Array;
+  getAesKey_asB64(): string;
+  setAesKey(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeviceSession.AsObject;
+  static toObject(includeInstance: boolean, msg: DeviceSession): DeviceSession.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeviceSession, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeviceSession;
+  static deserializeBinaryFromReader(message: DeviceSession, reader: jspb.BinaryReader): DeviceSession;
+}
+
+export namespace DeviceSession {
+  export type AsObject = {
+    fCntUp: number,
+    nfCntDown: number,
+    afCntDown: number,
+    confFCnt: number,
+    kekLabel: string,
+    aesKey: Uint8Array | string,
   }
 }
 
@@ -2244,6 +2418,52 @@ export class GetMulticastQueueItemsForMulticastGroupResponse extends jspb.Messag
 export namespace GetMulticastQueueItemsForMulticastGroupResponse {
   export type AsObject = {
     multicastQueueItemsList: Array<MulticastQueueItem.AsObject>,
+  }
+}
+
+export class GetADRAlgorithmsResponse extends jspb.Message {
+  clearAdrAlgorithmsList(): void;
+  getAdrAlgorithmsList(): Array<ADRAlgorithm>;
+  setAdrAlgorithmsList(value: Array<ADRAlgorithm>): void;
+  addAdrAlgorithms(value?: ADRAlgorithm, index?: number): ADRAlgorithm;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetADRAlgorithmsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetADRAlgorithmsResponse): GetADRAlgorithmsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetADRAlgorithmsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetADRAlgorithmsResponse;
+  static deserializeBinaryFromReader(message: GetADRAlgorithmsResponse, reader: jspb.BinaryReader): GetADRAlgorithmsResponse;
+}
+
+export namespace GetADRAlgorithmsResponse {
+  export type AsObject = {
+    adrAlgorithmsList: Array<ADRAlgorithm.AsObject>,
+  }
+}
+
+export class ADRAlgorithm extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ADRAlgorithm.AsObject;
+  static toObject(includeInstance: boolean, msg: ADRAlgorithm): ADRAlgorithm.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ADRAlgorithm, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ADRAlgorithm;
+  static deserializeBinaryFromReader(message: ADRAlgorithm, reader: jspb.BinaryReader): ADRAlgorithm;
+}
+
+export namespace ADRAlgorithm {
+  export type AsObject = {
+    id: string,
+    name: string,
   }
 }
 

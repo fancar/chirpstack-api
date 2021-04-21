@@ -2,6 +2,7 @@
 // file: as/external/api/application.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as google_api_annotations_pb from "../../../google/api/annotations_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 
@@ -236,6 +237,12 @@ export class ListApplicationRequest extends jspb.Message {
   getSearch(): string;
   setSearch(value: string): void;
 
+  getOrderby(): string;
+  setOrderby(value: string): void;
+
+  getOrder(): string;
+  setOrder(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListApplicationRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListApplicationRequest): ListApplicationRequest.AsObject;
@@ -252,6 +259,8 @@ export namespace ListApplicationRequest {
     offset: number,
     organizationId: number,
     search: string,
+    orderby: string,
+    order: string,
   }
 }
 
@@ -1573,6 +1582,194 @@ export namespace DeleteAzureServiceBusIntegrationRequest {
   }
 }
 
+export class PilotThingsIntegration extends jspb.Message {
+  getApplicationId(): number;
+  setApplicationId(value: number): void;
+
+  getServer(): string;
+  setServer(value: string): void;
+
+  getToken(): string;
+  setToken(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PilotThingsIntegration.AsObject;
+  static toObject(includeInstance: boolean, msg: PilotThingsIntegration): PilotThingsIntegration.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PilotThingsIntegration, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PilotThingsIntegration;
+  static deserializeBinaryFromReader(message: PilotThingsIntegration, reader: jspb.BinaryReader): PilotThingsIntegration;
+}
+
+export namespace PilotThingsIntegration {
+  export type AsObject = {
+    applicationId: number,
+    server: string,
+    token: string,
+  }
+}
+
+export class CreatePilotThingsIntegrationRequest extends jspb.Message {
+  hasIntegration(): boolean;
+  clearIntegration(): void;
+  getIntegration(): PilotThingsIntegration | undefined;
+  setIntegration(value?: PilotThingsIntegration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreatePilotThingsIntegrationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatePilotThingsIntegrationRequest): CreatePilotThingsIntegrationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreatePilotThingsIntegrationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatePilotThingsIntegrationRequest;
+  static deserializeBinaryFromReader(message: CreatePilotThingsIntegrationRequest, reader: jspb.BinaryReader): CreatePilotThingsIntegrationRequest;
+}
+
+export namespace CreatePilotThingsIntegrationRequest {
+  export type AsObject = {
+    integration?: PilotThingsIntegration.AsObject,
+  }
+}
+
+export class GetPilotThingsIntegrationRequest extends jspb.Message {
+  getApplicationId(): number;
+  setApplicationId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPilotThingsIntegrationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPilotThingsIntegrationRequest): GetPilotThingsIntegrationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPilotThingsIntegrationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPilotThingsIntegrationRequest;
+  static deserializeBinaryFromReader(message: GetPilotThingsIntegrationRequest, reader: jspb.BinaryReader): GetPilotThingsIntegrationRequest;
+}
+
+export namespace GetPilotThingsIntegrationRequest {
+  export type AsObject = {
+    applicationId: number,
+  }
+}
+
+export class GetPilotThingsIntegrationResponse extends jspb.Message {
+  hasIntegration(): boolean;
+  clearIntegration(): void;
+  getIntegration(): PilotThingsIntegration | undefined;
+  setIntegration(value?: PilotThingsIntegration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetPilotThingsIntegrationResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPilotThingsIntegrationResponse): GetPilotThingsIntegrationResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetPilotThingsIntegrationResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPilotThingsIntegrationResponse;
+  static deserializeBinaryFromReader(message: GetPilotThingsIntegrationResponse, reader: jspb.BinaryReader): GetPilotThingsIntegrationResponse;
+}
+
+export namespace GetPilotThingsIntegrationResponse {
+  export type AsObject = {
+    integration?: PilotThingsIntegration.AsObject,
+  }
+}
+
+export class UpdatePilotThingsIntegrationRequest extends jspb.Message {
+  hasIntegration(): boolean;
+  clearIntegration(): void;
+  getIntegration(): PilotThingsIntegration | undefined;
+  setIntegration(value?: PilotThingsIntegration): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdatePilotThingsIntegrationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatePilotThingsIntegrationRequest): UpdatePilotThingsIntegrationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdatePilotThingsIntegrationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatePilotThingsIntegrationRequest;
+  static deserializeBinaryFromReader(message: UpdatePilotThingsIntegrationRequest, reader: jspb.BinaryReader): UpdatePilotThingsIntegrationRequest;
+}
+
+export namespace UpdatePilotThingsIntegrationRequest {
+  export type AsObject = {
+    integration?: PilotThingsIntegration.AsObject,
+  }
+}
+
+export class DeletePilotThingsIntegrationRequest extends jspb.Message {
+  getApplicationId(): number;
+  setApplicationId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeletePilotThingsIntegrationRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletePilotThingsIntegrationRequest): DeletePilotThingsIntegrationRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DeletePilotThingsIntegrationRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletePilotThingsIntegrationRequest;
+  static deserializeBinaryFromReader(message: DeletePilotThingsIntegrationRequest, reader: jspb.BinaryReader): DeletePilotThingsIntegrationRequest;
+}
+
+export namespace DeletePilotThingsIntegrationRequest {
+  export type AsObject = {
+    applicationId: number,
+  }
+}
+
+export class GenerateMQTTIntegrationClientCertificateRequest extends jspb.Message {
+  getApplicationId(): number;
+  setApplicationId(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GenerateMQTTIntegrationClientCertificateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GenerateMQTTIntegrationClientCertificateRequest): GenerateMQTTIntegrationClientCertificateRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GenerateMQTTIntegrationClientCertificateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GenerateMQTTIntegrationClientCertificateRequest;
+  static deserializeBinaryFromReader(message: GenerateMQTTIntegrationClientCertificateRequest, reader: jspb.BinaryReader): GenerateMQTTIntegrationClientCertificateRequest;
+}
+
+export namespace GenerateMQTTIntegrationClientCertificateRequest {
+  export type AsObject = {
+    applicationId: number,
+  }
+}
+
+export class GenerateMQTTIntegrationClientCertificateResponse extends jspb.Message {
+  getTlsCert(): string;
+  setTlsCert(value: string): void;
+
+  getTlsKey(): string;
+  setTlsKey(value: string): void;
+
+  getCaCert(): string;
+  setCaCert(value: string): void;
+
+  hasExpiresAt(): boolean;
+  clearExpiresAt(): void;
+  getExpiresAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setExpiresAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GenerateMQTTIntegrationClientCertificateResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GenerateMQTTIntegrationClientCertificateResponse): GenerateMQTTIntegrationClientCertificateResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GenerateMQTTIntegrationClientCertificateResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GenerateMQTTIntegrationClientCertificateResponse;
+  static deserializeBinaryFromReader(message: GenerateMQTTIntegrationClientCertificateResponse, reader: jspb.BinaryReader): GenerateMQTTIntegrationClientCertificateResponse;
+}
+
+export namespace GenerateMQTTIntegrationClientCertificateResponse {
+  export type AsObject = {
+    tlsCert: string,
+    tlsKey: string,
+    caCert: string,
+    expiresAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export interface IntegrationKindMap {
   HTTP: 0;
   INFLUXDB: 1;
@@ -1582,6 +1779,8 @@ export interface IntegrationKindMap {
   GCP_PUBSUB: 5;
   AWS_SNS: 6;
   AZURE_SERVICE_BUS: 7;
+  PILOT_THINGS: 8;
+  MQTT_GLOBAL: 9;
 }
 
 export const IntegrationKind: IntegrationKindMap;

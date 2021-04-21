@@ -71,6 +71,21 @@ class ApplicationServerServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationResponse.FromString,
                 )
+        self.GetOrgByDevEUI = channel.unary_unary(
+                '/as.ApplicationServerService/GetOrgByDevEUI',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.FromString,
+                )
+        self.GetDeviceAppSKey = channel.unary_unary(
+                '/as.ApplicationServerService/GetDeviceAppSKey',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.FromString,
+                )
+        self.ReEncryptDeviceQueueItems = channel.unary_unary(
+                '/as.ApplicationServerService/ReEncryptDeviceQueueItems',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsResponse.FromString,
+                )
 
 
 class ApplicationServerServiceServicer(object):
@@ -154,6 +169,34 @@ class ApplicationServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetOrgByDevEUI(self, request, context):
+        """GetOrgByDevEUI returns organization id by devEUI. Modification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDeviceAppSKey(self, request, context):
+        """GetDeviceAppSKey returns AES128Key by devEUI. Modification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ReEncryptDeviceQueueItems(self, request, context):
+        """ReEncryptDeviceQueueItems requests the application-server to re-encrypt
+        the given payload items using the new parameters. This request is
+        for example triggered when the associated frame-counter of a downlink
+        payload will be used by a mac-layer only payload, e.g. when the NS has
+        mac-commands (or ACKs) to send to the device and combining this with
+        an application-layer payload would exceed the max. payload size.
+        Note there is no requirement that the number of returned items must be
+        equal to the number of requested items.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ApplicationServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -211,6 +254,21 @@ def add_ApplicationServerServiceServicer_to_server(servicer, server):
                     servicer.ListOrganisation,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationResponse.SerializeToString,
+            ),
+            'GetOrgByDevEUI': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetOrgByDevEUI,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.SerializeToString,
+            ),
+            'GetDeviceAppSKey': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceAppSKey,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.SerializeToString,
+            ),
+            'ReEncryptDeviceQueueItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReEncryptDeviceQueueItems,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -407,5 +465,56 @@ class ApplicationServerService(object):
         return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/ListOrganisation',
             chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_as__pb__pb2.ListOrganizationResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetOrgByDevEUI(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetOrgByDevEUI',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDeviceAppSKey(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetDeviceAppSKey',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ReEncryptDeviceQueueItems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/ReEncryptDeviceQueueItems',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

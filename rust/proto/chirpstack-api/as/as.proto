@@ -3,6 +3,9 @@ syntax = "proto3";
 package as;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as";
+option java_package = "io.chirpstack.api.as";
+option java_multiple_files = true;
+option java_outer_classname = "ApplicationServerProto";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
@@ -43,7 +46,39 @@ service ApplicationServerService {
     rpc GetGatewaysSummary(GetGatewaysSummaryRequest) returns (GetGatewaysSummaryResponse) {}
 
     // SetDeviceLocation updates the device-location for a device.
-    rpc ListOrganisation(ListOrganizationRequest) returns (ListOrganizationResponse) {}     
+    rpc ListOrganisation(ListOrganizationRequest) returns (ListOrganizationResponse) {}
+
+    // GetOrgByDevEUI returns organization id by devEUI. Modification.
+    rpc GetOrgByDevEUI(GetOrgByDevEUIRequest) returns (GetOrgByDevEUIResponse) {}
+
+    // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
+    rpc GetDeviceAppSKey(GetOrgByDevEUIRequest) returns (GetDeviceAppSKeyResponse) {}
+
+    // ReEncryptDeviceQueueItems requests the application-server to re-encrypt
+    // the given payload items using the new parameters. This request is
+    // for example triggered when the associated frame-counter of a downlink
+    // payload will be used by a mac-layer only payload, e.g. when the NS has
+    // mac-commands (or ACKs) to send to the device and combining this with
+    // an application-layer payload would exceed the max. payload size.
+    // Note there is no requirement that the number of returned items must be
+    // equal to the number of requested items.
+    rpc ReEncryptDeviceQueueItems(ReEncryptDeviceQueueItemsRequest) returns (ReEncryptDeviceQueueItemsResponse) {}    
+}
+
+
+message GetOrgByDevEUIRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];   
+}
+
+message GetDeviceAppSKeyResponse {
+    // AppSKey is a AES128Key for the device
+    bytes value = 1;
+}
+
+message GetOrgByDevEUIResponse {
+    // Organization ID.
+    int64 id = 1;
 }
 
 message ListOrganizationRequest {
@@ -192,7 +227,7 @@ message HandleUplinkDataRequest {
     bytes data = 9;
 
     // Device activation context.
-    // 
+    //
     // This field is only set on the first uplink frame when the security
     // context has changed (e.g. a new OTAA (re)activation).
     DeviceActivationContext device_activation_context = 10;
@@ -319,4 +354,60 @@ message HandleTxAckRequest {
 
     // Downlink frame-counter.
     uint32 f_cnt = 2;
+
+    // Gateway ID.
+    bytes gateway_id = 3;
+
+    // TXInfo contains the TX related meta-data.
+    gw.DownlinkTXInfo tx_info = 4;
+}
+
+message ReEncryptDeviceQueueItemsRequest {
+    // DevEUI of the device.
+    bytes dev_eui = 1;
+
+    // Device addres.
+    // This is the device address which was used to encrypt the given
+    // payloads.
+    bytes dev_addr = 2;
+
+    // Downlink frame-counter to start with.
+    // The application-server must use this value when encrypting the first
+    // item, and increment it for each successive item.
+    uint32 f_cnt_start = 3;
+
+    // Items to re-encrypt.
+    repeated ReEncryptDeviceQueueItem items = 4;
+}
+
+message ReEncryptDeviceQueueItemsResponse {
+    repeated ReEncryptedDeviceQueueItem items = 1;
+}
+
+message ReEncryptDeviceQueueItem {
+    // The encrypted FRMPayload bytes.
+    bytes frm_payload = 1;
+
+    // The original FCnt of the payload.
+    uint32 f_cnt = 2;
+
+    // The FPort of the payload.
+    uint32 f_port = 3;
+
+    // Payload is of type confirmed.
+    bool confirmed = 4;
+}
+
+message ReEncryptedDeviceQueueItem {
+    // The re-encrypted FRMPayload bytes.
+    bytes frm_payload = 1;
+
+    // The new FCnt of the payload.
+    uint32 f_cnt = 2;
+
+    // The FPort of the payload.
+    uint32 f_port = 3;
+
+    // Payload is of type confirmed.
+    bool confirmed = 4;
 }

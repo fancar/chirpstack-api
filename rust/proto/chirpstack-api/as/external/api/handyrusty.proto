@@ -5,9 +5,10 @@ package api;
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
 
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
+// import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "handyrusty/hr.proto";
+import "gw/gw.proto";
 
 
 // HandyRustyService is the service managing additional erth  tools, such as clickhouse storage and logger.
@@ -20,11 +21,42 @@ service HandyRustyService {
         };
     }
 
-    // GetFrameSpeed returns rx+tx frames per minute
+    // GetFrameSpeed returns an array with rx+tx frames per minute measurments
     rpc GetFrameSpeed(hr.GetFrameSpeedRequest) returns (hr.GetFrameSpeedResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/frames/speed"
             body: "*"
         };
     }
+
+    // ExecCommand sends the command to execute on gw. It waits 30 sec for an answer from gw
+    rpc ExecCommand(hr.ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {
+        option(google.api.http) = {
+            post: "/api/handy-rusty/rc/exec-command"
+            body: "*"
+        };
+    }
+
+    // GetDeviceFramesLog returns an array with recieved and transmitted device's frames
+    rpc GetDeviceFramesLog(hr.GetDeviceFramesLogRequest) returns (hr.GetDeviceFramesLogResponse) {
+        option(google.api.http) = {
+            post: "/api/handy-rusty/frames/logs/device-frames"
+            body: "*"
+        };
+    }
+
+    // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
+    //   * The data is transferred by chunks (stream);
+    //   * This endpoint does not work from a web-browser!
+    rpc StreamDeviceFramesLogCSV(hr.GetDeviceFramesLogRequest) returns (stream hr.StreamDeviceFramesLogCSVResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/frames/logs/device-frames/csv"
+            // body: "*"
+        };
+    }
+    rpc GetCurrentState(google.protobuf.Empty) returns (hr.GetCurrentStateResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/current-state"
+        };        
+    } 
 }

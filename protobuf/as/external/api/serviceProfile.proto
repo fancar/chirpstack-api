@@ -3,6 +3,9 @@ syntax = "proto3";
 package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProfileProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -96,11 +99,14 @@ message ListServiceProfileRequest{
     // Organization id to filter on.
     int64 organization_id = 3 [json_name = "organizationID"];
 
+    // Network-server id to filter on.
+    int64 network_server_id = 4 [json_name = "networkServerID"];
+
 	// sort list by name
-	string orderBy = 4;		
+	string orderBy = 5;		
 
 	// sort direction
-	string order = 5;	
+	string order = 6;	
 }
 
 message ServiceProfileListItem {

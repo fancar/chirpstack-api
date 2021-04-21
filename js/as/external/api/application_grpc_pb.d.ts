@@ -45,10 +45,61 @@ interface IApplicationServiceService extends grpc.ServiceDefinition<grpc.Untyped
   getAzureServiceBusIntegration: grpc.MethodDefinition<as_external_api_application_pb.GetAzureServiceBusIntegrationRequest, as_external_api_application_pb.GetAzureServiceBusIntegrationResponse>;
   updateAzureServiceBusIntegration: grpc.MethodDefinition<as_external_api_application_pb.UpdateAzureServiceBusIntegrationRequest, google_protobuf_empty_pb.Empty>;
   deleteAzureServiceBusIntegration: grpc.MethodDefinition<as_external_api_application_pb.DeleteAzureServiceBusIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createPilotThingsIntegration: grpc.MethodDefinition<as_external_api_application_pb.CreatePilotThingsIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getPilotThingsIntegration: grpc.MethodDefinition<as_external_api_application_pb.GetPilotThingsIntegrationRequest, as_external_api_application_pb.GetPilotThingsIntegrationResponse>;
+  updatePilotThingsIntegration: grpc.MethodDefinition<as_external_api_application_pb.UpdatePilotThingsIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deletePilotThingsIntegration: grpc.MethodDefinition<as_external_api_application_pb.DeletePilotThingsIntegrationRequest, google_protobuf_empty_pb.Empty>;
   listIntegrations: grpc.MethodDefinition<as_external_api_application_pb.ListIntegrationRequest, as_external_api_application_pb.ListIntegrationResponse>;
+  generateMQTTIntegrationClientCertificate: grpc.MethodDefinition<as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateRequest, as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateResponse>;
 }
 
 export const ApplicationServiceService: IApplicationServiceService;
+
+export interface IApplicationServiceServer extends grpc.UntypedServiceImplementation {
+  create: grpc.handleUnaryCall<as_external_api_application_pb.CreateApplicationRequest, as_external_api_application_pb.CreateApplicationResponse>;
+  get: grpc.handleUnaryCall<as_external_api_application_pb.GetApplicationRequest, as_external_api_application_pb.GetApplicationResponse>;
+  update: grpc.handleUnaryCall<as_external_api_application_pb.UpdateApplicationRequest, google_protobuf_empty_pb.Empty>;
+  delete: grpc.handleUnaryCall<as_external_api_application_pb.DeleteApplicationRequest, google_protobuf_empty_pb.Empty>;
+  list: grpc.handleUnaryCall<as_external_api_application_pb.ListApplicationRequest, as_external_api_application_pb.ListApplicationResponse>;
+  createHTTPIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateHTTPIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getHTTPIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetHTTPIntegrationRequest, as_external_api_application_pb.GetHTTPIntegrationResponse>;
+  updateHTTPIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateHTTPIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteHTTPIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteHTTPIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createInfluxDBIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateInfluxDBIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getInfluxDBIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetInfluxDBIntegrationRequest, as_external_api_application_pb.GetInfluxDBIntegrationResponse>;
+  updateInfluxDBIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateInfluxDBIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteInfluxDBIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteInfluxDBIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createThingsBoardIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateThingsBoardIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getThingsBoardIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetThingsBoardIntegrationRequest, as_external_api_application_pb.GetThingsBoardIntegrationResponse>;
+  updateThingsBoardIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateThingsBoardIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteThingsBoardIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteThingsBoardIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createMyDevicesIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateMyDevicesIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getMyDevicesIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetMyDevicesIntegrationRequest, as_external_api_application_pb.GetMyDevicesIntegrationResponse>;
+  updateMyDevicesIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateMyDevicesIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteMyDevicesIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteMyDevicesIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createLoRaCloudIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateLoRaCloudIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getLoRaCloudIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetLoRaCloudIntegrationRequest, as_external_api_application_pb.GetLoRaCloudIntegrationResponse>;
+  updateLoRaCloudIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateLoRaCloudIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteLoRaCloudIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteLoRaCloudIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createGCPPubSubIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateGCPPubSubIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getGCPPubSubIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetGCPPubSubIntegrationRequest, as_external_api_application_pb.GetGCPPubSubIntegrationResponse>;
+  updateGCPPubSubIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateGCPPubSubIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteGCPPubSubIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteGCPPubSubIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createAWSSNSIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateAWSSNSIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getAWSSNSIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetAWSSNSIntegrationRequest, as_external_api_application_pb.GetAWSSNSIntegrationResponse>;
+  updateAWSSNSIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateAWSSNSIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteAWSSNSIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteAWSSNSIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createAzureServiceBusIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreateAzureServiceBusIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getAzureServiceBusIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetAzureServiceBusIntegrationRequest, as_external_api_application_pb.GetAzureServiceBusIntegrationResponse>;
+  updateAzureServiceBusIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdateAzureServiceBusIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deleteAzureServiceBusIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeleteAzureServiceBusIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  createPilotThingsIntegration: grpc.handleUnaryCall<as_external_api_application_pb.CreatePilotThingsIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  getPilotThingsIntegration: grpc.handleUnaryCall<as_external_api_application_pb.GetPilotThingsIntegrationRequest, as_external_api_application_pb.GetPilotThingsIntegrationResponse>;
+  updatePilotThingsIntegration: grpc.handleUnaryCall<as_external_api_application_pb.UpdatePilotThingsIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  deletePilotThingsIntegration: grpc.handleUnaryCall<as_external_api_application_pb.DeletePilotThingsIntegrationRequest, google_protobuf_empty_pb.Empty>;
+  listIntegrations: grpc.handleUnaryCall<as_external_api_application_pb.ListIntegrationRequest, as_external_api_application_pb.ListIntegrationResponse>;
+  generateMQTTIntegrationClientCertificate: grpc.handleUnaryCall<as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateRequest, as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateResponse>;
+}
 
 export class ApplicationServiceClient extends grpc.Client {
   constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
@@ -163,7 +214,22 @@ export class ApplicationServiceClient extends grpc.Client {
   deleteAzureServiceBusIntegration(argument: as_external_api_application_pb.DeleteAzureServiceBusIntegrationRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   deleteAzureServiceBusIntegration(argument: as_external_api_application_pb.DeleteAzureServiceBusIntegrationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   deleteAzureServiceBusIntegration(argument: as_external_api_application_pb.DeleteAzureServiceBusIntegrationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  createPilotThingsIntegration(argument: as_external_api_application_pb.CreatePilotThingsIntegrationRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  createPilotThingsIntegration(argument: as_external_api_application_pb.CreatePilotThingsIntegrationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  createPilotThingsIntegration(argument: as_external_api_application_pb.CreatePilotThingsIntegrationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  getPilotThingsIntegration(argument: as_external_api_application_pb.GetPilotThingsIntegrationRequest, callback: grpc.requestCallback<as_external_api_application_pb.GetPilotThingsIntegrationResponse>): grpc.ClientUnaryCall;
+  getPilotThingsIntegration(argument: as_external_api_application_pb.GetPilotThingsIntegrationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_application_pb.GetPilotThingsIntegrationResponse>): grpc.ClientUnaryCall;
+  getPilotThingsIntegration(argument: as_external_api_application_pb.GetPilotThingsIntegrationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_application_pb.GetPilotThingsIntegrationResponse>): grpc.ClientUnaryCall;
+  updatePilotThingsIntegration(argument: as_external_api_application_pb.UpdatePilotThingsIntegrationRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  updatePilotThingsIntegration(argument: as_external_api_application_pb.UpdatePilotThingsIntegrationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  updatePilotThingsIntegration(argument: as_external_api_application_pb.UpdatePilotThingsIntegrationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  deletePilotThingsIntegration(argument: as_external_api_application_pb.DeletePilotThingsIntegrationRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  deletePilotThingsIntegration(argument: as_external_api_application_pb.DeletePilotThingsIntegrationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  deletePilotThingsIntegration(argument: as_external_api_application_pb.DeletePilotThingsIntegrationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
   listIntegrations(argument: as_external_api_application_pb.ListIntegrationRequest, callback: grpc.requestCallback<as_external_api_application_pb.ListIntegrationResponse>): grpc.ClientUnaryCall;
   listIntegrations(argument: as_external_api_application_pb.ListIntegrationRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_application_pb.ListIntegrationResponse>): grpc.ClientUnaryCall;
   listIntegrations(argument: as_external_api_application_pb.ListIntegrationRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_application_pb.ListIntegrationResponse>): grpc.ClientUnaryCall;
+  generateMQTTIntegrationClientCertificate(argument: as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateRequest, callback: grpc.requestCallback<as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateResponse>): grpc.ClientUnaryCall;
+  generateMQTTIntegrationClientCertificate(argument: as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateResponse>): grpc.ClientUnaryCall;
+  generateMQTTIntegrationClientCertificate(argument: as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_application_pb.GenerateMQTTIntegrationClientCertificateResponse>): grpc.ClientUnaryCall;
 }

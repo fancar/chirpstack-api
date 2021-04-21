@@ -40,6 +40,28 @@ function deserialize_api_DeleteNetworkServerRequest(buffer_arg) {
   return as_external_api_networkServer_pb.DeleteNetworkServerRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_api_GetADRAlgorithmsRequest(arg) {
+  if (!(arg instanceof as_external_api_networkServer_pb.GetADRAlgorithmsRequest)) {
+    throw new Error('Expected argument of type api.GetADRAlgorithmsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetADRAlgorithmsRequest(buffer_arg) {
+  return as_external_api_networkServer_pb.GetADRAlgorithmsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_GetADRAlgorithmsResponse(arg) {
+  if (!(arg instanceof as_external_api_networkServer_pb.GetADRAlgorithmsResponse)) {
+    throw new Error('Expected argument of type api.GetADRAlgorithmsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetADRAlgorithmsResponse(buffer_arg) {
+  return as_external_api_networkServer_pb.GetADRAlgorithmsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_api_GetNetworkServerRequest(arg) {
   if (!(arg instanceof as_external_api_networkServer_pb.GetNetworkServerRequest)) {
     throw new Error('Expected argument of type api.GetNetworkServerRequest');
@@ -110,7 +132,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // NetworkServerService is the service managing network-servers.
 var NetworkServerServiceService = exports.NetworkServerServiceService = {
   // Create creates the given network-server.
-  create: {
+create: {
     path: '/api.NetworkServerService/Create',
     requestStream: false,
     responseStream: false,
@@ -122,7 +144,7 @@ var NetworkServerServiceService = exports.NetworkServerServiceService = {
     responseDeserialize: deserialize_api_CreateNetworkServerResponse,
   },
   // Get returns the network-server matching the given id.
-  get: {
+get: {
     path: '/api.NetworkServerService/Get',
     requestStream: false,
     responseStream: false,
@@ -134,7 +156,7 @@ var NetworkServerServiceService = exports.NetworkServerServiceService = {
     responseDeserialize: deserialize_api_GetNetworkServerResponse,
   },
   // Update updates the given network-server.
-  update: {
+update: {
     path: '/api.NetworkServerService/Update',
     requestStream: false,
     responseStream: false,
@@ -146,7 +168,7 @@ var NetworkServerServiceService = exports.NetworkServerServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Delete deletes the network-server matching the given id.
-  delete: {
+delete: {
     path: '/api.NetworkServerService/Delete',
     requestStream: false,
     responseStream: false,
@@ -158,7 +180,7 @@ var NetworkServerServiceService = exports.NetworkServerServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // List lists the available network-servers.
-  list: {
+list: {
     path: '/api.NetworkServerService/List',
     requestStream: false,
     responseStream: false,
@@ -168,6 +190,18 @@ var NetworkServerServiceService = exports.NetworkServerServiceService = {
     requestDeserialize: deserialize_api_ListNetworkServerRequest,
     responseSerialize: serialize_api_ListNetworkServerResponse,
     responseDeserialize: deserialize_api_ListNetworkServerResponse,
+  },
+  // GetADRAlgorithms returns the available ADR algorithms.
+getADRAlgorithms: {
+    path: '/api.NetworkServerService/GetADRAlgorithms',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_networkServer_pb.GetADRAlgorithmsRequest,
+    responseType: as_external_api_networkServer_pb.GetADRAlgorithmsResponse,
+    requestSerialize: serialize_api_GetADRAlgorithmsRequest,
+    requestDeserialize: deserialize_api_GetADRAlgorithmsRequest,
+    responseSerialize: serialize_api_GetADRAlgorithmsResponse,
+    responseDeserialize: deserialize_api_GetADRAlgorithmsResponse,
   },
 };
 

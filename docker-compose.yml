@@ -16,7 +16,7 @@ services:
       - ./:/chirpstack-api
   chirpstack-api-js:
     environment:
-      - VERSION=3.7.8
+      - VERSION=3.9.7
     build:
       context: .
       dockerfile: Dockerfile-js
@@ -25,7 +25,7 @@ services:
       - ./:/chirpstack-api
   chirpstack-api-rust:
     environment:
-      - VERSION=3.7.8
+      - VERSION=3.9.7
     build:
       context: .
       dockerfile: Dockerfile-rust
@@ -34,10 +34,19 @@ services:
       - ./:/chirpstack-api
   chirpstack-api-python:
     environment:
-      - VERSION=3.7.8
+      - VERSION=3.9.7
     build:
       context: .
       dockerfile: Dockerfile-python
     command: bash -c "cd python && make all"
+    volumes:
+      - ./:/chirpstack-api
+  chirpstack-api-java:
+    environment:
+      - VERSION=3.9.7
+    build:
+      context: .
+      dockerfile: Dockerfile-java
+    command: bash -c "cd java && make all"
     volumes:
       - ./:/chirpstack-api

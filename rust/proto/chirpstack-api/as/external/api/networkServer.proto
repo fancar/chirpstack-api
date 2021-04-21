@@ -3,6 +3,9 @@ syntax = "proto3";
 package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "NetworkServerProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -45,6 +48,13 @@ service NetworkServerService {
     rpc List(ListNetworkServerRequest) returns (ListNetworkServerResponse) {
         option(google.api.http) = {
             get: "/api/network-servers"
+        };
+    }
+
+    // GetADRAlgorithms returns the available ADR algorithms.
+    rpc GetADRAlgorithms(GetADRAlgorithmsRequest) returns (GetADRAlgorithmsResponse) {
+        option(google.api.http) = {
+            get: "/api/network-servers/{network_server_id}/adr-algorithms"
         };
     }
 }
@@ -138,10 +148,10 @@ message GetNetworkServerResponse {
     // Last update timestamp.
     google.protobuf.Timestamp updated_at = 3;
 
-    // The ChirpStack Network Server version.
+    // The Network Server version.
     string version = 4;
 
-    // The ChirpStack Network Server region configured.
+    // The Network Server region configured.
     string region = 5;
 }
 
@@ -172,4 +182,21 @@ message ListNetworkServerResponse {
 
     // Network-servers within the result-set.
     repeated NetworkServerListItem result = 2;
+}
+
+message GetADRAlgorithmsRequest {
+    // Network-server ID.
+    int64 network_server_id = 1;
+}
+
+message GetADRAlgorithmsResponse {
+    repeated ADRAlgorithm adr_algorithms = 1; 
+}
+
+message ADRAlgorithm {
+    // ADR algorithm ID.
+    string id = 1;
+
+    // ADR algorithm name.
+    string name = 2;
 }

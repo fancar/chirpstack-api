@@ -3,6 +3,9 @@ syntax = "proto3";
 package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "DeviceProfileProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -121,6 +124,12 @@ message ListDeviceProfileRequest {
 
     // Application id to filter on.
     int64 application_id = 4 [json_name = "applicationID"];
+    
+	// sort list by name
+	string orderBy = 5;		
+
+	// sort direction
+	string order = 6;	
 }
 
 message ListDeviceProfileResponse {

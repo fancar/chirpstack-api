@@ -3,6 +3,9 @@ syntax = "proto3";
 package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "OrganizationProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
@@ -89,7 +92,7 @@ service OrganizationService {
 message Organization {
 	// Organization ID.
 	int64 id = 1;
-	
+
 	// Organization name.
 	string name = 2;
 
@@ -111,7 +114,7 @@ message Organization {
 message OrganizationListItem {
 	// Organization ID.
 	int64 id = 1;
-	
+
 	// Organization name.
 	string name = 2;
 
@@ -174,6 +177,12 @@ message ListOrganizationRequest {
 	// When provided, the given string will be used to search on
 	// displayName.
 	string search = 3;
+
+	// sort list by name
+	string orderBy = 4;		
+
+	// sort direction
+	string order = 5;	
 }
 
 message ListOrganizationResponse {
@@ -203,6 +212,12 @@ message OrganizationUser {
 
 	// Email (only used on get).
 	string email = 4;
+
+	// false if the user inactive
+	bool is_active = 7;
+
+	// Optional note to store with the user.
+	string note = 8;	
 }
 
 message OrganizationUserListItem {
@@ -230,6 +245,9 @@ message OrganizationUserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 5;
+
+	// false if the user inactive
+	bool is_active = 8;
 }
 
 message AddOrganizationUserRequest {
@@ -245,7 +263,7 @@ message UpdateOrganizationUserRequest {
 message DeleteOrganizationUserRequest {
 	// Organization ID.
 	int64 organization_id = 1 [json_name = "organizationID"];
-	
+
 	// User ID.
 	int64 user_id = 2 [json_name = "userID"];
 }
@@ -253,18 +271,24 @@ message DeleteOrganizationUserRequest {
 message ListOrganizationUsersRequest {
 	// Organization ID.
 	int64 organization_id = 1 [json_name = "organizationID"];
-	
+
 	// Max number of users to return in the result-set.
 	int32 limit = 2;
 
 	// Offset in the result-set (for pagination).
 	int32 offset = 3;
+
+	// sort list by name
+	string orderBy = 4;		
+
+	// sort direction
+	string order = 5;	
 }
 
 message ListOrganizationUsersResponse {
 	// The total number of users in the organization.
 	int64 total_count = 1;
-	
+
 	repeated OrganizationUserListItem result = 2;
 }
 

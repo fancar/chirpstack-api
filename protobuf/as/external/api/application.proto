@@ -3,7 +3,11 @@ syntax = "proto3";
 package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "ApplicationProto";
 
+import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
@@ -287,12 +291,50 @@ service ApplicationService {
         };
     }
 
+    // CreatePilotThingsIntegration creates an Pilot Things application-integration.
+    rpc CreatePilotThingsIntegration(CreatePilotThingsIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/applications/{integration.application_id}/integrations/pilot-things"
+            body: "*"
+        };
+    }
+
+    // GetPilotThingsIntegration returns the Pilot Things application-integration.
+    rpc GetPilotThingsIntegration(GetPilotThingsIntegrationRequest) returns (GetPilotThingsIntegrationResponse) {
+        option(google.api.http) = {
+            get: "/api/applications/{application_id}/integrations/pilot-things"
+        };
+    }
+
+    // UpdatePilotThingsIntegration updates the Pilot Things application-integration.
+    rpc UpdatePilotThingsIntegration(UpdatePilotThingsIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            put: "/api/applications/{integration.application_id}/integrations/pilot-things"
+            body: "*"
+        };
+    }
+
+    // DeletePilotThingsIntegration deletes the Pilot Things application-integration.
+    rpc DeletePilotThingsIntegration(DeletePilotThingsIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            delete: "/api/applications/{application_id}/integrations/pilot-things"
+        };
+    }
+
 	// ListIntegrations lists all configured integrations.
 	rpc ListIntegrations(ListIntegrationRequest) returns (ListIntegrationResponse) {
 		option(google.api.http) = {
 			get: "/api/applications/{application_id}/integrations"
 		};
 	}
+
+    // GenerateMQTTIntegrationClientCertificate generates an application ID specific TLS certificate
+    // to connect to the MQTT broker.
+    rpc GenerateMQTTIntegrationClientCertificate(GenerateMQTTIntegrationClientCertificateRequest) returns (GenerateMQTTIntegrationClientCertificateResponse) {
+        option(google.api.http) = {
+            post: "/api/applications/{application_id}/integrations/mqtt/certificate"
+        };
+    }
 }
 
 enum IntegrationKind {
@@ -304,6 +346,8 @@ enum IntegrationKind {
     GCP_PUBSUB = 5;
     AWS_SNS = 6;
     AZURE_SERVICE_BUS = 7;
+    PILOT_THINGS = 8;
+    MQTT_GLOBAL = 9;
 }
 
 enum Marshaler {
@@ -427,7 +471,7 @@ message ListApplicationRequest {
 message ListApplicationResponse {
 	// Total number of applications available within the result-set.
 	int64 total_count = 1;
-	
+
 	// Applications within this result-set.
 	repeated ApplicationListItem result = 2;
 }
@@ -893,4 +937,59 @@ message UpdateAzureServiceBusIntegrationRequest {
 message DeleteAzureServiceBusIntegrationRequest {
 	// The id of the application.
 	int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message PilotThingsIntegration {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+
+    // Server URL
+    string server = 2;
+
+    // Authentication token
+    string token = 3;
+}
+
+message CreatePilotThingsIntegrationRequest {
+    // Integration object to create.
+    PilotThingsIntegration integration = 1;
+}
+
+message GetPilotThingsIntegrationRequest {
+	// Application ID.
+	int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GetPilotThingsIntegrationResponse {
+    // Integration object.
+    PilotThingsIntegration integration = 1;
+}
+
+message UpdatePilotThingsIntegrationRequest {
+	// Integration object to update.
+	PilotThingsIntegration integration = 1;
+}
+
+message DeletePilotThingsIntegrationRequest {
+	// The id of the application.
+	int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GenerateMQTTIntegrationClientCertificateRequest {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GenerateMQTTIntegrationClientCertificateResponse {
+    // TLS certificate.
+    string tls_cert = 1;
+
+    // TLS key.
+    string tls_key = 2;
+
+    // CA certificate.
+    string ca_cert = 3;
+
+    // Expires at defines the expiration date of the certificate.
+    google.protobuf.Timestamp expires_at = 4;
 }

@@ -143,7 +143,7 @@ function deserialize_google_protobuf_Empty(buffer_arg) {
 // UserService is the service managing the user access.
 var UserServiceService = exports.UserServiceService = {
   // Get user list.
-  list: {
+list: {
     path: '/api.UserService/List',
     requestStream: false,
     responseStream: false,
@@ -155,7 +155,7 @@ var UserServiceService = exports.UserServiceService = {
     responseDeserialize: deserialize_api_ListUserResponse,
   },
   // Get data for a particular user.
-  get: {
+get: {
     path: '/api.UserService/Get',
     requestStream: false,
     responseStream: false,
@@ -167,7 +167,7 @@ var UserServiceService = exports.UserServiceService = {
     responseDeserialize: deserialize_api_GetUserResponse,
   },
   // Create a new user.
-  create: {
+create: {
     path: '/api.UserService/Create',
     requestStream: false,
     responseStream: false,
@@ -179,7 +179,7 @@ var UserServiceService = exports.UserServiceService = {
     responseDeserialize: deserialize_api_CreateUserResponse,
   },
   // Update an existing user.
-  update: {
+update: {
     path: '/api.UserService/Update',
     requestStream: false,
     responseStream: false,
@@ -191,7 +191,7 @@ var UserServiceService = exports.UserServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // Delete a user.
-  delete: {
+delete: {
     path: '/api.UserService/Delete',
     requestStream: false,
     responseStream: false,
@@ -203,7 +203,7 @@ var UserServiceService = exports.UserServiceService = {
     responseDeserialize: deserialize_google_protobuf_Empty,
   },
   // UpdatePassword updates a password.
-  updatePassword: {
+updatePassword: {
     path: '/api.UserService/UpdatePassword',
     requestStream: false,
     responseStream: false,

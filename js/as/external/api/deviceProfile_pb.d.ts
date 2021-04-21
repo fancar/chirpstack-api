@@ -206,6 +206,12 @@ export class ListDeviceProfileRequest extends jspb.Message {
   getApplicationId(): number;
   setApplicationId(value: number): void;
 
+  getOrderby(): string;
+  setOrderby(value: string): void;
+
+  getOrder(): string;
+  setOrder(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDeviceProfileRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListDeviceProfileRequest): ListDeviceProfileRequest.AsObject;
@@ -222,6 +228,8 @@ export namespace ListDeviceProfileRequest {
     offset: number,
     organizationId: number,
     applicationId: number,
+    orderby: string,
+    order: string,
   }
 }
 
