@@ -248,6 +248,9 @@ message OrganizationUserListItem {
 
 	// false if the user inactive
 	bool is_active = 8;
+
+	// number of organizations where the user is member
+	int32 org_cnt = 9;		
 }
 
 message AddOrganizationUserRequest {

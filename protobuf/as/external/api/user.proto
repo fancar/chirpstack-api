@@ -139,7 +139,10 @@ message UserListItem {
 	string position = 13;
 
 	// user's phone
-	string phone = 14;		
+	string phone = 14;
+
+	// number of organizations where the user is member
+	int32 org_cnt = 15;		
 }
 
 message UserLogListItem {

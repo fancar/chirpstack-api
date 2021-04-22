@@ -492,6 +492,11 @@
         "phone": {
           "type": "string",
           "title": "user's phone"
+        },
+        "orgCnt": {
+          "type": "integer",
+          "format": "int32",
+          "title": "number of organizations where the user is member"
         }
       }
     },

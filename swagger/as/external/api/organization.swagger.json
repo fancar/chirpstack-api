@@ -637,6 +637,11 @@
           "type": "boolean",
           "format": "boolean",
           "title": "false if the user inactive"
+        },
+        "orgCnt": {
+          "type": "integer",
+          "format": "int32",
+          "title": "number of organizations where the user is member"
         }
       }
     },
