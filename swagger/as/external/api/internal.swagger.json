@@ -805,6 +805,26 @@
         "note": {
           "type": "string",
           "description": "Optional note to store with the user."
+        },
+        "name": {
+          "type": "string",
+          "title": "user's name"
+        },
+        "surname": {
+          "type": "string",
+          "title": "user's last name"
+        },
+        "company": {
+          "type": "string",
+          "title": "the company where the employee is working at"
+        },
+        "position": {
+          "type": "string",
+          "title": "user's position and subdivision in the company"
+        },
+        "phone": {
+          "type": "string",
+          "title": "user's phone"
         }
       }
     },
