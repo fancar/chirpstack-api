@@ -360,6 +360,23 @@
         },
         "frmPayload": {
           "type": "string"
+        },
+        "FCntUp": {
+          "type": "integer",
+          "format": "int64",
+          "title": "data from device-session"
+        },
+        "NFCntDown": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "AFCntDown": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ConfFCnt": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "title": "for storage"

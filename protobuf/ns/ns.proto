@@ -716,21 +716,24 @@ message TXFrameForHandyRusty {
 
     // Gateway ID.
     bytes gateway_id = 5 [json_name = "gatewayID"];
+
+    // some information from current device-session
+    DeviceSession device_session = 6;    
 }
 
 // DeviceSession cropped data from DeviceSession to save in CLICKHOUSE
 message DeviceSession {
     // FCntUp
-    uint32 f_cnt_up = 1;
+    uint32 FCntUp = 1;
 
     // NFCntDown
-    uint32 nf_cnt_down = 2;
+    uint32 NFCntDown = 2;
 
     // AFCntDown
-    uint32 af_cnt_down = 3;
+    uint32 AFCntDown = 3;
 
     // ConfFCnt
-    uint32 conf_f_cnt = 4;
+    uint32 ConfFCnt = 4;
 
     // Data from KeyEnvelope (if exists during first data packet): KEKLabel string
     string KEK_label = 5;

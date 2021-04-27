@@ -285,7 +285,12 @@ message DeviceFrameLog {
     double  esp = 16;
     uint32  late = 17;
     string frm_payload = 18;
-    // repeated gw.UplinkRXInfo uplink_rx_info = 18;
+
+    // data from device-session 
+    uint32 FCntUp = 19;
+    uint32 NFCntDown = 20;
+    uint32 AFCntDown = 21;
+    uint32 ConfFCnt = 22;
 }
 
 // for RXInfo item in uplink frames
