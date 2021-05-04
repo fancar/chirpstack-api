@@ -1429,6 +1429,11 @@
           "type": "string",
           "format": "int64",
           "title": "device count of the application"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
         }
       }
     },

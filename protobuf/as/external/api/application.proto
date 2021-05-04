@@ -415,6 +415,9 @@ message ApplicationListItem {
 
     // device count of the application
     int64 dev_cnt = 7;    
+
+     // Created at timestamp.
+     google.protobuf.Timestamp created_at = 8 [json_name = "createdAt"];
 }
 
 
