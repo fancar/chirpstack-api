@@ -251,7 +251,9 @@ message GetDeviceResponse {
     // Device object.
     Device device = 1;
 
-    // Created at 2
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2 [json_name = "createdAt"];
+    
     // Updated at 3
     // First seen at 4
 

@@ -730,6 +730,11 @@
           "$ref": "#/definitions/apiDevice",
           "description": "Device object."
         },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
         "lastSeenAt": {
           "type": "string",
           "format": "date-time",
