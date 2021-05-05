@@ -189,6 +189,9 @@ message GetGatewayResponse {
 
 	// Last seen at timestamp.
 	google.protobuf.Timestamp last_seen_at = 5;
+
+	// GPS Last seen at timestamp.
+	google.protobuf.Timestamp GPS_seen_at = 6;	
 };
 
 message GetGatewayStatusResponse {

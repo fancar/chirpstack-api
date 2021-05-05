@@ -670,6 +670,11 @@
           "type": "string",
           "format": "date-time",
           "description": "Last seen at timestamp."
+        },
+        "GPSSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "GPS Last seen at timestamp."
         }
       }
     },
