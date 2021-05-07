@@ -550,6 +550,16 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "deviceCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "Count number of devices"
+        },
+        "gatewayCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "Count number of gateways"
         }
       }
     },

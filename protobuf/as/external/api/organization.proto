@@ -129,6 +129,12 @@ message OrganizationListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 6;
+
+	//Count number of devices
+	int64 device_count = 7;
+	
+	//Count number of gateways
+	int64 gateway_count = 8;
 }
 
 message GetOrganizationRequest {
