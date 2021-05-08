@@ -65,7 +65,14 @@ service GatewayService {
 		option (google.api.http) = {
 			get: "/api/monitoring/gateways/actility_styled"
 		};
-	}	
+	}
+
+	// ListMon lists all gateways with the metrics for monitoring purposes
+	rpc ListMon(google.protobuf.Empty) returns (ListMonResponse) {
+		option (google.api.http) = {
+			get: "/api/monitoring/gateways"
+		};
+	}
 
 	// GetStats lists the gateway stats given the query parameters.
 	rpc GetStats(GetGatewayStatsRequest) returns (GetGatewayStatsResponse) {
@@ -292,6 +299,36 @@ message GatewayListItem {
     bool active = 13;      
 }
 
+// for monitoring list
+message GatewayMonItem {
+	// Gateway ID (HEX encoded).
+	string id = 1;
+
+	// A name for the gateway
+	string name = 2;
+
+    // Last seen timestamp.
+    google.protobuf.Timestamp last_seen_at = 3;
+
+    // metadata: packet forwarder status (if it is running)
+    string radio = 4;
+
+    // metadata: cpu load (%)
+    string cpu = 5;
+
+    // metadata: RAM usage (%)
+    string ram = 6;
+
+    // metadata: disk space used (%)
+    string disk = 7; 
+
+    // metadata: system uptime (unix)
+    string uptime = 8;
+
+    // metadata: ntp status ("OK" when it is fine)
+    string ntp_status = 9; 
+}
+
 message StatsItemActilityStyled {
 	// Create timestamp.
 	google.protobuf.Timestamp creation_time = 1 [json_name = "creationTime"];
@@ -331,6 +368,10 @@ message ListGatewayResponse {
 	repeated GatewayListItem result = 2;
 }
 
+message ListMonResponse {
+	// Nodes within this result-set.
+	repeated GatewayMonItem result = 1;
+}
 
 message ListGwActilityStyledResponse {
 	// Total number of nodes available within the result-set.

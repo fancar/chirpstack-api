@@ -341,6 +341,23 @@
         ]
       }
     },
+    "/api/monitoring/gateways": {
+      "get": {
+        "summary": "ListMon lists all gateways with the metrics for monitoring purposes",
+        "operationId": "ListMon",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListMonResponse"
+            }
+          }
+        },
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
     "/api/monitoring/gateways/actility_styled": {
       "get": {
         "summary": "ListActilityStyled lists the gateways with legacy [Actility] json-format.",
@@ -592,6 +609,49 @@
         }
       }
     },
+    "apiGatewayMonItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "name": {
+          "type": "string",
+          "title": "A name for the gateway"
+        },
+        "lastSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last seen timestamp."
+        },
+        "radio": {
+          "type": "string",
+          "title": "metadata: packet forwarder status (if it is running)"
+        },
+        "cpu": {
+          "type": "string",
+          "title": "metadata: cpu load (%)"
+        },
+        "ram": {
+          "type": "string",
+          "title": "metadata: RAM usage (%)"
+        },
+        "disk": {
+          "type": "string",
+          "title": "metadata: disk space used (%)"
+        },
+        "uptime": {
+          "type": "string",
+          "title": "metadata: system uptime (unix)"
+        },
+        "ntpStatus": {
+          "type": "string",
+          "title": "metadata: ntp status (\"OK\" when it is fine)"
+        }
+      },
+      "title": "for monitoring list"
+    },
     "apiGatewayStats": {
       "type": "object",
       "properties": {
@@ -794,6 +854,18 @@
             "$ref": "#/definitions/apiGwItemActilityStyled"
           },
           "title": "result array"
+        }
+      }
+    },
+    "apiListMonResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGatewayMonItem"
+          },
+          "description": "Nodes within this result-set."
         }
       }
     },
