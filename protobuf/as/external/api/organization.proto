@@ -188,7 +188,10 @@ message ListOrganizationRequest {
 	string orderBy = 4;		
 
 	// sort direction
-	string order = 5;	
+	string order = 5;
+
+	// optional parameter. Get organizations by the user's membership
+	int64 user_id = 6;
 }
 
 message ListOrganizationResponse {
