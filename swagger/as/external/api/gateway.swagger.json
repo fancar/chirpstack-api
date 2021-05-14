@@ -605,7 +605,7 @@
         "active": {
           "type": "boolean",
           "format": "boolean",
-          "title": "the status calculated by last_seen_at parameter (now - stats_interval*1.5 \u003c= last_seen)"
+          "title": "the status calculated from last_seen_at parameter"
         }
       }
     },
@@ -648,6 +648,11 @@
         "ntpStatus": {
           "type": "string",
           "title": "metadata: ntp status (\"OK\" when it is fine)"
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "the status calculated from last_seen_at parameter"
         }
       },
       "title": "for monitoring list"
