@@ -85,7 +85,10 @@ message GetDeviceFramesLogRequest {
     int64 organization_id = 6;
 
     // here user sends his local timezone. 
-    int64 timezone = 7;    
+    int64 timezone = 7; 
+
+    // for internal use. Will be ignored from external api.
+    bool gw_only = 8;        
 }
 
 message GetDeviceFramesLogResponse {

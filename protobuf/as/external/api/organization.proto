@@ -109,6 +109,12 @@ message Organization {
     // Max. device count for organization.
     // When set to 0, the organization can have unlimited devices.
     uint32 max_device_count = 6;
+
+	// When the organization has gateways but doesn't have any devices
+	// you can switch the flag on.
+	// it allows org's users to see the frames from/to devices in wireless logger
+	// that have been recieved/transmitted by owned gateways
+	bool gw_only = 7;    
 }
 
 message OrganizationListItem {

@@ -51,6 +51,9 @@ service ApplicationServerService {
     // GetOrgByDevEUI returns organization id by devEUI. Modification.
     rpc GetOrgByDevEUI(GetOrgByDevEUIRequest) returns (GetOrgByDevEUIResponse) {}
 
+    // GetOrgIDByGwID returns organization id by gwID. Modification.
+    rpc GetOrgIDByGwID(GetOrgIDByGwIDRequest) returns (GetOrgByDevEUIResponse) {}
+
     // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
     rpc GetDeviceAppSKey(GetOrgByDevEUIRequest) returns (GetDeviceAppSKeyResponse) {}
 
@@ -69,6 +72,11 @@ service ApplicationServerService {
 message GetOrgByDevEUIRequest {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];   
+}
+
+message GetOrgIDByGwIDRequest {
+    // Gateway ID (HEX encoded).
+    string id = 1;  
 }
 
 message GetDeviceAppSKeyResponse {

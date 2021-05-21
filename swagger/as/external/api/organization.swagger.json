@@ -525,6 +525,11 @@
           "type": "integer",
           "format": "int64",
           "description": "Max. device count for organization.\nWhen set to 0, the organization can have unlimited devices."
+        },
+        "gwOnly": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "When the organization has gateways but doesn't have any devices\nyou can switch the flag on.\nit allows org's users to see the frames from/to devices in wireless logger\nthat have been recieved/transmitted by owned gateways"
         }
       }
     },

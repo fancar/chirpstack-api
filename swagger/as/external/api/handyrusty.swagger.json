@@ -143,6 +143,14 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "gwOnly",
+            "description": "for internal use. Will be ignored from external api.",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -530,6 +538,11 @@
           "type": "string",
           "format": "int64",
           "description": "here user sends his local timezone."
+        },
+        "gwOnly": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "for internal use. Will be ignored from external api."
         }
       }
     },
