@@ -221,6 +221,24 @@
         "statsInterval": {
           "type": "string",
           "description": "Stats interval.\nThis defines the (expected) stats interval which the gateways using this\ngateway-profile are using."
+        },
+        "design": {
+          "type": "string",
+          "title": "Reference Design"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description"
+        },
+        "gps": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Availability of GPS"
+        },
+        "secure": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Coonection type (secure/non-secure)"
         }
       }
     },

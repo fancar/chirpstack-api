@@ -196,11 +196,11 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DataExportServiceClient interface {
-	// GetGateways download csv-list of all gateways
+	// GetGateways Export gateways
 	GetGateways(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (DataExportService_GetGatewaysClient, error)
-	// GetUsers download csv-list of all users
+	// GetUsers Export users
 	GetUsers(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (DataExportService_GetUsersClient, error)
-	// GetDevices download csv-list of all devices
+	// GetDevices Export devices
 	GetDevices(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (DataExportService_GetDevicesClient, error)
 }
 
@@ -310,11 +310,11 @@ func (x *dataExportServiceGetDevicesClient) Recv() (*StreamResponse, error) {
 
 // DataExportServiceServer is the server API for DataExportService service.
 type DataExportServiceServer interface {
-	// GetGateways download csv-list of all gateways
+	// GetGateways Export gateways
 	GetGateways(*empty.Empty, DataExportService_GetGatewaysServer) error
-	// GetUsers download csv-list of all users
+	// GetUsers Export users
 	GetUsers(*empty.Empty, DataExportService_GetUsersServer) error
-	// GetDevices download csv-list of all devices
+	// GetDevices Export devices
 	GetDevices(*empty.Empty, DataExportService_GetDevicesServer) error
 }
 

@@ -67,7 +67,7 @@ type Gateway struct {
 	ServiceProfileId string `protobuf:"bytes,16,opt,name=service_profile_id,json=serviceProfileID,proto3" json:"service_profile_id,omitempty"`
 	// operational_status code (according to dictionary table)
 	OpStatusCode int64 `protobuf:"varint,17,opt,name=op_status_code,json=opStatusCode,proto3" json:"op_status_code,omitempty"`
-	// operational_status label (according to dictionary table)
+	// operational_status label (according to dictionary table). Do not modify here
 	OpStatusLabel        string   `protobuf:"bytes,18,opt,name=op_status_label,json=opStatusLabel,proto3" json:"op_status_label,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
