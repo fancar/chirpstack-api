@@ -1,0 +1,81 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "as/external/api/dictionary.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/dictionary/{dic_type}": {
+      "get": {
+        "summary": "GetDictionary returns dictionary by dictionary type",
+        "operationId": "GetDictionary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDictionaryResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dic_type",
+            "description": "type of a dictionary",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DictionaryService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiDictionary": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "format": "int64",
+          "title": "id of the item"
+        },
+        "label": {
+          "type": "string",
+          "title": "value of the item"
+        },
+        "isActual": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true the item is active"
+        }
+      }
+    },
+    "apiGetDictionaryResponse": {
+      "type": "object",
+      "properties": {
+        "dicType": {
+          "type": "string",
+          "title": "type of a dictionary"
+        },
+        "dict": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiDictionary"
+          }
+        }
+      }
+    }
+  }
+}

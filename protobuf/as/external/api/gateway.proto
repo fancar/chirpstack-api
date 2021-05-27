@@ -161,6 +161,12 @@ message Gateway {
 
     // Service-profile ID (UUID string, optional).
     string service_profile_id = 16 [json_name = "serviceProfileID"];
+
+    // operational_status code (according to dictionary table)
+    int64 op_status_code = 17;
+
+    // operational_status label (according to dictionary table). Do not modify here
+    string op_status_label = 18;
 }
 
 message GatewayBoard {

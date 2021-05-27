@@ -529,6 +529,15 @@
         "serviceProfileID": {
           "type": "string",
           "description": "Service-profile ID (UUID string, optional)."
+        },
+        "opStatusCode": {
+          "type": "string",
+          "format": "int64",
+          "title": "operational_status code (according to dictionary table)"
+        },
+        "opStatusLabel": {
+          "type": "string",
+          "title": "operational_status label (according to dictionary table)"
         }
       }
     },
