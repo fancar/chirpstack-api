@@ -13,21 +13,21 @@ import "google/protobuf/empty.proto";
 // DataExportService the service manages all data exports
 service DataExportService {
 
-    // GetGateways download csv-list of all gateways
+    // GetGateways Export gateways
     rpc GetGateways(google.protobuf.Empty) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/gateways"
         };
     }
 
-    // GetUsers download csv-list of all users
+    // GetUsers Export users
     rpc GetUsers(google.protobuf.Empty) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/users"
         };
     }
 
-    // GetDevices download csv-list of all devices 
+    // GetDevices Export devices
     rpc GetDevices(google.protobuf.Empty) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/devices"

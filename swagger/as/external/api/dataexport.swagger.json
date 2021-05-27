@@ -17,7 +17,7 @@
   "paths": {
     "/api/dataexport/devices": {
       "get": {
-        "summary": "GetDevices download csv-list of all devices",
+        "summary": "GetDevices Export devices",
         "operationId": "GetDevices",
         "responses": {
           "200": {
@@ -34,7 +34,7 @@
     },
     "/api/dataexport/gateways": {
       "get": {
-        "summary": "GetGateways download csv-list of all gateways",
+        "summary": "GetGateways Export gateways",
         "operationId": "GetGateways",
         "responses": {
           "200": {
@@ -51,7 +51,7 @@
     },
     "/api/dataexport/users": {
       "get": {
-        "summary": "GetUsers download csv-list of all users",
+        "summary": "GetUsers Export users",
         "operationId": "GetUsers",
         "responses": {
           "200": {

@@ -537,7 +537,7 @@
         },
         "opStatusLabel": {
           "type": "string",
-          "title": "operational_status label (according to dictionary table)"
+          "title": "operational_status label (according to dictionary table). Do not modify here"
         }
       }
     },
