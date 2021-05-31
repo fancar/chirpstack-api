@@ -27,6 +27,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Organization ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "DataExportService"
         ]
@@ -44,6 +54,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Organization ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "DataExportService"
         ]
@@ -61,6 +81,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Organization ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "DataExportService"
         ]

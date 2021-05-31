@@ -5,34 +5,36 @@ package api;
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
 
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
-// import "handyrusty/hr.proto";
-// import "gw/gw.proto";
-// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/empty.proto";
 
 // DataExportService the service manages all data exports
 service DataExportService {
 
     // GetGateways Export gateways
-    rpc GetGateways(google.protobuf.Empty) returns (stream StreamResponse) {
+    rpc GetGateways(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/gateways"
         };
     }
 
     // GetUsers Export users
-    rpc GetUsers(google.protobuf.Empty) returns (stream StreamResponse) {
+    rpc GetUsers(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/users"
         };
     }
 
     // GetDevices Export devices
-    rpc GetDevices(google.protobuf.Empty) returns (stream StreamResponse) {
+    rpc GetDevices(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/devices"
         };
     }       
+}
+
+message DataExportRequest {
+    // Organization ID.
+    int64 org_id = 1;    
 }
 
 message StreamResponse {
