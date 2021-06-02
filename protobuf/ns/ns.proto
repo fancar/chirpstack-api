@@ -169,6 +169,9 @@ service NetworkServerService {
 
     // GetADRAlgorithms returns the available ADR algorithms.
     rpc GetADRAlgorithms(google.protobuf.Empty) returns (GetADRAlgorithmsResponse) {}
+
+    // GetDeviceForExport gets device for export purps
+    rpc GetDeviceForExport(GetDeviceRequest) returns (GetDeviceForExportResponse) {}     
 }
 
 enum RXWindow {
@@ -335,6 +338,29 @@ message GetDeviceResponse {
 
     // Last update timestamp.
     google.protobuf.Timestamp updated_at = 3;
+}
+
+message GetDeviceForExportResponse {
+    // DevEUI.
+    bytes dev_eui = 1;
+
+    // it the device support class B. Data from device_profie
+    bool supports_class_b = 2;
+
+    // it the device support class C. Data from device_profie
+    bool supports_class_c = 3;
+
+    // Data from device_profie
+    string MAC_version = 4;
+
+    // Data from device_profie
+    bool is_disabled = 5;
+
+    // Data from device_profie. If true - device is OTAA, otherwise ABP
+    bool supports_join = 6;
+
+    // nwkSEncKey from last device_activation
+    string nwk_s_enc_key = 7;
 }
 
 message UpdateDeviceRequest {
