@@ -65,9 +65,8 @@ service ApplicationServerService {
     // an application-layer payload would exceed the max. payload size.
     // Note there is no requirement that the number of returned items must be
     // equal to the number of requested items.
-    rpc ReEncryptDeviceQueueItems(ReEncryptDeviceQueueItemsRequest) returns (ReEncryptDeviceQueueItemsResponse) {}    
+    rpc ReEncryptDeviceQueueItems(ReEncryptDeviceQueueItemsRequest) returns (ReEncryptDeviceQueueItemsResponse) {}   
 }
-
 
 message GetOrgByDevEUIRequest {
     // Device EUI (HEX encoded).
