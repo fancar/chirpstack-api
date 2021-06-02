@@ -291,6 +291,9 @@ message DeviceFrameLog {
     uint32 NFCntDown = 20;
     uint32 AFCntDown = 21;
     uint32 ConfFCnt = 22;
+
+    // spreading factor (TxInfo)
+    uint32 sp_fact = 23;
 }
 
 // for RXInfo item in uplink frames
