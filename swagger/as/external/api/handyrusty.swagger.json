@@ -385,6 +385,11 @@
         "ConfFCnt": {
           "type": "integer",
           "format": "int64"
+        },
+        "spFact": {
+          "type": "integer",
+          "format": "int64",
+          "title": "spreading factor (TxInfo)"
         }
       },
       "title": "for storage"
