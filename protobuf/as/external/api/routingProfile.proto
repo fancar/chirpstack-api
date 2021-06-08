@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+option java_package = "io.chirpstack.api.as.external.api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+
+// RoutingProfileService is the service managing as-routing-profiles.
+service RoutingProfileService {
+    // Create creates the given routing-profile.
+    rpc Create(CreateRoutingProfileRequest) returns (CreateRoutingProfileResponse) {
+        option(google.api.http) = {
+            post: "/api/routing-profiles"
+            body: "*"
+        };
+    }
+
+    // Get returns the routing-profile matching the given id.
+    rpc Get(GetRoutingProfileRequest) returns (GetRoutingProfileResponse) {
+        option(google.api.http) = {
+            get: "/api/routing-profiles/{id}"
+        };
+    }
+
+    // Update updates the given routing-profile.
+    rpc Update(UpdateRoutingProfileRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            put: "/api/routing-profiles/{routing_profile.id}"
+            body: "*"
+        };
+    }
+
+    // Delete deletes the routing-profile matching the given id.
+    rpc Delete(DeleteRoutingProfileRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            delete: "/api/routing-profiles/{id}"
+        };
+    }
+
+    // List lists the available routing-profiles.
+    rpc List(ListRoutingProfileRequest) returns (ListRoutingProfileResponse) {
+        option(google.api.http) = {
+            get: "/api/routing-profiles"
+        };
+    }
+}
+
+message RoutingProfile {
+    // Routing-profile ID.
+    int64 id = 1;
+    // Routing-profile name.
+    string name = 2;
+    // Routing profile description
+    string description = 3;
+    // Organization ID.
+    int64 organization_id = 4 [json_name = "organizationID"];
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 5;
+}
+
+
+message CreateRoutingProfileRequest {
+    // Routing-profile object to create.
+    RoutingProfile routing_profile = 1;
+}
+
+message CreateRoutingProfileResponse {
+    // Routing-profile ID.
+    int64 id = 1;
+}
+
+message GetRoutingProfileRequest {
+    // Routing-profile ID.
+    int64 id = 1;
+}
+
+message GetRoutingProfileResponse {
+    // Routing-profile object.
+    RoutingProfile routing_profile = 1;
+}
+
+message UpdateRoutingProfileRequest {
+    // Routing-profile object to update.
+    RoutingProfile routing_profile = 1;
+}
+
+message DeleteRoutingProfileRequest {
+    // Routing-profile ID.
+    int64 id = 1;
+}
+
+message ListRoutingProfileRequest {
+    // Max number of items to return.
+    int64 limit = 1;
+
+    // Offset in the result-set (for pagination).
+    int64 offset = 2;
+
+    // Organization id to filter on.
+    int64 organization_id = 3 [json_name = "organizationID"];
+}
+
+message ListRoutingProfileResponse {
+    // Total number of Routing-profiles.
+    int64 total_count = 1;
+
+    repeated RoutingProfile result = 2;
+}
