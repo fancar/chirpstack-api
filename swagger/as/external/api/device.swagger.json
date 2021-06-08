@@ -45,8 +45,8 @@
             "format": "int64"
           },
           {
-            "name": "applicationID",
-            "description": "Application ID to filter on.",
+            "name": "routingProfileId",
+            "description": "Routing Profile ID to filter on.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -519,10 +519,10 @@
           "type": "string",
           "description": "Name of the device (if left blank, it will be set to the DevEUI)."
         },
-        "applicationID": {
+        "routingProfileID": {
           "type": "string",
           "format": "int64",
-          "description": "ID of the application to which the device must be added.\nIt is possible to move a device to a different application on update,\ngiven that both the old and the new application share the same\nservice-profile."
+          "title": "ID of the routing profile to which the device must be added.\nIt is possible to move a device to a different profile on update,"
         },
         "description": {
           "type": "string",
@@ -560,6 +560,10 @@
           "type": "boolean",
           "format": "boolean",
           "description": "Device is disabled."
+        },
+        "serviceProfileID": {
+          "type": "string",
+          "title": "ID(uuid) of the service profile to which the device must be added.\nIt is possible to move a device to a different profile on update,"
         }
       }
     },
@@ -639,10 +643,10 @@
           "type": "string",
           "description": "Name of the device."
         },
-        "applicationID": {
+        "routingProfileId": {
           "type": "string",
           "format": "int64",
-          "description": "Application ID."
+          "description": "Routing Profile ID."
         },
         "description": {
           "type": "string",

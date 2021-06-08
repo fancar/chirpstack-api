@@ -142,7 +142,11 @@ message Device {
     // It is possible to move a device to a different application on update,
     // given that both the old and the new application share the same
     // service-profile.
-    int64 application_id = 3 [json_name = "applicationID"];
+    // int64 application_id = 3 [json_name = "applicationID"];
+
+    // ID of the routing profile to which the device must be added.
+    // It is possible to move a device to a different profile on update, 
+    int64 routing_profile_id = 3 [json_name = "routingProfileID"];
 
     // Description of the device.
     string description = 4;
@@ -172,6 +176,10 @@ message Device {
 
     // Device is disabled.
     bool is_disabled = 10;
+
+    // ID(uuid) of the service profile to which the device must be added.
+    // It is possible to move a device to a different profile on update, 
+    string service_profile_id = 11 [json_name = "serviceProfileID"];
 }
 
 message DeviceListItem {
@@ -181,8 +189,8 @@ message DeviceListItem {
     // Name of the device.
     string name = 2;
 
-    // Application ID.
-    int64 application_id = 3 [json_name = "applicationID"];
+    // Routing Profile ID.
+    int64 routing_profile_id = 3;
 
     // Description of the device.
     string description = 4;
@@ -285,8 +293,8 @@ message ListDeviceRequest {
     // Offset in the result-set (for pagination).
     int64 offset = 2;
 
-    // Application ID to filter on.
-    int64 application_id = 3 [json_name = "applicationID"];
+    // Routing Profile ID to filter on.
+    int64 routing_profile_id = 3;
 
     // Search on name or DevEUI.
     string search = 4;

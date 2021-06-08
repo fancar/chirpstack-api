@@ -373,7 +373,7 @@ message Application {
 	int64 organization_id = 4 [json_name = "organizationID"];
 
 	// ID of the service profile.
-	string service_profile_id = 5 [json_name = "serviceProfileID"];
+	// string service_profile_id = 5 [json_name = "serviceProfileID"];
 
 	// Payload codec.
     // NOTE: These field have moved to the device-profile and will be removed
@@ -408,7 +408,7 @@ message ApplicationListItem {
 	int64 organization_id = 4 [json_name = "organizationID"];
 
 	// ID of the service profile.
-	string service_profile_id = 5 [json_name = "serviceProfileID"];
+	// string service_profile_id = 5 [json_name = "serviceProfileID"];
 
 	// Service-profile name.
 	string service_profile_name = 6;

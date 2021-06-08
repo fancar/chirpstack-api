@@ -1378,10 +1378,6 @@
           "format": "int64",
           "description": "ID of the organization to which the application belongs.\nAfter create, this can not be modified."
         },
-        "serviceProfileID": {
-          "type": "string",
-          "description": "ID of the service profile."
-        },
         "payloadCodec": {
           "type": "string",
           "description": "Payload codec.\nNOTE: These field have moved to the device-profile and will be removed\nin the next major release. When set, the device-profile payload_ fields\nhave priority over the application payload_ fields."
@@ -1416,10 +1412,6 @@
           "type": "string",
           "format": "int64",
           "description": "ID of the organization to which the application belongs."
-        },
-        "serviceProfileID": {
-          "type": "string",
-          "description": "ID of the service profile."
         },
         "serviceProfileName": {
           "type": "string",
