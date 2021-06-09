@@ -1413,10 +1413,6 @@
           "format": "int64",
           "description": "ID of the organization to which the application belongs."
         },
-        "serviceProfileName": {
-          "type": "string",
-          "description": "Service-profile name."
-        },
         "devCnt": {
           "type": "string",
           "format": "int64",
