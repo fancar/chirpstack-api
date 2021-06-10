@@ -689,6 +689,10 @@
           "type": "string",
           "format": "date-time",
           "description": "The last time the application-server received any data from the device,\nor an empty string when the device never sent any data."
+        },
+        "routingProfileName": {
+          "type": "string",
+          "description": "Routing profile name."
         }
       }
     },

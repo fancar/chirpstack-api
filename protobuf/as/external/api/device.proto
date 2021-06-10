@@ -225,6 +225,9 @@ message DeviceListItem {
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp last_seen_at = 9 [json_name = "lastSeenAt"];
+
+    // Routing profile name.
+    string routing_profile_name = 13;    
 }
 
 message DeviceKeys {
