@@ -59,8 +59,10 @@ message RoutingProfile {
     string description = 3;
     // Organization ID.
     int64 organization_id = 4 [json_name = "organizationID"];
+    // Application services related to appropriate routing profile
+    repeated int64 applications = 5;
     // Created at timestamp.
-    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp created_at = 6;
 }
 
 

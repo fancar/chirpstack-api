@@ -237,6 +237,14 @@
           "format": "int64",
           "description": "Organization ID."
         },
+        "applications": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "title": "Application services related to appropriate routing profile"
+        },
         "createdAt": {
           "type": "string",
           "format": "date-time",
