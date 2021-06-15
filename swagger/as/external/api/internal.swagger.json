@@ -586,6 +586,11 @@
           "items": {
             "$ref": "#/definitions/apiGlobalSearchResult"
           }
+        },
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of searched rows available within the result-set."
         }
       }
     },

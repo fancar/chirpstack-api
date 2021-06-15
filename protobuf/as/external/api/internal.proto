@@ -254,7 +254,9 @@ message GlobalSearchRequest {
 }
 
 message GlobalSearchResponse {
-	repeated GlobalSearchResult result = 1;
+    repeated GlobalSearchResult result = 1;
+      // Total number of searched rows available within the result-set.
+      int64 total_count = 2;
 }
 
 message GlobalSearchResult {
