@@ -290,10 +290,10 @@ message GlobalSearchResult {
 	// Gateway name.
 	string gateway_name = 10;
 
-    // routing profile id.
+    // Routing profile id.
     int64 routing_profile_id = 11 [json_name = "routingProfileID"];
 
-    // routing profile name.
+    // Routing profile name.
     string routing_profile_name = 12;    
 }
 

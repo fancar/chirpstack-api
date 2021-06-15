@@ -827,9 +827,9 @@ type GlobalSearchResult struct {
 	GatewayMac string `protobuf:"bytes,9,opt,name=gateway_mac,json=gatewayMAC,proto3" json:"gateway_mac,omitempty"`
 	// Gateway name.
 	GatewayName string `protobuf:"bytes,10,opt,name=gateway_name,json=gatewayName,proto3" json:"gateway_name,omitempty"`
-	// routing profile id.
+	// Routing profile id.
 	RoutingProfileId int64 `protobuf:"varint,11,opt,name=routing_profile_id,json=routingProfileID,proto3" json:"routing_profile_id,omitempty"`
-	// routing profile name.
+	// Routing profile name.
 	RoutingProfileName   string   `protobuf:"bytes,12,opt,name=routing_profile_name,json=routingProfileName,proto3" json:"routing_profile_name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

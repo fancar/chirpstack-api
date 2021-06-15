@@ -643,11 +643,11 @@
         "routingProfileID": {
           "type": "string",
           "format": "int64",
-          "description": "routing profile id."
+          "description": "Routing profile id."
         },
         "routingProfileName": {
           "type": "string",
-          "description": "routing profile name."
+          "description": "Routing profile name."
         }
       }
     },
