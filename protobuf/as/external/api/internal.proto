@@ -272,11 +272,11 @@ message GlobalSearchResult {
 	// Organization name.
 	string organization_name = 4;
 
-	// Application id.
-	int64 application_id = 5 [json_name = "applicationID"];
+	// routing profile id.
+	int64 routing_profile_id = 5 [json_name = "routingProfileID"];
 
-	// Application name.
-	string application_name = 6;
+	// routing profile name.
+	string routing_profile_name = 6;
 
 	// Device DevEUI (hex encoded).
 	string device_dev_eui = 7 [json_name = "deviceDevEUI"];
