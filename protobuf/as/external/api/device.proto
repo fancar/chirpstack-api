@@ -315,7 +315,10 @@ message ListDeviceRequest {
 	string orderBy = 8;		
 
 	// sort direction
-	string order = 9;	
+	string order = 9;
+
+    // Organization ID to filter on.
+    int64 organization_id = 10;
 }
 
 message ListDeviceResponse {

@@ -86,6 +86,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "organizationId",
+            "description": "Organization ID to filter on.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
