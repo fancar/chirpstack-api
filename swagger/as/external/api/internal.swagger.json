@@ -615,14 +615,14 @@
           "type": "string",
           "description": "Organization name."
         },
-        "routingProfileID": {
+        "applicationID": {
           "type": "string",
           "format": "int64",
-          "description": "routing profile id."
+          "description": "Application id."
         },
-        "routingProfileName": {
+        "applicationName": {
           "type": "string",
-          "description": "routing profile name."
+          "description": "Application name."
         },
         "deviceDevEUI": {
           "type": "string",
@@ -639,6 +639,15 @@
         "gatewayName": {
           "type": "string",
           "description": "Gateway name."
+        },
+        "routingProfileID": {
+          "type": "string",
+          "format": "int64",
+          "description": "routing profile id."
+        },
+        "routingProfileName": {
+          "type": "string",
+          "description": "routing profile name."
         }
       }
     },
