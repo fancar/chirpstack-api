@@ -572,6 +572,10 @@
         "serviceProfileID": {
           "type": "string",
           "title": "ID(uuid) of the service profile to which the device must be added.\nIt is possible to move a device to a different profile on update,"
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "description": "Device location."
         }
       }
     },
@@ -701,6 +705,10 @@
         "routingProfileName": {
           "type": "string",
           "description": "Routing profile name."
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "description": "Device location."
         }
       }
     },

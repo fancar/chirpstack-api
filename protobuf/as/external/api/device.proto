@@ -180,6 +180,9 @@ message Device {
     // ID(uuid) of the service profile to which the device must be added.
     // It is possible to move a device to a different profile on update, 
     string service_profile_id = 11 [json_name = "serviceProfileID"];
+
+    // Device location.
+	common.Location location = 12;
 }
 
 message DeviceListItem {
@@ -228,6 +231,9 @@ message DeviceListItem {
 
     // Routing profile name.
     string routing_profile_name = 13;    
+
+    // Device location.
+	common.Location location = 14;
 }
 
 message DeviceKeys {
