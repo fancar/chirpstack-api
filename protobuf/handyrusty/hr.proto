@@ -5,6 +5,7 @@ package hr;
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/handyrusty";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 import "common/common.proto";
 import "gw/gw.proto";
 
@@ -37,7 +38,56 @@ service HandyRustyService {
     rpc StreamDeviceFramesLogCSV(GetDeviceFramesLogRequest) returns (stream StreamDeviceFramesLogCSVResponse) {}
 
     // GetCurrentState returns items for monitoring purposes.
-    rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}    
+    rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}
+
+    // Store to clickhouse replies of integration event notifications
+    rpc StoreIntegrationReplies(StoreIntegrationRepliesRequest) returns (StoreIntegrationRepliesResponse) {}
+
+    // Get replies of integration event notifications
+    rpc GetIntegrationReplies(GetIntegrationRepliesRequest) returns (GetIntegrationRepliesResponse) {}
+}
+
+message GetIntegrationRepliesRequest {
+    // you can specify offset (for pagination)
+    uint32 offset = 1;
+
+    // you can specify rows limit
+    uint32 limit = 2;
+
+    // You can specify start DateTime point.
+    google.protobuf.Timestamp start = 3;
+
+    // You can specify end DateTime point.
+    google.protobuf.Timestamp end = 4;
+
+}
+
+message GetIntegrationRepliesResponse {
+    // total numner of selected rows
+    uint32 items_total = 1;
+    // the array of selected replies
+    repeated IntegrationReply data = 2;
+}
+
+message IntegrationReply {
+    // url from integration parameters where event informations sending
+    string integration_url = 1;
+    // http status code of sent event (protobuf/as/integration/integration.proto) 
+    uint32 status_code = 2;
+    // id of application where integration linked to
+    int64 application_id = 3;
+    // id of organization where integration linked to
+    int64 organisation_id = 4;
+    // time of receining reply
+    google.protobuf.Timestamp time = 5;
+}
+
+message StoreIntegrationRepliesRequest {
+    repeated IntegrationReply replies = 1;
+}
+
+message StoreIntegrationRepliesResponse {
+    uint32 stored_count = 1;
 }
 
 message GetCurrentStateResponse {
@@ -46,7 +96,6 @@ message GetCurrentStateResponse {
 
     // the same as previuos in unixTime format
     int64 wl_last_packet_unix = 2;
-
 }
 
 message StreamDeviceFramesLogCSVResponse {
@@ -59,7 +108,6 @@ message StreamDeviceFramesLogCSVResponse {
         uint32 rows = 3;
         bytes chunk = 4;
     }
-    
 }
 
 message GetDeviceFramesLogRequest {

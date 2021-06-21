@@ -59,4 +59,10 @@ service HandyRustyService {
             get: "/api/handy-rusty/current-state"
         };        
     } 
+    // 
+    rpc GetIntegrationReplies(hr.GetIntegrationRepliesRequest) returns (hr.GetIntegrationRepliesResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/integration/replies"
+        };        
+    } 
 }
