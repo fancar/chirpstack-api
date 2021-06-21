@@ -538,6 +538,10 @@
         "opStatusLabel": {
           "type": "string",
           "title": "operational_status label (according to dictionary table). Do not modify here"
+        },
+        "networkServerName": {
+          "type": "string",
+          "description": "Network-server Name on which the gateway is provisioned."
         }
       }
     },

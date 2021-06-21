@@ -131,7 +131,7 @@ message Gateway {
 
 	// Network-server ID on which the gateway is provisioned.
 	int64 network_server_id = 7 [json_name = "networkServerID"];
-
+	
 	// Gateway-profile ID (UUID string, optional).
 	string gateway_profile_id = 8 [json_name = "gatewayProfileID"];
 
@@ -167,6 +167,9 @@ message Gateway {
 
     // operational_status label (according to dictionary table). Do not modify here
     string op_status_label = 18;
+
+	// Network-server Name on which the gateway is provisioned.
+	string network_server_name = 19 [json_name = "networkServerName"];
 }
 
 message GatewayBoard {
