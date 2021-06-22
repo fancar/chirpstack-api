@@ -9,11 +9,11 @@ import (
 	common "github.com/brocaar/chirpstack-api/go/v3/common"
 	gw "github.com/brocaar/chirpstack-api/go/v3/gw"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -34,12 +34,12 @@ type GetIntegrationRepliesRequest struct {
 	// you can specify rows limit
 	Limit uint32 `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	// You can specify start DateTime point.
-	Start *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start,proto3" json:"start,omitempty"`
+	Start *timestamp.Timestamp `protobuf:"bytes,3,opt,name=start,proto3" json:"start,omitempty"`
 	// You can specify end DateTime point.
-	End                  *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=end,proto3" json:"end,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	End                  *timestamp.Timestamp `protobuf:"bytes,4,opt,name=end,proto3" json:"end,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetIntegrationRepliesRequest) Reset()         { *m = GetIntegrationRepliesRequest{} }
@@ -81,14 +81,14 @@ func (m *GetIntegrationRepliesRequest) GetLimit() uint32 {
 	return 0
 }
 
-func (m *GetIntegrationRepliesRequest) GetStart() *timestamppb.Timestamp {
+func (m *GetIntegrationRepliesRequest) GetStart() *timestamp.Timestamp {
 	if m != nil {
 		return m.Start
 	}
 	return nil
 }
 
-func (m *GetIntegrationRepliesRequest) GetEnd() *timestamppb.Timestamp {
+func (m *GetIntegrationRepliesRequest) GetEnd() *timestamp.Timestamp {
 	if m != nil {
 		return m.End
 	}
@@ -154,10 +154,10 @@ type IntegrationReply struct {
 	// id of organization where integration linked to
 	OrganisationId int64 `protobuf:"varint,4,opt,name=organisation_id,json=organisationId,proto3" json:"organisation_id,omitempty"`
 	// time of receining reply
-	Time                 *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time,proto3" json:"time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	Time                 *timestamp.Timestamp `protobuf:"bytes,5,opt,name=time,proto3" json:"time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *IntegrationReply) Reset()         { *m = IntegrationReply{} }
@@ -213,7 +213,7 @@ func (m *IntegrationReply) GetOrganisationId() int64 {
 	return 0
 }
 
-func (m *IntegrationReply) GetTime() *timestamppb.Timestamp {
+func (m *IntegrationReply) GetTime() *timestamp.Timestamp {
 	if m != nil {
 		return m.Time
 	}
@@ -1973,7 +1973,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HandyRustyServiceClient interface {
 	// GetVersion returns the ChirpStack Network Server version.
-	GetVersion(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
+	GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
 	GetDeviceCounters(ctx context.Context, in *GetDeviceCountersRequest, opts ...grpc.CallOption) (*GetDeviceCountersResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
@@ -1989,7 +1989,7 @@ type HandyRustyServiceClient interface {
 	// StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
 	StreamDeviceFramesLogCSV(ctx context.Context, in *GetDeviceFramesLogRequest, opts ...grpc.CallOption) (HandyRustyService_StreamDeviceFramesLogCSVClient, error)
 	// GetCurrentState returns items for monitoring purposes.
-	GetCurrentState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCurrentStateResponse, error)
+	GetCurrentState(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetCurrentStateResponse, error)
 	// Store to clickhouse replies of integration event notifications
 	StoreIntegrationReplies(ctx context.Context, in *StoreIntegrationRepliesRequest, opts ...grpc.CallOption) (*StoreIntegrationRepliesResponse, error)
 	// Get replies of integration event notifications
@@ -2004,7 +2004,7 @@ func NewHandyRustyServiceClient(cc grpc.ClientConnInterface) HandyRustyServiceCl
 	return &handyRustyServiceClient{cc}
 }
 
-func (c *handyRustyServiceClient) GetVersion(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
+func (c *handyRustyServiceClient) GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
 	out := new(GetVersionResponse)
 	err := c.cc.Invoke(ctx, "/hr.HandyRustyService/GetVersion", in, out, opts...)
 	if err != nil {
@@ -2099,7 +2099,7 @@ func (x *handyRustyServiceStreamDeviceFramesLogCSVClient) Recv() (*StreamDeviceF
 	return m, nil
 }
 
-func (c *handyRustyServiceClient) GetCurrentState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCurrentStateResponse, error) {
+func (c *handyRustyServiceClient) GetCurrentState(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetCurrentStateResponse, error) {
 	out := new(GetCurrentStateResponse)
 	err := c.cc.Invoke(ctx, "/hr.HandyRustyService/GetCurrentState", in, out, opts...)
 	if err != nil {
@@ -2129,7 +2129,7 @@ func (c *handyRustyServiceClient) GetIntegrationReplies(ctx context.Context, in 
 // HandyRustyServiceServer is the server API for HandyRustyService service.
 type HandyRustyServiceServer interface {
 	// GetVersion returns the ChirpStack Network Server version.
-	GetVersion(context.Context, *emptypb.Empty) (*GetVersionResponse, error)
+	GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
 	GetDeviceCounters(context.Context, *GetDeviceCountersRequest) (*GetDeviceCountersResponse, error)
 	// GetDeviceCounters returns the summary-counters log-items for given organisation_id
@@ -2145,7 +2145,7 @@ type HandyRustyServiceServer interface {
 	// StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
 	StreamDeviceFramesLogCSV(*GetDeviceFramesLogRequest, HandyRustyService_StreamDeviceFramesLogCSVServer) error
 	// GetCurrentState returns items for monitoring purposes.
-	GetCurrentState(context.Context, *emptypb.Empty) (*GetCurrentStateResponse, error)
+	GetCurrentState(context.Context, *empty.Empty) (*GetCurrentStateResponse, error)
 	// Store to clickhouse replies of integration event notifications
 	StoreIntegrationReplies(context.Context, *StoreIntegrationRepliesRequest) (*StoreIntegrationRepliesResponse, error)
 	// Get replies of integration event notifications
@@ -2156,7 +2156,7 @@ type HandyRustyServiceServer interface {
 type UnimplementedHandyRustyServiceServer struct {
 }
 
-func (*UnimplementedHandyRustyServiceServer) GetVersion(ctx context.Context, req *emptypb.Empty) (*GetVersionResponse, error) {
+func (*UnimplementedHandyRustyServiceServer) GetVersion(ctx context.Context, req *empty.Empty) (*GetVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
 }
 func (*UnimplementedHandyRustyServiceServer) GetDeviceCounters(ctx context.Context, req *GetDeviceCountersRequest) (*GetDeviceCountersResponse, error) {
@@ -2180,7 +2180,7 @@ func (*UnimplementedHandyRustyServiceServer) GetDeviceFramesLog(ctx context.Cont
 func (*UnimplementedHandyRustyServiceServer) StreamDeviceFramesLogCSV(req *GetDeviceFramesLogRequest, srv HandyRustyService_StreamDeviceFramesLogCSVServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceFramesLogCSV not implemented")
 }
-func (*UnimplementedHandyRustyServiceServer) GetCurrentState(ctx context.Context, req *emptypb.Empty) (*GetCurrentStateResponse, error) {
+func (*UnimplementedHandyRustyServiceServer) GetCurrentState(ctx context.Context, req *empty.Empty) (*GetCurrentStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentState not implemented")
 }
 func (*UnimplementedHandyRustyServiceServer) StoreIntegrationReplies(ctx context.Context, req *StoreIntegrationRepliesRequest) (*StoreIntegrationRepliesResponse, error) {
@@ -2195,7 +2195,7 @@ func RegisterHandyRustyServiceServer(s *grpc.Server, srv HandyRustyServiceServer
 }
 
 func _HandyRustyService_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2207,7 +2207,7 @@ func _HandyRustyService_GetVersion_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/hr.HandyRustyService/GetVersion",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HandyRustyServiceServer).GetVersion(ctx, req.(*emptypb.Empty))
+		return srv.(HandyRustyServiceServer).GetVersion(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2342,7 +2342,7 @@ func (x *handyRustyServiceStreamDeviceFramesLogCSVServer) Send(m *StreamDeviceFr
 }
 
 func _HandyRustyService_GetCurrentState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2354,7 +2354,7 @@ func _HandyRustyService_GetCurrentState_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/hr.HandyRustyService/GetCurrentState",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HandyRustyServiceServer).GetCurrentState(ctx, req.(*emptypb.Empty))
+		return srv.(HandyRustyServiceServer).GetCurrentState(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

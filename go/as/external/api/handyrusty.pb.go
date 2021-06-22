@@ -9,11 +9,11 @@ import (
 	gw "github.com/brocaar/chirpstack-api/go/v3/gw"
 	handyrusty "github.com/brocaar/chirpstack-api/go/v3/handyrusty"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	math "math"
 )
 
@@ -92,7 +92,7 @@ type HandyRustyServiceClient interface {
 	//   * The data is transferred by chunks (stream);
 	//   * This endpoint does not work from a web-browser!
 	StreamDeviceFramesLogCSV(ctx context.Context, in *handyrusty.GetDeviceFramesLogRequest, opts ...grpc.CallOption) (HandyRustyService_StreamDeviceFramesLogCSVClient, error)
-	GetCurrentState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*handyrusty.GetCurrentStateResponse, error)
+	GetCurrentState(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*handyrusty.GetCurrentStateResponse, error)
 	//
 	GetIntegrationReplies(ctx context.Context, in *handyrusty.GetIntegrationRepliesRequest, opts ...grpc.CallOption) (*handyrusty.GetIntegrationRepliesResponse, error)
 }
@@ -173,7 +173,7 @@ func (x *handyRustyServiceStreamDeviceFramesLogCSVClient) Recv() (*handyrusty.St
 	return m, nil
 }
 
-func (c *handyRustyServiceClient) GetCurrentState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*handyrusty.GetCurrentStateResponse, error) {
+func (c *handyRustyServiceClient) GetCurrentState(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*handyrusty.GetCurrentStateResponse, error) {
 	out := new(handyrusty.GetCurrentStateResponse)
 	err := c.cc.Invoke(ctx, "/api.HandyRustyService/GetCurrentState", in, out, opts...)
 	if err != nil {
@@ -205,7 +205,7 @@ type HandyRustyServiceServer interface {
 	//   * The data is transferred by chunks (stream);
 	//   * This endpoint does not work from a web-browser!
 	StreamDeviceFramesLogCSV(*handyrusty.GetDeviceFramesLogRequest, HandyRustyService_StreamDeviceFramesLogCSVServer) error
-	GetCurrentState(context.Context, *emptypb.Empty) (*handyrusty.GetCurrentStateResponse, error)
+	GetCurrentState(context.Context, *empty.Empty) (*handyrusty.GetCurrentStateResponse, error)
 	//
 	GetIntegrationReplies(context.Context, *handyrusty.GetIntegrationRepliesRequest) (*handyrusty.GetIntegrationRepliesResponse, error)
 }
@@ -229,7 +229,7 @@ func (*UnimplementedHandyRustyServiceServer) GetDeviceFramesLog(ctx context.Cont
 func (*UnimplementedHandyRustyServiceServer) StreamDeviceFramesLogCSV(req *handyrusty.GetDeviceFramesLogRequest, srv HandyRustyService_StreamDeviceFramesLogCSVServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamDeviceFramesLogCSV not implemented")
 }
-func (*UnimplementedHandyRustyServiceServer) GetCurrentState(ctx context.Context, req *emptypb.Empty) (*handyrusty.GetCurrentStateResponse, error) {
+func (*UnimplementedHandyRustyServiceServer) GetCurrentState(ctx context.Context, req *empty.Empty) (*handyrusty.GetCurrentStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentState not implemented")
 }
 func (*UnimplementedHandyRustyServiceServer) GetIntegrationReplies(ctx context.Context, req *handyrusty.GetIntegrationRepliesRequest) (*handyrusty.GetIntegrationRepliesResponse, error) {
@@ -334,7 +334,7 @@ func (x *handyRustyServiceStreamDeviceFramesLogCSVServer) Send(m *handyrusty.Str
 }
 
 func _HandyRustyService_GetCurrentState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -346,7 +346,7 @@ func _HandyRustyService_GetCurrentState_Handler(srv interface{}, ctx context.Con
 		FullMethod: "/api.HandyRustyService/GetCurrentState",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HandyRustyServiceServer).GetCurrentState(ctx, req.(*emptypb.Empty))
+		return srv.(HandyRustyServiceServer).GetCurrentState(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
