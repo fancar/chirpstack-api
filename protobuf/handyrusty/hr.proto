@@ -74,12 +74,14 @@ message IntegrationReply {
     string integration_url = 1;
     // http status code of sent event (protobuf/as/integration/integration.proto) 
     uint32 status_code = 2;
+    // description of http status code
+    string status_code_description = 3;
     // id of application where integration linked to
-    int64 application_id = 3;
+    int64 application_id = 4;
     // id of organization where integration linked to
-    int64 organisation_id = 4;
+    int64 organisation_id = 5;
     // time of receining reply
-    google.protobuf.Timestamp time = 5;
+    google.protobuf.Timestamp time = 6;
 }
 
 message StoreIntegrationRepliesRequest {
