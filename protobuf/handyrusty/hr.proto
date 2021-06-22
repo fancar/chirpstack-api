@@ -50,15 +50,16 @@ service HandyRustyService {
 message GetIntegrationRepliesRequest {
     // you can specify offset (for pagination)
     uint32 offset = 1;
-
     // you can specify rows limit
     uint32 limit = 2;
-
+    // id of organization where integration linked to
+    int64 organisation_id = 3;
+    // id of routing profile
+    int64 routing_profile_id = 4;
     // You can specify start DateTime point.
-    google.protobuf.Timestamp start = 3;
-
+    google.protobuf.Timestamp start = 5;
     // You can specify end DateTime point.
-    google.protobuf.Timestamp end = 4;
+    google.protobuf.Timestamp end = 6;
 
 }
 
@@ -78,8 +79,8 @@ message IntegrationReply {
     string status_code_description = 3;
     // id of application where integration linked to
     int64 application_id = 4;
-    // id of organization where integration linked to
-    int64 organisation_id = 5;
+    // id of device
+    int64 device_id = 5;
     // time of receining reply
     google.protobuf.Timestamp time = 6;
 }
