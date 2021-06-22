@@ -41,7 +41,7 @@ service HandyRustyService {
     rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}
 
     // Store to clickhouse replies of integration event notifications
-    rpc StoreIntegrationReplies(StoreIntegrationRepliesRequest) returns (StoreIntegrationRepliesResponse) {}
+    rpc StoreIntegrationReplies(StoreIntegrationReplyRequest) returns (StoreIntegrationRepliesResponse) {}
 
     // Get replies of integration event notifications
     rpc GetIntegrationReplies(GetIntegrationRepliesRequest) returns (GetIntegrationRepliesResponse) {}
@@ -85,8 +85,8 @@ message IntegrationReply {
     google.protobuf.Timestamp time = 6;
 }
 
-message StoreIntegrationRepliesRequest {
-    repeated IntegrationReply replies = 1;
+message StoreIntegrationReplyRequest {
+    IntegrationReply repliy = 1;
 }
 
 message StoreIntegrationRepliesResponse {
