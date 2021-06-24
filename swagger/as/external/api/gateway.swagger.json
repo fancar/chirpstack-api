@@ -942,6 +942,11 @@
     "apiGwTaskResults": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Task ID."
+        },
         "execID": {
           "type": "string",
           "description": "Execution ID."

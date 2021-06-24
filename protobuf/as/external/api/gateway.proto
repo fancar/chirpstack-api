@@ -590,23 +590,26 @@ message StreamGatewayTaskResultResponse {
 }
 
 message GwTaskResults {
+    // Task ID.
+    int64 id = 1;	
+
     // Execution ID.
-    string exec_id = 1 [json_name = "execID"];	
+    string exec_id = 2 [json_name = "execID"];	
 
 	// Created at timestamp.
-	google.protobuf.Timestamp updated_at = 2;
+	google.protobuf.Timestamp updated_at = 3;
 
     // command that had been executed on gateway
-    string cmd = 3;
+    string cmd = 4;
 
     // stderr by the command executed
-    bytes stderr = 4;
+    bytes stderr = 5;
 
     // error recieved from gateway bridge
-    string error = 5;
+    string error = 6;
 
     // description
-    string description = 6;      
+    string description = 7;      
 
 
 }
