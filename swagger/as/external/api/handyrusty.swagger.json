@@ -185,6 +185,72 @@
         ]
       }
     },
+    "/api/handy-rusty/integration/replies": {
+      "get": {
+        "operationId": "GetIntegrationReplies",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetIntegrationRepliesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offset",
+            "description": "you can specify offset (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "description": "you can specify rows limit.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "organisationId",
+            "description": "id of organization where integration linked to.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "routingProfileId",
+            "description": "id of routing profile.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "start",
+            "description": "You can specify start DateTime point.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "end",
+            "description": "You can specify end DateTime point.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
     "/api/handy-rusty/rc/exec-command": {
       "post": {
         "summary": "ExecCommand sends the command to execute on gw. It waits 30 sec for an answer from gw",
@@ -615,6 +681,56 @@
             "$ref": "#/definitions/hrFrameSpeed"
           },
           "title": "list counters with frames speed"
+        }
+      }
+    },
+    "hrGetIntegrationRepliesResponse": {
+      "type": "object",
+      "properties": {
+        "itemsTotal": {
+          "type": "integer",
+          "format": "int64",
+          "title": "total numner of selected rows"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrIntegrationReply"
+          },
+          "title": "the array of selected replies"
+        }
+      }
+    },
+    "hrIntegrationReply": {
+      "type": "object",
+      "properties": {
+        "integrationUrl": {
+          "type": "string",
+          "title": "url from integration parameters where event informations sending"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "http status code of sent event (protobuf/as/integration/integration.proto)"
+        },
+        "statusCodeDescription": {
+          "type": "string",
+          "title": "description of http status code"
+        },
+        "applicationId": {
+          "type": "string",
+          "format": "int64",
+          "title": "id of application where integration linked to"
+        },
+        "devEUI": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device EUI."
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "title": "time of receining reply"
         }
       }
     },

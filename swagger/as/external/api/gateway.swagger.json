@@ -130,6 +130,94 @@
         ]
       }
     },
+    "/api/gateways/logs": {
+      "get": {
+        "summary": "Logs lists the gateways.",
+        "operationId": "Logs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiLogsGatewayResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Max number of nodes to return in the result-set.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "description": "Offset of the result-set (for pagination).",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "organizationID",
+            "description": "ID of the organization for which to filter on, when left blank the\nresponse will return all gateways to which the user has access to.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "orderBy",
+            "description": "sort list by name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "sort direction.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter.code",
+            "description": "code of event.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filter.startTimestamp",
+            "description": "Timestamp to start from.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "filter.endTimestamp",
+            "description": "Timestamp until to get from.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
     "/api/gateways/{gateway.id}": {
       "put": {
         "summary": "Update updates the gateway matching the given mac address.",
@@ -884,6 +972,62 @@
             "$ref": "#/definitions/apiGatewayMonItem"
           },
           "description": "Nodes within this result-set."
+        }
+      }
+    },
+    "apiLogsGatewayRequestFilter": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "code of event"
+        },
+        "startTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp to start from."
+        },
+        "endTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp until to get from."
+        }
+      }
+    },
+    "apiLogsGatewayResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of nodes available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiLogsGwItem"
+          },
+          "title": "result array"
+        }
+      }
+    },
+    "apiLogsGwItem": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "code of event"
+        },
+        "name": {
+          "type": "string",
+          "title": "name of event"
         }
       }
     },
