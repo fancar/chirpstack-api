@@ -166,7 +166,7 @@
     },
     "/api/gateways/{gateway_id}/frames": {
       "get": {
-        "summary": "StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.\nNotes:\n  * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.\n  * This endpoint does not work from a web-browser.",
+        "summary": "StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.\nNotes:\n  * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.\n  (!) websocket required! The endpoint does not work from a web-swagger.",
         "operationId": "StreamFrameLogs",
         "responses": {
           "200": {
@@ -291,6 +291,40 @@
         ]
       }
     },
+    "/api/gateways/{gateway_id}/task-result": {
+      "get": {
+        "summary": "GetGatewayTaskResult get results for gateway that previously recieved during\n  ExecCommand in background mode\n  (!) websocket required! The endpoint does not work from a web-swagger.",
+        "operationId": "GetGatewayTaskResult",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "$ref": "#/x-stream-definitions/apiStreamGatewayTaskResultResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gateway_id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "execId",
+            "description": "Exec Command ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
     "/api/gateways/{id}": {
       "get": {
         "summary": "Get returns the gateway for the requested mac address.",
@@ -324,6 +358,32 @@
             "description": "A successful response.",
             "schema": {
               "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
+    "/api/gateways/{id}/task-results": {
+      "get": {
+        "summary": "GetTaskResults lists the gateway tasks had been done by ExecCommand in background mode",
+        "operationId": "GetTaskResults",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetTaskResultsResponse"
             }
           }
         },
@@ -813,6 +873,17 @@
         }
       }
     },
+    "apiGetTaskResultsResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiGwTaskResults"
+          }
+        }
+      }
+    },
     "apiGwItemActilityStyled": {
       "type": "object",
       "properties": {
@@ -838,6 +909,47 @@
         },
         "statistics": {
           "$ref": "#/definitions/apiStatsItemActilityStyled"
+        }
+      }
+    },
+    "apiGwTaskResults": {
+      "type": "object",
+      "properties": {
+        "execId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Execution ID."
+        },
+        "gatewayID": {
+          "type": "string",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "cmd": {
+          "type": "string",
+          "title": "command that had been executed on gateway"
+        },
+        "stdout": {
+          "type": "string",
+          "format": "byte",
+          "title": "stdout by the command"
+        },
+        "stderr": {
+          "type": "string",
+          "format": "byte",
+          "title": "stderr by the command executed"
+        },
+        "error": {
+          "type": "string",
+          "title": "error recieved from gateway bridge"
+        },
+        "description": {
+          "type": "string",
+          "title": "description"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
         }
       }
     },
@@ -949,6 +1061,27 @@
         "downlinkFrame": {
           "$ref": "#/definitions/apiDownlinkFrameLog",
           "description": "Contains a downlink frame."
+        }
+      }
+    },
+    "apiStreamGatewayTaskResultResponse": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "rows": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "chunk": {
+          "type": "string",
+          "format": "byte"
         }
       }
     },
@@ -1367,6 +1500,18 @@
         }
       },
       "title": "Stream result of apiStreamGatewayFrameLogsResponse"
+    },
+    "apiStreamGatewayTaskResultResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/apiStreamGatewayTaskResultResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of apiStreamGatewayTaskResultResponse"
     }
   }
 }

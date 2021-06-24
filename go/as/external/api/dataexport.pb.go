@@ -238,10 +238,13 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DataExportServiceClient interface {
 	// GetGateways Export gateways
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
 	GetGateways(ctx context.Context, in *DataExportRequest, opts ...grpc.CallOption) (DataExportService_GetGatewaysClient, error)
 	// GetUsers Export users
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
 	GetUsers(ctx context.Context, in *DataExportRequest, opts ...grpc.CallOption) (DataExportService_GetUsersClient, error)
 	// GetDevices Export devices
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
 	GetDevices(ctx context.Context, in *DataExportRequest, opts ...grpc.CallOption) (DataExportService_GetDevicesClient, error)
 }
 
@@ -352,10 +355,13 @@ func (x *dataExportServiceGetDevicesClient) Recv() (*StreamResponse, error) {
 // DataExportServiceServer is the server API for DataExportService service.
 type DataExportServiceServer interface {
 	// GetGateways Export gateways
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
 	GetGateways(*DataExportRequest, DataExportService_GetGatewaysServer) error
 	// GetUsers Export users
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
 	GetUsers(*DataExportRequest, DataExportService_GetUsersServer) error
 	// GetDevices Export devices
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
 	GetDevices(*DataExportRequest, DataExportService_GetDevicesServer) error
 }
 

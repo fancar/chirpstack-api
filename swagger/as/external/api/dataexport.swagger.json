@@ -17,7 +17,7 @@
   "paths": {
     "/api/dataexport/devices": {
       "get": {
-        "summary": "GetDevices Export devices",
+        "summary": "GetDevices Export devices\n  (!) websocket required! The endpoint does not work from a web-swagger.",
         "operationId": "GetDevices",
         "responses": {
           "200": {
@@ -44,7 +44,7 @@
     },
     "/api/dataexport/gateways": {
       "get": {
-        "summary": "GetGateways Export gateways",
+        "summary": "GetGateways Export gateways\n  (!) websocket required! The endpoint does not work from a web-swagger.",
         "operationId": "GetGateways",
         "responses": {
           "200": {
@@ -71,7 +71,7 @@
     },
     "/api/dataexport/users": {
       "get": {
-        "summary": "GetUsers Export users",
+        "summary": "GetUsers Export users\n  (!) websocket required! The endpoint does not work from a web-swagger.",
         "operationId": "GetUsers",
         "responses": {
           "200": {
