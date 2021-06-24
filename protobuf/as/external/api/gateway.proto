@@ -508,8 +508,8 @@ message GetGatewayTaskResultRequest {
 	// Gateway ID (HEX encoded).
 	string gateway_id = 1 [json_name = "gatewayID"];
 
-    // Exec Command ID.
-    int64 exec_id = 2;    
+    // ID in table gateway_tasks.
+    int64 id = 2;    
 }
 
 message StreamGatewayTaskResultResponse {
@@ -526,27 +526,24 @@ message StreamGatewayTaskResultResponse {
 
 message GwTaskResults {
     // Execution ID.
-    bytes exec_id = 1;	
-	// Gateway ID (HEX encoded).
-	string gateway_id = 2 [json_name = "gatewayID"];
+    string exec_id = 1 [json_name = "execID"];	
+
+	// Created at timestamp.
+	google.protobuf.Timestamp updated_at = 2;
 
     // command that had been executed on gateway
     string cmd = 3;
-    
-    // stdout by the command
-    bytes stdout = 4;
 
     // stderr by the command executed
-    bytes stderr = 5;
+    bytes stderr = 4;
 
     // error recieved from gateway bridge
-    string error = 6;
+    string error = 5;
 
     // description
-    string description = 7;      
+    string description = 6;      
 
-	// Created at timestamp.
-	google.protobuf.Timestamp created_at = 8;
+
 }
 
 message GetTaskResultsResponse {

@@ -444,7 +444,7 @@ message GatewayTaskResponseData {
 }
 
 message GatewayTaskResult {
-    oneof size {
+    oneof result {
         GatewayTaskResponseData metadata = 1;
 
         // stdin chunk

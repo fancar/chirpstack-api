@@ -312,8 +312,8 @@
             "type": "string"
           },
           {
-            "name": "execId",
-            "description": "Exec Command ID.",
+            "name": "id",
+            "description": "ID in table gateway_tasks.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -915,23 +915,18 @@
     "apiGwTaskResults": {
       "type": "object",
       "properties": {
-        "execId": {
+        "execID": {
           "type": "string",
-          "format": "byte",
           "description": "Execution ID."
         },
-        "gatewayID": {
+        "updatedAt": {
           "type": "string",
-          "description": "Gateway ID (HEX encoded)."
+          "format": "date-time",
+          "description": "Created at timestamp."
         },
         "cmd": {
           "type": "string",
           "title": "command that had been executed on gateway"
-        },
-        "stdout": {
-          "type": "string",
-          "format": "byte",
-          "title": "stdout by the command"
         },
         "stderr": {
           "type": "string",
@@ -945,11 +940,6 @@
         "description": {
           "type": "string",
           "title": "description"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Created at timestamp."
         }
       }
     },
