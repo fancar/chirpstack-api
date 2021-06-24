@@ -86,7 +86,12 @@ message IntegrationReply {
 }
 
 message StoreIntegrationReplyRequest {
-    IntegrationReply repliy = 1;
+    // Organization ID
+    int64 organisation_id = 1;
+    // AS Routing Profile ID
+    int64 routing_profile_id = 2;
+    // reply for saving
+    IntegrationReply repliy = 3;
 }
 
 message StoreIntegrationReplyResponse {
