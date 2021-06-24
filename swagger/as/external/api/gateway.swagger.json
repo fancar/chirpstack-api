@@ -319,7 +319,7 @@
       }
     },
     "/api/gateways/{gateway_id}/task-result": {
-      "get": {
+      "post": {
         "summary": "GetGatewayTaskResult get results for gateway that previously recieved during\n  ExecCommand in background mode\n  (!) websocket required! The endpoint does not work from a web-swagger.",
         "operationId": "GetGatewayTaskResult",
         "responses": {
@@ -337,14 +337,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "id",
-            "description": "ID in table gateway_tasks.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
           }
         ],
         "tags": [

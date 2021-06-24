@@ -121,7 +121,7 @@ service GatewayService {
     //   (!) websocket required! The endpoint does not work from a web-swagger.
     rpc GetGatewayTaskResult(GetGatewayTaskResultRequest) returns (stream StreamGatewayTaskResultResponse) {
         option (google.api.http) = {
-            get: "/api/gateways/{gateway_id}/task-result"
+            post: "/api/gateways/{gateway_id}/task-result"
         };
     }
 
