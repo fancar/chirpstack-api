@@ -470,6 +470,16 @@
         "command": {
           "type": "string",
           "title": "command that will be executed on gateway (according to the gw config)"
+        },
+        "timeout": {
+          "type": "integer",
+          "format": "int64",
+          "title": "You can set timeout for the command execution. Default 30 seconds. Range 1-1000"
+        },
+        "backgroundTask": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Background task execution. If set true, the result will be saved in app-db.\n Allows to get large amount of data from devices asynchronously."
         }
       }
     },

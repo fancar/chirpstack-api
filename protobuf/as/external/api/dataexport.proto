@@ -11,6 +11,7 @@ import "google/api/annotations.proto";
 service DataExportService {
 
     // GetGateways Export gateways
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
     rpc GetGateways(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/gateways"
@@ -18,6 +19,7 @@ service DataExportService {
     }
 
     // GetUsers Export users
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
     rpc GetUsers(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/users"
@@ -25,11 +27,12 @@ service DataExportService {
     }
 
     // GetDevices Export devices
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
     rpc GetDevices(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/devices"
         };
-    }       
+    }
 }
 
 message DataExportRequest {

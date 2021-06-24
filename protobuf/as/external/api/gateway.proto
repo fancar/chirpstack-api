@@ -108,12 +108,28 @@ service GatewayService {
     // StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.
 	// Notes:
 	//   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
-	//   * This endpoint does not work from a web-browser.
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
     rpc StreamFrameLogs(StreamGatewayFrameLogsRequest) returns (stream StreamGatewayFrameLogsResponse) {
         option (google.api.http) = {
             get: "/api/gateways/{gateway_id}/frames"
         };
 	}
+
+    // GetGatewayTaskResult get results for gateway that previously recieved during
+    //   ExecCommand in background mode
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
+    rpc GetGatewayTaskResult(GetGatewayTaskResultRequest) returns (stream StreamGatewayTaskResultResponse) {
+        option (google.api.http) = {
+            get: "/api/gateways/{gateway_id}/task-result"
+        };
+    }
+
+	// GetTaskResults lists the gateway tasks had been done by ExecCommand in background mode
+	rpc GetTaskResults(GetGatewayRequest) returns (GetTaskResultsResponse) {
+		option (google.api.http) = {
+			get: "/api/gateways/{id}/task-results"
+		};
+	}    
 }
 
 message Gateway {
@@ -550,4 +566,53 @@ message StreamGatewayFrameLogsResponse {
         // Contains a downlink frame.
         DownlinkFrameLog downlink_frame = 2;
     }
+}
+
+message GetGatewayTaskResultRequest {
+	// Gateway ID (HEX encoded).
+	string gateway_id = 1 [json_name = "gatewayID"];
+
+    // Exec Command ID.
+    int64 exec_id = 2;    
+}
+
+message StreamGatewayTaskResultResponse {
+    oneof size {
+        uint32 current = 1;
+        uint32 total = 2;
+    }
+
+    oneof data {
+        uint32 rows = 3;
+        bytes chunk = 4;
+    }
+}
+
+message GwTaskResults {
+    // Execution ID.
+    bytes exec_id = 1;	
+	// Gateway ID (HEX encoded).
+	string gateway_id = 2 [json_name = "gatewayID"];
+
+    // command that had been executed on gateway
+    string cmd = 3;
+    
+    // stdout by the command
+    bytes stdout = 4;
+
+    // stderr by the command executed
+    bytes stderr = 5;
+
+    // error recieved from gateway bridge
+    string error = 6;
+
+    // description
+    string description = 7;      
+
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 8;
+}
+
+message GetTaskResultsResponse {
+	repeated GwTaskResults results = 1;
 }

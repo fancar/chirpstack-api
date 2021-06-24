@@ -66,6 +66,9 @@ service ApplicationServerService {
     // Note there is no requirement that the number of returned items must be
     // equal to the number of requested items.
     rpc ReEncryptDeviceQueueItems(ReEncryptDeviceQueueItemsRequest) returns (ReEncryptDeviceQueueItemsResponse) {}   
+
+    // StreamGatewayTaskResult stream ExecCmd results from gateway to save into as-db
+    rpc StreamGatewayTaskResult(stream GatewayTaskResult) returns (google.protobuf.Empty) {}
 }
 
 message GetOrgByDevEUIRequest {
@@ -417,4 +420,34 @@ message ReEncryptedDeviceQueueItem {
 
     // Payload is of type confirmed.
     bool confirmed = 4;
+}
+
+
+message GatewayTaskResponseData {
+    // Gateway ID.
+    bytes gateway_id = 1 [json_name = "gatewayID"];
+
+    // Execution request ID (UUID).
+    bytes exec_id = 2 [json_name = "execID"];
+
+    // command had been executed on gateway.
+    string cmd = 3;
+
+    // Standard error.
+    bytes stderr = 4;
+
+    // Error message from gateway-bridge.
+    string error = 5;
+
+    // Description
+    string description = 6;    
+}
+
+message GatewayTaskResult {
+    oneof size {
+        GatewayTaskResponseData metadata = 1;
+
+        // stdin chunk
+        bytes chunk = 2;
+    }
 }

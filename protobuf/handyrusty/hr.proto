@@ -154,6 +154,13 @@ message ExecCommandRequest {
 
     // command that will be executed on gateway (according to the gw config)
     string command = 2;
+
+    // You can set timeout for the command execution. Default 30 seconds. Range 1-1000
+    uint32 timeout = 3;
+
+    //  Background task execution. If set true, the result will be saved in app-db.
+    //  Allows to get large amount of data from devices asynchronously.
+    bool background_task = 4;    
 }
 
 message GetFrameCountersRequest {
@@ -366,3 +373,4 @@ message RXInfo {
     // Unique and random ID which can be used to correlate the uplink across multiple logs.
     string  UplinkID = 13       [json_name = "uplink_id"];
 }
+
