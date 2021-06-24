@@ -63,7 +63,8 @@ service GatewayService {
 	// Logs lists the gateways.
 	rpc Logs(LogsGatewayRequest) returns (LogsGatewayResponse) {
 		option (google.api.http) = {
-			get: "/api/gateways/logs"
+			post: "/api/gateways/logs",
+			body: "*"
 		};
 	}
 
