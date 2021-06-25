@@ -116,15 +116,6 @@ service GatewayService {
         };
 	}
 
-    // GetGatewayTaskResult get results for gateway that previously recieved during
-    //   ExecCommand in background mode
-    //   (!) websocket required! The endpoint does not work from a web-swagger.
-    rpc GetGatewayTaskResult(GetGatewayTaskResultRequest) returns (stream StreamGatewayTaskResultResponse) {
-        option (google.api.http) = {
-            post: "/api/gateways/{gateway_id}/task-result"
-        };
-    }
-
 	// GetTaskResults lists the gateway tasks had been done by ExecCommand in background mode
 	rpc GetTaskResults(GetGatewayRequest) returns (GetTaskResultsResponse) {
 		option (google.api.http) = {
@@ -569,26 +560,6 @@ message StreamGatewayFrameLogsResponse {
     }
 }
 
-message GetGatewayTaskResultRequest {
-	// Gateway ID (HEX encoded).
-	string gateway_id = 1 [json_name = "gatewayID"];
-
-    // ID in table gateway_tasks.
-    int64 id = 2;    
-}
-
-message StreamGatewayTaskResultResponse {
-    oneof size {
-        uint32 current = 1;
-        uint32 total = 2;
-    }
-
-    oneof data {
-        uint32 rows = 3;
-        bytes chunk = 4;
-    }
-}
-
 message GwTaskResults {
     // Task ID.
     int64 id = 1;	
@@ -596,22 +567,23 @@ message GwTaskResults {
     // Execution ID.
     string exec_id = 2 [json_name = "execID"];	
 
-	// Created at timestamp.
+	// timestamp.
 	google.protobuf.Timestamp updated_at = 3;
 
     // command that had been executed on gateway
     string cmd = 4;
 
-    // stderr by the command executed
+    // stderr by the command executed if exists
     bytes stderr = 5;
 
-    // error recieved from gateway bridge
+    // error recieved from gateway bridge or cmd script
     string error = 6;
 
     // description
-    string description = 7;      
+    string description = 7;
 
-
+    // size of stdout in bytes
+    int32 stdout_len = 8;    
 }
 
 message GetTaskResultsResponse {

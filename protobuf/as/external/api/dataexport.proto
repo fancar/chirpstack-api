@@ -33,6 +33,16 @@ service DataExportService {
             get: "/api/dataexport/devices"
         };
     }
+
+
+    // GetGatewayTaskResult get results for gateway that previously recieved during
+    //   ExecCommand in background mode
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
+    rpc GetGatewayTaskResult(GetRequest) returns (stream StreamResponse) {
+        option (google.api.http) = {
+            get: "/api/dataexport/gateways/task-result"
+        };
+    }    
 }
 
 message DataExportRequest {
@@ -50,4 +60,9 @@ message StreamResponse {
         uint32 rows = 3;
         bytes chunk = 4;
     }
+}
+
+message GetRequest {
+    // ID of the item requested
+    int64 id = 1;    
 }

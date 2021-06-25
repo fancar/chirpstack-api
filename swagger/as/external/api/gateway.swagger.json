@@ -318,32 +318,6 @@
         ]
       }
     },
-    "/api/gateways/{gateway_id}/task-result": {
-      "post": {
-        "summary": "GetGatewayTaskResult get results for gateway that previously recieved during\n  ExecCommand in background mode\n  (!) websocket required! The endpoint does not work from a web-swagger.",
-        "operationId": "GetGatewayTaskResult",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamGatewayTaskResultResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "gateway_id",
-            "description": "Gateway ID (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GatewayService"
-        ]
-      }
-    },
     "/api/gateways/{id}": {
       "get": {
         "summary": "Get returns the gateway for the requested mac address.",
@@ -946,7 +920,7 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time",
-          "description": "Created at timestamp."
+          "description": "timestamp."
         },
         "cmd": {
           "type": "string",
@@ -955,15 +929,20 @@
         "stderr": {
           "type": "string",
           "format": "byte",
-          "title": "stderr by the command executed"
+          "title": "stderr by the command executed if exists"
         },
         "error": {
           "type": "string",
-          "title": "error recieved from gateway bridge"
+          "title": "error recieved from gateway bridge or cmd script"
         },
         "description": {
           "type": "string",
           "title": "description"
+        },
+        "stdoutLen": {
+          "type": "integer",
+          "format": "int32",
+          "title": "size of stdout in bytes"
         }
       }
     },
@@ -1167,27 +1146,6 @@
         "downlinkFrame": {
           "$ref": "#/definitions/apiDownlinkFrameLog",
           "description": "Contains a downlink frame."
-        }
-      }
-    },
-    "apiStreamGatewayTaskResultResponse": {
-      "type": "object",
-      "properties": {
-        "current": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "total": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "rows": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "chunk": {
-          "type": "string",
-          "format": "byte"
         }
       }
     },
@@ -1606,18 +1564,6 @@
         }
       },
       "title": "Stream result of apiStreamGatewayFrameLogsResponse"
-    },
-    "apiStreamGatewayTaskResultResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/apiStreamGatewayTaskResultResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of apiStreamGatewayTaskResultResponse"
     }
   }
 }
