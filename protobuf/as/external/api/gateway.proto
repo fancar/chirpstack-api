@@ -411,6 +411,9 @@ message GatewayMonItem {
 
     // the status calculated from last_seen_at parameter
     bool active = 10;    
+
+	//Operational status label
+	string op_status_label = 11;
 }
 
 message StatsItemActilityStyled {
