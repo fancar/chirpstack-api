@@ -620,6 +620,9 @@ message DeviceQueueItem {
     // application-server, there is a possibility that the application-server
     // tries to enqueue payloads encrypted with the old session-key.
     bytes dev_addr = 6;
+
+    // Time to live (in seconds). You canspecify the maximum time in queue for the item
+    uint32 ttl = 7;
 }
 
 message CreateDeviceQueueItemRequest {

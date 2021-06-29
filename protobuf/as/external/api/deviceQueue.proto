@@ -54,6 +54,7 @@ message DeviceQueueItem {
 
     // Downlink frame-counter.
     // This will be automatically set on enquue.
+    // If you encrypt data on your side - specify the fCnt here
     uint32 f_cnt = 6;
 
     // FPort used (must be > 0)
@@ -67,6 +68,9 @@ message DeviceQueueItem {
     // Only use this when an application codec has been configured that can convert
     // this object into binary form.
     string json_object = 5;
+
+    // Time to live (in seconds). You canspecify the maximum time in queue for the item
+    uint32 ttl = 7;    
 }
 
 message EnqueueDeviceQueueItemRequest {
@@ -119,6 +123,13 @@ message EnqueueDeviceQueueActilityItemRequest {
     // LoRa port(s) targetted by the message.
     string target_ports = 5;
 
+    // Downlink frame-counter.
+    // This will be automatically set on enquue.
+    // If you encrypt data on your side - specify the fCnt here
+    uint32 f_cnt = 6;
+
+    // Time to live (in seconds). You canspecify the maximum time in queue for the item
+    uint32 ttl = 7;
 }
 
 message EnqueueDeviceQueueActilityItemResponse {
