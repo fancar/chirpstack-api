@@ -158,7 +158,7 @@
         "fCnt": {
           "type": "integer",
           "format": "int64",
-          "description": "Downlink frame-counter.\nThis will be automatically set on enquue."
+          "title": "Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
         },
         "fPort": {
           "type": "integer",
@@ -173,6 +173,11 @@
         "jsonObject": {
           "type": "string",
           "description": "JSON object (string).\nOnly use this when an application codec has been configured that can convert\nthis object into binary form."
+        },
+        "ttl": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
         }
       }
     },
@@ -200,6 +205,16 @@
         "targetPorts": {
           "type": "string",
           "description": "LoRa port(s) targetted by the message."
+        },
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
+        },
+        "ttl": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
         }
       }
     },
