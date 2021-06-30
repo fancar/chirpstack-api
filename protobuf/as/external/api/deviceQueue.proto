@@ -42,6 +42,14 @@ service DeviceQueueService {
             body: "*"
         };
     }
+
+    // GetNextDownlinkFCnt returns next downlink f-counter for the device
+    // used by clients who encrypt payload data themself
+    rpc GetNextDownlinkFCnt(GetNextDownlinkFCntRequest) returns (GetNextDownlinkFCntResponse) {
+        option(google.api.http) = {
+            get: "/api/devices/{dev_eui}/fcnt"
+        };
+    }    
 }
 
 message DeviceQueueItem {
@@ -140,3 +148,13 @@ message EnqueueDeviceQueueActilityItemResponse {
     string target_ports = 4;
     string status = 5;
 }
+
+message GetNextDownlinkFCntRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+}
+
+message GetNextDownlinkFCntResponse {
+    // Next downlink frame-counter.
+    uint32 f_cnt = 1;
+}  
