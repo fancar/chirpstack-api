@@ -67,7 +67,7 @@ message GetIntegrationRepliesResponse {
     // total numner of selected rows
     uint32 items_total = 1;
     // the array of selected replies
-    repeated IntegrationReply data = 2;
+    repeated IntegrationReply result = 2;
 }
 
 message IntegrationReply {
