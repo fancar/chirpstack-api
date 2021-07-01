@@ -383,7 +383,7 @@ message GatewayListItem {
 	string op_status_label = 14;
 
 	//operational status code
-	string op_status_code = 15;
+	int64 op_status_code = 15;
 }
 
 // for monitoring list

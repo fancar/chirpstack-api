@@ -679,6 +679,7 @@
         },
         "opStatusCode": {
           "type": "string",
+          "format": "int64",
           "title": "operational status code"
         }
       }
