@@ -392,6 +392,10 @@ message Application {
     // in the next major release. When set, the device-profile payload_ fields
     // have priority over the application payload_ fields.
 	string payload_decoder_script = 8;
+
+    // if disabled data won't be transfered from devices to integrations
+    // of the application
+    bool is_active = 9;
 }
 
 message ApplicationListItem {

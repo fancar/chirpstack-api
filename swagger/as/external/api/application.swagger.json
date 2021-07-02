@@ -1389,6 +1389,11 @@
         "payloadDecoderScript": {
           "type": "string",
           "description": "Payload decoder script.\nNOTE: These field have moved to the device-profile and will be removed\nin the next major release. When set, the device-profile payload_ fields\nhave priority over the application payload_ fields."
+        },
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if disabled data won't be transfered from devices to integrations\nof the application"
         }
       }
     },

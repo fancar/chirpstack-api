@@ -377,7 +377,13 @@ message GatewayListItem {
     string radio = 12;
 
     // the status calculated from last_seen_at parameter
-    bool active = 13;      
+    bool active = 13;     
+	
+	//operational status name 
+	string op_status_label = 14;
+
+	//operational status code
+	int64 op_status_code = 15;
 }
 
 // for monitoring list

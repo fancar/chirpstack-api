@@ -672,6 +672,15 @@
           "type": "boolean",
           "format": "boolean",
           "title": "the status calculated from last_seen_at parameter"
+        },
+        "opStatusLabel": {
+          "type": "string",
+          "title": "operational status name"
+        },
+        "opStatusCode": {
+          "type": "string",
+          "format": "int64",
+          "title": "operational status code"
         }
       }
     },
