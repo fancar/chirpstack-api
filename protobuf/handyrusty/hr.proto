@@ -95,7 +95,7 @@ message StoreIntegrationReplyRequest {
 }
 
 message StoreIntegrationReplyResponse {
-    uint32 stored_count = 1;
+    int64 stored_count = 1;
 }
 
 message GetCurrentStateResponse {
