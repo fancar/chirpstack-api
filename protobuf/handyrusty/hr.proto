@@ -56,11 +56,14 @@ message GetIntegrationRepliesRequest {
     int64 organisation_id = 3;
     // id of routing profile
     int64 routing_profile_id = 4;
+    // Device EUI
+    string dev_eui = 5;
+    // http status != 200
+    bool is_error = 6;
     // You can specify start DateTime point.
-    google.protobuf.Timestamp start = 5;
+    google.protobuf.Timestamp start = 7;
     // You can specify end DateTime point.
-    google.protobuf.Timestamp end = 6;
-
+    google.protobuf.Timestamp end = 8;
 }
 
 message GetIntegrationRepliesResponse {
@@ -79,8 +82,8 @@ message IntegrationReply {
     string status_code_description = 3;
     // id of application where integration linked to
     int64 application_id = 4;
-    // Device EUI.
-    bytes dev_eui = 5 [json_name = "devEUI"];
+    // Device EUI
+    string dev_eui = 5 [json_name = "devEUI"];
     // time of receining reply
     google.protobuf.Timestamp time = 6;
 }
