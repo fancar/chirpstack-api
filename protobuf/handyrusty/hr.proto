@@ -45,6 +45,33 @@ service HandyRustyService {
 
     // Get replies of integration event notifications
     rpc GetIntegrationReplies(GetIntegrationRepliesRequest) returns (GetIntegrationRepliesResponse) {}
+
+    // Get dictionaries from clickhouse
+    rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {}
+}
+
+message Dictionary {
+	// id of the item
+	string code = 1;
+
+	// value of the item
+	string label = 2;
+
+	// if true the item is active
+	bool is_actual = 3;
+}
+
+message GetDictionaryRequest {
+	// type of a dictionary
+	string dic_type = 1;
+
+}
+
+message GetDictionaryResponse {
+	// type of a dictionary
+	string dic_type = 1;
+
+	repeated Dictionary dict = 2;
 }
 
 message GetIntegrationRepliesRequest {

@@ -34,6 +34,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "store",
+            "description": "type of store example: hr.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -48,7 +55,6 @@
       "properties": {
         "code": {
           "type": "string",
-          "format": "int64",
           "title": "id of the item"
         },
         "label": {
