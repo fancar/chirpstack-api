@@ -956,6 +956,10 @@
           "type": "integer",
           "format": "int32",
           "title": "size of stdout in bytes"
+        },
+        "name": {
+          "type": "string",
+          "title": "the name of a file or other item for data in stdin"
         }
       }
     },

@@ -1909,7 +1909,9 @@ func init() {
 	proto.RegisterType((*RXInfo)(nil), "hr.RXInfo")
 }
 
-func init() { proto.RegisterFile("handyrusty/hr.proto", fileDescriptor_97d7a55acfa39588) }
+func init() {
+	proto.RegisterFile("handyrusty/hr.proto", fileDescriptor_97d7a55acfa39588)
+}
 
 var fileDescriptor_97d7a55acfa39588 = []byte{
 	// 2142 bytes of a gzipped FileDescriptorProto
@@ -2051,11 +2053,11 @@ var fileDescriptor_97d7a55acfa39588 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // HandyRustyServiceClient is the client API for HandyRustyService service.
 //
@@ -2086,10 +2088,10 @@ type HandyRustyServiceClient interface {
 }
 
 type handyRustyServiceClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewHandyRustyServiceClient(cc *grpc.ClientConn) HandyRustyServiceClient {
+func NewHandyRustyServiceClient(cc grpc.ClientConnInterface) HandyRustyServiceClient {
 	return &handyRustyServiceClient{cc}
 }
 

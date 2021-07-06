@@ -440,7 +440,10 @@ message GatewayTaskResponseData {
     string error = 5;
 
     // Description
-    string description = 6;    
+    string description = 6;
+
+    // file (or other item) name. Optional
+    string name = 7;    
 }
 
 message GatewayTaskResult {
