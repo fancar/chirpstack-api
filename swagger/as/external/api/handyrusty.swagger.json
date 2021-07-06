@@ -230,6 +230,21 @@
             "format": "int64"
           },
           {
+            "name": "devEui",
+            "description": "Device EUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isError",
+            "description": "http status != 200.",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
             "name": "start",
             "description": "You can specify start DateTime point.",
             "in": "query",
@@ -359,6 +374,10 @@
         "error": {
           "type": "string",
           "description": "Error message."
+        },
+        "name": {
+          "type": "string",
+          "title": "file (or other item) name. Optional"
         }
       }
     },
@@ -734,8 +753,7 @@
         },
         "devEUI": {
           "type": "string",
-          "format": "byte",
-          "description": "Device EUI."
+          "title": "Device EUI"
         },
         "time": {
           "type": "string",

@@ -460,6 +460,9 @@ message GatewayCommandExecResponse {
 
     // Error message.
     string error = 5;
+
+    // file (or other item) name. Optional
+    string name = 6;    
 }
 
 // RawPacketForwarderEvent contains a raw packet-forwarder event.

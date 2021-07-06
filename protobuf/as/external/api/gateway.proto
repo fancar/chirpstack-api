@@ -592,7 +592,10 @@ message GwTaskResults {
     string description = 7;
 
     // size of stdout in bytes
-    int32 stdout_len = 8;    
+    int32 stdout_len = 8;
+
+    // the name of a file or other item for data in stdin
+    string name = 9;        
 }
 
 message GetTaskResultsResponse {
