@@ -234,6 +234,9 @@ message DeviceListItem {
 
     // Device location.
 	common.Location location = 14;
+
+    //device is_disabled option 
+    bool is_disabled = 15;
 }
 
 message DeviceKeys {

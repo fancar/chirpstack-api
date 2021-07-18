@@ -709,6 +709,11 @@
         "location": {
           "$ref": "#/definitions/commonLocation",
           "description": "Device location."
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "device is_disabled option"
         }
       }
     },
