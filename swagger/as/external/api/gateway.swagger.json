@@ -326,6 +326,11 @@
         "gatewayID": {
           "type": "string",
           "description": "Gateway ID."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Published at timestamp."
         }
       }
     },
@@ -387,6 +392,10 @@
             "type": "string"
           },
           "description": "Metadata (provided by the gateway)."
+        },
+        "serviceProfileID": {
+          "type": "string",
+          "description": "Service-profile ID (UUID string, optional)."
         }
       }
     },
@@ -667,6 +676,11 @@
         "phyPayloadJSON": {
           "type": "string",
           "description": "LoRaWAN PHYPayload."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Published at timestamp."
         }
       }
     },
@@ -717,10 +731,11 @@
       "type": "string",
       "enum": [
         "LORA",
-        "FSK"
+        "FSK",
+        "LR_FHSS"
       ],
       "default": "LORA",
-      "title": "- LORA: LoRa\n - FSK: FSK"
+      "title": "- LORA: LoRa\n - FSK: FSK\n - LR_FHSS: LR-FHSS"
     },
     "gwCRCStatus": {
       "type": "string",
@@ -871,6 +886,25 @@
     "gwImmediatelyTimingInfo": {
       "type": "object"
     },
+    "gwLRFHSSModulationInfo": {
+      "type": "object",
+      "properties": {
+        "operatingChannelWidth": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Operating channel width (OCW) in Hz."
+        },
+        "codeRate": {
+          "type": "string",
+          "description": "Code-rate."
+        },
+        "gridSteps": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Hopping grid number of steps."
+        }
+      }
+    },
     "gwLoRaModulationInfo": {
       "type": "object",
       "properties": {
@@ -1003,6 +1037,10 @@
         "fskModulationInfo": {
           "$ref": "#/definitions/gwFSKModulationInfo",
           "description": "FSK modulation information."
+        },
+        "lrFHSSModulationInfo": {
+          "$ref": "#/definitions/gwLRFHSSModulationInfo",
+          "description": "LR-FHSS modulation information."
         }
       }
     },

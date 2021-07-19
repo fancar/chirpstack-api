@@ -4,6 +4,8 @@ package ns;
 
 option go_package = "github.com/brocaar/chirpstack-api/ns";
 option java_package = "io.chirpstack.api.ns";
+option java_multiple_files = true;
+option java_outer_classname = "NetworkServerProto";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
@@ -164,6 +166,9 @@ service NetworkServerService {
 
     // GetVersion returns the ChirpStack Network Server version.
     rpc GetVersion(google.protobuf.Empty) returns (GetVersionResponse) {}
+
+    // GetADRAlgorithms returns the available ADR algorithms.
+    rpc GetADRAlgorithms(google.protobuf.Empty) returns (GetADRAlgorithmsResponse) {}
 }
 
 enum RXWindow {
@@ -450,6 +455,9 @@ message Gateway {
     // The routing-profile ID defines to which application-server statistical
     // data for this gateway is forwarded.
     bytes routing_profile_id = 5;
+
+    // Service-profile ID (optional).
+    bytes service_profile_id = 6;
 }
 
 message GatewayBoard {
@@ -632,6 +640,18 @@ message UplinkFrameLog {
 
     // RX meta-data.
     repeated gw.UplinkRXInfo rx_info = 3;
+
+    // Message type.
+    common.MType m_type = 4;
+
+    // Device address (optional).
+    bytes dev_addr = 5;
+
+    // Device EUI (optional).
+    bytes dev_eui = 6;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 7;
 }
 
 message DownlinkFrameLog {
@@ -650,6 +670,18 @@ message DownlinkFrameLog {
 
     // Gateway ID.
     bytes gateway_id = 5 [json_name = "gatewayID"];
+
+    // Message type.
+    common.MType m_type = 6;
+
+    // Device address (optional).
+    bytes dev_addr = 7;
+
+    // Device EUI (optional).
+    bytes dev_eui = 8;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 9;
 }
 
 message StreamFrameLogsForGatewayRequest {
@@ -887,4 +919,16 @@ message GetMulticastQueueItemsForMulticastGroupRequest {
 
 message GetMulticastQueueItemsForMulticastGroupResponse {
     repeated MulticastQueueItem multicast_queue_items = 1;
+}
+
+message GetADRAlgorithmsResponse {
+    repeated ADRAlgorithm adr_algorithms = 1;
+}
+
+message ADRAlgorithm {
+    // ADR algorithm ID.
+    string id = 1;
+
+    // ADR algorithm name.
+    string name = 2;
 }

@@ -4,6 +4,8 @@ package gw;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/gw";
 option java_package = "io.chirpstack.api.gw";
+option java_multiple_files = true;
+option java_outer_classname = "GatewayProto";
 
 import "common/common.proto";
 import "google/protobuf/timestamp.proto";
@@ -80,8 +82,8 @@ enum TxAckStatus {
 }
 
 message UplinkTXInfo {
-	// Frequency (Hz).
-	uint32 frequency = 1;
+    // Frequency (Hz).
+    uint32 frequency = 1;
 
     // Modulation.
     common.Modulation modulation = 2;
@@ -92,6 +94,9 @@ message UplinkTXInfo {
 
         // FSK modulation information.
         FSKModulationInfo fsk_modulation_info = 4;
+
+        // LR-FHSS modulation information.
+        LRFHSSModulationInfo lr_fhss_modulation_info = 5 [json_name = "lrFHSSModulationInfo"];
     }
 }
 
@@ -115,6 +120,17 @@ message FSKModulationInfo {
 
     // FSK datarate (bits / sec).
     uint32 datarate = 2;
+}
+
+message LRFHSSModulationInfo {
+    // Operating channel width (OCW) in Hz.
+    uint32 operating_channel_width = 1;
+
+    // Code-rate.
+    string code_rate = 2;
+
+    // Hopping grid number of steps.
+    uint32 grid_steps = 3;
 }
 
 message EncryptedFineTimestamp {
@@ -368,7 +384,7 @@ message DownlinkTXAck {
 
 message DownlinkTXAckItem {
     // The Ack status of this item.
-    TxAckStatus status = 1; 
+    TxAckStatus status = 1;
 }
 
 message GatewayConfiguration {
@@ -486,4 +502,17 @@ message RawPacketForwarderCommand {
 
     // Payload contains the raw payload.
     bytes payload = 3;
+}
+
+// ConnState contains the connection state of a gateway.
+message ConnState {
+    // Gateway ID.
+    bytes gateway_id = 1 [json_name = "gatewayID"];
+
+    enum State {
+        OFFLINE = 0;
+        ONLINE = 1;
+    }
+
+    State state = 2;
 }

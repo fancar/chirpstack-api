@@ -4,7 +4,10 @@ package api;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
 option java_package = "io.chirpstack.api.as.external.api";
+option java_multiple_files = true;
+option java_outer_classname = "ApplicationProto";
 
+import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
@@ -324,6 +327,14 @@ service ApplicationService {
 			get: "/api/applications/{application_id}/integrations"
 		};
 	}
+
+    // GenerateMQTTIntegrationClientCertificate generates an application ID specific TLS certificate
+    // to connect to the MQTT broker.
+    rpc GenerateMQTTIntegrationClientCertificate(GenerateMQTTIntegrationClientCertificateRequest) returns (GenerateMQTTIntegrationClientCertificateResponse) {
+        option(google.api.http) = {
+            post: "/api/applications/{application_id}/integrations/mqtt/certificate"
+        };
+    }
 }
 
 enum IntegrationKind {
@@ -336,6 +347,7 @@ enum IntegrationKind {
     AWS_SNS = 6;
     AZURE_SERVICE_BUS = 7;
     PILOT_THINGS = 8;
+    MQTT_GLOBAL = 9;
 }
 
 enum Marshaler {
@@ -450,7 +462,7 @@ message ListApplicationRequest {
 message ListApplicationResponse {
 	// Total number of applications available within the result-set.
 	int64 total_count = 1;
-	
+
 	// Applications within this result-set.
 	repeated ApplicationListItem result = 2;
 }
@@ -565,6 +577,11 @@ enum InfluxDBPrecision {
 	H = 5;
 }
 
+enum InfluxDBVersion {
+    INFLUXDB_1 = 0;
+    INFLUXDB_2 = 1;
+}
+
 message InfluxDBIntegration {
 	// Application ID.
 	int64 application_id = 1 [json_name = "applicationID"];
@@ -572,20 +589,32 @@ message InfluxDBIntegration {
 	// InfluxDB API write endpoint (e.g. http://localhost:8086/write).
 	string endpoint = 2;
 
-	// InfluxDB database name.
+	// InfluxDB database name. (InfluxDB v1)
 	string db = 3;
 
-	// InfluxDB username.
+	// InfluxDB username. (InfluxDB v1)
 	string username = 4;
 
-	// InfluxDB password.
+	// InfluxDB password. (InfluxDB v1)
 	string password = 5;
 
-	// InfluxDB retention policy name.
+	// InfluxDB retention policy name. (InfluxDB v1)
 	string retention_policy_name = 6;
 
-	// InfluxDB timestamp precision.
+	// InfluxDB timestamp precision (InfluxDB v1).
 	InfluxDBPrecision precision = 7;
+
+    // InfluxDB version.
+    InfluxDBVersion version = 8;
+
+    // Token. (InfluxDB v2)
+    string token = 9;
+
+    // Organization. (InfluxDB v2)
+    string organization = 10;
+
+    // Bucket. (InfluxDB v2)
+    string bucket = 11;
 }
 
 message CreateInfluxDBIntegrationRequest {
@@ -952,4 +981,23 @@ message UpdatePilotThingsIntegrationRequest {
 message DeletePilotThingsIntegrationRequest {
 	// The id of the application.
 	int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GenerateMQTTIntegrationClientCertificateRequest {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GenerateMQTTIntegrationClientCertificateResponse {
+    // TLS certificate.
+    string tls_cert = 1;
+
+    // TLS key.
+    string tls_key = 2;
+
+    // CA certificate.
+    string ca_cert = 3;
+
+    // Expires at defines the expiration date of the certificate.
+    google.protobuf.Timestamp expires_at = 4;
 }

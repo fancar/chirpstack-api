@@ -15,6 +15,7 @@ var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb
 var common_common_pb = require('../common/common_pb.js');
 var gw_gw_pb = require('../gw/gw_pb.js');
 var ns_profiles_pb = require('../ns/profiles_pb.js');
+goog.exportSymbol('proto.ns.ADRAlgorithm', null, global);
 goog.exportSymbol('proto.ns.ActivateDeviceRequest', null, global);
 goog.exportSymbol('proto.ns.AddDeviceToMulticastGroupRequest', null, global);
 goog.exportSymbol('proto.ns.AggregationInterval', null, global);
@@ -54,6 +55,7 @@ goog.exportSymbol('proto.ns.GatewayProfileExtraChannel', null, global);
 goog.exportSymbol('proto.ns.GatewayStats', null, global);
 goog.exportSymbol('proto.ns.GenerateGatewayClientCertificateRequest', null, global);
 goog.exportSymbol('proto.ns.GenerateGatewayClientCertificateResponse', null, global);
+goog.exportSymbol('proto.ns.GetADRAlgorithmsResponse', null, global);
 goog.exportSymbol('proto.ns.GetDeviceActivationRequest', null, global);
 goog.exportSymbol('proto.ns.GetDeviceActivationResponse', null, global);
 goog.exportSymbol('proto.ns.GetDeviceProfileRequest', null, global);
@@ -7119,7 +7121,8 @@ proto.ns.Gateway.toObject = function(includeInstance, msg) {
     gatewayProfileId: msg.getGatewayProfileId_asB64(),
     boardsList: jspb.Message.toObjectList(msg.getBoardsList(),
     proto.ns.GatewayBoard.toObject, includeInstance),
-    routingProfileId: msg.getRoutingProfileId_asB64()
+    routingProfileId: msg.getRoutingProfileId_asB64(),
+    serviceProfileId: msg.getServiceProfileId_asB64()
   };
 
   if (includeInstance) {
@@ -7178,6 +7181,10 @@ proto.ns.Gateway.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setRoutingProfileId(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setServiceProfileId(value);
       break;
     default:
       reader.skipField();
@@ -7251,6 +7258,13 @@ proto.ns.Gateway.prototype.serializeBinaryToWriter = function (writer) {
   if (f.length > 0) {
     writer.writeBytes(
       5,
+      f
+    );
+  }
+  f = this.getServiceProfileId_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      6,
       f
     );
   }
@@ -7433,6 +7447,45 @@ proto.ns.Gateway.prototype.getRoutingProfileId_asU8 = function() {
 /** @param {!(string|Uint8Array)} value  */
 proto.ns.Gateway.prototype.setRoutingProfileId = function(value) {
   jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional bytes service_profile_id = 6;
+ * @return {!(string|Uint8Array)}
+ */
+proto.ns.Gateway.prototype.getServiceProfileId = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 6, ""));
+};
+
+
+/**
+ * optional bytes service_profile_id = 6;
+ * This is a type-conversion wrapper around `getServiceProfileId()`
+ * @return {string}
+ */
+proto.ns.Gateway.prototype.getServiceProfileId_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getServiceProfileId()));
+};
+
+
+/**
+ * optional bytes service_profile_id = 6;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getServiceProfileId()`
+ * @return {!Uint8Array}
+ */
+proto.ns.Gateway.prototype.getServiceProfileId_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getServiceProfileId()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.ns.Gateway.prototype.setServiceProfileId = function(value) {
+  jspb.Message.setField(this, 6, value);
 };
 
 
@@ -11554,7 +11607,11 @@ proto.ns.UplinkFrameLog.toObject = function(includeInstance, msg) {
     phyPayload: msg.getPhyPayload_asB64(),
     txInfo: (f = msg.getTxInfo()) && gw_gw_pb.UplinkTXInfo.toObject(includeInstance, f),
     rxInfoList: jspb.Message.toObjectList(msg.getRxInfoList(),
-    gw_gw_pb.UplinkRXInfo.toObject, includeInstance)
+    gw_gw_pb.UplinkRXInfo.toObject, includeInstance),
+    mType: msg.getMType(),
+    devAddr: msg.getDevAddr_asB64(),
+    devEui: msg.getDevEui_asB64(),
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11605,6 +11662,23 @@ proto.ns.UplinkFrameLog.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,gw_gw_pb.UplinkRXInfo.deserializeBinaryFromReader);
       msg.getRxInfoList().push(value);
       msg.setRxInfoList(msg.getRxInfoList());
+      break;
+    case 4:
+      var value = /** @type {!proto.common.MType} */ (reader.readEnum());
+      msg.setMType(value);
+      break;
+    case 5:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDevAddr(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDevEui(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -11665,6 +11739,35 @@ proto.ns.UplinkFrameLog.prototype.serializeBinaryToWriter = function (writer) {
       3,
       f,
       gw_gw_pb.UplinkRXInfo.serializeBinaryToWriter
+    );
+  }
+  f = this.getMType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+  f = this.getDevAddr_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      5,
+      f
+    );
+  }
+  f = this.getDevEui_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      6,
+      f
+    );
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -11771,6 +11874,129 @@ proto.ns.UplinkFrameLog.prototype.clearRxInfoList = function() {
 };
 
 
+/**
+ * optional common.MType m_type = 4;
+ * @return {!proto.common.MType}
+ */
+proto.ns.UplinkFrameLog.prototype.getMType = function() {
+  return /** @type {!proto.common.MType} */ (jspb.Message.getFieldProto3(this, 4, 0));
+};
+
+
+/** @param {!proto.common.MType} value  */
+proto.ns.UplinkFrameLog.prototype.setMType = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional bytes dev_addr = 5;
+ * @return {!(string|Uint8Array)}
+ */
+proto.ns.UplinkFrameLog.prototype.getDevAddr = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 5, ""));
+};
+
+
+/**
+ * optional bytes dev_addr = 5;
+ * This is a type-conversion wrapper around `getDevAddr()`
+ * @return {string}
+ */
+proto.ns.UplinkFrameLog.prototype.getDevAddr_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDevAddr()));
+};
+
+
+/**
+ * optional bytes dev_addr = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getDevAddr()`
+ * @return {!Uint8Array}
+ */
+proto.ns.UplinkFrameLog.prototype.getDevAddr_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDevAddr()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.ns.UplinkFrameLog.prototype.setDevAddr = function(value) {
+  jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional bytes dev_eui = 6;
+ * @return {!(string|Uint8Array)}
+ */
+proto.ns.UplinkFrameLog.prototype.getDevEui = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 6, ""));
+};
+
+
+/**
+ * optional bytes dev_eui = 6;
+ * This is a type-conversion wrapper around `getDevEui()`
+ * @return {string}
+ */
+proto.ns.UplinkFrameLog.prototype.getDevEui_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDevEui()));
+};
+
+
+/**
+ * optional bytes dev_eui = 6;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getDevEui()`
+ * @return {!Uint8Array}
+ */
+proto.ns.UplinkFrameLog.prototype.getDevEui_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDevEui()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.ns.UplinkFrameLog.prototype.setDevEui = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp published_at = 7;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.ns.UplinkFrameLog.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.ns.UplinkFrameLog.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.ns.UplinkFrameLog.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.ns.UplinkFrameLog.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -11821,7 +12047,11 @@ proto.ns.DownlinkFrameLog.toObject = function(includeInstance, msg) {
     txInfo: (f = msg.getTxInfo()) && gw_gw_pb.DownlinkTXInfo.toObject(includeInstance, f),
     token: msg.getToken(),
     downlinkId: msg.getDownlinkId_asB64(),
-    gatewayId: msg.getGatewayId_asB64()
+    gatewayId: msg.getGatewayId_asB64(),
+    mType: msg.getMType(),
+    devAddr: msg.getDevAddr_asB64(),
+    devEui: msg.getDevEui_asB64(),
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11878,6 +12108,23 @@ proto.ns.DownlinkFrameLog.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setGatewayId(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.common.MType} */ (reader.readEnum());
+      msg.setMType(value);
+      break;
+    case 7:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDevAddr(value);
+      break;
+    case 8:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setDevEui(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -11951,6 +12198,35 @@ proto.ns.DownlinkFrameLog.prototype.serializeBinaryToWriter = function (writer) 
     writer.writeBytes(
       5,
       f
+    );
+  }
+  f = this.getMType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      6,
+      f
+    );
+  }
+  f = this.getDevAddr_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      7,
+      f
+    );
+  }
+  f = this.getDevEui_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      8,
+      f
+    );
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -12124,6 +12400,129 @@ proto.ns.DownlinkFrameLog.prototype.getGatewayId_asU8 = function() {
 /** @param {!(string|Uint8Array)} value  */
 proto.ns.DownlinkFrameLog.prototype.setGatewayId = function(value) {
   jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional common.MType m_type = 6;
+ * @return {!proto.common.MType}
+ */
+proto.ns.DownlinkFrameLog.prototype.getMType = function() {
+  return /** @type {!proto.common.MType} */ (jspb.Message.getFieldProto3(this, 6, 0));
+};
+
+
+/** @param {!proto.common.MType} value  */
+proto.ns.DownlinkFrameLog.prototype.setMType = function(value) {
+  jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional bytes dev_addr = 7;
+ * @return {!(string|Uint8Array)}
+ */
+proto.ns.DownlinkFrameLog.prototype.getDevAddr = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 7, ""));
+};
+
+
+/**
+ * optional bytes dev_addr = 7;
+ * This is a type-conversion wrapper around `getDevAddr()`
+ * @return {string}
+ */
+proto.ns.DownlinkFrameLog.prototype.getDevAddr_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDevAddr()));
+};
+
+
+/**
+ * optional bytes dev_addr = 7;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getDevAddr()`
+ * @return {!Uint8Array}
+ */
+proto.ns.DownlinkFrameLog.prototype.getDevAddr_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDevAddr()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.ns.DownlinkFrameLog.prototype.setDevAddr = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional bytes dev_eui = 8;
+ * @return {!(string|Uint8Array)}
+ */
+proto.ns.DownlinkFrameLog.prototype.getDevEui = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldProto3(this, 8, ""));
+};
+
+
+/**
+ * optional bytes dev_eui = 8;
+ * This is a type-conversion wrapper around `getDevEui()`
+ * @return {string}
+ */
+proto.ns.DownlinkFrameLog.prototype.getDevEui_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getDevEui()));
+};
+
+
+/**
+ * optional bytes dev_eui = 8;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getDevEui()`
+ * @return {!Uint8Array}
+ */
+proto.ns.DownlinkFrameLog.prototype.getDevEui_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getDevEui()));
+};
+
+
+/** @param {!(string|Uint8Array)} value  */
+proto.ns.DownlinkFrameLog.prototype.setDevEui = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp published_at = 9;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.ns.DownlinkFrameLog.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.ns.DownlinkFrameLog.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.ns.DownlinkFrameLog.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.ns.DownlinkFrameLog.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -18084,6 +18483,370 @@ proto.ns.GetMulticastQueueItemsForMulticastGroupResponse.prototype.setMulticastQ
 
 proto.ns.GetMulticastQueueItemsForMulticastGroupResponse.prototype.clearMulticastQueueItemsList = function() {
   this.setMulticastQueueItemsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ns.GetADRAlgorithmsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ns.GetADRAlgorithmsResponse.repeatedFields_, null);
+};
+goog.inherits(proto.ns.GetADRAlgorithmsResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ns.GetADRAlgorithmsResponse.displayName = 'proto.ns.GetADRAlgorithmsResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ns.GetADRAlgorithmsResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ns.GetADRAlgorithmsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.ns.GetADRAlgorithmsResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ns.GetADRAlgorithmsResponse} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.ns.GetADRAlgorithmsResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    adrAlgorithmsList: jspb.Message.toObjectList(msg.getAdrAlgorithmsList(),
+    proto.ns.ADRAlgorithm.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ns.GetADRAlgorithmsResponse}
+ */
+proto.ns.GetADRAlgorithmsResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ns.GetADRAlgorithmsResponse;
+  return proto.ns.GetADRAlgorithmsResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ns.GetADRAlgorithmsResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ns.GetADRAlgorithmsResponse}
+ */
+proto.ns.GetADRAlgorithmsResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.ns.ADRAlgorithm;
+      reader.readMessage(value,proto.ns.ADRAlgorithm.deserializeBinaryFromReader);
+      msg.getAdrAlgorithmsList().push(value);
+      msg.setAdrAlgorithmsList(msg.getAdrAlgorithmsList());
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.ns.GetADRAlgorithmsResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.ns.GetADRAlgorithmsResponse.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ns.GetADRAlgorithmsResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.ns.GetADRAlgorithmsResponse.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getAdrAlgorithmsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.ns.ADRAlgorithm.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.ns.GetADRAlgorithmsResponse} The clone.
+ */
+proto.ns.GetADRAlgorithmsResponse.prototype.cloneMessage = function() {
+  return /** @type {!proto.ns.GetADRAlgorithmsResponse} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * repeated ADRAlgorithm adr_algorithms = 1;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * @return {!Array.<!proto.ns.ADRAlgorithm>}
+ */
+proto.ns.GetADRAlgorithmsResponse.prototype.getAdrAlgorithmsList = function() {
+  return /** @type{!Array.<!proto.ns.ADRAlgorithm>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ns.ADRAlgorithm, 1));
+};
+
+
+/** @param {Array.<!proto.ns.ADRAlgorithm>} value  */
+proto.ns.GetADRAlgorithmsResponse.prototype.setAdrAlgorithmsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+proto.ns.GetADRAlgorithmsResponse.prototype.clearAdrAlgorithmsList = function() {
+  this.setAdrAlgorithmsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ns.ADRAlgorithm = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ns.ADRAlgorithm, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ns.ADRAlgorithm.displayName = 'proto.ns.ADRAlgorithm';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ns.ADRAlgorithm.prototype.toObject = function(opt_includeInstance) {
+  return proto.ns.ADRAlgorithm.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ns.ADRAlgorithm} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.ns.ADRAlgorithm.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: msg.getId(),
+    name: msg.getName()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ns.ADRAlgorithm}
+ */
+proto.ns.ADRAlgorithm.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ns.ADRAlgorithm;
+  return proto.ns.ADRAlgorithm.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ns.ADRAlgorithm} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ns.ADRAlgorithm}
+ */
+proto.ns.ADRAlgorithm.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.ns.ADRAlgorithm} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.ns.ADRAlgorithm.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ns.ADRAlgorithm.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.ns.ADRAlgorithm.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = this.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.ns.ADRAlgorithm} The clone.
+ */
+proto.ns.ADRAlgorithm.prototype.cloneMessage = function() {
+  return /** @type {!proto.ns.ADRAlgorithm} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.ns.ADRAlgorithm.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 1, ""));
+};
+
+
+/** @param {string} value  */
+proto.ns.ADRAlgorithm.prototype.setId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string name = 2;
+ * @return {string}
+ */
+proto.ns.ADRAlgorithm.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 2, ""));
+};
+
+
+/** @param {string} value  */
+proto.ns.ADRAlgorithm.prototype.setName = function(value) {
+  jspb.Message.setField(this, 2, value);
 };
 
 
