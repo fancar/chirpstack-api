@@ -80,9 +80,12 @@ export interface RegionMap {
   AU915: 5;
   CN470: 6;
   AS923: 7;
+  AS923_2: 12;
+  AS923_3: 13;
   KR920: 8;
   IN865: 9;
   RU864: 10;
+  ISM2400: 11;
 }
 
 export const Region: RegionMap;

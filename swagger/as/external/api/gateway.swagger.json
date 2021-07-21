@@ -447,6 +447,11 @@
         "gatewayID": {
           "type": "string",
           "description": "Gateway ID."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Published at timestamp."
         }
       }
     },
@@ -965,6 +970,11 @@
         "phyPayloadJSON": {
           "type": "string",
           "description": "LoRaWAN PHYPayload."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Published at timestamp."
         }
       }
     },

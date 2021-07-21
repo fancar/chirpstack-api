@@ -18,6 +18,11 @@ export class UplinkFrameLog extends jspb.Message {
   getPhyPayloadJson(): string;
   setPhyPayloadJson(value: string): void;
 
+  hasPublishedAt(): boolean;
+  clearPublishedAt(): void;
+  getPublishedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setPublishedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UplinkFrameLog.AsObject;
   static toObject(includeInstance: boolean, msg: UplinkFrameLog): UplinkFrameLog.AsObject;
@@ -33,6 +38,7 @@ export namespace UplinkFrameLog {
     txInfo?: gw_gw_pb.UplinkTXInfo.AsObject,
     rxInfoList: Array<gw_gw_pb.UplinkRXInfo.AsObject>,
     phyPayloadJson: string,
+    publishedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -47,6 +53,11 @@ export class DownlinkFrameLog extends jspb.Message {
 
   getGatewayId(): string;
   setGatewayId(value: string): void;
+
+  hasPublishedAt(): boolean;
+  clearPublishedAt(): void;
+  getPublishedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setPublishedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DownlinkFrameLog.AsObject;
@@ -63,6 +74,7 @@ export namespace DownlinkFrameLog {
     txInfo?: gw_gw_pb.DownlinkTXInfo.AsObject,
     phyPayloadJson: string,
     gatewayId: string,
+    publishedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

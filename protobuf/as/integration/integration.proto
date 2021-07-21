@@ -101,6 +101,9 @@ message UplinkEvent {
 
     // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
     google.protobuf.Timestamp time = 18;    
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 19;
 }
 
 // JoinEvent is the message sent when a device joined the network.
@@ -133,6 +136,9 @@ message JoinEvent {
 
     // User-defined device tags.
     map<string, string> tags = 9;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 10;
 }
 
 // AckEvent is the message sent when a confirmation on a confirmed downlink
@@ -158,6 +164,9 @@ message AckEvent {
 
     // User-defined device tags.
     map<string, string> tags = 7;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 8;
 }
 
 // TxAckEvent is the message sent when a downlink was acknowledged by the gateway
@@ -187,6 +196,9 @@ message TxAckEvent {
 
     // TX info.
     gw.DownlinkTXInfo tx_info = 8;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 9;
 }
 
 // ErrorEvent is the message sent when an error occurred.
@@ -214,6 +226,9 @@ message ErrorEvent {
 
     // User-defined device tags.
     map<string, string> tags = 8;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 9;
 }
 
 // StatusEvent is the message sent when a device-status mac-command was sent
@@ -246,6 +261,9 @@ message StatusEvent {
 
     // User-defined device tags.
     map<string, string> tags = 9;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 10;
 }
 
 // LocationEvent is the message sent when a geolocation resolve was returned.
@@ -275,6 +293,9 @@ message LocationEvent {
     // Frame counter (in case the geolocation is based on the payload).
     // This is set in case the geolocation is based on the uplink payload content.
     uint32 f_cnt = 8;
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 9;
 }
 
 // IntegrationEvent is the message that can be sent by an integration.
@@ -304,4 +325,7 @@ message IntegrationEvent {
 
     // JSON string containing the event object.
     string object_json = 8 [json_name = "objectJSON"];
+
+    // Published at timestamp.
+    google.protobuf.Timestamp published_at = 9;
 }
