@@ -769,6 +769,11 @@
           "format": "date-time",
           "description": "Last seen timestamp."
         },
+        "firstUplinkAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "First uplink at timestamp."
+        },
         "deviceStatusBattery": {
           "type": "integer",
           "format": "int64",
