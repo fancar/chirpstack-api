@@ -507,21 +507,23 @@ type GetDeviceResponse struct {
 	// Created at timestamp.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last seen timestamp.
-	LastSeenAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	LastSeenAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	// First uplink at timestamp.
+	FirstUplinkAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=first_uplink_at,json=firstUplinkAt,proto3" json:"first_uplink_at,omitempty"`
 	// The device battery status
 	// 0:      The end-device is connected to an external power source
 	// 1..254: The battery level, 1 being at minimum and 254 being at maximum
 	// 255:    The end-device was not able to measure the battery level
 	// 256:    The device-status is not available.
-	DeviceStatusBattery uint32 `protobuf:"varint,6,opt,name=device_status_battery,json=deviceStatusBattery,proto3" json:"device_status_battery,omitempty"`
+	DeviceStatusBattery uint32 `protobuf:"varint,5,opt,name=device_status_battery,json=deviceStatusBattery,proto3" json:"device_status_battery,omitempty"`
 	// The device margin status
 	// -32..32: The demodulation SNR ration in dB
 	// 256:     The device-status is not available.
-	DeviceStatusMargin int32 `protobuf:"varint,20,opt,name=device_status_margin,json=deviceStatusMargin,proto3" json:"device_status_margin,omitempty"`
+	DeviceStatusMargin int32 `protobuf:"varint,6,opt,name=device_status_margin,json=deviceStatusMargin,proto3" json:"device_status_margin,omitempty"`
 	// Device location.
 	// This will set when the network-server was able to resolve the location
 	// using the geolocation-server.
-	Location             *common.Location `protobuf:"bytes,21,opt,name=location,proto3" json:"location,omitempty"`
+	Location             *common.Location `protobuf:"bytes,7,opt,name=location,proto3" json:"location,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
 	XXX_sizecache        int32            `json:"-"`
@@ -569,6 +571,13 @@ func (m *GetDeviceResponse) GetCreatedAt() *timestamp.Timestamp {
 func (m *GetDeviceResponse) GetLastSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.LastSeenAt
+	}
+	return nil
+}
+
+func (m *GetDeviceResponse) GetFirstUplinkAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.FirstUplinkAt
 	}
 	return nil
 }
@@ -1645,9 +1654,7 @@ func init() {
 	proto.RegisterType((*StreamDeviceEventLogsResponse)(nil), "api.StreamDeviceEventLogsResponse")
 }
 
-func init() {
-	proto.RegisterFile("as/external/api/device.proto", fileDescriptor_57ec3c2ed36f7cf9)
-}
+func init() { proto.RegisterFile("as/external/api/device.proto", fileDescriptor_57ec3c2ed36f7cf9) }
 
 var fileDescriptor_57ec3c2ed36f7cf9 = []byte{
 	// 1915 bytes of a gzipped FileDescriptorProto
@@ -1775,11 +1782,11 @@ var fileDescriptor_57ec3c2ed36f7cf9 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConnInterface
+var _ grpc.ClientConn
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion4
 
 // DeviceServiceClient is the client API for DeviceService service.
 //
@@ -1822,10 +1829,10 @@ type DeviceServiceClient interface {
 }
 
 type deviceServiceClient struct {
-	cc grpc.ClientConnInterface
+	cc *grpc.ClientConn
 }
 
-func NewDeviceServiceClient(cc grpc.ClientConnInterface) DeviceServiceClient {
+func NewDeviceServiceClient(cc *grpc.ClientConn) DeviceServiceClient {
 	return &deviceServiceClient{cc}
 }
 
