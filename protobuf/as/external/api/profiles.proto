@@ -26,6 +26,9 @@ message ServiceProfile {
     // Service-profile name.
     string name = 21;
 
+    // Service-profile description.
+    string description = 25;
+
     // Organization ID to which the service-profile is assigned.
     int64 organization_id = 22 [json_name = "organizationID"];
 

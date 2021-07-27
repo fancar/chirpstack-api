@@ -264,6 +264,10 @@
           "type": "string",
           "description": "Service-profile name."
         },
+        "description": {
+          "type": "string",
+          "description": "Service-profile description."
+        },
         "organizationID": {
           "type": "string",
           "format": "int64",
