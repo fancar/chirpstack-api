@@ -32,6 +32,9 @@ message ServiceProfile {
     // Network-server ID on which the service-profile is provisioned.
     int64 network_server_id = 23 [json_name = "networkServerID"];
 
+    // This flag is set when profile is default for current organization
+    bool isDefault = 26;
+
     // Token bucket filling rate, including ACKs (packet/h).
     uint32 ul_rate = 2;
 

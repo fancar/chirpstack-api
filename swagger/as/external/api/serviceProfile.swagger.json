@@ -274,6 +274,11 @@
           "format": "int64",
           "description": "Network-server ID on which the service-profile is provisioned."
         },
+        "isDefault": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "This flag is set when profile is default for current organization"
+        },
         "ulRate": {
           "type": "integer",
           "format": "int64",
