@@ -21,6 +21,9 @@ service DictionaryService {
 message GetDictionaryRequest {
 	// type of a dictionary
 	string dic_type = 1;
+
+	//type of store example: hr
+	string store = 2;
 }
 
 message GetDictionaryResponse {
@@ -32,7 +35,7 @@ message GetDictionaryResponse {
 
 message Dictionary {
 	// id of the item
-	int64 code = 1;
+	string code = 1;
 
 	// value of the item
 	string label = 2;
