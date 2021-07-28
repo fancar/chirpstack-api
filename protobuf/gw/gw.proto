@@ -385,6 +385,9 @@ message GatewayConfiguration {
 
     // Stats interval.
     google.protobuf.Duration stats_interval = 4;
+
+    // Band name
+    string band = 5;    
 }
 
 message ChannelConfiguration {
