@@ -12,6 +12,7 @@ var global = Function('return this')();
 var common_common_pb = require('../../common/common_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var gw_gw_pb = require('../../gw/gw_pb.js');
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.exportSymbol('proto.integration.AckEvent', null, global);
 goog.exportSymbol('proto.integration.ErrorEvent', null, global);
 goog.exportSymbol('proto.integration.ErrorType', null, global);
@@ -90,9 +91,13 @@ proto.integration.UplinkEvent.toObject = function(includeInstance, msg) {
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     confirmedUplink: msg.getConfirmedUplink(),
     devAddr: msg.getDevAddr_asB64(),
+<<<<<<< HEAD
     mic: msg.getMic_asB64(),
     late: msg.getLate(),
     time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+=======
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+>>>>>>> v3.9.9
   };
 
   if (includeInstance) {
@@ -195,6 +200,7 @@ proto.integration.UplinkEvent.deserializeBinaryFromReader = function(msg, reader
       msg.setDevAddr(value);
       break;
     case 16:
+<<<<<<< HEAD
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setMic(value);
       break;
@@ -206,6 +212,11 @@ proto.integration.UplinkEvent.deserializeBinaryFromReader = function(msg, reader
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTime(value);
+=======
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
+>>>>>>> v3.9.9
       break;
     default:
       reader.skipField();
@@ -349,6 +360,7 @@ proto.integration.UplinkEvent.prototype.serializeBinaryToWriter = function (writ
       f
     );
   }
+<<<<<<< HEAD
   f = this.getMic_asU8();
   if (f.length > 0) {
     writer.writeBytes(
@@ -367,6 +379,12 @@ proto.integration.UplinkEvent.prototype.serializeBinaryToWriter = function (writ
   if (f != null) {
     writer.writeMessage(
       18,
+=======
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      16,
+>>>>>>> v3.9.9
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -706,6 +724,7 @@ proto.integration.UplinkEvent.prototype.setDevAddr = function(value) {
 
 
 /**
+<<<<<<< HEAD
  * optional bytes mic = 16;
  * @return {!(string|Uint8Array)}
  */
@@ -768,10 +787,19 @@ proto.integration.UplinkEvent.prototype.setLate = function(value) {
 proto.integration.UplinkEvent.prototype.getTime = function() {
   return /** @type{proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 18));
+=======
+ * optional google.protobuf.Timestamp published_at = 16;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.UplinkEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 16));
+>>>>>>> v3.9.9
 };
 
 
 /** @param {proto.google.protobuf.Timestamp|undefined} value  */
+<<<<<<< HEAD
 proto.integration.UplinkEvent.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 18, value);
 };
@@ -779,6 +807,15 @@ proto.integration.UplinkEvent.prototype.setTime = function(value) {
 
 proto.integration.UplinkEvent.prototype.clearTime = function() {
   this.setTime(undefined);
+=======
+proto.integration.UplinkEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 16, value);
+};
+
+
+proto.integration.UplinkEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+>>>>>>> v3.9.9
 };
 
 
@@ -786,8 +823,13 @@ proto.integration.UplinkEvent.prototype.clearTime = function() {
  * Returns whether this field is set.
  * @return{!boolean}
  */
+<<<<<<< HEAD
 proto.integration.UplinkEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 18) != null;
+=======
+proto.integration.UplinkEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 16) != null;
+>>>>>>> v3.9.9
 };
 
 
@@ -853,7 +895,8 @@ proto.integration.JoinEvent.toObject = function(includeInstance, msg) {
     gw_gw_pb.UplinkRXInfo.toObject, includeInstance),
     txInfo: (f = msg.getTxInfo()) && gw_gw_pb.UplinkTXInfo.toObject(includeInstance, f),
     dr: msg.getDr(),
-    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : []
+    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -930,6 +973,11 @@ proto.integration.JoinEvent.deserializeBinaryFromReader = function(msg, reader) 
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 10:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -1030,6 +1078,14 @@ proto.integration.JoinEvent.prototype.serializeBinaryToWriter = function (writer
   f = this.getTagsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
 
@@ -1247,6 +1303,36 @@ proto.integration.JoinEvent.prototype.getTagsMap = function(opt_noLazyCreate) {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp published_at = 10;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.JoinEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 10));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.JoinEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+proto.integration.JoinEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.JoinEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1299,7 +1385,8 @@ proto.integration.AckEvent.toObject = function(includeInstance, msg) {
     devEui: msg.getDevEui_asB64(),
     acknowledged: msg.getAcknowledged(),
     fCnt: msg.getFCnt(),
-    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : []
+    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1365,6 +1452,11 @@ proto.integration.AckEvent.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -1449,6 +1541,14 @@ proto.integration.AckEvent.prototype.serializeBinaryToWriter = function (writer)
   f = this.getTagsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
 
@@ -1591,6 +1691,36 @@ proto.integration.AckEvent.prototype.getTagsMap = function(opt_noLazyCreate) {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp published_at = 8;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.AckEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.AckEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.integration.AckEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.AckEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 8) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -1644,7 +1774,8 @@ proto.integration.TxAckEvent.toObject = function(includeInstance, msg) {
     fCnt: msg.getFCnt(),
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     gatewayId: msg.getGatewayId_asB64(),
-    txInfo: (f = msg.getTxInfo()) && gw_gw_pb.DownlinkTXInfo.toObject(includeInstance, f)
+    txInfo: (f = msg.getTxInfo()) && gw_gw_pb.DownlinkTXInfo.toObject(includeInstance, f),
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1715,6 +1846,11 @@ proto.integration.TxAckEvent.deserializeBinaryFromReader = function(msg, reader)
       var value = new gw_gw_pb.DownlinkTXInfo;
       reader.readMessage(value,gw_gw_pb.DownlinkTXInfo.deserializeBinaryFromReader);
       msg.setTxInfo(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -1806,6 +1942,14 @@ proto.integration.TxAckEvent.prototype.serializeBinaryToWriter = function (write
       8,
       f,
       gw_gw_pb.DownlinkTXInfo.serializeBinaryToWriter
+    );
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -2001,6 +2145,36 @@ proto.integration.TxAckEvent.prototype.hasTxInfo = function() {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp published_at = 9;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.TxAckEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.TxAckEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.integration.TxAckEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.TxAckEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2054,7 +2228,8 @@ proto.integration.ErrorEvent.toObject = function(includeInstance, msg) {
     type: msg.getType(),
     error: msg.getError(),
     fCnt: msg.getFCnt(),
-    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : []
+    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2124,6 +2299,11 @@ proto.integration.ErrorEvent.deserializeBinaryFromReader = function(msg, reader)
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -2215,6 +2395,14 @@ proto.integration.ErrorEvent.prototype.serializeBinaryToWriter = function (write
   f = this.getTagsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(8, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
 
@@ -2370,6 +2558,36 @@ proto.integration.ErrorEvent.prototype.getTagsMap = function(opt_noLazyCreate) {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp published_at = 9;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.ErrorEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.ErrorEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.integration.ErrorEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.ErrorEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2424,7 +2642,8 @@ proto.integration.StatusEvent.toObject = function(includeInstance, msg) {
     externalPowerSource: msg.getExternalPowerSource(),
     batteryLevelUnavailable: msg.getBatteryLevelUnavailable(),
     batteryLevel: msg.getBatteryLevel(),
-    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : []
+    tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2498,6 +2717,11 @@ proto.integration.StatusEvent.deserializeBinaryFromReader = function(msg, reader
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 10:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -2596,6 +2820,14 @@ proto.integration.StatusEvent.prototype.serializeBinaryToWriter = function (writ
   f = this.getTagsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(9, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      10,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
   }
 };
 
@@ -2770,6 +3002,36 @@ proto.integration.StatusEvent.prototype.getTagsMap = function(opt_noLazyCreate) 
 };
 
 
+/**
+ * optional google.protobuf.Timestamp published_at = 10;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.StatusEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 10));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.StatusEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 10, value);
+};
+
+
+proto.integration.StatusEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.StatusEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 10) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -2830,7 +3092,8 @@ proto.integration.LocationEvent.toObject = function(includeInstance, msg) {
     location: (f = msg.getLocation()) && common_common_pb.Location.toObject(includeInstance, f),
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     uplinkIdsList: msg.getUplinkIdsList_asB64(),
-    fCnt: msg.getFCnt()
+    fCnt: msg.getFCnt(),
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2902,6 +3165,11 @@ proto.integration.LocationEvent.deserializeBinaryFromReader = function(msg, read
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setFCnt(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -2993,6 +3261,14 @@ proto.integration.LocationEvent.prototype.serializeBinaryToWriter = function (wr
     writer.writeUint32(
       8,
       f
+    );
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -3199,6 +3475,36 @@ proto.integration.LocationEvent.prototype.setFCnt = function(value) {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp published_at = 9;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.LocationEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.LocationEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.integration.LocationEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.LocationEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3252,7 +3558,8 @@ proto.integration.IntegrationEvent.toObject = function(includeInstance, msg) {
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     integrationName: msg.getIntegrationName(),
     eventType: msg.getEventType(),
-    objectJson: msg.getObjectJson()
+    objectJson: msg.getObjectJson(),
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3322,6 +3629,11 @@ proto.integration.IntegrationEvent.deserializeBinaryFromReader = function(msg, r
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setObjectJson(value);
+      break;
+    case 9:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setPublishedAt(value);
       break;
     default:
       reader.skipField();
@@ -3412,6 +3724,14 @@ proto.integration.IntegrationEvent.prototype.serializeBinaryToWriter = function 
     writer.writeString(
       8,
       f
+    );
+  }
+  f = this.getPublishedAt();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -3565,6 +3885,36 @@ proto.integration.IntegrationEvent.prototype.getObjectJson = function() {
 /** @param {string} value  */
 proto.integration.IntegrationEvent.prototype.setObjectJson = function(value) {
   jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp published_at = 9;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.IntegrationEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.IntegrationEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.integration.IntegrationEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.integration.IntegrationEvent.prototype.hasPublishedAt = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
