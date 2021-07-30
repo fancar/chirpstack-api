@@ -28,6 +28,8 @@ message ServiceProfile {
 
     // Service-profile description.
     string description = 25;
+    // Maximum device count limit for service-profile.
+    uint32 device_count_limit = 27;
 
     // Organization ID to which the service-profile is assigned.
     int64 organization_id = 22 [json_name = "organizationID"];
