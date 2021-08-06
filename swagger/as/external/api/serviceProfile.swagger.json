@@ -225,6 +225,16 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "usedDevicesCount": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of used devices in current service profile. To get limit of devices see service_profile"
+        },
+        "availableDevicesCount": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Count of available devices in current service profile. To get limit of devices see service_profile"
         }
       }
     },
@@ -267,6 +277,11 @@
         "description": {
           "type": "string",
           "description": "Service-profile description."
+        },
+        "deviceCountLimit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum device count limit for service-profile."
         },
         "organizationID": {
           "type": "string",
@@ -412,6 +427,21 @@
         "networkServerName": {
           "type": "string",
           "description": "Network-server name of the service-profile."
+        },
+        "deviceCountLimit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum device count limit for service-profile."
+        },
+        "usedDevicesCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count of used devices in current service profile."
+        },
+        "availableDevicesCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count of available devices in current service profile."
         }
       }
     },
