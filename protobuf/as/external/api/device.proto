@@ -31,6 +31,13 @@ service DeviceService {
         };
     }
 
+    // Gets list of devices associated with specified in request service profile.
+    rpc GetServiceProfileDevices(GetServiceProfileDevicesRequest) returns (ListDeviceResponse) {
+        option (google.api.http) = {
+            get: "/api/devices/{service_profile_id}"
+        };
+    }
+
     // List returns the available devices.
     rpc List(ListDeviceRequest) returns (ListDeviceResponse) {
         option (google.api.http) = {
@@ -464,4 +471,10 @@ message StreamDeviceEventLogsResponse {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 3;
+}
+
+message GetServiceProfileDevicesRequest {
+    // Service-profile ID to filter on (string formatted UUID).
+    string service_profile_id = 6 [json_name = "serviceProfileID"];
+
 }

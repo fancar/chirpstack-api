@@ -487,6 +487,32 @@
           "DeviceService"
         ]
       }
+    },
+    "/api/devices/{service_profile_id}": {
+      "get": {
+        "summary": "Gets list of devices associated with specified in request service profile.",
+        "operationId": "GetServiceProfileDevices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDeviceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service_profile_id",
+            "description": "Service-profile ID to filter on (string formatted UUID).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DeviceService"
+        ]
+      }
     }
   },
   "definitions": {
