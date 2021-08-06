@@ -138,7 +138,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiLogsGatewayResponse"
+              "$ref": "#/definitions/hrLogsGatewayResponse"
             }
           }
         },
@@ -148,7 +148,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiLogsGatewayRequest"
+              "$ref": "#/definitions/hrLogsGatewayRequest"
             }
           }
         ],
@@ -1014,98 +1014,6 @@
         }
       }
     },
-    "apiLogsGatewayRequest": {
-      "type": "object",
-      "properties": {
-        "limit": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Max number of nodes to return in the result-set."
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Offset of the result-set (for pagination)."
-        },
-        "organizationID": {
-          "type": "string",
-          "format": "int64",
-          "description": "ID of the organization for which to filter on, when left blank the\nresponse will return all gateways to which the user has access to."
-        },
-        "id": {
-          "type": "string",
-          "description": "Gateway ID (HEX encoded)."
-        },
-        "orderBy": {
-          "type": "string",
-          "title": "sort list by name"
-        },
-        "order": {
-          "type": "string",
-          "title": "sort direction"
-        },
-        "filter": {
-          "$ref": "#/definitions/apiLogsGatewayRequestFilter",
-          "title": "Logs filter"
-        }
-      }
-    },
-    "apiLogsGatewayRequestFilter": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32",
-          "title": "code of event"
-        },
-        "startTimestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Timestamp to start from."
-        },
-        "endTimestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Timestamp until to get from."
-        }
-      }
-    },
-    "apiLogsGatewayResponse": {
-      "type": "object",
-      "properties": {
-        "totalCount": {
-          "type": "string",
-          "format": "int64",
-          "description": "Total number of nodes available within the result-set."
-        },
-        "result": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiLogsGwItem"
-          },
-          "title": "result array"
-        }
-      }
-    },
-    "apiLogsGwItem": {
-      "type": "object",
-      "properties": {
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Created at timestamp."
-        },
-        "code": {
-          "type": "integer",
-          "format": "int32",
-          "title": "code of event"
-        },
-        "name": {
-          "type": "string",
-          "title": "name of event"
-        }
-      }
-    },
     "apiPingRX": {
       "type": "object",
       "properties": {
@@ -1538,6 +1446,98 @@
         "fskModulationInfo": {
           "$ref": "#/definitions/gwFSKModulationInfo",
           "description": "FSK modulation information."
+        }
+      }
+    },
+    "hrLogsGatewayRequest": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Max number of nodes to return in the result-set."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Offset of the result-set (for pagination)."
+        },
+        "organizationID": {
+          "type": "string",
+          "format": "int64",
+          "description": "ID of the organization for which to filter on, when left blank the\nresponse will return all gateways to which the user has access to."
+        },
+        "id": {
+          "type": "string",
+          "description": "Gateway ID (HEX encoded)."
+        },
+        "orderBy": {
+          "type": "string",
+          "title": "sort list by name"
+        },
+        "order": {
+          "type": "string",
+          "title": "sort direction"
+        },
+        "filter": {
+          "$ref": "#/definitions/hrLogsGatewayRequestFilter",
+          "title": "Logs filter"
+        }
+      }
+    },
+    "hrLogsGatewayRequestFilter": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "code of event"
+        },
+        "startTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp to start from."
+        },
+        "endTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp until to get from."
+        }
+      }
+    },
+    "hrLogsGatewayResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "type": "string",
+          "format": "int64",
+          "description": "Total number of nodes available within the result-set."
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrLogsGwItem"
+          },
+          "title": "result array"
+        }
+      }
+    },
+    "hrLogsGwItem": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "code of event"
+        },
+        "name": {
+          "type": "string",
+          "title": "name of event"
         }
       }
     },

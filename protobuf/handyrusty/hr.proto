@@ -48,6 +48,65 @@ service HandyRustyService {
 
     // Get dictionaries from clickhouse
     rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {}
+
+    // Get dictionaries from clickhouse
+    rpc GetGatewayLogs(LogsGatewayRequest) returns (LogsGatewayResponse) {}
+}
+
+message LogsGwItem {
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 1;
+
+    //code of event 
+    int32 code = 2;
+
+    //name of event
+    string name = 3;
+}
+
+message LogsGatewayRequestFilter {
+
+    //code of event 
+    int32 code = 1;
+
+    // Timestamp to start from.
+    google.protobuf.Timestamp start_timestamp = 2;
+
+    // Timestamp until to get from.
+    google.protobuf.Timestamp end_timestamp = 3;
+}
+
+message LogsGatewayRequest {
+    // Max number of nodes to return in the result-set.
+    int32 limit = 1;
+
+    // Offset of the result-set (for pagination).
+    int32 offset = 2;
+
+    // ID of the organization for which to filter on, when left blank the
+    // response will return all gateways to which the user has access to.
+    int64 organization_id = 3 [json_name = "organizationID"];
+
+    // Gateway ID (HEX encoded).
+    string id = 4;
+
+    // sort list by name
+    string orderBy = 5;		
+
+    // sort direction
+    string order = 6;	
+
+    //Logs filter
+    LogsGatewayRequestFilter filter = 7;
+
+}
+message LogsGatewayResponse {
+    // Total number of nodes available within the result-set.
+    int64 total_count = 1;
+
+    // result array
+    repeated LogsGwItem result = 2;
 }
 
 message Dictionary {

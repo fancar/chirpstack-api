@@ -13,6 +13,7 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/brocaar/chirpstack-api/go/v3/handyrusty"
 	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
@@ -332,7 +333,7 @@ func local_request_GatewayService_List_0(ctx context.Context, marshaler runtime.
 }
 
 func request_GatewayService_Logs_0(ctx context.Context, marshaler runtime.Marshaler, client GatewayServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LogsGatewayRequest
+	var protoReq handyrusty.LogsGatewayRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -349,7 +350,7 @@ func request_GatewayService_Logs_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_GatewayService_Logs_0(ctx context.Context, marshaler runtime.Marshaler, server GatewayServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LogsGatewayRequest
+	var protoReq handyrusty.LogsGatewayRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
