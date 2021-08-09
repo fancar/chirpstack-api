@@ -145,6 +145,9 @@ message ServiceProfileListItem {
 
     // Count of available devices in current service profile.
     uint32 available_devices_count = 10;
+
+    // Disabled service profile if set true
+    bool is_disabled = 28;
 }
 
 message ListServiceProfileResponse{
