@@ -59,7 +59,7 @@ message LogsGwItem {
     google.protobuf.Timestamp created_at = 1;
 
     //code of event 
-    int32 code = 2;
+    string code = 2;
 
     //name of event
     string name = 3;
@@ -68,7 +68,7 @@ message LogsGwItem {
 message LogsGatewayRequestFilter {
 
     //code of event 
-    int32 code = 1;
+    string code = 1;
 
     // Timestamp to start from.
     google.protobuf.Timestamp start_timestamp = 2;
