@@ -656,7 +656,9 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "api.DeviceProfile.TagsEntry")
 }
 
-func init() { proto.RegisterFile("as/external/api/profiles.proto", fileDescriptor_a1c507fa3dbc9903) }
+func init() {
+	proto.RegisterFile("as/external/api/profiles.proto", fileDescriptor_a1c507fa3dbc9903)
+}
 
 var fileDescriptor_a1c507fa3dbc9903 = []byte{
 	// 1314 bytes of a gzipped FileDescriptorProto

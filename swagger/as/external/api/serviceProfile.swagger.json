@@ -283,6 +283,11 @@
           "format": "int64",
           "description": "Maximum device count limit for service-profile."
         },
+        "isDisabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Disabled service profile if set true"
+        },
         "organizationID": {
           "type": "string",
           "format": "int64",
@@ -442,6 +447,11 @@
           "type": "integer",
           "format": "int64",
           "description": "Count of available devices in current service profile."
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Disabled service profile if set true"
         }
       }
     },

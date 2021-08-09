@@ -1489,8 +1489,7 @@
       "type": "object",
       "properties": {
         "code": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "title": "code of event"
         },
         "startTimestamp": {
@@ -1531,8 +1530,7 @@
           "description": "Created at timestamp."
         },
         "code": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "title": "code of event"
         },
         "name": {
