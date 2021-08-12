@@ -9,7 +9,6 @@ option java_outer_classname = "ProfilesProto";
 
 import "google/protobuf/duration.proto";
 
-
 enum RatePolicy {
     // Drop
     DROP = 0;
@@ -17,6 +16,22 @@ enum RatePolicy {
     // Mark
     MARK = 1;
 }
+
+
+enum RateUnit {
+    Unknown = 0;
+    // Per Hour
+    Hour = 1;
+    // Per Day
+    Day = 2;
+    // Per Week
+    Week = 3;
+    // Per Month
+    Month = 4;
+    // Per Year
+    Year = 5;
+}
+
 
 message ServiceProfile {
     // Service-profile ID (UUID string).
@@ -50,6 +65,9 @@ message ServiceProfile {
     // Drop or mark when exceeding ULRate.
     RatePolicy ul_rate_policy = 4;
 
+    // Uplink rate unit (per hour, per day, per week, per month, per year)
+    RateUnit ul_rate_unit = 29;
+
     // Token bucket filling rate, including ACKs (packet/h).
     uint32 dl_rate = 5;
 
@@ -58,6 +76,9 @@ message ServiceProfile {
 
     // Drop or mark when exceeding DLRate.
     RatePolicy dl_rate_policy = 7;
+
+    // Downlink rate unit (per hour, per day, per week, per month, per year)
+    RateUnit dl_rate_unit = 30;
 
     // GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS.
     bool add_gw_metadata = 8 [json_name = "addGWMetaData"];
