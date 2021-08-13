@@ -263,6 +263,19 @@
       "default": "DROP",
       "title": "- DROP: Drop\n - MARK: Mark"
     },
+    "apiRateUnit": {
+      "type": "string",
+      "enum": [
+        "Unknown",
+        "Hour",
+        "Day",
+        "Week",
+        "Month",
+        "Year"
+      ],
+      "default": "Unknown",
+      "title": "- Hour: Per Hour\n - Day: Per Day\n - Week: Per Week\n - Month: Per Month\n - Year: Per Year"
+    },
     "apiServiceProfile": {
       "type": "object",
       "properties": {
@@ -312,6 +325,10 @@
           "$ref": "#/definitions/apiRatePolicy",
           "description": "Drop or mark when exceeding ULRate."
         },
+        "ulRateUnit": {
+          "$ref": "#/definitions/apiRateUnit",
+          "title": "Uplink rate unit (per hour, per day, per week, per month, per year)"
+        },
         "dlRate": {
           "type": "integer",
           "format": "int64",
@@ -325,6 +342,10 @@
         "dlRatePolicy": {
           "$ref": "#/definitions/apiRatePolicy",
           "description": "Drop or mark when exceeding DLRate."
+        },
+        "dlRateUnit": {
+          "$ref": "#/definitions/apiRateUnit",
+          "title": "Downlink rate unit (per hour, per day, per week, per month, per year)"
         },
         "addGWMetaData": {
           "type": "boolean",
