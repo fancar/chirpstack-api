@@ -59,7 +59,7 @@ message LogsGwItem {
     google.protobuf.Timestamp created_at = 1;
 
     //code of event 
-    string code = 2;
+    int64 code = 2;
 
     //name of event
     string name = 3;
