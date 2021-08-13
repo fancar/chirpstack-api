@@ -72,6 +72,51 @@ service ApplicationServerService {
 
     // StreamGatewayTaskResult stream ExecCmd results from gateway to save into as-db
     rpc StreamGatewayTaskResult(stream GatewayTaskResult) returns (google.protobuf.Empty) {}
+
+    // GetDictionary returns list of dictionary by the type. Modification.
+    rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {}
+
+    // GetGWMetaData returns a map with last metadata for the gw
+    rpc GetGWMetaData(google.protobuf.Empty) returns (GetGWMetaDataResponse) {}     
+}
+
+message GatewayMetaData {
+    // gateway id
+    string gw_id = 1;
+
+    // metadata last recieved
+    map<string,string> metadata = 2; 
+}
+
+message GetGWMetaDataResponse {
+    // Gateway metadata by gateway
+    repeated GatewayMetaData metadata_list = 1; 
+}
+
+message GetDictionaryRequest {
+    // choose dictionary type.
+    string dic_type = 1;
+}
+
+message GetDictionaryResponse {
+    // choose dictionary type.
+    string dic_type = 1;
+
+    repeated Dictionary list = 2;
+}
+
+message Dictionary {
+    // id of the label
+    int64 code = 1;
+
+    // type of the dictionary
+    string dic_type = 2;
+
+    // label name
+    string label = 3;
+
+    // boolean flag if it is relevant
+    bool is_actual = 4;
 }
 
 message GetGatewaysForStatsRequest {
