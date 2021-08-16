@@ -47,9 +47,6 @@ service HandyRustyService {
     rpc GetIntegrationReplies(GetIntegrationRepliesRequest) returns (GetIntegrationRepliesResponse) {}
 
     // Get dictionaries from clickhouse
-    rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {}
-
-    // Get dictionaries from clickhouse
     rpc GetGatewayLogs(LogsGatewayRequest) returns (LogsGatewayResponse) {}
 }
 
@@ -61,20 +58,8 @@ message LogsGwItem {
     //code of event 
     int64 code = 2;
 
-    //name of event
-    string name = 3;
-}
-
-message LogsGatewayRequestFilter {
-
-    //code of event 
-    string code = 1;
-
-    // Timestamp to start from.
-    google.protobuf.Timestamp start_timestamp = 2;
-
-    // Timestamp until to get from.
-    google.protobuf.Timestamp end_timestamp = 3;
+    // Gateway ID (HEX string)
+    string gw_id = 3;
 }
 
 message LogsGatewayRequest {
@@ -84,21 +69,30 @@ message LogsGatewayRequest {
     // Offset of the result-set (for pagination).
     int32 offset = 2;
 
-    // ID of the organization for which to filter on, when left blank the
-    // response will return all gateways to which the user has access to.
+    // you must specify the filed
     int64 organization_id = 3 [json_name = "organizationID"];
 
-    // Gateway ID (HEX encoded).
-    string id = 4;
+    // You cn specify Gateway ID (HEX string). It must be at the same organization
+    // string gw_id = 4;	
 
-    // sort list by name
-    string orderBy = 5;		
+    // list of gateways (hex-strings). All the gws must be under the same organization
+    repeated string gw_list = 4;  
 
-    // sort direction
-    string order = 6;	
+    // code of event according to dictionary gwlogs_state
+    int64 code = 5;
 
-    //Logs filter
-    LogsGatewayRequestFilter filter = 7;
+    // Timestamp for filter from the date.
+    google.protobuf.Timestamp start_timestamp = 6;
+
+    // Timestamp for filtering up to the date.
+    google.protobuf.Timestamp end_timestamp = 7;
+
+
+    // // sort list by name
+    // string orderBy = 8;     
+
+    // // sort direction
+    // string order = 9;
 
 }
 message LogsGatewayResponse {
@@ -109,29 +103,29 @@ message LogsGatewayResponse {
     repeated LogsGwItem result = 2;
 }
 
-message Dictionary {
-	// id of the item
-	string code = 1;
+// message Dictionary {
+// 	// id of the item
+// 	string code = 1;
 
-	// value of the item
-	string label = 2;
+// 	// value of the item
+// 	string label = 2;
 
-	// if true the item is active
-	bool is_actual = 3;
-}
+// 	// if true the item is active
+// 	bool is_actual = 3;
+// }
 
-message GetDictionaryRequest {
-	// type of a dictionary
-	string dic_type = 1;
+// message GetDictionaryRequest {
+// 	// type of a dictionary
+// 	string dic_type = 1;
 
-}
+// }
 
-message GetDictionaryResponse {
-	// type of a dictionary
-	string dic_type = 1;
+// message GetDictionaryResponse {
+// 	// type of a dictionary
+// 	string dic_type = 1;
 
-	repeated Dictionary dict = 2;
-}
+// 	repeated Dictionary dict = 2;
+// }
 
 message GetIntegrationRepliesRequest {
     // you can specify offset (for pagination)
