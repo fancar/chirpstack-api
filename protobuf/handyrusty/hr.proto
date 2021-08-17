@@ -58,8 +58,8 @@ message LogsGwItem {
     //code of event 
     int64 code = 2;
 
-    // Gateway ID (HEX string)
-    string gw_id = 3;
+    // Gateway ID (HEX encoded).
+    string gateway_id = 3 [json_name = "gatewayID"];    
 }
 
 message LogsGatewayRequest {
@@ -102,30 +102,6 @@ message LogsGatewayResponse {
     // result array
     repeated LogsGwItem result = 2;
 }
-
-// message Dictionary {
-// 	// id of the item
-// 	string code = 1;
-
-// 	// value of the item
-// 	string label = 2;
-
-// 	// if true the item is active
-// 	bool is_actual = 3;
-// }
-
-// message GetDictionaryRequest {
-// 	// type of a dictionary
-// 	string dic_type = 1;
-
-// }
-
-// message GetDictionaryResponse {
-// 	// type of a dictionary
-// 	string dic_type = 1;
-
-// 	repeated Dictionary dict = 2;
-// }
 
 message GetIntegrationRepliesRequest {
     // you can specify offset (for pagination)
@@ -324,12 +300,6 @@ message GetGatewayCountersResponse {
 message GetVersionResponse {
     // ChirpStack Network Server version.
     string version = 1;
-}
-
-// temp message just to check some thing
-message GetBullshitResponse {
-    // ChirpStack Network Server version.
-    string xyu = 1;
 }
 
 // counters

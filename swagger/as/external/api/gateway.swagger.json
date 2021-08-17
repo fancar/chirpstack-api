@@ -1521,9 +1521,9 @@
           "format": "int64",
           "title": "code of event"
         },
-        "gwId": {
+        "gatewayID": {
           "type": "string",
-          "title": "Gateway ID (HEX string)"
+          "description": "Gateway ID (HEX encoded)."
         }
       }
     },
