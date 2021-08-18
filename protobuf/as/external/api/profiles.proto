@@ -19,17 +19,16 @@ enum RatePolicy {
 
 
 enum RateUnit {
-    Unknown = 0;
     // Per Hour
-    Hour = 1;
+    Hour = 0;
     // Per Day
-    Day = 2;
+    Day = 1;
     // Per Week
-    Week = 3;
+    Week = 2;
     // Per Month
-    Month = 4;
+    Month = 3;
     // Per Year
-    Year = 5;
+    Year = 4;
 }
 
 
