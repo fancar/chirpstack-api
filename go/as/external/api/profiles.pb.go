@@ -6,7 +6,7 @@ package api
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	duration "github.com/golang/protobuf/ptypes/duration"
 	math "math"
 )
 
@@ -457,7 +457,7 @@ type DeviceProfile struct {
 	// This defines the expected uplink interval which the device uses for
 	// communication. When the uplink interval has expired and no uplink has
 	// been received, the device is considered inactive.
-	UplinkInterval *durationpb.Duration `protobuf:"bytes,30,opt,name=uplink_interval,json=uplinkInterval,proto3" json:"uplink_interval,omitempty"`
+	UplinkInterval *duration.Duration `protobuf:"bytes,30,opt,name=uplink_interval,json=uplinkInterval,proto3" json:"uplink_interval,omitempty"`
 	// ADR algorithm ID.
 	// In case this is left blank, or is configured to a non-existing ADR
 	// algorithm (plugin), then it falls back to 'default'.
@@ -695,7 +695,7 @@ func (m *DeviceProfile) GetTags() map[string]string {
 	return nil
 }
 
-func (m *DeviceProfile) GetUplinkInterval() *durationpb.Duration {
+func (m *DeviceProfile) GetUplinkInterval() *duration.Duration {
 	if m != nil {
 		return m.UplinkInterval
 	}

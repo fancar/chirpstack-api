@@ -37,7 +37,7 @@
           },
           {
             "name": "store",
-            "description": "type of store example: hr.",
+            "description": "type of store. For future use.",
             "in": "query",
             "required": false,
             "type": "string"

@@ -132,8 +132,8 @@
     },
     "/api/gateways/logs": {
       "post": {
-        "summary": "Logs lists the gateways.",
-        "operationId": "Logs",
+        "summary": "GetGatewayLogs returns logs of statistics state changed.",
+        "operationId": "GetGatewayLogs",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1465,42 +1465,29 @@
         "organizationID": {
           "type": "string",
           "format": "int64",
-          "description": "ID of the organization for which to filter on, when left blank the\nresponse will return all gateways to which the user has access to."
+          "title": "you must specify the filed"
         },
-        "id": {
-          "type": "string",
-          "description": "Gateway ID (HEX encoded)."
+        "gwList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "list of gateways (hex-strings). All the gws must be under the same organization"
         },
-        "orderBy": {
-          "type": "string",
-          "title": "sort list by name"
-        },
-        "order": {
-          "type": "string",
-          "title": "sort direction"
-        },
-        "filter": {
-          "$ref": "#/definitions/hrLogsGatewayRequestFilter",
-          "title": "Logs filter"
-        }
-      }
-    },
-    "hrLogsGatewayRequestFilter": {
-      "type": "object",
-      "properties": {
         "code": {
           "type": "string",
-          "title": "code of event"
+          "format": "int64",
+          "title": "code of event according to dictionary gwlogs_state"
         },
         "startTimestamp": {
           "type": "string",
           "format": "date-time",
-          "description": "Timestamp to start from."
+          "description": "Timestamp for filter from the date."
         },
         "endTimestamp": {
           "type": "string",
           "format": "date-time",
-          "description": "Timestamp until to get from."
+          "description": "Timestamp for filtering up to the date."
         }
       }
     },
@@ -1531,11 +1518,12 @@
         },
         "code": {
           "type": "string",
+          "format": "int64",
           "title": "code of event"
         },
-        "name": {
+        "gatewayID": {
           "type": "string",
-          "title": "name of event"
+          "description": "Gateway ID (HEX encoded)."
         }
       }
     },

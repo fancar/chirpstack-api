@@ -28,7 +28,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type GetDictionaryRequest struct {
 	// type of a dictionary
 	DicType string `protobuf:"bytes,1,opt,name=dic_type,json=dicType,proto3" json:"dic_type,omitempty"`
-	//type of store example: hr
+	// type of store. For future use.
 	Store                string   `protobuf:"bytes,2,opt,name=store,proto3" json:"store,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

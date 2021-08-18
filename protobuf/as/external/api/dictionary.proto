@@ -22,7 +22,7 @@ message GetDictionaryRequest {
 	// type of a dictionary
 	string dic_type = 1;
 
-	//type of store example: hr
+	// type of store. For future use.
 	string store = 2;
 }
 

@@ -57,9 +57,6 @@ service ApplicationServerService {
     // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
     rpc GetDeviceAppSKey(GetOrgByDevEUIRequest) returns (GetDeviceAppSKeyResponse) {}
 
-    // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
-    rpc ListGstewaysForStats(GetGatewaysForStatsRequest) returns (GetGatewaysForStatsResponse) {}
-
     // ReEncryptDeviceQueueItems requests the application-server to re-encrypt
     // the given payload items using the new parameters. This request is
     // for example triggered when the associated frame-counter of a downlink
@@ -117,16 +114,6 @@ message Dictionary {
 
     // boolean flag if it is relevant
     bool is_actual = 4;
-}
-
-message GetGatewaysForStatsRequest {
-    // Organization ID.
-    int64 organization_id = 1 [json_name = "organizationID"];
-}
-
-message GetGatewaysForStatsResponse{
-    // Gateway IDs (8 bytes).
-    repeated bytes gateway_ids = 1;
 }
 
 message GetOrgByDevEUIRequest {
