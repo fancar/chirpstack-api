@@ -46,9 +46,6 @@ message ServiceProfile {
     // Maximum device count limit for service-profile.
     uint32 device_count_limit = 27;
 
-    // Disabled service profile if set true
-    bool is_disabled = 28;
-
     // Organization ID to which the service-profile is assigned.
     int64 organization_id = 22 [json_name = "organizationID"];
 
@@ -122,6 +119,9 @@ message ServiceProfile {
     // This means that these gateways can only be used by devices under the
     // same service-profile.
     bool gws_private = 24 [json_name = "gwsPrivate"];
+
+    // Disabled service profile if set true
+    bool is_disabled = 28;
 }
 
 message DeviceProfile {

@@ -182,6 +182,18 @@ enum RXWindow {
     RX2 = 1;
 }
 
+enum RateLimit {
+
+    // Unlimited - common state
+    Unlimited = 0;
+
+    // Dropped - droped when limit reached
+    Dropped = 1;
+    
+    // Marked - don't drop just mark that limit reached
+    Marked = 2;
+}
+
 message CreateServiceProfileRequest {
     // Service-profile object to create.
     ServiceProfile service_profile = 1;
@@ -732,6 +744,9 @@ message RXFrameForHandyRusty {
 
     // context id 
     string ctx_id = 6;
+
+    // rate limit
+    RateLimit limit = 7;
 }
 
 // TX (downlink) frame data to save in CLICKHOUSE
