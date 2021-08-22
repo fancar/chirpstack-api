@@ -9,10 +9,10 @@ option java_outer_classname = "ProfilesProto";
 
 enum RatePolicy {
     // Drop
-    DROP = 0;
+    Drop = 0;
 
     // Mark
-    MARK = 1;
+    Mark = 1;
 }
 
 enum RateUnit {
