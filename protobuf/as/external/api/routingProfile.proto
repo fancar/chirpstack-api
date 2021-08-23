@@ -105,6 +105,9 @@ message ListRoutingProfileRequest {
 
     // Organization id to filter on.
     int64 organization_id = 3 [json_name = "organizationID"];
+
+    // Search on name or Routing Profile. Case-insencitive. regexp available
+    string search = 4;
 }
 
 message ListRoutingProfileResponse {
