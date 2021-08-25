@@ -723,6 +723,9 @@ message DownlinkFrameLog {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+
+    // rate limit
+    RateLimit limit = 10;
 }
 
 // RX (uplink) frame data to save in CLICKHOUSE
@@ -769,6 +772,9 @@ message TXFrameForHandyRusty {
 
     // some information from current device-session
     DeviceSession device_session = 6;    
+
+    // rate limit
+    RateLimit limit = 7;
 }
 
 // DeviceSession cropped data from DeviceSession to save in CLICKHOUSE
