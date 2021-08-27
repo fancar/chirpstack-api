@@ -64,5 +64,11 @@ service HandyRustyService {
         option (google.api.http) = {
             get: "/api/handy-rusty/integration/replies"
         };        
-    } 
+    }
+
+    rpc GetGwStats(hr.GetGwStatsRequest) returns (hr.GetGwStatsResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/gateway/stats"
+        };
+    }
 }

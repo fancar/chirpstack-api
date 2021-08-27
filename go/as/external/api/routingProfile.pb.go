@@ -7,12 +7,12 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -39,10 +39,10 @@ type RoutingProfile struct {
 	// Application services related to appropriate routing profile
 	Applications []int64 `protobuf:"varint,5,rep,packed,name=applications,proto3" json:"applications,omitempty"`
 	// Created at timestamp.
-	CreatedAt            *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *RoutingProfile) Reset()         { *m = RoutingProfile{} }
@@ -105,7 +105,7 @@ func (m *RoutingProfile) GetApplications() []int64 {
 	return nil
 }
 
-func (m *RoutingProfile) GetCreatedAt() *timestamppb.Timestamp {
+func (m *RoutingProfile) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
@@ -545,9 +545,9 @@ type RoutingProfileServiceClient interface {
 	// Get returns the routing-profile matching the given id.
 	Get(ctx context.Context, in *GetRoutingProfileRequest, opts ...grpc.CallOption) (*GetRoutingProfileResponse, error)
 	// Update updates the given routing-profile.
-	Update(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Update(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Delete deletes the routing-profile matching the given id.
-	Delete(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Delete(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// List lists the available routing-profiles.
 	List(ctx context.Context, in *ListRoutingProfileRequest, opts ...grpc.CallOption) (*ListRoutingProfileResponse, error)
 }
@@ -578,8 +578,8 @@ func (c *routingProfileServiceClient) Get(ctx context.Context, in *GetRoutingPro
 	return out, nil
 }
 
-func (c *routingProfileServiceClient) Update(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *routingProfileServiceClient) Update(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/api.RoutingProfileService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -587,8 +587,8 @@ func (c *routingProfileServiceClient) Update(ctx context.Context, in *UpdateRout
 	return out, nil
 }
 
-func (c *routingProfileServiceClient) Delete(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *routingProfileServiceClient) Delete(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/api.RoutingProfileService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -612,9 +612,9 @@ type RoutingProfileServiceServer interface {
 	// Get returns the routing-profile matching the given id.
 	Get(context.Context, *GetRoutingProfileRequest) (*GetRoutingProfileResponse, error)
 	// Update updates the given routing-profile.
-	Update(context.Context, *UpdateRoutingProfileRequest) (*emptypb.Empty, error)
+	Update(context.Context, *UpdateRoutingProfileRequest) (*empty.Empty, error)
 	// Delete deletes the routing-profile matching the given id.
-	Delete(context.Context, *DeleteRoutingProfileRequest) (*emptypb.Empty, error)
+	Delete(context.Context, *DeleteRoutingProfileRequest) (*empty.Empty, error)
 	// List lists the available routing-profiles.
 	List(context.Context, *ListRoutingProfileRequest) (*ListRoutingProfileResponse, error)
 }
@@ -629,10 +629,10 @@ func (*UnimplementedRoutingProfileServiceServer) Create(ctx context.Context, req
 func (*UnimplementedRoutingProfileServiceServer) Get(ctx context.Context, req *GetRoutingProfileRequest) (*GetRoutingProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (*UnimplementedRoutingProfileServiceServer) Update(ctx context.Context, req *UpdateRoutingProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedRoutingProfileServiceServer) Update(ctx context.Context, req *UpdateRoutingProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (*UnimplementedRoutingProfileServiceServer) Delete(ctx context.Context, req *DeleteRoutingProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedRoutingProfileServiceServer) Delete(ctx context.Context, req *DeleteRoutingProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (*UnimplementedRoutingProfileServiceServer) List(ctx context.Context, req *ListRoutingProfileRequest) (*ListRoutingProfileResponse, error) {

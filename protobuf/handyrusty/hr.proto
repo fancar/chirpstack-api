@@ -48,6 +48,9 @@ service HandyRustyService {
 
     // Get dictionaries from clickhouse
     rpc GetGatewayLogs(LogsGatewayRequest) returns (LogsGatewayResponse) {}
+
+    // Get stats data for gateway from clickhouse
+    rpc GetGwStats(GetGwStatsRequest) returns (GetGwStatsResponse) {}    
 }
 
 message LogsGwItem {
@@ -435,3 +438,18 @@ message RXInfo {
     string  UplinkID = 13       [json_name = "uplink_id"];
 }
 
+message GetGwStatsRequest {
+    // Gateway ID (HEX encoded).
+    string id = 1;
+}
+
+message GetGwStatsResponse {
+    // last hour radio availability %
+    float radio_hour = 1;
+
+    // last day radio availability %
+    float radio_day = 2;
+
+    // last month radio availability %
+    float radio_month = 3; 
+}
