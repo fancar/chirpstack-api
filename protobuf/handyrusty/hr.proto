@@ -49,8 +49,87 @@ service HandyRustyService {
     // Get dictionaries from clickhouse
     rpc GetGatewayLogs(LogsGatewayRequest) returns (LogsGatewayResponse) {}
 
-    // Get stats data for gateway from clickhouse
-    rpc GetGwStats(GetGwStatsRequest) returns (GetGwStatsResponse) {}    
+    // Get stats for gateway from clickhouse
+    rpc GetGwStats(GetGwStatsRequest) returns (GetGwStatsResponse) {}
+
+    // Get stats for device from clickhouse current
+    rpc GetDeviceStats(GetDeviceStatsRequest) returns (GetDeviceStatsResponse) {}
+
+    // Get stats for device from clickhouse for last 14 days
+    rpc GetDeviceStatsLastTwoweeks(GetDeviceStatsRequest) returns (GetDeviceStatsLastTwoweeksResponse) {}     
+    
+    // Get stats for device from clickhouse for last 14 days aggregated by day
+    rpc GetDeviceStatsLastTwoweeksAggregated(GetDeviceStatsRequest) returns (GetDeviceStatsLastTwoweeksResponse) {}      
+}
+
+message GetDeviceStatsRequest {
+    // Device EUI
+    string dev_eui = 1;    
+}
+
+message GetDeviceStatsResponse {
+    // number of rx+tx packets for last 24 hours
+    int64 packet_cnt = 1;
+
+    // average estimated signal power for last 24 hours
+    float esp_avg = 2;    
+
+    // average signal to noise ratio for last 24 hours
+    float snr_avg = 3; 
+
+    // average received signal strength indication for last 24 hours
+    float rssi_avg = 4; 
+
+    // average packet error rate for last 24 hours
+    float per_avg = 5; 
+
+    // last estimated signal power for last 24 hours
+    float esp_last = 6;    
+
+    // last signal to noise ratio for last 24 hours
+    float snr_last = 7; 
+
+    // last received signal strength indication for last 24 hours
+    float rssi_last = 8; 
+
+    // last received uplink DateTime
+    google.protobuf.Timestamp rx_last = 9; 
+
+    // last received downlink DateTime
+    google.protobuf.Timestamp tx_last = 10; 
+
+    // last successful join DateTime
+    google.protobuf.Timestamp join_last = 11; 
+}
+
+message DeviceStats {
+    // last received uplink DateTime
+    google.protobuf.Timestamp created_at = 1; 
+
+    // number of uplink packets
+    int64 rx_cnt = 2;
+
+    // number of downlink packets
+    int64 tx_cnt = 3;
+
+    // packet error rate
+    float per = 4; 
+
+    // estimated signal power
+    float esp = 5;    
+
+    // average received signal strength
+    float rssi = 6; 
+
+    // signal to noise ratio
+    float snr = 7; 
+
+    // spreading factor
+    float sf = 8;
+}
+
+message GetDeviceStatsLastTwoweeksResponse {
+    repeated DeviceStats stats = 1;
 }
 
 message LogsGwItem {
