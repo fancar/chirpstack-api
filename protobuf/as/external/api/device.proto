@@ -237,6 +237,12 @@ message DeviceListItem {
 
     //device is_disabled option 
     bool is_disabled = 15;
+
+    //service profile name
+    string service_profile_name = 16;
+
+    //service profile id
+    string service_profile_id = 17;
 }
 
 message DeviceKeys {
@@ -331,6 +337,15 @@ message ListDeviceRequest {
 
     // Organization ID to filter on.
     int64 organization_id = 10;
+
+    // device name
+    string device_name = 11;
+
+    //dev_eui
+    string dev_eui = 12;
+
+    //service profile name
+    string service_profile_name = 13;
 }
 
 message ListDeviceResponse {
@@ -339,6 +354,8 @@ message ListDeviceResponse {
 
     // Devices within this result-set.
     repeated DeviceListItem result = 2;
+
+
 }
 
 message DeleteDeviceRequest {
