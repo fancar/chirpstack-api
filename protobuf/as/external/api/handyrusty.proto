@@ -71,4 +71,25 @@ service HandyRustyService {
             get: "/api/handy-rusty/gateway/stats"
         };
     }
+
+    // Get stats for device from clickhouse current and for last 24 hours
+    rpc GetDeviceStats(hr.GetDeviceStatsRequest) returns (hr.GetDeviceStatsResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/device/stats/last-24-hours"
+        };        
+    }
+
+    // Get stats for device from clickhouse for last 14 days
+    rpc GetDeviceStatsLastTwoweeks(hr.GetDeviceStatsRequest) returns (hr.GetDeviceStatsLastTwoweeksResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/device/stats/last-14-days"
+        };        
+    }
+    
+    // Get stats for device from clickhouse for last 14 days aggregated by day
+    rpc GetDeviceStatsLastTwoweeksAggregated(hr.GetDeviceStatsRequest) returns (hr.GetDeviceStatsLastTwoweeksResponse) {
+        option (google.api.http) = {
+            get: "/api/handy-rusty/device/stats/last-14-days-aggregated"
+        };        
+    }
 }

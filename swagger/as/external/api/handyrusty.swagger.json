@@ -31,6 +31,84 @@
         ]
       }
     },
+    "/api/handy-rusty/device/stats/last-14-days": {
+      "get": {
+        "summary": "Get stats for device from clickhouse for last 14 days",
+        "operationId": "GetDeviceStatsLastTwoweeks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetDeviceStatsLastTwoweeksResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "devEui",
+            "description": "Device EUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
+    "/api/handy-rusty/device/stats/last-14-days-aggregated": {
+      "get": {
+        "summary": "Get stats for device from clickhouse for last 14 days aggregated by day",
+        "operationId": "GetDeviceStatsLastTwoweeksAggregated",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetDeviceStatsLastTwoweeksResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "devEui",
+            "description": "Device EUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
+    "/api/handy-rusty/device/stats/last-24-hours": {
+      "get": {
+        "summary": "Get stats for device from clickhouse current and for last 24 hours",
+        "operationId": "GetDeviceStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetDeviceStatsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "devEui",
+            "description": "Device EUI.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
     "/api/handy-rusty/frames/counters": {
       "post": {
         "summary": "GetFrameCounters returns frame counters by type for the given range. Aggregation: day",
@@ -509,6 +587,51 @@
       },
       "title": "for storage"
     },
+    "hrDeviceStats": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last received uplink DateTime"
+        },
+        "rxCnt": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of uplink packets"
+        },
+        "txCnt": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of downlink packets"
+        },
+        "per": {
+          "type": "number",
+          "format": "float",
+          "title": "packet error rate"
+        },
+        "esp": {
+          "type": "number",
+          "format": "float",
+          "title": "estimated signal power"
+        },
+        "rssi": {
+          "type": "number",
+          "format": "float",
+          "title": "average received signal strength"
+        },
+        "snr": {
+          "type": "number",
+          "format": "float",
+          "title": "signal to noise ratio"
+        },
+        "sf": {
+          "type": "number",
+          "format": "float",
+          "title": "spreading factor"
+        }
+      }
+    },
     "hrExecCommandRequest": {
       "type": "object",
       "properties": {
@@ -690,6 +813,77 @@
             "$ref": "#/definitions/hrDeviceFrameLog"
           },
           "title": "the array of selected device-frames logs"
+        }
+      }
+    },
+    "hrGetDeviceStatsLastTwoweeksResponse": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrDeviceStats"
+          }
+        }
+      }
+    },
+    "hrGetDeviceStatsResponse": {
+      "type": "object",
+      "properties": {
+        "packetCnt": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of rx+tx packets for last 24 hours"
+        },
+        "espAvg": {
+          "type": "number",
+          "format": "float",
+          "title": "average estimated signal power for last 24 hours"
+        },
+        "snrAvg": {
+          "type": "number",
+          "format": "float",
+          "title": "average signal to noise ratio for last 24 hours"
+        },
+        "rssiAvg": {
+          "type": "number",
+          "format": "float",
+          "title": "average received signal strength indication for last 24 hours"
+        },
+        "perAvg": {
+          "type": "number",
+          "format": "float",
+          "title": "average packet error rate for last 24 hours"
+        },
+        "espLast": {
+          "type": "number",
+          "format": "float",
+          "title": "last estimated signal power for last 24 hours"
+        },
+        "snrLast": {
+          "type": "number",
+          "format": "float",
+          "title": "last signal to noise ratio for last 24 hours"
+        },
+        "rssiLast": {
+          "type": "number",
+          "format": "float",
+          "title": "last received signal strength indication for last 24 hours"
+        },
+        "rxLast": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last received uplink DateTime"
+        },
+        "txLast": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last received downlink DateTime"
+        },
+        "joinLast": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last successful join DateTime"
         }
       }
     },
