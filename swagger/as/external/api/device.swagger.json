@@ -94,6 +94,27 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "deviceName",
+            "description": "device name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "devEui",
+            "description": "dev_eui.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "serviceProfileName",
+            "description": "service profile name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -714,6 +735,14 @@
           "type": "boolean",
           "format": "boolean",
           "title": "device is_disabled option"
+        },
+        "serviceProfileName": {
+          "type": "string",
+          "title": "service profile name"
+        },
+        "serviceProfileId": {
+          "type": "string",
+          "title": "service profile id"
         }
       }
     },
