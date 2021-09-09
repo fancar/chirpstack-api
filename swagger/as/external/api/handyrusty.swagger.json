@@ -109,6 +109,33 @@
         ]
       }
     },
+    "/api/handy-rusty/device/stats/last-24-hours/for-list": {
+      "post": {
+        "summary": "Get stats for device from clickhouse current and for last 24 hours to show in list",
+        "operationId": "GetAveragesForDeviceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrGetAveragesForDeviceListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/hrGetAveragesForDeviceListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HandyRustyService"
+        ]
+      }
+    },
     "/api/handy-rusty/frames/counters": {
       "post": {
         "summary": "GetFrameCounters returns frame counters by type for the given range. Aggregation: day",
@@ -484,6 +511,25 @@
         }
       }
     },
+    "hrAveragesForDeviceList": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string",
+          "title": "Device EUI"
+        },
+        "perAvg": {
+          "type": "number",
+          "format": "float",
+          "title": "average per for last 24 hours"
+        },
+        "packetCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "rx+tx packets for last 24 hours"
+        }
+      }
+    },
     "hrDeviceFrameLog": {
       "type": "object",
       "properties": {
@@ -626,8 +672,8 @@
           "title": "signal to noise ratio"
         },
         "sf": {
-          "type": "number",
-          "format": "float",
+          "type": "integer",
+          "format": "int64",
           "title": "spreading factor"
         }
       }
@@ -737,6 +783,29 @@
           "type": "integer",
           "format": "int64",
           "title": "Y: TotalCnt: both TxCnt and RxCnt frames counted for the amount of time"
+        }
+      }
+    },
+    "hrGetAveragesForDeviceListRequest": {
+      "type": "object",
+      "properties": {
+        "devList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Device EUI array"
+        }
+      }
+    },
+    "hrGetAveragesForDeviceListResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/hrAveragesForDeviceList"
+          }
         }
       }
     },

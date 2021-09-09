@@ -60,6 +60,29 @@ service HandyRustyService {
     
     // Get stats for device from clickhouse for last 14 days aggregated by day
     rpc GetDeviceStatsLastTwoweeksAggregated(GetDeviceStatsRequest) returns (GetDeviceStatsLastTwoweeksResponse) {}      
+
+    // Get stats for device from clickhouse for last 14 days aggregated by day
+    rpc GetAveragesForDeviceList(GetAveragesForDeviceListRequest) returns (GetAveragesForDeviceListResponse) {}    
+}
+
+message GetAveragesForDeviceListRequest {
+    // Device EUI array
+    repeated string dev_list = 1;   
+}
+
+message AveragesForDeviceList {
+    // Device EUI
+    string dev_eui = 1;
+
+    // average per for last 24 hours
+    float per_avg = 2;
+
+    // rx+tx packets for last 24 hours
+    uint32 packet_cnt = 3;
+}
+
+message GetAveragesForDeviceListResponse {
+    repeated AveragesForDeviceList result = 1;
 }
 
 message GetDeviceStatsRequest {
@@ -125,7 +148,7 @@ message DeviceStats {
     float snr = 7; 
 
     // spreading factor
-    float sf = 8;
+    uint32 sf = 8;
 }
 
 message GetDeviceStatsLastTwoweeksResponse {

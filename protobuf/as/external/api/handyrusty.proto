@@ -92,4 +92,12 @@ service HandyRustyService {
             get: "/api/handy-rusty/device/stats/last-14-days-aggregated"
         };        
     }
+
+    // Get stats for device from clickhouse current and for last 24 hours to show in list
+    rpc GetAveragesForDeviceList(hr.GetAveragesForDeviceListRequest) returns (hr.GetAveragesForDeviceListResponse) {
+        option (google.api.http) = {
+            post: "/api/handy-rusty/device/stats/last-24-hours/for-list"
+            body: "*"
+        };        
+    }    
 }
