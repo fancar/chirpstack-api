@@ -34,7 +34,7 @@ message ServiceProfile {
     bytes id = 1;
 
     // Token bucket filling rate, including ACKs (packet/h).
-    uint32 ul_rate = 2;
+    int32 ul_rate = 2;
 
     // Token bucket burst size.
     uint32 ul_bucket_size = 3;
@@ -46,7 +46,7 @@ message ServiceProfile {
     RateUnit ul_rate_unit = 29;
 
     // Token bucket filling rate, including ACKs (packet/h).
-    uint32 dl_rate = 5;
+    int32 dl_rate = 5;
 
     // Token bucket burst size.
     uint32 dl_bucket_size = 6;

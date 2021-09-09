@@ -516,8 +516,8 @@ message DeviceFrameLog {
     // spreading factor (TxInfo)
     uint32 sp_fact = 23;
 
-    // billing limit: 1 - 'M' - marked as overlimit, 2 - 'D' - droped because of overlimit
-    uint32 limit = 24;
+    // billing limit: "" - within range limit, "M" - marked as overlimit, "D" - droped because of overlimit
+    string limit = 24;
 }
 
 // for RXInfo item in uplink frames

@@ -307,7 +307,7 @@
         },
         "ulRate": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Token bucket filling rate, including ACKs (packet/h)."
         },
         "ulBucketSize": {
@@ -325,7 +325,7 @@
         },
         "dlRate": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Token bucket filling rate, including ACKs (packet/h)."
         },
         "dlBucketSize": {
