@@ -115,14 +115,17 @@ message GetDeviceStatsResponse {
     // last received signal strength indication for last 24 hours
     float rssi_last = 8; 
 
+    // last time spreading factor
+    uint32 sf_last = 9;
+
     // last received uplink DateTime
-    google.protobuf.Timestamp rx_last = 9; 
+    google.protobuf.Timestamp rx_last = 10; 
 
     // last received downlink DateTime
-    google.protobuf.Timestamp tx_last = 10; 
+    google.protobuf.Timestamp tx_last = 11; 
 
     // last successful join DateTime
-    google.protobuf.Timestamp join_last = 11; 
+    google.protobuf.Timestamp join_last = 12; 
 }
 
 message DeviceStats {
@@ -130,10 +133,10 @@ message DeviceStats {
     google.protobuf.Timestamp created_at = 1; 
 
     // number of uplink packets
-    int64 rx_cnt = 2;
+    uint32 rx_cnt = 2;
 
     // number of downlink packets
-    int64 tx_cnt = 3;
+    uint32 tx_cnt = 3;
 
     // packet error rate
     float per = 4; 
