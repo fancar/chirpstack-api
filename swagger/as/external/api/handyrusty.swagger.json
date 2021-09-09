@@ -626,9 +626,8 @@
           "title": "spreading factor (TxInfo)"
         },
         "limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "billing limit: 1 - 'M' - marked as overlimit, 2 - 'D' - droped because of overlimit"
+          "type": "string",
+          "title": "billing limit: \"\" - within range limit, \"M\" - marked as overlimit, \"D\" - droped because of overlimit"
         }
       },
       "title": "for storage"
