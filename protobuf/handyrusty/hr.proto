@@ -92,7 +92,7 @@ message GetDeviceStatsRequest {
 
 message GetDeviceStatsResponse {
     // number of rx+tx packets for last 24 hours
-    int64 packet_cnt = 1;
+    uint32 packet_cnt = 1;
 
     // average estimated signal power for last 24 hours
     float esp_avg = 2;    
@@ -107,13 +107,13 @@ message GetDeviceStatsResponse {
     float per_avg = 5; 
 
     // last estimated signal power for last 24 hours
-    float esp_last = 6;    
+    double esp_last = 6;    
 
     // last signal to noise ratio for last 24 hours
-    float snr_last = 7; 
+    double snr_last = 7; 
 
     // last received signal strength indication for last 24 hours
-    float rssi_last = 8; 
+    int32 rssi_last = 8; 
 
     // last time spreading factor
     uint32 sf_last = 9;

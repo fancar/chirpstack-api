@@ -626,9 +626,8 @@
           "title": "spreading factor (TxInfo)"
         },
         "limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "billing limit: 1 - 'M' - marked as overlimit, 2 - 'D' - droped because of overlimit"
+          "type": "string",
+          "title": "billing limit: \"\" - within range limit, \"M\" - marked as overlimit, \"D\" - droped because of overlimit"
         }
       },
       "title": "for storage"
@@ -642,12 +641,12 @@
           "title": "last received uplink DateTime"
         },
         "rxCnt": {
-          "type": "string",
+          "type": "integer",
           "format": "int64",
           "title": "number of uplink packets"
         },
         "txCnt": {
-          "type": "string",
+          "type": "integer",
           "format": "int64",
           "title": "number of downlink packets"
         },
@@ -900,7 +899,7 @@
       "type": "object",
       "properties": {
         "packetCnt": {
-          "type": "string",
+          "type": "integer",
           "format": "int64",
           "title": "number of rx+tx packets for last 24 hours"
         },
@@ -926,18 +925,23 @@
         },
         "espLast": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "last estimated signal power for last 24 hours"
         },
         "snrLast": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "last signal to noise ratio for last 24 hours"
         },
         "rssiLast": {
-          "type": "number",
-          "format": "float",
+          "type": "integer",
+          "format": "int32",
           "title": "last received signal strength indication for last 24 hours"
+        },
+        "sfLast": {
+          "type": "integer",
+          "format": "int64",
+          "title": "last time spreading factor"
         },
         "rxLast": {
           "type": "string",
