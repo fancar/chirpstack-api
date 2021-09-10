@@ -305,7 +305,7 @@ message GetDeviceFramesLogRequest {
     int64 organization_id = 6;
 
     // here user sends his local timezone. 
-    int64 timezone = 7; 
+    string timezone = 7 [json_name = "timeZone"];
 
     // for internal use. Will be ignored from external api.
     bool gw_only = 8;        
