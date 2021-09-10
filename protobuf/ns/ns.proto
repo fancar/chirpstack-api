@@ -749,7 +749,7 @@ message RXFrameForHandyRusty {
     string ctx_id = 6;
 
     // rate limit
-    RateLimit limit = 7;
+    RateLimit limit = 7;   
 }
 
 // TX (downlink) frame data to save in CLICKHOUSE
@@ -796,6 +796,9 @@ message DeviceSession {
 
     // Data from KeyEnvelope (exists during first data packet): AESKey   []byte
     bytes AES_key = 6;
+
+    // mean packet error rate (for last 20 packets)
+    float per = 7;      
 }
 
 message StreamFrameLogsForGatewayRequest {
