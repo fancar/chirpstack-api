@@ -242,12 +242,11 @@
             "format": "int64"
           },
           {
-            "name": "timezone",
+            "name": "timeZone",
             "description": "here user sends his local timezone.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "gwOnly",
@@ -855,9 +854,8 @@
           "format": "int64",
           "title": "You can set the id to 0 if admin"
         },
-        "timezone": {
+        "timeZone": {
           "type": "string",
-          "format": "int64",
           "description": "here user sends his local timezone."
         },
         "gwOnly": {
