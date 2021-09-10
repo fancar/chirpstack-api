@@ -526,6 +526,16 @@
           "type": "integer",
           "format": "int64",
           "title": "rx+tx packets for last 24 hours"
+        },
+        "snrLast": {
+          "type": "number",
+          "format": "double",
+          "title": "last signal to noise ratio"
+        },
+        "rssiLast": {
+          "type": "integer",
+          "format": "int32",
+          "title": "last received signal strength indication"
         }
       }
     },
@@ -924,17 +934,17 @@
         "espLast": {
           "type": "number",
           "format": "double",
-          "title": "last estimated signal power for last 24 hours"
+          "title": "last estimated signal power"
         },
         "snrLast": {
           "type": "number",
           "format": "double",
-          "title": "last signal to noise ratio for last 24 hours"
+          "title": "last signal to noise ratio"
         },
         "rssiLast": {
           "type": "integer",
           "format": "int32",
-          "title": "last received signal strength indication for last 24 hours"
+          "title": "last received signal strength indication"
         },
         "sfLast": {
           "type": "integer",

@@ -79,6 +79,12 @@ message AveragesForDeviceList {
 
     // rx+tx packets for last 24 hours
     uint32 packet_cnt = 3;
+
+    // last signal to noise ratio
+    double snr_last = 4; 
+
+    // last received signal strength indication
+    int32 rssi_last = 5;     
 }
 
 message GetAveragesForDeviceListResponse {
@@ -106,13 +112,13 @@ message GetDeviceStatsResponse {
     // average packet error rate for last 24 hours
     float per_avg = 5; 
 
-    // last estimated signal power for last 24 hours
+    // last estimated signal power
     double esp_last = 6;    
 
-    // last signal to noise ratio for last 24 hours
+    // last signal to noise ratio
     double snr_last = 7; 
 
-    // last received signal strength indication for last 24 hours
+    // last received signal strength indication
     int32 rssi_last = 8; 
 
     // last time spreading factor
