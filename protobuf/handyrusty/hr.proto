@@ -125,7 +125,10 @@ message GetDeviceStatsResponse {
     google.protobuf.Timestamp tx_last = 11; 
 
     // last successful join DateTime
-    google.protobuf.Timestamp join_last = 12; 
+    google.protobuf.Timestamp join_last = 12;
+
+    // instantaneous packet error rate for last 20 packets history in device-session
+    float per_last = 13; 
 }
 
 message DeviceStats {

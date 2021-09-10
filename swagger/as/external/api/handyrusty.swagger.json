@@ -955,6 +955,11 @@
           "type": "string",
           "format": "date-time",
           "title": "last successful join DateTime"
+        },
+        "perLast": {
+          "type": "number",
+          "format": "float",
+          "title": "instantaneous packet error rate for last 20 packets history in device-session"
         }
       }
     },
