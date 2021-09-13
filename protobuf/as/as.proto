@@ -11,6 +11,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "common/common.proto";
 import "gw/gw.proto";
+import "ns/ns.proto";
 
 
 // ApplicationServerService is the service providing the application-server interface.
@@ -297,7 +298,10 @@ message HandleUplinkDataRequest {
     bytes mic = 13;    
 
     // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
-    google.protobuf.Timestamp time = 14;        
+    google.protobuf.Timestamp time = 14;
+
+    // limit for current uplink packet
+    ns.RateLimit limit = 15;
 }
 
 message HandleProprietaryUplinkRequest {
