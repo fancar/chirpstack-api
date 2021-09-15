@@ -9,12 +9,12 @@ import (
 	common "github.com/brocaar/chirpstack-api/go/v3/common"
 	gw "github.com/brocaar/chirpstack-api/go/v3/gw"
 	proto "github.com/golang/protobuf/proto"
+	duration "github.com/golang/protobuf/ptypes/duration"
+	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -281,12 +281,12 @@ type GetServiceProfileResponse struct {
 	// Service-profile object.
 	ServiceProfile *ServiceProfile `protobuf:"bytes,1,opt,name=service_profile,json=serviceProfile,proto3" json:"service_profile,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetServiceProfileResponse) Reset()         { *m = GetServiceProfileResponse{} }
@@ -321,14 +321,14 @@ func (m *GetServiceProfileResponse) GetServiceProfile() *ServiceProfile {
 	return nil
 }
 
-func (m *GetServiceProfileResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetServiceProfileResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetServiceProfileResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetServiceProfileResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -539,12 +539,12 @@ type GetRoutingProfileResponse struct {
 	// Routing-profile object.
 	RoutingProfile *RoutingProfile `protobuf:"bytes,1,opt,name=routing_profile,json=routingProfile,proto3" json:"routing_profile,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetRoutingProfileResponse) Reset()         { *m = GetRoutingProfileResponse{} }
@@ -579,14 +579,14 @@ func (m *GetRoutingProfileResponse) GetRoutingProfile() *RoutingProfile {
 	return nil
 }
 
-func (m *GetRoutingProfileResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetRoutingProfileResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetRoutingProfileResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetRoutingProfileResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -797,12 +797,12 @@ type GetDeviceProfileResponse struct {
 	// Device-profile object.
 	DeviceProfile *DeviceProfile `protobuf:"bytes,1,opt,name=device_profile,json=deviceProfile,proto3" json:"device_profile,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetDeviceProfileResponse) Reset()         { *m = GetDeviceProfileResponse{} }
@@ -837,14 +837,14 @@ func (m *GetDeviceProfileResponse) GetDeviceProfile() *DeviceProfile {
 	return nil
 }
 
-func (m *GetDeviceProfileResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetDeviceProfileResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetDeviceProfileResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetDeviceProfileResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -1113,12 +1113,12 @@ type GetDeviceResponse struct {
 	// Device object.
 	Device *Device `protobuf:"bytes,1,opt,name=device,proto3" json:"device,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetDeviceResponse) Reset()         { *m = GetDeviceResponse{} }
@@ -1153,14 +1153,14 @@ func (m *GetDeviceResponse) GetDevice() *Device {
 	return nil
 }
 
-func (m *GetDeviceResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetDeviceResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetDeviceResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetDeviceResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -2022,16 +2022,16 @@ type GetGatewayResponse struct {
 	// Gateway object.
 	Gateway *Gateway `protobuf:"bytes,1,opt,name=gateway,proto3" json:"gateway,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// First seen timestamp.
-	FirstSeenAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=first_seen_at,json=firstSeenAt,proto3" json:"first_seen_at,omitempty"`
+	FirstSeenAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=first_seen_at,json=firstSeenAt,proto3" json:"first_seen_at,omitempty"`
 	// Last seen timestamp.
-	LastSeenAt           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	LastSeenAt           *timestamp.Timestamp `protobuf:"bytes,5,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetGatewayResponse) Reset()         { *m = GetGatewayResponse{} }
@@ -2066,28 +2066,28 @@ func (m *GetGatewayResponse) GetGateway() *Gateway {
 	return nil
 }
 
-func (m *GetGatewayResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetFirstSeenAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetFirstSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.FirstSeenAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetLastSeenAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetLastSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.LastSeenAt
 	}
@@ -2224,10 +2224,10 @@ type GenerateGatewayClientCertificateResponse struct {
 	// CA certificate.
 	CaCert []byte `protobuf:"bytes,3,opt,name=ca_cert,json=caCert,proto3" json:"ca_cert,omitempty"`
 	// Expires at defines the expiration date of the certificate.
-	ExpiresAt            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	ExpiresAt            *timestamp.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GenerateGatewayClientCertificateResponse) Reset() {
@@ -2278,7 +2278,7 @@ func (m *GenerateGatewayClientCertificateResponse) GetCaCert() []byte {
 	return nil
 }
 
-func (m *GenerateGatewayClientCertificateResponse) GetExpiresAt() *timestamppb.Timestamp {
+func (m *GenerateGatewayClientCertificateResponse) GetExpiresAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.ExpiresAt
 	}
@@ -2287,7 +2287,7 @@ func (m *GenerateGatewayClientCertificateResponse) GetExpiresAt() *timestamppb.T
 
 type GatewayStats struct {
 	// Timestamp of the (aggregated) measurement.
-	Timestamp *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Timestamp *timestamp.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	// Packets received by the gateway.
 	RxPacketsReceived int32 `protobuf:"varint,2,opt,name=rx_packets_received,json=rxPacketsReceived,proto3" json:"rx_packets_received,omitempty"`
 	// Packets received by the gateway that passed the CRC check.
@@ -2326,7 +2326,7 @@ func (m *GatewayStats) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GatewayStats proto.InternalMessageInfo
 
-func (m *GatewayStats) GetTimestamp() *timestamppb.Timestamp {
+func (m *GatewayStats) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -2367,12 +2367,12 @@ type GetGatewayStatsRequest struct {
 	// Aggregation interval.
 	Interval AggregationInterval `protobuf:"varint,2,opt,name=interval,proto3,enum=ns.AggregationInterval" json:"interval,omitempty"`
 	// Timestamp to start from.
-	StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
+	StartTimestamp *timestamp.Timestamp `protobuf:"bytes,3,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
 	// Timestamp until to get from.
-	EndTimestamp         *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=end_timestamp,json=endTimestamp,proto3" json:"end_timestamp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	EndTimestamp         *timestamp.Timestamp `protobuf:"bytes,4,opt,name=end_timestamp,json=endTimestamp,proto3" json:"end_timestamp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetGatewayStatsRequest) Reset()         { *m = GetGatewayStatsRequest{} }
@@ -2414,14 +2414,14 @@ func (m *GetGatewayStatsRequest) GetInterval() AggregationInterval {
 	return AggregationInterval_SECOND
 }
 
-func (m *GetGatewayStatsRequest) GetStartTimestamp() *timestamppb.Timestamp {
+func (m *GetGatewayStatsRequest) GetStartTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.StartTimestamp
 	}
 	return nil
 }
 
-func (m *GetGatewayStatsRequest) GetEndTimestamp() *timestamppb.Timestamp {
+func (m *GetGatewayStatsRequest) GetEndTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.EndTimestamp
 	}
@@ -2838,10 +2838,10 @@ type UplinkFrameLog struct {
 	// Device EUI (optional).
 	DevEui []byte `protobuf:"bytes,6,opt,name=dev_eui,json=devEui,proto3" json:"dev_eui,omitempty"`
 	// Published at timestamp.
-	PublishedAt          *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	PublishedAt          *timestamp.Timestamp `protobuf:"bytes,7,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *UplinkFrameLog) Reset()         { *m = UplinkFrameLog{} }
@@ -2911,7 +2911,7 @@ func (m *UplinkFrameLog) GetDevEui() []byte {
 	return nil
 }
 
-func (m *UplinkFrameLog) GetPublishedAt() *timestamppb.Timestamp {
+func (m *UplinkFrameLog) GetPublishedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.PublishedAt
 	}
@@ -2937,7 +2937,7 @@ type DownlinkFrameLog struct {
 	// Device EUI (optional).
 	DevEui []byte `protobuf:"bytes,8,opt,name=dev_eui,json=devEui,proto3" json:"dev_eui,omitempty"`
 	// Published at timestamp.
-	PublishedAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
+	PublishedAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
 	// rate limit
 	Limit                RateLimit `protobuf:"varint,10,opt,name=limit,proto3,enum=ns.RateLimit" json:"limit,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
@@ -3026,7 +3026,7 @@ func (m *DownlinkFrameLog) GetDevEui() []byte {
 	return nil
 }
 
-func (m *DownlinkFrameLog) GetPublishedAt() *timestamppb.Timestamp {
+func (m *DownlinkFrameLog) GetPublishedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.PublishedAt
 	}
@@ -3628,10 +3628,10 @@ type GatewayProfile struct {
 	// Stats interval.
 	// This defines the (expected) stats interval which the gateways using this
 	// gateway-profile are using.
-	StatsInterval        *durationpb.Duration `protobuf:"bytes,4,opt,name=stats_interval,json=statsInterval,proto3" json:"stats_interval,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	StatsInterval        *duration.Duration `protobuf:"bytes,4,opt,name=stats_interval,json=statsInterval,proto3" json:"stats_interval,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
 }
 
 func (m *GatewayProfile) Reset()         { *m = GatewayProfile{} }
@@ -3680,7 +3680,7 @@ func (m *GatewayProfile) GetExtraChannels() []*GatewayProfileExtraChannel {
 	return nil
 }
 
-func (m *GatewayProfile) GetStatsInterval() *durationpb.Duration {
+func (m *GatewayProfile) GetStatsInterval() *duration.Duration {
 	if m != nil {
 		return m.StatsInterval
 	}
@@ -3887,12 +3887,12 @@ type GetGatewayProfileResponse struct {
 	// Gateway-profile object.
 	GatewayProfile *GatewayProfile `protobuf:"bytes,1,opt,name=gateway_profile,json=gatewayProfile,proto3" json:"gateway_profile,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetGatewayProfileResponse) Reset()         { *m = GetGatewayProfileResponse{} }
@@ -3927,14 +3927,14 @@ func (m *GetGatewayProfileResponse) GetGatewayProfile() *GatewayProfile {
 	return nil
 }
 
-func (m *GetGatewayProfileResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetGatewayProfileResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetGatewayProfileResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetGatewayProfileResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -4269,12 +4269,12 @@ type GetMulticastGroupResponse struct {
 	// Multicast-group.
 	MulticastGroup *MulticastGroup `protobuf:"bytes,1,opt,name=multicast_group,json=multicastGroup,proto3" json:"multicast_group,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetMulticastGroupResponse) Reset()         { *m = GetMulticastGroupResponse{} }
@@ -4309,14 +4309,14 @@ func (m *GetMulticastGroupResponse) GetMulticastGroup() *MulticastGroup {
 	return nil
 }
 
-func (m *GetMulticastGroupResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetMulticastGroupResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetMulticastGroupResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetMulticastGroupResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -5187,62 +5187,62 @@ type NetworkServerServiceClient interface {
 	// GetServiceProfile returns the service-profile matching the given id.
 	GetServiceProfile(ctx context.Context, in *GetServiceProfileRequest, opts ...grpc.CallOption) (*GetServiceProfileResponse, error)
 	// UpdateServiceProfile updates the given service-profile.
-	UpdateServiceProfile(ctx context.Context, in *UpdateServiceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateServiceProfile(ctx context.Context, in *UpdateServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteServiceProfile deletes the service-profile matching the given id.
-	DeleteServiceProfile(ctx context.Context, in *DeleteServiceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteServiceProfile(ctx context.Context, in *DeleteServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// CreateRoutingProfile creates the given routing-profile.
 	CreateRoutingProfile(ctx context.Context, in *CreateRoutingProfileRequest, opts ...grpc.CallOption) (*CreateRoutingProfileResponse, error)
 	// GetRoutingProfile returns the routing-profile matching the given id.
 	GetRoutingProfile(ctx context.Context, in *GetRoutingProfileRequest, opts ...grpc.CallOption) (*GetRoutingProfileResponse, error)
 	// UpdateRoutingProfile updates the given routing-profile.
-	UpdateRoutingProfile(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateRoutingProfile(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteRoutingProfile deletes the routing-profile matching the given id.
-	DeleteRoutingProfile(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteRoutingProfile(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// CreateDeviceProfile creates the given device-profile.
 	CreateDeviceProfile(ctx context.Context, in *CreateDeviceProfileRequest, opts ...grpc.CallOption) (*CreateDeviceProfileResponse, error)
 	// GetDeviceProfile returns the device-profile matching the given id.
 	GetDeviceProfile(ctx context.Context, in *GetDeviceProfileRequest, opts ...grpc.CallOption) (*GetDeviceProfileResponse, error)
 	// UpdateDeviceProfile updates the given device-profile.
-	UpdateDeviceProfile(ctx context.Context, in *UpdateDeviceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateDeviceProfile(ctx context.Context, in *UpdateDeviceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteDeviceProfile deletes the device-profile matching the given id.
-	DeleteDeviceProfile(ctx context.Context, in *DeleteDeviceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteDeviceProfile(ctx context.Context, in *DeleteDeviceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// CreateDevice creates the given device.
-	CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetDevice returns the device matching the given DevEUI.
 	GetDevice(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceResponse, error)
 	// UpdateDevice updates the given device.
-	UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteDevice deletes the device matching the given DevEUI.
-	DeleteDevice(ctx context.Context, in *DeleteDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteDevice(ctx context.Context, in *DeleteDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// ActivateDevice activates a device (ABP).
-	ActivateDevice(ctx context.Context, in *ActivateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ActivateDevice(ctx context.Context, in *ActivateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeactivateDevice de-activates a device.
-	DeactivateDevice(ctx context.Context, in *DeactivateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeactivateDevice(ctx context.Context, in *DeactivateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetDeviceActivation returns the device activation details.
 	GetDeviceActivation(ctx context.Context, in *GetDeviceActivationRequest, opts ...grpc.CallOption) (*GetDeviceActivationResponse, error)
 	// CreateDeviceQueueItem creates the given device-queue item.
-	CreateDeviceQueueItem(ctx context.Context, in *CreateDeviceQueueItemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateDeviceQueueItem(ctx context.Context, in *CreateDeviceQueueItemRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// FlushDeviceQueueForDevEUI flushes the device-queue for the given DevEUI.
-	FlushDeviceQueueForDevEUI(ctx context.Context, in *FlushDeviceQueueForDevEUIRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	FlushDeviceQueueForDevEUI(ctx context.Context, in *FlushDeviceQueueForDevEUIRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetDeviceQueueItemsForDevEUI returns all device-queue items for the given DevEUI.
 	GetDeviceQueueItemsForDevEUI(ctx context.Context, in *GetDeviceQueueItemsForDevEUIRequest, opts ...grpc.CallOption) (*GetDeviceQueueItemsForDevEUIResponse, error)
 	// GetNextDownlinkFCntForDevEUI returns the next FCnt that must be used.
 	// This also takes device-queue items for the given DevEUI into consideration.
 	GetNextDownlinkFCntForDevEUI(ctx context.Context, in *GetNextDownlinkFCntForDevEUIRequest, opts ...grpc.CallOption) (*GetNextDownlinkFCntForDevEUIResponse, error)
 	// GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.
-	GetRandomDevAddr(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetRandomDevAddrResponse, error)
+	GetRandomDevAddr(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRandomDevAddrResponse, error)
 	// CreateMACCommandQueueItem adds the downlink mac-command to the queue.
-	CreateMACCommandQueueItem(ctx context.Context, in *CreateMACCommandQueueItemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateMACCommandQueueItem(ctx context.Context, in *CreateMACCommandQueueItemRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// SendProprietaryPayload send a payload using the 'Proprietary' LoRaWAN message-type.
-	SendProprietaryPayload(ctx context.Context, in *SendProprietaryPayloadRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SendProprietaryPayload(ctx context.Context, in *SendProprietaryPayloadRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// CreateGateway creates the given gateway.
-	CreateGateway(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateGateway(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetGateway returns data for a particular gateway.
 	GetGateway(ctx context.Context, in *GetGatewayRequest, opts ...grpc.CallOption) (*GetGatewayResponse, error)
 	// UpdateGateway updates an existing gateway.
-	UpdateGateway(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateGateway(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteGateway deletes a gateway.
-	DeleteGateway(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteGateway(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
 	// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
 	// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
@@ -5253,9 +5253,9 @@ type NetworkServerServiceClient interface {
 	// GetGatewayProfile returns the gateway-profile given an id.
 	GetGatewayProfile(ctx context.Context, in *GetGatewayProfileRequest, opts ...grpc.CallOption) (*GetGatewayProfileResponse, error)
 	// UpdateGatewayProfile updates the given gateway-profile.
-	UpdateGatewayProfile(ctx context.Context, in *UpdateGatewayProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateGatewayProfile(ctx context.Context, in *UpdateGatewayProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteGatewayProfile deletes the gateway-profile matching a given id.
-	DeleteGatewayProfile(ctx context.Context, in *DeleteGatewayProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteGatewayProfile(ctx context.Context, in *DeleteGatewayProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetGatewayStats returns stats of an existing gateway.
 	// Deprecated (stats are forwarded to Application Server API).
 	GetGatewayStats(ctx context.Context, in *GetGatewayStatsRequest, opts ...grpc.CallOption) (*GetGatewayStatsResponse, error)
@@ -5268,24 +5268,24 @@ type NetworkServerServiceClient interface {
 	// GetMulticastGroup returns the multicast-group given an id.
 	GetMulticastGroup(ctx context.Context, in *GetMulticastGroupRequest, opts ...grpc.CallOption) (*GetMulticastGroupResponse, error)
 	// UpdateMulticastGroup updates the given multicast-group.
-	UpdateMulticastGroup(ctx context.Context, in *UpdateMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateMulticastGroup(ctx context.Context, in *UpdateMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// DeleteMulticastGroup deletes a multicast-group given an id.
-	DeleteMulticastGroup(ctx context.Context, in *DeleteMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteMulticastGroup(ctx context.Context, in *DeleteMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// AddDeviceToMulticastGroup adds the given device to the given multicast-group.
-	AddDeviceToMulticastGroup(ctx context.Context, in *AddDeviceToMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddDeviceToMulticastGroup(ctx context.Context, in *AddDeviceToMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// RemoveDeviceFromMulticastGroup removes the given device from the given multicast-group.
-	RemoveDeviceFromMulticastGroup(ctx context.Context, in *RemoveDeviceFromMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	RemoveDeviceFromMulticastGroup(ctx context.Context, in *RemoveDeviceFromMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// EnqueueMulticastQueueItem enqueues the given multicast queue-item and
 	// increments the frame-counter after enqueueing.
-	EnqueueMulticastQueueItem(ctx context.Context, in *EnqueueMulticastQueueItemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	EnqueueMulticastQueueItem(ctx context.Context, in *EnqueueMulticastQueueItemRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// FlushMulticastQueueForMulticastGroup flushes the multicast device-queue given a multicast-group id.
-	FlushMulticastQueueForMulticastGroup(ctx context.Context, in *FlushMulticastQueueForMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	FlushMulticastQueueForMulticastGroup(ctx context.Context, in *FlushMulticastQueueForMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// GetMulticastQueueItemsForMulticastGroup returns the queue-items given a multicast-group id.
 	GetMulticastQueueItemsForMulticastGroup(ctx context.Context, in *GetMulticastQueueItemsForMulticastGroupRequest, opts ...grpc.CallOption) (*GetMulticastQueueItemsForMulticastGroupResponse, error)
 	// GetVersion returns the ChirpStack Network Server version.
-	GetVersion(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
+	GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error)
 	// GetADRAlgorithms returns the available ADR algorithms.
-	GetADRAlgorithms(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetADRAlgorithmsResponse, error)
+	GetADRAlgorithms(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetADRAlgorithmsResponse, error)
 	// GetDeviceForExport gets device for export purps
 	GetDeviceForExport(ctx context.Context, in *GetDeviceRequest, opts ...grpc.CallOption) (*GetDeviceForExportResponse, error)
 }
@@ -5316,8 +5316,8 @@ func (c *networkServerServiceClient) GetServiceProfile(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateServiceProfile(ctx context.Context, in *UpdateServiceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateServiceProfile(ctx context.Context, in *UpdateServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateServiceProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5325,8 +5325,8 @@ func (c *networkServerServiceClient) UpdateServiceProfile(ctx context.Context, i
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteServiceProfile(ctx context.Context, in *DeleteServiceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteServiceProfile(ctx context.Context, in *DeleteServiceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteServiceProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5352,8 +5352,8 @@ func (c *networkServerServiceClient) GetRoutingProfile(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateRoutingProfile(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateRoutingProfile(ctx context.Context, in *UpdateRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateRoutingProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5361,8 +5361,8 @@ func (c *networkServerServiceClient) UpdateRoutingProfile(ctx context.Context, i
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteRoutingProfile(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteRoutingProfile(ctx context.Context, in *DeleteRoutingProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteRoutingProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5388,8 +5388,8 @@ func (c *networkServerServiceClient) GetDeviceProfile(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateDeviceProfile(ctx context.Context, in *UpdateDeviceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateDeviceProfile(ctx context.Context, in *UpdateDeviceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateDeviceProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5397,8 +5397,8 @@ func (c *networkServerServiceClient) UpdateDeviceProfile(ctx context.Context, in
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteDeviceProfile(ctx context.Context, in *DeleteDeviceProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteDeviceProfile(ctx context.Context, in *DeleteDeviceProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteDeviceProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5406,8 +5406,8 @@ func (c *networkServerServiceClient) DeleteDeviceProfile(ctx context.Context, in
 	return out, nil
 }
 
-func (c *networkServerServiceClient) CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) CreateDevice(ctx context.Context, in *CreateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/CreateDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5424,8 +5424,8 @@ func (c *networkServerServiceClient) GetDevice(ctx context.Context, in *GetDevic
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateDevice(ctx context.Context, in *UpdateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5433,8 +5433,8 @@ func (c *networkServerServiceClient) UpdateDevice(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteDevice(ctx context.Context, in *DeleteDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteDevice(ctx context.Context, in *DeleteDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5442,8 +5442,8 @@ func (c *networkServerServiceClient) DeleteDevice(ctx context.Context, in *Delet
 	return out, nil
 }
 
-func (c *networkServerServiceClient) ActivateDevice(ctx context.Context, in *ActivateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) ActivateDevice(ctx context.Context, in *ActivateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/ActivateDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5451,8 +5451,8 @@ func (c *networkServerServiceClient) ActivateDevice(ctx context.Context, in *Act
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeactivateDevice(ctx context.Context, in *DeactivateDeviceRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeactivateDevice(ctx context.Context, in *DeactivateDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeactivateDevice", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5469,8 +5469,8 @@ func (c *networkServerServiceClient) GetDeviceActivation(ctx context.Context, in
 	return out, nil
 }
 
-func (c *networkServerServiceClient) CreateDeviceQueueItem(ctx context.Context, in *CreateDeviceQueueItemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) CreateDeviceQueueItem(ctx context.Context, in *CreateDeviceQueueItemRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/CreateDeviceQueueItem", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5478,8 +5478,8 @@ func (c *networkServerServiceClient) CreateDeviceQueueItem(ctx context.Context, 
 	return out, nil
 }
 
-func (c *networkServerServiceClient) FlushDeviceQueueForDevEUI(ctx context.Context, in *FlushDeviceQueueForDevEUIRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) FlushDeviceQueueForDevEUI(ctx context.Context, in *FlushDeviceQueueForDevEUIRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/FlushDeviceQueueForDevEUI", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5505,7 +5505,7 @@ func (c *networkServerServiceClient) GetNextDownlinkFCntForDevEUI(ctx context.Co
 	return out, nil
 }
 
-func (c *networkServerServiceClient) GetRandomDevAddr(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetRandomDevAddrResponse, error) {
+func (c *networkServerServiceClient) GetRandomDevAddr(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRandomDevAddrResponse, error) {
 	out := new(GetRandomDevAddrResponse)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/GetRandomDevAddr", in, out, opts...)
 	if err != nil {
@@ -5514,8 +5514,8 @@ func (c *networkServerServiceClient) GetRandomDevAddr(ctx context.Context, in *e
 	return out, nil
 }
 
-func (c *networkServerServiceClient) CreateMACCommandQueueItem(ctx context.Context, in *CreateMACCommandQueueItemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) CreateMACCommandQueueItem(ctx context.Context, in *CreateMACCommandQueueItemRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/CreateMACCommandQueueItem", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5523,8 +5523,8 @@ func (c *networkServerServiceClient) CreateMACCommandQueueItem(ctx context.Conte
 	return out, nil
 }
 
-func (c *networkServerServiceClient) SendProprietaryPayload(ctx context.Context, in *SendProprietaryPayloadRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) SendProprietaryPayload(ctx context.Context, in *SendProprietaryPayloadRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/SendProprietaryPayload", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5532,8 +5532,8 @@ func (c *networkServerServiceClient) SendProprietaryPayload(ctx context.Context,
 	return out, nil
 }
 
-func (c *networkServerServiceClient) CreateGateway(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) CreateGateway(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/CreateGateway", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5550,8 +5550,8 @@ func (c *networkServerServiceClient) GetGateway(ctx context.Context, in *GetGate
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateGateway(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateGateway(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateGateway", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5559,8 +5559,8 @@ func (c *networkServerServiceClient) UpdateGateway(ctx context.Context, in *Upda
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteGateway(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteGateway(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteGateway", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5595,8 +5595,8 @@ func (c *networkServerServiceClient) GetGatewayProfile(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateGatewayProfile(ctx context.Context, in *UpdateGatewayProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateGatewayProfile(ctx context.Context, in *UpdateGatewayProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateGatewayProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5604,8 +5604,8 @@ func (c *networkServerServiceClient) UpdateGatewayProfile(ctx context.Context, i
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteGatewayProfile(ctx context.Context, in *DeleteGatewayProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteGatewayProfile(ctx context.Context, in *DeleteGatewayProfileRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteGatewayProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5704,8 +5704,8 @@ func (c *networkServerServiceClient) GetMulticastGroup(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *networkServerServiceClient) UpdateMulticastGroup(ctx context.Context, in *UpdateMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) UpdateMulticastGroup(ctx context.Context, in *UpdateMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/UpdateMulticastGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5713,8 +5713,8 @@ func (c *networkServerServiceClient) UpdateMulticastGroup(ctx context.Context, i
 	return out, nil
 }
 
-func (c *networkServerServiceClient) DeleteMulticastGroup(ctx context.Context, in *DeleteMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) DeleteMulticastGroup(ctx context.Context, in *DeleteMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/DeleteMulticastGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5722,8 +5722,8 @@ func (c *networkServerServiceClient) DeleteMulticastGroup(ctx context.Context, i
 	return out, nil
 }
 
-func (c *networkServerServiceClient) AddDeviceToMulticastGroup(ctx context.Context, in *AddDeviceToMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) AddDeviceToMulticastGroup(ctx context.Context, in *AddDeviceToMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/AddDeviceToMulticastGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5731,8 +5731,8 @@ func (c *networkServerServiceClient) AddDeviceToMulticastGroup(ctx context.Conte
 	return out, nil
 }
 
-func (c *networkServerServiceClient) RemoveDeviceFromMulticastGroup(ctx context.Context, in *RemoveDeviceFromMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) RemoveDeviceFromMulticastGroup(ctx context.Context, in *RemoveDeviceFromMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/RemoveDeviceFromMulticastGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5740,8 +5740,8 @@ func (c *networkServerServiceClient) RemoveDeviceFromMulticastGroup(ctx context.
 	return out, nil
 }
 
-func (c *networkServerServiceClient) EnqueueMulticastQueueItem(ctx context.Context, in *EnqueueMulticastQueueItemRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) EnqueueMulticastQueueItem(ctx context.Context, in *EnqueueMulticastQueueItemRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/EnqueueMulticastQueueItem", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5749,8 +5749,8 @@ func (c *networkServerServiceClient) EnqueueMulticastQueueItem(ctx context.Conte
 	return out, nil
 }
 
-func (c *networkServerServiceClient) FlushMulticastQueueForMulticastGroup(ctx context.Context, in *FlushMulticastQueueForMulticastGroupRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *networkServerServiceClient) FlushMulticastQueueForMulticastGroup(ctx context.Context, in *FlushMulticastQueueForMulticastGroupRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/FlushMulticastQueueForMulticastGroup", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -5767,7 +5767,7 @@ func (c *networkServerServiceClient) GetMulticastQueueItemsForMulticastGroup(ctx
 	return out, nil
 }
 
-func (c *networkServerServiceClient) GetVersion(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
+func (c *networkServerServiceClient) GetVersion(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetVersionResponse, error) {
 	out := new(GetVersionResponse)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/GetVersion", in, out, opts...)
 	if err != nil {
@@ -5776,7 +5776,7 @@ func (c *networkServerServiceClient) GetVersion(ctx context.Context, in *emptypb
 	return out, nil
 }
 
-func (c *networkServerServiceClient) GetADRAlgorithms(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetADRAlgorithmsResponse, error) {
+func (c *networkServerServiceClient) GetADRAlgorithms(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetADRAlgorithmsResponse, error) {
 	out := new(GetADRAlgorithmsResponse)
 	err := c.cc.Invoke(ctx, "/ns.NetworkServerService/GetADRAlgorithms", in, out, opts...)
 	if err != nil {
@@ -5801,62 +5801,62 @@ type NetworkServerServiceServer interface {
 	// GetServiceProfile returns the service-profile matching the given id.
 	GetServiceProfile(context.Context, *GetServiceProfileRequest) (*GetServiceProfileResponse, error)
 	// UpdateServiceProfile updates the given service-profile.
-	UpdateServiceProfile(context.Context, *UpdateServiceProfileRequest) (*emptypb.Empty, error)
+	UpdateServiceProfile(context.Context, *UpdateServiceProfileRequest) (*empty.Empty, error)
 	// DeleteServiceProfile deletes the service-profile matching the given id.
-	DeleteServiceProfile(context.Context, *DeleteServiceProfileRequest) (*emptypb.Empty, error)
+	DeleteServiceProfile(context.Context, *DeleteServiceProfileRequest) (*empty.Empty, error)
 	// CreateRoutingProfile creates the given routing-profile.
 	CreateRoutingProfile(context.Context, *CreateRoutingProfileRequest) (*CreateRoutingProfileResponse, error)
 	// GetRoutingProfile returns the routing-profile matching the given id.
 	GetRoutingProfile(context.Context, *GetRoutingProfileRequest) (*GetRoutingProfileResponse, error)
 	// UpdateRoutingProfile updates the given routing-profile.
-	UpdateRoutingProfile(context.Context, *UpdateRoutingProfileRequest) (*emptypb.Empty, error)
+	UpdateRoutingProfile(context.Context, *UpdateRoutingProfileRequest) (*empty.Empty, error)
 	// DeleteRoutingProfile deletes the routing-profile matching the given id.
-	DeleteRoutingProfile(context.Context, *DeleteRoutingProfileRequest) (*emptypb.Empty, error)
+	DeleteRoutingProfile(context.Context, *DeleteRoutingProfileRequest) (*empty.Empty, error)
 	// CreateDeviceProfile creates the given device-profile.
 	CreateDeviceProfile(context.Context, *CreateDeviceProfileRequest) (*CreateDeviceProfileResponse, error)
 	// GetDeviceProfile returns the device-profile matching the given id.
 	GetDeviceProfile(context.Context, *GetDeviceProfileRequest) (*GetDeviceProfileResponse, error)
 	// UpdateDeviceProfile updates the given device-profile.
-	UpdateDeviceProfile(context.Context, *UpdateDeviceProfileRequest) (*emptypb.Empty, error)
+	UpdateDeviceProfile(context.Context, *UpdateDeviceProfileRequest) (*empty.Empty, error)
 	// DeleteDeviceProfile deletes the device-profile matching the given id.
-	DeleteDeviceProfile(context.Context, *DeleteDeviceProfileRequest) (*emptypb.Empty, error)
+	DeleteDeviceProfile(context.Context, *DeleteDeviceProfileRequest) (*empty.Empty, error)
 	// CreateDevice creates the given device.
-	CreateDevice(context.Context, *CreateDeviceRequest) (*emptypb.Empty, error)
+	CreateDevice(context.Context, *CreateDeviceRequest) (*empty.Empty, error)
 	// GetDevice returns the device matching the given DevEUI.
 	GetDevice(context.Context, *GetDeviceRequest) (*GetDeviceResponse, error)
 	// UpdateDevice updates the given device.
-	UpdateDevice(context.Context, *UpdateDeviceRequest) (*emptypb.Empty, error)
+	UpdateDevice(context.Context, *UpdateDeviceRequest) (*empty.Empty, error)
 	// DeleteDevice deletes the device matching the given DevEUI.
-	DeleteDevice(context.Context, *DeleteDeviceRequest) (*emptypb.Empty, error)
+	DeleteDevice(context.Context, *DeleteDeviceRequest) (*empty.Empty, error)
 	// ActivateDevice activates a device (ABP).
-	ActivateDevice(context.Context, *ActivateDeviceRequest) (*emptypb.Empty, error)
+	ActivateDevice(context.Context, *ActivateDeviceRequest) (*empty.Empty, error)
 	// DeactivateDevice de-activates a device.
-	DeactivateDevice(context.Context, *DeactivateDeviceRequest) (*emptypb.Empty, error)
+	DeactivateDevice(context.Context, *DeactivateDeviceRequest) (*empty.Empty, error)
 	// GetDeviceActivation returns the device activation details.
 	GetDeviceActivation(context.Context, *GetDeviceActivationRequest) (*GetDeviceActivationResponse, error)
 	// CreateDeviceQueueItem creates the given device-queue item.
-	CreateDeviceQueueItem(context.Context, *CreateDeviceQueueItemRequest) (*emptypb.Empty, error)
+	CreateDeviceQueueItem(context.Context, *CreateDeviceQueueItemRequest) (*empty.Empty, error)
 	// FlushDeviceQueueForDevEUI flushes the device-queue for the given DevEUI.
-	FlushDeviceQueueForDevEUI(context.Context, *FlushDeviceQueueForDevEUIRequest) (*emptypb.Empty, error)
+	FlushDeviceQueueForDevEUI(context.Context, *FlushDeviceQueueForDevEUIRequest) (*empty.Empty, error)
 	// GetDeviceQueueItemsForDevEUI returns all device-queue items for the given DevEUI.
 	GetDeviceQueueItemsForDevEUI(context.Context, *GetDeviceQueueItemsForDevEUIRequest) (*GetDeviceQueueItemsForDevEUIResponse, error)
 	// GetNextDownlinkFCntForDevEUI returns the next FCnt that must be used.
 	// This also takes device-queue items for the given DevEUI into consideration.
 	GetNextDownlinkFCntForDevEUI(context.Context, *GetNextDownlinkFCntForDevEUIRequest) (*GetNextDownlinkFCntForDevEUIResponse, error)
 	// GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.
-	GetRandomDevAddr(context.Context, *emptypb.Empty) (*GetRandomDevAddrResponse, error)
+	GetRandomDevAddr(context.Context, *empty.Empty) (*GetRandomDevAddrResponse, error)
 	// CreateMACCommandQueueItem adds the downlink mac-command to the queue.
-	CreateMACCommandQueueItem(context.Context, *CreateMACCommandQueueItemRequest) (*emptypb.Empty, error)
+	CreateMACCommandQueueItem(context.Context, *CreateMACCommandQueueItemRequest) (*empty.Empty, error)
 	// SendProprietaryPayload send a payload using the 'Proprietary' LoRaWAN message-type.
-	SendProprietaryPayload(context.Context, *SendProprietaryPayloadRequest) (*emptypb.Empty, error)
+	SendProprietaryPayload(context.Context, *SendProprietaryPayloadRequest) (*empty.Empty, error)
 	// CreateGateway creates the given gateway.
-	CreateGateway(context.Context, *CreateGatewayRequest) (*emptypb.Empty, error)
+	CreateGateway(context.Context, *CreateGatewayRequest) (*empty.Empty, error)
 	// GetGateway returns data for a particular gateway.
 	GetGateway(context.Context, *GetGatewayRequest) (*GetGatewayResponse, error)
 	// UpdateGateway updates an existing gateway.
-	UpdateGateway(context.Context, *UpdateGatewayRequest) (*emptypb.Empty, error)
+	UpdateGateway(context.Context, *UpdateGatewayRequest) (*empty.Empty, error)
 	// DeleteGateway deletes a gateway.
-	DeleteGateway(context.Context, *DeleteGatewayRequest) (*emptypb.Empty, error)
+	DeleteGateway(context.Context, *DeleteGatewayRequest) (*empty.Empty, error)
 	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
 	// This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
 	// CA certificate and key, which is used for signing the TLS certificate. The returned TLS
@@ -5867,9 +5867,9 @@ type NetworkServerServiceServer interface {
 	// GetGatewayProfile returns the gateway-profile given an id.
 	GetGatewayProfile(context.Context, *GetGatewayProfileRequest) (*GetGatewayProfileResponse, error)
 	// UpdateGatewayProfile updates the given gateway-profile.
-	UpdateGatewayProfile(context.Context, *UpdateGatewayProfileRequest) (*emptypb.Empty, error)
+	UpdateGatewayProfile(context.Context, *UpdateGatewayProfileRequest) (*empty.Empty, error)
 	// DeleteGatewayProfile deletes the gateway-profile matching a given id.
-	DeleteGatewayProfile(context.Context, *DeleteGatewayProfileRequest) (*emptypb.Empty, error)
+	DeleteGatewayProfile(context.Context, *DeleteGatewayProfileRequest) (*empty.Empty, error)
 	// GetGatewayStats returns stats of an existing gateway.
 	// Deprecated (stats are forwarded to Application Server API).
 	GetGatewayStats(context.Context, *GetGatewayStatsRequest) (*GetGatewayStatsResponse, error)
@@ -5882,24 +5882,24 @@ type NetworkServerServiceServer interface {
 	// GetMulticastGroup returns the multicast-group given an id.
 	GetMulticastGroup(context.Context, *GetMulticastGroupRequest) (*GetMulticastGroupResponse, error)
 	// UpdateMulticastGroup updates the given multicast-group.
-	UpdateMulticastGroup(context.Context, *UpdateMulticastGroupRequest) (*emptypb.Empty, error)
+	UpdateMulticastGroup(context.Context, *UpdateMulticastGroupRequest) (*empty.Empty, error)
 	// DeleteMulticastGroup deletes a multicast-group given an id.
-	DeleteMulticastGroup(context.Context, *DeleteMulticastGroupRequest) (*emptypb.Empty, error)
+	DeleteMulticastGroup(context.Context, *DeleteMulticastGroupRequest) (*empty.Empty, error)
 	// AddDeviceToMulticastGroup adds the given device to the given multicast-group.
-	AddDeviceToMulticastGroup(context.Context, *AddDeviceToMulticastGroupRequest) (*emptypb.Empty, error)
+	AddDeviceToMulticastGroup(context.Context, *AddDeviceToMulticastGroupRequest) (*empty.Empty, error)
 	// RemoveDeviceFromMulticastGroup removes the given device from the given multicast-group.
-	RemoveDeviceFromMulticastGroup(context.Context, *RemoveDeviceFromMulticastGroupRequest) (*emptypb.Empty, error)
+	RemoveDeviceFromMulticastGroup(context.Context, *RemoveDeviceFromMulticastGroupRequest) (*empty.Empty, error)
 	// EnqueueMulticastQueueItem enqueues the given multicast queue-item and
 	// increments the frame-counter after enqueueing.
-	EnqueueMulticastQueueItem(context.Context, *EnqueueMulticastQueueItemRequest) (*emptypb.Empty, error)
+	EnqueueMulticastQueueItem(context.Context, *EnqueueMulticastQueueItemRequest) (*empty.Empty, error)
 	// FlushMulticastQueueForMulticastGroup flushes the multicast device-queue given a multicast-group id.
-	FlushMulticastQueueForMulticastGroup(context.Context, *FlushMulticastQueueForMulticastGroupRequest) (*emptypb.Empty, error)
+	FlushMulticastQueueForMulticastGroup(context.Context, *FlushMulticastQueueForMulticastGroupRequest) (*empty.Empty, error)
 	// GetMulticastQueueItemsForMulticastGroup returns the queue-items given a multicast-group id.
 	GetMulticastQueueItemsForMulticastGroup(context.Context, *GetMulticastQueueItemsForMulticastGroupRequest) (*GetMulticastQueueItemsForMulticastGroupResponse, error)
 	// GetVersion returns the ChirpStack Network Server version.
-	GetVersion(context.Context, *emptypb.Empty) (*GetVersionResponse, error)
+	GetVersion(context.Context, *empty.Empty) (*GetVersionResponse, error)
 	// GetADRAlgorithms returns the available ADR algorithms.
-	GetADRAlgorithms(context.Context, *emptypb.Empty) (*GetADRAlgorithmsResponse, error)
+	GetADRAlgorithms(context.Context, *empty.Empty) (*GetADRAlgorithmsResponse, error)
 	// GetDeviceForExport gets device for export purps
 	GetDeviceForExport(context.Context, *GetDeviceRequest) (*GetDeviceForExportResponse, error)
 }
@@ -5914,10 +5914,10 @@ func (*UnimplementedNetworkServerServiceServer) CreateServiceProfile(ctx context
 func (*UnimplementedNetworkServerServiceServer) GetServiceProfile(ctx context.Context, req *GetServiceProfileRequest) (*GetServiceProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetServiceProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateServiceProfile(ctx context.Context, req *UpdateServiceProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateServiceProfile(ctx context.Context, req *UpdateServiceProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateServiceProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteServiceProfile(ctx context.Context, req *DeleteServiceProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteServiceProfile(ctx context.Context, req *DeleteServiceProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteServiceProfile not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) CreateRoutingProfile(ctx context.Context, req *CreateRoutingProfileRequest) (*CreateRoutingProfileResponse, error) {
@@ -5926,10 +5926,10 @@ func (*UnimplementedNetworkServerServiceServer) CreateRoutingProfile(ctx context
 func (*UnimplementedNetworkServerServiceServer) GetRoutingProfile(ctx context.Context, req *GetRoutingProfileRequest) (*GetRoutingProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRoutingProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateRoutingProfile(ctx context.Context, req *UpdateRoutingProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateRoutingProfile(ctx context.Context, req *UpdateRoutingProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRoutingProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteRoutingProfile(ctx context.Context, req *DeleteRoutingProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteRoutingProfile(ctx context.Context, req *DeleteRoutingProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoutingProfile not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) CreateDeviceProfile(ctx context.Context, req *CreateDeviceProfileRequest) (*CreateDeviceProfileResponse, error) {
@@ -5938,37 +5938,37 @@ func (*UnimplementedNetworkServerServiceServer) CreateDeviceProfile(ctx context.
 func (*UnimplementedNetworkServerServiceServer) GetDeviceProfile(ctx context.Context, req *GetDeviceProfileRequest) (*GetDeviceProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateDeviceProfile(ctx context.Context, req *UpdateDeviceProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateDeviceProfile(ctx context.Context, req *UpdateDeviceProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDeviceProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteDeviceProfile(ctx context.Context, req *DeleteDeviceProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteDeviceProfile(ctx context.Context, req *DeleteDeviceProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDeviceProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) CreateDevice(ctx context.Context, req *CreateDeviceRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) CreateDevice(ctx context.Context, req *CreateDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDevice not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetDevice(ctx context.Context, req *GetDeviceRequest) (*GetDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDevice not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateDevice(ctx context.Context, req *UpdateDeviceRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateDevice(ctx context.Context, req *UpdateDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDevice not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteDevice(ctx context.Context, req *DeleteDeviceRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteDevice(ctx context.Context, req *DeleteDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDevice not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) ActivateDevice(ctx context.Context, req *ActivateDeviceRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) ActivateDevice(ctx context.Context, req *ActivateDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ActivateDevice not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeactivateDevice(ctx context.Context, req *DeactivateDeviceRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeactivateDevice(ctx context.Context, req *DeactivateDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeactivateDevice not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetDeviceActivation(ctx context.Context, req *GetDeviceActivationRequest) (*GetDeviceActivationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceActivation not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) CreateDeviceQueueItem(ctx context.Context, req *CreateDeviceQueueItemRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) CreateDeviceQueueItem(ctx context.Context, req *CreateDeviceQueueItemRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeviceQueueItem not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) FlushDeviceQueueForDevEUI(ctx context.Context, req *FlushDeviceQueueForDevEUIRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) FlushDeviceQueueForDevEUI(ctx context.Context, req *FlushDeviceQueueForDevEUIRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FlushDeviceQueueForDevEUI not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetDeviceQueueItemsForDevEUI(ctx context.Context, req *GetDeviceQueueItemsForDevEUIRequest) (*GetDeviceQueueItemsForDevEUIResponse, error) {
@@ -5977,25 +5977,25 @@ func (*UnimplementedNetworkServerServiceServer) GetDeviceQueueItemsForDevEUI(ctx
 func (*UnimplementedNetworkServerServiceServer) GetNextDownlinkFCntForDevEUI(ctx context.Context, req *GetNextDownlinkFCntForDevEUIRequest) (*GetNextDownlinkFCntForDevEUIResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNextDownlinkFCntForDevEUI not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) GetRandomDevAddr(ctx context.Context, req *emptypb.Empty) (*GetRandomDevAddrResponse, error) {
+func (*UnimplementedNetworkServerServiceServer) GetRandomDevAddr(ctx context.Context, req *empty.Empty) (*GetRandomDevAddrResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRandomDevAddr not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) CreateMACCommandQueueItem(ctx context.Context, req *CreateMACCommandQueueItemRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) CreateMACCommandQueueItem(ctx context.Context, req *CreateMACCommandQueueItemRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMACCommandQueueItem not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) SendProprietaryPayload(ctx context.Context, req *SendProprietaryPayloadRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) SendProprietaryPayload(ctx context.Context, req *SendProprietaryPayloadRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendProprietaryPayload not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) CreateGateway(ctx context.Context, req *CreateGatewayRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) CreateGateway(ctx context.Context, req *CreateGatewayRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGateway not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetGateway(ctx context.Context, req *GetGatewayRequest) (*GetGatewayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGateway not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateGateway(ctx context.Context, req *UpdateGatewayRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateGateway(ctx context.Context, req *UpdateGatewayRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGateway not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteGateway(ctx context.Context, req *DeleteGatewayRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteGateway(ctx context.Context, req *DeleteGatewayRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteGateway not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GenerateGatewayClientCertificate(ctx context.Context, req *GenerateGatewayClientCertificateRequest) (*GenerateGatewayClientCertificateResponse, error) {
@@ -6007,10 +6007,10 @@ func (*UnimplementedNetworkServerServiceServer) CreateGatewayProfile(ctx context
 func (*UnimplementedNetworkServerServiceServer) GetGatewayProfile(ctx context.Context, req *GetGatewayProfileRequest) (*GetGatewayProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateGatewayProfile(ctx context.Context, req *UpdateGatewayProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateGatewayProfile(ctx context.Context, req *UpdateGatewayProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGatewayProfile not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteGatewayProfile(ctx context.Context, req *DeleteGatewayProfileRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteGatewayProfile(ctx context.Context, req *DeleteGatewayProfileRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteGatewayProfile not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetGatewayStats(ctx context.Context, req *GetGatewayStatsRequest) (*GetGatewayStatsResponse, error) {
@@ -6028,31 +6028,31 @@ func (*UnimplementedNetworkServerServiceServer) CreateMulticastGroup(ctx context
 func (*UnimplementedNetworkServerServiceServer) GetMulticastGroup(ctx context.Context, req *GetMulticastGroupRequest) (*GetMulticastGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMulticastGroup not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) UpdateMulticastGroup(ctx context.Context, req *UpdateMulticastGroupRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) UpdateMulticastGroup(ctx context.Context, req *UpdateMulticastGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMulticastGroup not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) DeleteMulticastGroup(ctx context.Context, req *DeleteMulticastGroupRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) DeleteMulticastGroup(ctx context.Context, req *DeleteMulticastGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMulticastGroup not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) AddDeviceToMulticastGroup(ctx context.Context, req *AddDeviceToMulticastGroupRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) AddDeviceToMulticastGroup(ctx context.Context, req *AddDeviceToMulticastGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddDeviceToMulticastGroup not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) RemoveDeviceFromMulticastGroup(ctx context.Context, req *RemoveDeviceFromMulticastGroupRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) RemoveDeviceFromMulticastGroup(ctx context.Context, req *RemoveDeviceFromMulticastGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveDeviceFromMulticastGroup not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) EnqueueMulticastQueueItem(ctx context.Context, req *EnqueueMulticastQueueItemRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) EnqueueMulticastQueueItem(ctx context.Context, req *EnqueueMulticastQueueItemRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EnqueueMulticastQueueItem not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) FlushMulticastQueueForMulticastGroup(ctx context.Context, req *FlushMulticastQueueForMulticastGroupRequest) (*emptypb.Empty, error) {
+func (*UnimplementedNetworkServerServiceServer) FlushMulticastQueueForMulticastGroup(ctx context.Context, req *FlushMulticastQueueForMulticastGroupRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FlushMulticastQueueForMulticastGroup not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetMulticastQueueItemsForMulticastGroup(ctx context.Context, req *GetMulticastQueueItemsForMulticastGroupRequest) (*GetMulticastQueueItemsForMulticastGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMulticastQueueItemsForMulticastGroup not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) GetVersion(ctx context.Context, req *emptypb.Empty) (*GetVersionResponse, error) {
+func (*UnimplementedNetworkServerServiceServer) GetVersion(ctx context.Context, req *empty.Empty) (*GetVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVersion not implemented")
 }
-func (*UnimplementedNetworkServerServiceServer) GetADRAlgorithms(ctx context.Context, req *emptypb.Empty) (*GetADRAlgorithmsResponse, error) {
+func (*UnimplementedNetworkServerServiceServer) GetADRAlgorithms(ctx context.Context, req *empty.Empty) (*GetADRAlgorithmsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetADRAlgorithms not implemented")
 }
 func (*UnimplementedNetworkServerServiceServer) GetDeviceForExport(ctx context.Context, req *GetDeviceRequest) (*GetDeviceForExportResponse, error) {
@@ -6478,7 +6478,7 @@ func _NetworkServerService_GetNextDownlinkFCntForDevEUI_Handler(srv interface{},
 }
 
 func _NetworkServerService_GetRandomDevAddr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -6490,7 +6490,7 @@ func _NetworkServerService_GetRandomDevAddr_Handler(srv interface{}, ctx context
 		FullMethod: "/ns.NetworkServerService/GetRandomDevAddr",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkServerServiceServer).GetRandomDevAddr(ctx, req.(*emptypb.Empty))
+		return srv.(NetworkServerServiceServer).GetRandomDevAddr(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -6916,7 +6916,7 @@ func _NetworkServerService_GetMulticastQueueItemsForMulticastGroup_Handler(srv i
 }
 
 func _NetworkServerService_GetVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -6928,13 +6928,13 @@ func _NetworkServerService_GetVersion_Handler(srv interface{}, ctx context.Conte
 		FullMethod: "/ns.NetworkServerService/GetVersion",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkServerServiceServer).GetVersion(ctx, req.(*emptypb.Empty))
+		return srv.(NetworkServerServiceServer).GetVersion(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _NetworkServerService_GetADRAlgorithms_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -6946,7 +6946,7 @@ func _NetworkServerService_GetADRAlgorithms_Handler(srv interface{}, ctx context
 		FullMethod: "/ns.NetworkServerService/GetADRAlgorithms",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkServerServiceServer).GetADRAlgorithms(ctx, req.(*emptypb.Empty))
+		return srv.(NetworkServerServiceServer).GetADRAlgorithms(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
