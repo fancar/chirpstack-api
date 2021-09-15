@@ -173,6 +173,12 @@ message ListGatewayProfilesRequest {
 
     // Network-server ID to filter on (optional).
     int64 network_server_id = 3 [json_name = "networkServerID"];
+    
+    // sort list by name
+	string orderBy = 4;		
+
+	// sort direction
+	string order = 5;	
 }
 
 message ListGatewayProfilesResponse {
