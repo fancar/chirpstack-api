@@ -743,6 +743,21 @@
         "serviceProfileId": {
           "type": "string",
           "title": "service profile id"
+        },
+        "per": {
+          "type": "number",
+          "format": "float",
+          "title": "average Packet Error Rate for last 20 packets in device_session"
+        },
+        "snr": {
+          "type": "number",
+          "format": "float",
+          "title": "average Signal to Noise Ratio for last 20 packets in device_session"
+        },
+        "rssi": {
+          "type": "number",
+          "format": "float",
+          "title": "average Received signal strength indication for last 20 packets in device_session"
         }
       }
     },
