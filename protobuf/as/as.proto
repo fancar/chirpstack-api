@@ -11,6 +11,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "common/common.proto";
 import "gw/gw.proto";
+import "ns/ns.proto";
 
 
 // ApplicationServerService is the service providing the application-server interface.
@@ -299,14 +300,18 @@ message HandleUplinkDataRequest {
     // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
     google.protobuf.Timestamp time = 14;
 
+
+    // limit for current uplink packet
+    ns.RateLimit limit = 15;
+
     // average Packet Error Rate for last 20 packets in device_session
-    float per = 15;
+    float per = 16;
 
     // average Signal to Noise Ratio for last 20 packets in device_session
-    float snr = 16;
+    float snr = 17;
 
     // average Received signal strength indication for last 20 packets in device_session
-    float rssi = 17;       
+    float rssi = 18;       
 }
 
 message HandleProprietaryUplinkRequest {
