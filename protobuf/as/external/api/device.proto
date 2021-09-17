@@ -245,13 +245,13 @@ message DeviceListItem {
     string service_profile_id = 17;
 
     // average Packet Error Rate for last 20 packets in device_session
-    float per = 18;
+    double per = 18 [json_name = "PER"];
 
     // average Signal to Noise Ratio for last 20 packets in device_session
-    float snr = 19;
+    double snr = 19 [json_name = "SNR"];
 
     // average Received signal strength indication for last 20 packets in device_session
-    float rssi = 20;
+    double rssi = 20 [json_name = "RSSI"];
 }
 
 message DeviceKeys {

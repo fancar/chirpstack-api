@@ -305,13 +305,13 @@ message HandleUplinkDataRequest {
     ns.RateLimit limit = 15;
 
     // average Packet Error Rate for last 20 packets in device_session
-    float per = 16;
+    double per = 16;
 
     // average Signal to Noise Ratio for last 20 packets in device_session
-    float snr = 17;
+    double snr = 17;
 
     // average Received signal strength indication for last 20 packets in device_session
-    float rssi = 18;       
+    double rssi = 18;       
 }
 
 message HandleProprietaryUplinkRequest {

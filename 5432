@@ -1,0 +1,78 @@
+                         Список отношений
+ Схема  |           Имя            |        Тип         | Владелец 
+--------+--------------------------+--------------------+----------
+ public | api_key                  | таблица            | ernet_as
+ public | application              | таблица            | ernet_as
+ public | application_id_seq       | последовательность | ernet_as
+ public | code_migration           | таблица            | ernet_as
+ public | device                   | таблица            | ernet_as
+ public | device_keys              | таблица            | ernet_as
+ public | device_multicast_group   | таблица            | ernet_as
+ public | device_profile           | таблица            | ernet_as
+ public | dictionary               | таблица            | ernet_as
+ public | dictionary_code_seq      | последовательность | ernet_as
+ public | event_type               | таблица            | ernet_as
+ public | event_type_id_seq        | последовательность | ernet_as
+ public | gateway                  | таблица            | ernet_as
+ public | gateway_ping             | таблица            | ernet_as
+ public | gateway_ping_id_seq      | последовательность | ernet_as
+ public | gateway_ping_rx          | таблица            | ernet_as
+ public | gateway_ping_rx_id_seq   | последовательность | ernet_as
+ public | gateway_profile          | таблица            | ernet_as
+ public | gateway_tasks            | таблица            | ernet_as
+ public | gateway_tasks_id_seq     | последовательность | ernet_as
+ public | gorp_migrations          | таблица            | ernet_as
+ public | integration              | таблица            | ernet_as
+ public | integration_id_seq       | последовательность | ernet_as
+ public | multicast_group          | таблица            | ernet_as
+ public | network_server           | таблица            | ernet_as
+ public | network_server_id_seq    | последовательность | ernet_as
+ public | organization             | таблица            | ernet_as
+ public | organization_id_seq      | последовательность | ernet_as
+ public | organization_user        | таблица            | ernet_as
+ public | organization_user_id_seq | последовательность | ernet_as
+ public | routing_profile          | таблица            | ernet_as
+ public | routing_profile_id_seq   | последовательность | ernet_as
+ public | rp_as                    | таблица            | ernet_as
+ public | rp_as_id_seq             | последовательность | ernet_as
+ public | schema_migrations        | таблица            | ernet_as
+ public | schema_migrations_master | таблица            | ernet_as
+ public | service_profile          | таблица            | ernet_as
+ public | user                     | таблица            | ernet_as
+ public | user_activity_log        | таблица            | ernet_as
+ public | user_activity_log_id_seq | последовательность | ernet_as
+ public | user_id_seq              | последовательность | ernet_as
+(41 строка)
+
+                    Список отношений
+ Схема  |           Имя            |   Тип   | Владелец 
+--------+--------------------------+---------+----------
+ public | api_key                  | таблица | ernet_as
+ public | application              | таблица | ernet_as
+ public | code_migration           | таблица | ernet_as
+ public | device                   | таблица | ernet_as
+ public | device_keys              | таблица | ernet_as
+ public | device_multicast_group   | таблица | ernet_as
+ public | device_profile           | таблица | ernet_as
+ public | dictionary               | таблица | ernet_as
+ public | event_type               | таблица | ernet_as
+ public | gateway                  | таблица | ernet_as
+ public | gateway_ping             | таблица | ernet_as
+ public | gateway_ping_rx          | таблица | ernet_as
+ public | gateway_profile          | таблица | ernet_as
+ public | gateway_tasks            | таблица | ernet_as
+ public | gorp_migrations          | таблица | ernet_as
+ public | integration              | таблица | ernet_as
+ public | multicast_group          | таблица | ernet_as
+ public | network_server           | таблица | ernet_as
+ public | organization             | таблица | ernet_as
+ public | organization_user        | таблица | ernet_as
+ public | routing_profile          | таблица | ernet_as
+ public | rp_as                    | таблица | ernet_as
+ public | schema_migrations        | таблица | ernet_as
+ public | schema_migrations_master | таблица | ernet_as
+ public | service_profile          | таблица | ernet_as
+ public | user                     | таблица | ernet_as
+ public | user_activity_log        | таблица | ernet_as
+(27 строк)
+

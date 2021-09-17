@@ -744,19 +744,19 @@
           "type": "string",
           "title": "service profile id"
         },
-        "per": {
+        "PER": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "average Packet Error Rate for last 20 packets in device_session"
         },
-        "snr": {
+        "SNR": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "average Signal to Noise Ratio for last 20 packets in device_session"
         },
-        "rssi": {
+        "RSSI": {
           "type": "number",
-          "format": "float",
+          "format": "double",
           "title": "average Received signal strength indication for last 20 packets in device_session"
         }
       }
