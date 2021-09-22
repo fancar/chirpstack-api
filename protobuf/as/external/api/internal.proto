@@ -304,6 +304,10 @@ message GlobalSearchResult {
 }
 
 message SettingsResponse {
+    
+    //ServerName
+    string server_name = 1;
+
     // Branding settings.
     Branding branding = 2;
 

@@ -793,6 +793,10 @@
     "apiSettingsResponse": {
       "type": "object",
       "properties": {
+        "serverName": {
+          "type": "string",
+          "title": "ServerName"
+        },
         "branding": {
           "$ref": "#/definitions/apiBranding",
           "description": "Branding settings."
