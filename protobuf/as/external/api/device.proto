@@ -154,6 +154,9 @@ message Device {
     // DeviceProfileID attached to the device.
     string device_profile_id = 5 [json_name = "deviceProfileID"];
 
+    // Device-profile name.
+    string device_profile_name = 13 [json_name = "deviceProfileName"];
+
     // Skip frame-counter checks (this is insecure, but could be helpful for debugging).
     bool skip_f_cnt_check = 6;
 
