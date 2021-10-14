@@ -329,10 +329,6 @@ message Device {
 
     // If true - the device is disabled.
     bool is_disabled = 7;
-
-    // if true - the device's uplinks will be passed for all fcounts between 0-255.
-    // the device session will be reset as well 
-    bool f_cnt_automatic_reset = 8;
 }
 
 message CreateDeviceRequest {
@@ -416,6 +412,10 @@ message DeviceActivation {
 
     // Skip frame-counter checks (this is insecure, but could be helpful for debugging).
     bool skip_f_cnt_check = 9;
+
+    // if true - the device's uplinks will be passed if recieved fcount between 0-255.
+    // the device session will be reset as well
+    bool f_cnt_automatic_reset = 10;
 }
 
 message ActivateDeviceRequest {

@@ -186,10 +186,6 @@ message Device {
 
     // Device location.
 	common.Location location = 12;
-
-    // if true - the device's uplinks will be passed if recieved fcount between 0-255.
-    // the device session will be reset as well
-    bool f_cnt_automatic_reset = 14;
 }
 
 message DeviceListItem {
@@ -437,6 +433,10 @@ message DeviceActivation {
 
     // Downlink application frame-counter.
     uint32 a_f_cnt_down = 10;
+
+    // if true - the device's uplinks will be passed if recieved fcount between 0-255.
+    // the device session will be reset as well
+    bool f_cnt_automatic_reset = 11;    
 }
 
 message ActivateDeviceRequest {
