@@ -154,6 +154,9 @@ message Device {
     // DeviceProfileID attached to the device.
     string device_profile_id = 5 [json_name = "deviceProfileID"];
 
+    // Device-profile name.
+    string device_profile_name = 13 [json_name = "deviceProfileName"];
+
     // Skip frame-counter checks (this is insecure, but could be helpful for debugging).
     bool skip_f_cnt_check = 6;
 
@@ -186,7 +189,7 @@ message Device {
 
     // if true - the device's uplinks will be passed if recieved fcount between 0-255.
     // the device session will be reset as well
-    bool f_cnt_automatic_reset = 13;
+    bool f_cnt_automatic_reset = 14;
 }
 
 message DeviceListItem {

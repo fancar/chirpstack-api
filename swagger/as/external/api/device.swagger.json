@@ -561,6 +561,10 @@
           "type": "string",
           "description": "DeviceProfileID attached to the device."
         },
+        "deviceProfileName": {
+          "type": "string",
+          "description": "Device-profile name."
+        },
         "skipFCntCheck": {
           "type": "boolean",
           "format": "boolean",
