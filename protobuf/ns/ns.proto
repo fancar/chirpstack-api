@@ -327,8 +327,12 @@ message Device {
     // accuracy.
     double reference_altitude = 6;
 
-    // Device is disabled.
+    // If true - the device is disabled.
     bool is_disabled = 7;
+
+    // if true - the device's uplinks will be passed for all fcounts between 0-255.
+    // the device session will be reset as well 
+    bool f_cnt_automatic_reset = 8;
 }
 
 message CreateDeviceRequest {
