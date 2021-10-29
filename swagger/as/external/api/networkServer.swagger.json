@@ -112,7 +112,7 @@
         "parameters": [
           {
             "name": "id",
-            "description": "Network-server ID.",
+            "description": "Organization ID. Deprecated",
             "in": "path",
             "required": true,
             "type": "string",
@@ -199,7 +199,7 @@
         "parameters": [
           {
             "name": "network_server_id",
-            "description": "Network-server ID.",
+            "description": "Network-server ID. Deprecated",
             "in": "path",
             "required": true,
             "type": "string",

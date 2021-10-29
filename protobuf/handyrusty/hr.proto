@@ -267,7 +267,7 @@ message StoreIntegrationReplyRequest {
     // AS Routing Profile ID
     int64 routing_profile_id = 2;
     // reply for saving
-    IntegrationReply repliy = 3;
+    IntegrationReply reply = 3;
 }
 
 message StoreIntegrationReplyResponse {
