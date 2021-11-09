@@ -166,13 +166,13 @@ message Gateway {
     string address = 12;
 
     // Serno - serial number of the device
-    string serno = 13; 
+    string serno = 13;
 
     // the status calculated by last_seen_at parameter (now - stats_interval*1.5 <= last_seen)
     bool active = 14;
 
     // Mobile phone number of SIM-card for the device
-    string phone = 15;     
+    string phone = 15;
 
     // Service-profile ID (UUID string, optional).
     string service_profile_id = 16 [json_name = "serviceProfileID"];
@@ -185,6 +185,9 @@ message Gateway {
 
 	// Network-server Name on which the gateway is provisioned.
 	string network_server_name = 19 [json_name = "networkServerName"];
+
+	// If true stop transfering uplink and downlink packets from linked devices. 
+	bool suspended = 20;
 }
 
 message GatewayBoard {
@@ -327,6 +330,9 @@ message GatewayListItem {
 
 	//operational status code
 	int64 op_status_code = 15;
+
+	// If true stop transfering uplink and downlink packets from linked devices. 
+	bool suspended = 16;
 }
 
 // for monitoring list

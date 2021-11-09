@@ -600,6 +600,11 @@
         "networkServerName": {
           "type": "string",
           "description": "Network-server Name on which the gateway is provisioned."
+        },
+        "suspended": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "If true stop transfering uplink and downlink packets from linked devices."
         }
       }
     },
@@ -686,6 +691,11 @@
           "type": "string",
           "format": "int64",
           "title": "operational status code"
+        },
+        "suspended": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "If true stop transfering uplink and downlink packets from linked devices."
         }
       }
     },
