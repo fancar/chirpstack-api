@@ -9,12 +9,12 @@ import (
 	common "github.com/brocaar/chirpstack-api/go/v3/common"
 	handyrusty "github.com/brocaar/chirpstack-api/go/v3/handyrusty"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	math "math"
 )
 
@@ -377,18 +377,18 @@ type GetGatewayResponse struct {
 	// Gateway object.
 	Gateway *Gateway `protobuf:"bytes,1,opt,name=gateway,proto3" json:"gateway,omitempty"`
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// First seen at timestamp.
-	FirstSeenAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=first_seen_at,json=firstSeenAt,proto3" json:"first_seen_at,omitempty"`
+	FirstSeenAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=first_seen_at,json=firstSeenAt,proto3" json:"first_seen_at,omitempty"`
 	// Last seen at timestamp.
-	LastSeenAt *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	LastSeenAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
 	// GPS Last seen at timestamp.
-	GPSSeenAt            *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=GPS_seen_at,json=GPSSeenAt,proto3" json:"GPS_seen_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	GPSSeenAt            *timestamp.Timestamp `protobuf:"bytes,6,opt,name=GPS_seen_at,json=GPSSeenAt,proto3" json:"GPS_seen_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetGatewayResponse) Reset()         { *m = GetGatewayResponse{} }
@@ -423,35 +423,35 @@ func (m *GetGatewayResponse) GetGateway() *Gateway {
 	return nil
 }
 
-func (m *GetGatewayResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetFirstSeenAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetFirstSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.FirstSeenAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetLastSeenAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetLastSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.LastSeenAt
 	}
 	return nil
 }
 
-func (m *GetGatewayResponse) GetGPSSeenAt() *timestamppb.Timestamp {
+func (m *GetGatewayResponse) GetGPSSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.GPSSeenAt
 	}
@@ -464,10 +464,10 @@ type GetGatewayStatusResponse struct {
 	// Gateway status.
 	Active bool `protobuf:"varint,2,opt,name=active,proto3" json:"active,omitempty"`
 	// Last seen at timestamp.
-	LastSeenAt           *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	LastSeenAt           *timestamp.Timestamp `protobuf:"bytes,3,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetGatewayStatusResponse) Reset()         { *m = GetGatewayStatusResponse{} }
@@ -509,7 +509,7 @@ func (m *GetGatewayStatusResponse) GetActive() bool {
 	return false
 }
 
-func (m *GetGatewayStatusResponse) GetLastSeenAt() *timestamppb.Timestamp {
+func (m *GetGatewayStatusResponse) GetLastSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.LastSeenAt
 	}
@@ -606,10 +606,10 @@ type GenerateGatewayClientCertificateResponse struct {
 	// CA certificate.
 	CaCert string `protobuf:"bytes,3,opt,name=ca_cert,json=caCert,proto3" json:"ca_cert,omitempty"`
 	// Expires at defines the expiration date of the certificate.
-	ExpiresAt            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	ExpiresAt            *timestamp.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GenerateGatewayClientCertificateResponse) Reset() {
@@ -660,7 +660,7 @@ func (m *GenerateGatewayClientCertificateResponse) GetCaCert() string {
 	return ""
 }
 
-func (m *GenerateGatewayClientCertificateResponse) GetExpiresAt() *timestamppb.Timestamp {
+func (m *GenerateGatewayClientCertificateResponse) GetExpiresAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.ExpiresAt
 	}
@@ -761,13 +761,13 @@ type GatewayListItem struct {
 	// A description for the gateway
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// Create timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Last update timestamp.
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// First seen timestamp.
-	FirstSeenAt *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=first_seen_at,json=firstSeenAt,proto3" json:"first_seen_at,omitempty"`
+	FirstSeenAt *timestamp.Timestamp `protobuf:"bytes,8,opt,name=first_seen_at,json=firstSeenAt,proto3" json:"first_seen_at,omitempty"`
 	// Last seen timestamp.
-	LastSeenAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	LastSeenAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
 	// Organization ID.
 	OrganizationId int64 `protobuf:"varint,6,opt,name=organization_id,json=organizationID,proto3" json:"organization_id,omitempty"`
 	// Network-server ID.
@@ -837,28 +837,28 @@ func (m *GatewayListItem) GetDescription() string {
 	return ""
 }
 
-func (m *GatewayListItem) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GatewayListItem) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return nil
 }
 
-func (m *GatewayListItem) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GatewayListItem) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
 	return nil
 }
 
-func (m *GatewayListItem) GetFirstSeenAt() *timestamppb.Timestamp {
+func (m *GatewayListItem) GetFirstSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.FirstSeenAt
 	}
 	return nil
 }
 
-func (m *GatewayListItem) GetLastSeenAt() *timestamppb.Timestamp {
+func (m *GatewayListItem) GetLastSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.LastSeenAt
 	}
@@ -935,7 +935,7 @@ type GatewayMonItem struct {
 	// A name for the gateway
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Last seen timestamp.
-	LastSeenAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	LastSeenAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
 	// metadata: packet forwarder status (if it is running)
 	Radio string `protobuf:"bytes,4,opt,name=radio,proto3" json:"radio,omitempty"`
 	// metadata: cpu load (%)
@@ -996,7 +996,7 @@ func (m *GatewayMonItem) GetName() string {
 	return ""
 }
 
-func (m *GatewayMonItem) GetLastSeenAt() *timestamppb.Timestamp {
+func (m *GatewayMonItem) GetLastSeenAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.LastSeenAt
 	}
@@ -1061,7 +1061,7 @@ func (m *GatewayMonItem) GetOpStatusLabel() string {
 
 type StatsItemActilityStyled struct {
 	// Create timestamp.
-	CreationTime *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=creation_time,json=creationTime,proto3" json:"creation_time,omitempty"`
+	CreationTime *timestamp.Timestamp `protobuf:"bytes,1,opt,name=creation_time,json=creationTime,proto3" json:"creation_time,omitempty"`
 	// CNX: it works, DISC: unreachable, NEVERCNX: never seen
 	ConnectionState string `protobuf:"bytes,2,opt,name=connection_state,json=connectionState,proto3" json:"connection_state,omitempty"`
 	// present errors on GW: ACTIVE, BACKHAUL_CNX_ERROR
@@ -1096,7 +1096,7 @@ func (m *StatsItemActilityStyled) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_StatsItemActilityStyled proto.InternalMessageInfo
 
-func (m *StatsItemActilityStyled) GetCreationTime() *timestamppb.Timestamp {
+func (m *StatsItemActilityStyled) GetCreationTime() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreationTime
 	}
@@ -1381,7 +1381,7 @@ func (m *UpdateGatewayRequest) GetGateway() *Gateway {
 
 type GatewayStats struct {
 	// Timestamp of the (aggregated) measurement.
-	Timestamp *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Timestamp *timestamp.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	// Packets received by the gateway.
 	RxPacketsReceived int32 `protobuf:"varint,2,opt,name=rx_packets_received,json=rxPacketsReceived,proto3" json:"rx_packets_received,omitempty"`
 	// Packets received by the gateway that passed the CRC check.
@@ -1420,7 +1420,7 @@ func (m *GatewayStats) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GatewayStats proto.InternalMessageInfo
 
-func (m *GatewayStats) GetTimestamp() *timestamppb.Timestamp {
+func (m *GatewayStats) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1462,12 +1462,12 @@ type GetGatewayStatsRequest struct {
 	// "month", "quarter", "year".  Case insensitive.
 	Interval string `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
 	// Timestamp to start from.
-	StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
+	StartTimestamp *timestamp.Timestamp `protobuf:"bytes,3,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
 	// Timestamp until to get from.
-	EndTimestamp         *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=end_timestamp,json=endTimestamp,proto3" json:"end_timestamp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
-	XXX_unrecognized     []byte                 `json:"-"`
-	XXX_sizecache        int32                  `json:"-"`
+	EndTimestamp         *timestamp.Timestamp `protobuf:"bytes,4,opt,name=end_timestamp,json=endTimestamp,proto3" json:"end_timestamp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetGatewayStatsRequest) Reset()         { *m = GetGatewayStatsRequest{} }
@@ -1509,14 +1509,14 @@ func (m *GetGatewayStatsRequest) GetInterval() string {
 	return ""
 }
 
-func (m *GetGatewayStatsRequest) GetStartTimestamp() *timestamppb.Timestamp {
+func (m *GetGatewayStatsRequest) GetStartTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.StartTimestamp
 	}
 	return nil
 }
 
-func (m *GetGatewayStatsRequest) GetEndTimestamp() *timestamppb.Timestamp {
+func (m *GetGatewayStatsRequest) GetEndTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.EndTimestamp
 	}
@@ -1689,7 +1689,7 @@ func (m *GetLastPingRequest) GetGatewayId() string {
 
 type GetLastPingResponse struct {
 	// Created at timestamp.
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// Frequency (Hz).
 	Frequency uint32 `protobuf:"varint,2,opt,name=frequency,proto3" json:"frequency,omitempty"`
 	// Data-rate.
@@ -1726,7 +1726,7 @@ func (m *GetLastPingResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetLastPingResponse proto.InternalMessageInfo
 
-func (m *GetLastPingResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (m *GetLastPingResponse) GetCreatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.CreatedAt
 	}
@@ -1880,7 +1880,7 @@ type GwTaskResults struct {
 	// Execution ID.
 	ExecId string `protobuf:"bytes,2,opt,name=exec_id,json=execID,proto3" json:"exec_id,omitempty"`
 	// timestamp.
-	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// command that had been executed on gateway
 	Cmd string `protobuf:"bytes,4,opt,name=cmd,proto3" json:"cmd,omitempty"`
 	// stderr by the command executed if exists
@@ -1937,7 +1937,7 @@ func (m *GwTaskResults) GetExecId() string {
 	return ""
 }
 
-func (m *GwTaskResults) GetUpdatedAt() *timestamppb.Timestamp {
+func (m *GwTaskResults) GetUpdatedAt() *timestamp.Timestamp {
 	if m != nil {
 		return m.UpdatedAt
 	}
@@ -2229,15 +2229,15 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GatewayServiceClient interface {
 	// Create creates the given gateway.
-	Create(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Create(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Get returns the gateway for the requested mac address.
 	Get(ctx context.Context, in *GetGatewayRequest, opts ...grpc.CallOption) (*GetGatewayResponse, error)
 	// GetStatus returns the gateway status for the requested mac address.
 	GetStatus(ctx context.Context, in *GetGatewayRequest, opts ...grpc.CallOption) (*GetGatewayStatusResponse, error)
 	// Update updates the gateway matching the given mac address.
-	Update(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Update(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Delete deletes the gateway matching the given mac address.
-	Delete(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Delete(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// List lists the gateways.
 	List(ctx context.Context, in *ListGatewayRequest, opts ...grpc.CallOption) (*ListGatewayResponse, error)
 	// GetGatewayLogs returns logs of statistics state changed.
@@ -2245,7 +2245,7 @@ type GatewayServiceClient interface {
 	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
 	ListActilityStyled(ctx context.Context, in *ListGatewayRequest, opts ...grpc.CallOption) (*ListGwActilityStyledResponse, error)
 	// ListMon lists all gateways with the metrics for monitoring purposes
-	ListMon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListMonResponse, error)
+	ListMon(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ListMonResponse, error)
 	// GetStats lists the gateway stats given the query parameters.
 	GetStats(ctx context.Context, in *GetGatewayStatsRequest, opts ...grpc.CallOption) (*GetGatewayStatsResponse, error)
 	// GetLastPing returns the last emitted ping and gateways receiving this ping.
@@ -2272,8 +2272,8 @@ func NewGatewayServiceClient(cc grpc.ClientConnInterface) GatewayServiceClient {
 	return &gatewayServiceClient{cc}
 }
 
-func (c *gatewayServiceClient) Create(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *gatewayServiceClient) Create(ctx context.Context, in *CreateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/api.GatewayService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2299,8 +2299,8 @@ func (c *gatewayServiceClient) GetStatus(ctx context.Context, in *GetGatewayRequ
 	return out, nil
 }
 
-func (c *gatewayServiceClient) Update(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *gatewayServiceClient) Update(ctx context.Context, in *UpdateGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/api.GatewayService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2308,8 +2308,8 @@ func (c *gatewayServiceClient) Update(ctx context.Context, in *UpdateGatewayRequ
 	return out, nil
 }
 
-func (c *gatewayServiceClient) Delete(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *gatewayServiceClient) Delete(ctx context.Context, in *DeleteGatewayRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/api.GatewayService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2344,7 +2344,7 @@ func (c *gatewayServiceClient) ListActilityStyled(ctx context.Context, in *ListG
 	return out, nil
 }
 
-func (c *gatewayServiceClient) ListMon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListMonResponse, error) {
+func (c *gatewayServiceClient) ListMon(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ListMonResponse, error) {
 	out := new(ListMonResponse)
 	err := c.cc.Invoke(ctx, "/api.GatewayService/ListMon", in, out, opts...)
 	if err != nil {
@@ -2424,15 +2424,15 @@ func (c *gatewayServiceClient) GetTaskResults(ctx context.Context, in *GetGatewa
 // GatewayServiceServer is the server API for GatewayService service.
 type GatewayServiceServer interface {
 	// Create creates the given gateway.
-	Create(context.Context, *CreateGatewayRequest) (*emptypb.Empty, error)
+	Create(context.Context, *CreateGatewayRequest) (*empty.Empty, error)
 	// Get returns the gateway for the requested mac address.
 	Get(context.Context, *GetGatewayRequest) (*GetGatewayResponse, error)
 	// GetStatus returns the gateway status for the requested mac address.
 	GetStatus(context.Context, *GetGatewayRequest) (*GetGatewayStatusResponse, error)
 	// Update updates the gateway matching the given mac address.
-	Update(context.Context, *UpdateGatewayRequest) (*emptypb.Empty, error)
+	Update(context.Context, *UpdateGatewayRequest) (*empty.Empty, error)
 	// Delete deletes the gateway matching the given mac address.
-	Delete(context.Context, *DeleteGatewayRequest) (*emptypb.Empty, error)
+	Delete(context.Context, *DeleteGatewayRequest) (*empty.Empty, error)
 	// List lists the gateways.
 	List(context.Context, *ListGatewayRequest) (*ListGatewayResponse, error)
 	// GetGatewayLogs returns logs of statistics state changed.
@@ -2440,7 +2440,7 @@ type GatewayServiceServer interface {
 	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
 	ListActilityStyled(context.Context, *ListGatewayRequest) (*ListGwActilityStyledResponse, error)
 	// ListMon lists all gateways with the metrics for monitoring purposes
-	ListMon(context.Context, *emptypb.Empty) (*ListMonResponse, error)
+	ListMon(context.Context, *empty.Empty) (*ListMonResponse, error)
 	// GetStats lists the gateway stats given the query parameters.
 	GetStats(context.Context, *GetGatewayStatsRequest) (*GetGatewayStatsResponse, error)
 	// GetLastPing returns the last emitted ping and gateways receiving this ping.
@@ -2463,7 +2463,7 @@ type GatewayServiceServer interface {
 type UnimplementedGatewayServiceServer struct {
 }
 
-func (*UnimplementedGatewayServiceServer) Create(ctx context.Context, req *CreateGatewayRequest) (*emptypb.Empty, error) {
+func (*UnimplementedGatewayServiceServer) Create(ctx context.Context, req *CreateGatewayRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (*UnimplementedGatewayServiceServer) Get(ctx context.Context, req *GetGatewayRequest) (*GetGatewayResponse, error) {
@@ -2472,10 +2472,10 @@ func (*UnimplementedGatewayServiceServer) Get(ctx context.Context, req *GetGatew
 func (*UnimplementedGatewayServiceServer) GetStatus(ctx context.Context, req *GetGatewayRequest) (*GetGatewayStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
-func (*UnimplementedGatewayServiceServer) Update(ctx context.Context, req *UpdateGatewayRequest) (*emptypb.Empty, error) {
+func (*UnimplementedGatewayServiceServer) Update(ctx context.Context, req *UpdateGatewayRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (*UnimplementedGatewayServiceServer) Delete(ctx context.Context, req *DeleteGatewayRequest) (*emptypb.Empty, error) {
+func (*UnimplementedGatewayServiceServer) Delete(ctx context.Context, req *DeleteGatewayRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (*UnimplementedGatewayServiceServer) List(ctx context.Context, req *ListGatewayRequest) (*ListGatewayResponse, error) {
@@ -2487,7 +2487,7 @@ func (*UnimplementedGatewayServiceServer) GetGatewayLogs(ctx context.Context, re
 func (*UnimplementedGatewayServiceServer) ListActilityStyled(ctx context.Context, req *ListGatewayRequest) (*ListGwActilityStyledResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListActilityStyled not implemented")
 }
-func (*UnimplementedGatewayServiceServer) ListMon(ctx context.Context, req *emptypb.Empty) (*ListMonResponse, error) {
+func (*UnimplementedGatewayServiceServer) ListMon(ctx context.Context, req *empty.Empty) (*ListMonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMon not implemented")
 }
 func (*UnimplementedGatewayServiceServer) GetStats(ctx context.Context, req *GetGatewayStatsRequest) (*GetGatewayStatsResponse, error) {
@@ -2655,7 +2655,7 @@ func _GatewayService_ListActilityStyled_Handler(srv interface{}, ctx context.Con
 }
 
 func _GatewayService_ListMon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2667,7 +2667,7 @@ func _GatewayService_ListMon_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/api.GatewayService/ListMon",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).ListMon(ctx, req.(*emptypb.Empty))
+		return srv.(GatewayServiceServer).ListMon(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

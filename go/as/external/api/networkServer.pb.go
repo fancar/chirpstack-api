@@ -338,7 +338,7 @@ func (m *CreateNetworkServerResponse) GetId() int64 {
 }
 
 type GetNetworkServerRequest struct {
-	// Network-server ID.
+	// Organization ID. Deprecated
 	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -659,7 +659,7 @@ func (m *ListNetworkServerResponse) GetResult() []*NetworkServerListItem {
 }
 
 type GetADRAlgorithmsRequest struct {
-	// Network-server ID.
+	// Network-server ID. Deprecated
 	NetworkServerId      int64    `protobuf:"varint,1,opt,name=network_server_id,json=networkServerId,proto3" json:"network_server_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

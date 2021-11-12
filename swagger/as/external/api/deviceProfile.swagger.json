@@ -304,7 +304,7 @@
         "maxEIRP": {
           "type": "integer",
           "format": "int64",
-          "description": "Maximum EIRP supported by the End-Device."
+          "title": "Maximum EIRP supported by the End-Device. Moved to serivce profile"
         },
         "maxDutyCycle": {
           "type": "integer",
@@ -361,6 +361,27 @@
         "adrAlgorithmID": {
           "type": "string",
           "description": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'."
+        },
+        "joinAcceptDelay1": {
+          "type": "integer",
+          "format": "int64",
+          "title": "delay between the end of join request message\nand start of RX1 window to recieve a Join Accept\ndefault 5000ms"
+        },
+        "joinAcceptDelay2": {
+          "type": "integer",
+          "format": "int64",
+          "title": "delay between the end of join request message\nand start of RX2 window to recieve a Join Accept\ndefault 6000ms"
+        },
+        "fcntAutomaticReset": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "allow autoreset for low counters recieved\n(for ABP devices only)"
+        },
+        "cmdSwitches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiMacCommandSwitch"
+          }
         }
       }
     },
@@ -433,6 +454,21 @@
           "items": {
             "$ref": "#/definitions/apiDeviceProfileListItem"
           }
+        }
+      }
+    },
+    "apiMacCommandSwitch": {
+      "type": "object",
+      "properties": {
+        "cid": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Command identifier (specified by the LoRaWAN specs).\nsee https://github.com/brocaar/lorawan/blob/master/mac_commands.go\nfor example 10 is 0x0A which is DLChannelReq command"
+        },
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true the MACcommand with the identifier will be allowed"
         }
       }
     },

@@ -415,6 +415,21 @@
           "type": "boolean",
           "format": "boolean",
           "title": "Disabled service profile if set true"
+        },
+        "minEIRP": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Maximum EIRP supported by the End-Device"
+        },
+        "maxEIRP": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Maximum EIRP supported by the End-Device"
+        },
+        "maxNbTrans": {
+          "type": "integer",
+          "format": "int64",
+          "description": "MAX NbTrans\nthe maximum number of transmissions for the device."
         }
       }
     },

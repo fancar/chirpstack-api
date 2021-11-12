@@ -122,6 +122,16 @@ message ServiceProfile {
 
     // Disabled service profile if set true
     bool is_disabled = 28;
+
+    // Maximum EIRP supported by the End-Device
+    uint32 min_eirp = 31 [json_name = "minEIRP"];
+
+    // Maximum EIRP supported by the End-Device
+    uint32 max_eirp = 32 [json_name = "maxEIRP"];
+
+    // MAX NbTrans
+    // the maximum number of transmissions for the device.
+    uint32 max_nb_trans = 33;
 }
 
 message DeviceProfile {
@@ -179,7 +189,7 @@ message DeviceProfile {
     // List of factory-preset frequencies (mandatory for ABP).
     repeated uint32 factory_preset_freqs = 15;
 
-    // Maximum EIRP supported by the End-Device.
+    // Maximum EIRP supported by the End-Device. Moved to serivce profile
     uint32 max_eirp = 16 [json_name = "maxEIRP"];
 
     // Maximum duty cycle supported by the End-Device.
@@ -231,4 +241,31 @@ message DeviceProfile {
     // In case this is left blank, or is configured to a non-existing ADR
     // algorithm (plugin), then it falls back to 'default'.
     string adr_algorithm_id = 31 [json_name = "adrAlgorithmID"];
+
+    // delay between the end of join request message
+    // and start of RX1 window to recieve a Join Accept
+    // default 5000ms
+    uint32 join_accept_delay_1 = 32;
+
+    // delay between the end of join request message
+    // and start of RX2 window to recieve a Join Accept
+    // default 6000ms
+    uint32 join_accept_delay_2 = 33;
+
+    // allow autoreset for low counters recieved
+    // (for ABP devices only)
+    bool fcnt_automatic_reset = 34;
+
+    repeated MacCommandSwitch cmd_switches = 35;
+}
+
+
+message MacCommandSwitch {
+    // Command identifier (specified by the LoRaWAN specs).
+    // see https://github.com/brocaar/lorawan/blob/master/mac_commands.go
+    // for example 10 is 0x0A which is DLChannelReq command
+    uint32 cid = 1;
+
+    // if true the MACcommand with the identifier will be allowed
+    bool enabled = 2;    
 }
