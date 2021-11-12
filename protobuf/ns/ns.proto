@@ -500,6 +500,10 @@ message Gateway {
 
     // Service-profile ID (optional).
     bytes service_profile_id = 6;
+
+    // if suspended flag is set then all received packets from devices related to
+    // this gateway are droped (UL, DL) without any logging
+    bool suspended = 7;
 }
 
 message GatewayBoard {

@@ -185,9 +185,6 @@ message Gateway {
 
 	// Network-server Name on which the gateway is provisioned.
 	string network_server_name = 19 [json_name = "networkServerName"];
-
-	// If true stop transfering uplink and downlink packets from linked devices. 
-	bool suspended = 20;
 }
 
 message GatewayBoard {
@@ -330,9 +327,6 @@ message GatewayListItem {
 
 	//operational status code
 	int64 op_status_code = 15;
-
-	// If true stop transfering uplink and downlink packets from linked devices. 
-	bool suspended = 16;
 }
 
 // for monitoring list
