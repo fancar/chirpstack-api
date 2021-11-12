@@ -304,7 +304,7 @@
         "maxEIRP": {
           "type": "integer",
           "format": "int64",
-          "title": "Maximum EIRP supported by the End-Device. Moved to serivce profile"
+          "title": "Deprecated. Moved to SP. Maximum EIRP supported by the End-Device. Moved to serivce profile"
         },
         "maxDutyCycle": {
           "type": "integer",
@@ -360,7 +360,7 @@
         },
         "adrAlgorithmID": {
           "type": "string",
-          "description": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'."
+          "title": "Deprecated! ADR algorithm ID has been Moved to ServiceProfile\nTODO: remove"
         },
         "joinAcceptDelay1": {
           "type": "integer",
@@ -372,7 +372,7 @@
           "format": "int64",
           "title": "delay between the end of join request message\nand start of RX2 window to recieve a Join Accept\ndefault 6000ms"
         },
-        "fcntAutomaticReset": {
+        "fCntAutomaticReset": {
           "type": "boolean",
           "format": "boolean",
           "title": "allow autoreset for low counters recieved\n(for ABP devices only)"
@@ -380,7 +380,7 @@
         "cmdSwitches": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/apiMacCommandSwitch"
+            "$ref": "#/definitions/nsMacCommandSwitch"
           }
         }
       }
@@ -457,7 +457,16 @@
         }
       }
     },
-    "apiMacCommandSwitch": {
+    "apiUpdateDeviceProfileRequest": {
+      "type": "object",
+      "properties": {
+        "deviceProfile": {
+          "$ref": "#/definitions/apiDeviceProfile",
+          "description": "Device-profile object to update."
+        }
+      }
+    },
+    "nsMacCommandSwitch": {
       "type": "object",
       "properties": {
         "cid": {
@@ -469,15 +478,6 @@
           "type": "boolean",
           "format": "boolean",
           "title": "if true the MACcommand with the identifier will be allowed"
-        }
-      }
-    },
-    "apiUpdateDeviceProfileRequest": {
-      "type": "object",
-      "properties": {
-        "deviceProfile": {
-          "$ref": "#/definitions/apiDeviceProfile",
-          "description": "Device-profile object to update."
         }
       }
     }

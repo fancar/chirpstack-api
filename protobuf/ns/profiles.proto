@@ -103,6 +103,21 @@ message ServiceProfile {
 
     // Service profile is disabled if true. UL DL packets droped and logged as DROP
     bool is_disabled = 31;
+
+    // ADR algorithm ID.
+    // In case this is left blank, or is configured to a non-existing ADR
+    // algorithm (plugin), then it falls back to 'default'.
+    string adr_algorithm_id = 32;
+
+    // Maximum EIRP supported by the End-Device
+    uint32 min_eirp = 33;
+
+    // Maximum EIRP supported by the End-Device
+    uint32 max_eirp = 34;
+
+    // MAX NbTrans
+    // the maximum number of transmissions for the device.
+    uint32 max_nb_trans = 35;    
 }
 
 message DeviceProfile {
@@ -151,7 +166,7 @@ message DeviceProfile {
     // List of factory-preset frequencies (mandatory for ABP).
     repeated uint32 factory_preset_freqs = 15;
 
-    // Maximum EIRP supported by the End-Device.
+    // Deprecated. Moved to SP. Maximum EIRP supported by the End-Device.
     uint32 max_eirp = 16;
 
     // Maximum duty cycle supported by the End-Device.
@@ -166,10 +181,26 @@ message DeviceProfile {
     // End-Device uses 32bit FCnt (mandatory for LoRaWAN 1.0 End-Device).
     bool supports_32bit_f_cnt = 20;
 
-    // ADR algorithm ID.
-    // In case this is left blank, or is configured to a non-existing ADR
-    // algorithm (plugin), then it falls back to 'default'.
-    string adr_algorithm_id = 21;
+    // delay between the end of join request message
+    // and start of RX1 window to recieve a Join Accept
+    // default 5000ms
+    uint32 join_accept_delay_1 = 21;
+
+    // delay between the end of join request message
+    // and start of RX2 window to recieve a Join Accept
+    // default 6000ms
+    uint32 join_accept_delay_2 = 22;
+
+    // allow autoreset for low counters recieved
+    // (for ABP devices only)
+    bool f_cnt_automatic_reset = 23;
+
+    repeated MacCommandSwitch cmd_switches = 24;
+
+    // Deprecated. Moed to SP. 
+    // TODO: remove
+    string adr_algorithm_id = 25;
+
 }
 
 message RoutingProfile {
@@ -190,4 +221,15 @@ message RoutingProfile {
     // for security reasons. When updating the routing-profile, an empty tls_key
     // does not clear the certificate, unless the tls_cert is also left blank.
     string tls_key = 5;
+}
+
+
+message MacCommandSwitch {
+    // Command identifier (specified by the LoRaWAN specs).
+    // see https://github.com/brocaar/lorawan/blob/master/mac_commands.go
+    // for example 10 is 0x0A which is DLChannelReq command
+    uint32 cid = 1;
+
+    // if true the MACcommand with the identifier will be allowed
+    bool enabled = 2;    
 }

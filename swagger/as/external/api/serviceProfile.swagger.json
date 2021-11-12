@@ -430,6 +430,10 @@
           "type": "integer",
           "format": "int64",
           "description": "MAX NbTrans\nthe maximum number of transmissions for the device."
+        },
+        "adrAlgorithmID": {
+          "type": "string",
+          "description": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'."
         }
       }
     },
