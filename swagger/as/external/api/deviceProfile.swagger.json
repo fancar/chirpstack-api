@@ -276,22 +276,22 @@
         "rxDelay1": {
           "type": "integer",
           "format": "int64",
-          "description": "Class A RX1 delay (mandatory for ABP)."
+          "description": "Class A RX1 delay (For ABP initialization  only! mandatory for ABP).."
         },
         "rxDROffset1": {
           "type": "integer",
           "format": "int64",
-          "description": "RX1 data rate offset (mandatory for ABP)."
+          "description": "RX1 data rate offset (For ABP initialization  only! mandatory for ABP).."
         },
         "rxDataRate2": {
           "type": "integer",
           "format": "int64",
-          "description": "RX2 data rate (mandatory for ABP)."
+          "description": "RX2 data rate (For ABP initialization  only! mandatory for ABP).."
         },
         "rxFreq2": {
           "type": "integer",
           "format": "int64",
-          "description": "RX2 channel frequency (mandatory for ABP)."
+          "description": "RX2 channel frequency (For ABP initialization  only! mandatory for ABP).."
         },
         "factoryPresetFreqs": {
           "type": "array",
@@ -299,7 +299,7 @@
             "type": "integer",
             "format": "int64"
           },
-          "description": "List of factory-preset frequencies (mandatory for ABP)."
+          "description": "List of factory-preset frequencies (mandatory for ABP).."
         },
         "maxEIRP": {
           "type": "integer",
@@ -382,6 +382,26 @@
           "items": {
             "$ref": "#/definitions/nsMacCommandSwitch"
           }
+        },
+        "rx1Delay": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Class A RX1 delay. If not set (-1) - default value from NS cfg in use\nRX2 delay will be +1s to the rx1_delay"
+        },
+        "rx1DrOffset": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RX1 data rate offset. If not set (-1) - default value from NS cfg in use"
+        },
+        "rx2Datarate": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RX2 data rate. If not set (-1) - default value from NS cfg in use"
+        },
+        "rx2Freq": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RX2 channel frequency. If not set (-1) - default value from NS cfg in use"
         }
       }
     },
