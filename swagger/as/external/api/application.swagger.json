@@ -1418,6 +1418,10 @@
           "format": "int64",
           "description": "ID of the organization to which the application belongs."
         },
+        "isActive": {
+          "type": "boolean",
+          "format": "boolean"
+        },
         "devCnt": {
           "type": "string",
           "format": "int64",
