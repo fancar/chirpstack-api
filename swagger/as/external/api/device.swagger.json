@@ -645,11 +645,6 @@
           "type": "integer",
           "format": "int64",
           "description": "Downlink application frame-counter."
-        },
-        "fCntAutomaticReset": {
-          "type": "boolean",
-          "format": "boolean",
-          "title": "if true - the device's uplinks will be passed if recieved fcount between 0-255.\nthe device session will be reset as well"
         }
       }
     },
