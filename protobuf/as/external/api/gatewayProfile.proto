@@ -87,7 +87,12 @@ message GatewayProfile {
     bool gps = 9;
 
     // Coonection type (secure/non-secure)
-    bool secure = 10;     
+    bool secure = 10;
+
+    //  gateway-profile.
+    // Downlink TX Power (dBm)    
+    // if (-1) default value from network-server will be used.
+    int32 downlink_tx_power = 11;    
 }
 
 message GatewayProfileListItem {

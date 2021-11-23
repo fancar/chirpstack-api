@@ -253,6 +253,11 @@
           "type": "boolean",
           "format": "boolean",
           "title": "Coonection type (secure/non-secure)"
+        },
+        "downlinkTxPower": {
+          "type": "integer",
+          "format": "int32",
+          "description": "gateway-profile.\nDownlink TX Power (dBm)    \nif (-1) default value from network-server will be used."
         }
       }
     },
