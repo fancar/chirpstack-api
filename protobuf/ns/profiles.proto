@@ -110,14 +110,18 @@ message ServiceProfile {
     string adr_algorithm_id = 32;
 
     // Maximum EIRP supported by the End-Device
-    uint32 min_eirp = 33;
+    int32 min_eirp = 33;
 
     // Maximum EIRP supported by the End-Device
-    uint32 max_eirp = 34;
+    int32 max_eirp = 34;
 
     // MAX NbTrans
-    // the maximum number of transmissions for the device.
-    uint32 max_nb_trans = 35;    
+    // the maximum number of transmissions.
+    int32 max_nb_trans = 35;
+
+    // MIN NbTrans
+    // the mininum number of transmissions.
+    int32 min_nb_trans = 36;    
 }
 
 message DeviceProfile {

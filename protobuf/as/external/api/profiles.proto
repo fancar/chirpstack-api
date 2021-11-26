@@ -125,19 +125,23 @@ message ServiceProfile {
     bool is_disabled = 28;
 
     // Maximum EIRP supported by the End-Device
-    uint32 min_eirp = 31 [json_name = "minEIRP"];
+    int32 min_eirp = 31 [json_name = "minEIRP"];
 
     // Maximum EIRP supported by the End-Device
-    uint32 max_eirp = 32 [json_name = "maxEIRP"];
+    int32 max_eirp = 32 [json_name = "maxEIRP"];
 
     // MAX NbTrans
-    // the maximum number of transmissions for the device.
-    uint32 max_nb_trans = 33;
+    // the maximum number of transmissions.
+    int32 max_nb_trans = 33;
+
+    // MIN NbTrans
+    // the minimum number of transmissions.
+    int32 min_nb_trans = 34;
 
     // ADR algorithm ID.
     // In case this is left blank, or is configured to a non-existing ADR
     // algorithm (plugin), then it falls back to 'default'.
-    string adr_algorithm_id = 34 [json_name = "adrAlgorithmID"];
+    string adr_algorithm_id = 35 [json_name = "adrAlgorithmID"];
 }
 
 message DeviceProfile {
