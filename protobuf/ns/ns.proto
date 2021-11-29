@@ -858,6 +858,11 @@ message GatewayProfile {
     // This defines the (expected) stats interval which the gateways using this
     // gateway-profile are using.
     google.protobuf.Duration stats_interval = 4;
+
+    //  gateway-profile.
+    // Downlink TX Power (dBm)    
+    // if (-1) default value from network-server will be used.
+    int32 downlink_tx_power = 5;
 }
 
 message GatewayProfileExtraChannel {
