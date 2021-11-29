@@ -10,8 +10,10 @@ option java_outer_classname = "ApplicationServerProto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "common/common.proto";
+import "ns/profiles.proto";
 import "gw/gw.proto";
 import "ns/ns.proto";
+
 
 
 // ApplicationServerService is the service providing the application-server interface.
@@ -75,7 +77,47 @@ service ApplicationServerService {
     rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {}
 
     // GetGWMetaData returns a map with last metadata for the gw
-    rpc GetGWMetaData(google.protobuf.Empty) returns (GetGWMetaDataResponse) {}     
+    rpc GetGWMetaData(google.protobuf.Empty) returns (GetGWMetaDataResponse) {}
+
+    // GetServiceProfile (TEMP for ADR MIGRATE) returns sp from as-database (local only)
+    rpc GetServiceProfile(GetServiceProfileRequest) returns (GetServiceProfileResponse) {}  
+
+    // CreateServiceProfile (TEMP for ADR MIGRATE) creates service profile in as local db.
+    rpc CreateServiceProfile(CreateServiceProfileRequest) returns (CreateServiceProfileResponse) {}             
+}
+
+message GetServiceProfileRequest {
+    // ID of the service-profile.
+    bytes id = 1;
+}
+
+message GetServiceProfileResponse {
+    // Service-profile object to create in as-db
+    ServiceProfileItem as_data = 1;
+}
+
+message CreateServiceProfileRequest {
+    // Service-profile data - object to create in as-db
+    ServiceProfileItem as_data = 1;
+
+    // Service-profile data -  object to create in ns-db
+    ns.ServiceProfile ns_data = 2;
+}
+
+
+message CreateServiceProfileResponse {
+    // Service-profile ID (UUID).
+    bytes id = 1;
+}
+
+message ServiceProfileItem {
+    int64 network_server_id = 1;
+    int64 organization_id = 2;
+    string name = 3;
+    string description = 4;
+    uint32 device_count_limit = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;    
 }
 
 message GatewayMetaData {
