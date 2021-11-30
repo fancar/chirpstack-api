@@ -84,7 +84,26 @@ service ApplicationServerService {
 
     // CreateServiceProfile (TEMP for ADR MIGRATE) creates service profile in as local db.
     rpc CreateServiceProfile(CreateServiceProfileRequest) returns (CreateServiceProfileResponse) {}             
+
+    // UpdateSPonDevice (TEMP for ADR MIGRATE) update SP for device in local db.
+    rpc UpdateSPonDevice(UpdateSPonDeviceRequest) returns (google.protobuf.Empty) {}
 }
+
+
+
+message UpdateSPonDeviceRequest {
+    // dev_eui of the device
+    bytes id = 1;
+
+    // ID of the service-profile.
+    bytes sp_id = 2;    
+}
+
+// message UpdateSPonDeviceResponse {
+//     // dev_eui of the device
+//     int64 id = 1;
+// }
+
 
 message GetServiceProfileRequest {
     // ID of the service-profile.
