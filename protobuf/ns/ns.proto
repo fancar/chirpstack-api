@@ -329,6 +329,9 @@ message Device {
 
     // If true - the device is disabled.
     bool is_disabled = 7;
+    
+    // If true - do not flush the device-queue during join
+    bool keep_queue = 8;    
 }
 
 message CreateDeviceRequest {

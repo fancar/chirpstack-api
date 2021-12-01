@@ -601,6 +601,11 @@
         "location": {
           "$ref": "#/definitions/commonLocation",
           "description": "Device location."
+        },
+        "keepQueue": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "If true - do not flush the device-queue during join"
         }
       }
     },

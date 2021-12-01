@@ -186,6 +186,9 @@ message Device {
 
     // Device location.
 	common.Location location = 12;
+
+    // If true - do not flush the device-queue during join
+    bool keep_queue = 14;
 }
 
 message DeviceListItem {
