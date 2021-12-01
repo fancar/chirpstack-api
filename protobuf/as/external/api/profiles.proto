@@ -142,6 +142,9 @@ message ServiceProfile {
     // In case this is left blank, or is configured to a non-existing ADR
     // algorithm (plugin), then it falls back to 'default'.
     string adr_algorithm_id = 35 [json_name = "adrAlgorithmID"];
+
+    // if true only uplink events are passing to client's applications
+    bool uplinks_only = 36;    
 }
 
 message DeviceProfile {

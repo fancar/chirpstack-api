@@ -439,6 +439,11 @@
         "adrAlgorithmID": {
           "type": "string",
           "description": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'."
+        },
+        "uplinksOnly": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true only uplink events are passing to client's applications"
         }
       }
     },
