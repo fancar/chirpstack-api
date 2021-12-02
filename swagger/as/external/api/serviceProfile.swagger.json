@@ -416,12 +416,12 @@
           "format": "boolean",
           "title": "Disabled service profile if set true"
         },
-        "maxTXPower": {
+        "minTXPowerIndex": {
           "type": "integer",
           "format": "int32",
           "description": "Minimum TX power index that can't be overlaped by ADR."
         },
-        "maxTXPower": {
+        "maxTXPowerIndex": {
           "type": "integer",
           "format": "int32",
           "title": "Maximum TX power index that can't be overlaped by ADR.\nif adr=fixed - the value as fixed TxPowerIndex will be in use"

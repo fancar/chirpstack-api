@@ -126,11 +126,11 @@ message ServiceProfile {
     bool is_disabled = 28;
 
     // Minimum TX power index that can't be overlaped by ADR.
-    int32 min_tx_power_index = 31 [json_name = "maxTXPower"];
+    int32 min_tx_power_index = 31 [json_name = "minTXPowerIndex"];
 
     // Maximum TX power index that can't be overlaped by ADR.
     // if adr=fixed - the value as fixed TxPowerIndex will be in use
-    int32 max_tx_power_index = 32 [json_name = "maxTXPower"];
+    int32 max_tx_power_index = 32 [json_name = "maxTXPowerIndex"];
 
     // the maximum number of transmissions.
     int32 max_nb_trans = 33;
@@ -158,7 +158,7 @@ message ServiceProfile {
     bool allow_tx_unconfirmed = 39;
 
     // if true - allows processing confirmed downlinks
-    bool allow_tx_confirmed = 40;    
+    bool allow_tx_confirmed = 40;
 }
 
 message DeviceProfile {
