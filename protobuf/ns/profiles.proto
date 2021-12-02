@@ -109,11 +109,12 @@ message ServiceProfile {
     // algorithm (plugin), then it falls back to 'default'.
     string adr_algorithm_id = 32;
 
-    // Maximum EIRP supported by the End-Device
-    int32 min_eirp = 33;
+    // Minimum TX power index that can't be overlaped by ADR.
+    int32 min_tx_power_index = 33;
 
-    // Maximum EIRP supported by the End-Device
-    int32 max_eirp = 34;
+    // Maximum TX power index that can't be overlaped by ADR.
+    // if adr=fixed - the value as fixed TxPowerIndex will be in use
+    int32 max_tx_power_index = 34;
 
     // MAX NbTrans
     // the maximum number of transmissions.
@@ -121,7 +122,16 @@ message ServiceProfile {
 
     // MIN NbTrans
     // the mininum number of transmissions.
-    int32 min_nb_trans = 36;    
+    int32 min_nb_trans = 36;
+
+    // if true - allows processing confirmed uplinks
+    bool allow_rx_confirmed = 37;
+
+    // if true - allows processing unconfirmed downlinks
+    bool allow_tx_unconfirmed = 38;
+
+    // if true - allows processing confirmed downlinks
+    bool allow_tx_confirmed = 39; 
 }
 
 message DeviceProfile {

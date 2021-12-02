@@ -369,7 +369,7 @@
         "drMax": {
           "type": "integer",
           "format": "int64",
-          "description": "Maximum allowed data rate. Used for ADR."
+          "title": "Maximum allowed data rate. Used for ADR.\nif adr=fixed - the value as fixed DataRate in use"
         },
         "channelMask": {
           "type": "string",
@@ -416,34 +416,54 @@
           "format": "boolean",
           "title": "Disabled service profile if set true"
         },
-        "minEIRP": {
+        "maxTXPower": {
           "type": "integer",
           "format": "int32",
-          "title": "Maximum EIRP supported by the End-Device"
+          "description": "Minimum TX power index that can't be overlaped by ADR."
         },
-        "maxEIRP": {
+        "maxTXPower": {
           "type": "integer",
           "format": "int32",
-          "title": "Maximum EIRP supported by the End-Device"
+          "title": "Maximum TX power index that can't be overlaped by ADR.\nif adr=fixed - the value as fixed TxPowerIndex will be in use"
         },
         "maxNbTrans": {
           "type": "integer",
           "format": "int32",
-          "description": "MAX NbTrans\nthe maximum number of transmissions."
+          "description": "the maximum number of transmissions."
         },
         "minNbTrans": {
           "type": "integer",
           "format": "int32",
-          "description": "MIN NbTrans\nthe minimum number of transmissions."
+          "title": "the minimum number of transmissions.\nif adr=fixed - the value as fixed TxPowerIndex in use"
         },
         "adrAlgorithmID": {
           "type": "string",
-          "description": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'."
+          "title": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'.\nif 'fixed' set - hardset values in use"
         },
         "uplinksOnly": {
           "type": "boolean",
           "format": "boolean",
           "title": "if true only uplink events are passing to client's applications"
+        },
+        "sendToApps": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - allows passing data to client's applications"
+        },
+        "allowRxConfirmed": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - allows processing confirmed uplinks"
+        },
+        "allowTxUnconfirmed": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - allows processing unconfirmed downlinks"
+        },
+        "allowTxConfirmed": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - allows processing confirmed downlinks"
         }
       }
     },
