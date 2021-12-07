@@ -76,6 +76,11 @@ class ApplicationServerServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.FromString,
                 )
+        self.GetOrgIDByGwID = channel.unary_unary(
+                '/as.ApplicationServerService/GetOrgIDByGwID',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgIDByGwIDRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.FromString,
+                )
         self.GetDeviceAppSKey = channel.unary_unary(
                 '/as.ApplicationServerService/GetDeviceAppSKey',
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
@@ -85,6 +90,36 @@ class ApplicationServerServiceStub(object):
                 '/as.ApplicationServerService/ReEncryptDeviceQueueItems',
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsResponse.FromString,
+                )
+        self.StreamGatewayTaskResult = channel.stream_unary(
+                '/as.ApplicationServerService/StreamGatewayTaskResult',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GatewayTaskResult.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.GetDictionary = channel.unary_unary(
+                '/as.ApplicationServerService/GetDictionary',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDictionaryRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDictionaryResponse.FromString,
+                )
+        self.GetGWMetaData = channel.unary_unary(
+                '/as.ApplicationServerService/GetGWMetaData',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGWMetaDataResponse.FromString,
+                )
+        self.GetServiceProfile = channel.unary_unary(
+                '/as.ApplicationServerService/GetServiceProfile',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetServiceProfileRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetServiceProfileResponse.FromString,
+                )
+        self.CreateServiceProfile = channel.unary_unary(
+                '/as.ApplicationServerService/CreateServiceProfile',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CreateServiceProfileRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CreateServiceProfileResponse.FromString,
+                )
+        self.UpdateSPonDevice = channel.unary_unary(
+                '/as.ApplicationServerService/UpdateSPonDevice',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.UpdateSPonDeviceRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
 
 
@@ -176,6 +211,13 @@ class ApplicationServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetOrgIDByGwID(self, request, context):
+        """GetOrgIDByGwID returns organization id by gwID. Modification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetDeviceAppSKey(self, request, context):
         """GetDeviceAppSKey returns AES128Key by devEUI. Modification.
         """
@@ -192,6 +234,48 @@ class ApplicationServerServiceServicer(object):
         an application-layer payload would exceed the max. payload size.
         Note there is no requirement that the number of returned items must be
         equal to the number of requested items.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StreamGatewayTaskResult(self, request_iterator, context):
+        """StreamGatewayTaskResult stream ExecCmd results from gateway to save into as-db
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetDictionary(self, request, context):
+        """GetDictionary returns list of dictionary by the type. Modification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGWMetaData(self, request, context):
+        """GetGWMetaData returns a map with last metadata for the gw
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetServiceProfile(self, request, context):
+        """GetServiceProfile (TEMP for ADR MIGRATE) returns sp from as-database (local only)
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateServiceProfile(self, request, context):
+        """CreateServiceProfile (TEMP for ADR MIGRATE) creates service profile in as local db.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UpdateSPonDevice(self, request, context):
+        """UpdateSPonDevice (TEMP for ADR MIGRATE) update SP for device in local db.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -260,6 +344,11 @@ def add_ApplicationServerServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.SerializeToString,
             ),
+            'GetOrgIDByGwID': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetOrgIDByGwID,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgIDByGwIDRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.SerializeToString,
+            ),
             'GetDeviceAppSKey': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceAppSKey,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.FromString,
@@ -269,6 +358,36 @@ def add_ApplicationServerServiceServicer_to_server(servicer, server):
                     servicer.ReEncryptDeviceQueueItems,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsResponse.SerializeToString,
+            ),
+            'StreamGatewayTaskResult': grpc.stream_unary_rpc_method_handler(
+                    servicer.StreamGatewayTaskResult,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GatewayTaskResult.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetDictionary': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDictionary,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDictionaryRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDictionaryResponse.SerializeToString,
+            ),
+            'GetGWMetaData': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGWMetaData,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGWMetaDataResponse.SerializeToString,
+            ),
+            'GetServiceProfile': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetServiceProfile,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetServiceProfileRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetServiceProfileResponse.SerializeToString,
+            ),
+            'CreateServiceProfile': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateServiceProfile,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CreateServiceProfileRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CreateServiceProfileResponse.SerializeToString,
+            ),
+            'UpdateSPonDevice': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateSPonDevice,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.UpdateSPonDeviceRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -486,6 +605,23 @@ class ApplicationServerService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetOrgIDByGwID(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetOrgIDByGwID',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgIDByGwIDRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetDeviceAppSKey(request,
             target,
             options=(),
@@ -516,5 +652,107 @@ class ApplicationServerService(object):
         return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/ReEncryptDeviceQueueItems',
             chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StreamGatewayTaskResult(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(request_iterator, target, '/as.ApplicationServerService/StreamGatewayTaskResult',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GatewayTaskResult.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDictionary(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetDictionary',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDictionaryRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDictionaryResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGWMetaData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetGWMetaData',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetGWMetaDataResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetServiceProfile(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetServiceProfile',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetServiceProfileRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetServiceProfileResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateServiceProfile(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/CreateServiceProfile',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.CreateServiceProfileRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.CreateServiceProfileResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UpdateSPonDevice(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/UpdateSPonDevice',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.UpdateSPonDeviceRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -1,12 +1,47 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var as_as_pb = require('../as/as_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var common_common_pb = require('../common/common_pb.js');
+var ns_profiles_pb = require('../ns/profiles_pb.js');
 var gw_gw_pb = require('../gw/gw_pb.js');
+var ns_ns_pb = require('../ns/ns_pb.js');
+
+function serialize_as_CreateServiceProfileRequest(arg) {
+  if (!(arg instanceof as_as_pb.CreateServiceProfileRequest)) {
+    throw new Error('Expected argument of type as.CreateServiceProfileRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_CreateServiceProfileRequest(buffer_arg) {
+  return as_as_pb.CreateServiceProfileRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_CreateServiceProfileResponse(arg) {
+  if (!(arg instanceof as_as_pb.CreateServiceProfileResponse)) {
+    throw new Error('Expected argument of type as.CreateServiceProfileResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_CreateServiceProfileResponse(buffer_arg) {
+  return as_as_pb.CreateServiceProfileResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GatewayTaskResult(arg) {
+  if (!(arg instanceof as_as_pb.GatewayTaskResult)) {
+    throw new Error('Expected argument of type as.GatewayTaskResult');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GatewayTaskResult(buffer_arg) {
+  return as_as_pb.GatewayTaskResult.deserializeBinary(new Uint8Array(buffer_arg));
+}
 
 function serialize_as_GetDeviceAppSKeyResponse(arg) {
   if (!(arg instanceof as_as_pb.GetDeviceAppSKeyResponse)) {
@@ -39,6 +74,39 @@ function serialize_as_GetDevicesSummaryResponse(arg) {
 
 function deserialize_as_GetDevicesSummaryResponse(buffer_arg) {
   return as_as_pb.GetDevicesSummaryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetDictionaryRequest(arg) {
+  if (!(arg instanceof as_as_pb.GetDictionaryRequest)) {
+    throw new Error('Expected argument of type as.GetDictionaryRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetDictionaryRequest(buffer_arg) {
+  return as_as_pb.GetDictionaryRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetDictionaryResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetDictionaryResponse)) {
+    throw new Error('Expected argument of type as.GetDictionaryResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetDictionaryResponse(buffer_arg) {
+  return as_as_pb.GetDictionaryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetGWMetaDataResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetGWMetaDataResponse)) {
+    throw new Error('Expected argument of type as.GetGWMetaDataResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetGWMetaDataResponse(buffer_arg) {
+  return as_as_pb.GetGWMetaDataResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_as_GetGatewaysSummaryRequest(arg) {
@@ -83,6 +151,39 @@ function serialize_as_GetOrgByDevEUIResponse(arg) {
 
 function deserialize_as_GetOrgByDevEUIResponse(buffer_arg) {
   return as_as_pb.GetOrgByDevEUIResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetOrgIDByGwIDRequest(arg) {
+  if (!(arg instanceof as_as_pb.GetOrgIDByGwIDRequest)) {
+    throw new Error('Expected argument of type as.GetOrgIDByGwIDRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetOrgIDByGwIDRequest(buffer_arg) {
+  return as_as_pb.GetOrgIDByGwIDRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetServiceProfileRequest(arg) {
+  if (!(arg instanceof as_as_pb.GetServiceProfileRequest)) {
+    throw new Error('Expected argument of type as.GetServiceProfileRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetServiceProfileRequest(buffer_arg) {
+  return as_as_pb.GetServiceProfileRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_GetServiceProfileResponse(arg) {
+  if (!(arg instanceof as_as_pb.GetServiceProfileResponse)) {
+    throw new Error('Expected argument of type as.GetServiceProfileResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_GetServiceProfileResponse(buffer_arg) {
+  return as_as_pb.GetServiceProfileResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_as_HandleDownlinkACKRequest(arg) {
@@ -215,6 +316,17 @@ function serialize_as_SetDeviceStatusRequest(arg) {
 
 function deserialize_as_SetDeviceStatusRequest(buffer_arg) {
   return as_as_pb.SetDeviceStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_as_UpdateSPonDeviceRequest(arg) {
+  if (!(arg instanceof as_as_pb.UpdateSPonDeviceRequest)) {
+    throw new Error('Expected argument of type as.UpdateSPonDeviceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_as_UpdateSPonDeviceRequest(buffer_arg) {
+  return as_as_pb.UpdateSPonDeviceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_google_protobuf_Empty(arg) {
@@ -375,6 +487,18 @@ getOrgByDevEUI: {
     responseSerialize: serialize_as_GetOrgByDevEUIResponse,
     responseDeserialize: deserialize_as_GetOrgByDevEUIResponse,
   },
+  // GetOrgIDByGwID returns organization id by gwID. Modification.
+getOrgIDByGwID: {
+    path: '/as.ApplicationServerService/GetOrgIDByGwID',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetOrgIDByGwIDRequest,
+    responseType: as_as_pb.GetOrgByDevEUIResponse,
+    requestSerialize: serialize_as_GetOrgIDByGwIDRequest,
+    requestDeserialize: deserialize_as_GetOrgIDByGwIDRequest,
+    responseSerialize: serialize_as_GetOrgByDevEUIResponse,
+    responseDeserialize: deserialize_as_GetOrgByDevEUIResponse,
+  },
   // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
 getDeviceAppSKey: {
     path: '/as.ApplicationServerService/GetDeviceAppSKey',
@@ -405,6 +529,78 @@ reEncryptDeviceQueueItems: {
     requestDeserialize: deserialize_as_ReEncryptDeviceQueueItemsRequest,
     responseSerialize: serialize_as_ReEncryptDeviceQueueItemsResponse,
     responseDeserialize: deserialize_as_ReEncryptDeviceQueueItemsResponse,
+  },
+  // StreamGatewayTaskResult stream ExecCmd results from gateway to save into as-db
+streamGatewayTaskResult: {
+    path: '/as.ApplicationServerService/StreamGatewayTaskResult',
+    requestStream: true,
+    responseStream: false,
+    requestType: as_as_pb.GatewayTaskResult,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_as_GatewayTaskResult,
+    requestDeserialize: deserialize_as_GatewayTaskResult,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
+  },
+  // GetDictionary returns list of dictionary by the type. Modification.
+getDictionary: {
+    path: '/as.ApplicationServerService/GetDictionary',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetDictionaryRequest,
+    responseType: as_as_pb.GetDictionaryResponse,
+    requestSerialize: serialize_as_GetDictionaryRequest,
+    requestDeserialize: deserialize_as_GetDictionaryRequest,
+    responseSerialize: serialize_as_GetDictionaryResponse,
+    responseDeserialize: deserialize_as_GetDictionaryResponse,
+  },
+  // GetGWMetaData returns a map with last metadata for the gw
+getGWMetaData: {
+    path: '/as.ApplicationServerService/GetGWMetaData',
+    requestStream: false,
+    responseStream: false,
+    requestType: google_protobuf_empty_pb.Empty,
+    responseType: as_as_pb.GetGWMetaDataResponse,
+    requestSerialize: serialize_google_protobuf_Empty,
+    requestDeserialize: deserialize_google_protobuf_Empty,
+    responseSerialize: serialize_as_GetGWMetaDataResponse,
+    responseDeserialize: deserialize_as_GetGWMetaDataResponse,
+  },
+  // GetServiceProfile (TEMP for ADR MIGRATE) returns sp from as-database (local only)
+getServiceProfile: {
+    path: '/as.ApplicationServerService/GetServiceProfile',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.GetServiceProfileRequest,
+    responseType: as_as_pb.GetServiceProfileResponse,
+    requestSerialize: serialize_as_GetServiceProfileRequest,
+    requestDeserialize: deserialize_as_GetServiceProfileRequest,
+    responseSerialize: serialize_as_GetServiceProfileResponse,
+    responseDeserialize: deserialize_as_GetServiceProfileResponse,
+  },
+  // CreateServiceProfile (TEMP for ADR MIGRATE) creates service profile in as local db.
+createServiceProfile: {
+    path: '/as.ApplicationServerService/CreateServiceProfile',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.CreateServiceProfileRequest,
+    responseType: as_as_pb.CreateServiceProfileResponse,
+    requestSerialize: serialize_as_CreateServiceProfileRequest,
+    requestDeserialize: deserialize_as_CreateServiceProfileRequest,
+    responseSerialize: serialize_as_CreateServiceProfileResponse,
+    responseDeserialize: deserialize_as_CreateServiceProfileResponse,
+  },
+  // UpdateSPonDevice (TEMP for ADR MIGRATE) update SP for device in local db.
+updateSPonDevice: {
+    path: '/as.ApplicationServerService/UpdateSPonDevice',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_as_pb.UpdateSPonDeviceRequest,
+    responseType: google_protobuf_empty_pb.Empty,
+    requestSerialize: serialize_as_UpdateSPonDeviceRequest,
+    requestDeserialize: deserialize_as_UpdateSPonDeviceRequest,
+    responseSerialize: serialize_google_protobuf_Empty,
+    responseDeserialize: deserialize_google_protobuf_Empty,
   },
 };
 

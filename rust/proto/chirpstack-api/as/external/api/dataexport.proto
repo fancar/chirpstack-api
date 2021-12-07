@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+
+import "google/api/annotations.proto";
+// import "google/protobuf/empty.proto";
+
+// DataExportService the service manages all data exports
+service DataExportService {
+
+    // GetGateways Export gateways
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
+    rpc GetGateways(DataExportRequest) returns (stream StreamResponse) {
+        option (google.api.http) = {
+            get: "/api/dataexport/gateways"
+        };
+    }
+
+    // GetUsers Export users
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
+    rpc GetUsers(DataExportRequest) returns (stream StreamResponse) {
+        option (google.api.http) = {
+            get: "/api/dataexport/users"
+        };
+    }
+
+    // GetDevices Export devices
+    //   (!) websocket required! The endpoint does not work from a web-swagger.
+    rpc GetDevices(DataExportRequest) returns (stream StreamResponse) {
+        option (google.api.http) = {
+            get: "/api/dataexport/devices"
+        };
+    }  
+}
+
+message DataExportRequest {
+    // Organization ID.
+    int64 org_id = 1;    
+}
+
+message StreamResponse {
+    oneof size {
+        uint32 current = 1;
+        uint32 total = 2;
+    }
+
+    oneof data {
+        uint32 rows = 3;
+        bytes chunk = 4;
+    }
+}

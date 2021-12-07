@@ -12,7 +12,6 @@ var global = Function('return this')();
 var common_common_pb = require('../../common/common_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var gw_gw_pb = require('../../gw/gw_pb.js');
-var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.exportSymbol('proto.integration.AckEvent', null, global);
 goog.exportSymbol('proto.integration.ErrorEvent', null, global);
 goog.exportSymbol('proto.integration.ErrorType', null, global);
@@ -91,13 +90,12 @@ proto.integration.UplinkEvent.toObject = function(includeInstance, msg) {
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     confirmedUplink: msg.getConfirmedUplink(),
     devAddr: msg.getDevAddr_asB64(),
-<<<<<<< HEAD
     mic: msg.getMic_asB64(),
     late: msg.getLate(),
-    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
-=======
-    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
->>>>>>> v3.9.9
+    time: (f = msg.getTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    deviceProfileId: msg.getDeviceProfileId(),
+    deviceProfileName: msg.getDeviceProfileName()
   };
 
   if (includeInstance) {
@@ -200,7 +198,6 @@ proto.integration.UplinkEvent.deserializeBinaryFromReader = function(msg, reader
       msg.setDevAddr(value);
       break;
     case 16:
-<<<<<<< HEAD
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setMic(value);
       break;
@@ -212,11 +209,19 @@ proto.integration.UplinkEvent.deserializeBinaryFromReader = function(msg, reader
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTime(value);
-=======
+      break;
+    case 19:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setPublishedAt(value);
->>>>>>> v3.9.9
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceProfileId(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceProfileName(value);
       break;
     default:
       reader.skipField();
@@ -360,7 +365,6 @@ proto.integration.UplinkEvent.prototype.serializeBinaryToWriter = function (writ
       f
     );
   }
-<<<<<<< HEAD
   f = this.getMic_asU8();
   if (f.length > 0) {
     writer.writeBytes(
@@ -379,14 +383,30 @@ proto.integration.UplinkEvent.prototype.serializeBinaryToWriter = function (writ
   if (f != null) {
     writer.writeMessage(
       18,
-=======
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
   f = this.getPublishedAt();
   if (f != null) {
     writer.writeMessage(
-      16,
->>>>>>> v3.9.9
+      19,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = this.getDeviceProfileId();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
+      f
+    );
+  }
+  f = this.getDeviceProfileName();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
     );
   }
 };
@@ -724,7 +744,6 @@ proto.integration.UplinkEvent.prototype.setDevAddr = function(value) {
 
 
 /**
-<<<<<<< HEAD
  * optional bytes mic = 16;
  * @return {!(string|Uint8Array)}
  */
@@ -787,19 +806,10 @@ proto.integration.UplinkEvent.prototype.setLate = function(value) {
 proto.integration.UplinkEvent.prototype.getTime = function() {
   return /** @type{proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 18));
-=======
- * optional google.protobuf.Timestamp published_at = 16;
- * @return {proto.google.protobuf.Timestamp}
- */
-proto.integration.UplinkEvent.prototype.getPublishedAt = function() {
-  return /** @type{proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 16));
->>>>>>> v3.9.9
 };
 
 
 /** @param {proto.google.protobuf.Timestamp|undefined} value  */
-<<<<<<< HEAD
 proto.integration.UplinkEvent.prototype.setTime = function(value) {
   jspb.Message.setWrapperField(this, 18, value);
 };
@@ -807,15 +817,6 @@ proto.integration.UplinkEvent.prototype.setTime = function(value) {
 
 proto.integration.UplinkEvent.prototype.clearTime = function() {
   this.setTime(undefined);
-=======
-proto.integration.UplinkEvent.prototype.setPublishedAt = function(value) {
-  jspb.Message.setWrapperField(this, 16, value);
-};
-
-
-proto.integration.UplinkEvent.prototype.clearPublishedAt = function() {
-  this.setPublishedAt(undefined);
->>>>>>> v3.9.9
 };
 
 
@@ -823,13 +824,68 @@ proto.integration.UplinkEvent.prototype.clearPublishedAt = function() {
  * Returns whether this field is set.
  * @return{!boolean}
  */
-<<<<<<< HEAD
 proto.integration.UplinkEvent.prototype.hasTime = function() {
   return jspb.Message.getField(this, 18) != null;
-=======
+};
+
+
+/**
+ * optional google.protobuf.Timestamp published_at = 19;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.integration.UplinkEvent.prototype.getPublishedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 19));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.integration.UplinkEvent.prototype.setPublishedAt = function(value) {
+  jspb.Message.setWrapperField(this, 19, value);
+};
+
+
+proto.integration.UplinkEvent.prototype.clearPublishedAt = function() {
+  this.setPublishedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
 proto.integration.UplinkEvent.prototype.hasPublishedAt = function() {
-  return jspb.Message.getField(this, 16) != null;
->>>>>>> v3.9.9
+  return jspb.Message.getField(this, 19) != null;
+};
+
+
+/**
+ * optional string device_profile_id = 20;
+ * @return {string}
+ */
+proto.integration.UplinkEvent.prototype.getDeviceProfileId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 20, ""));
+};
+
+
+/** @param {string} value  */
+proto.integration.UplinkEvent.prototype.setDeviceProfileId = function(value) {
+  jspb.Message.setField(this, 20, value);
+};
+
+
+/**
+ * optional string device_profile_name = 21;
+ * @return {string}
+ */
+proto.integration.UplinkEvent.prototype.getDeviceProfileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 21, ""));
+};
+
+
+/** @param {string} value  */
+proto.integration.UplinkEvent.prototype.setDeviceProfileName = function(value) {
+  jspb.Message.setField(this, 21, value);
 };
 
 

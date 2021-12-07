@@ -112,6 +112,13 @@ service DeviceService {
         };
     }
 
+    // GetStats returns the device stats.
+    rpc GetStats(GetDeviceStatsRequest) returns (GetDeviceStatsResponse) {
+        option (google.api.http) = {
+            get: "/api/devices/{dev_eui}/stats"
+        };
+    }
+
     // StreamFrameLogs streams the uplink and downlink frame-logs for the given DevEUI.
 	//   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
 	//   * This endpoint does not work from a web-browser.
@@ -142,13 +149,20 @@ message Device {
     // It is possible to move a device to a different application on update,
     // given that both the old and the new application share the same
     // service-profile.
-    int64 application_id = 3 [json_name = "applicationID"];
+    // int64 application_id = 3 [json_name = "applicationID"];
+
+    // ID of the routing profile to which the device must be added.
+    // It is possible to move a device to a different profile on update, 
+    int64 routing_profile_id = 3 [json_name = "routingProfileID"];
 
     // Description of the device.
     string description = 4;
 
     // DeviceProfileID attached to the device.
     string device_profile_id = 5 [json_name = "deviceProfileID"];
+
+    // Device-profile name.
+    string device_profile_name = 13 [json_name = "deviceProfileName"];
 
     // Skip frame-counter checks (this is insecure, but could be helpful for debugging).
     bool skip_f_cnt_check = 6;
@@ -172,6 +186,16 @@ message Device {
 
     // Device is disabled.
     bool is_disabled = 10;
+
+    // ID(uuid) of the service profile to which the device must be added.
+    // It is possible to move a device to a different profile on update, 
+    string service_profile_id = 11 [json_name = "serviceProfileID"];
+
+    // Device location.
+	common.Location location = 12;
+
+    // If true - do not flush the device-queue during join
+    bool keep_queue = 14;
 }
 
 message DeviceListItem {
@@ -181,8 +205,8 @@ message DeviceListItem {
     // Name of the device.
     string name = 2;
 
-    // Application ID.
-    int64 application_id = 3 [json_name = "applicationID"];
+    // Routing Profile ID.
+    int64 routing_profile_id = 3;
 
     // Description of the device.
     string description = 4;
@@ -217,6 +241,30 @@ message DeviceListItem {
     // The last time the application-server received any data from the device,
     // or an empty string when the device never sent any data.
     google.protobuf.Timestamp last_seen_at = 9 [json_name = "lastSeenAt"];
+
+    // Routing profile name.
+    string routing_profile_name = 13;    
+
+    // Device location.
+	common.Location location = 14;
+
+    //device is_disabled option 
+    bool is_disabled = 15;
+
+    //service profile name
+    string service_profile_name = 16;
+
+    //service profile id
+    string service_profile_id = 17;
+
+    // average Packet Error Rate for last 20 packets in device_session
+    double per = 18 [json_name = "PER"];
+
+    // average Signal to Noise Ratio for last 20 packets in device_session
+    double snr = 19 [json_name = "SNR"];
+
+    // average Received signal strength indication for last 20 packets in device_session
+    double rssi = 20 [json_name = "RSSI"];
 }
 
 message DeviceKeys {
@@ -251,29 +299,34 @@ message GetDeviceResponse {
     // Device object.
     Device device = 1;
 
-    // Created at 2
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2 [json_name = "createdAt"];
+    
     // Updated at 3
     // First seen at 4
 
     // Last seen timestamp.
-    google.protobuf.Timestamp last_seen_at = 5 [json_name = "lastSeenAt"];
+    google.protobuf.Timestamp last_seen_at = 3 [json_name = "lastSeenAt"];
+
+    // First uplink at timestamp.
+    google.protobuf.Timestamp first_uplink_at = 4 [json_name = "firstUplinkAt"];
 
     // The device battery status
     // 0:      The end-device is connected to an external power source
     // 1..254: The battery level, 1 being at minimum and 254 being at maximum
     // 255:    The end-device was not able to measure the battery level
     // 256:    The device-status is not available.
-    uint32 device_status_battery = 6;
+    uint32 device_status_battery = 5;
 
     // The device margin status
     // -32..32: The demodulation SNR ration in dB
     // 256:     The device-status is not available.
-    int32  device_status_margin = 20;
+    int32  device_status_margin = 6;
 
     // Device location.
     // This will set when the network-server was able to resolve the location
     // using the geolocation-server.
-    common.Location location = 21;
+    common.Location location = 7;
 }
 
 message ListDeviceRequest {
@@ -283,8 +336,8 @@ message ListDeviceRequest {
     // Offset in the result-set (for pagination).
     int64 offset = 2;
 
-    // Application ID to filter on.
-    int64 application_id = 3 [json_name = "applicationID"];
+    // Routing Profile ID to filter on.
+    int64 routing_profile_id = 3;
 
     // Search on name or DevEUI.
     string search = 4;
@@ -302,7 +355,19 @@ message ListDeviceRequest {
 	string orderBy = 8;		
 
 	// sort direction
-	string order = 9;	
+	string order = 9;
+
+    // Organization ID to filter on.
+    int64 organization_id = 10;
+
+    // device name
+    string device_name = 11;
+
+    //dev_eui
+    string dev_eui = 12;
+
+    //service profile name
+    string service_profile_name = 13;
 }
 
 message ListDeviceResponse {
@@ -311,6 +376,8 @@ message ListDeviceResponse {
 
     // Devices within this result-set.
     repeated DeviceListItem result = 2;
+
+
 }
 
 message DeleteDeviceRequest {
@@ -407,6 +474,48 @@ message GetRandomDevAddrResponse {
     string dev_addr = 1;
 }
 
+message DeviceStats {
+	// Timestamp of the (aggregated) measurement.
+	google.protobuf.Timestamp timestamp = 1;
+
+    // Packets received from the device.
+    uint32 rx_packets = 2;
+
+    // Average RSSI (as reported by the gateway(s)).
+    float gw_rssi = 3;
+
+    // Average SNR (as reported by the gateway(s)).
+    float gw_snr = 4;
+
+    // Packets received by frequency.
+    map<uint32, uint32> rx_packets_per_frequency = 5;
+
+    // Packets received by DR.
+    map<uint32, uint32> rx_packets_per_dr = 6;
+
+    // Error count.
+    map<string, uint32> errors = 7;
+}
+
+message GetDeviceStatsRequest {
+    // DevEUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+
+	// Aggregation interval.  One of "second", "minute", "hour", "day", "week",
+	// "month", "quarter", "year".  Case insensitive.
+	string interval = 2;
+
+	// Timestamp to start from.
+	google.protobuf.Timestamp start_timestamp = 3;
+
+	// Timestamp until to get from.
+	google.protobuf.Timestamp end_timestamp = 4;
+}
+
+message GetDeviceStatsResponse {
+    repeated DeviceStats result = 1;
+}
+
 message StreamDeviceFrameLogsRequest {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];
@@ -436,4 +545,8 @@ message StreamDeviceEventLogsResponse {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 3;
+
+    // Stream ID.
+    string stream_id = 4 [json_name = "streamID"];
 }
+

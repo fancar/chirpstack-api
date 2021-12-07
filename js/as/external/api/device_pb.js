@@ -24,12 +24,15 @@ goog.exportSymbol('proto.api.Device', null, global);
 goog.exportSymbol('proto.api.DeviceActivation', null, global);
 goog.exportSymbol('proto.api.DeviceKeys', null, global);
 goog.exportSymbol('proto.api.DeviceListItem', null, global);
+goog.exportSymbol('proto.api.DeviceStats', null, global);
 goog.exportSymbol('proto.api.GetDeviceActivationRequest', null, global);
 goog.exportSymbol('proto.api.GetDeviceActivationResponse', null, global);
 goog.exportSymbol('proto.api.GetDeviceKeysRequest', null, global);
 goog.exportSymbol('proto.api.GetDeviceKeysResponse', null, global);
 goog.exportSymbol('proto.api.GetDeviceRequest', null, global);
 goog.exportSymbol('proto.api.GetDeviceResponse', null, global);
+goog.exportSymbol('proto.api.GetDeviceStatsRequest', null, global);
+goog.exportSymbol('proto.api.GetDeviceStatsResponse', null, global);
 goog.exportSymbol('proto.api.GetRandomDevAddrRequest', null, global);
 goog.exportSymbol('proto.api.GetRandomDevAddrResponse', null, global);
 goog.exportSymbol('proto.api.ListDeviceRequest', null, global);
@@ -88,14 +91,18 @@ proto.api.Device.toObject = function(includeInstance, msg) {
   var f, obj = {
     devEui: msg.getDevEui(),
     name: msg.getName(),
-    applicationId: msg.getApplicationId(),
+    routingProfileId: msg.getRoutingProfileId(),
     description: msg.getDescription(),
     deviceProfileId: msg.getDeviceProfileId(),
+    deviceProfileName: msg.getDeviceProfileName(),
     skipFCntCheck: msg.getSkipFCntCheck(),
     referenceAltitude: msg.getReferenceAltitude(),
     variablesMap: (f = msg.getVariablesMap(true)) ? f.toArray() : [],
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
-    isDisabled: msg.getIsDisabled()
+    isDisabled: msg.getIsDisabled(),
+    serviceProfileId: msg.getServiceProfileId(),
+    location: (f = msg.getLocation()) && common_common_pb.Location.toObject(includeInstance, f),
+    keepQueue: msg.getKeepQueue()
   };
 
   if (includeInstance) {
@@ -142,7 +149,7 @@ proto.api.Device.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setApplicationId(value);
+      msg.setRoutingProfileId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -151,6 +158,10 @@ proto.api.Device.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setDeviceProfileId(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceProfileName(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -175,6 +186,19 @@ proto.api.Device.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsDisabled(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setServiceProfileId(value);
+      break;
+    case 12:
+      var value = new common_common_pb.Location;
+      reader.readMessage(value,common_common_pb.Location.deserializeBinaryFromReader);
+      msg.setLocation(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setKeepQueue(value);
       break;
     default:
       reader.skipField();
@@ -228,7 +252,7 @@ proto.api.Device.prototype.serializeBinaryToWriter = function (writer) {
       f
     );
   }
-  f = this.getApplicationId();
+  f = this.getRoutingProfileId();
   if (f !== 0) {
     writer.writeInt64(
       3,
@@ -246,6 +270,13 @@ proto.api.Device.prototype.serializeBinaryToWriter = function (writer) {
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = this.getDeviceProfileName();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -275,6 +306,28 @@ proto.api.Device.prototype.serializeBinaryToWriter = function (writer) {
   if (f) {
     writer.writeBool(
       10,
+      f
+    );
+  }
+  f = this.getServiceProfileId();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = this.getLocation();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      common_common_pb.Location.serializeBinaryToWriter
+    );
+  }
+  f = this.getKeepQueue();
+  if (f) {
+    writer.writeBool(
+      14,
       f
     );
   }
@@ -321,16 +374,16 @@ proto.api.Device.prototype.setName = function(value) {
 
 
 /**
- * optional int64 application_id = 3;
+ * optional int64 routing_profile_id = 3;
  * @return {number}
  */
-proto.api.Device.prototype.getApplicationId = function() {
+proto.api.Device.prototype.getRoutingProfileId = function() {
   return /** @type {number} */ (jspb.Message.getFieldProto3(this, 3, 0));
 };
 
 
 /** @param {number} value  */
-proto.api.Device.prototype.setApplicationId = function(value) {
+proto.api.Device.prototype.setRoutingProfileId = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -362,6 +415,21 @@ proto.api.Device.prototype.getDeviceProfileId = function() {
 /** @param {string} value  */
 proto.api.Device.prototype.setDeviceProfileId = function(value) {
   jspb.Message.setField(this, 5, value);
+};
+
+
+/**
+ * optional string device_profile_name = 13;
+ * @return {string}
+ */
+proto.api.Device.prototype.getDeviceProfileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 13, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.Device.prototype.setDeviceProfileName = function(value) {
+  jspb.Message.setField(this, 13, value);
 };
 
 
@@ -440,6 +508,68 @@ proto.api.Device.prototype.setIsDisabled = function(value) {
 };
 
 
+/**
+ * optional string service_profile_id = 11;
+ * @return {string}
+ */
+proto.api.Device.prototype.getServiceProfileId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 11, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.Device.prototype.setServiceProfileId = function(value) {
+  jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * optional common.Location location = 12;
+ * @return {proto.common.Location}
+ */
+proto.api.Device.prototype.getLocation = function() {
+  return /** @type{proto.common.Location} */ (
+    jspb.Message.getWrapperField(this, common_common_pb.Location, 12));
+};
+
+
+/** @param {proto.common.Location|undefined} value  */
+proto.api.Device.prototype.setLocation = function(value) {
+  jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+proto.api.Device.prototype.clearLocation = function() {
+  this.setLocation(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.Device.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional bool keep_queue = 14;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.api.Device.prototype.getKeepQueue = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 14, false));
+};
+
+
+/** @param {boolean} value  */
+proto.api.Device.prototype.setKeepQueue = function(value) {
+  jspb.Message.setField(this, 14, value);
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -488,7 +618,7 @@ proto.api.DeviceListItem.toObject = function(includeInstance, msg) {
   var f, obj = {
     devEui: msg.getDevEui(),
     name: msg.getName(),
-    applicationId: msg.getApplicationId(),
+    routingProfileId: msg.getRoutingProfileId(),
     description: msg.getDescription(),
     deviceProfileId: msg.getDeviceProfileId(),
     deviceProfileName: msg.getDeviceProfileName(),
@@ -497,7 +627,15 @@ proto.api.DeviceListItem.toObject = function(includeInstance, msg) {
     deviceStatusExternalPowerSource: msg.getDeviceStatusExternalPowerSource(),
     deviceStatusBatteryLevelUnavailable: msg.getDeviceStatusBatteryLevelUnavailable(),
     deviceStatusBatteryLevel: msg.getDeviceStatusBatteryLevel(),
-    lastSeenAt: (f = msg.getLastSeenAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastSeenAt: (f = msg.getLastSeenAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    routingProfileName: msg.getRoutingProfileName(),
+    location: (f = msg.getLocation()) && common_common_pb.Location.toObject(includeInstance, f),
+    isDisabled: msg.getIsDisabled(),
+    serviceProfileName: msg.getServiceProfileName(),
+    serviceProfileId: msg.getServiceProfileId(),
+    per: msg.getPer(),
+    snr: msg.getSnr(),
+    rssi: msg.getRssi()
   };
 
   if (includeInstance) {
@@ -544,7 +682,7 @@ proto.api.DeviceListItem.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setApplicationId(value);
+      msg.setRoutingProfileId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -582,6 +720,39 @@ proto.api.DeviceListItem.deserializeBinaryFromReader = function(msg, reader) {
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastSeenAt(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRoutingProfileName(value);
+      break;
+    case 14:
+      var value = new common_common_pb.Location;
+      reader.readMessage(value,common_common_pb.Location.deserializeBinaryFromReader);
+      msg.setLocation(value);
+      break;
+    case 15:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsDisabled(value);
+      break;
+    case 16:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setServiceProfileName(value);
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setServiceProfileId(value);
+      break;
+    case 18:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setPer(value);
+      break;
+    case 19:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setSnr(value);
+      break;
+    case 20:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setRssi(value);
       break;
     default:
       reader.skipField();
@@ -635,7 +806,7 @@ proto.api.DeviceListItem.prototype.serializeBinaryToWriter = function (writer) {
       f
     );
   }
-  f = this.getApplicationId();
+  f = this.getRoutingProfileId();
   if (f !== 0) {
     writer.writeInt64(
       3,
@@ -706,6 +877,63 @@ proto.api.DeviceListItem.prototype.serializeBinaryToWriter = function (writer) {
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
+  f = this.getRoutingProfileName();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
+    );
+  }
+  f = this.getLocation();
+  if (f != null) {
+    writer.writeMessage(
+      14,
+      f,
+      common_common_pb.Location.serializeBinaryToWriter
+    );
+  }
+  f = this.getIsDisabled();
+  if (f) {
+    writer.writeBool(
+      15,
+      f
+    );
+  }
+  f = this.getServiceProfileName();
+  if (f.length > 0) {
+    writer.writeString(
+      16,
+      f
+    );
+  }
+  f = this.getServiceProfileId();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
+    );
+  }
+  f = this.getPer();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      18,
+      f
+    );
+  }
+  f = this.getSnr();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      19,
+      f
+    );
+  }
+  f = this.getRssi();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      20,
+      f
+    );
+  }
 };
 
 
@@ -749,16 +977,16 @@ proto.api.DeviceListItem.prototype.setName = function(value) {
 
 
 /**
- * optional int64 application_id = 3;
+ * optional int64 routing_profile_id = 3;
  * @return {number}
  */
-proto.api.DeviceListItem.prototype.getApplicationId = function() {
+proto.api.DeviceListItem.prototype.getRoutingProfileId = function() {
   return /** @type {number} */ (jspb.Message.getFieldProto3(this, 3, 0));
 };
 
 
 /** @param {number} value  */
-proto.api.DeviceListItem.prototype.setApplicationId = function(value) {
+proto.api.DeviceListItem.prototype.setRoutingProfileId = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -914,6 +1142,143 @@ proto.api.DeviceListItem.prototype.clearLastSeenAt = function() {
  */
 proto.api.DeviceListItem.prototype.hasLastSeenAt = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional string routing_profile_name = 13;
+ * @return {string}
+ */
+proto.api.DeviceListItem.prototype.getRoutingProfileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 13, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.DeviceListItem.prototype.setRoutingProfileName = function(value) {
+  jspb.Message.setField(this, 13, value);
+};
+
+
+/**
+ * optional common.Location location = 14;
+ * @return {proto.common.Location}
+ */
+proto.api.DeviceListItem.prototype.getLocation = function() {
+  return /** @type{proto.common.Location} */ (
+    jspb.Message.getWrapperField(this, common_common_pb.Location, 14));
+};
+
+
+/** @param {proto.common.Location|undefined} value  */
+proto.api.DeviceListItem.prototype.setLocation = function(value) {
+  jspb.Message.setWrapperField(this, 14, value);
+};
+
+
+proto.api.DeviceListItem.prototype.clearLocation = function() {
+  this.setLocation(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.DeviceListItem.prototype.hasLocation = function() {
+  return jspb.Message.getField(this, 14) != null;
+};
+
+
+/**
+ * optional bool is_disabled = 15;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.api.DeviceListItem.prototype.getIsDisabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 15, false));
+};
+
+
+/** @param {boolean} value  */
+proto.api.DeviceListItem.prototype.setIsDisabled = function(value) {
+  jspb.Message.setField(this, 15, value);
+};
+
+
+/**
+ * optional string service_profile_name = 16;
+ * @return {string}
+ */
+proto.api.DeviceListItem.prototype.getServiceProfileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 16, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.DeviceListItem.prototype.setServiceProfileName = function(value) {
+  jspb.Message.setField(this, 16, value);
+};
+
+
+/**
+ * optional string service_profile_id = 17;
+ * @return {string}
+ */
+proto.api.DeviceListItem.prototype.getServiceProfileId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 17, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.DeviceListItem.prototype.setServiceProfileId = function(value) {
+  jspb.Message.setField(this, 17, value);
+};
+
+
+/**
+ * optional double per = 18;
+ * @return {number}
+ */
+proto.api.DeviceListItem.prototype.getPer = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 18, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.DeviceListItem.prototype.setPer = function(value) {
+  jspb.Message.setField(this, 18, value);
+};
+
+
+/**
+ * optional double snr = 19;
+ * @return {number}
+ */
+proto.api.DeviceListItem.prototype.getSnr = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 19, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.DeviceListItem.prototype.setSnr = function(value) {
+  jspb.Message.setField(this, 19, value);
+};
+
+
+/**
+ * optional double rssi = 20;
+ * @return {number}
+ */
+proto.api.DeviceListItem.prototype.getRssi = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 20, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.DeviceListItem.prototype.setRssi = function(value) {
+  jspb.Message.setField(this, 20, value);
 };
 
 
@@ -1539,7 +1904,9 @@ proto.api.GetDeviceResponse.prototype.toObject = function(opt_includeInstance) {
 proto.api.GetDeviceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     device: (f = msg.getDevice()) && proto.api.Device.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     lastSeenAt: (f = msg.getLastSeenAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    firstUplinkAt: (f = msg.getFirstUplinkAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     deviceStatusBattery: msg.getDeviceStatusBattery(),
     deviceStatusMargin: msg.getDeviceStatusMargin(),
     location: (f = msg.getLocation()) && common_common_pb.Location.toObject(includeInstance, f)
@@ -1584,20 +1951,30 @@ proto.api.GetDeviceResponse.deserializeBinaryFromReader = function(msg, reader) 
       reader.readMessage(value,proto.api.Device.deserializeBinaryFromReader);
       msg.setDevice(value);
       break;
-    case 5:
+    case 2:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAt(value);
+      break;
+    case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastSeenAt(value);
       break;
-    case 6:
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setFirstUplinkAt(value);
+      break;
+    case 5:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setDeviceStatusBattery(value);
       break;
-    case 20:
+    case 6:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setDeviceStatusMargin(value);
       break;
-    case 21:
+    case 7:
       var value = new common_common_pb.Location;
       reader.readMessage(value,common_common_pb.Location.deserializeBinaryFromReader);
       msg.setLocation(value);
@@ -1648,10 +2025,26 @@ proto.api.GetDeviceResponse.prototype.serializeBinaryToWriter = function (writer
       proto.api.Device.serializeBinaryToWriter
     );
   }
+  f = this.getCreatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
   f = this.getLastSeenAt();
   if (f != null) {
     writer.writeMessage(
-      5,
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = this.getFirstUplinkAt();
+  if (f != null) {
+    writer.writeMessage(
+      4,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -1659,21 +2052,21 @@ proto.api.GetDeviceResponse.prototype.serializeBinaryToWriter = function (writer
   f = this.getDeviceStatusBattery();
   if (f !== 0) {
     writer.writeUint32(
-      6,
+      5,
       f
     );
   }
   f = this.getDeviceStatusMargin();
   if (f !== 0) {
     writer.writeInt32(
-      20,
+      6,
       f
     );
   }
   f = this.getLocation();
   if (f != null) {
     writer.writeMessage(
-      21,
+      7,
       f,
       common_common_pb.Location.serializeBinaryToWriter
     );
@@ -1721,18 +2114,48 @@ proto.api.GetDeviceResponse.prototype.hasDevice = function() {
 
 
 /**
- * optional google.protobuf.Timestamp last_seen_at = 5;
+ * optional google.protobuf.Timestamp created_at = 2;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.GetDeviceResponse.prototype.getCreatedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.GetDeviceResponse.prototype.setCreatedAt = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.api.GetDeviceResponse.prototype.clearCreatedAt = function() {
+  this.setCreatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.GetDeviceResponse.prototype.hasCreatedAt = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_seen_at = 3;
  * @return {proto.google.protobuf.Timestamp}
  */
 proto.api.GetDeviceResponse.prototype.getLastSeenAt = function() {
   return /** @type{proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
 
 
 /** @param {proto.google.protobuf.Timestamp|undefined} value  */
 proto.api.GetDeviceResponse.prototype.setLastSeenAt = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -1746,53 +2169,83 @@ proto.api.GetDeviceResponse.prototype.clearLastSeenAt = function() {
  * @return{!boolean}
  */
 proto.api.GetDeviceResponse.prototype.hasLastSeenAt = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional uint32 device_status_battery = 6;
+ * optional google.protobuf.Timestamp first_uplink_at = 4;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.GetDeviceResponse.prototype.getFirstUplinkAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.GetDeviceResponse.prototype.setFirstUplinkAt = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.api.GetDeviceResponse.prototype.clearFirstUplinkAt = function() {
+  this.setFirstUplinkAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.GetDeviceResponse.prototype.hasFirstUplinkAt = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional uint32 device_status_battery = 5;
  * @return {number}
  */
 proto.api.GetDeviceResponse.prototype.getDeviceStatusBattery = function() {
-  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 6, 0));
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 5, 0));
 };
 
 
 /** @param {number} value  */
 proto.api.GetDeviceResponse.prototype.setDeviceStatusBattery = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setField(this, 5, value);
 };
 
 
 /**
- * optional int32 device_status_margin = 20;
+ * optional int32 device_status_margin = 6;
  * @return {number}
  */
 proto.api.GetDeviceResponse.prototype.getDeviceStatusMargin = function() {
-  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 20, 0));
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 6, 0));
 };
 
 
 /** @param {number} value  */
 proto.api.GetDeviceResponse.prototype.setDeviceStatusMargin = function(value) {
-  jspb.Message.setField(this, 20, value);
+  jspb.Message.setField(this, 6, value);
 };
 
 
 /**
- * optional common.Location location = 21;
+ * optional common.Location location = 7;
  * @return {proto.common.Location}
  */
 proto.api.GetDeviceResponse.prototype.getLocation = function() {
   return /** @type{proto.common.Location} */ (
-    jspb.Message.getWrapperField(this, common_common_pb.Location, 21));
+    jspb.Message.getWrapperField(this, common_common_pb.Location, 7));
 };
 
 
 /** @param {proto.common.Location|undefined} value  */
 proto.api.GetDeviceResponse.prototype.setLocation = function(value) {
-  jspb.Message.setWrapperField(this, 21, value);
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -1806,7 +2259,7 @@ proto.api.GetDeviceResponse.prototype.clearLocation = function() {
  * @return{!boolean}
  */
 proto.api.GetDeviceResponse.prototype.hasLocation = function() {
-  return jspb.Message.getField(this, 21) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -1858,13 +2311,17 @@ proto.api.ListDeviceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     limit: msg.getLimit(),
     offset: msg.getOffset(),
-    applicationId: msg.getApplicationId(),
+    routingProfileId: msg.getRoutingProfileId(),
     search: msg.getSearch(),
     multicastGroupId: msg.getMulticastGroupId(),
     serviceProfileId: msg.getServiceProfileId(),
     tagsMap: (f = msg.getTagsMap(true)) ? f.toArray() : [],
     orderby: msg.getOrderby(),
-    order: msg.getOrder()
+    order: msg.getOrder(),
+    organizationId: msg.getOrganizationId(),
+    deviceName: msg.getDeviceName(),
+    devEui: msg.getDevEui(),
+    serviceProfileName: msg.getServiceProfileName()
   };
 
   if (includeInstance) {
@@ -1911,7 +2368,7 @@ proto.api.ListDeviceRequest.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setApplicationId(value);
+      msg.setRoutingProfileId(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
@@ -1938,6 +2395,22 @@ proto.api.ListDeviceRequest.deserializeBinaryFromReader = function(msg, reader) 
     case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setOrder(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setOrganizationId(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDeviceName(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDevEui(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setServiceProfileName(value);
       break;
     default:
       reader.skipField();
@@ -1991,7 +2464,7 @@ proto.api.ListDeviceRequest.prototype.serializeBinaryToWriter = function (writer
       f
     );
   }
-  f = this.getApplicationId();
+  f = this.getRoutingProfileId();
   if (f !== 0) {
     writer.writeInt64(
       3,
@@ -2034,6 +2507,34 @@ proto.api.ListDeviceRequest.prototype.serializeBinaryToWriter = function (writer
   if (f.length > 0) {
     writer.writeString(
       9,
+      f
+    );
+  }
+  f = this.getOrganizationId();
+  if (f !== 0) {
+    writer.writeInt64(
+      10,
+      f
+    );
+  }
+  f = this.getDeviceName();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
+  f = this.getDevEui();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = this.getServiceProfileName();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -2080,16 +2581,16 @@ proto.api.ListDeviceRequest.prototype.setOffset = function(value) {
 
 
 /**
- * optional int64 application_id = 3;
+ * optional int64 routing_profile_id = 3;
  * @return {number}
  */
-proto.api.ListDeviceRequest.prototype.getApplicationId = function() {
+proto.api.ListDeviceRequest.prototype.getRoutingProfileId = function() {
   return /** @type {number} */ (jspb.Message.getFieldProto3(this, 3, 0));
 };
 
 
 /** @param {number} value  */
-proto.api.ListDeviceRequest.prototype.setApplicationId = function(value) {
+proto.api.ListDeviceRequest.prototype.setRoutingProfileId = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
@@ -2179,6 +2680,66 @@ proto.api.ListDeviceRequest.prototype.getOrder = function() {
 /** @param {string} value  */
 proto.api.ListDeviceRequest.prototype.setOrder = function(value) {
   jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * optional int64 organization_id = 10;
+ * @return {number}
+ */
+proto.api.ListDeviceRequest.prototype.getOrganizationId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 10, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.ListDeviceRequest.prototype.setOrganizationId = function(value) {
+  jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * optional string device_name = 11;
+ * @return {string}
+ */
+proto.api.ListDeviceRequest.prototype.getDeviceName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 11, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceRequest.prototype.setDeviceName = function(value) {
+  jspb.Message.setField(this, 11, value);
+};
+
+
+/**
+ * optional string dev_eui = 12;
+ * @return {string}
+ */
+proto.api.ListDeviceRequest.prototype.getDevEui = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 12, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceRequest.prototype.setDevEui = function(value) {
+  jspb.Message.setField(this, 12, value);
+};
+
+
+/**
+ * optional string service_profile_name = 13;
+ * @return {string}
+ */
+proto.api.ListDeviceRequest.prototype.getServiceProfileName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 13, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.ListDeviceRequest.prototype.setServiceProfileName = function(value) {
+  jspb.Message.setField(this, 13, value);
 };
 
 
@@ -4942,6 +5503,787 @@ proto.api.GetRandomDevAddrResponse.prototype.setDevAddr = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.api.DeviceStats = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.api.DeviceStats, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.DeviceStats.displayName = 'proto.api.DeviceStats';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.DeviceStats.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.DeviceStats.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.DeviceStats} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.DeviceStats.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    rxPackets: msg.getRxPackets(),
+    gwRssi: msg.getGwRssi(),
+    gwSnr: msg.getGwSnr(),
+    rxPacketsPerFrequencyMap: (f = msg.getRxPacketsPerFrequencyMap(true)) ? f.toArray() : [],
+    rxPacketsPerDrMap: (f = msg.getRxPacketsPerDrMap(true)) ? f.toArray() : [],
+    errorsMap: (f = msg.getErrorsMap(true)) ? f.toArray() : []
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.DeviceStats}
+ */
+proto.api.DeviceStats.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.DeviceStats;
+  return proto.api.DeviceStats.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.DeviceStats} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.DeviceStats}
+ */
+proto.api.DeviceStats.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setTimestamp(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setRxPackets(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setGwRssi(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setGwSnr(value);
+      break;
+    case 5:
+      var value = msg.getRxPacketsPerFrequencyMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readUint32, jspb.BinaryReader.prototype.readUint32);
+         });
+      break;
+    case 6:
+      var value = msg.getRxPacketsPerDrMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readUint32, jspb.BinaryReader.prototype.readUint32);
+         });
+      break;
+    case 7:
+      var value = msg.getErrorsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readUint32);
+         });
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.DeviceStats} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.DeviceStats.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.DeviceStats.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.DeviceStats.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getTimestamp();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = this.getRxPackets();
+  if (f !== 0) {
+    writer.writeUint32(
+      2,
+      f
+    );
+  }
+  f = this.getGwRssi();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      3,
+      f
+    );
+  }
+  f = this.getGwSnr();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      4,
+      f
+    );
+  }
+  f = this.getRxPacketsPerFrequencyMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(5, writer, jspb.BinaryWriter.prototype.writeUint32, jspb.BinaryWriter.prototype.writeUint32);
+  }
+  f = this.getRxPacketsPerDrMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(6, writer, jspb.BinaryWriter.prototype.writeUint32, jspb.BinaryWriter.prototype.writeUint32);
+  }
+  f = this.getErrorsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(7, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeUint32);
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.DeviceStats} The clone.
+ */
+proto.api.DeviceStats.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.DeviceStats} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional google.protobuf.Timestamp timestamp = 1;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.DeviceStats.prototype.getTimestamp = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.DeviceStats.prototype.setTimestamp = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.api.DeviceStats.prototype.clearTimestamp = function() {
+  this.setTimestamp(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.DeviceStats.prototype.hasTimestamp = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional uint32 rx_packets = 2;
+ * @return {number}
+ */
+proto.api.DeviceStats.prototype.getRxPackets = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 2, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.DeviceStats.prototype.setRxPackets = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional float gw_rssi = 3;
+ * @return {number}
+ */
+proto.api.DeviceStats.prototype.getGwRssi = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 3, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.DeviceStats.prototype.setGwRssi = function(value) {
+  jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional float gw_snr = 4;
+ * @return {number}
+ */
+proto.api.DeviceStats.prototype.getGwSnr = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 4, 0));
+};
+
+
+/** @param {number} value  */
+proto.api.DeviceStats.prototype.setGwSnr = function(value) {
+  jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * map<uint32, uint32> rx_packets_per_frequency = 5;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<number,number>}
+ */
+proto.api.DeviceStats.prototype.getRxPacketsPerFrequencyMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<number,number>} */ (
+      jspb.Message.getMapField(this, 5, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * map<uint32, uint32> rx_packets_per_dr = 6;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<number,number>}
+ */
+proto.api.DeviceStats.prototype.getRxPacketsPerDrMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<number,number>} */ (
+      jspb.Message.getMapField(this, 6, opt_noLazyCreate,
+      null));
+};
+
+
+/**
+ * map<string, uint32> errors = 7;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,number>}
+ */
+proto.api.DeviceStats.prototype.getErrorsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,number>} */ (
+      jspb.Message.getMapField(this, 7, opt_noLazyCreate,
+      null));
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.api.GetDeviceStatsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.api.GetDeviceStatsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.GetDeviceStatsRequest.displayName = 'proto.api.GetDeviceStatsRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.GetDeviceStatsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.GetDeviceStatsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.GetDeviceStatsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.GetDeviceStatsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    devEui: msg.getDevEui(),
+    interval: msg.getInterval(),
+    startTimestamp: (f = msg.getStartTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    endTimestamp: (f = msg.getEndTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.GetDeviceStatsRequest}
+ */
+proto.api.GetDeviceStatsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.GetDeviceStatsRequest;
+  return proto.api.GetDeviceStatsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.GetDeviceStatsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.GetDeviceStatsRequest}
+ */
+proto.api.GetDeviceStatsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDevEui(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setInterval(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setStartTimestamp(value);
+      break;
+    case 4:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setEndTimestamp(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.GetDeviceStatsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GetDeviceStatsRequest.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.GetDeviceStatsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GetDeviceStatsRequest.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getDevEui();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = this.getInterval();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = this.getStartTimestamp();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = this.getEndTimestamp();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.GetDeviceStatsRequest} The clone.
+ */
+proto.api.GetDeviceStatsRequest.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.GetDeviceStatsRequest} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional string dev_eui = 1;
+ * @return {string}
+ */
+proto.api.GetDeviceStatsRequest.prototype.getDevEui = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 1, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GetDeviceStatsRequest.prototype.setDevEui = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string interval = 2;
+ * @return {string}
+ */
+proto.api.GetDeviceStatsRequest.prototype.getInterval = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 2, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.GetDeviceStatsRequest.prototype.setInterval = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp start_timestamp = 3;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.GetDeviceStatsRequest.prototype.getStartTimestamp = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.GetDeviceStatsRequest.prototype.setStartTimestamp = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.api.GetDeviceStatsRequest.prototype.clearStartTimestamp = function() {
+  this.setStartTimestamp(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.GetDeviceStatsRequest.prototype.hasStartTimestamp = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp end_timestamp = 4;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.GetDeviceStatsRequest.prototype.getEndTimestamp = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.GetDeviceStatsRequest.prototype.setEndTimestamp = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.api.GetDeviceStatsRequest.prototype.clearEndTimestamp = function() {
+  this.setEndTimestamp(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.GetDeviceStatsRequest.prototype.hasEndTimestamp = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.api.GetDeviceStatsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.GetDeviceStatsResponse.repeatedFields_, null);
+};
+goog.inherits(proto.api.GetDeviceStatsResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.api.GetDeviceStatsResponse.displayName = 'proto.api.GetDeviceStatsResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.api.GetDeviceStatsResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.api.GetDeviceStatsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.api.GetDeviceStatsResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.api.GetDeviceStatsResponse} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.api.GetDeviceStatsResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    resultList: jspb.Message.toObjectList(msg.getResultList(),
+    proto.api.DeviceStats.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.api.GetDeviceStatsResponse}
+ */
+proto.api.GetDeviceStatsResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.api.GetDeviceStatsResponse;
+  return proto.api.GetDeviceStatsResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.api.GetDeviceStatsResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.api.GetDeviceStatsResponse}
+ */
+proto.api.GetDeviceStatsResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.api.DeviceStats;
+      reader.readMessage(value,proto.api.DeviceStats.deserializeBinaryFromReader);
+      msg.getResultList().push(value);
+      msg.setResultList(msg.getResultList());
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.api.GetDeviceStatsResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GetDeviceStatsResponse.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.api.GetDeviceStatsResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.api.GetDeviceStatsResponse.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getResultList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.api.DeviceStats.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.api.GetDeviceStatsResponse} The clone.
+ */
+proto.api.GetDeviceStatsResponse.prototype.cloneMessage = function() {
+  return /** @type {!proto.api.GetDeviceStatsResponse} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * repeated DeviceStats result = 1;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * @return {!Array.<!proto.api.DeviceStats>}
+ */
+proto.api.GetDeviceStatsResponse.prototype.getResultList = function() {
+  return /** @type{!Array.<!proto.api.DeviceStats>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.api.DeviceStats, 1));
+};
+
+
+/** @param {Array.<!proto.api.DeviceStats>} value  */
+proto.api.GetDeviceStatsResponse.prototype.setResultList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+proto.api.GetDeviceStatsResponse.prototype.clearResultList = function() {
+  this.setResultList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.api.StreamDeviceFrameLogsRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -5543,7 +6885,8 @@ proto.api.StreamDeviceEventLogsResponse.toObject = function(includeInstance, msg
   var f, obj = {
     type: msg.getType(),
     payloadJson: msg.getPayloadJson(),
-    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    publishedAt: (f = msg.getPublishedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    streamId: msg.getStreamId()
   };
 
   if (includeInstance) {
@@ -5592,6 +6935,10 @@ proto.api.StreamDeviceEventLogsResponse.deserializeBinaryFromReader = function(m
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setPublishedAt(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStreamId(value);
       break;
     default:
       reader.skipField();
@@ -5651,6 +6998,13 @@ proto.api.StreamDeviceEventLogsResponse.prototype.serializeBinaryToWriter = func
       3,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = this.getStreamId();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
     );
   }
 };
@@ -5722,6 +7076,21 @@ proto.api.StreamDeviceEventLogsResponse.prototype.clearPublishedAt = function() 
  */
 proto.api.StreamDeviceEventLogsResponse.prototype.hasPublishedAt = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional string stream_id = 4;
+ * @return {string}
+ */
+proto.api.StreamDeviceEventLogsResponse.prototype.getStreamId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 4, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.StreamDeviceEventLogsResponse.prototype.setStreamId = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 

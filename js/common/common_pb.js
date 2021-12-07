@@ -497,7 +497,8 @@ proto.common.Location.prototype.setAccuracy = function(value) {
  */
 proto.common.Modulation = {
   LORA: 0,
-  FSK: 1
+  FSK: 1,
+  LR_FHSS: 2
 };
 
 /**
@@ -513,6 +514,7 @@ proto.common.Region = {
   AS923: 7,
   AS923_2: 12,
   AS923_3: 13,
+  AS923_4: 14,
   KR920: 8,
   IN865: 9,
   RU864: 10,

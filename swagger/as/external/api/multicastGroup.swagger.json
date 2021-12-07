@@ -60,15 +60,15 @@
             "type": "string"
           },
           {
-            "name": "serviceProfileID",
-            "description": "Service-profile ID to filter on.",
+            "name": "search",
+            "description": "Search can be used to search on the multicast-group name.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "search",
-            "description": "Search can be used to search on the multicast-group name.",
+            "name": "serviceProfileID",
+            "description": "Service Profile ID.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -350,7 +350,7 @@
         },
         "devEUI": {
           "type": "string",
-          "description": "Device EUI (HEX encoded string).\nNote that the device must be under the same service-profile as the\nmulticast-group."
+          "description": "Device EUI (HEX encoded string).\nNote that the device and the multicast-group must share the same\napplication ID."
         }
       }
     },
@@ -486,7 +486,7 @@
         },
         "serviceProfileID": {
           "type": "string",
-          "description": "Service-profile ID.\nAfter creation, this can not be updated."
+          "description": "Service Profile ID.\nAfter creation, this can not be updated."
         }
       }
     },
@@ -503,11 +503,11 @@
         },
         "serviceProfileID": {
           "type": "string",
-          "description": "Service-profile ID (string formatted UUID)."
+          "description": "Service Profile ID.\nAfter creation, this can not be updated."
         },
         "serviceProfileName": {
           "type": "string",
-          "description": "Service-profile name."
+          "description": "Service Profile ID.\nAfter creation, this can not be updated."
         }
       }
     },

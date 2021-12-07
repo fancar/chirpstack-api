@@ -15,7 +15,9 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from chirpstack_api.common import common_pb2 as chirpstack__api_dot_common_dot_common__pb2
+from chirpstack_api.ns import profiles_pb2 as chirpstack__api_dot_ns_dot_profiles__pb2
 from chirpstack_api.gw import gw_pb2 as chirpstack__api_dot_gw_dot_gw__pb2
+from chirpstack_api.ns import ns_pb2 as chirpstack__api_dot_ns_dot_ns__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -24,9 +26,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\024io.chirpstack.api.asB\026ApplicationServerProtoP\001Z*github.com/brocaar/chirpstack-api/go/v3/as',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n chirpstack-api/as_pb/as_pb.proto\x12\x02\x61s\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\"chirpstack-api/common/common.proto\x1a\x1a\x63hirpstack-api/gw/gw.proto\"0\n\x15GetOrgByDevEUIRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\")\n\x18GetDeviceAppSKeyResponse\x12\r\n\x05value\x18\x01 \x01(\x0c\"$\n\x16GetOrgByDevEUIResponse\x12\n\n\x02id\x18\x01 \x01(\x03\"H\n\x17ListOrganizationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\x0e\n\x06search\x18\x03 \x01(\t\"Y\n\x18ListOrganizationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.as.OrganizationListItem\"\xc1\x01\n\x14OrganizationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x19\n\x11\x63\x61n_have_gateways\x18\x04 \x01(\x08\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x18GetDevicesSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"\xd1\x01\n\x19GetDevicesSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12<\n\x08\x64r_count\x18\x03 \x03(\x0b\x32*.as.GetDevicesSummaryResponse.DrCountEntry\x12\x18\n\x10never_seen_count\x18\x04 \x01(\r\x1a.\n\x0c\x44rCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"D\n\x19GetGatewaysSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"d\n\x1aGetGatewaysSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12\x18\n\x10never_seen_count\x18\x03 \x01(\r\"S\n\x17\x44\x65viceActivationContext\x12\x10\n\x08\x64\x65v_addr\x18\x01 \x01(\x0c\x12&\n\tapp_s_key\x18\x02 \x01(\x0b\x32\x13.common.KeyEnvelope\"\xe7\x02\n\x17HandleUplinkDataRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08join_eui\x18\x02 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x03 \x01(\r\x12\x0e\n\x06\x66_port\x18\x04 \x01(\r\x12\x0b\n\x03\x61\x64r\x18\x05 \x01(\x08\x12\n\n\x02\x64r\x18\x06 \x01(\r\x12!\n\x07tx_info\x18\x07 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x08 \x03(\x0b\x32\x10.gw.UplinkRXInfo\x12\x0c\n\x04\x64\x61ta\x18\t \x01(\x0c\x12>\n\x19\x64\x65vice_activation_context\x18\n \x01(\x0b\x32\x1b.as.DeviceActivationContext\x12\x18\n\x10\x63onfirmed_uplink\x18\x0b \x01(\x08\x12\x0c\n\x04late\x18\x0c \x01(\x08\x12\x0b\n\x03mic\x18\r \x01(\x0c\x12(\n\x04time\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x88\x01\n\x1eHandleProprietaryUplinkRequest\x12\x13\n\x0bmac_payload\x18\x01 \x01(\x0c\x12\x0b\n\x03mic\x18\x02 \x01(\x0c\x12!\n\x07tx_info\x18\x03 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x04 \x03(\x0b\x32\x10.gw.UplinkRXInfo\"`\n\x12HandleErrorRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x1b\n\x04type\x18\x03 \x01(\x0e\x32\r.as.ErrorType\x12\r\n\x05\x65rror\x18\x04 \x01(\t\x12\r\n\x05\x66_cnt\x18\x05 \x01(\r\"P\n\x18HandleDownlinkACKRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x14\n\x0c\x61\x63knowledged\x18\x03 \x01(\x08\"\xa3\x01\n\x16SetDeviceStatusRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\r\x12\x0e\n\x06margin\x18\x03 \x01(\x05\x12\x1d\n\x15\x65xternal_power_source\x18\x04 \x01(\x08\x12!\n\x19\x62\x61ttery_level_unavailable\x18\x05 \x01(\x08\x12\x15\n\rbattery_level\x18\x06 \x01(\x02\"c\n\x18SetDeviceLocationRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\"\n\x08location\x18\x02 \x01(\x0b\x32\x10.common.Location\x12\x12\n\nuplink_ids\x18\x03 \x03(\x0c\"\xf5\x02\n\x19HandleGatewayStatsRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\x0c\x12\x10\n\x08stats_id\x18\x02 \x01(\x0c\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13rx_packets_received\x18\x05 \x01(\r\x12\x1e\n\x16rx_packets_received_ok\x18\x06 \x01(\r\x12\x1b\n\x13tx_packets_received\x18\x07 \x01(\r\x12\x1a\n\x12tx_packets_emitted\x18\x08 \x01(\r\x12=\n\x08metadata\x18\t \x03(\x0b\x32+.as.HandleGatewayStatsRequest.MetadataEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"m\n\x12HandleTxAckRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x12\n\ngateway_id\x18\x03 \x01(\x0c\x12#\n\x07tx_info\x18\x04 \x01(\x0b\x32\x12.gw.DownlinkTXInfo\"\x87\x01\n ReEncryptDeviceQueueItemsRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08\x64\x65v_addr\x18\x02 \x01(\x0c\x12\x13\n\x0b\x66_cnt_start\x18\x03 \x01(\r\x12+\n\x05items\x18\x04 \x03(\x0b\x32\x1c.as.ReEncryptDeviceQueueItem\"R\n!ReEncryptDeviceQueueItemsResponse\x12-\n\x05items\x18\x01 \x03(\x0b\x32\x1e.as.ReEncryptedDeviceQueueItem\"a\n\x18ReEncryptDeviceQueueItem\x12\x13\n\x0b\x66rm_payload\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x11\n\tconfirmed\x18\x04 \x01(\x08\"c\n\x1aReEncryptedDeviceQueueItem\x12\x13\n\x0b\x66rm_payload\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x11\n\tconfirmed\x18\x04 \x01(\x08*\x1c\n\x08RXWindow\x12\x07\n\x03RX1\x10\x00\x12\x07\n\x03RX2\x10\x01*\xbb\x01\n\tErrorType\x12\x0b\n\x07GENERIC\x10\x00\x12\x08\n\x04OTAA\x10\x01\x12\x16\n\x12\x44\x41TA_UP_FCNT_RESET\x10\x02\x12\x0f\n\x0b\x44\x41TA_UP_MIC\x10\x03\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_SIZE\x10\x04\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_FCNT\x10\x05\x12\x1f\n\x1b\x44\x41TA_UP_FCNT_RETRANSMISSION\x10\x06\x12\x15\n\x11\x44\x41TA_DOWN_GATEWAY\x10\x07\x32\xf4\x08\n\x18\x41pplicationServerService\x12I\n\x10HandleUplinkData\x12\x1b.as.HandleUplinkDataRequest\x1a\x16.google.protobuf.Empty\"\x00\x12W\n\x17HandleProprietaryUplink\x12\".as.HandleProprietaryUplinkRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleError\x12\x16.as.HandleErrorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11HandleDownlinkACK\x12\x1c.as.HandleDownlinkACKRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x12HandleGatewayStats\x12\x1d.as.HandleGatewayStatsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleTxAck\x12\x16.as.HandleTxAckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n\x0fSetDeviceStatus\x12\x1a.as.SetDeviceStatusRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11SetDeviceLocation\x12\x1c.as.SetDeviceLocationRequest\x1a\x16.google.protobuf.Empty\"\x00\x12R\n\x11GetDevicesSummary\x12\x1c.as.GetDevicesSummaryRequest\x1a\x1d.as.GetDevicesSummaryResponse\"\x00\x12U\n\x12GetGatewaysSummary\x12\x1d.as.GetGatewaysSummaryRequest\x1a\x1e.as.GetGatewaysSummaryResponse\"\x00\x12O\n\x10ListOrganisation\x12\x1b.as.ListOrganizationRequest\x1a\x1c.as.ListOrganizationResponse\"\x00\x12I\n\x0eGetOrgByDevEUI\x12\x19.as.GetOrgByDevEUIRequest\x1a\x1a.as.GetOrgByDevEUIResponse\"\x00\x12M\n\x10GetDeviceAppSKey\x12\x19.as.GetOrgByDevEUIRequest\x1a\x1c.as.GetDeviceAppSKeyResponse\"\x00\x12j\n\x19ReEncryptDeviceQueueItems\x12$.as.ReEncryptDeviceQueueItemsRequest\x1a%.as.ReEncryptDeviceQueueItemsResponse\"\x00\x42\\\n\x14io.chirpstack.api.asB\x16\x41pplicationServerProtoP\x01Z*github.com/brocaar/chirpstack-api/go/v3/asb\x06proto3'
+  serialized_pb=b'\n chirpstack-api/as_pb/as_pb.proto\x12\x02\x61s\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\"chirpstack-api/common/common.proto\x1a chirpstack-api/ns/profiles.proto\x1a\x1a\x63hirpstack-api/gw/gw.proto\x1a\x1a\x63hirpstack-api/ns/ns.proto\"4\n\x17UpdateSPonDeviceRequest\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\r\n\x05sp_id\x18\x02 \x01(\x0c\"&\n\x18GetServiceProfileRequest\x12\n\n\x02id\x18\x01 \x01(\x0c\"D\n\x19GetServiceProfileResponse\x12\'\n\x07\x61s_data\x18\x01 \x01(\x0b\x32\x16.as.ServiceProfileItem\"k\n\x1b\x43reateServiceProfileRequest\x12\'\n\x07\x61s_data\x18\x01 \x01(\x0b\x32\x16.as.ServiceProfileItem\x12#\n\x07ns_data\x18\x02 \x01(\x0b\x32\x12.ns.ServiceProfile\"*\n\x1c\x43reateServiceProfileResponse\x12\n\n\x02id\x18\x01 \x01(\x0c\"\xe7\x01\n\x12ServiceProfileItem\x12\x19\n\x11network_server_id\x18\x01 \x01(\x03\x12\x17\n\x0forganization_id\x18\x02 \x01(\x03\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\x1a\n\x12\x64\x65vice_count_limit\x18\x05 \x01(\r\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x86\x01\n\x0fGatewayMetaData\x12\r\n\x05gw_id\x18\x01 \x01(\t\x12\x33\n\x08metadata\x18\x02 \x03(\x0b\x32!.as.GatewayMetaData.MetadataEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"C\n\x15GetGWMetaDataResponse\x12*\n\rmetadata_list\x18\x01 \x03(\x0b\x32\x13.as.GatewayMetaData\"(\n\x14GetDictionaryRequest\x12\x10\n\x08\x64ic_type\x18\x01 \x01(\t\"G\n\x15GetDictionaryResponse\x12\x10\n\x08\x64ic_type\x18\x01 \x01(\t\x12\x1c\n\x04list\x18\x02 \x03(\x0b\x32\x0e.as.Dictionary\"N\n\nDictionary\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x03\x12\x10\n\x08\x64ic_type\x18\x02 \x01(\t\x12\r\n\x05label\x18\x03 \x01(\t\x12\x11\n\tis_actual\x18\x04 \x01(\x08\"0\n\x15GetOrgByDevEUIRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\"#\n\x15GetOrgIDByGwIDRequest\x12\n\n\x02id\x18\x01 \x01(\t\")\n\x18GetDeviceAppSKeyResponse\x12\r\n\x05value\x18\x01 \x01(\x0c\"$\n\x16GetOrgByDevEUIResponse\x12\n\n\x02id\x18\x01 \x01(\x03\"H\n\x17ListOrganizationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\x0e\n\x06search\x18\x03 \x01(\t\"Y\n\x18ListOrganizationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.as.OrganizationListItem\"\xc1\x01\n\x14OrganizationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x03 \x01(\t\x12\x19\n\x11\x63\x61n_have_gateways\x18\x04 \x01(\x08\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"C\n\x18GetDevicesSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"\xd1\x01\n\x19GetDevicesSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12<\n\x08\x64r_count\x18\x03 \x03(\x0b\x32*.as.GetDevicesSummaryResponse.DrCountEntry\x12\x18\n\x10never_seen_count\x18\x04 \x01(\r\x1a.\n\x0c\x44rCountEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"D\n\x19GetGatewaysSummaryRequest\x12\'\n\x0forganization_id\x18\x01 \x01(\x03R\x0eorganizationID\"d\n\x1aGetGatewaysSummaryResponse\x12\x14\n\x0c\x61\x63tive_count\x18\x01 \x01(\r\x12\x16\n\x0einactive_count\x18\x02 \x01(\r\x12\x18\n\x10never_seen_count\x18\x03 \x01(\r\"S\n\x17\x44\x65viceActivationContext\x12\x10\n\x08\x64\x65v_addr\x18\x01 \x01(\x0c\x12&\n\tapp_s_key\x18\x02 \x01(\x0b\x32\x13.common.KeyEnvelope\"\xad\x03\n\x17HandleUplinkDataRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08join_eui\x18\x02 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x03 \x01(\r\x12\x0e\n\x06\x66_port\x18\x04 \x01(\r\x12\x0b\n\x03\x61\x64r\x18\x05 \x01(\x08\x12\n\n\x02\x64r\x18\x06 \x01(\r\x12!\n\x07tx_info\x18\x07 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x08 \x03(\x0b\x32\x10.gw.UplinkRXInfo\x12\x0c\n\x04\x64\x61ta\x18\t \x01(\x0c\x12>\n\x19\x64\x65vice_activation_context\x18\n \x01(\x0b\x32\x1b.as.DeviceActivationContext\x12\x18\n\x10\x63onfirmed_uplink\x18\x0b \x01(\x08\x12\x0c\n\x04late\x18\x0c \x01(\x08\x12\x0b\n\x03mic\x18\r \x01(\x0c\x12(\n\x04time\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1c\n\x05limit\x18\x0f \x01(\x0e\x32\r.ns.RateLimit\x12\x0b\n\x03per\x18\x10 \x01(\x01\x12\x0b\n\x03snr\x18\x11 \x01(\x01\x12\x0c\n\x04rssi\x18\x12 \x01(\x01\"\x88\x01\n\x1eHandleProprietaryUplinkRequest\x12\x13\n\x0bmac_payload\x18\x01 \x01(\x0c\x12\x0b\n\x03mic\x18\x02 \x01(\x0c\x12!\n\x07tx_info\x18\x03 \x01(\x0b\x32\x10.gw.UplinkTXInfo\x12!\n\x07rx_info\x18\x04 \x03(\x0b\x32\x10.gw.UplinkRXInfo\"`\n\x12HandleErrorRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x1b\n\x04type\x18\x03 \x01(\x0e\x32\r.as.ErrorType\x12\r\n\x05\x65rror\x18\x04 \x01(\t\x12\r\n\x05\x66_cnt\x18\x05 \x01(\r\"P\n\x18HandleDownlinkACKRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x14\n\x0c\x61\x63knowledged\x18\x03 \x01(\x08\"\xa3\x01\n\x16SetDeviceStatusRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x0f\n\x07\x62\x61ttery\x18\x02 \x01(\r\x12\x0e\n\x06margin\x18\x03 \x01(\x05\x12\x1d\n\x15\x65xternal_power_source\x18\x04 \x01(\x08\x12!\n\x19\x62\x61ttery_level_unavailable\x18\x05 \x01(\x08\x12\x15\n\rbattery_level\x18\x06 \x01(\x02\"c\n\x18SetDeviceLocationRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\"\n\x08location\x18\x02 \x01(\x0b\x32\x10.common.Location\x12\x12\n\nuplink_ids\x18\x03 \x03(\x0c\"\xc4\x08\n\x19HandleGatewayStatsRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\x0c\x12\x10\n\x08stats_id\x18\x02 \x01(\x0c\x12(\n\x04time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13rx_packets_received\x18\x05 \x01(\r\x12\x1e\n\x16rx_packets_received_ok\x18\x06 \x01(\r\x12\x1b\n\x13tx_packets_received\x18\x07 \x01(\r\x12\x1a\n\x12tx_packets_emitted\x18\x08 \x01(\r\x12=\n\x08metadata\x18\t \x03(\x0b\x32+.as.HandleGatewayStatsRequest.MetadataEntry\x12Z\n\x18tx_packets_per_frequency\x18\n \x03(\x0b\x32\x38.as.HandleGatewayStatsRequest.TxPacketsPerFrequencyEntry\x12Z\n\x18rx_packets_per_frequency\x18\x0b \x03(\x0b\x32\x38.as.HandleGatewayStatsRequest.RxPacketsPerFrequencyEntry\x12L\n\x11tx_packets_per_dr\x18\x0c \x03(\x0b\x32\x31.as.HandleGatewayStatsRequest.TxPacketsPerDrEntry\x12L\n\x11rx_packets_per_dr\x18\r \x03(\x0b\x32\x31.as.HandleGatewayStatsRequest.RxPacketsPerDrEntry\x12T\n\x15tx_packets_per_status\x18\x0e \x03(\x0b\x32\x35.as.HandleGatewayStatsRequest.TxPacketsPerStatusEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a<\n\x1aTxPacketsPerFrequencyEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a<\n\x1aRxPacketsPerFrequencyEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a\x35\n\x13TxPacketsPerDrEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a\x35\n\x13RxPacketsPerDrEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a\x39\n\x17TxPacketsPerStatusEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"m\n\x12HandleTxAckRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x12\n\ngateway_id\x18\x03 \x01(\x0c\x12#\n\x07tx_info\x18\x04 \x01(\x0b\x32\x12.gw.DownlinkTXInfo\"\x87\x01\n ReEncryptDeviceQueueItemsRequest\x12\x0f\n\x07\x64\x65v_eui\x18\x01 \x01(\x0c\x12\x10\n\x08\x64\x65v_addr\x18\x02 \x01(\x0c\x12\x13\n\x0b\x66_cnt_start\x18\x03 \x01(\r\x12+\n\x05items\x18\x04 \x03(\x0b\x32\x1c.as.ReEncryptDeviceQueueItem\"R\n!ReEncryptDeviceQueueItemsResponse\x12-\n\x05items\x18\x01 \x03(\x0b\x32\x1e.as.ReEncryptedDeviceQueueItem\"a\n\x18ReEncryptDeviceQueueItem\x12\x13\n\x0b\x66rm_payload\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x11\n\tconfirmed\x18\x04 \x01(\x08\"c\n\x1aReEncryptedDeviceQueueItem\x12\x13\n\x0b\x66rm_payload\x18\x01 \x01(\x0c\x12\r\n\x05\x66_cnt\x18\x02 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x11\n\tconfirmed\x18\x04 \x01(\x08\"\xa0\x01\n\x17GatewayTaskResponseData\x12\x1d\n\ngateway_id\x18\x01 \x01(\x0cR\tgatewayID\x12\x17\n\x07\x65xec_id\x18\x02 \x01(\x0cR\x06\x65xecID\x12\x0b\n\x03\x63md\x18\x03 \x01(\t\x12\x0e\n\x06stderr\x18\x04 \x01(\x0c\x12\r\n\x05\x65rror\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x07 \x01(\t\"_\n\x11GatewayTaskResult\x12/\n\x08metadata\x18\x01 \x01(\x0b\x32\x1b.as.GatewayTaskResponseDataH\x00\x12\x0f\n\x05\x63hunk\x18\x02 \x01(\x0cH\x00\x42\x08\n\x06result*\x1c\n\x08RXWindow\x12\x07\n\x03RX1\x10\x00\x12\x07\n\x03RX2\x10\x01*\xbb\x01\n\tErrorType\x12\x0b\n\x07GENERIC\x10\x00\x12\x08\n\x04OTAA\x10\x01\x12\x16\n\x12\x44\x41TA_UP_FCNT_RESET\x10\x02\x12\x0f\n\x0b\x44\x41TA_UP_MIC\x10\x03\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_SIZE\x10\x04\x12\x1a\n\x16\x44\x45VICE_QUEUE_ITEM_FCNT\x10\x05\x12\x1f\n\x1b\x44\x41TA_UP_FCNT_RETRANSMISSION\x10\x06\x12\x15\n\x11\x44\x41TA_DOWN_GATEWAY\x10\x07\x32\x97\r\n\x18\x41pplicationServerService\x12I\n\x10HandleUplinkData\x12\x1b.as.HandleUplinkDataRequest\x1a\x16.google.protobuf.Empty\"\x00\x12W\n\x17HandleProprietaryUplink\x12\".as.HandleProprietaryUplinkRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleError\x12\x16.as.HandleErrorRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11HandleDownlinkACK\x12\x1c.as.HandleDownlinkACKRequest\x1a\x16.google.protobuf.Empty\"\x00\x12M\n\x12HandleGatewayStats\x12\x1d.as.HandleGatewayStatsRequest\x1a\x16.google.protobuf.Empty\"\x00\x12?\n\x0bHandleTxAck\x12\x16.as.HandleTxAckRequest\x1a\x16.google.protobuf.Empty\"\x00\x12G\n\x0fSetDeviceStatus\x12\x1a.as.SetDeviceStatusRequest\x1a\x16.google.protobuf.Empty\"\x00\x12K\n\x11SetDeviceLocation\x12\x1c.as.SetDeviceLocationRequest\x1a\x16.google.protobuf.Empty\"\x00\x12R\n\x11GetDevicesSummary\x12\x1c.as.GetDevicesSummaryRequest\x1a\x1d.as.GetDevicesSummaryResponse\"\x00\x12U\n\x12GetGatewaysSummary\x12\x1d.as.GetGatewaysSummaryRequest\x1a\x1e.as.GetGatewaysSummaryResponse\"\x00\x12O\n\x10ListOrganisation\x12\x1b.as.ListOrganizationRequest\x1a\x1c.as.ListOrganizationResponse\"\x00\x12I\n\x0eGetOrgByDevEUI\x12\x19.as.GetOrgByDevEUIRequest\x1a\x1a.as.GetOrgByDevEUIResponse\"\x00\x12I\n\x0eGetOrgIDByGwID\x12\x19.as.GetOrgIDByGwIDRequest\x1a\x1a.as.GetOrgByDevEUIResponse\"\x00\x12M\n\x10GetDeviceAppSKey\x12\x19.as.GetOrgByDevEUIRequest\x1a\x1c.as.GetDeviceAppSKeyResponse\"\x00\x12j\n\x19ReEncryptDeviceQueueItems\x12$.as.ReEncryptDeviceQueueItemsRequest\x1a%.as.ReEncryptDeviceQueueItemsResponse\"\x00\x12L\n\x17StreamGatewayTaskResult\x12\x15.as.GatewayTaskResult\x1a\x16.google.protobuf.Empty\"\x00(\x01\x12\x46\n\rGetDictionary\x12\x18.as.GetDictionaryRequest\x1a\x19.as.GetDictionaryResponse\"\x00\x12\x44\n\rGetGWMetaData\x12\x16.google.protobuf.Empty\x1a\x19.as.GetGWMetaDataResponse\"\x00\x12R\n\x11GetServiceProfile\x12\x1c.as.GetServiceProfileRequest\x1a\x1d.as.GetServiceProfileResponse\"\x00\x12[\n\x14\x43reateServiceProfile\x12\x1f.as.CreateServiceProfileRequest\x1a .as.CreateServiceProfileResponse\"\x00\x12I\n\x10UpdateSPonDevice\x12\x1b.as.UpdateSPonDeviceRequest\x1a\x16.google.protobuf.Empty\"\x00\x42\\\n\x14io.chirpstack.api.asB\x16\x41pplicationServerProtoP\x01Z*github.com/brocaar/chirpstack-api/go/v3/asb\x06proto3'
   ,
-  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,chirpstack__api_dot_common_dot_common__pb2.DESCRIPTOR,chirpstack__api_dot_gw_dot_gw__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,chirpstack__api_dot_common_dot_common__pb2.DESCRIPTOR,chirpstack__api_dot_ns_dot_profiles__pb2.DESCRIPTOR,chirpstack__api_dot_gw_dot_gw__pb2.DESCRIPTOR,chirpstack__api_dot_ns_dot_ns__pb2.DESCRIPTOR,])
 
 _RXWINDOW = _descriptor.EnumDescriptor(
   name='RXWindow',
@@ -48,8 +50,8 @@ _RXWINDOW = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3053,
-  serialized_end=3081,
+  serialized_start=5153,
+  serialized_end=5181,
 )
 _sym_db.RegisterEnumDescriptor(_RXWINDOW)
 
@@ -104,8 +106,8 @@ _ERRORTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3084,
-  serialized_end=3271,
+  serialized_start=5184,
+  serialized_end=5371,
 )
 _sym_db.RegisterEnumDescriptor(_ERRORTYPE)
 
@@ -121,6 +123,487 @@ DEVICE_QUEUE_ITEM_FCNT = 5
 DATA_UP_FCNT_RETRANSMISSION = 6
 DATA_DOWN_GATEWAY = 7
 
+
+
+_UPDATESPONDEVICEREQUEST = _descriptor.Descriptor(
+  name='UpdateSPonDeviceRequest',
+  full_name='as.UpdateSPonDeviceRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='as.UpdateSPonDeviceRequest.id', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='sp_id', full_name='as.UpdateSPonDeviceRequest.sp_id', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=228,
+  serialized_end=280,
+)
+
+
+_GETSERVICEPROFILEREQUEST = _descriptor.Descriptor(
+  name='GetServiceProfileRequest',
+  full_name='as.GetServiceProfileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='as.GetServiceProfileRequest.id', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=282,
+  serialized_end=320,
+)
+
+
+_GETSERVICEPROFILERESPONSE = _descriptor.Descriptor(
+  name='GetServiceProfileResponse',
+  full_name='as.GetServiceProfileResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='as_data', full_name='as.GetServiceProfileResponse.as_data', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=322,
+  serialized_end=390,
+)
+
+
+_CREATESERVICEPROFILEREQUEST = _descriptor.Descriptor(
+  name='CreateServiceProfileRequest',
+  full_name='as.CreateServiceProfileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='as_data', full_name='as.CreateServiceProfileRequest.as_data', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ns_data', full_name='as.CreateServiceProfileRequest.ns_data', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=392,
+  serialized_end=499,
+)
+
+
+_CREATESERVICEPROFILERESPONSE = _descriptor.Descriptor(
+  name='CreateServiceProfileResponse',
+  full_name='as.CreateServiceProfileResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='as.CreateServiceProfileResponse.id', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=501,
+  serialized_end=543,
+)
+
+
+_SERVICEPROFILEITEM = _descriptor.Descriptor(
+  name='ServiceProfileItem',
+  full_name='as.ServiceProfileItem',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='network_server_id', full_name='as.ServiceProfileItem.network_server_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='as.ServiceProfileItem.organization_id', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='as.ServiceProfileItem.name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='as.ServiceProfileItem.description', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='device_count_limit', full_name='as.ServiceProfileItem.device_count_limit', index=4,
+      number=5, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created_at', full_name='as.ServiceProfileItem.created_at', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='updated_at', full_name='as.ServiceProfileItem.updated_at', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=546,
+  serialized_end=777,
+)
+
+
+_GATEWAYMETADATA_METADATAENTRY = _descriptor.Descriptor(
+  name='MetadataEntry',
+  full_name='as.GatewayMetaData.MetadataEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.GatewayMetaData.MetadataEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.GatewayMetaData.MetadataEntry.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=867,
+  serialized_end=914,
+)
+
+_GATEWAYMETADATA = _descriptor.Descriptor(
+  name='GatewayMetaData',
+  full_name='as.GatewayMetaData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gw_id', full_name='as.GatewayMetaData.gw_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='metadata', full_name='as.GatewayMetaData.metadata', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_GATEWAYMETADATA_METADATAENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=780,
+  serialized_end=914,
+)
+
+
+_GETGWMETADATARESPONSE = _descriptor.Descriptor(
+  name='GetGWMetaDataResponse',
+  full_name='as.GetGWMetaDataResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='metadata_list', full_name='as.GetGWMetaDataResponse.metadata_list', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=916,
+  serialized_end=983,
+)
+
+
+_GETDICTIONARYREQUEST = _descriptor.Descriptor(
+  name='GetDictionaryRequest',
+  full_name='as.GetDictionaryRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dic_type', full_name='as.GetDictionaryRequest.dic_type', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=985,
+  serialized_end=1025,
+)
+
+
+_GETDICTIONARYRESPONSE = _descriptor.Descriptor(
+  name='GetDictionaryResponse',
+  full_name='as.GetDictionaryResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dic_type', full_name='as.GetDictionaryResponse.dic_type', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='list', full_name='as.GetDictionaryResponse.list', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1027,
+  serialized_end=1098,
+)
+
+
+_DICTIONARY = _descriptor.Descriptor(
+  name='Dictionary',
+  full_name='as.Dictionary',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='code', full_name='as.Dictionary.code', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dic_type', full_name='as.Dictionary.dic_type', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='label', full_name='as.Dictionary.label', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_actual', full_name='as.Dictionary.is_actual', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1100,
+  serialized_end=1178,
+)
 
 
 _GETORGBYDEVEUIREQUEST = _descriptor.Descriptor(
@@ -150,8 +633,40 @@ _GETORGBYDEVEUIREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=166,
-  serialized_end=214,
+  serialized_start=1180,
+  serialized_end=1228,
+)
+
+
+_GETORGIDBYGWIDREQUEST = _descriptor.Descriptor(
+  name='GetOrgIDByGwIDRequest',
+  full_name='as.GetOrgIDByGwIDRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='as.GetOrgIDByGwIDRequest.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1230,
+  serialized_end=1265,
 )
 
 
@@ -182,8 +697,8 @@ _GETDEVICEAPPSKEYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=216,
-  serialized_end=257,
+  serialized_start=1267,
+  serialized_end=1308,
 )
 
 
@@ -214,8 +729,8 @@ _GETORGBYDEVEUIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=259,
-  serialized_end=295,
+  serialized_start=1310,
+  serialized_end=1346,
 )
 
 
@@ -260,8 +775,8 @@ _LISTORGANIZATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=297,
-  serialized_end=369,
+  serialized_start=1348,
+  serialized_end=1420,
 )
 
 
@@ -299,8 +814,8 @@ _LISTORGANIZATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=371,
-  serialized_end=460,
+  serialized_start=1422,
+  serialized_end=1511,
 )
 
 
@@ -366,8 +881,8 @@ _ORGANIZATIONLISTITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=463,
-  serialized_end=656,
+  serialized_start=1514,
+  serialized_end=1707,
 )
 
 
@@ -398,8 +913,8 @@ _GETDEVICESSUMMARYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=658,
-  serialized_end=725,
+  serialized_start=1709,
+  serialized_end=1776,
 )
 
 
@@ -437,8 +952,8 @@ _GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=891,
-  serialized_end=937,
+  serialized_start=1942,
+  serialized_end=1988,
 )
 
 _GETDEVICESSUMMARYRESPONSE = _descriptor.Descriptor(
@@ -489,8 +1004,8 @@ _GETDEVICESSUMMARYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=728,
-  serialized_end=937,
+  serialized_start=1779,
+  serialized_end=1988,
 )
 
 
@@ -521,8 +1036,8 @@ _GETGATEWAYSSUMMARYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=939,
-  serialized_end=1007,
+  serialized_start=1990,
+  serialized_end=2058,
 )
 
 
@@ -567,8 +1082,8 @@ _GETGATEWAYSSUMMARYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1009,
-  serialized_end=1109,
+  serialized_start=2060,
+  serialized_end=2160,
 )
 
 
@@ -606,8 +1121,8 @@ _DEVICEACTIVATIONCONTEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1111,
-  serialized_end=1194,
+  serialized_start=2162,
+  serialized_end=2245,
 )
 
 
@@ -717,6 +1232,34 @@ _HANDLEUPLINKDATAREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='limit', full_name='as.HandleUplinkDataRequest.limit', index=14,
+      number=15, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='per', full_name='as.HandleUplinkDataRequest.per', index=15,
+      number=16, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='snr', full_name='as.HandleUplinkDataRequest.snr', index=16,
+      number=17, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rssi', full_name='as.HandleUplinkDataRequest.rssi', index=17,
+      number=18, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -729,8 +1272,8 @@ _HANDLEUPLINKDATAREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1197,
-  serialized_end=1556,
+  serialized_start=2248,
+  serialized_end=2677,
 )
 
 
@@ -782,8 +1325,8 @@ _HANDLEPROPRIETARYUPLINKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1559,
-  serialized_end=1695,
+  serialized_start=2680,
+  serialized_end=2816,
 )
 
 
@@ -835,8 +1378,8 @@ _HANDLEERRORREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1697,
-  serialized_end=1793,
+  serialized_start=2818,
+  serialized_end=2914,
 )
 
 
@@ -881,8 +1424,8 @@ _HANDLEDOWNLINKACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1795,
-  serialized_end=1875,
+  serialized_start=2916,
+  serialized_end=2996,
 )
 
 
@@ -948,8 +1491,8 @@ _SETDEVICESTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1878,
-  serialized_end=2041,
+  serialized_start=2999,
+  serialized_end=3162,
 )
 
 
@@ -994,8 +1537,8 @@ _SETDEVICELOCATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2043,
-  serialized_end=2142,
+  serialized_start=3164,
+  serialized_end=3263,
 )
 
 
@@ -1033,8 +1576,198 @@ _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2471,
-  serialized_end=2518,
+  serialized_start=867,
+  serialized_end=914,
+)
+
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERFREQUENCYENTRY = _descriptor.Descriptor(
+  name='TxPacketsPerFrequencyEntry',
+  full_name='as.HandleGatewayStatsRequest.TxPacketsPerFrequencyEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.HandleGatewayStatsRequest.TxPacketsPerFrequencyEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.HandleGatewayStatsRequest.TxPacketsPerFrequencyEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4067,
+  serialized_end=4127,
+)
+
+_HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERFREQUENCYENTRY = _descriptor.Descriptor(
+  name='RxPacketsPerFrequencyEntry',
+  full_name='as.HandleGatewayStatsRequest.RxPacketsPerFrequencyEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.HandleGatewayStatsRequest.RxPacketsPerFrequencyEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.HandleGatewayStatsRequest.RxPacketsPerFrequencyEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4129,
+  serialized_end=4189,
+)
+
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERDRENTRY = _descriptor.Descriptor(
+  name='TxPacketsPerDrEntry',
+  full_name='as.HandleGatewayStatsRequest.TxPacketsPerDrEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.HandleGatewayStatsRequest.TxPacketsPerDrEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.HandleGatewayStatsRequest.TxPacketsPerDrEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4191,
+  serialized_end=4244,
+)
+
+_HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERDRENTRY = _descriptor.Descriptor(
+  name='RxPacketsPerDrEntry',
+  full_name='as.HandleGatewayStatsRequest.RxPacketsPerDrEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.HandleGatewayStatsRequest.RxPacketsPerDrEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.HandleGatewayStatsRequest.RxPacketsPerDrEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4246,
+  serialized_end=4299,
+)
+
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERSTATUSENTRY = _descriptor.Descriptor(
+  name='TxPacketsPerStatusEntry',
+  full_name='as.HandleGatewayStatsRequest.TxPacketsPerStatusEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='as.HandleGatewayStatsRequest.TxPacketsPerStatusEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='as.HandleGatewayStatsRequest.TxPacketsPerStatusEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4301,
+  serialized_end=4358,
 )
 
 _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
@@ -1108,10 +1841,45 @@ _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_packets_per_frequency', full_name='as.HandleGatewayStatsRequest.tx_packets_per_frequency', index=9,
+      number=10, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx_packets_per_frequency', full_name='as.HandleGatewayStatsRequest.rx_packets_per_frequency', index=10,
+      number=11, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_packets_per_dr', full_name='as.HandleGatewayStatsRequest.tx_packets_per_dr', index=11,
+      number=12, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx_packets_per_dr', full_name='as.HandleGatewayStatsRequest.rx_packets_per_dr', index=12,
+      number=13, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_packets_per_status', full_name='as.HandleGatewayStatsRequest.tx_packets_per_status', index=13,
+      number=14, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
-  nested_types=[_HANDLEGATEWAYSTATSREQUEST_METADATAENTRY, ],
+  nested_types=[_HANDLEGATEWAYSTATSREQUEST_METADATAENTRY, _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERFREQUENCYENTRY, _HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERFREQUENCYENTRY, _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERDRENTRY, _HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERDRENTRY, _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERSTATUSENTRY, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -1120,8 +1888,8 @@ _HANDLEGATEWAYSTATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2145,
-  serialized_end=2518,
+  serialized_start=3266,
+  serialized_end=4358,
 )
 
 
@@ -1173,8 +1941,8 @@ _HANDLETXACKREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2520,
-  serialized_end=2629,
+  serialized_start=4360,
+  serialized_end=4469,
 )
 
 
@@ -1226,8 +1994,8 @@ _REENCRYPTDEVICEQUEUEITEMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2632,
-  serialized_end=2767,
+  serialized_start=4472,
+  serialized_end=4607,
 )
 
 
@@ -1258,8 +2026,8 @@ _REENCRYPTDEVICEQUEUEITEMSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2769,
-  serialized_end=2851,
+  serialized_start=4609,
+  serialized_end=4691,
 )
 
 
@@ -1311,8 +2079,8 @@ _REENCRYPTDEVICEQUEUEITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2853,
-  serialized_end=2950,
+  serialized_start=4693,
+  serialized_end=4790,
 )
 
 
@@ -1364,10 +2132,137 @@ _REENCRYPTEDDEVICEQUEUEITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2952,
-  serialized_end=3051,
+  serialized_start=4792,
+  serialized_end=4891,
 )
 
+
+_GATEWAYTASKRESPONSEDATA = _descriptor.Descriptor(
+  name='GatewayTaskResponseData',
+  full_name='as.GatewayTaskResponseData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gateway_id', full_name='as.GatewayTaskResponseData.gateway_id', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='gatewayID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='exec_id', full_name='as.GatewayTaskResponseData.exec_id', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='execID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cmd', full_name='as.GatewayTaskResponseData.cmd', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='stderr', full_name='as.GatewayTaskResponseData.stderr', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='error', full_name='as.GatewayTaskResponseData.error', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='as.GatewayTaskResponseData.description', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='as.GatewayTaskResponseData.name', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4894,
+  serialized_end=5054,
+)
+
+
+_GATEWAYTASKRESULT = _descriptor.Descriptor(
+  name='GatewayTaskResult',
+  full_name='as.GatewayTaskResult',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='metadata', full_name='as.GatewayTaskResult.metadata', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='chunk', full_name='as.GatewayTaskResult.chunk', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='result', full_name='as.GatewayTaskResult.result',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=5056,
+  serialized_end=5151,
+)
+
+_GETSERVICEPROFILERESPONSE.fields_by_name['as_data'].message_type = _SERVICEPROFILEITEM
+_CREATESERVICEPROFILEREQUEST.fields_by_name['as_data'].message_type = _SERVICEPROFILEITEM
+_CREATESERVICEPROFILEREQUEST.fields_by_name['ns_data'].message_type = chirpstack__api_dot_ns_dot_profiles__pb2._SERVICEPROFILE
+_SERVICEPROFILEITEM.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_SERVICEPROFILEITEM.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GATEWAYMETADATA_METADATAENTRY.containing_type = _GATEWAYMETADATA
+_GATEWAYMETADATA.fields_by_name['metadata'].message_type = _GATEWAYMETADATA_METADATAENTRY
+_GETGWMETADATARESPONSE.fields_by_name['metadata_list'].message_type = _GATEWAYMETADATA
+_GETDICTIONARYRESPONSE.fields_by_name['list'].message_type = _DICTIONARY
 _LISTORGANIZATIONRESPONSE.fields_by_name['result'].message_type = _ORGANIZATIONLISTITEM
 _ORGANIZATIONLISTITEM.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _ORGANIZATIONLISTITEM.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -1378,18 +2273,48 @@ _HANDLEUPLINKDATAREQUEST.fields_by_name['tx_info'].message_type = chirpstack__ap
 _HANDLEUPLINKDATAREQUEST.fields_by_name['rx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKRXINFO
 _HANDLEUPLINKDATAREQUEST.fields_by_name['device_activation_context'].message_type = _DEVICEACTIVATIONCONTEXT
 _HANDLEUPLINKDATAREQUEST.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_HANDLEUPLINKDATAREQUEST.fields_by_name['limit'].enum_type = chirpstack__api_dot_ns_dot_ns__pb2._RATELIMIT
 _HANDLEPROPRIETARYUPLINKREQUEST.fields_by_name['tx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKTXINFO
 _HANDLEPROPRIETARYUPLINKREQUEST.fields_by_name['rx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._UPLINKRXINFO
 _HANDLEERRORREQUEST.fields_by_name['type'].enum_type = _ERRORTYPE
 _SETDEVICELOCATIONREQUEST.fields_by_name['location'].message_type = chirpstack__api_dot_common_dot_common__pb2._LOCATION
 _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY.containing_type = _HANDLEGATEWAYSTATSREQUEST
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERFREQUENCYENTRY.containing_type = _HANDLEGATEWAYSTATSREQUEST
+_HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERFREQUENCYENTRY.containing_type = _HANDLEGATEWAYSTATSREQUEST
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERDRENTRY.containing_type = _HANDLEGATEWAYSTATSREQUEST
+_HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERDRENTRY.containing_type = _HANDLEGATEWAYSTATSREQUEST
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERSTATUSENTRY.containing_type = _HANDLEGATEWAYSTATSREQUEST
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['location'].message_type = chirpstack__api_dot_common_dot_common__pb2._LOCATION
 _HANDLEGATEWAYSTATSREQUEST.fields_by_name['metadata'].message_type = _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY
+_HANDLEGATEWAYSTATSREQUEST.fields_by_name['tx_packets_per_frequency'].message_type = _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERFREQUENCYENTRY
+_HANDLEGATEWAYSTATSREQUEST.fields_by_name['rx_packets_per_frequency'].message_type = _HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERFREQUENCYENTRY
+_HANDLEGATEWAYSTATSREQUEST.fields_by_name['tx_packets_per_dr'].message_type = _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERDRENTRY
+_HANDLEGATEWAYSTATSREQUEST.fields_by_name['rx_packets_per_dr'].message_type = _HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERDRENTRY
+_HANDLEGATEWAYSTATSREQUEST.fields_by_name['tx_packets_per_status'].message_type = _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERSTATUSENTRY
 _HANDLETXACKREQUEST.fields_by_name['tx_info'].message_type = chirpstack__api_dot_gw_dot_gw__pb2._DOWNLINKTXINFO
 _REENCRYPTDEVICEQUEUEITEMSREQUEST.fields_by_name['items'].message_type = _REENCRYPTDEVICEQUEUEITEM
 _REENCRYPTDEVICEQUEUEITEMSRESPONSE.fields_by_name['items'].message_type = _REENCRYPTEDDEVICEQUEUEITEM
+_GATEWAYTASKRESULT.fields_by_name['metadata'].message_type = _GATEWAYTASKRESPONSEDATA
+_GATEWAYTASKRESULT.oneofs_by_name['result'].fields.append(
+  _GATEWAYTASKRESULT.fields_by_name['metadata'])
+_GATEWAYTASKRESULT.fields_by_name['metadata'].containing_oneof = _GATEWAYTASKRESULT.oneofs_by_name['result']
+_GATEWAYTASKRESULT.oneofs_by_name['result'].fields.append(
+  _GATEWAYTASKRESULT.fields_by_name['chunk'])
+_GATEWAYTASKRESULT.fields_by_name['chunk'].containing_oneof = _GATEWAYTASKRESULT.oneofs_by_name['result']
+DESCRIPTOR.message_types_by_name['UpdateSPonDeviceRequest'] = _UPDATESPONDEVICEREQUEST
+DESCRIPTOR.message_types_by_name['GetServiceProfileRequest'] = _GETSERVICEPROFILEREQUEST
+DESCRIPTOR.message_types_by_name['GetServiceProfileResponse'] = _GETSERVICEPROFILERESPONSE
+DESCRIPTOR.message_types_by_name['CreateServiceProfileRequest'] = _CREATESERVICEPROFILEREQUEST
+DESCRIPTOR.message_types_by_name['CreateServiceProfileResponse'] = _CREATESERVICEPROFILERESPONSE
+DESCRIPTOR.message_types_by_name['ServiceProfileItem'] = _SERVICEPROFILEITEM
+DESCRIPTOR.message_types_by_name['GatewayMetaData'] = _GATEWAYMETADATA
+DESCRIPTOR.message_types_by_name['GetGWMetaDataResponse'] = _GETGWMETADATARESPONSE
+DESCRIPTOR.message_types_by_name['GetDictionaryRequest'] = _GETDICTIONARYREQUEST
+DESCRIPTOR.message_types_by_name['GetDictionaryResponse'] = _GETDICTIONARYRESPONSE
+DESCRIPTOR.message_types_by_name['Dictionary'] = _DICTIONARY
 DESCRIPTOR.message_types_by_name['GetOrgByDevEUIRequest'] = _GETORGBYDEVEUIREQUEST
+DESCRIPTOR.message_types_by_name['GetOrgIDByGwIDRequest'] = _GETORGIDBYGWIDREQUEST
 DESCRIPTOR.message_types_by_name['GetDeviceAppSKeyResponse'] = _GETDEVICEAPPSKEYRESPONSE
 DESCRIPTOR.message_types_by_name['GetOrgByDevEUIResponse'] = _GETORGBYDEVEUIRESPONSE
 DESCRIPTOR.message_types_by_name['ListOrganizationRequest'] = _LISTORGANIZATIONREQUEST
@@ -1412,9 +2337,96 @@ DESCRIPTOR.message_types_by_name['ReEncryptDeviceQueueItemsRequest'] = _REENCRYP
 DESCRIPTOR.message_types_by_name['ReEncryptDeviceQueueItemsResponse'] = _REENCRYPTDEVICEQUEUEITEMSRESPONSE
 DESCRIPTOR.message_types_by_name['ReEncryptDeviceQueueItem'] = _REENCRYPTDEVICEQUEUEITEM
 DESCRIPTOR.message_types_by_name['ReEncryptedDeviceQueueItem'] = _REENCRYPTEDDEVICEQUEUEITEM
+DESCRIPTOR.message_types_by_name['GatewayTaskResponseData'] = _GATEWAYTASKRESPONSEDATA
+DESCRIPTOR.message_types_by_name['GatewayTaskResult'] = _GATEWAYTASKRESULT
 DESCRIPTOR.enum_types_by_name['RXWindow'] = _RXWINDOW
 DESCRIPTOR.enum_types_by_name['ErrorType'] = _ERRORTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+UpdateSPonDeviceRequest = _reflection.GeneratedProtocolMessageType('UpdateSPonDeviceRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPDATESPONDEVICEREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.UpdateSPonDeviceRequest)
+  })
+_sym_db.RegisterMessage(UpdateSPonDeviceRequest)
+
+GetServiceProfileRequest = _reflection.GeneratedProtocolMessageType('GetServiceProfileRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETSERVICEPROFILEREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetServiceProfileRequest)
+  })
+_sym_db.RegisterMessage(GetServiceProfileRequest)
+
+GetServiceProfileResponse = _reflection.GeneratedProtocolMessageType('GetServiceProfileResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETSERVICEPROFILERESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetServiceProfileResponse)
+  })
+_sym_db.RegisterMessage(GetServiceProfileResponse)
+
+CreateServiceProfileRequest = _reflection.GeneratedProtocolMessageType('CreateServiceProfileRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATESERVICEPROFILEREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.CreateServiceProfileRequest)
+  })
+_sym_db.RegisterMessage(CreateServiceProfileRequest)
+
+CreateServiceProfileResponse = _reflection.GeneratedProtocolMessageType('CreateServiceProfileResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CREATESERVICEPROFILERESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.CreateServiceProfileResponse)
+  })
+_sym_db.RegisterMessage(CreateServiceProfileResponse)
+
+ServiceProfileItem = _reflection.GeneratedProtocolMessageType('ServiceProfileItem', (_message.Message,), {
+  'DESCRIPTOR' : _SERVICEPROFILEITEM,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.ServiceProfileItem)
+  })
+_sym_db.RegisterMessage(ServiceProfileItem)
+
+GatewayMetaData = _reflection.GeneratedProtocolMessageType('GatewayMetaData', (_message.Message,), {
+
+  'MetadataEntry' : _reflection.GeneratedProtocolMessageType('MetadataEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GATEWAYMETADATA_METADATAENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.GatewayMetaData.MetadataEntry)
+    })
+  ,
+  'DESCRIPTOR' : _GATEWAYMETADATA,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GatewayMetaData)
+  })
+_sym_db.RegisterMessage(GatewayMetaData)
+_sym_db.RegisterMessage(GatewayMetaData.MetadataEntry)
+
+GetGWMetaDataResponse = _reflection.GeneratedProtocolMessageType('GetGWMetaDataResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETGWMETADATARESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetGWMetaDataResponse)
+  })
+_sym_db.RegisterMessage(GetGWMetaDataResponse)
+
+GetDictionaryRequest = _reflection.GeneratedProtocolMessageType('GetDictionaryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETDICTIONARYREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetDictionaryRequest)
+  })
+_sym_db.RegisterMessage(GetDictionaryRequest)
+
+GetDictionaryResponse = _reflection.GeneratedProtocolMessageType('GetDictionaryResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETDICTIONARYRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetDictionaryResponse)
+  })
+_sym_db.RegisterMessage(GetDictionaryResponse)
+
+Dictionary = _reflection.GeneratedProtocolMessageType('Dictionary', (_message.Message,), {
+  'DESCRIPTOR' : _DICTIONARY,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.Dictionary)
+  })
+_sym_db.RegisterMessage(Dictionary)
 
 GetOrgByDevEUIRequest = _reflection.GeneratedProtocolMessageType('GetOrgByDevEUIRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETORGBYDEVEUIREQUEST,
@@ -1422,6 +2434,13 @@ GetOrgByDevEUIRequest = _reflection.GeneratedProtocolMessageType('GetOrgByDevEUI
   # @@protoc_insertion_point(class_scope:as.GetOrgByDevEUIRequest)
   })
 _sym_db.RegisterMessage(GetOrgByDevEUIRequest)
+
+GetOrgIDByGwIDRequest = _reflection.GeneratedProtocolMessageType('GetOrgIDByGwIDRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETORGIDBYGWIDREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GetOrgIDByGwIDRequest)
+  })
+_sym_db.RegisterMessage(GetOrgIDByGwIDRequest)
 
 GetDeviceAppSKeyResponse = _reflection.GeneratedProtocolMessageType('GetDeviceAppSKeyResponse', (_message.Message,), {
   'DESCRIPTOR' : _GETDEVICEAPPSKEYRESPONSE,
@@ -1551,12 +2570,52 @@ HandleGatewayStatsRequest = _reflection.GeneratedProtocolMessageType('HandleGate
     # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest.MetadataEntry)
     })
   ,
+
+  'TxPacketsPerFrequencyEntry' : _reflection.GeneratedProtocolMessageType('TxPacketsPerFrequencyEntry', (_message.Message,), {
+    'DESCRIPTOR' : _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERFREQUENCYENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest.TxPacketsPerFrequencyEntry)
+    })
+  ,
+
+  'RxPacketsPerFrequencyEntry' : _reflection.GeneratedProtocolMessageType('RxPacketsPerFrequencyEntry', (_message.Message,), {
+    'DESCRIPTOR' : _HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERFREQUENCYENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest.RxPacketsPerFrequencyEntry)
+    })
+  ,
+
+  'TxPacketsPerDrEntry' : _reflection.GeneratedProtocolMessageType('TxPacketsPerDrEntry', (_message.Message,), {
+    'DESCRIPTOR' : _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERDRENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest.TxPacketsPerDrEntry)
+    })
+  ,
+
+  'RxPacketsPerDrEntry' : _reflection.GeneratedProtocolMessageType('RxPacketsPerDrEntry', (_message.Message,), {
+    'DESCRIPTOR' : _HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERDRENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest.RxPacketsPerDrEntry)
+    })
+  ,
+
+  'TxPacketsPerStatusEntry' : _reflection.GeneratedProtocolMessageType('TxPacketsPerStatusEntry', (_message.Message,), {
+    'DESCRIPTOR' : _HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERSTATUSENTRY,
+    '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+    # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest.TxPacketsPerStatusEntry)
+    })
+  ,
   'DESCRIPTOR' : _HANDLEGATEWAYSTATSREQUEST,
   '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
   # @@protoc_insertion_point(class_scope:as.HandleGatewayStatsRequest)
   })
 _sym_db.RegisterMessage(HandleGatewayStatsRequest)
 _sym_db.RegisterMessage(HandleGatewayStatsRequest.MetadataEntry)
+_sym_db.RegisterMessage(HandleGatewayStatsRequest.TxPacketsPerFrequencyEntry)
+_sym_db.RegisterMessage(HandleGatewayStatsRequest.RxPacketsPerFrequencyEntry)
+_sym_db.RegisterMessage(HandleGatewayStatsRequest.TxPacketsPerDrEntry)
+_sym_db.RegisterMessage(HandleGatewayStatsRequest.RxPacketsPerDrEntry)
+_sym_db.RegisterMessage(HandleGatewayStatsRequest.TxPacketsPerStatusEntry)
 
 HandleTxAckRequest = _reflection.GeneratedProtocolMessageType('HandleTxAckRequest', (_message.Message,), {
   'DESCRIPTOR' : _HANDLETXACKREQUEST,
@@ -1593,10 +2652,30 @@ ReEncryptedDeviceQueueItem = _reflection.GeneratedProtocolMessageType('ReEncrypt
   })
 _sym_db.RegisterMessage(ReEncryptedDeviceQueueItem)
 
+GatewayTaskResponseData = _reflection.GeneratedProtocolMessageType('GatewayTaskResponseData', (_message.Message,), {
+  'DESCRIPTOR' : _GATEWAYTASKRESPONSEDATA,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GatewayTaskResponseData)
+  })
+_sym_db.RegisterMessage(GatewayTaskResponseData)
+
+GatewayTaskResult = _reflection.GeneratedProtocolMessageType('GatewayTaskResult', (_message.Message,), {
+  'DESCRIPTOR' : _GATEWAYTASKRESULT,
+  '__module__' : 'chirpstack_api.as_pb.as_pb_pb2'
+  # @@protoc_insertion_point(class_scope:as.GatewayTaskResult)
+  })
+_sym_db.RegisterMessage(GatewayTaskResult)
+
 
 DESCRIPTOR._options = None
+_GATEWAYMETADATA_METADATAENTRY._options = None
 _GETDEVICESSUMMARYRESPONSE_DRCOUNTENTRY._options = None
 _HANDLEGATEWAYSTATSREQUEST_METADATAENTRY._options = None
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERFREQUENCYENTRY._options = None
+_HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERFREQUENCYENTRY._options = None
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERDRENTRY._options = None
+_HANDLEGATEWAYSTATSREQUEST_RXPACKETSPERDRENTRY._options = None
+_HANDLEGATEWAYSTATSREQUEST_TXPACKETSPERSTATUSENTRY._options = None
 
 _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
   name='ApplicationServerService',
@@ -1605,8 +2684,8 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=3274,
-  serialized_end=4414,
+  serialized_start=5374,
+  serialized_end=7061,
   methods=[
   _descriptor.MethodDescriptor(
     name='HandleUplinkData',
@@ -1729,9 +2808,19 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='GetOrgIDByGwID',
+    full_name='as.ApplicationServerService.GetOrgIDByGwID',
+    index=12,
+    containing_service=None,
+    input_type=_GETORGIDBYGWIDREQUEST,
+    output_type=_GETORGBYDEVEUIRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='GetDeviceAppSKey',
     full_name='as.ApplicationServerService.GetDeviceAppSKey',
-    index=12,
+    index=13,
     containing_service=None,
     input_type=_GETORGBYDEVEUIREQUEST,
     output_type=_GETDEVICEAPPSKEYRESPONSE,
@@ -1741,10 +2830,70 @@ _APPLICATIONSERVERSERVICE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ReEncryptDeviceQueueItems',
     full_name='as.ApplicationServerService.ReEncryptDeviceQueueItems',
-    index=13,
+    index=14,
     containing_service=None,
     input_type=_REENCRYPTDEVICEQUEUEITEMSREQUEST,
     output_type=_REENCRYPTDEVICEQUEUEITEMSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='StreamGatewayTaskResult',
+    full_name='as.ApplicationServerService.StreamGatewayTaskResult',
+    index=15,
+    containing_service=None,
+    input_type=_GATEWAYTASKRESULT,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetDictionary',
+    full_name='as.ApplicationServerService.GetDictionary',
+    index=16,
+    containing_service=None,
+    input_type=_GETDICTIONARYREQUEST,
+    output_type=_GETDICTIONARYRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetGWMetaData',
+    full_name='as.ApplicationServerService.GetGWMetaData',
+    index=17,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_GETGWMETADATARESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetServiceProfile',
+    full_name='as.ApplicationServerService.GetServiceProfile',
+    index=18,
+    containing_service=None,
+    input_type=_GETSERVICEPROFILEREQUEST,
+    output_type=_GETSERVICEPROFILERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateServiceProfile',
+    full_name='as.ApplicationServerService.CreateServiceProfile',
+    index=19,
+    containing_service=None,
+    input_type=_CREATESERVICEPROFILEREQUEST,
+    output_type=_CREATESERVICEPROFILERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UpdateSPonDevice',
+    full_name='as.ApplicationServerService.UpdateSPonDevice',
+    index=20,
+    containing_service=None,
+    input_type=_UPDATESPONDEVICEREQUEST,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

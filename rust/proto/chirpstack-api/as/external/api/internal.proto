@@ -186,6 +186,12 @@ message ListAPIKeysRequest {
 
     // Filter on application ID.
     int64 application_id = 5 [json_name = "applicationID"];
+    
+    // sort list by name
+	string orderBy = 6;		
+
+	// sort direction
+	string order = 7;	
 }
 
 message ListAPIKeysResponse {
@@ -254,7 +260,9 @@ message GlobalSearchRequest {
 }
 
 message GlobalSearchResponse {
-	repeated GlobalSearchResult result = 1;
+    repeated GlobalSearchResult result = 1;
+      // Total number of searched rows available within the result-set.
+      int64 total_count = 2;
 }
 
 message GlobalSearchResult {
@@ -287,9 +295,19 @@ message GlobalSearchResult {
 
 	// Gateway name.
 	string gateway_name = 10;
+
+    // Routing profile id.
+    int64 routing_profile_id = 11 [json_name = "routingProfileID"];
+
+    // Routing profile name.
+    string routing_profile_name = 12;    
 }
 
 message SettingsResponse {
+    
+    //ServerName
+    string server_name = 1;
+
     // Branding settings.
     Branding branding = 2;
 

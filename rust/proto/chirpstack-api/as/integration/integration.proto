@@ -10,7 +10,6 @@ option java_outer_classname = "IntegrationProto";
 import "common/common.proto";
 import "google/protobuf/timestamp.proto";
 import "gw/gw.proto";
-import "google/protobuf/timestamp.proto";
 
 enum ErrorType {
     // Unknown type.
@@ -94,7 +93,6 @@ message UplinkEvent {
     // Device address.
     bytes dev_addr = 15;
 
-<<<<<<< HEAD
     // mic for legacy. actility users. Modification
     bytes mic = 16;
 
@@ -103,10 +101,15 @@ message UplinkEvent {
 
     // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
     google.protobuf.Timestamp time = 18;    
-=======
+
     // Published at timestamp.
-    google.protobuf.Timestamp published_at = 16;
->>>>>>> v3.9.9
+    google.protobuf.Timestamp published_at = 19;
+
+    // Device Profile UUID as string
+    string device_profile_id = 20 [json_name = "deviceProfileID"];
+
+    // Device Profile name
+    string device_profile_name = 21;
 }
 
 // JoinEvent is the message sent when a device joined the network.

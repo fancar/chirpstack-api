@@ -12,7 +12,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "common/common.proto";
 import "as/external/api/frameLog.proto";
-
+import "handyrusty/hr.proto";
 
 // GatewayService is the service managing the gateways.
 service GatewayService {
@@ -60,12 +60,27 @@ service GatewayService {
 		};
 	}
 
+	// GetGatewayLogs returns logs of statistics state changed.
+	rpc GetGatewayLogs(hr.LogsGatewayRequest) returns (hr.LogsGatewayResponse) {
+		option (google.api.http) = {
+			post: "/api/gateways/logs",
+			body: "*"
+		};
+	}
+
 	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
 	rpc ListActilityStyled(ListGatewayRequest) returns (ListGwActilityStyledResponse) {
 		option (google.api.http) = {
 			get: "/api/monitoring/gateways/actility_styled"
 		};
-	}	
+	}
+
+	// ListMon lists all gateways with the metrics for monitoring purposes
+	rpc ListMon(google.protobuf.Empty) returns (ListMonResponse) {
+		option (google.api.http) = {
+			get: "/api/monitoring/gateways"
+		};
+	}
 
 	// GetStats lists the gateway stats given the query parameters.
 	rpc GetStats(GetGatewayStatsRequest) returns (GetGatewayStatsResponse) {
@@ -94,12 +109,19 @@ service GatewayService {
     // StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.
 	// Notes:
 	//   * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
-	//   * This endpoint does not work from a web-browser.
+	//   (!) websocket required! The endpoint does not work from a web-swagger.
     rpc StreamFrameLogs(StreamGatewayFrameLogsRequest) returns (stream StreamGatewayFrameLogsResponse) {
         option (google.api.http) = {
             get: "/api/gateways/{gateway_id}/frames"
         };
 	}
+
+	// GetTaskResults lists the gateway tasks had been done by ExecCommand in background mode
+	rpc GetTaskResults(GetGatewayRequest) returns (GetTaskResultsResponse) {
+		option (google.api.http) = {
+			get: "/api/gateways/{id}/task-results"
+		};
+	}    
 }
 
 message Gateway {
@@ -124,7 +146,7 @@ message Gateway {
 
 	// Network-server ID on which the gateway is provisioned.
 	int64 network_server_id = 7 [json_name = "networkServerID"];
-
+	
 	// Gateway-profile ID (UUID string, optional).
 	string gateway_profile_id = 8 [json_name = "gatewayProfileID"];
 
@@ -144,16 +166,25 @@ message Gateway {
     string address = 12;
 
     // Serno - serial number of the device
-    string serno = 13; 
+    string serno = 13;
 
     // the status calculated by last_seen_at parameter (now - stats_interval*1.5 <= last_seen)
     bool active = 14;
 
     // Mobile phone number of SIM-card for the device
-    string phone = 15;     
+    string phone = 15;
 
     // Service-profile ID (UUID string, optional).
     string service_profile_id = 16 [json_name = "serviceProfileID"];
+
+    // operational_status code (according to dictionary table)
+    int64 op_status_code = 17;
+
+    // operational_status label (according to dictionary table). Do not modify here
+    string op_status_label = 18;
+
+	// Network-server Name on which the gateway is provisioned.
+	string network_server_name = 19 [json_name = "networkServerName"];
 }
 
 message GatewayBoard {
@@ -189,6 +220,9 @@ message GetGatewayResponse {
 
 	// Last seen at timestamp.
 	google.protobuf.Timestamp last_seen_at = 5;
+
+	// GPS Last seen at timestamp.
+	google.protobuf.Timestamp GPS_seen_at = 6;	
 };
 
 message GetGatewayStatusResponse {
@@ -285,8 +319,50 @@ message GatewayListItem {
     // the status of radio (if the packet forwarder is running)
     string radio = 12;
 
-    // the status calculated by last_seen_at parameter (now - stats_interval*1.5 <= last_seen)
-    bool active = 13;      
+    // the status calculated from last_seen_at parameter
+    bool active = 13;     
+	
+	//operational status name 
+	string op_status_label = 14;
+
+	//operational status code
+	int64 op_status_code = 15;
+}
+
+// for monitoring list
+message GatewayMonItem {
+	// Gateway ID (HEX encoded).
+	string id = 1;
+
+	// A name for the gateway
+	string name = 2;
+
+    // Last seen timestamp.
+    google.protobuf.Timestamp last_seen_at = 3;
+
+    // metadata: packet forwarder status (if it is running)
+    string radio = 4;
+
+    // metadata: cpu load (%)
+    string cpu = 5;
+
+    // metadata: RAM usage (%)
+    string ram = 6;
+
+    // metadata: disk space used (%)
+    string disk = 7; 
+
+    // metadata: system uptime (unix)
+    string uptime = 8;
+
+    // metadata: ntp status ("OK" when it is fine)
+    string ntp_status = 9; 
+
+    // the status calculated from last_seen_at parameter
+    bool active = 10;    
+
+	//Operational status label
+	string op_status_label = 11;
 }
 
 message StatsItemActilityStyled {
@@ -328,6 +404,10 @@ message ListGatewayResponse {
 	repeated GatewayListItem result = 2;
 }
 
+message ListMonResponse {
+	// Nodes within this result-set.
+	repeated GatewayMonItem result = 1;
+}
 
 message ListGwActilityStyledResponse {
 	// Total number of nodes available within the result-set.
@@ -357,6 +437,21 @@ message GatewayStats {
 
 	// Packets transmitted by the gateway.
 	int32 tx_packets_emitted = 5;
+
+    // Tx packets per frequency.
+    map<uint32, uint32> tx_packets_per_frequency = 6;
+
+    // Rx packets per frequency.
+    map<uint32, uint32> rx_packets_per_frequency = 7;
+
+    // Tx packets per DR.
+    map<uint32, uint32> tx_packets_per_dr = 8;
+
+    // Rx packets per DR.
+    map<uint32, uint32> rx_packets_per_dr = 9;
+
+    // Tx packets per status.
+    map<string, uint32> tx_packets_per_status = 10;
 }
 
 message GetGatewayStatsRequest {
@@ -430,4 +525,37 @@ message StreamGatewayFrameLogsResponse {
         // Contains a downlink frame.
         DownlinkFrameLog downlink_frame = 2;
     }
+}
+
+message GwTaskResults {
+    // Task ID.
+    int64 id = 1;	
+
+    // Execution ID.
+    string exec_id = 2 [json_name = "execID"];	
+
+	// timestamp.
+	google.protobuf.Timestamp updated_at = 3;
+
+    // command that had been executed on gateway
+    string cmd = 4;
+
+    // stderr by the command executed if exists
+    bytes stderr = 5;
+
+    // error recieved from gateway bridge or cmd script
+    string error = 6;
+
+    // description
+    string description = 7;
+
+    // size of stdout in bytes
+    int32 stdout_len = 8;
+
+    // the name of a file or other item for data in stdin
+    string name = 9;        
+}
+
+message GetTaskResultsResponse {
+	repeated GwTaskResults results = 1;
 }

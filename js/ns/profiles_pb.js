@@ -10,7 +10,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 goog.exportSymbol('proto.ns.DeviceProfile', null, global);
+goog.exportSymbol('proto.ns.MacCommandSwitch', null, global);
 goog.exportSymbol('proto.ns.RatePolicy', null, global);
+goog.exportSymbol('proto.ns.RateUnit', null, global);
 goog.exportSymbol('proto.ns.RoutingProfile', null, global);
 goog.exportSymbol('proto.ns.ServiceProfile', null, global);
 
@@ -63,9 +65,11 @@ proto.ns.ServiceProfile.toObject = function(includeInstance, msg) {
     ulRate: msg.getUlRate(),
     ulBucketSize: msg.getUlBucketSize(),
     ulRatePolicy: msg.getUlRatePolicy(),
+    ulRateUnit: msg.getUlRateUnit(),
     dlRate: msg.getDlRate(),
     dlBucketSize: msg.getDlBucketSize(),
     dlRatePolicy: msg.getDlRatePolicy(),
+    dlRateUnit: msg.getDlRateUnit(),
     addGwMetadata: msg.getAddGwMetadata(),
     devStatusReqFreq: msg.getDevStatusReqFreq(),
     reportDevStatusBattery: msg.getReportDevStatusBattery(),
@@ -79,7 +83,16 @@ proto.ns.ServiceProfile.toObject = function(includeInstance, msg) {
     nwkGeoLoc: msg.getNwkGeoLoc(),
     targetPer: msg.getTargetPer(),
     minGwDiversity: msg.getMinGwDiversity(),
-    gwsPrivate: msg.getGwsPrivate()
+    gwsPrivate: msg.getGwsPrivate(),
+    isDisabled: msg.getIsDisabled(),
+    adrAlgorithmId: msg.getAdrAlgorithmId(),
+    minTxPowerIndex: msg.getMinTxPowerIndex(),
+    maxTxPowerIndex: msg.getMaxTxPowerIndex(),
+    maxNbTrans: msg.getMaxNbTrans(),
+    minNbTrans: msg.getMinNbTrans(),
+    allowRxConfirmed: msg.getAllowRxConfirmed(),
+    allowTxUnconfirmed: msg.getAllowTxUnconfirmed(),
+    allowTxConfirmed: msg.getAllowTxConfirmed()
   };
 
   if (includeInstance) {
@@ -121,7 +134,7 @@ proto.ns.ServiceProfile.deserializeBinaryFromReader = function(msg, reader) {
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setUlRate(value);
       break;
     case 3:
@@ -132,8 +145,12 @@ proto.ns.ServiceProfile.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {!proto.ns.RatePolicy} */ (reader.readEnum());
       msg.setUlRatePolicy(value);
       break;
+    case 29:
+      var value = /** @type {!proto.ns.RateUnit} */ (reader.readEnum());
+      msg.setUlRateUnit(value);
+      break;
     case 5:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setDlRate(value);
       break;
     case 6:
@@ -143,6 +160,10 @@ proto.ns.ServiceProfile.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {!proto.ns.RatePolicy} */ (reader.readEnum());
       msg.setDlRatePolicy(value);
+      break;
+    case 30:
+      var value = /** @type {!proto.ns.RateUnit} */ (reader.readEnum());
+      msg.setDlRateUnit(value);
       break;
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -200,6 +221,42 @@ proto.ns.ServiceProfile.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setGwsPrivate(value);
       break;
+    case 31:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsDisabled(value);
+      break;
+    case 32:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAdrAlgorithmId(value);
+      break;
+    case 33:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMinTxPowerIndex(value);
+      break;
+    case 34:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxTxPowerIndex(value);
+      break;
+    case 35:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMaxNbTrans(value);
+      break;
+    case 36:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setMinNbTrans(value);
+      break;
+    case 37:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAllowRxConfirmed(value);
+      break;
+    case 38:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAllowTxUnconfirmed(value);
+      break;
+    case 39:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAllowTxConfirmed(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -247,7 +304,7 @@ proto.ns.ServiceProfile.prototype.serializeBinaryToWriter = function (writer) {
   }
   f = this.getUlRate();
   if (f !== 0) {
-    writer.writeUint32(
+    writer.writeInt32(
       2,
       f
     );
@@ -266,9 +323,16 @@ proto.ns.ServiceProfile.prototype.serializeBinaryToWriter = function (writer) {
       f
     );
   }
+  f = this.getUlRateUnit();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      29,
+      f
+    );
+  }
   f = this.getDlRate();
   if (f !== 0) {
-    writer.writeUint32(
+    writer.writeInt32(
       5,
       f
     );
@@ -284,6 +348,13 @@ proto.ns.ServiceProfile.prototype.serializeBinaryToWriter = function (writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       7,
+      f
+    );
+  }
+  f = this.getDlRateUnit();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      30,
       f
     );
   }
@@ -385,6 +456,69 @@ proto.ns.ServiceProfile.prototype.serializeBinaryToWriter = function (writer) {
       f
     );
   }
+  f = this.getIsDisabled();
+  if (f) {
+    writer.writeBool(
+      31,
+      f
+    );
+  }
+  f = this.getAdrAlgorithmId();
+  if (f.length > 0) {
+    writer.writeString(
+      32,
+      f
+    );
+  }
+  f = this.getMinTxPowerIndex();
+  if (f !== 0) {
+    writer.writeInt32(
+      33,
+      f
+    );
+  }
+  f = this.getMaxTxPowerIndex();
+  if (f !== 0) {
+    writer.writeInt32(
+      34,
+      f
+    );
+  }
+  f = this.getMaxNbTrans();
+  if (f !== 0) {
+    writer.writeInt32(
+      35,
+      f
+    );
+  }
+  f = this.getMinNbTrans();
+  if (f !== 0) {
+    writer.writeInt32(
+      36,
+      f
+    );
+  }
+  f = this.getAllowRxConfirmed();
+  if (f) {
+    writer.writeBool(
+      37,
+      f
+    );
+  }
+  f = this.getAllowTxUnconfirmed();
+  if (f) {
+    writer.writeBool(
+      38,
+      f
+    );
+  }
+  f = this.getAllowTxConfirmed();
+  if (f) {
+    writer.writeBool(
+      39,
+      f
+    );
+  }
 };
 
 
@@ -437,7 +571,7 @@ proto.ns.ServiceProfile.prototype.setId = function(value) {
 
 
 /**
- * optional uint32 ul_rate = 2;
+ * optional int32 ul_rate = 2;
  * @return {number}
  */
 proto.ns.ServiceProfile.prototype.getUlRate = function() {
@@ -482,7 +616,22 @@ proto.ns.ServiceProfile.prototype.setUlRatePolicy = function(value) {
 
 
 /**
- * optional uint32 dl_rate = 5;
+ * optional RateUnit ul_rate_unit = 29;
+ * @return {!proto.ns.RateUnit}
+ */
+proto.ns.ServiceProfile.prototype.getUlRateUnit = function() {
+  return /** @type {!proto.ns.RateUnit} */ (jspb.Message.getFieldProto3(this, 29, 0));
+};
+
+
+/** @param {!proto.ns.RateUnit} value  */
+proto.ns.ServiceProfile.prototype.setUlRateUnit = function(value) {
+  jspb.Message.setField(this, 29, value);
+};
+
+
+/**
+ * optional int32 dl_rate = 5;
  * @return {number}
  */
 proto.ns.ServiceProfile.prototype.getDlRate = function() {
@@ -523,6 +672,21 @@ proto.ns.ServiceProfile.prototype.getDlRatePolicy = function() {
 /** @param {!proto.ns.RatePolicy} value  */
 proto.ns.ServiceProfile.prototype.setDlRatePolicy = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional RateUnit dl_rate_unit = 30;
+ * @return {!proto.ns.RateUnit}
+ */
+proto.ns.ServiceProfile.prototype.getDlRateUnit = function() {
+  return /** @type {!proto.ns.RateUnit} */ (jspb.Message.getFieldProto3(this, 30, 0));
+};
+
+
+/** @param {!proto.ns.RateUnit} value  */
+proto.ns.ServiceProfile.prototype.setDlRateUnit = function(value) {
+  jspb.Message.setField(this, 30, value);
 };
 
 
@@ -776,6 +940,149 @@ proto.ns.ServiceProfile.prototype.setGwsPrivate = function(value) {
 };
 
 
+/**
+ * optional bool is_disabled = 31;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.ServiceProfile.prototype.getIsDisabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 31, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.ServiceProfile.prototype.setIsDisabled = function(value) {
+  jspb.Message.setField(this, 31, value);
+};
+
+
+/**
+ * optional string adr_algorithm_id = 32;
+ * @return {string}
+ */
+proto.ns.ServiceProfile.prototype.getAdrAlgorithmId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 32, ""));
+};
+
+
+/** @param {string} value  */
+proto.ns.ServiceProfile.prototype.setAdrAlgorithmId = function(value) {
+  jspb.Message.setField(this, 32, value);
+};
+
+
+/**
+ * optional int32 min_tx_power_index = 33;
+ * @return {number}
+ */
+proto.ns.ServiceProfile.prototype.getMinTxPowerIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 33, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.ServiceProfile.prototype.setMinTxPowerIndex = function(value) {
+  jspb.Message.setField(this, 33, value);
+};
+
+
+/**
+ * optional int32 max_tx_power_index = 34;
+ * @return {number}
+ */
+proto.ns.ServiceProfile.prototype.getMaxTxPowerIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 34, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.ServiceProfile.prototype.setMaxTxPowerIndex = function(value) {
+  jspb.Message.setField(this, 34, value);
+};
+
+
+/**
+ * optional int32 max_nb_trans = 35;
+ * @return {number}
+ */
+proto.ns.ServiceProfile.prototype.getMaxNbTrans = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 35, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.ServiceProfile.prototype.setMaxNbTrans = function(value) {
+  jspb.Message.setField(this, 35, value);
+};
+
+
+/**
+ * optional int32 min_nb_trans = 36;
+ * @return {number}
+ */
+proto.ns.ServiceProfile.prototype.getMinNbTrans = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 36, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.ServiceProfile.prototype.setMinNbTrans = function(value) {
+  jspb.Message.setField(this, 36, value);
+};
+
+
+/**
+ * optional bool allow_rx_confirmed = 37;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.ServiceProfile.prototype.getAllowRxConfirmed = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 37, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.ServiceProfile.prototype.setAllowRxConfirmed = function(value) {
+  jspb.Message.setField(this, 37, value);
+};
+
+
+/**
+ * optional bool allow_tx_unconfirmed = 38;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.ServiceProfile.prototype.getAllowTxUnconfirmed = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 38, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.ServiceProfile.prototype.setAllowTxUnconfirmed = function(value) {
+  jspb.Message.setField(this, 38, value);
+};
+
+
+/**
+ * optional bool allow_tx_confirmed = 39;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.ServiceProfile.prototype.getAllowTxConfirmed = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 39, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.ServiceProfile.prototype.setAllowTxConfirmed = function(value) {
+  jspb.Message.setField(this, 39, value);
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -799,7 +1106,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.ns.DeviceProfile.repeatedFields_ = [15];
+proto.ns.DeviceProfile.repeatedFields_ = [15,24];
 
 
 
@@ -849,7 +1156,16 @@ proto.ns.DeviceProfile.toObject = function(includeInstance, msg) {
     supportsJoin: msg.getSupportsJoin(),
     rfRegion: msg.getRfRegion(),
     supports32bitFCnt: msg.getSupports32bitFCnt(),
-    adrAlgorithmId: msg.getAdrAlgorithmId()
+    joinAcceptDelay1: msg.getJoinAcceptDelay1(),
+    joinAcceptDelay2: msg.getJoinAcceptDelay2(),
+    fCntAutomaticReset: msg.getFCntAutomaticReset(),
+    cmdSwitchesList: jspb.Message.toObjectList(msg.getCmdSwitchesList(),
+    proto.ns.MacCommandSwitch.toObject, includeInstance),
+    adrAlgorithmId: msg.getAdrAlgorithmId(),
+    rx1Delay: msg.getRx1Delay(),
+    rx1DrOffset: msg.getRx1DrOffset(),
+    rx2Datarate: msg.getRx2Datarate(),
+    rx2Freq: msg.getRx2Freq()
   };
 
   if (includeInstance) {
@@ -967,8 +1283,42 @@ proto.ns.DeviceProfile.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSupports32bitFCnt(value);
       break;
     case 21:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setJoinAcceptDelay1(value);
+      break;
+    case 22:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setJoinAcceptDelay2(value);
+      break;
+    case 23:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFCntAutomaticReset(value);
+      break;
+    case 24:
+      var value = new proto.ns.MacCommandSwitch;
+      reader.readMessage(value,proto.ns.MacCommandSwitch.deserializeBinaryFromReader);
+      msg.getCmdSwitchesList().push(value);
+      msg.setCmdSwitchesList(msg.getCmdSwitchesList());
+      break;
+    case 25:
       var value = /** @type {string} */ (reader.readString());
       msg.setAdrAlgorithmId(value);
+      break;
+    case 26:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRx1Delay(value);
+      break;
+    case 27:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRx1DrOffset(value);
+      break;
+    case 28:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRx2Datarate(value);
+      break;
+    case 29:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setRx2Freq(value);
       break;
     default:
       reader.skipField();
@@ -1148,10 +1498,67 @@ proto.ns.DeviceProfile.prototype.serializeBinaryToWriter = function (writer) {
       f
     );
   }
+  f = this.getJoinAcceptDelay1();
+  if (f !== 0) {
+    writer.writeUint32(
+      21,
+      f
+    );
+  }
+  f = this.getJoinAcceptDelay2();
+  if (f !== 0) {
+    writer.writeUint32(
+      22,
+      f
+    );
+  }
+  f = this.getFCntAutomaticReset();
+  if (f) {
+    writer.writeBool(
+      23,
+      f
+    );
+  }
+  f = this.getCmdSwitchesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      24,
+      f,
+      proto.ns.MacCommandSwitch.serializeBinaryToWriter
+    );
+  }
   f = this.getAdrAlgorithmId();
   if (f.length > 0) {
     writer.writeString(
-      21,
+      25,
+      f
+    );
+  }
+  f = this.getRx1Delay();
+  if (f !== 0) {
+    writer.writeInt32(
+      26,
+      f
+    );
+  }
+  f = this.getRx1DrOffset();
+  if (f !== 0) {
+    writer.writeInt32(
+      27,
+      f
+    );
+  }
+  f = this.getRx2Datarate();
+  if (f !== 0) {
+    writer.writeInt32(
+      28,
+      f
+    );
+  }
+  f = this.getRx2Freq();
+  if (f !== 0) {
+    writer.writeInt32(
+      29,
       f
     );
   }
@@ -1507,17 +1914,147 @@ proto.ns.DeviceProfile.prototype.setSupports32bitFCnt = function(value) {
 
 
 /**
- * optional string adr_algorithm_id = 21;
+ * optional uint32 join_accept_delay_1 = 21;
+ * @return {number}
+ */
+proto.ns.DeviceProfile.prototype.getJoinAcceptDelay1 = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 21, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.DeviceProfile.prototype.setJoinAcceptDelay1 = function(value) {
+  jspb.Message.setField(this, 21, value);
+};
+
+
+/**
+ * optional uint32 join_accept_delay_2 = 22;
+ * @return {number}
+ */
+proto.ns.DeviceProfile.prototype.getJoinAcceptDelay2 = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 22, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.DeviceProfile.prototype.setJoinAcceptDelay2 = function(value) {
+  jspb.Message.setField(this, 22, value);
+};
+
+
+/**
+ * optional bool f_cnt_automatic_reset = 23;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.DeviceProfile.prototype.getFCntAutomaticReset = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 23, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.DeviceProfile.prototype.setFCntAutomaticReset = function(value) {
+  jspb.Message.setField(this, 23, value);
+};
+
+
+/**
+ * repeated MacCommandSwitch cmd_switches = 24;
+ * If you change this array by adding, removing or replacing elements, or if you
+ * replace the array itself, then you must call the setter to update it.
+ * @return {!Array.<!proto.ns.MacCommandSwitch>}
+ */
+proto.ns.DeviceProfile.prototype.getCmdSwitchesList = function() {
+  return /** @type{!Array.<!proto.ns.MacCommandSwitch>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.ns.MacCommandSwitch, 24));
+};
+
+
+/** @param {Array.<!proto.ns.MacCommandSwitch>} value  */
+proto.ns.DeviceProfile.prototype.setCmdSwitchesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 24, value);
+};
+
+
+proto.ns.DeviceProfile.prototype.clearCmdSwitchesList = function() {
+  this.setCmdSwitchesList([]);
+};
+
+
+/**
+ * optional string adr_algorithm_id = 25;
  * @return {string}
  */
 proto.ns.DeviceProfile.prototype.getAdrAlgorithmId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 21, ""));
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 25, ""));
 };
 
 
 /** @param {string} value  */
 proto.ns.DeviceProfile.prototype.setAdrAlgorithmId = function(value) {
-  jspb.Message.setField(this, 21, value);
+  jspb.Message.setField(this, 25, value);
+};
+
+
+/**
+ * optional int32 rx1_delay = 26;
+ * @return {number}
+ */
+proto.ns.DeviceProfile.prototype.getRx1Delay = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 26, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.DeviceProfile.prototype.setRx1Delay = function(value) {
+  jspb.Message.setField(this, 26, value);
+};
+
+
+/**
+ * optional int32 rx1_dr_offset = 27;
+ * @return {number}
+ */
+proto.ns.DeviceProfile.prototype.getRx1DrOffset = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 27, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.DeviceProfile.prototype.setRx1DrOffset = function(value) {
+  jspb.Message.setField(this, 27, value);
+};
+
+
+/**
+ * optional int32 rx2_datarate = 28;
+ * @return {number}
+ */
+proto.ns.DeviceProfile.prototype.getRx2Datarate = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 28, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.DeviceProfile.prototype.setRx2Datarate = function(value) {
+  jspb.Message.setField(this, 28, value);
+};
+
+
+/**
+ * optional int32 rx2_freq = 29;
+ * @return {number}
+ */
+proto.ns.DeviceProfile.prototype.getRx2Freq = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 29, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.DeviceProfile.prototype.setRx2Freq = function(value) {
+  jspb.Message.setField(this, 29, value);
 };
 
 
@@ -1812,12 +2349,211 @@ proto.ns.RoutingProfile.prototype.setTlsKey = function(value) {
 };
 
 
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.ns.MacCommandSwitch = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.ns.MacCommandSwitch, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.ns.MacCommandSwitch.displayName = 'proto.ns.MacCommandSwitch';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.ns.MacCommandSwitch.prototype.toObject = function(opt_includeInstance) {
+  return proto.ns.MacCommandSwitch.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.ns.MacCommandSwitch} msg The msg instance to transform.
+ * @return {!Object}
+ */
+proto.ns.MacCommandSwitch.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    cid: msg.getCid(),
+    enabled: msg.getEnabled()
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.ns.MacCommandSwitch}
+ */
+proto.ns.MacCommandSwitch.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.ns.MacCommandSwitch;
+  return proto.ns.MacCommandSwitch.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.ns.MacCommandSwitch} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.ns.MacCommandSwitch}
+ */
+proto.ns.MacCommandSwitch.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCid(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setEnabled(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Class method variant: serializes the given message to binary data
+ * (in protobuf wire format), writing to the given BinaryWriter.
+ * @param {!proto.ns.MacCommandSwitch} message
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.ns.MacCommandSwitch.serializeBinaryToWriter = function(message, writer) {
+  message.serializeBinaryToWriter(writer);
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.ns.MacCommandSwitch.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  this.serializeBinaryToWriter(writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format),
+ * writing to the given BinaryWriter.
+ * @param {!jspb.BinaryWriter} writer
+ */
+proto.ns.MacCommandSwitch.prototype.serializeBinaryToWriter = function (writer) {
+  var f = undefined;
+  f = this.getCid();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+  f = this.getEnabled();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * Creates a deep clone of this proto. No data is shared with the original.
+ * @return {!proto.ns.MacCommandSwitch} The clone.
+ */
+proto.ns.MacCommandSwitch.prototype.cloneMessage = function() {
+  return /** @type {!proto.ns.MacCommandSwitch} */ (jspb.Message.cloneMessage(this));
+};
+
+
+/**
+ * optional uint32 cid = 1;
+ * @return {number}
+ */
+proto.ns.MacCommandSwitch.prototype.getCid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldProto3(this, 1, 0));
+};
+
+
+/** @param {number} value  */
+proto.ns.MacCommandSwitch.prototype.setCid = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional bool enabled = 2;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.ns.MacCommandSwitch.prototype.getEnabled = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 2, false));
+};
+
+
+/** @param {boolean} value  */
+proto.ns.MacCommandSwitch.prototype.setEnabled = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
 /**
  * @enum {number}
  */
 proto.ns.RatePolicy = {
   DROP: 0,
   MARK: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.ns.RateUnit = {
+  HOUR: 0,
+  DAY: 1,
+  WEEK: 2,
+  MONTH: 3,
+  YEAR: 4
 };
 
 goog.object.extend(exports, proto.ns);

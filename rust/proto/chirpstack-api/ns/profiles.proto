@@ -2,25 +2,39 @@ syntax = "proto3";
 
 package ns;
 
-option go_package = "github.com/brocaar/chirpstack-api/ns";
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/ns";
 option java_package = "io.chirpstack.api.ns";
 option java_multiple_files = true;
 option java_outer_classname = "ProfilesProto";
 
 enum RatePolicy {
     // Drop
-    DROP = 0;
+    Drop = 0;
 
     // Mark
-    MARK = 1;
+    Mark = 1;
 }
+
+enum RateUnit {
+    // Per Hour
+    Hour = 0;
+    // Per Day
+    Day = 1;
+    // Per Week
+    Week = 2;
+    // Per Month
+    Month = 3;
+    // Per Year
+    Year = 4;
+}
+
 
 message ServiceProfile {
     // Service-profile ID.
     bytes id = 1;
 
     // Token bucket filling rate, including ACKs (packet/h).
-    uint32 ul_rate = 2;
+    int32 ul_rate = 2;
 
     // Token bucket burst size.
     uint32 ul_bucket_size = 3;
@@ -28,14 +42,20 @@ message ServiceProfile {
     // Drop or mark when exceeding ULRate.
     RatePolicy ul_rate_policy = 4;
 
+    // Uplink rate unit (per hour, per day, per week, per month, per year)
+    RateUnit ul_rate_unit = 29;
+
     // Token bucket filling rate, including ACKs (packet/h).
-    uint32 dl_rate = 5;
+    int32 dl_rate = 5;
 
     // Token bucket burst size.
     uint32 dl_bucket_size = 6;
 
     // Drop or mark when exceeding DLRate.
     RatePolicy dl_rate_policy = 7;
+
+    // Downlink rate unit (per hour, per day, per week, per month, per year)
+    RateUnit dl_rate_unit = 30;
 
     // GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS.
     bool add_gw_metadata = 8;
@@ -80,6 +100,38 @@ message ServiceProfile {
     // This means that these gateways can only be used by devices under the
     // same service-profile.
     bool gws_private = 21;
+
+    // Service profile is disabled if true. UL DL packets droped and logged as DROP
+    bool is_disabled = 31;
+
+    // ADR algorithm ID.
+    // In case this is left blank, or is configured to a non-existing ADR
+    // algorithm (plugin), then it falls back to 'default'.
+    string adr_algorithm_id = 32;
+
+    // Minimum TX power index that can't be overlaped by ADR.
+    int32 min_tx_power_index = 33;
+
+    // Maximum TX power index that can't be overlaped by ADR.
+    // if adr=fixed - the value as fixed TxPowerIndex will be in use
+    int32 max_tx_power_index = 34;
+
+    // MAX NbTrans
+    // the maximum number of transmissions.
+    int32 max_nb_trans = 35;
+
+    // MIN NbTrans
+    // the mininum number of transmissions.
+    int32 min_nb_trans = 36;
+
+    // if true - allows processing confirmed uplinks
+    bool allow_rx_confirmed = 37;
+
+    // if true - allows processing unconfirmed downlinks
+    bool allow_tx_unconfirmed = 38;
+
+    // if true - allows processing confirmed downlinks
+    bool allow_tx_confirmed = 39; 
 }
 
 message DeviceProfile {
@@ -113,22 +165,22 @@ message DeviceProfile {
     // Revision of the Regional Parameters document supported by the End-Device.
     string reg_params_revision = 10;
 
-    // Class A RX1 delay (mandatory for ABP).
+    // Class A RX1 delay (For ABP initialization  only! mandatory for ABP).
     uint32 rx_delay_1 = 11;
 
-    // RX1 data rate offset (mandatory for ABP).
+    // RX1 data rate offset (For ABP initialization  only! mandatory for ABP).
     uint32 rx_dr_offset_1 = 12;
 
-    // RX2 data rate (mandatory for ABP).
+    // RX2 data rate (For ABP initialization  only! mandatory for ABP).
     uint32 rx_datarate_2 = 13;
 
-    // RX2 channel frequency (mandatory for ABP).
+    // RX2 channel frequency (For ABP initialization  only! mandatory for ABP).
     uint32 rx_freq_2 = 14;
 
     // List of factory-preset frequencies (mandatory for ABP).
     repeated uint32 factory_preset_freqs = 15;
 
-    // Maximum EIRP supported by the End-Device.
+    // Deprecated. Moved to SP. Maximum EIRP supported by the End-Device.
     uint32 max_eirp = 16;
 
     // Maximum duty cycle supported by the End-Device.
@@ -143,10 +195,38 @@ message DeviceProfile {
     // End-Device uses 32bit FCnt (mandatory for LoRaWAN 1.0 End-Device).
     bool supports_32bit_f_cnt = 20;
 
-    // ADR algorithm ID.
-    // In case this is left blank, or is configured to a non-existing ADR
-    // algorithm (plugin), then it falls back to 'default'.
-    string adr_algorithm_id = 21;
+    // delay between the end of join request message
+    // and start of RX1 window to recieve a Join Accept
+    // default 5000ms
+    uint32 join_accept_delay_1 = 21;
+
+    // delay between the end of join request message
+    // and start of RX2 window to recieve a Join Accept
+    // default 6000ms
+    uint32 join_accept_delay_2 = 22;
+
+    // allow autoreset for low counters recieved
+    // (for ABP devices only)
+    bool f_cnt_automatic_reset = 23;
+
+    repeated MacCommandSwitch cmd_switches = 24;
+
+    // Deprecated. Moved to SP. 
+    // TODO: remove it
+    string adr_algorithm_id = 25;
+
+    // Class A RX1 delay. If not set (-1) - default value from NS cfg in use
+    // RX2 delay will be +1s to the rx1_delay
+    int32 rx1_delay = 26;
+
+    // RX1 data rate offset. If not set (-1) - default value from NS cfg in use
+    int32 rx1_dr_offset = 27;
+
+    // RX2 data rate. If not set (-1) - default value from NS cfg in use
+    int32 rx2_datarate = 28;
+
+    // RX2 channel frequency. If not set (-1) - default value from NS cfg in use
+    int32 rx2_freq = 29;
 }
 
 message RoutingProfile {
@@ -167,4 +247,15 @@ message RoutingProfile {
     // for security reasons. When updating the routing-profile, an empty tls_key
     // does not clear the certificate, unless the tls_cert is also left blank.
     string tls_key = 5;
+}
+
+
+message MacCommandSwitch {
+    // Command identifier (specified by the LoRaWAN specs).
+    // see https://github.com/brocaar/lorawan/blob/master/mac_commands.go
+    // for example 10 is 0x0A which is DLChannelReq command
+    uint32 cid = 1;
+
+    // if true the MACcommand with the identifier will be allowed
+    bool enabled = 2;    
 }

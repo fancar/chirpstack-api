@@ -5,13 +5,14 @@
 
 import * as as_external_api_deviceQueue_pb from "../../../as/external/api/deviceQueue_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface IDeviceQueueServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   enqueue: grpc.MethodDefinition<as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueItemResponse>;
   flush: grpc.MethodDefinition<as_external_api_deviceQueue_pb.FlushDeviceQueueRequest, google_protobuf_empty_pb.Empty>;
   list: grpc.MethodDefinition<as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>;
   actilityEnqueue: grpc.MethodDefinition<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>;
+  getNextDownlinkFCnt: grpc.MethodDefinition<as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest, as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse>;
 }
 
 export const DeviceQueueServiceService: IDeviceQueueServiceService;
@@ -21,6 +22,7 @@ export interface IDeviceQueueServiceServer extends grpc.UntypedServiceImplementa
   flush: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.FlushDeviceQueueRequest, google_protobuf_empty_pb.Empty>;
   list: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.ListDeviceQueueItemsRequest, as_external_api_deviceQueue_pb.ListDeviceQueueItemsResponse>;
   actilityEnqueue: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>;
+  getNextDownlinkFCnt: grpc.handleUnaryCall<as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest, as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse>;
 }
 
 export class DeviceQueueServiceClient extends grpc.Client {
@@ -37,4 +39,7 @@ export class DeviceQueueServiceClient extends grpc.Client {
   actilityEnqueue(argument: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>): grpc.ClientUnaryCall;
   actilityEnqueue(argument: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>): grpc.ClientUnaryCall;
   actilityEnqueue(argument: as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.EnqueueDeviceQueueActilityItemResponse>): grpc.ClientUnaryCall;
+  getNextDownlinkFCnt(argument: as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse>): grpc.ClientUnaryCall;
+  getNextDownlinkFCnt(argument: as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse>): grpc.ClientUnaryCall;
+  getNextDownlinkFCnt(argument: as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse>): grpc.ClientUnaryCall;
 }

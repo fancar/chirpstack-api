@@ -9,6 +9,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var gw_gw_pb = require('../../../gw/gw_pb.js');
 goog.exportSymbol('proto.api.DownlinkFrameLog', null, global);
 goog.exportSymbol('proto.api.RXWindow', null, global);

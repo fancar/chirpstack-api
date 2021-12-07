@@ -4,13 +4,11 @@ package hr;
 
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/handyrusty";
 
-import "google/protobuf/timestamp.proto";
-// import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
-import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
 import "common/common.proto";
 import "gw/gw.proto";
-// import "ns/profiles.proto";
+
 
 
 // HandyRustyService provides the "handy-rusty additional enforta tools" API methods.
@@ -40,7 +38,240 @@ service HandyRustyService {
     rpc StreamDeviceFramesLogCSV(GetDeviceFramesLogRequest) returns (stream StreamDeviceFramesLogCSVResponse) {}
 
     // GetCurrentState returns items for monitoring purposes.
-    rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}    
+    rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}
+
+    // Store to clickhouse replies of integration event notifications
+    rpc StoreIntegrationReplies(StoreIntegrationReplyRequest) returns (StoreIntegrationReplyResponse) {}
+
+    // Get replies of integration event notifications
+    rpc GetIntegrationReplies(GetIntegrationRepliesRequest) returns (GetIntegrationRepliesResponse) {}
+
+    // Get dictionaries from clickhouse
+    rpc GetGatewayLogs(LogsGatewayRequest) returns (LogsGatewayResponse) {}
+
+    // Get stats for gateway from clickhouse
+    rpc GetGwStats(GetGwStatsRequest) returns (GetGwStatsResponse) {}
+
+    // Get stats for device from clickhouse current
+    rpc GetDeviceStats(GetDeviceStatsRequest) returns (GetDeviceStatsResponse) {}
+
+    // Get stats for device from clickhouse for last 14 days
+    rpc GetDeviceStatsLastTwoweeks(GetDeviceStatsRequest) returns (GetDeviceStatsLastTwoweeksResponse) {}     
+    
+    // Get stats for device from clickhouse for last 14 days aggregated by day
+    rpc GetDeviceStatsLastTwoweeksAggregated(GetDeviceStatsRequest) returns (GetDeviceStatsLastTwoweeksResponse) {}      
+
+    // Get stats for device from clickhouse for last 14 days aggregated by day
+    rpc GetAveragesForDeviceList(GetAveragesForDeviceListRequest) returns (GetAveragesForDeviceListResponse) {}    
+}
+
+message GetAveragesForDeviceListRequest {
+    // Device EUI array
+    repeated string dev_list = 1;   
+}
+
+message AveragesForDeviceList {
+    // Device EUI
+    string dev_eui = 1;
+
+    // average per for last 24 hours
+    float per_avg = 2;
+
+    // rx+tx packets for last 24 hours
+    uint32 packet_cnt = 3;
+
+    // last signal to noise ratio
+    double snr_last = 4; 
+
+    // last received signal strength indication
+    int32 rssi_last = 5;     
+}
+
+message GetAveragesForDeviceListResponse {
+    repeated AveragesForDeviceList result = 1;
+}
+
+message GetDeviceStatsRequest {
+    // Device EUI
+    string dev_eui = 1;    
+}
+
+message GetDeviceStatsResponse {
+    // number of rx+tx packets for last 24 hours
+    uint32 packet_cnt = 1;
+
+    // average estimated signal power for last 24 hours
+    float esp_avg = 2;    
+
+    // average signal to noise ratio for last 24 hours
+    float snr_avg = 3; 
+
+    // average received signal strength indication for last 24 hours
+    float rssi_avg = 4; 
+
+    // average packet error rate for last 24 hours
+    float per_avg = 5; 
+
+    // last estimated signal power
+    double esp_last = 6;    
+
+    // last signal to noise ratio
+    double snr_last = 7; 
+
+    // last received signal strength indication
+    int32 rssi_last = 8; 
+
+    // last time spreading factor
+    uint32 sf_last = 9;
+
+    // last received uplink DateTime
+    google.protobuf.Timestamp rx_last = 10; 
+
+    // last received downlink DateTime
+    google.protobuf.Timestamp tx_last = 11; 
+
+    // last successful join DateTime
+    google.protobuf.Timestamp join_last = 12;
+
+    // instantaneous packet error rate for last 20 packets history in device-session
+    float per_last = 13; 
+}
+
+message DeviceStats {
+    // last received uplink DateTime
+    google.protobuf.Timestamp created_at = 1; 
+
+    // number of uplink packets
+    uint32 rx_cnt = 2;
+
+    // number of downlink packets
+    uint32 tx_cnt = 3;
+
+    // packet error rate
+    float per = 4; 
+
+    // estimated signal power
+    float esp = 5;    
+
+    // average received signal strength
+    float rssi = 6; 
+
+    // signal to noise ratio
+    float snr = 7; 
+
+    // spreading factor
+    uint32 sf = 8;
+}
+
+message GetDeviceStatsLastTwoweeksResponse {
+    repeated DeviceStats stats = 1;
+}
+
+message LogsGwItem {
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 1;
+
+    //code of event 
+    int64 code = 2;
+
+    // Gateway ID (HEX encoded).
+    string gateway_id = 3 [json_name = "gatewayID"];    
+}
+
+message LogsGatewayRequest {
+    // Max number of nodes to return in the result-set.
+    int32 limit = 1;
+
+    // Offset of the result-set (for pagination).
+    int32 offset = 2;
+
+    // you must specify the filed
+    int64 organization_id = 3 [json_name = "organizationID"];
+
+    // You cn specify Gateway ID (HEX string). It must be at the same organization
+    // string gw_id = 4;	
+
+    // list of gateways (hex-strings). All the gws must be under the same organization
+    repeated string gw_list = 4;  
+
+    // code of event according to dictionary gwlogs_state
+    int64 code = 5;
+
+    // Timestamp for filter from the date.
+    google.protobuf.Timestamp start_timestamp = 6;
+
+    // Timestamp for filtering up to the date.
+    google.protobuf.Timestamp end_timestamp = 7;
+
+
+    // // sort list by name
+    // string orderBy = 8;     
+
+    // // sort direction
+    // string order = 9;
+
+}
+message LogsGatewayResponse {
+    // Total number of nodes available within the result-set.
+    int64 total_count = 1;
+
+    // result array
+    repeated LogsGwItem result = 2;
+}
+
+message GetIntegrationRepliesRequest {
+    // you can specify offset (for pagination)
+    uint32 offset = 1;
+    // you can specify rows limit
+    uint32 limit = 2;
+    // id of organization where integration linked to
+    int64 organisation_id = 3;
+    // id of routing profile
+    int64 routing_profile_id = 4;
+    // Device EUI
+    string dev_eui = 5;
+    // http status != 200
+    bool is_error = 6;
+    // You can specify start DateTime point.
+    google.protobuf.Timestamp start = 7;
+    // You can specify end DateTime point.
+    google.protobuf.Timestamp end = 8;
+}
+
+message GetIntegrationRepliesResponse {
+    // total numner of selected rows
+    uint32 items_total = 1;
+    // the array of selected replies
+    repeated IntegrationReply result = 2;
+}
+
+message IntegrationReply {
+    // url from integration parameters where event informations sending
+    string integration_url = 1;
+    // http status code of sent event (protobuf/as/integration/integration.proto) 
+    int32 status_code = 2;
+    // description of http status code
+    string status_code_description = 3;
+    // id of application where integration linked to
+    int64 application_id = 4;
+    // Device EUI
+    string dev_eui = 5 [json_name = "devEUI"];
+    // time of receining reply
+    google.protobuf.Timestamp time = 6;
+}
+
+message StoreIntegrationReplyRequest {
+    // Organization ID
+    int64 organisation_id = 1;
+    // AS Routing Profile ID
+    int64 routing_profile_id = 2;
+    // reply for saving
+    IntegrationReply reply = 3;
+}
+
+message StoreIntegrationReplyResponse {
+    int64 stored_count = 1;
 }
 
 message GetCurrentStateResponse {
@@ -49,7 +280,6 @@ message GetCurrentStateResponse {
 
     // the same as previuos in unixTime format
     int64 wl_last_packet_unix = 2;
-
 }
 
 message StreamDeviceFramesLogCSVResponse {
@@ -62,7 +292,6 @@ message StreamDeviceFramesLogCSVResponse {
         uint32 rows = 3;
         bytes chunk = 4;
     }
-    
 }
 
 message GetDeviceFramesLogRequest {
@@ -85,7 +314,10 @@ message GetDeviceFramesLogRequest {
     int64 organization_id = 6;
 
     // here user sends his local timezone. 
-    int64 timezone = 7;    
+    string timezone = 7 [json_name = "timeZone"];
+
+    // for internal use. Will be ignored from external api.
+    bool gw_only = 8;        
 }
 
 message GetDeviceFramesLogResponse {
@@ -103,6 +335,13 @@ message ExecCommandRequest {
 
     // command that will be executed on gateway (according to the gw config)
     string command = 2;
+
+    // You can set timeout for the command execution. Default 30 seconds. Range 1-1000
+    uint32 timeout = 3;
+
+    //  Background task execution. If set true, the result will be saved in app-db.
+    //  Allows to get large amount of data from devices asynchronously.
+    bool background_task = 4;    
 }
 
 message GetFrameCountersRequest {
@@ -178,12 +417,6 @@ message GetGatewayCountersResponse {
 message GetVersionResponse {
     // ChirpStack Network Server version.
     string version = 1;
-}
-
-// temp message just to check some thing
-message GetBullshitResponse {
-    // ChirpStack Network Server version.
-    string xyu = 1;
 }
 
 // counters
@@ -285,7 +518,18 @@ message DeviceFrameLog {
     double  esp = 16;
     uint32  late = 17;
     string frm_payload = 18;
-    // repeated gw.UplinkRXInfo uplink_rx_info = 18;
+
+    // data from device-session 
+    uint32 FCntUp = 19;
+    uint32 NFCntDown = 20;
+    uint32 AFCntDown = 21;
+    uint32 ConfFCnt = 22;
+
+    // spreading factor (TxInfo)
+    uint32 sp_fact = 23;
+
+    // billing limit: "" - within range limit, "M" - marked as overlimit, "D" - droped because of overlimit
+    string limit = 24;
 }
 
 // for RXInfo item in uplink frames
@@ -306,4 +550,20 @@ message RXInfo {
 
     // Unique and random ID which can be used to correlate the uplink across multiple logs.
     string  UplinkID = 13       [json_name = "uplink_id"];
+}
+
+message GetGwStatsRequest {
+    // Gateway ID (HEX encoded).
+    string id = 1;
+}
+
+message GetGwStatsResponse {
+    // last hour radio availability %
+    float radio_hour = 1;
+
+    // last day radio availability %
+    float radio_day = 2;
+
+    // last month radio availability %
+    float radio_month = 3; 
 }

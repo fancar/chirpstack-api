@@ -5,7 +5,6 @@ import * as jspb from "google-protobuf";
 import * as common_common_pb from "../../common/common_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as gw_gw_pb from "../../gw/gw_pb";
-import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class UplinkEvent extends jspb.Message {
   getApplicationId(): number;
@@ -62,7 +61,6 @@ export class UplinkEvent extends jspb.Message {
   getDevAddr_asB64(): string;
   setDevAddr(value: Uint8Array | string): void;
 
-<<<<<<< HEAD
   getMic(): Uint8Array | string;
   getMic_asU8(): Uint8Array;
   getMic_asB64(): string;
@@ -75,12 +73,17 @@ export class UplinkEvent extends jspb.Message {
   clearTime(): void;
   getTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-=======
+
   hasPublishedAt(): boolean;
   clearPublishedAt(): void;
   getPublishedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setPublishedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
->>>>>>> v3.9.9
+
+  getDeviceProfileId(): string;
+  setDeviceProfileId(value: string): void;
+
+  getDeviceProfileName(): string;
+  setDeviceProfileName(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UplinkEvent.AsObject;
@@ -109,13 +112,12 @@ export namespace UplinkEvent {
     tagsMap: Array<[string, string]>,
     confirmedUplink: boolean,
     devAddr: Uint8Array | string,
-<<<<<<< HEAD
     mic: Uint8Array | string,
     late: boolean,
     time?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-=======
     publishedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
->>>>>>> v3.9.9
+    deviceProfileId: string,
+    deviceProfileName: string,
   }
 }
 

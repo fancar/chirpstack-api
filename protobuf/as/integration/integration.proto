@@ -104,6 +104,12 @@ message UplinkEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 19;
+
+    // Device Profile UUID as string
+    string device_profile_id = 20 [json_name = "deviceProfileID"];
+
+    // Device Profile name
+    string device_profile_name = 21;
 }
 
 // JoinEvent is the message sent when a device joined the network.

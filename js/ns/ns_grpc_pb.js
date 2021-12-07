@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var ns_ns_pb = require('../ns/ns_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
@@ -371,6 +371,17 @@ function serialize_ns_GetDeviceActivationResponse(arg) {
 
 function deserialize_ns_GetDeviceActivationResponse(buffer_arg) {
   return ns_ns_pb.GetDeviceActivationResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ns_GetDeviceForExportResponse(arg) {
+  if (!(arg instanceof ns_ns_pb.GetDeviceForExportResponse)) {
+    throw new Error('Expected argument of type ns.GetDeviceForExportResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ns_GetDeviceForExportResponse(buffer_arg) {
+  return ns_ns_pb.GetDeviceForExportResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ns_GetDeviceProfileRequest(arg) {
@@ -1376,6 +1387,18 @@ getADRAlgorithms: {
     requestDeserialize: deserialize_google_protobuf_Empty,
     responseSerialize: serialize_ns_GetADRAlgorithmsResponse,
     responseDeserialize: deserialize_ns_GetADRAlgorithmsResponse,
+  },
+  // GetDeviceForExport gets device for export purps
+getDeviceForExport: {
+    path: '/ns.NetworkServerService/GetDeviceForExport',
+    requestStream: false,
+    responseStream: false,
+    requestType: ns_ns_pb.GetDeviceRequest,
+    responseType: ns_ns_pb.GetDeviceForExportResponse,
+    requestSerialize: serialize_ns_GetDeviceRequest,
+    requestDeserialize: deserialize_ns_GetDeviceRequest,
+    responseSerialize: serialize_ns_GetDeviceForExportResponse,
+    responseDeserialize: deserialize_ns_GetDeviceForExportResponse,
   },
 };
 

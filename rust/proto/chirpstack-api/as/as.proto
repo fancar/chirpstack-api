@@ -10,7 +10,10 @@ option java_outer_classname = "ApplicationServerProto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "common/common.proto";
+import "ns/profiles.proto";
 import "gw/gw.proto";
+import "ns/ns.proto";
+
 
 
 // ApplicationServerService is the service providing the application-server interface.
@@ -51,6 +54,9 @@ service ApplicationServerService {
     // GetOrgByDevEUI returns organization id by devEUI. Modification.
     rpc GetOrgByDevEUI(GetOrgByDevEUIRequest) returns (GetOrgByDevEUIResponse) {}
 
+    // GetOrgIDByGwID returns organization id by gwID. Modification.
+    rpc GetOrgIDByGwID(GetOrgIDByGwIDRequest) returns (GetOrgByDevEUIResponse) {}
+
     // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
     rpc GetDeviceAppSKey(GetOrgByDevEUIRequest) returns (GetDeviceAppSKeyResponse) {}
 
@@ -62,13 +68,124 @@ service ApplicationServerService {
     // an application-layer payload would exceed the max. payload size.
     // Note there is no requirement that the number of returned items must be
     // equal to the number of requested items.
-    rpc ReEncryptDeviceQueueItems(ReEncryptDeviceQueueItemsRequest) returns (ReEncryptDeviceQueueItemsResponse) {}    
+    rpc ReEncryptDeviceQueueItems(ReEncryptDeviceQueueItemsRequest) returns (ReEncryptDeviceQueueItemsResponse) {}   
+
+    // StreamGatewayTaskResult stream ExecCmd results from gateway to save into as-db
+    rpc StreamGatewayTaskResult(stream GatewayTaskResult) returns (google.protobuf.Empty) {}
+
+    // GetDictionary returns list of dictionary by the type. Modification.
+    rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {}
+
+    // GetGWMetaData returns a map with last metadata for the gw
+    rpc GetGWMetaData(google.protobuf.Empty) returns (GetGWMetaDataResponse) {}
+
+    // GetServiceProfile (TEMP for ADR MIGRATE) returns sp from as-database (local only)
+    rpc GetServiceProfile(GetServiceProfileRequest) returns (GetServiceProfileResponse) {}  
+
+    // CreateServiceProfile (TEMP for ADR MIGRATE) creates service profile in as local db.
+    rpc CreateServiceProfile(CreateServiceProfileRequest) returns (CreateServiceProfileResponse) {}             
+
+    // UpdateSPonDevice (TEMP for ADR MIGRATE) update SP for device in local db.
+    rpc UpdateSPonDevice(UpdateSPonDeviceRequest) returns (google.protobuf.Empty) {}
 }
 
+
+
+message UpdateSPonDeviceRequest {
+    // dev_eui of the device
+    bytes id = 1;
+
+    // ID of the service-profile.
+    bytes sp_id = 2;    
+}
+
+// message UpdateSPonDeviceResponse {
+//     // dev_eui of the device
+//     int64 id = 1;
+// }
+
+
+message GetServiceProfileRequest {
+    // ID of the service-profile.
+    bytes id = 1;
+}
+
+message GetServiceProfileResponse {
+    // Service-profile object to create in as-db
+    ServiceProfileItem as_data = 1;
+}
+
+message CreateServiceProfileRequest {
+    // Service-profile data - object to create in as-db
+    ServiceProfileItem as_data = 1;
+
+    // Service-profile data -  object to create in ns-db
+    ns.ServiceProfile ns_data = 2;
+}
+
+
+message CreateServiceProfileResponse {
+    // Service-profile ID (UUID).
+    bytes id = 1;
+}
+
+message ServiceProfileItem {
+    int64 network_server_id = 1;
+    int64 organization_id = 2;
+    string name = 3;
+    string description = 4;
+    uint32 device_count_limit = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;    
+}
+
+message GatewayMetaData {
+    // gateway id
+    string gw_id = 1;
+
+    // metadata last recieved
+    map<string,string> metadata = 2; 
+}
+
+message GetGWMetaDataResponse {
+    // Gateway metadata by gateway
+    repeated GatewayMetaData metadata_list = 1; 
+}
+
+message GetDictionaryRequest {
+    // choose dictionary type.
+    string dic_type = 1;
+}
+
+message GetDictionaryResponse {
+    // choose dictionary type.
+    string dic_type = 1;
+
+    repeated Dictionary list = 2;
+}
+
+message Dictionary {
+    // id of the label
+    int64 code = 1;
+
+    // type of the dictionary
+    string dic_type = 2;
+
+    // label name
+    string label = 3;
+
+    // boolean flag if it is relevant
+    bool is_actual = 4;
+}
 
 message GetOrgByDevEUIRequest {
     // Device EUI (HEX encoded).
     string dev_eui = 1 [json_name = "devEUI"];   
+}
+
+message GetOrgIDByGwIDRequest {
+    // Gateway ID (HEX encoded).
+    string id = 1;  
 }
 
 message GetDeviceAppSKeyResponse {
@@ -242,7 +359,20 @@ message HandleUplinkDataRequest {
     bytes mic = 13;    
 
     // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
-    google.protobuf.Timestamp time = 14;        
+    google.protobuf.Timestamp time = 14;
+
+
+    // limit for current uplink packet
+    ns.RateLimit limit = 15;
+
+    // average Packet Error Rate for last 20 packets in device_session
+    double per = 16;
+
+    // average Signal to Noise Ratio for last 20 packets in device_session
+    double snr = 17;
+
+    // average Received signal strength indication for last 20 packets in device_session
+    double rssi = 18;       
 }
 
 message HandleProprietaryUplinkRequest {
@@ -346,6 +476,21 @@ message HandleGatewayStatsRequest {
 
     // Gateway metadata.
     map<string, string> metadata = 9;
+
+    // Tx packets per frequency.
+    map<uint32, uint32> tx_packets_per_frequency = 10;
+
+    // Rx packets per frequency.
+    map<uint32, uint32> rx_packets_per_frequency = 11;
+
+    // Tx packets per DR.
+    map<uint32, uint32> tx_packets_per_dr = 12;
+
+    // Rx packets per DR.
+    map<uint32, uint32> rx_packets_per_dr = 13;
+
+    // Tx packets per status.
+    map<string, uint32> tx_packets_per_status = 14;
 }
 
 message HandleTxAckRequest {
@@ -410,4 +555,37 @@ message ReEncryptedDeviceQueueItem {
 
     // Payload is of type confirmed.
     bool confirmed = 4;
+}
+
+
+message GatewayTaskResponseData {
+    // Gateway ID.
+    bytes gateway_id = 1 [json_name = "gatewayID"];
+
+    // Execution request ID (UUID).
+    bytes exec_id = 2 [json_name = "execID"];
+
+    // command had been executed on gateway.
+    string cmd = 3;
+
+    // Standard error.
+    bytes stderr = 4;
+
+    // Error message from gateway-bridge.
+    string error = 5;
+
+    // Description
+    string description = 6;
+
+    // file (or other item) name. Optional
+    string name = 7;    
+}
+
+message GatewayTaskResult {
+    oneof result {
+        GatewayTaskResponseData metadata = 1;
+
+        // stdin chunk
+        bytes chunk = 2;
+    }
 }

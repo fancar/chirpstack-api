@@ -18,9 +18,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='chirpstack-api/ns/profiles.proto',
   package='ns',
   syntax='proto3',
-  serialized_options=b'\n\024io.chirpstack.api.nsB\rProfilesProtoP\001Z$github.com/brocaar/chirpstack-api/ns',
+  serialized_options=b'\n\024io.chirpstack.api.nsB\rProfilesProtoP\001Z*github.com/brocaar/chirpstack-api/go/v3/ns',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n chirpstack-api/ns/profiles.proto\x12\x02ns\"\x83\x04\n\x0eServiceProfile\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\x0f\n\x07ul_rate\x18\x02 \x01(\r\x12\x16\n\x0eul_bucket_size\x18\x03 \x01(\r\x12&\n\x0eul_rate_policy\x18\x04 \x01(\x0e\x32\x0e.ns.RatePolicy\x12\x0f\n\x07\x64l_rate\x18\x05 \x01(\r\x12\x16\n\x0e\x64l_bucket_size\x18\x06 \x01(\r\x12&\n\x0e\x64l_rate_policy\x18\x07 \x01(\x0e\x32\x0e.ns.RatePolicy\x12\x17\n\x0f\x61\x64\x64_gw_metadata\x18\x08 \x01(\x08\x12\x1b\n\x13\x64\x65v_status_req_freq\x18\t \x01(\r\x12!\n\x19report_dev_status_battery\x18\n \x01(\x08\x12 \n\x18report_dev_status_margin\x18\x0b \x01(\x08\x12\x0e\n\x06\x64r_min\x18\x0c \x01(\r\x12\x0e\n\x06\x64r_max\x18\r \x01(\r\x12\x14\n\x0c\x63hannel_mask\x18\x0e \x01(\x0c\x12\x12\n\npr_allowed\x18\x0f \x01(\x08\x12\x12\n\nhr_allowed\x18\x10 \x01(\x08\x12\x12\n\nra_allowed\x18\x11 \x01(\x08\x12\x13\n\x0bnwk_geo_loc\x18\x12 \x01(\x08\x12\x12\n\ntarget_per\x18\x13 \x01(\r\x12\x18\n\x10min_gw_diversity\x18\x14 \x01(\r\x12\x13\n\x0bgws_private\x18\x15 \x01(\x08\"\xfb\x03\n\rDeviceProfile\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\x18\n\x10supports_class_b\x18\x02 \x01(\x08\x12\x17\n\x0f\x63lass_b_timeout\x18\x03 \x01(\r\x12\x18\n\x10ping_slot_period\x18\x04 \x01(\r\x12\x14\n\x0cping_slot_dr\x18\x05 \x01(\r\x12\x16\n\x0eping_slot_freq\x18\x06 \x01(\r\x12\x18\n\x10supports_class_c\x18\x07 \x01(\x08\x12\x17\n\x0f\x63lass_c_timeout\x18\x08 \x01(\r\x12\x13\n\x0bmac_version\x18\t \x01(\t\x12\x1b\n\x13reg_params_revision\x18\n \x01(\t\x12\x12\n\nrx_delay_1\x18\x0b \x01(\r\x12\x16\n\x0erx_dr_offset_1\x18\x0c \x01(\r\x12\x15\n\rrx_datarate_2\x18\r \x01(\r\x12\x11\n\trx_freq_2\x18\x0e \x01(\r\x12\x1c\n\x14\x66\x61\x63tory_preset_freqs\x18\x0f \x03(\r\x12\x10\n\x08max_eirp\x18\x10 \x01(\r\x12\x16\n\x0emax_duty_cycle\x18\x11 \x01(\r\x12\x15\n\rsupports_join\x18\x12 \x01(\x08\x12\x11\n\trf_region\x18\x13 \x01(\t\x12\x1c\n\x14supports_32bit_f_cnt\x18\x14 \x01(\x08\x12\x18\n\x10\x61\x64r_algorithm_id\x18\x15 \x01(\t\"_\n\x0eRoutingProfile\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\r\n\x05\x61s_id\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12\x10\n\x08tls_cert\x18\x04 \x01(\t\x12\x0f\n\x07tls_key\x18\x05 \x01(\t* \n\nRatePolicy\x12\x08\n\x04\x44ROP\x10\x00\x12\x08\n\x04MARK\x10\x01\x42M\n\x14io.chirpstack.api.nsB\rProfilesProtoP\x01Z$github.com/brocaar/chirpstack-api/nsb\x06proto3'
+  serialized_pb=b'\n chirpstack-api/ns/profiles.proto\x12\x02ns\"\xb4\x06\n\x0eServiceProfile\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\x0f\n\x07ul_rate\x18\x02 \x01(\x05\x12\x16\n\x0eul_bucket_size\x18\x03 \x01(\r\x12&\n\x0eul_rate_policy\x18\x04 \x01(\x0e\x32\x0e.ns.RatePolicy\x12\"\n\x0cul_rate_unit\x18\x1d \x01(\x0e\x32\x0c.ns.RateUnit\x12\x0f\n\x07\x64l_rate\x18\x05 \x01(\x05\x12\x16\n\x0e\x64l_bucket_size\x18\x06 \x01(\r\x12&\n\x0e\x64l_rate_policy\x18\x07 \x01(\x0e\x32\x0e.ns.RatePolicy\x12\"\n\x0c\x64l_rate_unit\x18\x1e \x01(\x0e\x32\x0c.ns.RateUnit\x12\x17\n\x0f\x61\x64\x64_gw_metadata\x18\x08 \x01(\x08\x12\x1b\n\x13\x64\x65v_status_req_freq\x18\t \x01(\r\x12!\n\x19report_dev_status_battery\x18\n \x01(\x08\x12 \n\x18report_dev_status_margin\x18\x0b \x01(\x08\x12\x0e\n\x06\x64r_min\x18\x0c \x01(\r\x12\x0e\n\x06\x64r_max\x18\r \x01(\r\x12\x14\n\x0c\x63hannel_mask\x18\x0e \x01(\x0c\x12\x12\n\npr_allowed\x18\x0f \x01(\x08\x12\x12\n\nhr_allowed\x18\x10 \x01(\x08\x12\x12\n\nra_allowed\x18\x11 \x01(\x08\x12\x13\n\x0bnwk_geo_loc\x18\x12 \x01(\x08\x12\x12\n\ntarget_per\x18\x13 \x01(\r\x12\x18\n\x10min_gw_diversity\x18\x14 \x01(\r\x12\x13\n\x0bgws_private\x18\x15 \x01(\x08\x12\x13\n\x0bis_disabled\x18\x1f \x01(\x08\x12\x18\n\x10\x61\x64r_algorithm_id\x18  \x01(\t\x12\x1a\n\x12min_tx_power_index\x18! \x01(\x05\x12\x1a\n\x12max_tx_power_index\x18\" \x01(\x05\x12\x14\n\x0cmax_nb_trans\x18# \x01(\x05\x12\x14\n\x0cmin_nb_trans\x18$ \x01(\x05\x12\x1a\n\x12\x61llow_rx_confirmed\x18% \x01(\x08\x12\x1c\n\x14\x61llow_tx_unconfirmed\x18& \x01(\x08\x12\x1a\n\x12\x61llow_tx_confirmed\x18\' \x01(\x08\"\xd2\x05\n\rDeviceProfile\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\x18\n\x10supports_class_b\x18\x02 \x01(\x08\x12\x17\n\x0f\x63lass_b_timeout\x18\x03 \x01(\r\x12\x18\n\x10ping_slot_period\x18\x04 \x01(\r\x12\x14\n\x0cping_slot_dr\x18\x05 \x01(\r\x12\x16\n\x0eping_slot_freq\x18\x06 \x01(\r\x12\x18\n\x10supports_class_c\x18\x07 \x01(\x08\x12\x17\n\x0f\x63lass_c_timeout\x18\x08 \x01(\r\x12\x13\n\x0bmac_version\x18\t \x01(\t\x12\x1b\n\x13reg_params_revision\x18\n \x01(\t\x12\x12\n\nrx_delay_1\x18\x0b \x01(\r\x12\x16\n\x0erx_dr_offset_1\x18\x0c \x01(\r\x12\x15\n\rrx_datarate_2\x18\r \x01(\r\x12\x11\n\trx_freq_2\x18\x0e \x01(\r\x12\x1c\n\x14\x66\x61\x63tory_preset_freqs\x18\x0f \x03(\r\x12\x10\n\x08max_eirp\x18\x10 \x01(\r\x12\x16\n\x0emax_duty_cycle\x18\x11 \x01(\r\x12\x15\n\rsupports_join\x18\x12 \x01(\x08\x12\x11\n\trf_region\x18\x13 \x01(\t\x12\x1c\n\x14supports_32bit_f_cnt\x18\x14 \x01(\x08\x12\x1b\n\x13join_accept_delay_1\x18\x15 \x01(\r\x12\x1b\n\x13join_accept_delay_2\x18\x16 \x01(\r\x12\x1d\n\x15\x66_cnt_automatic_reset\x18\x17 \x01(\x08\x12*\n\x0c\x63md_switches\x18\x18 \x03(\x0b\x32\x14.ns.MacCommandSwitch\x12\x18\n\x10\x61\x64r_algorithm_id\x18\x19 \x01(\t\x12\x11\n\trx1_delay\x18\x1a \x01(\x05\x12\x15\n\rrx1_dr_offset\x18\x1b \x01(\x05\x12\x14\n\x0crx2_datarate\x18\x1c \x01(\x05\x12\x10\n\x08rx2_freq\x18\x1d \x01(\x05\"_\n\x0eRoutingProfile\x12\n\n\x02id\x18\x01 \x01(\x0c\x12\r\n\x05\x61s_id\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12\x10\n\x08tls_cert\x18\x04 \x01(\t\x12\x0f\n\x07tls_key\x18\x05 \x01(\t\"0\n\x10MacCommandSwitch\x12\x0b\n\x03\x63id\x18\x01 \x01(\r\x12\x0f\n\x07\x65nabled\x18\x02 \x01(\x08* \n\nRatePolicy\x12\x08\n\x04\x44rop\x10\x00\x12\x08\n\x04Mark\x10\x01*<\n\x08RateUnit\x12\x08\n\x04Hour\x10\x00\x12\x07\n\x03\x44\x61y\x10\x01\x12\x08\n\x04Week\x10\x02\x12\t\n\x05Month\x10\x03\x12\x08\n\x04Year\x10\x04\x42S\n\x14io.chirpstack.api.nsB\rProfilesProtoP\x01Z*github.com/brocaar/chirpstack-api/go/v3/nsb\x06proto3'
 )
 
 _RATEPOLICY = _descriptor.EnumDescriptor(
@@ -31,26 +31,72 @@ _RATEPOLICY = _descriptor.EnumDescriptor(
   create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='DROP', index=0, number=0,
+      name='Drop', index=0, number=0,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='MARK', index=1, number=1,
+      name='Mark', index=1, number=1,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1165,
-  serialized_end=1197,
+  serialized_start=1735,
+  serialized_end=1767,
 )
 _sym_db.RegisterEnumDescriptor(_RATEPOLICY)
 
 RatePolicy = enum_type_wrapper.EnumTypeWrapper(_RATEPOLICY)
-DROP = 0
-MARK = 1
+_RATEUNIT = _descriptor.EnumDescriptor(
+  name='RateUnit',
+  full_name='ns.RateUnit',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='Hour', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='Day', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='Week', index=2, number=2,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='Month', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='Year', index=4, number=4,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=1769,
+  serialized_end=1829,
+)
+_sym_db.RegisterEnumDescriptor(_RATEUNIT)
+
+RateUnit = enum_type_wrapper.EnumTypeWrapper(_RATEUNIT)
+Drop = 0
+Mark = 1
+Hour = 0
+Day = 1
+Week = 2
+Month = 3
+Year = 4
 
 
 
@@ -71,7 +117,7 @@ _SERVICEPROFILE = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='ul_rate', full_name='ns.ServiceProfile.ul_rate', index=1,
-      number=2, type=13, cpp_type=3, label=1,
+      number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -91,120 +137,197 @@ _SERVICEPROFILE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dl_rate', full_name='ns.ServiceProfile.dl_rate', index=4,
-      number=5, type=13, cpp_type=3, label=1,
+      name='ul_rate_unit', full_name='ns.ServiceProfile.ul_rate_unit', index=4,
+      number=29, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dl_bucket_size', full_name='ns.ServiceProfile.dl_bucket_size', index=5,
+      name='dl_rate', full_name='ns.ServiceProfile.dl_rate', index=5,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dl_bucket_size', full_name='ns.ServiceProfile.dl_bucket_size', index=6,
       number=6, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dl_rate_policy', full_name='ns.ServiceProfile.dl_rate_policy', index=6,
+      name='dl_rate_policy', full_name='ns.ServiceProfile.dl_rate_policy', index=7,
       number=7, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='add_gw_metadata', full_name='ns.ServiceProfile.add_gw_metadata', index=7,
+      name='dl_rate_unit', full_name='ns.ServiceProfile.dl_rate_unit', index=8,
+      number=30, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='add_gw_metadata', full_name='ns.ServiceProfile.add_gw_metadata', index=9,
       number=8, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dev_status_req_freq', full_name='ns.ServiceProfile.dev_status_req_freq', index=8,
+      name='dev_status_req_freq', full_name='ns.ServiceProfile.dev_status_req_freq', index=10,
       number=9, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='report_dev_status_battery', full_name='ns.ServiceProfile.report_dev_status_battery', index=9,
+      name='report_dev_status_battery', full_name='ns.ServiceProfile.report_dev_status_battery', index=11,
       number=10, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='report_dev_status_margin', full_name='ns.ServiceProfile.report_dev_status_margin', index=10,
+      name='report_dev_status_margin', full_name='ns.ServiceProfile.report_dev_status_margin', index=12,
       number=11, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dr_min', full_name='ns.ServiceProfile.dr_min', index=11,
+      name='dr_min', full_name='ns.ServiceProfile.dr_min', index=13,
       number=12, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dr_max', full_name='ns.ServiceProfile.dr_max', index=12,
+      name='dr_max', full_name='ns.ServiceProfile.dr_max', index=14,
       number=13, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='channel_mask', full_name='ns.ServiceProfile.channel_mask', index=13,
+      name='channel_mask', full_name='ns.ServiceProfile.channel_mask', index=15,
       number=14, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='pr_allowed', full_name='ns.ServiceProfile.pr_allowed', index=14,
+      name='pr_allowed', full_name='ns.ServiceProfile.pr_allowed', index=16,
       number=15, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='hr_allowed', full_name='ns.ServiceProfile.hr_allowed', index=15,
+      name='hr_allowed', full_name='ns.ServiceProfile.hr_allowed', index=17,
       number=16, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='ra_allowed', full_name='ns.ServiceProfile.ra_allowed', index=16,
+      name='ra_allowed', full_name='ns.ServiceProfile.ra_allowed', index=18,
       number=17, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='nwk_geo_loc', full_name='ns.ServiceProfile.nwk_geo_loc', index=17,
+      name='nwk_geo_loc', full_name='ns.ServiceProfile.nwk_geo_loc', index=19,
       number=18, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='target_per', full_name='ns.ServiceProfile.target_per', index=18,
+      name='target_per', full_name='ns.ServiceProfile.target_per', index=20,
       number=19, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='min_gw_diversity', full_name='ns.ServiceProfile.min_gw_diversity', index=19,
+      name='min_gw_diversity', full_name='ns.ServiceProfile.min_gw_diversity', index=21,
       number=20, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='gws_private', full_name='ns.ServiceProfile.gws_private', index=20,
+      name='gws_private', full_name='ns.ServiceProfile.gws_private', index=22,
       number=21, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_disabled', full_name='ns.ServiceProfile.is_disabled', index=23,
+      number=31, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='adr_algorithm_id', full_name='ns.ServiceProfile.adr_algorithm_id', index=24,
+      number=32, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='min_tx_power_index', full_name='ns.ServiceProfile.min_tx_power_index', index=25,
+      number=33, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='max_tx_power_index', full_name='ns.ServiceProfile.max_tx_power_index', index=26,
+      number=34, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='max_nb_trans', full_name='ns.ServiceProfile.max_nb_trans', index=27,
+      number=35, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='min_nb_trans', full_name='ns.ServiceProfile.min_nb_trans', index=28,
+      number=36, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='allow_rx_confirmed', full_name='ns.ServiceProfile.allow_rx_confirmed', index=29,
+      number=37, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='allow_tx_unconfirmed', full_name='ns.ServiceProfile.allow_tx_unconfirmed', index=30,
+      number=38, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='allow_tx_confirmed', full_name='ns.ServiceProfile.allow_tx_confirmed', index=31,
+      number=39, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -222,7 +345,7 @@ _SERVICEPROFILE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=41,
-  serialized_end=556,
+  serialized_end=861,
 )
 
 
@@ -375,9 +498,65 @@ _DEVICEPROFILE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='adr_algorithm_id', full_name='ns.DeviceProfile.adr_algorithm_id', index=20,
-      number=21, type=9, cpp_type=9, label=1,
+      name='join_accept_delay_1', full_name='ns.DeviceProfile.join_accept_delay_1', index=20,
+      number=21, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='join_accept_delay_2', full_name='ns.DeviceProfile.join_accept_delay_2', index=21,
+      number=22, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_cnt_automatic_reset', full_name='ns.DeviceProfile.f_cnt_automatic_reset', index=22,
+      number=23, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cmd_switches', full_name='ns.DeviceProfile.cmd_switches', index=23,
+      number=24, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='adr_algorithm_id', full_name='ns.DeviceProfile.adr_algorithm_id', index=24,
+      number=25, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx1_delay', full_name='ns.DeviceProfile.rx1_delay', index=25,
+      number=26, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx1_dr_offset', full_name='ns.DeviceProfile.rx1_dr_offset', index=26,
+      number=27, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx2_datarate', full_name='ns.DeviceProfile.rx2_datarate', index=27,
+      number=28, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx2_freq', full_name='ns.DeviceProfile.rx2_freq', index=28,
+      number=29, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -393,8 +572,8 @@ _DEVICEPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=559,
-  serialized_end=1066,
+  serialized_start=864,
+  serialized_end=1586,
 )
 
 
@@ -453,16 +632,60 @@ _ROUTINGPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1068,
-  serialized_end=1163,
+  serialized_start=1588,
+  serialized_end=1683,
+)
+
+
+_MACCOMMANDSWITCH = _descriptor.Descriptor(
+  name='MacCommandSwitch',
+  full_name='ns.MacCommandSwitch',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='cid', full_name='ns.MacCommandSwitch.cid', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enabled', full_name='ns.MacCommandSwitch.enabled', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1685,
+  serialized_end=1733,
 )
 
 _SERVICEPROFILE.fields_by_name['ul_rate_policy'].enum_type = _RATEPOLICY
+_SERVICEPROFILE.fields_by_name['ul_rate_unit'].enum_type = _RATEUNIT
 _SERVICEPROFILE.fields_by_name['dl_rate_policy'].enum_type = _RATEPOLICY
+_SERVICEPROFILE.fields_by_name['dl_rate_unit'].enum_type = _RATEUNIT
+_DEVICEPROFILE.fields_by_name['cmd_switches'].message_type = _MACCOMMANDSWITCH
 DESCRIPTOR.message_types_by_name['ServiceProfile'] = _SERVICEPROFILE
 DESCRIPTOR.message_types_by_name['DeviceProfile'] = _DEVICEPROFILE
 DESCRIPTOR.message_types_by_name['RoutingProfile'] = _ROUTINGPROFILE
+DESCRIPTOR.message_types_by_name['MacCommandSwitch'] = _MACCOMMANDSWITCH
 DESCRIPTOR.enum_types_by_name['RatePolicy'] = _RATEPOLICY
+DESCRIPTOR.enum_types_by_name['RateUnit'] = _RATEUNIT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 ServiceProfile = _reflection.GeneratedProtocolMessageType('ServiceProfile', (_message.Message,), {
@@ -485,6 +708,13 @@ RoutingProfile = _reflection.GeneratedProtocolMessageType('RoutingProfile', (_me
   # @@protoc_insertion_point(class_scope:ns.RoutingProfile)
   })
 _sym_db.RegisterMessage(RoutingProfile)
+
+MacCommandSwitch = _reflection.GeneratedProtocolMessageType('MacCommandSwitch', (_message.Message,), {
+  'DESCRIPTOR' : _MACCOMMANDSWITCH,
+  '__module__' : 'chirpstack_api.ns.profiles_pb2'
+  # @@protoc_insertion_point(class_scope:ns.MacCommandSwitch)
+  })
+_sym_db.RegisterMessage(MacCommandSwitch)
 
 
 DESCRIPTOR._options = None

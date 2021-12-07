@@ -2,6 +2,7 @@
 // file: as/external/api/frameLog.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as gw_gw_pb from "../../../gw/gw_pb";
 
 export class UplinkFrameLog extends jspb.Message {

@@ -68,6 +68,7 @@ export namespace Location {
 export interface ModulationMap {
   LORA: 0;
   FSK: 1;
+  LR_FHSS: 2;
 }
 
 export const Modulation: ModulationMap;
@@ -82,6 +83,7 @@ export interface RegionMap {
   AS923: 7;
   AS923_2: 12;
   AS923_3: 13;
+  AS923_4: 14;
   KR920: 8;
   IN865: 9;
   RU864: 10;

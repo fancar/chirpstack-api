@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var as_external_api_deviceQueue_pb = require('../../../as/external/api/deviceQueue_pb.js');
 var google_api_annotations_pb = require('../../../google/api/annotations_pb.js');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
@@ -59,6 +59,28 @@ function serialize_api_FlushDeviceQueueRequest(arg) {
 
 function deserialize_api_FlushDeviceQueueRequest(buffer_arg) {
   return as_external_api_deviceQueue_pb.FlushDeviceQueueRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_GetNextDownlinkFCntRequest(arg) {
+  if (!(arg instanceof as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest)) {
+    throw new Error('Expected argument of type api.GetNextDownlinkFCntRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetNextDownlinkFCntRequest(buffer_arg) {
+  return as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_api_GetNextDownlinkFCntResponse(arg) {
+  if (!(arg instanceof as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse)) {
+    throw new Error('Expected argument of type api.GetNextDownlinkFCntResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_api_GetNextDownlinkFCntResponse(buffer_arg) {
+  return as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_api_ListDeviceQueueItemsRequest(arg) {
@@ -144,6 +166,19 @@ actilityEnqueue: {
     requestDeserialize: deserialize_api_EnqueueDeviceQueueActilityItemRequest,
     responseSerialize: serialize_api_EnqueueDeviceQueueActilityItemResponse,
     responseDeserialize: deserialize_api_EnqueueDeviceQueueActilityItemResponse,
+  },
+  // GetNextDownlinkFCnt returns next downlink f-counter for the device
+// used by clients who encrypt payload data themself
+getNextDownlinkFCnt: {
+    path: '/api.DeviceQueueService/GetNextDownlinkFCnt',
+    requestStream: false,
+    responseStream: false,
+    requestType: as_external_api_deviceQueue_pb.GetNextDownlinkFCntRequest,
+    responseType: as_external_api_deviceQueue_pb.GetNextDownlinkFCntResponse,
+    requestSerialize: serialize_api_GetNextDownlinkFCntRequest,
+    requestDeserialize: deserialize_api_GetNextDownlinkFCntRequest,
+    responseSerialize: serialize_api_GetNextDownlinkFCntResponse,
+    responseDeserialize: deserialize_api_GetNextDownlinkFCntResponse,
   },
 };
 

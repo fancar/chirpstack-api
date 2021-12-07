@@ -19,9 +19,6 @@ export class Application extends jspb.Message {
   getOrganizationId(): number;
   setOrganizationId(value: number): void;
 
-  getServiceProfileId(): string;
-  setServiceProfileId(value: string): void;
-
   getPayloadCodec(): string;
   setPayloadCodec(value: string): void;
 
@@ -30,6 +27,9 @@ export class Application extends jspb.Message {
 
   getPayloadDecoderScript(): string;
   setPayloadDecoderScript(value: string): void;
+
+  getIsActive(): boolean;
+  setIsActive(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Application.AsObject;
@@ -47,10 +47,10 @@ export namespace Application {
     name: string,
     description: string,
     organizationId: number,
-    serviceProfileId: string,
     payloadCodec: string,
     payloadEncoderScript: string,
     payloadDecoderScript: string,
+    isActive: boolean,
   }
 }
 
@@ -67,14 +67,16 @@ export class ApplicationListItem extends jspb.Message {
   getOrganizationId(): number;
   setOrganizationId(value: number): void;
 
-  getServiceProfileId(): string;
-  setServiceProfileId(value: string): void;
-
-  getServiceProfileName(): string;
-  setServiceProfileName(value: string): void;
+  getIsActive(): boolean;
+  setIsActive(value: boolean): void;
 
   getDevCnt(): number;
   setDevCnt(value: number): void;
+
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): void;
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ApplicationListItem.AsObject;
@@ -92,9 +94,9 @@ export namespace ApplicationListItem {
     name: string,
     description: string,
     organizationId: number,
-    serviceProfileId: string,
-    serviceProfileName: string,
+    isActive: boolean,
     devCnt: number,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -574,6 +576,18 @@ export class InfluxDBIntegration extends jspb.Message {
   getPrecision(): InfluxDBPrecisionMap[keyof InfluxDBPrecisionMap];
   setPrecision(value: InfluxDBPrecisionMap[keyof InfluxDBPrecisionMap]): void;
 
+  getVersion(): InfluxDBVersionMap[keyof InfluxDBVersionMap];
+  setVersion(value: InfluxDBVersionMap[keyof InfluxDBVersionMap]): void;
+
+  getToken(): string;
+  setToken(value: string): void;
+
+  getOrganization(): string;
+  setOrganization(value: string): void;
+
+  getBucket(): string;
+  setBucket(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InfluxDBIntegration.AsObject;
   static toObject(includeInstance: boolean, msg: InfluxDBIntegration): InfluxDBIntegration.AsObject;
@@ -593,6 +607,10 @@ export namespace InfluxDBIntegration {
     password: string,
     retentionPolicyName: string,
     precision: InfluxDBPrecisionMap[keyof InfluxDBPrecisionMap],
+    version: InfluxDBVersionMap[keyof InfluxDBVersionMap],
+    token: string,
+    organization: string,
+    bucket: string,
   }
 }
 
@@ -1804,4 +1822,11 @@ export interface InfluxDBPrecisionMap {
 }
 
 export const InfluxDBPrecision: InfluxDBPrecisionMap;
+
+export interface InfluxDBVersionMap {
+  INFLUXDB_1: 0;
+  INFLUXDB_2: 1;
+}
+
+export const InfluxDBVersion: InfluxDBVersionMap;
 

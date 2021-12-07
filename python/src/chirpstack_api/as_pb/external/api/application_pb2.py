@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n!io.chirpstack.api.as.external.apiB\020ApplicationProtoP\001Z7github.com/brocaar/chirpstack-api/go/v3/as/external/api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n3chirpstack-api/as_pb/external/api/application.proto\x12\x03\x61pi\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xea\x01\n\x0b\x41pplication\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\'\n\x0forganization_id\x18\x04 \x01(\x03R\x0eorganizationID\x12,\n\x12service_profile_id\x18\x05 \x01(\tR\x10serviceProfileID\x12\x15\n\rpayload_codec\x18\x06 \x01(\t\x12\x1e\n\x16payload_encoder_script\x18\x07 \x01(\t\x12\x1e\n\x16payload_decoder_script\x18\x08 \x01(\t\"\xca\x01\n\x13\x41pplicationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\'\n\x0forganization_id\x18\x04 \x01(\x03R\x0eorganizationID\x12,\n\x12service_profile_id\x18\x05 \x01(\tR\x10serviceProfileID\x12\x1c\n\x14service_profile_name\x18\x06 \x01(\t\x12\x0f\n\x07\x64\x65v_cnt\x18\x07 \x01(\x03\"A\n\x18\x43reateApplicationRequest\x12%\n\x0b\x61pplication\x18\x01 \x01(\x0b\x32\x10.api.Application\"\'\n\x19\x43reateApplicationResponse\x12\n\n\x02id\x18\x01 \x01(\x03\"#\n\x15GetApplicationRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"?\n\x16GetApplicationResponse\x12%\n\x0b\x61pplication\x18\x01 \x01(\x0b\x32\x10.api.Application\"A\n\x18UpdateApplicationRequest\x12%\n\x0b\x61pplication\x18\x01 \x01(\x0b\x32\x10.api.Application\"&\n\x18\x44\x65leteApplicationRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"\x90\x01\n\x16ListApplicationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\'\n\x0forganization_id\x18\x03 \x01(\x03R\x0eorganizationID\x12\x0e\n\x06search\x18\x04 \x01(\t\x12\x0f\n\x07orderBy\x18\x05 \x01(\t\x12\r\n\x05order\x18\x06 \x01(\t\"X\n\x17ListApplicationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.api.ApplicationListItem\"3\n\x15HTTPIntegrationHeader\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\xe7\x04\n\x0fHTTPIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12+\n\x07headers\x18\x02 \x03(\x0b\x32\x1a.api.HTTPIntegrationHeader\x12&\n\x0fuplink_data_url\x18\x03 \x01(\tR\ruplinkDataURL\x12\x32\n\x15join_notification_url\x18\x04 \x01(\tR\x13joinNotificationURL\x12\x30\n\x14\x61\x63k_notification_url\x18\x05 \x01(\tR\x12\x61\x63kNotificationURL\x12\x34\n\x16\x65rror_notification_url\x18\x06 \x01(\tR\x14\x65rrorNotificationURL\x12\x36\n\x17status_notification_url\x18\x07 \x01(\tR\x15statusNotificationURL\x12:\n\x19location_notification_url\x18\x08 \x01(\tR\x17locationNotificationURL\x12\x35\n\x17tx_ack_notification_url\x18\t \x01(\tR\x14txAckNotificationURL\x12@\n\x1cintegration_notification_url\x18\n \x01(\tR\x1aintegrationNotificationURL\x12!\n\tmarshaler\x18\x0b \x01(\x0e\x32\x0e.api.Marshaler\x12,\n\x12\x65vent_endpoint_url\x18\x0c \x01(\tR\x10\x65ventEndpointURL\"I\n\x1c\x43reateHTTPIntegrationRequest\x12)\n\x0bintegration\x18\x01 \x01(\x0b\x32\x14.api.HTTPIntegration\"B\n\x19GetHTTPIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"G\n\x1aGetHTTPIntegrationResponse\x12)\n\x0bintegration\x18\x01 \x01(\x0b\x32\x14.api.HTTPIntegration\"I\n\x1cUpdateHTTPIntegrationRequest\x12)\n\x0bintegration\x18\x01 \x01(\x0b\x32\x14.api.HTTPIntegration\"E\n\x1c\x44\x65leteHTTPIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"?\n\x16ListIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"9\n\x13IntegrationListItem\x12\"\n\x04kind\x18\x01 \x01(\x0e\x32\x14.api.IntegrationKind\"X\n\x17ListIntegrationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.api.IntegrationListItem\"\xc8\x01\n\x13InfluxDBIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x10\n\x08\x65ndpoint\x18\x02 \x01(\t\x12\n\n\x02\x64\x62\x18\x03 \x01(\t\x12\x10\n\x08username\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\x12\x1d\n\x15retention_policy_name\x18\x06 \x01(\t\x12)\n\tprecision\x18\x07 \x01(\x0e\x32\x16.api.InfluxDBPrecision\"Q\n CreateInfluxDBIntegrationRequest\x12-\n\x0bintegration\x18\x01 \x01(\x0b\x32\x18.api.InfluxDBIntegration\"F\n\x1dGetInfluxDBIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"O\n\x1eGetInfluxDBIntegrationResponse\x12-\n\x0bintegration\x18\x01 \x01(\x0b\x32\x18.api.InfluxDBIntegration\"Q\n UpdateInfluxDBIntegrationRequest\x12-\n\x0bintegration\x18\x01 \x01(\x0b\x32\x18.api.InfluxDBIntegration\"I\n DeleteInfluxDBIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"O\n\x16ThingsBoardIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x0e\n\x06server\x18\x02 \x01(\t\"W\n#CreateThingsBoardIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.ThingsBoardIntegration\"I\n GetThingsBoardIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"U\n!GetThingsBoardIntegrationResponse\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.ThingsBoardIntegration\"W\n#UpdateThingsBoardIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.ThingsBoardIntegration\"L\n#DeleteThingsBoardIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"O\n\x14MyDevicesIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x10\n\x08\x65ndpoint\x18\x02 \x01(\t\"S\n!CreateMyDevicesIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.MyDevicesIntegration\"G\n\x1eGetMyDevicesIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"Q\n\x1fGetMyDevicesIntegrationResponse\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.MyDevicesIntegration\"S\n!UpdateMyDevicesIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.MyDevicesIntegration\"J\n!DeleteMyDevicesIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\xf3\x05\n\x14LoRaCloudIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x13\n\x0bgeolocation\x18\x02 \x01(\x08\x12\x19\n\x11geolocation_token\x18\x03 \x01(\t\x12\x34\n\x16geolocation_buffer_ttl\x18\x04 \x01(\rR\x14geolocationBufferTTL\x12#\n\x1bgeolocation_min_buffer_size\x18\x05 \x01(\r\x12)\n\x10geolocation_tdoa\x18\x06 \x01(\x08R\x0fgeolocationTDOA\x12)\n\x10geolocation_rssi\x18\x07 \x01(\x08R\x0fgeolocationRSSI\x12)\n\x10geolocation_gnss\x18\x08 \x01(\x08R\x0fgeolocationGNSS\x12\x43\n\x1egeolocation_gnss_payload_field\x18\t \x01(\tR\x1bgeolocationGNSSPayloadField\x12>\n\x1cgeolocation_gnss_use_rx_time\x18\n \x01(\x08R\x18geolocationGNSSUseRxTime\x12)\n\x10geolocation_wifi\x18\x0b \x01(\x08R\x0fgeolocationWifi\x12\x43\n\x1egeolocation_wifi_payload_field\x18\x0c \x01(\tR\x1bgeolocationWifiPayloadField\x12\x0b\n\x03\x64\x61s\x18\r \x01(\x08\x12\x11\n\tdas_token\x18\x0e \x01(\t\x12\x16\n\x0e\x64\x61s_modem_port\x18\x0f \x01(\r\x12\"\n\rdas_gnss_port\x18\x10 \x01(\rR\x0b\x64\x61sGNSSPort\x12.\n\x14\x64\x61s_gnss_use_rx_time\x18\x11 \x01(\x08R\x10\x64\x61sGNSSUseRxTime\x12\'\n\x1f\x64\x61s_streaming_geoloc_workaround\x18\x12 \x01(\x08\"S\n!CreateLoRaCloudIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.LoRaCloudIntegration\"G\n\x1eGetLoRaCloudIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"Q\n\x1fGetLoRaCloudIntegrationResponse\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.LoRaCloudIntegration\"S\n!UpdateLoRaCloudIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.LoRaCloudIntegration\"J\n!DeleteLoRaCloudIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\xad\x01\n\x14GCPPubSubIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12!\n\tmarshaler\x18\x02 \x01(\x0e\x32\x0e.api.Marshaler\x12\x18\n\x10\x63redentials_file\x18\x03 \x01(\t\x12\x1d\n\nproject_id\x18\x04 \x01(\tR\tprojectID\x12\x12\n\ntopic_name\x18\x05 \x01(\t\"S\n!CreateGCPPubSubIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.GCPPubSubIntegration\"G\n\x1eGetGCPPubSubIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"Q\n\x1fGetGCPPubSubIntegrationResponse\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.GCPPubSubIntegration\"S\n!UpdateGCPPubSubIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.GCPPubSubIntegration\"J\n!DeleteGCPPubSubIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\xc9\x01\n\x11\x41WSSNSIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12!\n\tmarshaler\x18\x02 \x01(\x0e\x32\x0e.api.Marshaler\x12\x0e\n\x06region\x18\x03 \x01(\t\x12\"\n\raccess_key_id\x18\x04 \x01(\tR\x0b\x61\x63\x63\x65ssKeyID\x12\x19\n\x11secret_access_key\x18\x05 \x01(\t\x12\x1b\n\ttopic_arn\x18\x06 \x01(\tR\x08topicARN\"M\n\x1e\x43reateAWSSNSIntegrationRequest\x12+\n\x0bintegration\x18\x01 \x01(\x0b\x32\x16.api.AWSSNSIntegration\"D\n\x1bGetAWSSNSIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"K\n\x1cGetAWSSNSIntegrationResponse\x12+\n\x0bintegration\x18\x01 \x01(\x0b\x32\x16.api.AWSSNSIntegration\"M\n\x1eUpdateAWSSNSIntegrationRequest\x12+\n\x0bintegration\x18\x01 \x01(\x0b\x32\x16.api.AWSSNSIntegration\"G\n\x1e\x44\x65leteAWSSNSIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\x97\x01\n\x1a\x41zureServiceBusIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12!\n\tmarshaler\x18\x02 \x01(\x0e\x32\x0e.api.Marshaler\x12\x19\n\x11\x63onnection_string\x18\x03 \x01(\t\x12\x14\n\x0cpublish_name\x18\x04 \x01(\t\"_\n\'CreateAzureServiceBusIntegrationRequest\x12\x34\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1f.api.AzureServiceBusIntegration\"M\n$GetAzureServiceBusIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"]\n%GetAzureServiceBusIntegrationResponse\x12\x34\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1f.api.AzureServiceBusIntegration\"_\n\'UpdateAzureServiceBusIntegrationRequest\x12\x34\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1f.api.AzureServiceBusIntegration\"P\n\'DeleteAzureServiceBusIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"^\n\x16PilotThingsIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x0e\n\x06server\x18\x02 \x01(\t\x12\r\n\x05token\x18\x03 \x01(\t\"W\n#CreatePilotThingsIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.PilotThingsIntegration\"I\n GetPilotThingsIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"U\n!GetPilotThingsIntegrationResponse\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.PilotThingsIntegration\"W\n#UpdatePilotThingsIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.PilotThingsIntegration\"L\n#DeletePilotThingsIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"X\n/GenerateMQTTIntegrationClientCertificateRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\x96\x01\n0GenerateMQTTIntegrationClientCertificateResponse\x12\x10\n\x08tls_cert\x18\x01 \x01(\t\x12\x0f\n\x07tls_key\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp*\xaf\x01\n\x0fIntegrationKind\x12\x08\n\x04HTTP\x10\x00\x12\x0c\n\x08INFLUXDB\x10\x01\x12\x0f\n\x0bTHINGSBOARD\x10\x02\x12\r\n\tMYDEVICES\x10\x03\x12\r\n\tLORACLOUD\x10\x04\x12\x0e\n\nGCP_PUBSUB\x10\x05\x12\x0b\n\x07\x41WS_SNS\x10\x06\x12\x15\n\x11\x41ZURE_SERVICE_BUS\x10\x07\x12\x10\n\x0cPILOT_THINGS\x10\x08\x12\x0f\n\x0bMQTT_GLOBAL\x10\t*C\n\tMarshaler\x12\x08\n\x04JSON\x10\x00\x12\x0c\n\x08PROTOBUF\x10\x01\x12\x0b\n\x07JSON_V3\x10\x02\x12\x11\n\rACTILITY_JSON\x10\x03*?\n\x11InfluxDBPrecision\x12\x06\n\x02NS\x10\x00\x12\x05\n\x01U\x10\x01\x12\x06\n\x02MS\x10\x02\x12\x05\n\x01S\x10\x03\x12\x05\n\x01M\x10\x04\x12\x05\n\x01H\x10\x05\x32\xba\x37\n\x12\x41pplicationService\x12\x65\n\x06\x43reate\x12\x1d.api.CreateApplicationRequest\x1a\x1e.api.CreateApplicationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/api/applications:\x01*\x12^\n\x03Get\x12\x1a.api.GetApplicationRequest\x1a\x1b.api.GetApplicationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/applications/{id}\x12n\n\x06Update\x12\x1d.api.UpdateApplicationRequest\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'\x1a\"/api/applications/{application.id}:\x01*\x12_\n\x06\x44\x65lete\x12\x1d.api.DeleteApplicationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/applications/{id}\x12\\\n\x04List\x12\x1b.api.ListApplicationRequest\x1a\x1c.api.ListApplicationResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/applications\x12\x9f\x01\n\x15\x43reateHTTPIntegration\x12!.api.CreateHTTPIntegrationRequest\x1a\x16.google.protobuf.Empty\"K\x82\xd3\xe4\x93\x02\x45\"@/api/applications/{integration.application_id}/integrations/http:\x01*\x12\x93\x01\n\x12GetHTTPIntegration\x12\x1e.api.GetHTTPIntegrationRequest\x1a\x1f.api.GetHTTPIntegrationResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/api/applications/{application_id}/integrations/http\x12\x9f\x01\n\x15UpdateHTTPIntegration\x12!.api.UpdateHTTPIntegrationRequest\x1a\x16.google.protobuf.Empty\"K\x82\xd3\xe4\x93\x02\x45\x1a@/api/applications/{integration.application_id}/integrations/http:\x01*\x12\x90\x01\n\x15\x44\x65leteHTTPIntegration\x12!.api.DeleteHTTPIntegrationRequest\x1a\x16.google.protobuf.Empty\"<\x82\xd3\xe4\x93\x02\x36*4/api/applications/{application_id}/integrations/http\x12\xab\x01\n\x19\x43reateInfluxDBIntegration\x12%.api.CreateInfluxDBIntegrationRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\"D/api/applications/{integration.application_id}/integrations/influxdb:\x01*\x12\xa3\x01\n\x16GetInfluxDBIntegration\x12\".api.GetInfluxDBIntegrationRequest\x1a#.api.GetInfluxDBIntegrationResponse\"@\x82\xd3\xe4\x93\x02:\x12\x38/api/applications/{application_id}/integrations/influxdb\x12\xab\x01\n\x19UpdateInfluxDBIntegration\x12%.api.UpdateInfluxDBIntegrationRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\x1a\x44/api/applications/{integration.application_id}/integrations/influxdb:\x01*\x12\x9c\x01\n\x19\x44\x65leteInfluxDBIntegration\x12%.api.DeleteInfluxDBIntegrationRequest\x1a\x16.google.protobuf.Empty\"@\x82\xd3\xe4\x93\x02:*8/api/applications/{application_id}/integrations/influxdb\x12\xb4\x01\n\x1c\x43reateThingsBoardIntegration\x12(.api.CreateThingsBoardIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\"G/api/applications/{integration.application_id}/integrations/thingsboard:\x01*\x12\xaf\x01\n\x19GetThingsBoardIntegration\x12%.api.GetThingsBoardIntegrationRequest\x1a&.api.GetThingsBoardIntegrationResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/applications/{application_id}/integrations/thingsboard\x12\xb4\x01\n\x1cUpdateThingsBoardIntegration\x12(.api.UpdateThingsBoardIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\x1aG/api/applications/{integration.application_id}/integrations/thingsboard:\x01*\x12\xa5\x01\n\x1c\x44\x65leteThingsBoardIntegration\x12(.api.DeleteThingsBoardIntegrationRequest\x1a\x16.google.protobuf.Empty\"C\x82\xd3\xe4\x93\x02=*;/api/applications/{application_id}/integrations/thingsboard\x12\xae\x01\n\x1a\x43reateMyDevicesIntegration\x12&.api.CreateMyDevicesIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\"E/api/applications/{integration.application_id}/integrations/mydevices:\x01*\x12\xa7\x01\n\x17GetMyDevicesIntegration\x12#.api.GetMyDevicesIntegrationRequest\x1a$.api.GetMyDevicesIntegrationResponse\"A\x82\xd3\xe4\x93\x02;\x12\x39/api/applications/{application_id}/integrations/mydevices\x12\xae\x01\n\x1aUpdateMyDevicesIntegration\x12&.api.UpdateMyDevicesIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\x1a\x45/api/applications/{integration.application_id}/integrations/mydevices:\x01*\x12\x9f\x01\n\x1a\x44\x65leteMyDevicesIntegration\x12&.api.DeleteMyDevicesIntegrationRequest\x1a\x16.google.protobuf.Empty\"A\x82\xd3\xe4\x93\x02;*9/api/applications/{application_id}/integrations/mydevices\x12\xae\x01\n\x1a\x43reateLoRaCloudIntegration\x12&.api.CreateLoRaCloudIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\"E/api/applications/{integration.application_id}/integrations/loracloud:\x01*\x12\xa7\x01\n\x17GetLoRaCloudIntegration\x12#.api.GetLoRaCloudIntegrationRequest\x1a$.api.GetLoRaCloudIntegrationResponse\"A\x82\xd3\xe4\x93\x02;\x12\x39/api/applications/{application_id}/integrations/loracloud\x12\xae\x01\n\x1aUpdateLoRaCloudIntegration\x12&.api.UpdateLoRaCloudIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\x1a\x45/api/applications/{integration.application_id}/integrations/loracloud:\x01*\x12\x9f\x01\n\x1a\x44\x65leteLoRaCloudIntegration\x12&.api.DeleteLoRaCloudIntegrationRequest\x1a\x16.google.protobuf.Empty\"A\x82\xd3\xe4\x93\x02;*9/api/applications/{application_id}/integrations/loracloud\x12\xb0\x01\n\x1a\x43reateGCPPubSubIntegration\x12&.api.CreateGCPPubSubIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\"G/api/applications/{integration.application_id}/integrations/gcp-pub-sub:\x01*\x12\xa9\x01\n\x17GetGCPPubSubIntegration\x12#.api.GetGCPPubSubIntegrationRequest\x1a$.api.GetGCPPubSubIntegrationResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/applications/{application_id}/integrations/gcp-pub-sub\x12\xb0\x01\n\x1aUpdateGCPPubSubIntegration\x12&.api.UpdateGCPPubSubIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\x1aG/api/applications/{integration.application_id}/integrations/gcp-pub-sub:\x01*\x12\xa1\x01\n\x1a\x44\x65leteGCPPubSubIntegration\x12&.api.DeleteGCPPubSubIntegrationRequest\x1a\x16.google.protobuf.Empty\"C\x82\xd3\xe4\x93\x02=*;/api/applications/{application_id}/integrations/gcp-pub-sub\x12\xa6\x01\n\x17\x43reateAWSSNSIntegration\x12#.api.CreateAWSSNSIntegrationRequest\x1a\x16.google.protobuf.Empty\"N\x82\xd3\xe4\x93\x02H\"C/api/applications/{integration.application_id}/integrations/aws-sns:\x01*\x12\x9c\x01\n\x14GetAWSSNSIntegration\x12 .api.GetAWSSNSIntegrationRequest\x1a!.api.GetAWSSNSIntegrationResponse\"?\x82\xd3\xe4\x93\x02\x39\x12\x37/api/applications/{application_id}/integrations/aws-sns\x12\xa6\x01\n\x17UpdateAWSSNSIntegration\x12#.api.UpdateAWSSNSIntegrationRequest\x1a\x16.google.protobuf.Empty\"N\x82\xd3\xe4\x93\x02H\x1a\x43/api/applications/{integration.application_id}/integrations/aws-sns:\x01*\x12\x97\x01\n\x17\x44\x65leteAWSSNSIntegration\x12#.api.DeleteAWSSNSIntegrationRequest\x1a\x16.google.protobuf.Empty\"?\x82\xd3\xe4\x93\x02\x39*7/api/applications/{application_id}/integrations/aws-sns\x12\xc2\x01\n CreateAzureServiceBusIntegration\x12,.api.CreateAzureServiceBusIntegrationRequest\x1a\x16.google.protobuf.Empty\"X\x82\xd3\xe4\x93\x02R\"M/api/applications/{integration.application_id}/integrations/azure-service-bus:\x01*\x12\xc1\x01\n\x1dGetAzureServiceBusIntegration\x12).api.GetAzureServiceBusIntegrationRequest\x1a*.api.GetAzureServiceBusIntegrationResponse\"I\x82\xd3\xe4\x93\x02\x43\x12\x41/api/applications/{application_id}/integrations/azure-service-bus\x12\xc2\x01\n UpdateAzureServiceBusIntegration\x12,.api.UpdateAzureServiceBusIntegrationRequest\x1a\x16.google.protobuf.Empty\"X\x82\xd3\xe4\x93\x02R\x1aM/api/applications/{integration.application_id}/integrations/azure-service-bus:\x01*\x12\xb3\x01\n DeleteAzureServiceBusIntegration\x12,.api.DeleteAzureServiceBusIntegrationRequest\x1a\x16.google.protobuf.Empty\"I\x82\xd3\xe4\x93\x02\x43*A/api/applications/{application_id}/integrations/azure-service-bus\x12\xb5\x01\n\x1c\x43reatePilotThingsIntegration\x12(.api.CreatePilotThingsIntegrationRequest\x1a\x16.google.protobuf.Empty\"S\x82\xd3\xe4\x93\x02M\"H/api/applications/{integration.application_id}/integrations/pilot-things:\x01*\x12\xb0\x01\n\x19GetPilotThingsIntegration\x12%.api.GetPilotThingsIntegrationRequest\x1a&.api.GetPilotThingsIntegrationResponse\"D\x82\xd3\xe4\x93\x02>\x12</api/applications/{application_id}/integrations/pilot-things\x12\xb5\x01\n\x1cUpdatePilotThingsIntegration\x12(.api.UpdatePilotThingsIntegrationRequest\x1a\x16.google.protobuf.Empty\"S\x82\xd3\xe4\x93\x02M\x1aH/api/applications/{integration.application_id}/integrations/pilot-things:\x01*\x12\xa6\x01\n\x1c\x44\x65letePilotThingsIntegration\x12(.api.DeletePilotThingsIntegrationRequest\x1a\x16.google.protobuf.Empty\"D\x82\xd3\xe4\x93\x02>*</api/applications/{application_id}/integrations/pilot-things\x12\x86\x01\n\x10ListIntegrations\x12\x1b.api.ListIntegrationRequest\x1a\x1c.api.ListIntegrationResponse\"7\x82\xd3\xe4\x93\x02\x31\x12//api/applications/{application_id}/integrations\x12\xe1\x01\n(GenerateMQTTIntegrationClientCertificate\x12\x34.api.GenerateMQTTIntegrationClientCertificateRequest\x1a\x35.api.GenerateMQTTIntegrationClientCertificateResponse\"H\x82\xd3\xe4\x93\x02\x42\"@/api/applications/{application_id}/integrations/mqtt/certificateBp\n!io.chirpstack.api.as.external.apiB\x10\x41pplicationProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
+  serialized_pb=b'\n3chirpstack-api/as_pb/external/api/application.proto\x12\x03\x61pi\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xcf\x01\n\x0b\x41pplication\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\'\n\x0forganization_id\x18\x04 \x01(\x03R\x0eorganizationID\x12\x15\n\rpayload_codec\x18\x06 \x01(\t\x12\x1e\n\x16payload_encoder_script\x18\x07 \x01(\t\x12\x1e\n\x16payload_decoder_script\x18\x08 \x01(\t\x12\x11\n\tis_active\x18\t \x01(\x08\"\xcc\x01\n\x13\x41pplicationListItem\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\'\n\x0forganization_id\x18\x04 \x01(\x03R\x0eorganizationID\x12\x11\n\tis_active\x18\x05 \x01(\x08\x12\x0f\n\x07\x64\x65v_cnt\x18\x07 \x01(\x03\x12\x39\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\"A\n\x18\x43reateApplicationRequest\x12%\n\x0b\x61pplication\x18\x01 \x01(\x0b\x32\x10.api.Application\"\'\n\x19\x43reateApplicationResponse\x12\n\n\x02id\x18\x01 \x01(\x03\"#\n\x15GetApplicationRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"?\n\x16GetApplicationResponse\x12%\n\x0b\x61pplication\x18\x01 \x01(\x0b\x32\x10.api.Application\"A\n\x18UpdateApplicationRequest\x12%\n\x0b\x61pplication\x18\x01 \x01(\x0b\x32\x10.api.Application\"&\n\x18\x44\x65leteApplicationRequest\x12\n\n\x02id\x18\x01 \x01(\x03\"\x90\x01\n\x16ListApplicationRequest\x12\r\n\x05limit\x18\x01 \x01(\x03\x12\x0e\n\x06offset\x18\x02 \x01(\x03\x12\'\n\x0forganization_id\x18\x03 \x01(\x03R\x0eorganizationID\x12\x0e\n\x06search\x18\x04 \x01(\t\x12\x0f\n\x07orderBy\x18\x05 \x01(\t\x12\r\n\x05order\x18\x06 \x01(\t\"X\n\x17ListApplicationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.api.ApplicationListItem\"3\n\x15HTTPIntegrationHeader\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\xe7\x04\n\x0fHTTPIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12+\n\x07headers\x18\x02 \x03(\x0b\x32\x1a.api.HTTPIntegrationHeader\x12&\n\x0fuplink_data_url\x18\x03 \x01(\tR\ruplinkDataURL\x12\x32\n\x15join_notification_url\x18\x04 \x01(\tR\x13joinNotificationURL\x12\x30\n\x14\x61\x63k_notification_url\x18\x05 \x01(\tR\x12\x61\x63kNotificationURL\x12\x34\n\x16\x65rror_notification_url\x18\x06 \x01(\tR\x14\x65rrorNotificationURL\x12\x36\n\x17status_notification_url\x18\x07 \x01(\tR\x15statusNotificationURL\x12:\n\x19location_notification_url\x18\x08 \x01(\tR\x17locationNotificationURL\x12\x35\n\x17tx_ack_notification_url\x18\t \x01(\tR\x14txAckNotificationURL\x12@\n\x1cintegration_notification_url\x18\n \x01(\tR\x1aintegrationNotificationURL\x12!\n\tmarshaler\x18\x0b \x01(\x0e\x32\x0e.api.Marshaler\x12,\n\x12\x65vent_endpoint_url\x18\x0c \x01(\tR\x10\x65ventEndpointURL\"I\n\x1c\x43reateHTTPIntegrationRequest\x12)\n\x0bintegration\x18\x01 \x01(\x0b\x32\x14.api.HTTPIntegration\"B\n\x19GetHTTPIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"G\n\x1aGetHTTPIntegrationResponse\x12)\n\x0bintegration\x18\x01 \x01(\x0b\x32\x14.api.HTTPIntegration\"I\n\x1cUpdateHTTPIntegrationRequest\x12)\n\x0bintegration\x18\x01 \x01(\x0b\x32\x14.api.HTTPIntegration\"E\n\x1c\x44\x65leteHTTPIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"?\n\x16ListIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"9\n\x13IntegrationListItem\x12\"\n\x04kind\x18\x01 \x01(\x0e\x32\x14.api.IntegrationKind\"X\n\x17ListIntegrationResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12(\n\x06result\x18\x02 \x03(\x0b\x32\x18.api.IntegrationListItem\"\xa4\x02\n\x13InfluxDBIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x10\n\x08\x65ndpoint\x18\x02 \x01(\t\x12\n\n\x02\x64\x62\x18\x03 \x01(\t\x12\x10\n\x08username\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\x12\x1d\n\x15retention_policy_name\x18\x06 \x01(\t\x12)\n\tprecision\x18\x07 \x01(\x0e\x32\x16.api.InfluxDBPrecision\x12%\n\x07version\x18\x08 \x01(\x0e\x32\x14.api.InfluxDBVersion\x12\r\n\x05token\x18\t \x01(\t\x12\x14\n\x0corganization\x18\n \x01(\t\x12\x0e\n\x06\x62ucket\x18\x0b \x01(\t\"Q\n CreateInfluxDBIntegrationRequest\x12-\n\x0bintegration\x18\x01 \x01(\x0b\x32\x18.api.InfluxDBIntegration\"F\n\x1dGetInfluxDBIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"O\n\x1eGetInfluxDBIntegrationResponse\x12-\n\x0bintegration\x18\x01 \x01(\x0b\x32\x18.api.InfluxDBIntegration\"Q\n UpdateInfluxDBIntegrationRequest\x12-\n\x0bintegration\x18\x01 \x01(\x0b\x32\x18.api.InfluxDBIntegration\"I\n DeleteInfluxDBIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"O\n\x16ThingsBoardIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x0e\n\x06server\x18\x02 \x01(\t\"W\n#CreateThingsBoardIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.ThingsBoardIntegration\"I\n GetThingsBoardIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"U\n!GetThingsBoardIntegrationResponse\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.ThingsBoardIntegration\"W\n#UpdateThingsBoardIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.ThingsBoardIntegration\"L\n#DeleteThingsBoardIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"O\n\x14MyDevicesIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x10\n\x08\x65ndpoint\x18\x02 \x01(\t\"S\n!CreateMyDevicesIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.MyDevicesIntegration\"G\n\x1eGetMyDevicesIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"Q\n\x1fGetMyDevicesIntegrationResponse\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.MyDevicesIntegration\"S\n!UpdateMyDevicesIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.MyDevicesIntegration\"J\n!DeleteMyDevicesIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\xf3\x05\n\x14LoRaCloudIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x13\n\x0bgeolocation\x18\x02 \x01(\x08\x12\x19\n\x11geolocation_token\x18\x03 \x01(\t\x12\x34\n\x16geolocation_buffer_ttl\x18\x04 \x01(\rR\x14geolocationBufferTTL\x12#\n\x1bgeolocation_min_buffer_size\x18\x05 \x01(\r\x12)\n\x10geolocation_tdoa\x18\x06 \x01(\x08R\x0fgeolocationTDOA\x12)\n\x10geolocation_rssi\x18\x07 \x01(\x08R\x0fgeolocationRSSI\x12)\n\x10geolocation_gnss\x18\x08 \x01(\x08R\x0fgeolocationGNSS\x12\x43\n\x1egeolocation_gnss_payload_field\x18\t \x01(\tR\x1bgeolocationGNSSPayloadField\x12>\n\x1cgeolocation_gnss_use_rx_time\x18\n \x01(\x08R\x18geolocationGNSSUseRxTime\x12)\n\x10geolocation_wifi\x18\x0b \x01(\x08R\x0fgeolocationWifi\x12\x43\n\x1egeolocation_wifi_payload_field\x18\x0c \x01(\tR\x1bgeolocationWifiPayloadField\x12\x0b\n\x03\x64\x61s\x18\r \x01(\x08\x12\x11\n\tdas_token\x18\x0e \x01(\t\x12\x16\n\x0e\x64\x61s_modem_port\x18\x0f \x01(\r\x12\"\n\rdas_gnss_port\x18\x10 \x01(\rR\x0b\x64\x61sGNSSPort\x12.\n\x14\x64\x61s_gnss_use_rx_time\x18\x11 \x01(\x08R\x10\x64\x61sGNSSUseRxTime\x12\'\n\x1f\x64\x61s_streaming_geoloc_workaround\x18\x12 \x01(\x08\"S\n!CreateLoRaCloudIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.LoRaCloudIntegration\"G\n\x1eGetLoRaCloudIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"Q\n\x1fGetLoRaCloudIntegrationResponse\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.LoRaCloudIntegration\"S\n!UpdateLoRaCloudIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.LoRaCloudIntegration\"J\n!DeleteLoRaCloudIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\xad\x01\n\x14GCPPubSubIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12!\n\tmarshaler\x18\x02 \x01(\x0e\x32\x0e.api.Marshaler\x12\x18\n\x10\x63redentials_file\x18\x03 \x01(\t\x12\x1d\n\nproject_id\x18\x04 \x01(\tR\tprojectID\x12\x12\n\ntopic_name\x18\x05 \x01(\t\"S\n!CreateGCPPubSubIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.GCPPubSubIntegration\"G\n\x1eGetGCPPubSubIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"Q\n\x1fGetGCPPubSubIntegrationResponse\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.GCPPubSubIntegration\"S\n!UpdateGCPPubSubIntegrationRequest\x12.\n\x0bintegration\x18\x01 \x01(\x0b\x32\x19.api.GCPPubSubIntegration\"J\n!DeleteGCPPubSubIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\xc9\x01\n\x11\x41WSSNSIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12!\n\tmarshaler\x18\x02 \x01(\x0e\x32\x0e.api.Marshaler\x12\x0e\n\x06region\x18\x03 \x01(\t\x12\"\n\raccess_key_id\x18\x04 \x01(\tR\x0b\x61\x63\x63\x65ssKeyID\x12\x19\n\x11secret_access_key\x18\x05 \x01(\t\x12\x1b\n\ttopic_arn\x18\x06 \x01(\tR\x08topicARN\"M\n\x1e\x43reateAWSSNSIntegrationRequest\x12+\n\x0bintegration\x18\x01 \x01(\x0b\x32\x16.api.AWSSNSIntegration\"D\n\x1bGetAWSSNSIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"K\n\x1cGetAWSSNSIntegrationResponse\x12+\n\x0bintegration\x18\x01 \x01(\x0b\x32\x16.api.AWSSNSIntegration\"M\n\x1eUpdateAWSSNSIntegrationRequest\x12+\n\x0bintegration\x18\x01 \x01(\x0b\x32\x16.api.AWSSNSIntegration\"G\n\x1e\x44\x65leteAWSSNSIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\x97\x01\n\x1a\x41zureServiceBusIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12!\n\tmarshaler\x18\x02 \x01(\x0e\x32\x0e.api.Marshaler\x12\x19\n\x11\x63onnection_string\x18\x03 \x01(\t\x12\x14\n\x0cpublish_name\x18\x04 \x01(\t\"_\n\'CreateAzureServiceBusIntegrationRequest\x12\x34\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1f.api.AzureServiceBusIntegration\"M\n$GetAzureServiceBusIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"]\n%GetAzureServiceBusIntegrationResponse\x12\x34\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1f.api.AzureServiceBusIntegration\"_\n\'UpdateAzureServiceBusIntegrationRequest\x12\x34\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1f.api.AzureServiceBusIntegration\"P\n\'DeleteAzureServiceBusIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"^\n\x16PilotThingsIntegration\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\x12\x0e\n\x06server\x18\x02 \x01(\t\x12\r\n\x05token\x18\x03 \x01(\t\"W\n#CreatePilotThingsIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.PilotThingsIntegration\"I\n GetPilotThingsIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"U\n!GetPilotThingsIntegrationResponse\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.PilotThingsIntegration\"W\n#UpdatePilotThingsIntegrationRequest\x12\x30\n\x0bintegration\x18\x01 \x01(\x0b\x32\x1b.api.PilotThingsIntegration\"L\n#DeletePilotThingsIntegrationRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"X\n/GenerateMQTTIntegrationClientCertificateRequest\x12%\n\x0e\x61pplication_id\x18\x01 \x01(\x03R\rapplicationID\"\x96\x01\n0GenerateMQTTIntegrationClientCertificateResponse\x12\x10\n\x08tls_cert\x18\x01 \x01(\t\x12\x0f\n\x07tls_key\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp*\xaf\x01\n\x0fIntegrationKind\x12\x08\n\x04HTTP\x10\x00\x12\x0c\n\x08INFLUXDB\x10\x01\x12\x0f\n\x0bTHINGSBOARD\x10\x02\x12\r\n\tMYDEVICES\x10\x03\x12\r\n\tLORACLOUD\x10\x04\x12\x0e\n\nGCP_PUBSUB\x10\x05\x12\x0b\n\x07\x41WS_SNS\x10\x06\x12\x15\n\x11\x41ZURE_SERVICE_BUS\x10\x07\x12\x10\n\x0cPILOT_THINGS\x10\x08\x12\x0f\n\x0bMQTT_GLOBAL\x10\t*C\n\tMarshaler\x12\x08\n\x04JSON\x10\x00\x12\x0c\n\x08PROTOBUF\x10\x01\x12\x0b\n\x07JSON_V3\x10\x02\x12\x11\n\rACTILITY_JSON\x10\x03*?\n\x11InfluxDBPrecision\x12\x06\n\x02NS\x10\x00\x12\x05\n\x01U\x10\x01\x12\x06\n\x02MS\x10\x02\x12\x05\n\x01S\x10\x03\x12\x05\n\x01M\x10\x04\x12\x05\n\x01H\x10\x05*1\n\x0fInfluxDBVersion\x12\x0e\n\nINFLUXDB_1\x10\x00\x12\x0e\n\nINFLUXDB_2\x10\x01\x32\xba\x37\n\x12\x41pplicationService\x12\x65\n\x06\x43reate\x12\x1d.api.CreateApplicationRequest\x1a\x1e.api.CreateApplicationResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/api/applications:\x01*\x12^\n\x03Get\x12\x1a.api.GetApplicationRequest\x1a\x1b.api.GetApplicationResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/api/applications/{id}\x12n\n\x06Update\x12\x1d.api.UpdateApplicationRequest\x1a\x16.google.protobuf.Empty\"-\x82\xd3\xe4\x93\x02\'\x1a\"/api/applications/{application.id}:\x01*\x12_\n\x06\x44\x65lete\x12\x1d.api.DeleteApplicationRequest\x1a\x16.google.protobuf.Empty\"\x1e\x82\xd3\xe4\x93\x02\x18*\x16/api/applications/{id}\x12\\\n\x04List\x12\x1b.api.ListApplicationRequest\x1a\x1c.api.ListApplicationResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/api/applications\x12\x9f\x01\n\x15\x43reateHTTPIntegration\x12!.api.CreateHTTPIntegrationRequest\x1a\x16.google.protobuf.Empty\"K\x82\xd3\xe4\x93\x02\x45\"@/api/applications/{integration.application_id}/integrations/http:\x01*\x12\x93\x01\n\x12GetHTTPIntegration\x12\x1e.api.GetHTTPIntegrationRequest\x1a\x1f.api.GetHTTPIntegrationResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/api/applications/{application_id}/integrations/http\x12\x9f\x01\n\x15UpdateHTTPIntegration\x12!.api.UpdateHTTPIntegrationRequest\x1a\x16.google.protobuf.Empty\"K\x82\xd3\xe4\x93\x02\x45\x1a@/api/applications/{integration.application_id}/integrations/http:\x01*\x12\x90\x01\n\x15\x44\x65leteHTTPIntegration\x12!.api.DeleteHTTPIntegrationRequest\x1a\x16.google.protobuf.Empty\"<\x82\xd3\xe4\x93\x02\x36*4/api/applications/{application_id}/integrations/http\x12\xab\x01\n\x19\x43reateInfluxDBIntegration\x12%.api.CreateInfluxDBIntegrationRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\"D/api/applications/{integration.application_id}/integrations/influxdb:\x01*\x12\xa3\x01\n\x16GetInfluxDBIntegration\x12\".api.GetInfluxDBIntegrationRequest\x1a#.api.GetInfluxDBIntegrationResponse\"@\x82\xd3\xe4\x93\x02:\x12\x38/api/applications/{application_id}/integrations/influxdb\x12\xab\x01\n\x19UpdateInfluxDBIntegration\x12%.api.UpdateInfluxDBIntegrationRequest\x1a\x16.google.protobuf.Empty\"O\x82\xd3\xe4\x93\x02I\x1a\x44/api/applications/{integration.application_id}/integrations/influxdb:\x01*\x12\x9c\x01\n\x19\x44\x65leteInfluxDBIntegration\x12%.api.DeleteInfluxDBIntegrationRequest\x1a\x16.google.protobuf.Empty\"@\x82\xd3\xe4\x93\x02:*8/api/applications/{application_id}/integrations/influxdb\x12\xb4\x01\n\x1c\x43reateThingsBoardIntegration\x12(.api.CreateThingsBoardIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\"G/api/applications/{integration.application_id}/integrations/thingsboard:\x01*\x12\xaf\x01\n\x19GetThingsBoardIntegration\x12%.api.GetThingsBoardIntegrationRequest\x1a&.api.GetThingsBoardIntegrationResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/applications/{application_id}/integrations/thingsboard\x12\xb4\x01\n\x1cUpdateThingsBoardIntegration\x12(.api.UpdateThingsBoardIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\x1aG/api/applications/{integration.application_id}/integrations/thingsboard:\x01*\x12\xa5\x01\n\x1c\x44\x65leteThingsBoardIntegration\x12(.api.DeleteThingsBoardIntegrationRequest\x1a\x16.google.protobuf.Empty\"C\x82\xd3\xe4\x93\x02=*;/api/applications/{application_id}/integrations/thingsboard\x12\xae\x01\n\x1a\x43reateMyDevicesIntegration\x12&.api.CreateMyDevicesIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\"E/api/applications/{integration.application_id}/integrations/mydevices:\x01*\x12\xa7\x01\n\x17GetMyDevicesIntegration\x12#.api.GetMyDevicesIntegrationRequest\x1a$.api.GetMyDevicesIntegrationResponse\"A\x82\xd3\xe4\x93\x02;\x12\x39/api/applications/{application_id}/integrations/mydevices\x12\xae\x01\n\x1aUpdateMyDevicesIntegration\x12&.api.UpdateMyDevicesIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\x1a\x45/api/applications/{integration.application_id}/integrations/mydevices:\x01*\x12\x9f\x01\n\x1a\x44\x65leteMyDevicesIntegration\x12&.api.DeleteMyDevicesIntegrationRequest\x1a\x16.google.protobuf.Empty\"A\x82\xd3\xe4\x93\x02;*9/api/applications/{application_id}/integrations/mydevices\x12\xae\x01\n\x1a\x43reateLoRaCloudIntegration\x12&.api.CreateLoRaCloudIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\"E/api/applications/{integration.application_id}/integrations/loracloud:\x01*\x12\xa7\x01\n\x17GetLoRaCloudIntegration\x12#.api.GetLoRaCloudIntegrationRequest\x1a$.api.GetLoRaCloudIntegrationResponse\"A\x82\xd3\xe4\x93\x02;\x12\x39/api/applications/{application_id}/integrations/loracloud\x12\xae\x01\n\x1aUpdateLoRaCloudIntegration\x12&.api.UpdateLoRaCloudIntegrationRequest\x1a\x16.google.protobuf.Empty\"P\x82\xd3\xe4\x93\x02J\x1a\x45/api/applications/{integration.application_id}/integrations/loracloud:\x01*\x12\x9f\x01\n\x1a\x44\x65leteLoRaCloudIntegration\x12&.api.DeleteLoRaCloudIntegrationRequest\x1a\x16.google.protobuf.Empty\"A\x82\xd3\xe4\x93\x02;*9/api/applications/{application_id}/integrations/loracloud\x12\xb0\x01\n\x1a\x43reateGCPPubSubIntegration\x12&.api.CreateGCPPubSubIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\"G/api/applications/{integration.application_id}/integrations/gcp-pub-sub:\x01*\x12\xa9\x01\n\x17GetGCPPubSubIntegration\x12#.api.GetGCPPubSubIntegrationRequest\x1a$.api.GetGCPPubSubIntegrationResponse\"C\x82\xd3\xe4\x93\x02=\x12;/api/applications/{application_id}/integrations/gcp-pub-sub\x12\xb0\x01\n\x1aUpdateGCPPubSubIntegration\x12&.api.UpdateGCPPubSubIntegrationRequest\x1a\x16.google.protobuf.Empty\"R\x82\xd3\xe4\x93\x02L\x1aG/api/applications/{integration.application_id}/integrations/gcp-pub-sub:\x01*\x12\xa1\x01\n\x1a\x44\x65leteGCPPubSubIntegration\x12&.api.DeleteGCPPubSubIntegrationRequest\x1a\x16.google.protobuf.Empty\"C\x82\xd3\xe4\x93\x02=*;/api/applications/{application_id}/integrations/gcp-pub-sub\x12\xa6\x01\n\x17\x43reateAWSSNSIntegration\x12#.api.CreateAWSSNSIntegrationRequest\x1a\x16.google.protobuf.Empty\"N\x82\xd3\xe4\x93\x02H\"C/api/applications/{integration.application_id}/integrations/aws-sns:\x01*\x12\x9c\x01\n\x14GetAWSSNSIntegration\x12 .api.GetAWSSNSIntegrationRequest\x1a!.api.GetAWSSNSIntegrationResponse\"?\x82\xd3\xe4\x93\x02\x39\x12\x37/api/applications/{application_id}/integrations/aws-sns\x12\xa6\x01\n\x17UpdateAWSSNSIntegration\x12#.api.UpdateAWSSNSIntegrationRequest\x1a\x16.google.protobuf.Empty\"N\x82\xd3\xe4\x93\x02H\x1a\x43/api/applications/{integration.application_id}/integrations/aws-sns:\x01*\x12\x97\x01\n\x17\x44\x65leteAWSSNSIntegration\x12#.api.DeleteAWSSNSIntegrationRequest\x1a\x16.google.protobuf.Empty\"?\x82\xd3\xe4\x93\x02\x39*7/api/applications/{application_id}/integrations/aws-sns\x12\xc2\x01\n CreateAzureServiceBusIntegration\x12,.api.CreateAzureServiceBusIntegrationRequest\x1a\x16.google.protobuf.Empty\"X\x82\xd3\xe4\x93\x02R\"M/api/applications/{integration.application_id}/integrations/azure-service-bus:\x01*\x12\xc1\x01\n\x1dGetAzureServiceBusIntegration\x12).api.GetAzureServiceBusIntegrationRequest\x1a*.api.GetAzureServiceBusIntegrationResponse\"I\x82\xd3\xe4\x93\x02\x43\x12\x41/api/applications/{application_id}/integrations/azure-service-bus\x12\xc2\x01\n UpdateAzureServiceBusIntegration\x12,.api.UpdateAzureServiceBusIntegrationRequest\x1a\x16.google.protobuf.Empty\"X\x82\xd3\xe4\x93\x02R\x1aM/api/applications/{integration.application_id}/integrations/azure-service-bus:\x01*\x12\xb3\x01\n DeleteAzureServiceBusIntegration\x12,.api.DeleteAzureServiceBusIntegrationRequest\x1a\x16.google.protobuf.Empty\"I\x82\xd3\xe4\x93\x02\x43*A/api/applications/{application_id}/integrations/azure-service-bus\x12\xb5\x01\n\x1c\x43reatePilotThingsIntegration\x12(.api.CreatePilotThingsIntegrationRequest\x1a\x16.google.protobuf.Empty\"S\x82\xd3\xe4\x93\x02M\"H/api/applications/{integration.application_id}/integrations/pilot-things:\x01*\x12\xb0\x01\n\x19GetPilotThingsIntegration\x12%.api.GetPilotThingsIntegrationRequest\x1a&.api.GetPilotThingsIntegrationResponse\"D\x82\xd3\xe4\x93\x02>\x12</api/applications/{application_id}/integrations/pilot-things\x12\xb5\x01\n\x1cUpdatePilotThingsIntegration\x12(.api.UpdatePilotThingsIntegrationRequest\x1a\x16.google.protobuf.Empty\"S\x82\xd3\xe4\x93\x02M\x1aH/api/applications/{integration.application_id}/integrations/pilot-things:\x01*\x12\xa6\x01\n\x1c\x44\x65letePilotThingsIntegration\x12(.api.DeletePilotThingsIntegrationRequest\x1a\x16.google.protobuf.Empty\"D\x82\xd3\xe4\x93\x02>*</api/applications/{application_id}/integrations/pilot-things\x12\x86\x01\n\x10ListIntegrations\x12\x1b.api.ListIntegrationRequest\x1a\x1c.api.ListIntegrationResponse\"7\x82\xd3\xe4\x93\x02\x31\x12//api/applications/{application_id}/integrations\x12\xe1\x01\n(GenerateMQTTIntegrationClientCertificate\x12\x34.api.GenerateMQTTIntegrationClientCertificateRequest\x1a\x35.api.GenerateMQTTIntegrationClientCertificateResponse\"H\x82\xd3\xe4\x93\x02\x42\"@/api/applications/{application_id}/integrations/mqtt/certificateBp\n!io.chirpstack.api.as.external.apiB\x10\x41pplicationProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -87,8 +87,8 @@ _INTEGRATIONKIND = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7656,
-  serialized_end=7831,
+  serialized_start=7723,
+  serialized_end=7898,
 )
 _sym_db.RegisterEnumDescriptor(_INTEGRATIONKIND)
 
@@ -123,8 +123,8 @@ _MARSHALER = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7833,
-  serialized_end=7900,
+  serialized_start=7900,
+  serialized_end=7967,
 )
 _sym_db.RegisterEnumDescriptor(_MARSHALER)
 
@@ -169,12 +169,38 @@ _INFLUXDBPRECISION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=7902,
-  serialized_end=7965,
+  serialized_start=7969,
+  serialized_end=8032,
 )
 _sym_db.RegisterEnumDescriptor(_INFLUXDBPRECISION)
 
 InfluxDBPrecision = enum_type_wrapper.EnumTypeWrapper(_INFLUXDBPRECISION)
+_INFLUXDBVERSION = _descriptor.EnumDescriptor(
+  name='InfluxDBVersion',
+  full_name='api.InfluxDBVersion',
+  filename=None,
+  file=DESCRIPTOR,
+  create_key=_descriptor._internal_create_key,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='INFLUXDB_1', index=0, number=0,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='INFLUXDB_2', index=1, number=1,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=8034,
+  serialized_end=8083,
+)
+_sym_db.RegisterEnumDescriptor(_INFLUXDBVERSION)
+
+InfluxDBVersion = enum_type_wrapper.EnumTypeWrapper(_INFLUXDBVERSION)
 HTTP = 0
 INFLUXDB = 1
 THINGSBOARD = 2
@@ -195,6 +221,8 @@ MS = 2
 S = 3
 M = 4
 H = 5
+INFLUXDB_1 = 0
+INFLUXDB_2 = 1
 
 
 
@@ -235,30 +263,30 @@ _APPLICATION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, json_name='organizationID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='service_profile_id', full_name='api.Application.service_profile_id', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='serviceProfileID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='payload_codec', full_name='api.Application.payload_codec', index=5,
+      name='payload_codec', full_name='api.Application.payload_codec', index=4,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='payload_encoder_script', full_name='api.Application.payload_encoder_script', index=6,
+      name='payload_encoder_script', full_name='api.Application.payload_encoder_script', index=5,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='payload_decoder_script', full_name='api.Application.payload_decoder_script', index=7,
+      name='payload_decoder_script', full_name='api.Application.payload_decoder_script', index=6,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='is_active', full_name='api.Application.is_active', index=7,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -275,7 +303,7 @@ _APPLICATION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=153,
-  serialized_end=387,
+  serialized_end=360,
 )
 
 
@@ -316,26 +344,26 @@ _APPLICATIONLISTITEM = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, json_name='organizationID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='service_profile_id', full_name='api.ApplicationListItem.service_profile_id', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, json_name='serviceProfileID', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='service_profile_name', full_name='api.ApplicationListItem.service_profile_name', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='is_active', full_name='api.ApplicationListItem.is_active', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='dev_cnt', full_name='api.ApplicationListItem.dev_cnt', index=6,
+      name='dev_cnt', full_name='api.ApplicationListItem.dev_cnt', index=5,
       number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created_at', full_name='api.ApplicationListItem.created_at', index=6,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='createdAt', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -348,8 +376,8 @@ _APPLICATIONLISTITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=390,
-  serialized_end=592,
+  serialized_start=363,
+  serialized_end=567,
 )
 
 
@@ -380,8 +408,8 @@ _CREATEAPPLICATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=594,
-  serialized_end=659,
+  serialized_start=569,
+  serialized_end=634,
 )
 
 
@@ -412,8 +440,8 @@ _CREATEAPPLICATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=661,
-  serialized_end=700,
+  serialized_start=636,
+  serialized_end=675,
 )
 
 
@@ -444,8 +472,8 @@ _GETAPPLICATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=702,
-  serialized_end=737,
+  serialized_start=677,
+  serialized_end=712,
 )
 
 
@@ -476,8 +504,8 @@ _GETAPPLICATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=739,
-  serialized_end=802,
+  serialized_start=714,
+  serialized_end=777,
 )
 
 
@@ -508,8 +536,8 @@ _UPDATEAPPLICATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=804,
-  serialized_end=869,
+  serialized_start=779,
+  serialized_end=844,
 )
 
 
@@ -540,8 +568,8 @@ _DELETEAPPLICATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=871,
-  serialized_end=909,
+  serialized_start=846,
+  serialized_end=884,
 )
 
 
@@ -607,8 +635,8 @@ _LISTAPPLICATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=912,
-  serialized_end=1056,
+  serialized_start=887,
+  serialized_end=1031,
 )
 
 
@@ -646,8 +674,8 @@ _LISTAPPLICATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1058,
-  serialized_end=1146,
+  serialized_start=1033,
+  serialized_end=1121,
 )
 
 
@@ -685,8 +713,8 @@ _HTTPINTEGRATIONHEADER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1148,
-  serialized_end=1199,
+  serialized_start=1123,
+  serialized_end=1174,
 )
 
 
@@ -794,8 +822,8 @@ _HTTPINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1202,
-  serialized_end=1817,
+  serialized_start=1177,
+  serialized_end=1792,
 )
 
 
@@ -826,8 +854,8 @@ _CREATEHTTPINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1819,
-  serialized_end=1892,
+  serialized_start=1794,
+  serialized_end=1867,
 )
 
 
@@ -858,8 +886,8 @@ _GETHTTPINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1894,
-  serialized_end=1960,
+  serialized_start=1869,
+  serialized_end=1935,
 )
 
 
@@ -890,8 +918,8 @@ _GETHTTPINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1962,
-  serialized_end=2033,
+  serialized_start=1937,
+  serialized_end=2008,
 )
 
 
@@ -922,8 +950,8 @@ _UPDATEHTTPINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2035,
-  serialized_end=2108,
+  serialized_start=2010,
+  serialized_end=2083,
 )
 
 
@@ -954,8 +982,8 @@ _DELETEHTTPINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2110,
-  serialized_end=2179,
+  serialized_start=2085,
+  serialized_end=2154,
 )
 
 
@@ -986,8 +1014,8 @@ _LISTINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2181,
-  serialized_end=2244,
+  serialized_start=2156,
+  serialized_end=2219,
 )
 
 
@@ -1018,8 +1046,8 @@ _INTEGRATIONLISTITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2246,
-  serialized_end=2303,
+  serialized_start=2221,
+  serialized_end=2278,
 )
 
 
@@ -1057,8 +1085,8 @@ _LISTINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2305,
-  serialized_end=2393,
+  serialized_start=2280,
+  serialized_end=2368,
 )
 
 
@@ -1119,6 +1147,34 @@ _INFLUXDBINTEGRATION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='version', full_name='api.InfluxDBIntegration.version', index=7,
+      number=8, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='token', full_name='api.InfluxDBIntegration.token', index=8,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='organization', full_name='api.InfluxDBIntegration.organization', index=9,
+      number=10, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='bucket', full_name='api.InfluxDBIntegration.bucket', index=10,
+      number=11, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1131,8 +1187,8 @@ _INFLUXDBINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2396,
-  serialized_end=2596,
+  serialized_start=2371,
+  serialized_end=2663,
 )
 
 
@@ -1163,8 +1219,8 @@ _CREATEINFLUXDBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2598,
-  serialized_end=2679,
+  serialized_start=2665,
+  serialized_end=2746,
 )
 
 
@@ -1195,8 +1251,8 @@ _GETINFLUXDBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2681,
-  serialized_end=2751,
+  serialized_start=2748,
+  serialized_end=2818,
 )
 
 
@@ -1227,8 +1283,8 @@ _GETINFLUXDBINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2753,
-  serialized_end=2832,
+  serialized_start=2820,
+  serialized_end=2899,
 )
 
 
@@ -1259,8 +1315,8 @@ _UPDATEINFLUXDBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2834,
-  serialized_end=2915,
+  serialized_start=2901,
+  serialized_end=2982,
 )
 
 
@@ -1291,8 +1347,8 @@ _DELETEINFLUXDBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2917,
-  serialized_end=2990,
+  serialized_start=2984,
+  serialized_end=3057,
 )
 
 
@@ -1330,8 +1386,8 @@ _THINGSBOARDINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2992,
-  serialized_end=3071,
+  serialized_start=3059,
+  serialized_end=3138,
 )
 
 
@@ -1362,8 +1418,8 @@ _CREATETHINGSBOARDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3073,
-  serialized_end=3160,
+  serialized_start=3140,
+  serialized_end=3227,
 )
 
 
@@ -1394,8 +1450,8 @@ _GETTHINGSBOARDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3162,
-  serialized_end=3235,
+  serialized_start=3229,
+  serialized_end=3302,
 )
 
 
@@ -1426,8 +1482,8 @@ _GETTHINGSBOARDINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3237,
-  serialized_end=3322,
+  serialized_start=3304,
+  serialized_end=3389,
 )
 
 
@@ -1458,8 +1514,8 @@ _UPDATETHINGSBOARDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3324,
-  serialized_end=3411,
+  serialized_start=3391,
+  serialized_end=3478,
 )
 
 
@@ -1490,8 +1546,8 @@ _DELETETHINGSBOARDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3413,
-  serialized_end=3489,
+  serialized_start=3480,
+  serialized_end=3556,
 )
 
 
@@ -1529,8 +1585,8 @@ _MYDEVICESINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3491,
-  serialized_end=3570,
+  serialized_start=3558,
+  serialized_end=3637,
 )
 
 
@@ -1561,8 +1617,8 @@ _CREATEMYDEVICESINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3572,
-  serialized_end=3655,
+  serialized_start=3639,
+  serialized_end=3722,
 )
 
 
@@ -1593,8 +1649,8 @@ _GETMYDEVICESINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3657,
-  serialized_end=3728,
+  serialized_start=3724,
+  serialized_end=3795,
 )
 
 
@@ -1625,8 +1681,8 @@ _GETMYDEVICESINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3730,
-  serialized_end=3811,
+  serialized_start=3797,
+  serialized_end=3878,
 )
 
 
@@ -1657,8 +1713,8 @@ _UPDATEMYDEVICESINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3813,
-  serialized_end=3896,
+  serialized_start=3880,
+  serialized_end=3963,
 )
 
 
@@ -1689,8 +1745,8 @@ _DELETEMYDEVICESINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3898,
-  serialized_end=3972,
+  serialized_start=3965,
+  serialized_end=4039,
 )
 
 
@@ -1840,8 +1896,8 @@ _LORACLOUDINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3975,
-  serialized_end=4730,
+  serialized_start=4042,
+  serialized_end=4797,
 )
 
 
@@ -1872,8 +1928,8 @@ _CREATELORACLOUDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4732,
-  serialized_end=4815,
+  serialized_start=4799,
+  serialized_end=4882,
 )
 
 
@@ -1904,8 +1960,8 @@ _GETLORACLOUDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4817,
-  serialized_end=4888,
+  serialized_start=4884,
+  serialized_end=4955,
 )
 
 
@@ -1936,8 +1992,8 @@ _GETLORACLOUDINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4890,
-  serialized_end=4971,
+  serialized_start=4957,
+  serialized_end=5038,
 )
 
 
@@ -1968,8 +2024,8 @@ _UPDATELORACLOUDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4973,
-  serialized_end=5056,
+  serialized_start=5040,
+  serialized_end=5123,
 )
 
 
@@ -2000,8 +2056,8 @@ _DELETELORACLOUDINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5058,
-  serialized_end=5132,
+  serialized_start=5125,
+  serialized_end=5199,
 )
 
 
@@ -2060,8 +2116,8 @@ _GCPPUBSUBINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5135,
-  serialized_end=5308,
+  serialized_start=5202,
+  serialized_end=5375,
 )
 
 
@@ -2092,8 +2148,8 @@ _CREATEGCPPUBSUBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5310,
-  serialized_end=5393,
+  serialized_start=5377,
+  serialized_end=5460,
 )
 
 
@@ -2124,8 +2180,8 @@ _GETGCPPUBSUBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5395,
-  serialized_end=5466,
+  serialized_start=5462,
+  serialized_end=5533,
 )
 
 
@@ -2156,8 +2212,8 @@ _GETGCPPUBSUBINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5468,
-  serialized_end=5549,
+  serialized_start=5535,
+  serialized_end=5616,
 )
 
 
@@ -2188,8 +2244,8 @@ _UPDATEGCPPUBSUBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5551,
-  serialized_end=5634,
+  serialized_start=5618,
+  serialized_end=5701,
 )
 
 
@@ -2220,8 +2276,8 @@ _DELETEGCPPUBSUBINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5636,
-  serialized_end=5710,
+  serialized_start=5703,
+  serialized_end=5777,
 )
 
 
@@ -2287,8 +2343,8 @@ _AWSSNSINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5713,
-  serialized_end=5914,
+  serialized_start=5780,
+  serialized_end=5981,
 )
 
 
@@ -2319,8 +2375,8 @@ _CREATEAWSSNSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5916,
-  serialized_end=5993,
+  serialized_start=5983,
+  serialized_end=6060,
 )
 
 
@@ -2351,8 +2407,8 @@ _GETAWSSNSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5995,
-  serialized_end=6063,
+  serialized_start=6062,
+  serialized_end=6130,
 )
 
 
@@ -2383,8 +2439,8 @@ _GETAWSSNSINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6065,
-  serialized_end=6140,
+  serialized_start=6132,
+  serialized_end=6207,
 )
 
 
@@ -2415,8 +2471,8 @@ _UPDATEAWSSNSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6142,
-  serialized_end=6219,
+  serialized_start=6209,
+  serialized_end=6286,
 )
 
 
@@ -2447,8 +2503,8 @@ _DELETEAWSSNSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6221,
-  serialized_end=6292,
+  serialized_start=6288,
+  serialized_end=6359,
 )
 
 
@@ -2500,8 +2556,8 @@ _AZURESERVICEBUSINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6295,
-  serialized_end=6446,
+  serialized_start=6362,
+  serialized_end=6513,
 )
 
 
@@ -2532,8 +2588,8 @@ _CREATEAZURESERVICEBUSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6448,
-  serialized_end=6543,
+  serialized_start=6515,
+  serialized_end=6610,
 )
 
 
@@ -2564,8 +2620,8 @@ _GETAZURESERVICEBUSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6545,
-  serialized_end=6622,
+  serialized_start=6612,
+  serialized_end=6689,
 )
 
 
@@ -2596,8 +2652,8 @@ _GETAZURESERVICEBUSINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6624,
-  serialized_end=6717,
+  serialized_start=6691,
+  serialized_end=6784,
 )
 
 
@@ -2628,8 +2684,8 @@ _UPDATEAZURESERVICEBUSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6719,
-  serialized_end=6814,
+  serialized_start=6786,
+  serialized_end=6881,
 )
 
 
@@ -2660,8 +2716,8 @@ _DELETEAZURESERVICEBUSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6816,
-  serialized_end=6896,
+  serialized_start=6883,
+  serialized_end=6963,
 )
 
 
@@ -2706,8 +2762,8 @@ _PILOTTHINGSINTEGRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6898,
-  serialized_end=6992,
+  serialized_start=6965,
+  serialized_end=7059,
 )
 
 
@@ -2738,8 +2794,8 @@ _CREATEPILOTTHINGSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6994,
-  serialized_end=7081,
+  serialized_start=7061,
+  serialized_end=7148,
 )
 
 
@@ -2770,8 +2826,8 @@ _GETPILOTTHINGSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7083,
-  serialized_end=7156,
+  serialized_start=7150,
+  serialized_end=7223,
 )
 
 
@@ -2802,8 +2858,8 @@ _GETPILOTTHINGSINTEGRATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7158,
-  serialized_end=7243,
+  serialized_start=7225,
+  serialized_end=7310,
 )
 
 
@@ -2834,8 +2890,8 @@ _UPDATEPILOTTHINGSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7245,
-  serialized_end=7332,
+  serialized_start=7312,
+  serialized_end=7399,
 )
 
 
@@ -2866,8 +2922,8 @@ _DELETEPILOTTHINGSINTEGRATIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7334,
-  serialized_end=7410,
+  serialized_start=7401,
+  serialized_end=7477,
 )
 
 
@@ -2898,8 +2954,8 @@ _GENERATEMQTTINTEGRATIONCLIENTCERTIFICATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7412,
-  serialized_end=7500,
+  serialized_start=7479,
+  serialized_end=7567,
 )
 
 
@@ -2951,10 +3007,11 @@ _GENERATEMQTTINTEGRATIONCLIENTCERTIFICATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7503,
-  serialized_end=7653,
+  serialized_start=7570,
+  serialized_end=7720,
 )
 
+_APPLICATIONLISTITEM.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _CREATEAPPLICATIONREQUEST.fields_by_name['application'].message_type = _APPLICATION
 _GETAPPLICATIONRESPONSE.fields_by_name['application'].message_type = _APPLICATION
 _UPDATEAPPLICATIONREQUEST.fields_by_name['application'].message_type = _APPLICATION
@@ -2967,6 +3024,7 @@ _UPDATEHTTPINTEGRATIONREQUEST.fields_by_name['integration'].message_type = _HTTP
 _INTEGRATIONLISTITEM.fields_by_name['kind'].enum_type = _INTEGRATIONKIND
 _LISTINTEGRATIONRESPONSE.fields_by_name['result'].message_type = _INTEGRATIONLISTITEM
 _INFLUXDBINTEGRATION.fields_by_name['precision'].enum_type = _INFLUXDBPRECISION
+_INFLUXDBINTEGRATION.fields_by_name['version'].enum_type = _INFLUXDBVERSION
 _CREATEINFLUXDBINTEGRATIONREQUEST.fields_by_name['integration'].message_type = _INFLUXDBINTEGRATION
 _GETINFLUXDBINTEGRATIONRESPONSE.fields_by_name['integration'].message_type = _INFLUXDBINTEGRATION
 _UPDATEINFLUXDBINTEGRATIONREQUEST.fields_by_name['integration'].message_type = _INFLUXDBINTEGRATION
@@ -3068,6 +3126,7 @@ DESCRIPTOR.message_types_by_name['GenerateMQTTIntegrationClientCertificateRespon
 DESCRIPTOR.enum_types_by_name['IntegrationKind'] = _INTEGRATIONKIND
 DESCRIPTOR.enum_types_by_name['Marshaler'] = _MARSHALER
 DESCRIPTOR.enum_types_by_name['InfluxDBPrecision'] = _INFLUXDBPRECISION
+DESCRIPTOR.enum_types_by_name['InfluxDBVersion'] = _INFLUXDBVERSION
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Application = _reflection.GeneratedProtocolMessageType('Application', (_message.Message,), {
@@ -3570,8 +3629,8 @@ _APPLICATIONSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=7968,
-  serialized_end=15066,
+  serialized_start=8086,
+  serialized_end=15184,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',

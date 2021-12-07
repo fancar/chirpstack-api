@@ -5,7 +5,7 @@
 
 import * as ns_ns_pb from "../ns/ns_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 
 interface INetworkServerServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
   createServiceProfile: grpc.MethodDefinition<ns_ns_pb.CreateServiceProfileRequest, ns_ns_pb.CreateServiceProfileResponse>;
@@ -57,6 +57,7 @@ interface INetworkServerServiceService extends grpc.ServiceDefinition<grpc.Untyp
   getMulticastQueueItemsForMulticastGroup: grpc.MethodDefinition<ns_ns_pb.GetMulticastQueueItemsForMulticastGroupRequest, ns_ns_pb.GetMulticastQueueItemsForMulticastGroupResponse>;
   getVersion: grpc.MethodDefinition<google_protobuf_empty_pb.Empty, ns_ns_pb.GetVersionResponse>;
   getADRAlgorithms: grpc.MethodDefinition<google_protobuf_empty_pb.Empty, ns_ns_pb.GetADRAlgorithmsResponse>;
+  getDeviceForExport: grpc.MethodDefinition<ns_ns_pb.GetDeviceRequest, ns_ns_pb.GetDeviceForExportResponse>;
 }
 
 export const NetworkServerServiceService: INetworkServerServiceService;
@@ -111,6 +112,7 @@ export interface INetworkServerServiceServer extends grpc.UntypedServiceImplemen
   getMulticastQueueItemsForMulticastGroup: grpc.handleUnaryCall<ns_ns_pb.GetMulticastQueueItemsForMulticastGroupRequest, ns_ns_pb.GetMulticastQueueItemsForMulticastGroupResponse>;
   getVersion: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, ns_ns_pb.GetVersionResponse>;
   getADRAlgorithms: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, ns_ns_pb.GetADRAlgorithmsResponse>;
+  getDeviceForExport: grpc.handleUnaryCall<ns_ns_pb.GetDeviceRequest, ns_ns_pb.GetDeviceForExportResponse>;
 }
 
 export class NetworkServerServiceClient extends grpc.Client {
@@ -260,4 +262,7 @@ export class NetworkServerServiceClient extends grpc.Client {
   getADRAlgorithms(argument: google_protobuf_empty_pb.Empty, callback: grpc.requestCallback<ns_ns_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
   getADRAlgorithms(argument: google_protobuf_empty_pb.Empty, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
   getADRAlgorithms(argument: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
+  getDeviceForExport(argument: ns_ns_pb.GetDeviceRequest, callback: grpc.requestCallback<ns_ns_pb.GetDeviceForExportResponse>): grpc.ClientUnaryCall;
+  getDeviceForExport(argument: ns_ns_pb.GetDeviceRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetDeviceForExportResponse>): grpc.ClientUnaryCall;
+  getDeviceForExport(argument: ns_ns_pb.GetDeviceRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetDeviceForExportResponse>): grpc.ClientUnaryCall;
 }

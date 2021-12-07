@@ -634,7 +634,7 @@ type OrganizationUser struct {
 	IsDeviceAdmin bool `protobuf:"varint,5,opt,name=is_device_admin,json=isDeviceAdmin,proto3" json:"is_device_admin,omitempty"`
 	// User is able to modify gateways.
 	IsGatewayAdmin bool `protobuf:"varint,6,opt,name=is_gateway_admin,json=isGatewayAdmin,proto3" json:"is_gateway_admin,omitempty"`
-	// Email (only used on get).
+	// Email (only used on get and when adding a user to an organization).
 	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	// false if the user inactive
 	IsActive bool `protobuf:"varint,7,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
@@ -1432,7 +1432,7 @@ type OrganizationServiceClient interface {
 	ListUsers(ctx context.Context, in *ListOrganizationUsersRequest, opts ...grpc.CallOption) (*ListOrganizationUsersResponse, error)
 	// Get data for a particular organization user.
 	GetUser(ctx context.Context, in *GetOrganizationUserRequest, opts ...grpc.CallOption) (*GetOrganizationUserResponse, error)
-	// Add a new user to an organization.
+	// Add a new user to an organization. The user is matched based on email, not user id.
 	AddUser(ctx context.Context, in *AddOrganizationUserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	// Update a user in an organization.
 	UpdateUser(ctx context.Context, in *UpdateOrganizationUserRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -1554,7 +1554,7 @@ type OrganizationServiceServer interface {
 	ListUsers(context.Context, *ListOrganizationUsersRequest) (*ListOrganizationUsersResponse, error)
 	// Get data for a particular organization user.
 	GetUser(context.Context, *GetOrganizationUserRequest) (*GetOrganizationUserResponse, error)
-	// Add a new user to an organization.
+	// Add a new user to an organization. The user is matched based on email, not user id.
 	AddUser(context.Context, *AddOrganizationUserRequest) (*empty.Empty, error)
 	// Update a user in an organization.
 	UpdateUser(context.Context, *UpdateOrganizationUserRequest) (*empty.Empty, error)

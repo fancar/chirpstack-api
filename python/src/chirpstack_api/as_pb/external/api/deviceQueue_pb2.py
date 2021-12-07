@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n!io.chirpstack.api.as.external.apiB\020DeviceQueueProtoP\001Z7github.com/brocaar/chirpstack-api/go/v3/as/external/api',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n3chirpstack-api/as_pb/external/api/deviceQueue.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x7f\n\x0f\x44\x65viceQueueItem\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\x12\x11\n\tconfirmed\x18\x02 \x01(\x08\x12\r\n\x05\x66_cnt\x18\x06 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\x13\n\x0bjson_object\x18\x05 \x01(\t\"P\n\x1d\x45nqueueDeviceQueueItemRequest\x12/\n\x11\x64\x65vice_queue_item\x18\x01 \x01(\x0b\x32\x14.api.DeviceQueueItem\"/\n\x1e\x45nqueueDeviceQueueItemResponse\x12\r\n\x05\x66_cnt\x18\x01 \x01(\r\"2\n\x17\x46lushDeviceQueueRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\"J\n\x1bListDeviceQueueItemsRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\x12\x12\n\ncount_only\x18\x02 \x01(\x08\"e\n\x1cListDeviceQueueItemsResponse\x12\x30\n\x12\x64\x65vice_queue_items\x18\x01 \x03(\x0b\x32\x14.api.DeviceQueueItem\x12\x13\n\x0btotal_count\x18\x02 \x01(\r\"\xa3\x01\n%EnqueueDeviceQueueActilityItemRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\x12\x18\n\x10\x63onfirm_downlink\x18\x02 \x01(\x08\x12\x1c\n\x14\x66lush_downlink_queue\x18\x03 \x01(\x08\x12\x13\n\x0bpayload_hex\x18\x04 \x01(\t\x12\x14\n\x0ctarget_ports\x18\x05 \x01(\t\"\x9b\x01\n&EnqueueDeviceQueueActilityItemResponse\x12\x18\n\x10\x63onfirm_downlink\x18\x01 \x01(\x08\x12\x1c\n\x14\x66lush_downlink_queue\x18\x02 \x01(\x08\x12\x13\n\x0bpayload_hex\x18\x03 \x01(\t\x12\x14\n\x0ctarget_ports\x18\x04 \x01(\t\x12\x0e\n\x06status\x18\x05 \x01(\t2\xa0\x04\n\x12\x44\x65viceQueueService\x12\x8d\x01\n\x07\x45nqueue\x12\".api.EnqueueDeviceQueueItemRequest\x1a#.api.EnqueueDeviceQueueItemResponse\"9\x82\xd3\xe4\x93\x02\x33\"./api/devices/{device_queue_item.dev_eui}/queue:\x01*\x12\x63\n\x05\x46lush\x12\x1c.api.FlushDeviceQueueRequest\x1a\x16.google.protobuf.Empty\"$\x82\xd3\xe4\x93\x02\x1e*\x1c/api/devices/{dev_eui}/queue\x12q\n\x04List\x12 .api.ListDeviceQueueItemsRequest\x1a!.api.ListDeviceQueueItemsResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/devices/{dev_eui}/queue\x12\xa1\x01\n\x0f\x41\x63tilityEnqueue\x12*.api.EnqueueDeviceQueueActilityItemRequest\x1a+.api.EnqueueDeviceQueueActilityItemResponse\"5\x82\xd3\xe4\x93\x02/\"*/api/devices/{dev_eui}/queue/actilitystyle:\x01*Bp\n!io.chirpstack.api.as.external.apiB\x10\x44\x65viceQueueProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
+  serialized_pb=b'\n3chirpstack-api/as_pb/external/api/deviceQueue.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x8c\x01\n\x0f\x44\x65viceQueueItem\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\x12\x11\n\tconfirmed\x18\x02 \x01(\x08\x12\r\n\x05\x66_cnt\x18\x06 \x01(\r\x12\x0e\n\x06\x66_port\x18\x03 \x01(\r\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\x13\n\x0bjson_object\x18\x05 \x01(\t\x12\x0b\n\x03ttl\x18\x07 \x01(\r\"P\n\x1d\x45nqueueDeviceQueueItemRequest\x12/\n\x11\x64\x65vice_queue_item\x18\x01 \x01(\x0b\x32\x14.api.DeviceQueueItem\"/\n\x1e\x45nqueueDeviceQueueItemResponse\x12\r\n\x05\x66_cnt\x18\x01 \x01(\r\"2\n\x17\x46lushDeviceQueueRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\"J\n\x1bListDeviceQueueItemsRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\x12\x12\n\ncount_only\x18\x02 \x01(\x08\"e\n\x1cListDeviceQueueItemsResponse\x12\x30\n\x12\x64\x65vice_queue_items\x18\x01 \x03(\x0b\x32\x14.api.DeviceQueueItem\x12\x13\n\x0btotal_count\x18\x02 \x01(\r\"\xbf\x01\n%EnqueueDeviceQueueActilityItemRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\x12\x18\n\x10\x63onfirm_downlink\x18\x02 \x01(\x08\x12\x1c\n\x14\x66lush_downlink_queue\x18\x03 \x01(\x08\x12\x13\n\x0bpayload_hex\x18\x04 \x01(\t\x12\x14\n\x0ctarget_ports\x18\x05 \x01(\t\x12\r\n\x05\x66_cnt\x18\x06 \x01(\r\x12\x0b\n\x03ttl\x18\x07 \x01(\r\"\x9b\x01\n&EnqueueDeviceQueueActilityItemResponse\x12\x18\n\x10\x63onfirm_downlink\x18\x01 \x01(\x08\x12\x1c\n\x14\x66lush_downlink_queue\x18\x02 \x01(\x08\x12\x13\n\x0bpayload_hex\x18\x03 \x01(\t\x12\x14\n\x0ctarget_ports\x18\x04 \x01(\t\x12\x0e\n\x06status\x18\x05 \x01(\t\"5\n\x1aGetNextDownlinkFCntRequest\x12\x17\n\x07\x64\x65v_eui\x18\x01 \x01(\tR\x06\x64\x65vEUI\",\n\x1bGetNextDownlinkFCntResponse\x12\r\n\x05\x66_cnt\x18\x01 \x01(\r2\x9f\x05\n\x12\x44\x65viceQueueService\x12\x8d\x01\n\x07\x45nqueue\x12\".api.EnqueueDeviceQueueItemRequest\x1a#.api.EnqueueDeviceQueueItemResponse\"9\x82\xd3\xe4\x93\x02\x33\"./api/devices/{device_queue_item.dev_eui}/queue:\x01*\x12\x63\n\x05\x46lush\x12\x1c.api.FlushDeviceQueueRequest\x1a\x16.google.protobuf.Empty\"$\x82\xd3\xe4\x93\x02\x1e*\x1c/api/devices/{dev_eui}/queue\x12q\n\x04List\x12 .api.ListDeviceQueueItemsRequest\x1a!.api.ListDeviceQueueItemsResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/api/devices/{dev_eui}/queue\x12\xa1\x01\n\x0f\x41\x63tilityEnqueue\x12*.api.EnqueueDeviceQueueActilityItemRequest\x1a+.api.EnqueueDeviceQueueActilityItemResponse\"5\x82\xd3\xe4\x93\x02/\"*/api/devices/{dev_eui}/queue/actilitystyle:\x01*\x12}\n\x13GetNextDownlinkFCnt\x12\x1f.api.GetNextDownlinkFCntRequest\x1a .api.GetNextDownlinkFCntResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/api/devices/{dev_eui}/fcntBp\n!io.chirpstack.api.as.external.apiB\x10\x44\x65viceQueueProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -78,6 +78,13 @@ _DEVICEQUEUEITEM = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ttl', full_name='api.DeviceQueueItem.ttl', index=6,
+      number=7, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -90,8 +97,8 @@ _DEVICEQUEUEITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=119,
-  serialized_end=246,
+  serialized_start=120,
+  serialized_end=260,
 )
 
 
@@ -122,8 +129,8 @@ _ENQUEUEDEVICEQUEUEITEMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=248,
-  serialized_end=328,
+  serialized_start=262,
+  serialized_end=342,
 )
 
 
@@ -154,8 +161,8 @@ _ENQUEUEDEVICEQUEUEITEMRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=330,
-  serialized_end=377,
+  serialized_start=344,
+  serialized_end=391,
 )
 
 
@@ -186,8 +193,8 @@ _FLUSHDEVICEQUEUEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=379,
-  serialized_end=429,
+  serialized_start=393,
+  serialized_end=443,
 )
 
 
@@ -225,8 +232,8 @@ _LISTDEVICEQUEUEITEMSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=431,
-  serialized_end=505,
+  serialized_start=445,
+  serialized_end=519,
 )
 
 
@@ -264,8 +271,8 @@ _LISTDEVICEQUEUEITEMSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=507,
-  serialized_end=608,
+  serialized_start=521,
+  serialized_end=622,
 )
 
 
@@ -312,6 +319,20 @@ _ENQUEUEDEVICEQUEUEACTILITYITEMREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='f_cnt', full_name='api.EnqueueDeviceQueueActilityItemRequest.f_cnt', index=5,
+      number=6, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ttl', full_name='api.EnqueueDeviceQueueActilityItemRequest.ttl', index=6,
+      number=7, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -324,8 +345,8 @@ _ENQUEUEDEVICEQUEUEACTILITYITEMREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=611,
-  serialized_end=774,
+  serialized_start=625,
+  serialized_end=816,
 )
 
 
@@ -384,8 +405,72 @@ _ENQUEUEDEVICEQUEUEACTILITYITEMRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=777,
-  serialized_end=932,
+  serialized_start=819,
+  serialized_end=974,
+)
+
+
+_GETNEXTDOWNLINKFCNTREQUEST = _descriptor.Descriptor(
+  name='GetNextDownlinkFCntRequest',
+  full_name='api.GetNextDownlinkFCntRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='dev_eui', full_name='api.GetNextDownlinkFCntRequest.dev_eui', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, json_name='devEUI', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=976,
+  serialized_end=1029,
+)
+
+
+_GETNEXTDOWNLINKFCNTRESPONSE = _descriptor.Descriptor(
+  name='GetNextDownlinkFCntResponse',
+  full_name='api.GetNextDownlinkFCntResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='f_cnt', full_name='api.GetNextDownlinkFCntResponse.f_cnt', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1031,
+  serialized_end=1075,
 )
 
 _ENQUEUEDEVICEQUEUEITEMREQUEST.fields_by_name['device_queue_item'].message_type = _DEVICEQUEUEITEM
@@ -398,6 +483,8 @@ DESCRIPTOR.message_types_by_name['ListDeviceQueueItemsRequest'] = _LISTDEVICEQUE
 DESCRIPTOR.message_types_by_name['ListDeviceQueueItemsResponse'] = _LISTDEVICEQUEUEITEMSRESPONSE
 DESCRIPTOR.message_types_by_name['EnqueueDeviceQueueActilityItemRequest'] = _ENQUEUEDEVICEQUEUEACTILITYITEMREQUEST
 DESCRIPTOR.message_types_by_name['EnqueueDeviceQueueActilityItemResponse'] = _ENQUEUEDEVICEQUEUEACTILITYITEMRESPONSE
+DESCRIPTOR.message_types_by_name['GetNextDownlinkFCntRequest'] = _GETNEXTDOWNLINKFCNTREQUEST
+DESCRIPTOR.message_types_by_name['GetNextDownlinkFCntResponse'] = _GETNEXTDOWNLINKFCNTRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 DeviceQueueItem = _reflection.GeneratedProtocolMessageType('DeviceQueueItem', (_message.Message,), {
@@ -456,6 +543,20 @@ EnqueueDeviceQueueActilityItemResponse = _reflection.GeneratedProtocolMessageTyp
   })
 _sym_db.RegisterMessage(EnqueueDeviceQueueActilityItemResponse)
 
+GetNextDownlinkFCntRequest = _reflection.GeneratedProtocolMessageType('GetNextDownlinkFCntRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETNEXTDOWNLINKFCNTREQUEST,
+  '__module__' : 'chirpstack_api.as_pb.external.api.deviceQueue_pb2'
+  # @@protoc_insertion_point(class_scope:api.GetNextDownlinkFCntRequest)
+  })
+_sym_db.RegisterMessage(GetNextDownlinkFCntRequest)
+
+GetNextDownlinkFCntResponse = _reflection.GeneratedProtocolMessageType('GetNextDownlinkFCntResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETNEXTDOWNLINKFCNTRESPONSE,
+  '__module__' : 'chirpstack_api.as_pb.external.api.deviceQueue_pb2'
+  # @@protoc_insertion_point(class_scope:api.GetNextDownlinkFCntResponse)
+  })
+_sym_db.RegisterMessage(GetNextDownlinkFCntResponse)
+
 
 DESCRIPTOR._options = None
 
@@ -466,8 +567,8 @@ _DEVICEQUEUESERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=935,
-  serialized_end=1479,
+  serialized_start=1078,
+  serialized_end=1749,
   methods=[
   _descriptor.MethodDescriptor(
     name='Enqueue',
@@ -507,6 +608,16 @@ _DEVICEQUEUESERVICE = _descriptor.ServiceDescriptor(
     input_type=_ENQUEUEDEVICEQUEUEACTILITYITEMREQUEST,
     output_type=_ENQUEUEDEVICEQUEUEACTILITYITEMRESPONSE,
     serialized_options=b'\202\323\344\223\002/\"*/api/devices/{dev_eui}/queue/actilitystyle:\001*',
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetNextDownlinkFCnt',
+    full_name='api.DeviceQueueService.GetNextDownlinkFCnt',
+    index=4,
+    containing_service=None,
+    input_type=_GETNEXTDOWNLINKFCNTREQUEST,
+    output_type=_GETNEXTDOWNLINKFCNTRESPONSE,
+    serialized_options=b'\202\323\344\223\002\035\022\033/api/devices/{dev_eui}/fcnt',
     create_key=_descriptor._internal_create_key,
   ),
 ])

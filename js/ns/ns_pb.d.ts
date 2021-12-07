@@ -471,6 +471,9 @@ export class Device extends jspb.Message {
   getIsDisabled(): boolean;
   setIsDisabled(value: boolean): void;
 
+  getKeepQueue(): boolean;
+  setKeepQueue(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Device.AsObject;
   static toObject(includeInstance: boolean, msg: Device): Device.AsObject;
@@ -490,6 +493,7 @@ export namespace Device {
     skipFCntCheck: boolean,
     referenceAltitude: number,
     isDisabled: boolean,
+    keepQueue: boolean,
   }
 }
 
@@ -568,6 +572,52 @@ export namespace GetDeviceResponse {
     device?: Device.AsObject,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
+export class GetDeviceForExportResponse extends jspb.Message {
+  getDevEui(): Uint8Array | string;
+  getDevEui_asU8(): Uint8Array;
+  getDevEui_asB64(): string;
+  setDevEui(value: Uint8Array | string): void;
+
+  getSupportsClassB(): boolean;
+  setSupportsClassB(value: boolean): void;
+
+  getSupportsClassC(): boolean;
+  setSupportsClassC(value: boolean): void;
+
+  getMacVersion(): string;
+  setMacVersion(value: string): void;
+
+  getIsDisabled(): boolean;
+  setIsDisabled(value: boolean): void;
+
+  getSupportsJoin(): boolean;
+  setSupportsJoin(value: boolean): void;
+
+  getNwkSEncKey(): string;
+  setNwkSEncKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetDeviceForExportResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetDeviceForExportResponse): GetDeviceForExportResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetDeviceForExportResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetDeviceForExportResponse;
+  static deserializeBinaryFromReader(message: GetDeviceForExportResponse, reader: jspb.BinaryReader): GetDeviceForExportResponse;
+}
+
+export namespace GetDeviceForExportResponse {
+  export type AsObject = {
+    devEui: Uint8Array | string,
+    supportsClassB: boolean,
+    supportsClassC: boolean,
+    macVersion: string,
+    isDisabled: boolean,
+    supportsJoin: boolean,
+    nwkSEncKey: string,
   }
 }
 
@@ -900,6 +950,9 @@ export class Gateway extends jspb.Message {
   getServiceProfileId_asB64(): string;
   setServiceProfileId(value: Uint8Array | string): void;
 
+  getSuspended(): boolean;
+  setSuspended(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Gateway.AsObject;
   static toObject(includeInstance: boolean, msg: Gateway): Gateway.AsObject;
@@ -918,6 +971,7 @@ export namespace Gateway {
     boardsList: Array<GatewayBoard.AsObject>,
     routingProfileId: Uint8Array | string,
     serviceProfileId: Uint8Array | string,
+    suspended: boolean,
   }
 }
 
@@ -1268,6 +1322,9 @@ export class DeviceQueueItem extends jspb.Message {
   getDevAddr_asB64(): string;
   setDevAddr(value: Uint8Array | string): void;
 
+  getTtl(): number;
+  setTtl(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceQueueItem.AsObject;
   static toObject(includeInstance: boolean, msg: DeviceQueueItem): DeviceQueueItem.AsObject;
@@ -1286,6 +1343,7 @@ export namespace DeviceQueueItem {
     fPort: number,
     confirmed: boolean,
     devAddr: Uint8Array | string,
+    ttl: number,
   }
 }
 
@@ -1525,6 +1583,9 @@ export class DownlinkFrameLog extends jspb.Message {
   getPublishedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setPublishedAt(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  getLimit(): RateLimitMap[keyof RateLimitMap];
+  setLimit(value: RateLimitMap[keyof RateLimitMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DownlinkFrameLog.AsObject;
   static toObject(includeInstance: boolean, msg: DownlinkFrameLog): DownlinkFrameLog.AsObject;
@@ -1546,6 +1607,7 @@ export namespace DownlinkFrameLog {
     devAddr: Uint8Array | string,
     devEui: Uint8Array | string,
     publishedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    limit: RateLimitMap[keyof RateLimitMap],
   }
 }
 
@@ -1576,6 +1638,9 @@ export class RXFrameForHandyRusty extends jspb.Message {
   getCtxId(): string;
   setCtxId(value: string): void;
 
+  getLimit(): RateLimitMap[keyof RateLimitMap];
+  setLimit(value: RateLimitMap[keyof RateLimitMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RXFrameForHandyRusty.AsObject;
   static toObject(includeInstance: boolean, msg: RXFrameForHandyRusty): RXFrameForHandyRusty.AsObject;
@@ -1594,6 +1659,7 @@ export namespace RXFrameForHandyRusty {
     late: boolean,
     deviceSession?: DeviceSession.AsObject,
     ctxId: string,
+    limit: RateLimitMap[keyof RateLimitMap],
   }
 }
 
@@ -1621,6 +1687,14 @@ export class TXFrameForHandyRusty extends jspb.Message {
   getGatewayId_asB64(): string;
   setGatewayId(value: Uint8Array | string): void;
 
+  hasDeviceSession(): boolean;
+  clearDeviceSession(): void;
+  getDeviceSession(): DeviceSession | undefined;
+  setDeviceSession(value?: DeviceSession): void;
+
+  getLimit(): RateLimitMap[keyof RateLimitMap];
+  setLimit(value: RateLimitMap[keyof RateLimitMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TXFrameForHandyRusty.AsObject;
   static toObject(includeInstance: boolean, msg: TXFrameForHandyRusty): TXFrameForHandyRusty.AsObject;
@@ -1638,21 +1712,23 @@ export namespace TXFrameForHandyRusty {
     token: number,
     downlinkId: Uint8Array | string,
     gatewayId: Uint8Array | string,
+    deviceSession?: DeviceSession.AsObject,
+    limit: RateLimitMap[keyof RateLimitMap],
   }
 }
 
 export class DeviceSession extends jspb.Message {
-  getFCntUp(): number;
-  setFCntUp(value: number): void;
+  getFcntup(): number;
+  setFcntup(value: number): void;
 
-  getNfCntDown(): number;
-  setNfCntDown(value: number): void;
+  getNfcntdown(): number;
+  setNfcntdown(value: number): void;
 
-  getAfCntDown(): number;
-  setAfCntDown(value: number): void;
+  getAfcntdown(): number;
+  setAfcntdown(value: number): void;
 
-  getConfFCnt(): number;
-  setConfFCnt(value: number): void;
+  getConffcnt(): number;
+  setConffcnt(value: number): void;
 
   getKekLabel(): string;
   setKekLabel(value: string): void;
@@ -1661,6 +1737,9 @@ export class DeviceSession extends jspb.Message {
   getAesKey_asU8(): Uint8Array;
   getAesKey_asB64(): string;
   setAesKey(value: Uint8Array | string): void;
+
+  getPer(): number;
+  setPer(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceSession.AsObject;
@@ -1674,12 +1753,13 @@ export class DeviceSession extends jspb.Message {
 
 export namespace DeviceSession {
   export type AsObject = {
-    fCntUp: number,
-    nfCntDown: number,
-    afCntDown: number,
-    confFCnt: number,
+    fcntup: number,
+    nfcntdown: number,
+    afcntdown: number,
+    conffcnt: number,
     kekLabel: string,
     aesKey: Uint8Array | string,
+    per: number,
   }
 }
 
@@ -1842,6 +1922,9 @@ export class GatewayProfile extends jspb.Message {
   getStatsInterval(): google_protobuf_duration_pb.Duration | undefined;
   setStatsInterval(value?: google_protobuf_duration_pb.Duration): void;
 
+  getDownlinkTxPower(): number;
+  setDownlinkTxPower(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GatewayProfile.AsObject;
   static toObject(includeInstance: boolean, msg: GatewayProfile): GatewayProfile.AsObject;
@@ -1858,6 +1941,7 @@ export namespace GatewayProfile {
     channelsList: Array<number>,
     extraChannelsList: Array<GatewayProfileExtraChannel.AsObject>,
     statsInterval?: google_protobuf_duration_pb.Duration.AsObject,
+    downlinkTxPower: number,
   }
 }
 
@@ -2485,6 +2569,14 @@ export interface RXWindowMap {
 }
 
 export const RXWindow: RXWindowMap;
+
+export interface RateLimitMap {
+  UNLIMITED: 0;
+  DROPPED: 1;
+  MARKED: 2;
+}
+
+export const RateLimit: RateLimitMap;
 
 export interface AggregationIntervalMap {
   SECOND: 0;

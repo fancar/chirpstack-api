@@ -26,6 +26,9 @@ export class DeviceQueueItem extends jspb.Message {
   getJsonObject(): string;
   setJsonObject(value: string): void;
 
+  getTtl(): number;
+  setTtl(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeviceQueueItem.AsObject;
   static toObject(includeInstance: boolean, msg: DeviceQueueItem): DeviceQueueItem.AsObject;
@@ -44,6 +47,7 @@ export namespace DeviceQueueItem {
     fPort: number,
     data: Uint8Array | string,
     jsonObject: string,
+    ttl: number,
   }
 }
 
@@ -175,6 +179,12 @@ export class EnqueueDeviceQueueActilityItemRequest extends jspb.Message {
   getTargetPorts(): string;
   setTargetPorts(value: string): void;
 
+  getFCnt(): number;
+  setFCnt(value: number): void;
+
+  getTtl(): number;
+  setTtl(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): EnqueueDeviceQueueActilityItemRequest.AsObject;
   static toObject(includeInstance: boolean, msg: EnqueueDeviceQueueActilityItemRequest): EnqueueDeviceQueueActilityItemRequest.AsObject;
@@ -192,6 +202,8 @@ export namespace EnqueueDeviceQueueActilityItemRequest {
     flushDownlinkQueue: boolean,
     payloadHex: string,
     targetPorts: string,
+    fCnt: number,
+    ttl: number,
   }
 }
 
@@ -228,6 +240,46 @@ export namespace EnqueueDeviceQueueActilityItemResponse {
     payloadHex: string,
     targetPorts: string,
     status: string,
+  }
+}
+
+export class GetNextDownlinkFCntRequest extends jspb.Message {
+  getDevEui(): string;
+  setDevEui(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetNextDownlinkFCntRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetNextDownlinkFCntRequest): GetNextDownlinkFCntRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetNextDownlinkFCntRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetNextDownlinkFCntRequest;
+  static deserializeBinaryFromReader(message: GetNextDownlinkFCntRequest, reader: jspb.BinaryReader): GetNextDownlinkFCntRequest;
+}
+
+export namespace GetNextDownlinkFCntRequest {
+  export type AsObject = {
+    devEui: string,
+  }
+}
+
+export class GetNextDownlinkFCntResponse extends jspb.Message {
+  getFCnt(): number;
+  setFCnt(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetNextDownlinkFCntResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetNextDownlinkFCntResponse): GetNextDownlinkFCntResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: GetNextDownlinkFCntResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetNextDownlinkFCntResponse;
+  static deserializeBinaryFromReader(message: GetNextDownlinkFCntResponse, reader: jspb.BinaryReader): GetNextDownlinkFCntResponse;
+}
+
+export namespace GetNextDownlinkFCntResponse {
+  export type AsObject = {
+    fCnt: number,
   }
 }
 

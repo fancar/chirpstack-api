@@ -261,6 +261,11 @@ class NetworkServerServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.FromString,
                 )
+        self.GetDeviceForExport = channel.unary_unary(
+                '/ns.NetworkServerService/GetDeviceForExport',
+                request_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceForExportResponse.FromString,
+                )
 
 
 class NetworkServerServiceServicer(object):
@@ -616,6 +621,13 @@ class NetworkServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDeviceForExport(self, request, context):
+        """GetDeviceForExport gets device for export purps
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_NetworkServerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -863,6 +875,11 @@ def add_NetworkServerServiceServicer_to_server(servicer, server):
                     servicer.GetADRAlgorithms,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.SerializeToString,
+            ),
+            'GetDeviceForExport': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceForExport,
+                    request_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceRequest.FromString,
+                    response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceForExportResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1705,5 +1722,22 @@ class NetworkServerService(object):
         return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/GetADRAlgorithms',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetDeviceForExport(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/GetDeviceForExport',
+            chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceRequest.SerializeToString,
+            chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceForExportResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

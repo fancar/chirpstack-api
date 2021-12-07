@@ -24,7 +24,11 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n!io.chirpstack.api.as.external.apiB\014GatewayProtoP\001Z7github.com/brocaar/chirpstack-api/go/v3/as/external/api',
   create_key=_descriptor._internal_create_key,
+<<<<<<< HEAD
   serialized_pb=b'\n/chirpstack-api/as_pb/external/api/gateway.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\"chirpstack-api/common/common.proto\x1a\x30\x63hirpstack-api/as_pb/external/api/frameLog.proto\"\xbc\x04\n\x07Gateway\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\'\n\x0forganization_id\x18\x05 \x01(\x03R\x0eorganizationID\x12\x19\n\x11\x64iscovery_enabled\x18\x06 \x01(\x08\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12,\n\x12gateway_profile_id\x18\x08 \x01(\tR\x10gatewayProfileID\x12!\n\x06\x62oards\x18\t \x03(\x0b\x32\x11.api.GatewayBoard\x12$\n\x04tags\x18\n \x03(\x0b\x32\x16.api.Gateway.TagsEntry\x12,\n\x08metadata\x18\x0b \x03(\x0b\x32\x1a.api.Gateway.MetadataEntry\x12\x0f\n\x07\x61\x64\x64ress\x18\x0c \x01(\t\x12\r\n\x05serno\x18\r \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x0e \x01(\x08\x12\r\n\x05phone\x18\x0f \x01(\t\x12,\n\x12service_profile_id\x18\x10 \x01(\tR\x10serviceProfileID\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"C\n\x0cGatewayBoard\x12\x17\n\x07\x66pga_id\x18\x01 \x01(\tR\x06\x66pgaID\x12\x1a\n\x12\x66ine_timestamp_key\x18\x02 \x01(\t\"5\n\x14\x43reateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\x1f\n\x11GetGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\xf8\x01\n\x12GetGatewayResponse\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"h\n\x18GetGatewayStatusResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x02 \x01(\x08\x12\x30\n\x0clast_seen_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\"\n\x14\x44\x65leteGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"=\n\'GenerateGatewayClientCertificateRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\t\"\x8e\x01\n(GenerateGatewayClientCertificateResponse\x12\x10\n\x08tls_cert\x18\x01 \x01(\t\x12\x0f\n\x07tls_key\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x8c\x01\n\x12ListGatewayRequest\x12\r\n\x05limit\x18\x01 \x01(\x05\x12\x0e\n\x06offset\x18\x02 \x01(\x05\x12\'\n\x0forganization_id\x18\x03 \x01(\x03R\x0eorganizationID\x12\x0e\n\x06search\x18\x04 \x01(\t\x12\x0f\n\x07orderBy\x18\x05 \x01(\t\x12\r\n\x05order\x18\x06 \x01(\t\"\xba\x03\n\x0fGatewayListItem\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x0forganization_id\x18\x06 \x01(\x03R\x0eorganizationID\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12\"\n\x08location\x18\n \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13network_server_name\x18\x0b \x01(\t\x12\r\n\x05radio\x18\x0c \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\r \x01(\x08\"\xa8\x01\n\x17StatsItemActilityStyled\x12?\n\rcreation_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0c\x63reationTime\x12)\n\x10\x63onnection_state\x18\x02 \x01(\tR\x0f\x63onnectionState\x12!\n\x0chealth_state\x18\x03 \x01(\tR\x0bhealthState\"\xb1\x01\n\x14GwItemActilityStyled\x12\x0b\n\x03ref\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x31\n\x14\x61\x64ministration_state\x18\x04 \x01(\tR\x13\x61\x64ministrationState\x12\r\n\x05owner\x18\x05 \x01(\t\x12\x30\n\nstatistics\x18\x06 \x01(\x0b\x32\x1c.api.StatsItemActilityStyled\"P\n\x13ListGatewayResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12$\n\x06result\x18\x02 \x03(\x0b\x32\x14.api.GatewayListItem\"^\n\x1cListGwActilityStyledResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12)\n\x06result\x18\x02 \x03(\x0b\x32\x19.api.GwItemActilityStyled\"5\n\x14UpdateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\xc8\x01\n\x0cGatewayStats\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x13rx_packets_received\x18\x02 \x01(\x05\x12\x33\n\x16rx_packets_received_ok\x18\x03 \x01(\x05R\x13rxPacketsReceivedOK\x12\x1b\n\x13tx_packets_received\x18\x04 \x01(\x05\x12\x1a\n\x12tx_packets_emitted\x18\x05 \x01(\x05\"\xb1\x01\n\x16GetGatewayStatsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x10\n\x08interval\x18\x02 \x01(\t\x12\x33\n\x0fstart_timestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rend_timestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"<\n\x17GetGatewayStatsResponse\x12!\n\x06result\x18\x01 \x03(\x0b\x32\x11.api.GatewayStats\"\x87\x01\n\x06PingRX\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x0c\n\x04rssi\x18\x02 \x01(\x05\x12\x19\n\x08lora_snr\x18\x03 \x01(\x01R\x07loRaSNR\x12\x10\n\x08latitude\x18\x04 \x01(\x01\x12\x11\n\tlongitude\x18\x05 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x06 \x01(\x01\"3\n\x12GetLastPingRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x8a\x01\n\x13GetLastPingResponse\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\tfrequency\x18\x02 \x01(\r\x12\n\n\x02\x64r\x18\x03 \x01(\r\x12$\n\x07ping_rx\x18\x04 \x03(\x0b\x32\x0b.api.PingRXR\x06pingRX\">\n\x1dStreamGatewayFrameLogsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x87\x01\n\x1eStreamGatewayFrameLogsResponse\x12+\n\x0cuplink_frame\x18\x01 \x01(\x0b\x32\x13.api.UplinkFrameLogH\x00\x12/\n\x0e\x64ownlink_frame\x18\x02 \x01(\x0b\x32\x15.api.DownlinkFrameLogH\x00\x42\x07\n\x05\x66rame2\xdc\t\n\x0eGatewayService\x12U\n\x06\x43reate\x12\x19.api.CreateGatewayRequest\x1a\x16.google.protobuf.Empty\"\x18\x82\xd3\xe4\x93\x02\x12\"\r/api/gateways:\x01*\x12R\n\x03Get\x12\x16.api.GetGatewayRequest\x1a\x17.api.GetGatewayResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/gateways/{id}\x12\x64\n\tGetStatus\x12\x16.api.GetGatewayRequest\x1a\x1d.api.GetGatewayStatusResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/api/gateway-status/{id}\x12\x62\n\x06Update\x12\x19.api.UpdateGatewayRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\x1a\x1a/api/gateways/{gateway.id}:\x01*\x12W\n\x06\x44\x65lete\x12\x19.api.DeleteGatewayRequest\x1a\x16.google.protobuf.Empty\"\x1a\x82\xd3\xe4\x93\x02\x14*\x12/api/gateways/{id}\x12P\n\x04List\x12\x17.api.ListGatewayRequest\x1a\x18.api.ListGatewayResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/api/gateways\x12\x82\x01\n\x12ListActilityStyled\x12\x17.api.ListGatewayRequest\x1a!.api.ListGwActilityStyledResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/monitoring/gateways/actility_styled\x12o\n\x08GetStats\x12\x1b.api.GetGatewayStatsRequest\x1a\x1c.api.GetGatewayStatsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/gateways/{gateway_id}/stats\x12o\n\x0bGetLastPing\x12\x17.api.GetLastPingRequest\x1a\x18.api.GetLastPingResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/api/gateways/{gateway_id}/pings/last\x12\xb8\x01\n GenerateGatewayClientCertificate\x12,.api.GenerateGatewayClientCertificateRequest\x1a-.api.GenerateGatewayClientCertificateResponse\"7\x82\xd3\xe4\x93\x02\x31\"//api/gateways/{gateway_id}/generate-certificate\x12\x87\x01\n\x0fStreamFrameLogs\x12\".api.StreamGatewayFrameLogsRequest\x1a#.api.StreamGatewayFrameLogsResponse\")\x82\xd3\xe4\x93\x02#\x12!/api/gateways/{gateway_id}/frames0\x01\x42l\n!io.chirpstack.api.as.external.apiB\x0cGatewayProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
+=======
+  serialized_pb=b'\n/chirpstack-api/as_pb/external/api/gateway.proto\x12\x03\x61pi\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\"chirpstack-api/common/common.proto\x1a\x30\x63hirpstack-api/as_pb/external/api/frameLog.proto\"\xfd\x03\n\x07Gateway\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\"\n\x08location\x18\x04 \x01(\x0b\x32\x10.common.Location\x12\'\n\x0forganization_id\x18\x05 \x01(\x03R\x0eorganizationID\x12\x19\n\x11\x64iscovery_enabled\x18\x06 \x01(\x08\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12,\n\x12gateway_profile_id\x18\x08 \x01(\tR\x10gatewayProfileID\x12!\n\x06\x62oards\x18\t \x03(\x0b\x32\x11.api.GatewayBoard\x12$\n\x04tags\x18\n \x03(\x0b\x32\x16.api.Gateway.TagsEntry\x12,\n\x08metadata\x18\x0b \x03(\x0b\x32\x1a.api.Gateway.MetadataEntry\x12,\n\x12service_profile_id\x18\x0c \x01(\tR\x10serviceProfileID\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"C\n\x0cGatewayBoard\x12\x17\n\x07\x66pga_id\x18\x01 \x01(\tR\x06\x66pgaID\x12\x1a\n\x12\x66ine_timestamp_key\x18\x02 \x01(\t\"5\n\x14\x43reateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\x1f\n\x11GetGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"\xf8\x01\n\x12GetGatewayResponse\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\"\n\x14\x44\x65leteGatewayRequest\x12\n\n\x02id\x18\x01 \x01(\t\"=\n\'GenerateGatewayClientCertificateRequest\x12\x12\n\ngateway_id\x18\x01 \x01(\t\"\x8e\x01\n(GenerateGatewayClientCertificateResponse\x12\x10\n\x08tls_cert\x18\x01 \x01(\t\x12\x0f\n\x07tls_key\x18\x02 \x01(\t\x12\x0f\n\x07\x63\x61_cert\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"l\n\x12ListGatewayRequest\x12\r\n\x05limit\x18\x01 \x01(\x05\x12\x0e\n\x06offset\x18\x02 \x01(\x05\x12\'\n\x0forganization_id\x18\x03 \x01(\x03R\x0eorganizationID\x12\x0e\n\x06search\x18\x04 \x01(\t\"\x9b\x03\n\x0fGatewayListItem\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rfirst_seen_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_seen_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x0forganization_id\x18\x06 \x01(\x03R\x0eorganizationID\x12*\n\x11network_server_id\x18\x07 \x01(\x03R\x0fnetworkServerID\x12\"\n\x08location\x18\n \x01(\x0b\x32\x10.common.Location\x12\x1b\n\x13network_server_name\x18\x0b \x01(\t\"P\n\x13ListGatewayResponse\x12\x13\n\x0btotal_count\x18\x01 \x01(\x03\x12$\n\x06result\x18\x02 \x03(\x0b\x32\x14.api.GatewayListItem\"5\n\x14UpdateGatewayRequest\x12\x1d\n\x07gateway\x18\x01 \x01(\x0b\x32\x0c.api.Gateway\"\xdb\x06\n\x0cGatewayStats\x12-\n\ttimestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1b\n\x13rx_packets_received\x18\x02 \x01(\x05\x12\x33\n\x16rx_packets_received_ok\x18\x03 \x01(\x05R\x13rxPacketsReceivedOK\x12\x1b\n\x13tx_packets_received\x18\x04 \x01(\x05\x12\x1a\n\x12tx_packets_emitted\x18\x05 \x01(\x05\x12N\n\x18tx_packets_per_frequency\x18\x06 \x03(\x0b\x32,.api.GatewayStats.TxPacketsPerFrequencyEntry\x12N\n\x18rx_packets_per_frequency\x18\x07 \x03(\x0b\x32,.api.GatewayStats.RxPacketsPerFrequencyEntry\x12@\n\x11tx_packets_per_dr\x18\x08 \x03(\x0b\x32%.api.GatewayStats.TxPacketsPerDrEntry\x12@\n\x11rx_packets_per_dr\x18\t \x03(\x0b\x32%.api.GatewayStats.RxPacketsPerDrEntry\x12H\n\x15tx_packets_per_status\x18\n \x03(\x0b\x32).api.GatewayStats.TxPacketsPerStatusEntry\x1a<\n\x1aTxPacketsPerFrequencyEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a<\n\x1aRxPacketsPerFrequencyEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a\x35\n\x13TxPacketsPerDrEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a\x35\n\x13RxPacketsPerDrEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\x1a\x39\n\x17TxPacketsPerStatusEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"\xb1\x01\n\x16GetGatewayStatsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x10\n\x08interval\x18\x02 \x01(\t\x12\x33\n\x0fstart_timestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x31\n\rend_timestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"<\n\x17GetGatewayStatsResponse\x12!\n\x06result\x18\x01 \x03(\x0b\x32\x11.api.GatewayStats\"\x87\x01\n\x06PingRX\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\x12\x0c\n\x04rssi\x18\x02 \x01(\x05\x12\x19\n\x08lora_snr\x18\x03 \x01(\x01R\x07loRaSNR\x12\x10\n\x08latitude\x18\x04 \x01(\x01\x12\x11\n\tlongitude\x18\x05 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x06 \x01(\x01\"3\n\x12GetLastPingRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x8a\x01\n\x13GetLastPingResponse\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\tfrequency\x18\x02 \x01(\r\x12\n\n\x02\x64r\x18\x03 \x01(\r\x12$\n\x07ping_rx\x18\x04 \x03(\x0b\x32\x0b.api.PingRXR\x06pingRX\">\n\x1dStreamGatewayFrameLogsRequest\x12\x1d\n\ngateway_id\x18\x01 \x01(\tR\tgatewayID\"\x87\x01\n\x1eStreamGatewayFrameLogsResponse\x12+\n\x0cuplink_frame\x18\x01 \x01(\x0b\x32\x13.api.UplinkFrameLogH\x00\x12/\n\x0e\x64ownlink_frame\x18\x02 \x01(\x0b\x32\x15.api.DownlinkFrameLogH\x00\x42\x07\n\x05\x66rame2\xf1\x07\n\x0eGatewayService\x12U\n\x06\x43reate\x12\x19.api.CreateGatewayRequest\x1a\x16.google.protobuf.Empty\"\x18\x82\xd3\xe4\x93\x02\x12\"\r/api/gateways:\x01*\x12R\n\x03Get\x12\x16.api.GetGatewayRequest\x1a\x17.api.GetGatewayResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/gateways/{id}\x12\x62\n\x06Update\x12\x19.api.UpdateGatewayRequest\x1a\x16.google.protobuf.Empty\"%\x82\xd3\xe4\x93\x02\x1f\x1a\x1a/api/gateways/{gateway.id}:\x01*\x12W\n\x06\x44\x65lete\x12\x19.api.DeleteGatewayRequest\x1a\x16.google.protobuf.Empty\"\x1a\x82\xd3\xe4\x93\x02\x14*\x12/api/gateways/{id}\x12P\n\x04List\x12\x17.api.ListGatewayRequest\x1a\x18.api.ListGatewayResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/api/gateways\x12o\n\x08GetStats\x12\x1b.api.GetGatewayStatsRequest\x1a\x1c.api.GetGatewayStatsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /api/gateways/{gateway_id}/stats\x12o\n\x0bGetLastPing\x12\x17.api.GetLastPingRequest\x1a\x18.api.GetLastPingResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/api/gateways/{gateway_id}/pings/last\x12\xb8\x01\n GenerateGatewayClientCertificate\x12,.api.GenerateGatewayClientCertificateRequest\x1a-.api.GenerateGatewayClientCertificateResponse\"7\x82\xd3\xe4\x93\x02\x31\"//api/gateways/{gateway_id}/generate-certificate\x12\x87\x01\n\x0fStreamFrameLogs\x12\".api.StreamGatewayFrameLogsRequest\x1a#.api.StreamGatewayFrameLogsResponse\")\x82\xd3\xe4\x93\x02#\x12!/api/gateways/{gateway_id}/frames0\x01\x42l\n!io.chirpstack.api.as.external.apiB\x0cGatewayProtoP\x01Z7github.com/brocaar/chirpstack-api/go/v3/as/external/apib\x06proto3'
+>>>>>>> 5ae8f0d
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,chirpstack__api_dot_common_dot_common__pb2.DESCRIPTOR,chirpstack__api_dot_as__pb_dot_external_dot_api_dot_frameLog__pb2.DESCRIPTOR,])
 
@@ -976,6 +980,196 @@ _UPDATEGATEWAYREQUEST = _descriptor.Descriptor(
 )
 
 
+_GATEWAYSTATS_TXPACKETSPERFREQUENCYENTRY = _descriptor.Descriptor(
+  name='TxPacketsPerFrequencyEntry',
+  full_name='api.GatewayStats.TxPacketsPerFrequencyEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='api.GatewayStats.TxPacketsPerFrequencyEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='api.GatewayStats.TxPacketsPerFrequencyEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2628,
+  serialized_end=2688,
+)
+
+_GATEWAYSTATS_RXPACKETSPERFREQUENCYENTRY = _descriptor.Descriptor(
+  name='RxPacketsPerFrequencyEntry',
+  full_name='api.GatewayStats.RxPacketsPerFrequencyEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='api.GatewayStats.RxPacketsPerFrequencyEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='api.GatewayStats.RxPacketsPerFrequencyEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2690,
+  serialized_end=2750,
+)
+
+_GATEWAYSTATS_TXPACKETSPERDRENTRY = _descriptor.Descriptor(
+  name='TxPacketsPerDrEntry',
+  full_name='api.GatewayStats.TxPacketsPerDrEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='api.GatewayStats.TxPacketsPerDrEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='api.GatewayStats.TxPacketsPerDrEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2752,
+  serialized_end=2805,
+)
+
+_GATEWAYSTATS_RXPACKETSPERDRENTRY = _descriptor.Descriptor(
+  name='RxPacketsPerDrEntry',
+  full_name='api.GatewayStats.RxPacketsPerDrEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='api.GatewayStats.RxPacketsPerDrEntry.key', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='api.GatewayStats.RxPacketsPerDrEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2807,
+  serialized_end=2860,
+)
+
+_GATEWAYSTATS_TXPACKETSPERSTATUSENTRY = _descriptor.Descriptor(
+  name='TxPacketsPerStatusEntry',
+  full_name='api.GatewayStats.TxPacketsPerStatusEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='api.GatewayStats.TxPacketsPerStatusEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='api.GatewayStats.TxPacketsPerStatusEntry.value', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2862,
+  serialized_end=2919,
+)
+
 _GATEWAYSTATS = _descriptor.Descriptor(
   name='GatewayStats',
   full_name='api.GatewayStats',
@@ -1019,10 +1213,45 @@ _GATEWAYSTATS = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_packets_per_frequency', full_name='api.GatewayStats.tx_packets_per_frequency', index=5,
+      number=6, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx_packets_per_frequency', full_name='api.GatewayStats.rx_packets_per_frequency', index=6,
+      number=7, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_packets_per_dr', full_name='api.GatewayStats.tx_packets_per_dr', index=7,
+      number=8, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rx_packets_per_dr', full_name='api.GatewayStats.rx_packets_per_dr', index=8,
+      number=9, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tx_packets_per_status', full_name='api.GatewayStats.tx_packets_per_status', index=9,
+      number=10, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_GATEWAYSTATS_TXPACKETSPERFREQUENCYENTRY, _GATEWAYSTATS_RXPACKETSPERFREQUENCYENTRY, _GATEWAYSTATS_TXPACKETSPERDRENTRY, _GATEWAYSTATS_RXPACKETSPERDRENTRY, _GATEWAYSTATS_TXPACKETSPERSTATUSENTRY, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -1031,8 +1260,13 @@ _GATEWAYSTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=2740,
   serialized_end=2940,
+=======
+  serialized_start=2060,
+  serialized_end=2919,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1084,8 +1318,13 @@ _GETGATEWAYSTATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=2943,
   serialized_end=3120,
+=======
+  serialized_start=2922,
+  serialized_end=3099,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1116,8 +1355,13 @@ _GETGATEWAYSTATSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=3122,
   serialized_end=3182,
+=======
+  serialized_start=3101,
+  serialized_end=3161,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1183,8 +1427,13 @@ _PINGRX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=3185,
   serialized_end=3320,
+=======
+  serialized_start=3164,
+  serialized_end=3299,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1215,8 +1464,13 @@ _GETLASTPINGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=3322,
   serialized_end=3373,
+=======
+  serialized_start=3301,
+  serialized_end=3352,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1268,8 +1522,13 @@ _GETLASTPINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=3376,
   serialized_end=3514,
+=======
+  serialized_start=3355,
+  serialized_end=3493,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1300,8 +1559,13 @@ _STREAMGATEWAYFRAMELOGSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=3516,
   serialized_end=3578,
+=======
+  serialized_start=3495,
+  serialized_end=3557,
+>>>>>>> 5ae8f0d
 )
 
 
@@ -1344,8 +1608,13 @@ _STREAMGATEWAYFRAMELOGSRESPONSE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
+<<<<<<< HEAD
   serialized_start=3581,
   serialized_end=3716,
+=======
+  serialized_start=3560,
+  serialized_end=3695,
+>>>>>>> 5ae8f0d
 )
 
 _GATEWAY_TAGSENTRY.containing_type = _GATEWAY
@@ -1372,7 +1641,17 @@ _GWITEMACTILITYSTYLED.fields_by_name['statistics'].message_type = _STATSITEMACTI
 _LISTGATEWAYRESPONSE.fields_by_name['result'].message_type = _GATEWAYLISTITEM
 _LISTGWACTILITYSTYLEDRESPONSE.fields_by_name['result'].message_type = _GWITEMACTILITYSTYLED
 _UPDATEGATEWAYREQUEST.fields_by_name['gateway'].message_type = _GATEWAY
+_GATEWAYSTATS_TXPACKETSPERFREQUENCYENTRY.containing_type = _GATEWAYSTATS
+_GATEWAYSTATS_RXPACKETSPERFREQUENCYENTRY.containing_type = _GATEWAYSTATS
+_GATEWAYSTATS_TXPACKETSPERDRENTRY.containing_type = _GATEWAYSTATS
+_GATEWAYSTATS_RXPACKETSPERDRENTRY.containing_type = _GATEWAYSTATS
+_GATEWAYSTATS_TXPACKETSPERSTATUSENTRY.containing_type = _GATEWAYSTATS
 _GATEWAYSTATS.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_GATEWAYSTATS.fields_by_name['tx_packets_per_frequency'].message_type = _GATEWAYSTATS_TXPACKETSPERFREQUENCYENTRY
+_GATEWAYSTATS.fields_by_name['rx_packets_per_frequency'].message_type = _GATEWAYSTATS_RXPACKETSPERFREQUENCYENTRY
+_GATEWAYSTATS.fields_by_name['tx_packets_per_dr'].message_type = _GATEWAYSTATS_TXPACKETSPERDRENTRY
+_GATEWAYSTATS.fields_by_name['rx_packets_per_dr'].message_type = _GATEWAYSTATS_RXPACKETSPERDRENTRY
+_GATEWAYSTATS.fields_by_name['tx_packets_per_status'].message_type = _GATEWAYSTATS_TXPACKETSPERSTATUSENTRY
 _GETGATEWAYSTATSREQUEST.fields_by_name['start_timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GETGATEWAYSTATSREQUEST.fields_by_name['end_timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _GETGATEWAYSTATSRESPONSE.fields_by_name['result'].message_type = _GATEWAYSTATS
@@ -1541,11 +1820,51 @@ UpdateGatewayRequest = _reflection.GeneratedProtocolMessageType('UpdateGatewayRe
 _sym_db.RegisterMessage(UpdateGatewayRequest)
 
 GatewayStats = _reflection.GeneratedProtocolMessageType('GatewayStats', (_message.Message,), {
+
+  'TxPacketsPerFrequencyEntry' : _reflection.GeneratedProtocolMessageType('TxPacketsPerFrequencyEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GATEWAYSTATS_TXPACKETSPERFREQUENCYENTRY,
+    '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+    # @@protoc_insertion_point(class_scope:api.GatewayStats.TxPacketsPerFrequencyEntry)
+    })
+  ,
+
+  'RxPacketsPerFrequencyEntry' : _reflection.GeneratedProtocolMessageType('RxPacketsPerFrequencyEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GATEWAYSTATS_RXPACKETSPERFREQUENCYENTRY,
+    '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+    # @@protoc_insertion_point(class_scope:api.GatewayStats.RxPacketsPerFrequencyEntry)
+    })
+  ,
+
+  'TxPacketsPerDrEntry' : _reflection.GeneratedProtocolMessageType('TxPacketsPerDrEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GATEWAYSTATS_TXPACKETSPERDRENTRY,
+    '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+    # @@protoc_insertion_point(class_scope:api.GatewayStats.TxPacketsPerDrEntry)
+    })
+  ,
+
+  'RxPacketsPerDrEntry' : _reflection.GeneratedProtocolMessageType('RxPacketsPerDrEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GATEWAYSTATS_RXPACKETSPERDRENTRY,
+    '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+    # @@protoc_insertion_point(class_scope:api.GatewayStats.RxPacketsPerDrEntry)
+    })
+  ,
+
+  'TxPacketsPerStatusEntry' : _reflection.GeneratedProtocolMessageType('TxPacketsPerStatusEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GATEWAYSTATS_TXPACKETSPERSTATUSENTRY,
+    '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
+    # @@protoc_insertion_point(class_scope:api.GatewayStats.TxPacketsPerStatusEntry)
+    })
+  ,
   'DESCRIPTOR' : _GATEWAYSTATS,
   '__module__' : 'chirpstack_api.as_pb.external.api.gateway_pb2'
   # @@protoc_insertion_point(class_scope:api.GatewayStats)
   })
 _sym_db.RegisterMessage(GatewayStats)
+_sym_db.RegisterMessage(GatewayStats.TxPacketsPerFrequencyEntry)
+_sym_db.RegisterMessage(GatewayStats.RxPacketsPerFrequencyEntry)
+_sym_db.RegisterMessage(GatewayStats.TxPacketsPerDrEntry)
+_sym_db.RegisterMessage(GatewayStats.RxPacketsPerDrEntry)
+_sym_db.RegisterMessage(GatewayStats.TxPacketsPerStatusEntry)
 
 GetGatewayStatsRequest = _reflection.GeneratedProtocolMessageType('GetGatewayStatsRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETGATEWAYSTATSREQUEST,
@@ -1600,6 +1919,11 @@ _sym_db.RegisterMessage(StreamGatewayFrameLogsResponse)
 DESCRIPTOR._options = None
 _GATEWAY_TAGSENTRY._options = None
 _GATEWAY_METADATAENTRY._options = None
+_GATEWAYSTATS_TXPACKETSPERFREQUENCYENTRY._options = None
+_GATEWAYSTATS_RXPACKETSPERFREQUENCYENTRY._options = None
+_GATEWAYSTATS_TXPACKETSPERDRENTRY._options = None
+_GATEWAYSTATS_RXPACKETSPERDRENTRY._options = None
+_GATEWAYSTATS_TXPACKETSPERSTATUSENTRY._options = None
 
 _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   name='GatewayService',
@@ -1608,8 +1932,13 @@ _GATEWAYSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
+<<<<<<< HEAD
   serialized_start=3719,
   serialized_end=4963,
+=======
+  serialized_start=3698,
+  serialized_end=4707,
+>>>>>>> 5ae8f0d
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',

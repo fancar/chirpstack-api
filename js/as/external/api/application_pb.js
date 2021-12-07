@@ -64,6 +64,7 @@ goog.exportSymbol('proto.api.HTTPIntegration', null, global);
 goog.exportSymbol('proto.api.HTTPIntegrationHeader', null, global);
 goog.exportSymbol('proto.api.InfluxDBIntegration', null, global);
 goog.exportSymbol('proto.api.InfluxDBPrecision', null, global);
+goog.exportSymbol('proto.api.InfluxDBVersion', null, global);
 goog.exportSymbol('proto.api.IntegrationKind', null, global);
 goog.exportSymbol('proto.api.IntegrationListItem', null, global);
 goog.exportSymbol('proto.api.ListApplicationRequest', null, global);
@@ -135,10 +136,10 @@ proto.api.Application.toObject = function(includeInstance, msg) {
     name: msg.getName(),
     description: msg.getDescription(),
     organizationId: msg.getOrganizationId(),
-    serviceProfileId: msg.getServiceProfileId(),
     payloadCodec: msg.getPayloadCodec(),
     payloadEncoderScript: msg.getPayloadEncoderScript(),
-    payloadDecoderScript: msg.getPayloadDecoderScript()
+    payloadDecoderScript: msg.getPayloadDecoderScript(),
+    isActive: msg.getIsActive()
   };
 
   if (includeInstance) {
@@ -191,10 +192,6 @@ proto.api.Application.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readInt64());
       msg.setOrganizationId(value);
       break;
-    case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setServiceProfileId(value);
-      break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setPayloadCodec(value);
@@ -206,6 +203,10 @@ proto.api.Application.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setPayloadDecoderScript(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsActive(value);
       break;
     default:
       reader.skipField();
@@ -273,13 +274,6 @@ proto.api.Application.prototype.serializeBinaryToWriter = function (writer) {
       f
     );
   }
-  f = this.getServiceProfileId();
-  if (f.length > 0) {
-    writer.writeString(
-      5,
-      f
-    );
-  }
   f = this.getPayloadCodec();
   if (f.length > 0) {
     writer.writeString(
@@ -298,6 +292,13 @@ proto.api.Application.prototype.serializeBinaryToWriter = function (writer) {
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = this.getIsActive();
+  if (f) {
+    writer.writeBool(
+      9,
       f
     );
   }
@@ -374,21 +375,6 @@ proto.api.Application.prototype.setOrganizationId = function(value) {
 
 
 /**
- * optional string service_profile_id = 5;
- * @return {string}
- */
-proto.api.Application.prototype.getServiceProfileId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 5, ""));
-};
-
-
-/** @param {string} value  */
-proto.api.Application.prototype.setServiceProfileId = function(value) {
-  jspb.Message.setField(this, 5, value);
-};
-
-
-/**
  * optional string payload_codec = 6;
  * @return {string}
  */
@@ -430,6 +416,23 @@ proto.api.Application.prototype.getPayloadDecoderScript = function() {
 /** @param {string} value  */
 proto.api.Application.prototype.setPayloadDecoderScript = function(value) {
   jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional bool is_active = 9;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.api.Application.prototype.getIsActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 9, false));
+};
+
+
+/** @param {boolean} value  */
+proto.api.Application.prototype.setIsActive = function(value) {
+  jspb.Message.setField(this, 9, value);
 };
 
 
@@ -483,9 +486,9 @@ proto.api.ApplicationListItem.toObject = function(includeInstance, msg) {
     name: msg.getName(),
     description: msg.getDescription(),
     organizationId: msg.getOrganizationId(),
-    serviceProfileId: msg.getServiceProfileId(),
-    serviceProfileName: msg.getServiceProfileName(),
-    devCnt: msg.getDevCnt()
+    isActive: msg.getIsActive(),
+    devCnt: msg.getDevCnt(),
+    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -539,16 +542,17 @@ proto.api.ApplicationListItem.deserializeBinaryFromReader = function(msg, reader
       msg.setOrganizationId(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setServiceProfileId(value);
-      break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setServiceProfileName(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsActive(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setDevCnt(value);
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedAt(value);
       break;
     default:
       reader.skipField();
@@ -616,17 +620,10 @@ proto.api.ApplicationListItem.prototype.serializeBinaryToWriter = function (writ
       f
     );
   }
-  f = this.getServiceProfileId();
-  if (f.length > 0) {
-    writer.writeString(
+  f = this.getIsActive();
+  if (f) {
+    writer.writeBool(
       5,
-      f
-    );
-  }
-  f = this.getServiceProfileName();
-  if (f.length > 0) {
-    writer.writeString(
-      6,
       f
     );
   }
@@ -635,6 +632,14 @@ proto.api.ApplicationListItem.prototype.serializeBinaryToWriter = function (writ
     writer.writeInt64(
       7,
       f
+    );
+  }
+  f = this.getCreatedAt();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -710,32 +715,19 @@ proto.api.ApplicationListItem.prototype.setOrganizationId = function(value) {
 
 
 /**
- * optional string service_profile_id = 5;
- * @return {string}
+ * optional bool is_active = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
  */
-proto.api.ApplicationListItem.prototype.getServiceProfileId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 5, ""));
+proto.api.ApplicationListItem.prototype.getIsActive = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldProto3(this, 5, false));
 };
 
 
-/** @param {string} value  */
-proto.api.ApplicationListItem.prototype.setServiceProfileId = function(value) {
+/** @param {boolean} value  */
+proto.api.ApplicationListItem.prototype.setIsActive = function(value) {
   jspb.Message.setField(this, 5, value);
-};
-
-
-/**
- * optional string service_profile_name = 6;
- * @return {string}
- */
-proto.api.ApplicationListItem.prototype.getServiceProfileName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 6, ""));
-};
-
-
-/** @param {string} value  */
-proto.api.ApplicationListItem.prototype.setServiceProfileName = function(value) {
-  jspb.Message.setField(this, 6, value);
 };
 
 
@@ -751,6 +743,36 @@ proto.api.ApplicationListItem.prototype.getDevCnt = function() {
 /** @param {number} value  */
 proto.api.ApplicationListItem.prototype.setDevCnt = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_at = 8;
+ * @return {proto.google.protobuf.Timestamp}
+ */
+proto.api.ApplicationListItem.prototype.getCreatedAt = function() {
+  return /** @type{proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/** @param {proto.google.protobuf.Timestamp|undefined} value  */
+proto.api.ApplicationListItem.prototype.setCreatedAt = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+proto.api.ApplicationListItem.prototype.clearCreatedAt = function() {
+  this.setCreatedAt(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return{!boolean}
+ */
+proto.api.ApplicationListItem.prototype.hasCreatedAt = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
@@ -4340,7 +4362,11 @@ proto.api.InfluxDBIntegration.toObject = function(includeInstance, msg) {
     username: msg.getUsername(),
     password: msg.getPassword(),
     retentionPolicyName: msg.getRetentionPolicyName(),
-    precision: msg.getPrecision()
+    precision: msg.getPrecision(),
+    version: msg.getVersion(),
+    token: msg.getToken(),
+    organization: msg.getOrganization(),
+    bucket: msg.getBucket()
   };
 
   if (includeInstance) {
@@ -4404,6 +4430,22 @@ proto.api.InfluxDBIntegration.deserializeBinaryFromReader = function(msg, reader
     case 7:
       var value = /** @type {!proto.api.InfluxDBPrecision} */ (reader.readEnum());
       msg.setPrecision(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.api.InfluxDBVersion} */ (reader.readEnum());
+      msg.setVersion(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setToken(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganization(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBucket(value);
       break;
     default:
       reader.skipField();
@@ -4489,6 +4531,34 @@ proto.api.InfluxDBIntegration.prototype.serializeBinaryToWriter = function (writ
   if (f !== 0.0) {
     writer.writeEnum(
       7,
+      f
+    );
+  }
+  f = this.getVersion();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
+      f
+    );
+  }
+  f = this.getToken();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = this.getOrganization();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
+      f
+    );
+  }
+  f = this.getBucket();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
       f
     );
   }
@@ -4606,6 +4676,66 @@ proto.api.InfluxDBIntegration.prototype.getPrecision = function() {
 /** @param {!proto.api.InfluxDBPrecision} value  */
 proto.api.InfluxDBIntegration.prototype.setPrecision = function(value) {
   jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional InfluxDBVersion version = 8;
+ * @return {!proto.api.InfluxDBVersion}
+ */
+proto.api.InfluxDBIntegration.prototype.getVersion = function() {
+  return /** @type {!proto.api.InfluxDBVersion} */ (jspb.Message.getFieldProto3(this, 8, 0));
+};
+
+
+/** @param {!proto.api.InfluxDBVersion} value  */
+proto.api.InfluxDBIntegration.prototype.setVersion = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional string token = 9;
+ * @return {string}
+ */
+proto.api.InfluxDBIntegration.prototype.getToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 9, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.InfluxDBIntegration.prototype.setToken = function(value) {
+  jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * optional string organization = 10;
+ * @return {string}
+ */
+proto.api.InfluxDBIntegration.prototype.getOrganization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 10, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.InfluxDBIntegration.prototype.setOrganization = function(value) {
+  jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * optional string bucket = 11;
+ * @return {string}
+ */
+proto.api.InfluxDBIntegration.prototype.getBucket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldProto3(this, 11, ""));
+};
+
+
+/** @param {string} value  */
+proto.api.InfluxDBIntegration.prototype.setBucket = function(value) {
+  jspb.Message.setField(this, 11, value);
 };
 
 
@@ -13851,6 +13981,14 @@ proto.api.InfluxDBPrecision = {
   S: 3,
   M: 4,
   H: 5
+};
+
+/**
+ * @enum {number}
+ */
+proto.api.InfluxDBVersion = {
+  INFLUXDB_1: 0,
+  INFLUXDB_2: 1
 };
 
 goog.object.extend(exports, proto.api);
