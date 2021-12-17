@@ -256,6 +256,11 @@
           "type": "string",
           "format": "date-time",
           "description": "Created at timestamp."
+        },
+        "devCnt": {
+          "type": "string",
+          "format": "int64",
+          "title": "Devices with RP"
         }
       }
     },

@@ -63,6 +63,8 @@ message RoutingProfile {
     repeated int64 applications = 5;
     // Created at timestamp.
     google.protobuf.Timestamp created_at = 6;
+    //Devices with RP
+    int64 dev_cnt = 7;
 }
 
 
