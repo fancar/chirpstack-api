@@ -368,6 +368,9 @@ message ListDeviceRequest {
 
     //service profile name
     string service_profile_name = 13;
+
+    //routing profile name
+    string routing_profile_name = 14;
 }
 
 message ListDeviceResponse {
