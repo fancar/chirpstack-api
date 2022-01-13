@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
+
+import "google/api/annotations.proto";
+// import "google/protobuf/empty.proto";
+
+// DictionaryService the service manages all dictionaries
+service DictionaryService {
+
+	// GetDictionary returns dictionary by dictionary type
+	rpc GetDictionary(GetDictionaryRequest) returns (GetDictionaryResponse) {
+		option (google.api.http) = {
+			get: "/api/dictionary/{dic_type}"
+		};
+	}
+}
+
+message GetDictionaryRequest {
+	// type of a dictionary
+	string dic_type = 1;
+
+	// type of store. For future use.
+	string store = 2;
+}
+
+message GetDictionaryResponse {
+	// type of a dictionary
+	string dic_type = 1;
+
+	repeated Dictionary dict = 2;
+}
+
+message Dictionary {
+	// id of the item
+	string code = 1;
+
+	// value of the item
+	string label = 2;
+
+	// if true the item is active
+	bool is_actual = 3;
+}

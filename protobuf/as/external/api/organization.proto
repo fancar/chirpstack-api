@@ -180,7 +180,7 @@ message DeleteOrganizationRequest {
 }
 
 message ListOrganizationRequest {
-	// Max number of organizations to return in the result-set.
+	// Required! Max number of organizations to return in the result-set.
 	int64 limit = 1;
 
 	// Offset in the result-set (for pagination).

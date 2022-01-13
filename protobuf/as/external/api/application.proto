@@ -452,7 +452,7 @@ message DeleteApplicationRequest {
 }
 
 message ListApplicationRequest {
-	// Max number of applications to return in the result-test.
+	// Required! Max number of applications to return in the result-test.
 	int64 limit = 1;
 
 	// Offset in the result-set (for pagination).

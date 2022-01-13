@@ -667,7 +667,7 @@ func (m *GetDeviceResponse) GetLocation() *common.Location {
 }
 
 type ListDeviceRequest struct {
-	// Max number of devices to return in the result-set.
+	// Required! Max number of devices to return in the result-set.
 	Limit int64 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	// Offset in the result-set (for pagination).
 	Offset int64 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`

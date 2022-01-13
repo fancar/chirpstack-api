@@ -97,7 +97,7 @@ message DeleteRoutingProfileRequest {
 }
 
 message ListRoutingProfileRequest {
-    // Required! Max number of items to return.
+    // Max number of items to return.
     int64 limit = 1;
 
     // Offset in the result-set (for pagination).

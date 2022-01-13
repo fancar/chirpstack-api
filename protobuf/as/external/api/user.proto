@@ -231,7 +231,7 @@ message DeleteUserRequest {
 }
 
 message ListUserRequest {
-	// Max number of user to return in the result-set.
+	// Required! Max number of user to return in the result-set.
 	int64 limit = 1;
 
 	// Offset in the result-set (for pagination).
@@ -253,7 +253,7 @@ message ListUserResponse {
 }
 
 message ListUserLogsRequest {
-	// Max number of user to return in the result-set.
+	// Required! Max number of user to return in the result-set.
 	int64 limit = 1;
 
 	// Offset in the result-set (for pagination).

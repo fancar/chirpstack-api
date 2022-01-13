@@ -76,6 +76,23 @@ message GatewayProfile {
     // This defines the (expected) stats interval which the gateways using this
     // gateway-profile are using.
     google.protobuf.Duration stats_interval = 6;
+
+    // Reference Design
+    string design = 7;    
+
+    // Description
+    string description = 8;
+
+    // Availability of GPS
+    bool gps = 9;
+
+    // Coonection type (secure/non-secure)
+    bool secure = 10;
+
+    //  gateway-profile.
+    // Downlink TX Power (dBm)    
+    // if (-1) default value from network-server will be used.
+    int32 downlink_tx_power = 11;    
 }
 
 message GatewayProfileListItem {
@@ -161,6 +178,12 @@ message ListGatewayProfilesRequest {
 
     // Network-server ID to filter on (optional).
     int64 network_server_id = 3 [json_name = "networkServerID"];
+    
+    // sort list by name
+	string orderBy = 4;		
+
+	// sort direction
+	string order = 5;	
 }
 
 message ListGatewayProfilesResponse {

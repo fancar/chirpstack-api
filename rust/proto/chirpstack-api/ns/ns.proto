@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package ns;
 
-option go_package = "github.com/brocaar/chirpstack-api/ns";
+option go_package = "github.com/brocaar/chirpstack-api/go/v3/ns";
 option java_package = "io.chirpstack.api.ns";
 option java_multiple_files = true;
 option java_outer_classname = "NetworkServerProto";
@@ -169,6 +169,9 @@ service NetworkServerService {
 
     // GetADRAlgorithms returns the available ADR algorithms.
     rpc GetADRAlgorithms(google.protobuf.Empty) returns (GetADRAlgorithmsResponse) {}
+
+    // GetDeviceForExport gets device for export purps
+    rpc GetDeviceForExport(GetDeviceRequest) returns (GetDeviceForExportResponse) {}     
 }
 
 enum RXWindow {
@@ -177,6 +180,18 @@ enum RXWindow {
 
     // Receive window 2
     RX2 = 1;
+}
+
+enum RateLimit {
+
+    // Unlimited - common state
+    Unlimited = 0;
+
+    // Dropped - droped when limit reached
+    Dropped = 1;
+    
+    // Marked - don't drop just mark that limit reached
+    Marked = 2;
 }
 
 message CreateServiceProfileRequest {
@@ -312,8 +327,11 @@ message Device {
     // accuracy.
     double reference_altitude = 6;
 
-    // Device is disabled.
+    // If true - the device is disabled.
     bool is_disabled = 7;
+    
+    // If true - do not flush the device-queue during join
+    bool keep_queue = 8;    
 }
 
 message CreateDeviceRequest {
@@ -335,6 +353,29 @@ message GetDeviceResponse {
 
     // Last update timestamp.
     google.protobuf.Timestamp updated_at = 3;
+}
+
+message GetDeviceForExportResponse {
+    // DevEUI.
+    bytes dev_eui = 1;
+
+    // it the device support class B. Data from device_profie
+    bool supports_class_b = 2;
+
+    // it the device support class C. Data from device_profie
+    bool supports_class_c = 3;
+
+    // Data from device_profie
+    string MAC_version = 4;
+
+    // Data from device_profie
+    bool is_disabled = 5;
+
+    // Data from device_profie. If true - device is OTAA, otherwise ABP
+    bool supports_join = 6;
+
+    // nwkSEncKey from last device_activation
+    string nwk_s_enc_key = 7;
 }
 
 message UpdateDeviceRequest {
@@ -458,6 +499,10 @@ message Gateway {
 
     // Service-profile ID (optional).
     bytes service_profile_id = 6;
+
+    // if suspended flag is set then all received packets from devices related to
+    // this gateway are droped (UL, DL) without any logging
+    bool suspended = 7;
 }
 
 message GatewayBoard {
@@ -594,6 +639,9 @@ message DeviceQueueItem {
     // application-server, there is a possibility that the application-server
     // tries to enqueue payloads encrypted with the old session-key.
     bytes dev_addr = 6;
+
+    // Time to live (in seconds). You canspecify the maximum time in queue for the item
+    uint32 ttl = 7;
 }
 
 message CreateDeviceQueueItemRequest {
@@ -682,6 +730,9 @@ message DownlinkFrameLog {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+
+    // rate limit
+    RateLimit limit = 10;
 }
 
 // RX (uplink) frame data to save in CLICKHOUSE
@@ -703,6 +754,9 @@ message RXFrameForHandyRusty {
 
     // context id 
     string ctx_id = 6;
+
+    // rate limit
+    RateLimit limit = 7;   
 }
 
 // TX (downlink) frame data to save in CLICKHOUSE
@@ -722,27 +776,36 @@ message TXFrameForHandyRusty {
 
     // Gateway ID.
     bytes gateway_id = 5 [json_name = "gatewayID"];
+
+    // some information from current device-session
+    DeviceSession device_session = 6;    
+
+    // rate limit
+    RateLimit limit = 7;
 }
 
 // DeviceSession cropped data from DeviceSession to save in CLICKHOUSE
 message DeviceSession {
     // FCntUp
-    uint32 f_cnt_up = 1;
+    uint32 FCntUp = 1;
 
     // NFCntDown
-    uint32 nf_cnt_down = 2;
+    uint32 NFCntDown = 2;
 
     // AFCntDown
-    uint32 af_cnt_down = 3;
+    uint32 AFCntDown = 3;
 
     // ConfFCnt
-    uint32 conf_f_cnt = 4;
+    uint32 ConfFCnt = 4;
 
     // Data from KeyEnvelope (if exists during first data packet): KEKLabel string
     string KEK_label = 5;
 
     // Data from KeyEnvelope (exists during first data packet): AESKey   []byte
     bytes AES_key = 6;
+
+    // mean packet error rate (for last 20 packets)
+    float per = 7;      
 }
 
 message StreamFrameLogsForGatewayRequest {
@@ -798,6 +861,11 @@ message GatewayProfile {
     // This defines the (expected) stats interval which the gateways using this
     // gateway-profile are using.
     google.protobuf.Duration stats_interval = 4;
+
+    //  gateway-profile.
+    // Downlink TX Power (dBm)    
+    // if (-1) default value from network-server will be used.
+    int32 downlink_tx_power = 5;
 }
 
 message GatewayProfileExtraChannel {

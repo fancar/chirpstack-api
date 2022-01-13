@@ -77,6 +77,12 @@ message GetServiceProfileResponse{
 
     // Last update timestamp.
     google.protobuf.Timestamp updated_at = 3;
+
+    // Count of used devices in current service profile. To get limit of devices see service_profile
+    uint32 used_devices_count = 4;
+
+    // Count of available devices in current service profile. To get limit of devices see service_profile
+    uint32 available_devices_count = 5;
 }
 
 message UpdateServiceProfileRequest{
@@ -130,6 +136,18 @@ message ServiceProfileListItem {
 
     // Network-server name of the service-profile.
     string network_server_name = 7;
+
+    // Maximum device count limit for service-profile.
+    uint32 device_count_limit = 8;
+
+    // Count of used devices in current service profile.
+    uint32 used_devices_count = 9;
+
+    // Count of available devices in current service profile.
+    uint32 available_devices_count = 10;
+
+    // Disabled service profile if set true
+    bool is_disabled = 28;
 }
 
 message ListServiceProfileResponse{

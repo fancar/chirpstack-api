@@ -86,6 +86,21 @@ message User {
 
 	// Optional note to store with the user.
 	string note = 7;
+
+	// user's name
+	string name = 8;
+
+	// user's last name
+	string surname = 9;
+
+	// the company where the employee is working at
+	string company = 10;
+
+	// user's position and subdivision in the company
+	string position = 11;
+
+	// user's phone
+	string phone = 12;
 }
 
 message UserListItem {
@@ -110,6 +125,24 @@ message UserListItem {
 
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 9;
+
+	// user's name
+	string name = 10;
+
+	// user's last name
+	string surname = 11;
+
+	// the company where the employee is working at
+	string company = 12;
+
+	// user's position and subdivision in the company
+	string position = 13;
+
+	// user's phone
+	string phone = 14;
+
+	// number of organizations where the user is member
+	int32 org_cnt = 15;		
 }
 
 message UserLogListItem {

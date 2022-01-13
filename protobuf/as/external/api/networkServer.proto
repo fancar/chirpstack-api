@@ -166,7 +166,7 @@ message DeleteNetworkServerRequest {
 }
 
 message ListNetworkServerRequest {
-    // Max number of items to return.
+    // Required! Max number of items to return.
     int64 limit = 1;
 
     // Offset in the result-set (for pagination).

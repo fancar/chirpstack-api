@@ -262,7 +262,7 @@ message GenerateGatewayClientCertificateResponse {
 
 
 message ListGatewayRequest {
-	// Max number of nodes to return in the result-set.
+	// Required! Max number of nodes to return in the result-set.
 	int32 limit = 1;
 
 	// Offset of the result-set (for pagination).

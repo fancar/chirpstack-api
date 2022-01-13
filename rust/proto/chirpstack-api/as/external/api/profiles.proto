@@ -8,7 +8,7 @@ option java_multiple_files = true;
 option java_outer_classname = "ProfilesProto";
 
 import "google/protobuf/duration.proto";
-
+import "ns/profiles.proto";
 
 enum RatePolicy {
     // Drop
@@ -18,6 +18,21 @@ enum RatePolicy {
     MARK = 1;
 }
 
+
+enum RateUnit {
+    // Per Hour
+    Hour = 0;
+    // Per Day
+    Day = 1;
+    // Per Week
+    Week = 2;
+    // Per Month
+    Month = 3;
+    // Per Year
+    Year = 4;
+}
+
+
 message ServiceProfile {
     // Service-profile ID (UUID string).
     // This will be automatically set on create.
@@ -26,6 +41,12 @@ message ServiceProfile {
     // Service-profile name.
     string name = 21;
 
+    // Service-profile description.
+    string description = 25;
+
+    // Maximum device count limit for service-profile.
+    uint32 device_count_limit = 27;
+
     // Organization ID to which the service-profile is assigned.
     int64 organization_id = 22 [json_name = "organizationID"];
 
@@ -33,7 +54,7 @@ message ServiceProfile {
     int64 network_server_id = 23 [json_name = "networkServerID"];
 
     // Token bucket filling rate, including ACKs (packet/h).
-    uint32 ul_rate = 2;
+    int32 ul_rate = 2;
 
     // Token bucket burst size.
     uint32 ul_bucket_size = 3;
@@ -41,14 +62,20 @@ message ServiceProfile {
     // Drop or mark when exceeding ULRate.
     RatePolicy ul_rate_policy = 4;
 
+    // Uplink rate unit (per hour, per day, per week, per month, per year)
+    RateUnit ul_rate_unit = 29;
+
     // Token bucket filling rate, including ACKs (packet/h).
-    uint32 dl_rate = 5;
+    int32 dl_rate = 5;
 
     // Token bucket burst size.
     uint32 dl_bucket_size = 6;
 
     // Drop or mark when exceeding DLRate.
     RatePolicy dl_rate_policy = 7;
+
+    // Downlink rate unit (per hour, per day, per week, per month, per year)
+    RateUnit dl_rate_unit = 30;
 
     // GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS.
     bool add_gw_metadata = 8 [json_name = "addGWMetaData"];
@@ -66,6 +93,7 @@ message ServiceProfile {
     uint32 dr_min = 12;
 
     // Maximum allowed data rate. Used for ADR.
+    // if adr=fixed - the value as fixed DataRate in use
     uint32 dr_max = 13;
 
     // Channel mask. sNS does not have to obey (i.e., informative).
@@ -93,6 +121,44 @@ message ServiceProfile {
     // This means that these gateways can only be used by devices under the
     // same service-profile.
     bool gws_private = 24 [json_name = "gwsPrivate"];
+
+    // Disabled service profile if set true
+    bool is_disabled = 28;
+
+    // Minimum TX power index that can't be overlaped by ADR.
+    int32 min_tx_power_index = 31 [json_name = "minTXPowerIndex"];
+
+    // Maximum TX power index that can't be overlaped by ADR.
+    // if adr=fixed - the value as fixed TxPowerIndex will be in use
+    int32 max_tx_power_index = 32 [json_name = "maxTXPowerIndex"];
+
+    // the maximum number of transmissions.
+    int32 max_nb_trans = 33;
+
+    // the minimum number of transmissions.
+    // if adr=fixed - the value as fixed TxPowerIndex in use
+    int32 min_nb_trans = 34;
+
+    // ADR algorithm ID.
+    // In case this is left blank, or is configured to a non-existing ADR
+    // algorithm (plugin), then it falls back to 'default'.
+    // if 'fixed' set - hardset values in use
+    string adr_algorithm_id = 35 [json_name = "adrAlgorithmID"];
+
+    // if true only uplink events are passing to client's applications
+    bool uplinks_only = 36;
+
+    // if true - allows passing data to client's applications
+    bool send_to_apps = 37;
+
+    // if true - allows processing confirmed uplinks
+    bool allow_rx_confirmed = 38;
+
+    // if true - allows processing unconfirmed downlinks
+    bool allow_tx_unconfirmed = 39;
+
+    // if true - allows processing confirmed downlinks
+    bool allow_tx_confirmed = 40;
 }
 
 message DeviceProfile {
@@ -135,22 +201,22 @@ message DeviceProfile {
     // Revision of the Regional Parameters document supported by the End-Device.
     string reg_params_revision = 10;
 
-    // Class A RX1 delay (mandatory for ABP).
+    // Class A RX1 delay (For ABP initialization  only! mandatory for ABP)..
     uint32 rx_delay_1 = 11;
 
-    // RX1 data rate offset (mandatory for ABP).
+    // RX1 data rate offset (For ABP initialization  only! mandatory for ABP)..
     uint32 rx_dr_offset_1 = 12 [json_name = "rxDROffset1"];
 
-    // RX2 data rate (mandatory for ABP).
+    // RX2 data rate (For ABP initialization  only! mandatory for ABP)..
     uint32 rx_datarate_2 = 13 [json_name = "rxDataRate2"];
 
-    // RX2 channel frequency (mandatory for ABP).
+    // RX2 channel frequency (For ABP initialization  only! mandatory for ABP)..
     uint32 rx_freq_2 = 14;
 
-    // List of factory-preset frequencies (mandatory for ABP).
+    // List of factory-preset frequencies (mandatory for ABP)..
     repeated uint32 factory_preset_freqs = 15;
 
-    // Maximum EIRP supported by the End-Device.
+    // Deprecated. Moved to SP. Maximum EIRP supported by the End-Device. Moved to serivce profile
     uint32 max_eirp = 16 [json_name = "maxEIRP"];
 
     // Maximum duty cycle supported by the End-Device.
@@ -198,8 +264,36 @@ message DeviceProfile {
     // been received, the device is considered inactive.
     google.protobuf.Duration uplink_interval = 30;
 
-    // ADR algorithm ID.
-    // In case this is left blank, or is configured to a non-existing ADR
-    // algorithm (plugin), then it falls back to 'default'.
+    // Deprecated! ADR algorithm ID has been Moved to ServiceProfile
+    // TODO: remove 
     string adr_algorithm_id = 31 [json_name = "adrAlgorithmID"];
+
+    // delay between the end of join request message
+    // and start of RX1 window to recieve a Join Accept
+    // default 5000ms
+    uint32 join_accept_delay_1 = 32;
+
+    // delay between the end of join request message
+    // and start of RX2 window to recieve a Join Accept
+    // default 6000ms
+    uint32 join_accept_delay_2 = 33;
+
+    // allow autoreset for low counters recieved
+    // (for ABP devices only)
+    bool f_cnt_automatic_reset = 34;
+
+    repeated ns.MacCommandSwitch cmd_switches = 35;
+
+    // Class A RX1 delay. If not set (-1) - default value from NS cfg in use
+    // RX2 delay will be +1s to the rx1_delay
+    int32 rx1_delay = 36;
+
+    // RX1 data rate offset. If not set (-1) - default value from NS cfg in use
+    int32 rx1_dr_offset = 37;
+
+    // RX2 data rate. If not set (-1) - default value from NS cfg in use
+    int32 rx2_datarate = 38;
+
+    // RX2 channel frequency. If not set (-1) - default value from NS cfg in use
+    int32 rx2_freq = 39;    
 }
