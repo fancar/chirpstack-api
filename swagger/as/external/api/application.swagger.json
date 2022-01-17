@@ -324,13 +324,13 @@
     },
     "/api/applications/{application_id}/integrations/http": {
       "get": {
-        "summary": "GetHTTPIntegration returns the HTTP application-integration.",
-        "operationId": "GetHTTPIntegration",
+        "summary": "GetKafkaIntegration returns the HTTP application-integration.",
+        "operationId": "GetKafkaIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiGetHTTPIntegrationResponse"
+              "$ref": "#/definitions/apiGetKafkaIntegrationResponse"
             }
           }
         },
@@ -350,7 +350,7 @@
       },
       "delete": {
         "summary": "DeleteIntegration deletes the HTTP application-integration.",
-        "operationId": "DeleteHTTPIntegration",
+        "operationId": "DeleteKafkaIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -919,8 +919,7 @@
     },
     "/api/applications/{integration.application_id}/integrations/http": {
       "post": {
-        "summary": "CreateHTTPIntegration creates a HTTP application-integration.",
-        "operationId": "CreateHTTPIntegration",
+        "operationId": "CreateKafkaIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -932,7 +931,7 @@
         "parameters": [
           {
             "name": "integration.application_id",
-            "description": "The id of the application.",
+            "description": "Application ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -943,7 +942,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiCreateHTTPIntegrationRequest"
+              "$ref": "#/definitions/apiCreateKafkaIntegrationRequest"
             }
           }
         ],
@@ -952,8 +951,8 @@
         ]
       },
       "put": {
-        "summary": "UpdateHTTPIntegration updates the HTTP application-integration.",
-        "operationId": "UpdateHTTPIntegration",
+        "summary": "UpdateKafkaIntegration updates the HTTP application-integration.",
+        "operationId": "UpdateKafkaIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -965,7 +964,7 @@
         "parameters": [
           {
             "name": "integration.application_id",
-            "description": "The id of the application.",
+            "description": "Application ID.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -976,7 +975,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateHTTPIntegrationRequest"
+              "$ref": "#/definitions/apiUpdateKafkaIntegrationRequest"
             }
           }
         ],
@@ -1520,6 +1519,15 @@
         }
       }
     },
+    "apiCreateKafkaIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiKafkaIntegration",
+          "description": "Integration object to create."
+        }
+      }
+    },
     "apiCreateLoRaCloudIntegrationRequest": {
       "type": "object",
       "properties": {
@@ -1654,6 +1662,15 @@
       "properties": {
         "integration": {
           "$ref": "#/definitions/apiInfluxDBIntegration",
+          "description": "Integration object."
+        }
+      }
+    },
+    "apiGetKafkaIntegrationResponse": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiKafkaIntegration",
           "description": "Integration object."
         }
       }
@@ -1822,7 +1839,8 @@
         "AWS_SNS",
         "AZURE_SERVICE_BUS",
         "PILOT_THINGS",
-        "MQTT_GLOBAL"
+        "MQTT_GLOBAL",
+        "KAFKA"
       ],
       "default": "HTTP"
     },
@@ -1832,6 +1850,56 @@
         "kind": {
           "$ref": "#/definitions/apiIntegrationKind",
           "description": "Integration kind."
+        }
+      }
+    },
+    "apiKafkaIntegration": {
+      "type": "object",
+      "properties": {
+        "applicationID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Application ID."
+        },
+        "brokers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "broker-list e.g.: localhost:9092,out.side:9094"
+        },
+        "TLS": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true the client must connect using TLS"
+        },
+        "username": {
+          "type": "string",
+          "title": "creditnail (optional)"
+        },
+        "password": {
+          "type": "string",
+          "title": "creditnail (optional)"
+        },
+        "topic": {
+          "type": "string",
+          "title": "topic where to produce app-data"
+        },
+        "eventKeyTemplate": {
+          "type": "string",
+          "description": "Template for keys included in Kafka messages. If empty, no key is included.\nKafka uses the key for distributing messages over partitions. You can use\nthis to ensure some subset of messages end up in the same partition, so\nthey can be consumed in-order. And Kafka can use the key for data retention\ndecisions.  A header \"event\" with the event type is included in each\nmessage. There is no need to parse it from the key."
+        },
+        "mechanism": {
+          "type": "string",
+          "title": "One of: plain or scram"
+        },
+        "algorithm": {
+          "type": "string",
+          "title": "Only if mechanism == scram. One of: SHA-256 or SHA-512"
+        },
+        "marshaler": {
+          "$ref": "#/definitions/apiMarshaler",
+          "title": "if empty - default marshaler will be in use to encode payload structure"
         }
       }
     },
@@ -1966,7 +2034,8 @@
         "JSON",
         "PROTOBUF",
         "JSON_V3",
-        "ACTILITY_JSON"
+        "ACTILITY_JSON",
+        "LAR_TECH"
       ],
       "default": "JSON"
     },
@@ -2067,6 +2136,15 @@
         "integration": {
           "$ref": "#/definitions/apiInfluxDBIntegration",
           "description": "Integration object."
+        }
+      }
+    },
+    "apiUpdateKafkaIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiKafkaIntegration",
+          "description": "Integration object to update."
         }
       }
     },

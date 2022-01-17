@@ -377,6 +377,7 @@ enum IntegrationKind {
     AZURE_SERVICE_BUS = 7;
     PILOT_THINGS = 8;
     MQTT_GLOBAL = 9;
+    KAFKA = 10;
 }
 
 enum Marshaler {
@@ -384,6 +385,7 @@ enum Marshaler {
     PROTOBUF = 1;
     JSON_V3 = 2;
     ACTILITY_JSON = 3; // modificaton for ex.actility customers
+    LAR_TECH = 4; // modification for lar.tech integration
 }
 
 message Application {
@@ -624,7 +626,7 @@ message KafkaIntegration {
     repeated string brokers = 2;
 
     // if true the client must connect using TLS
-    bool tls = 3;
+    bool TLS = 3;
 
     // creditnail (optional)
     string username = 4;
@@ -643,11 +645,14 @@ message KafkaIntegration {
     // message. There is no need to parse it from the key.
     string event_key_template = 7;
 
-    // One of plain or scram
+    // One of: plain or scram
     string mechanism = 8;
 
-    // Only for mechanism == scram. SHA-256 or SHA-512     
+    // Only if mechanism == scram. One of: SHA-256 or SHA-512     
     string algorithm = 9;
+
+    // if empty - default marshaler will be in use to encode payload structure
+    Marshaler marshaler = 10;    
 }
 
 message ListIntegrationRequest {
