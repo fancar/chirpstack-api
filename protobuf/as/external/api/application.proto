@@ -321,6 +321,35 @@ service ApplicationService {
         };
     }
 
+    rpc CreateKafkaIntegration(CreateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/applications/{integration.application_id}/integrations/http"
+            body: "*"
+        };
+    }
+
+    // GetKafkaIntegration returns the HTTP application-integration.
+    rpc GetKafkaIntegration(GetKafkaIntegrationRequest) returns (GetKafkaIntegrationResponse) {
+        option(google.api.http) = {
+            get: "/api/applications/{application_id}/integrations/http"
+        };
+    }
+
+    // UpdateKafkaIntegration updates the HTTP application-integration.
+    rpc UpdateKafkaIntegration(UpdateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            put: "/api/applications/{integration.application_id}/integrations/http"
+            body: "*"
+        };
+    }
+
+    // DeleteIntegration deletes the HTTP application-integration.
+    rpc DeleteKafkaIntegration(DeleteKafkaIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            delete: "/api/applications/{application_id}/integrations/http"
+        };
+    }
+
 	// ListIntegrations lists all configured integrations.
 	rpc ListIntegrations(ListIntegrationRequest) returns (ListIntegrationResponse) {
 		option(google.api.http) = {
@@ -560,6 +589,65 @@ message UpdateHTTPIntegrationRequest {
 message DeleteHTTPIntegrationRequest {
 	// The id of the application.
 	int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message CreateKafkaIntegrationRequest {
+    // Integration object to create.
+    KafkaIntegration integration = 1;
+}
+
+message GetKafkaIntegrationRequest {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GetKafkaIntegrationResponse {
+    // Integration object.
+    KafkaIntegration integration = 1;
+}
+
+message UpdateKafkaIntegrationRequest {
+    // Integration object to update.
+    KafkaIntegration integration = 1;
+}
+
+message DeleteKafkaIntegrationRequest {
+    // The id of the application.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message KafkaIntegration {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+
+    // broker-list e.g.: localhost:9092,out.side:9094
+    repeated string brokers = 2;
+
+    // if true the client must connect using TLS
+    bool tls = 3;
+
+    // creditnail (optional)
+    string username = 4;
+
+    // creditnail (optional)
+    string password = 5;
+
+    // topic where to produce app-data
+    string topic = 6;
+
+    // Template for keys included in Kafka messages. If empty, no key is included.
+    // Kafka uses the key for distributing messages over partitions. You can use
+    // this to ensure some subset of messages end up in the same partition, so
+    // they can be consumed in-order. And Kafka can use the key for data retention
+    // decisions.  A header "event" with the event type is included in each
+    // message. There is no need to parse it from the key.
+    string event_key_template = 7;
+
+    // One of plain or scram
+    string mechanism = 8;
+
+    // Only for mechanism == scram. SHA-256 or SHA-512     
+    string algorithm = 9;
 }
 
 message ListIntegrationRequest {
