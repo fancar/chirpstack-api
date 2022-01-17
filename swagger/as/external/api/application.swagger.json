@@ -30,7 +30,7 @@
         "parameters": [
           {
             "name": "limit",
-            "description": "Max number of applications to return in the result-test.",
+            "description": "Required! Max number of applications to return in the result-test.",
             "in": "query",
             "required": false,
             "type": "string",

@@ -30,7 +30,7 @@
         "parameters": [
           {
             "name": "limit",
-            "description": "Max number of user to return in the result-set.",
+            "description": "Required! Max number of user to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -94,7 +94,7 @@
         "parameters": [
           {
             "name": "limit",
-            "description": "Max number of user to return in the result-set.",
+            "description": "Required! Max number of user to return in the result-set.",
             "in": "query",
             "required": false,
             "type": "string",

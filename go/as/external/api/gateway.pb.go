@@ -659,7 +659,7 @@ func (m *GenerateGatewayClientCertificateResponse) GetExpiresAt() *timestamp.Tim
 }
 
 type ListGatewayRequest struct {
-	// Max number of nodes to return in the result-set.
+	// Required! Max number of nodes to return in the result-set.
 	Limit int32 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	// Offset of the result-set (for pagination).
 	Offset int32 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`

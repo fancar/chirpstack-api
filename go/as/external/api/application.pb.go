@@ -618,7 +618,7 @@ func (m *DeleteApplicationRequest) GetId() int64 {
 }
 
 type ListApplicationRequest struct {
-	// Max number of applications to return in the result-test.
+	// Required! Max number of applications to return in the result-test.
 	Limit int64 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	// Offset in the result-set (for pagination).
 	Offset int64 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`

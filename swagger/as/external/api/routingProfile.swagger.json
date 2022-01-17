@@ -30,7 +30,7 @@
         "parameters": [
           {
             "name": "limit",
-            "description": "Max number of items to return.",
+            "description": "Required! Max number of items to return.",
             "in": "query",
             "required": false,
             "type": "string",
