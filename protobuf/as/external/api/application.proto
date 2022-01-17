@@ -323,7 +323,7 @@ service ApplicationService {
 
     rpc CreateKafkaIntegration(CreateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
-            post: "/api/applications/{integration.application_id}/integrations/http"
+            post: "/api/applications/{integration.application_id}/integrations/kakafka"
             body: "*"
         };
     }
@@ -331,14 +331,14 @@ service ApplicationService {
     // GetKafkaIntegration returns the HTTP application-integration.
     rpc GetKafkaIntegration(GetKafkaIntegrationRequest) returns (GetKafkaIntegrationResponse) {
         option(google.api.http) = {
-            get: "/api/applications/{application_id}/integrations/http"
+            get: "/api/applications/{application_id}/integrations/kakafka"
         };
     }
 
     // UpdateKafkaIntegration updates the HTTP application-integration.
     rpc UpdateKafkaIntegration(UpdateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
-            put: "/api/applications/{integration.application_id}/integrations/http"
+            put: "/api/applications/{integration.application_id}/integrations/kakafka"
             body: "*"
         };
     }
@@ -346,7 +346,7 @@ service ApplicationService {
     // DeleteIntegration deletes the HTTP application-integration.
     rpc DeleteKafkaIntegration(DeleteKafkaIntegrationRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
-            delete: "/api/applications/{application_id}/integrations/http"
+            delete: "/api/applications/{application_id}/integrations/kakafka"
         };
     }
 

@@ -324,13 +324,13 @@
     },
     "/api/applications/{application_id}/integrations/http": {
       "get": {
-        "summary": "GetKafkaIntegration returns the HTTP application-integration.",
-        "operationId": "GetKafkaIntegration",
+        "summary": "GetHTTPIntegration returns the HTTP application-integration.",
+        "operationId": "GetHTTPIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiGetKafkaIntegrationResponse"
+              "$ref": "#/definitions/apiGetHTTPIntegrationResponse"
             }
           }
         },
@@ -350,7 +350,7 @@
       },
       "delete": {
         "summary": "DeleteIntegration deletes the HTTP application-integration.",
-        "operationId": "DeleteKafkaIntegration",
+        "operationId": "DeleteHTTPIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -415,6 +415,58 @@
           {
             "name": "application_id",
             "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/kakafka": {
+      "get": {
+        "summary": "GetKafkaIntegration returns the HTTP application-integration.",
+        "operationId": "GetKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetKafkaIntegrationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteIntegration deletes the HTTP application-integration.",
+        "operationId": "DeleteKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -919,7 +971,8 @@
     },
     "/api/applications/{integration.application_id}/integrations/http": {
       "post": {
-        "operationId": "CreateKafkaIntegration",
+        "summary": "CreateHTTPIntegration creates a HTTP application-integration.",
+        "operationId": "CreateHTTPIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -931,7 +984,7 @@
         "parameters": [
           {
             "name": "integration.application_id",
-            "description": "Application ID.",
+            "description": "The id of the application.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -942,7 +995,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiCreateKafkaIntegrationRequest"
+              "$ref": "#/definitions/apiCreateHTTPIntegrationRequest"
             }
           }
         ],
@@ -951,8 +1004,8 @@
         ]
       },
       "put": {
-        "summary": "UpdateKafkaIntegration updates the HTTP application-integration.",
-        "operationId": "UpdateKafkaIntegration",
+        "summary": "UpdateHTTPIntegration updates the HTTP application-integration.",
+        "operationId": "UpdateHTTPIntegration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -964,7 +1017,7 @@
         "parameters": [
           {
             "name": "integration.application_id",
-            "description": "Application ID.",
+            "description": "The id of the application.",
             "in": "path",
             "required": true,
             "type": "string",
@@ -975,7 +1028,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateKafkaIntegrationRequest"
+              "$ref": "#/definitions/apiUpdateHTTPIntegrationRequest"
             }
           }
         ],
@@ -1044,6 +1097,73 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/apiUpdateInfluxDBIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{integration.application_id}/integrations/kakafka": {
+      "post": {
+        "operationId": "CreateKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "integration.application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateKafkaIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "put": {
+        "summary": "UpdateKafkaIntegration updates the HTTP application-integration.",
+        "operationId": "UpdateKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "integration.application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateKafkaIntegrationRequest"
             }
           }
         ],
