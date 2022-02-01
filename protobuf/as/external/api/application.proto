@@ -321,32 +321,33 @@ service ApplicationService {
         };
     }
 
+    // CreateKafkaIntegration creates the application-integration.
     rpc CreateKafkaIntegration(CreateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
-            post: "/api/applications/{integration.application_id}/integrations/kakafka"
+            post: "/api/applications/{integration.application_id}/integrations/kafka"
             body: "*"
         };
     }
 
-    // GetKafkaIntegration returns the HTTP application-integration.
+    // GetKafkaIntegration returns the application-integration.
     rpc GetKafkaIntegration(GetKafkaIntegrationRequest) returns (GetKafkaIntegrationResponse) {
         option(google.api.http) = {
-            get: "/api/applications/{application_id}/integrations/kakafka"
+            get: "/api/applications/{application_id}/integrations/kafka"
         };
     }
 
-    // UpdateKafkaIntegration updates the HTTP application-integration.
+    // UpdateKafkaIntegration updates the application-integration.
     rpc UpdateKafkaIntegration(UpdateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
-            put: "/api/applications/{integration.application_id}/integrations/kakafka"
+            put: "/api/applications/{integration.application_id}/integrations/kafka"
             body: "*"
         };
     }
 
-    // DeleteIntegration deletes the HTTP application-integration.
+    // DeleteKafkaIntegration deletes the application-integration.
     rpc DeleteKafkaIntegration(DeleteKafkaIntegrationRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
-            delete: "/api/applications/{application_id}/integrations/kakafka"
+            delete: "/api/applications/{application_id}/integrations/kafka"
         };
     }
 
@@ -652,7 +653,49 @@ message KafkaIntegration {
     string algorithm = 9;
 
     // if empty - default marshaler will be in use to encode payload structure
-    Marshaler marshaler = 10;    
+    Marshaler marshaler = 10;
+
+    // settings of condumers
+    KafkaReader reader = 11;
+
+    // settings of producers
+    repeated KafkaWriter writers = 12;
+}
+
+message KafkaReader {
+    // if true - enables a goroutine that reads messages from kafka
+    bool enabled = 1;
+
+    // if empty - marshaler from root will be in use
+    Marshaler marshaler = 2;
+
+    // what topic to read
+    string topic = 3;
+
+    // prevents from receiving duplicate messages    
+    string group_id = 4 [json_name = "groupID"];   
+}
+
+message KafkaWriter {
+    // what specific event are all the settings belong
+    string event = 1;
+
+    // if true - enables a goroutine that reads messages from kafka
+    bool enabled = 2;
+
+    // if empty - default marshaler will be in use
+    Marshaler marshaler = 3;
+
+    // what topic to write into
+    string topic = 4;
+
+    // prevents from receiving duplicate messages    
+    string group_id = 5 [json_name = "groupID"];   
+}
+
+enum KafkaMechanism {
+    plain = 0;
+    scram = 1;
 }
 
 message ListIntegrationRequest {

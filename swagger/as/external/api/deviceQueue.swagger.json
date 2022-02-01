@@ -204,6 +204,10 @@
           "type": "integer",
           "format": "int64",
           "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
+        },
+        "messageId": {
+          "type": "string",
+          "title": "optional. the id will be shown in ack messages"
         }
       }
     },

@@ -642,6 +642,9 @@ message DeviceQueueItem {
 
     // Time to live (in seconds). You canspecify the maximum time in queue for the item
     uint32 ttl = 7;
+
+    // optional. the id was generated on client's side to control tx
+    string message_id = 8;    
 }
 
 message CreateDeviceQueueItemRequest {

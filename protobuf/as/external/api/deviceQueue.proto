@@ -79,6 +79,9 @@ message DeviceQueueItem {
 
     // Time to live (in seconds). You canspecify the maximum time in queue for the item
     uint32 ttl = 7; 
+
+    // optional. the id will be shown in ack messages
+    string message_id = 8;
 }
 
 message EnqueueDeviceQueueItemRequest {

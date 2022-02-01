@@ -426,9 +426,9 @@
         ]
       }
     },
-    "/api/applications/{application_id}/integrations/kakafka": {
+    "/api/applications/{application_id}/integrations/kafka": {
       "get": {
-        "summary": "GetKafkaIntegration returns the HTTP application-integration.",
+        "summary": "GetKafkaIntegration returns the application-integration.",
         "operationId": "GetKafkaIntegration",
         "responses": {
           "200": {
@@ -453,7 +453,7 @@
         ]
       },
       "delete": {
-        "summary": "DeleteIntegration deletes the HTTP application-integration.",
+        "summary": "DeleteKafkaIntegration deletes the application-integration.",
         "operationId": "DeleteKafkaIntegration",
         "responses": {
           "200": {
@@ -1105,8 +1105,9 @@
         ]
       }
     },
-    "/api/applications/{integration.application_id}/integrations/kakafka": {
+    "/api/applications/{integration.application_id}/integrations/kafka": {
       "post": {
+        "summary": "CreateKafkaIntegration creates the application-integration.",
         "operationId": "CreateKafkaIntegration",
         "responses": {
           "200": {
@@ -1139,7 +1140,7 @@
         ]
       },
       "put": {
-        "summary": "UpdateKafkaIntegration updates the HTTP application-integration.",
+        "summary": "UpdateKafkaIntegration updates the application-integration.",
         "operationId": "UpdateKafkaIntegration",
         "responses": {
           "200": {
@@ -2020,6 +2021,65 @@
         "marshaler": {
           "$ref": "#/definitions/apiMarshaler",
           "title": "if empty - default marshaler will be in use to encode payload structure"
+        },
+        "reader": {
+          "$ref": "#/definitions/apiKafkaReader",
+          "title": "settings of condumers"
+        },
+        "writers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiKafkaWriter"
+          },
+          "title": "settings of producers"
+        }
+      }
+    },
+    "apiKafkaReader": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - enables a goroutine that reads messages from kafka"
+        },
+        "marshaler": {
+          "$ref": "#/definitions/apiMarshaler",
+          "title": "if empty - marshaler from root will be in use"
+        },
+        "topic": {
+          "type": "string",
+          "title": "what topic to read"
+        },
+        "groupID": {
+          "type": "string",
+          "title": "prevents from receiving duplicate messages"
+        }
+      }
+    },
+    "apiKafkaWriter": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string",
+          "title": "what specific event are all the settings belong"
+        },
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - enables a goroutine that reads messages from kafka"
+        },
+        "marshaler": {
+          "$ref": "#/definitions/apiMarshaler",
+          "title": "if empty - default marshaler will be in use"
+        },
+        "topic": {
+          "type": "string",
+          "title": "what topic to write into"
+        },
+        "groupID": {
+          "type": "string",
+          "title": "prevents from receiving duplicate messages"
         }
       }
     },
