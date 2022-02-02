@@ -2032,6 +2032,10 @@
             "$ref": "#/definitions/apiKafkaWriter"
           },
           "title": "settings of producers"
+        },
+        "owner": {
+          "type": "string",
+          "title": "the additional creditnail is for routing purps"
         }
       }
     },
@@ -2076,10 +2080,6 @@
         "topic": {
           "type": "string",
           "title": "what topic to write into"
-        },
-        "groupID": {
-          "type": "string",
-          "title": "prevents from receiving duplicate messages"
         }
       }
     },

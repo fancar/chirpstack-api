@@ -660,6 +660,9 @@ message KafkaIntegration {
 
     // settings of producers
     repeated KafkaWriter writers = 12;
+
+    // the additional creditnail is for routing purps
+    string owner = 13;    
 }
 
 message KafkaReader {
@@ -687,10 +690,7 @@ message KafkaWriter {
     Marshaler marshaler = 3;
 
     // what topic to write into
-    string topic = 4;
-
-    // prevents from receiving duplicate messages    
-    string group_id = 5 [json_name = "groupID"];   
+    string topic = 4; 
 }
 
 enum KafkaMechanism {
