@@ -379,6 +379,7 @@ enum IntegrationKind {
     PILOT_THINGS = 8;
     MQTT_GLOBAL = 9;
     KAFKA = 10;
+    LARTECH = 11; // kafka with cfg preset on ui (lpwan)
 }
 
 enum Marshaler {

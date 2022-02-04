@@ -1961,7 +1961,8 @@
         "AZURE_SERVICE_BUS",
         "PILOT_THINGS",
         "MQTT_GLOBAL",
-        "KAFKA"
+        "KAFKA",
+        "LARTECH"
       ],
       "default": "HTTP"
     },
