@@ -647,11 +647,22 @@ message KafkaIntegration {
     // message. There is no need to parse it from the key.
     string event_key_template = 7;
 
-    // One of: plain or scram
-    string mechanism = 8;
+    enum Mechanism {
+        PLAIN = 0;
+        SCRAM = 1;
+    }
 
-    // Only if mechanism == scram. One of: SHA-256 or SHA-512     
-    string algorithm = 9;
+    // params when mechanism == scram.
+    enum Algorithm {
+        SHA256 = 0;
+        SHA512  = 1;
+    }
+
+    // One of: plain or scram
+    Mechanism mechanism = 8;
+
+    // when mechanism == scram. One of: SHA256 or SHA512     
+    Algorithm algorithm = 9;
 
     // if empty - default marshaler will be in use to encode payload structure
     Marshaler marshaler = 10;
@@ -694,10 +705,10 @@ message KafkaWriter {
     string topic = 4; 
 }
 
-enum KafkaMechanism {
-    plain = 0;
-    scram = 1;
-}
+// enum KafkaMechanism {
+//     plain = 0;
+//     scram = 1;
+// }
 
 message ListIntegrationRequest {
 	// The id of the application.

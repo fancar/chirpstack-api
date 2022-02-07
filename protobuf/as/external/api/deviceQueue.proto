@@ -82,6 +82,9 @@ message DeviceQueueItem {
 
     // optional. the id will be shown in ack messages
     string message_id = 8;
+
+    // temp for kafka routings
+    string owner = 9;    
 }
 
 message EnqueueDeviceQueueItemRequest {

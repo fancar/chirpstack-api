@@ -1447,6 +1447,23 @@
     }
   },
   "definitions": {
+    "KafkaIntegrationAlgorithm": {
+      "type": "string",
+      "enum": [
+        "SHA256",
+        "SHA512"
+      ],
+      "default": "SHA256",
+      "description": "params when mechanism == scram."
+    },
+    "KafkaIntegrationMechanism": {
+      "type": "string",
+      "enum": [
+        "PLAIN",
+        "SCRAM"
+      ],
+      "default": "PLAIN"
+    },
     "apiAWSSNSIntegration": {
       "type": "object",
       "properties": {
@@ -2012,12 +2029,12 @@
           "description": "Template for keys included in Kafka messages. If empty, no key is included.\nKafka uses the key for distributing messages over partitions. You can use\nthis to ensure some subset of messages end up in the same partition, so\nthey can be consumed in-order. And Kafka can use the key for data retention\ndecisions.  A header \"event\" with the event type is included in each\nmessage. There is no need to parse it from the key."
         },
         "mechanism": {
-          "type": "string",
+          "$ref": "#/definitions/KafkaIntegrationMechanism",
           "title": "One of: plain or scram"
         },
         "algorithm": {
-          "type": "string",
-          "title": "Only if mechanism == scram. One of: SHA-256 or SHA-512"
+          "$ref": "#/definitions/KafkaIntegrationAlgorithm",
+          "title": "when mechanism == scram. One of: SHA256 or SHA512"
         },
         "marshaler": {
           "$ref": "#/definitions/apiMarshaler",

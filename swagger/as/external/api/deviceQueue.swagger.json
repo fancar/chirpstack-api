@@ -208,6 +208,10 @@
         "messageId": {
           "type": "string",
           "title": "optional. the id will be shown in ack messages"
+        },
+        "owner": {
+          "type": "string",
+          "title": "temp for kafka routings"
         }
       }
     },
