@@ -321,6 +321,36 @@ service ApplicationService {
         };
     }
 
+    // CreateKafkaIntegration creates the application-integration.
+    rpc CreateKafkaIntegration(CreateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/applications/{integration.application_id}/integrations/kafka"
+            body: "*"
+        };
+    }
+
+    // GetKafkaIntegration returns the application-integration.
+    rpc GetKafkaIntegration(GetKafkaIntegrationRequest) returns (GetKafkaIntegrationResponse) {
+        option(google.api.http) = {
+            get: "/api/applications/{application_id}/integrations/kafka"
+        };
+    }
+
+    // UpdateKafkaIntegration updates the application-integration.
+    rpc UpdateKafkaIntegration(UpdateKafkaIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            put: "/api/applications/{integration.application_id}/integrations/kafka"
+            body: "*"
+        };
+    }
+
+    // DeleteKafkaIntegration deletes the application-integration.
+    rpc DeleteKafkaIntegration(DeleteKafkaIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            delete: "/api/applications/{application_id}/integrations/kafka"
+        };
+    }
+
 	// ListIntegrations lists all configured integrations.
 	rpc ListIntegrations(ListIntegrationRequest) returns (ListIntegrationResponse) {
 		option(google.api.http) = {
@@ -348,6 +378,8 @@ enum IntegrationKind {
     AZURE_SERVICE_BUS = 7;
     PILOT_THINGS = 8;
     MQTT_GLOBAL = 9;
+    KAFKA = 10;
+    LARTECH = 11; // kafka with cfg preset on ui (lpwan)
 }
 
 enum Marshaler {
@@ -355,6 +387,7 @@ enum Marshaler {
     PROTOBUF = 1;
     JSON_V3 = 2;
     ACTILITY_JSON = 3; // modificaton for ex.actility customers
+    LAR_TECH = 4; // modification for lar.tech integration
 }
 
 message Application {
@@ -561,6 +594,121 @@ message DeleteHTTPIntegrationRequest {
 	// The id of the application.
 	int64 application_id = 1 [json_name = "applicationID"];
 }
+
+message CreateKafkaIntegrationRequest {
+    // Integration object to create.
+    KafkaIntegration integration = 1;
+}
+
+message GetKafkaIntegrationRequest {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GetKafkaIntegrationResponse {
+    // Integration object.
+    KafkaIntegration integration = 1;
+}
+
+message UpdateKafkaIntegrationRequest {
+    // Integration object to update.
+    KafkaIntegration integration = 1;
+}
+
+message DeleteKafkaIntegrationRequest {
+    // The id of the application.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message KafkaIntegration {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+
+    // broker-list e.g.: localhost:9092,out.side:9094
+    repeated string brokers = 2;
+
+    // if true the client must connect using TLS
+    bool TLS = 3;
+
+    // creditnail (optional)
+    string username = 4;
+
+    // creditnail (optional)
+    string password = 5;
+
+    // topic where to produce app-data
+    string topic = 6;
+
+    // Template for keys included in Kafka messages. If empty, no key is included.
+    // Kafka uses the key for distributing messages over partitions. You can use
+    // this to ensure some subset of messages end up in the same partition, so
+    // they can be consumed in-order. And Kafka can use the key for data retention
+    // decisions.  A header "event" with the event type is included in each
+    // message. There is no need to parse it from the key.
+    string event_key_template = 7;
+
+    enum Mechanism {
+        PLAIN = 0;
+        SCRAM = 1;
+    }
+
+    // params when mechanism == scram.
+    enum Algorithm {
+        SHA256 = 0;
+        SHA512  = 1;
+    }
+
+    // One of: plain or scram
+    Mechanism mechanism = 8;
+
+    // when mechanism == scram. One of: SHA256 or SHA512     
+    Algorithm algorithm = 9;
+
+    // if empty - default marshaler will be in use to encode payload structure
+    Marshaler marshaler = 10;
+
+    // settings of condumers
+    KafkaReader reader = 11;
+
+    // settings of producers
+    repeated KafkaWriter writers = 12;
+
+    // the additional creditnail is for routing purps
+    string owner = 13;    
+}
+
+message KafkaReader {
+    // if true - enables a goroutine that reads messages from kafka
+    bool enabled = 1;
+
+    // if empty - marshaler from root will be in use
+    Marshaler marshaler = 2;
+
+    // what topic to read
+    string topic = 3;
+
+    // prevents from receiving duplicate messages    
+    string group_id = 4 [json_name = "groupID"];   
+}
+
+message KafkaWriter {
+    // what specific event are all the settings belong
+    string event = 1;
+
+    // if true - enables a goroutine that reads messages from kafka
+    bool enabled = 2;
+
+    // if empty - default marshaler will be in use
+    Marshaler marshaler = 3;
+
+    // what topic to write into
+    string topic = 4; 
+}
+
+// enum KafkaMechanism {
+//     plain = 0;
+//     scram = 1;
+// }
 
 message ListIntegrationRequest {
 	// The id of the application.

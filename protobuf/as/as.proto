@@ -412,6 +412,9 @@ message HandleDownlinkACKRequest {
 
     // Frame was acknowledged?
     bool acknowledged = 3;
+
+    // optional. the id was generated on client's side to control tx
+    string message_id = 4;    
 }
 
 message SetDeviceStatusRequest {
@@ -505,6 +508,9 @@ message HandleTxAckRequest {
 
     // TXInfo contains the TX related meta-data.
     gw.DownlinkTXInfo tx_info = 4;
+
+    // optional. the id was generated on client's side to control tx
+    string message_id = 5;     
 }
 
 message ReEncryptDeviceQueueItemsRequest {

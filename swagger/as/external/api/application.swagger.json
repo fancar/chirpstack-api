@@ -426,6 +426,58 @@
         ]
       }
     },
+    "/api/applications/{application_id}/integrations/kafka": {
+      "get": {
+        "summary": "GetKafkaIntegration returns the application-integration.",
+        "operationId": "GetKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetKafkaIntegrationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteKafkaIntegration deletes the application-integration.",
+        "operationId": "DeleteKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
     "/api/applications/{application_id}/integrations/loracloud": {
       "get": {
         "summary": "GetLoRaCloudIntegration returns the LoRaCloud application-integration.",
@@ -1053,6 +1105,74 @@
         ]
       }
     },
+    "/api/applications/{integration.application_id}/integrations/kafka": {
+      "post": {
+        "summary": "CreateKafkaIntegration creates the application-integration.",
+        "operationId": "CreateKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "integration.application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateKafkaIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "put": {
+        "summary": "UpdateKafkaIntegration updates the application-integration.",
+        "operationId": "UpdateKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "integration.application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateKafkaIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
     "/api/applications/{integration.application_id}/integrations/loracloud": {
       "post": {
         "summary": "CreateLoRaCloudIntegration creates A LoRaCloud application-integration.",
@@ -1327,6 +1447,23 @@
     }
   },
   "definitions": {
+    "KafkaIntegrationAlgorithm": {
+      "type": "string",
+      "enum": [
+        "SHA256",
+        "SHA512"
+      ],
+      "default": "SHA256",
+      "description": "params when mechanism == scram."
+    },
+    "KafkaIntegrationMechanism": {
+      "type": "string",
+      "enum": [
+        "PLAIN",
+        "SCRAM"
+      ],
+      "default": "PLAIN"
+    },
     "apiAWSSNSIntegration": {
       "type": "object",
       "properties": {
@@ -1520,6 +1657,15 @@
         }
       }
     },
+    "apiCreateKafkaIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiKafkaIntegration",
+          "description": "Integration object to create."
+        }
+      }
+    },
     "apiCreateLoRaCloudIntegrationRequest": {
       "type": "object",
       "properties": {
@@ -1654,6 +1800,15 @@
       "properties": {
         "integration": {
           "$ref": "#/definitions/apiInfluxDBIntegration",
+          "description": "Integration object."
+        }
+      }
+    },
+    "apiGetKafkaIntegrationResponse": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiKafkaIntegration",
           "description": "Integration object."
         }
       }
@@ -1846,7 +2001,9 @@
         "AWS_SNS",
         "AZURE_SERVICE_BUS",
         "PILOT_THINGS",
-        "MQTT_GLOBAL"
+        "MQTT_GLOBAL",
+        "KAFKA",
+        "LARTECH"
       ],
       "default": "HTTP"
     },
@@ -1856,6 +2013,115 @@
         "kind": {
           "$ref": "#/definitions/apiIntegrationKind",
           "description": "Integration kind."
+        }
+      }
+    },
+    "apiKafkaIntegration": {
+      "type": "object",
+      "properties": {
+        "applicationID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Application ID."
+        },
+        "brokers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "broker-list e.g.: localhost:9092,out.side:9094"
+        },
+        "TLS": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true the client must connect using TLS"
+        },
+        "username": {
+          "type": "string",
+          "title": "creditnail (optional)"
+        },
+        "password": {
+          "type": "string",
+          "title": "creditnail (optional)"
+        },
+        "topic": {
+          "type": "string",
+          "title": "topic where to produce app-data"
+        },
+        "eventKeyTemplate": {
+          "type": "string",
+          "description": "Template for keys included in Kafka messages. If empty, no key is included.\nKafka uses the key for distributing messages over partitions. You can use\nthis to ensure some subset of messages end up in the same partition, so\nthey can be consumed in-order. And Kafka can use the key for data retention\ndecisions.  A header \"event\" with the event type is included in each\nmessage. There is no need to parse it from the key."
+        },
+        "mechanism": {
+          "$ref": "#/definitions/KafkaIntegrationMechanism",
+          "title": "One of: plain or scram"
+        },
+        "algorithm": {
+          "$ref": "#/definitions/KafkaIntegrationAlgorithm",
+          "title": "when mechanism == scram. One of: SHA256 or SHA512"
+        },
+        "marshaler": {
+          "$ref": "#/definitions/apiMarshaler",
+          "title": "if empty - default marshaler will be in use to encode payload structure"
+        },
+        "reader": {
+          "$ref": "#/definitions/apiKafkaReader",
+          "title": "settings of condumers"
+        },
+        "writers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiKafkaWriter"
+          },
+          "title": "settings of producers"
+        },
+        "owner": {
+          "type": "string",
+          "title": "the additional creditnail is for routing purps"
+        }
+      }
+    },
+    "apiKafkaReader": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - enables a goroutine that reads messages from kafka"
+        },
+        "marshaler": {
+          "$ref": "#/definitions/apiMarshaler",
+          "title": "if empty - marshaler from root will be in use"
+        },
+        "topic": {
+          "type": "string",
+          "title": "what topic to read"
+        },
+        "groupID": {
+          "type": "string",
+          "title": "prevents from receiving duplicate messages"
+        }
+      }
+    },
+    "apiKafkaWriter": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string",
+          "title": "what specific event are all the settings belong"
+        },
+        "enabled": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "if true - enables a goroutine that reads messages from kafka"
+        },
+        "marshaler": {
+          "$ref": "#/definitions/apiMarshaler",
+          "title": "if empty - default marshaler will be in use"
+        },
+        "topic": {
+          "type": "string",
+          "title": "what topic to write into"
         }
       }
     },
@@ -1990,7 +2256,8 @@
         "JSON",
         "PROTOBUF",
         "JSON_V3",
-        "ACTILITY_JSON"
+        "ACTILITY_JSON",
+        "LAR_TECH"
       ],
       "default": "JSON"
     },
@@ -2091,6 +2358,15 @@
         "integration": {
           "$ref": "#/definitions/apiInfluxDBIntegration",
           "description": "Integration object."
+        }
+      }
+    },
+    "apiUpdateKafkaIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiKafkaIntegration",
+          "description": "Integration object to update."
         }
       }
     },

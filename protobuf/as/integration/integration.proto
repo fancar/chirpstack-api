@@ -10,6 +10,7 @@ option java_outer_classname = "IntegrationProto";
 import "common/common.proto";
 import "google/protobuf/timestamp.proto";
 import "gw/gw.proto";
+import "google/protobuf/wrappers.proto";
 
 enum ErrorType {
     // Unknown type.
@@ -173,6 +174,9 @@ message AckEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 8;
+
+    // optional. the id was generated on client's side to control tx
+    string message_id = 9;
 }
 
 // TxAckEvent is the message sent when a downlink was acknowledged by the gateway
@@ -205,6 +209,9 @@ message TxAckEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+
+    // optional. the id was generated on client's side to control tx
+    string message_id = 10;    
 }
 
 // ErrorEvent is the message sent when an error occurred.
@@ -334,4 +341,95 @@ message IntegrationEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+}
+
+
+// Lartech Co LTD Custom format for passing data to Ernet.uplink topic
+// UplinkEvent is the message sent when an uplink payload has been received.
+message LartechUplinkEvent {
+    string messageId = 1;   // id сообщения присвоенное сервером сети
+    string devEui = 2;      // МАС-адрес устройства
+    string gatewayEui = 3;  // 1я БС принявшая сообщение
+    string appId = 4;       // Значение «MeteringServer»
+    int64 rxTime = 5;       // UTC-время приема uplink в БС
+    int32 frameCounter = 6; // FcntUp
+    bool confirmed = 7;     // ConfirmedUplink=True/UnconfirmedUplink=False
+    int32 frequency = 8;
+    oneof modulation {      // Необязательное поле
+        LoRaModulation loraModulation = 9;
+        FSKModulation fskModulation = 10;
+    }
+    float snr = 11;                              // SNR от 1й БС
+    float rssi = 12;                             // RSSI от 1й БС
+    google.protobuf.Int32Value fport = 13;       // Порт данных
+    bytes frmPayload = 14;                       // Принятые данные
+    google.protobuf.StringValue owner = 15;      // Владелец устройства
+    google.protobuf.Int32Value stat = 16;        // Необязательное поле
+    google.protobuf.Int32Value rfChain = 17;     // Необязательное поле
+    google.protobuf.Int32Value size = 18;        // Необязательное поле
+    google.protobuf.StringValue firmware = 19;      // Необязательное поле
+    google.protobuf.BoolValue firstMessage = 20;    // Необязательное поле
+}
+
+// the soother is for  LartechUplinkEvent
+message LoRaModulation {
+    int32 id = 1;
+}
+
+// the soother is for LartechUplinkEvent
+message FSKModulation {
+    int32 id = 1;
+}
+
+// the soother is for LartechDownlink
+message StatusRepliesMode {
+    int32 id = 1;
+}
+
+// the soother is for LartechDownlink
+message DownlinkType {
+    int32 id = 1;
+}
+
+// the soother is for LartechDownlink. Orig backbone.types.RxWindow
+message RxWindow {
+    int32 id = 1;
+}
+
+// messages from Lartech Kafka
+message LartechDownlink {
+    string messageId = 1;   // Присвоить уникальный ID. Пример «7C7ECEVo»
+    string devEui = 2;                  // МАС-адрес устройства
+    string appId = 3;                   // Приложение отправитель
+    google.protobuf.Int32Value retries = 4; // 0 = Unconfirmed downlink, 1…N = Confirmed downlink с количеством попыток доставки 1…N
+    google.protobuf.Int32Value fport = 5;       // Порт данных
+    repeated bytes frmPayloads = 6;         // Отправляемые данные
+    bool enableStatusReplies = 7;               // Отправлять ли статусы
+    RxWindow rxWindowHint = 8;       // Необязательное поле
+    google.protobuf.StringValue owner = 9;  // Владелец устройства
+    repeated StatusRepliesMode statusRepliesModes = 10; // Необязательное поле
+    google.protobuf.Int32Value alreadySentChunks = 11; // Необязательное поле
+    DownlinkType downlinkType = 12;             // Необязательное поле
+    google.protobuf.Int32Value timeZoneHours = 13;  // Необязательное поле
+}
+
+message LartechDownlinkMessageStatus {
+    string messageId = 1;   // ID downlink-сообщения, к которому относится статус (см. п.2.2)
+    string devEui = 2;                  // МАС-адрес устройства
+    LartechDeliveryStatus status = 3; // Статус downlink см.ниже
+    google.protobuf.StringValue statusDescription = 4; // Необязательное поле
+    string appId = 5;                   // Значение «MeteringServer»
+    google.protobuf.StringValue owner = 6;  // Владелец устройства
+    int32 sentChunks = 7;               // Необязательное поле
+}
+
+enum LartechDeliveryStatus {
+    ACCEPTED = 0;       // DL успешно принят в сервере сети от App
+    REJECTED = 1;       // DL не может быть отправлен (ошибка сервера)
+    ON_AIR = 2;     // DL отправлен из БС в устройство
+    LOST = 3;       // DL не доставлен от БС до устройства
+    DELIVERED = 4;  // DL доставлен в устройство (получено подтверждение)
+    ACCESS_DENIED = 5;  // DL не может быть отправлен (нет прав)
+    INTERNAL_ERROR = 6; // DL не отправлен из-за отсутствия ответа от БС
+    CANCELLED = 7;  // Не используется
 }
