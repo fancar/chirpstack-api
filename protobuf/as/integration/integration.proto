@@ -111,6 +111,9 @@ message UplinkEvent {
 
     // Device Profile name
     string device_profile_name = 21;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 22;
 }
 
 // JoinEvent is the message sent when a device joined the network.
@@ -146,6 +149,9 @@ message JoinEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 10;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 11;    
 }
 
 // AckEvent is the message sent when a confirmation on a confirmed downlink
@@ -177,6 +183,9 @@ message AckEvent {
 
     // optional. the id was generated on client's side to control tx
     string message_id = 9;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 10;    
 }
 
 // TxAckEvent is the message sent when a downlink was acknowledged by the gateway
@@ -211,7 +220,10 @@ message TxAckEvent {
     google.protobuf.Timestamp published_at = 9;
 
     // optional. the id was generated on client's side to control tx
-    string message_id = 10;    
+    string message_id = 10;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 11;    
 }
 
 // ErrorEvent is the message sent when an error occurred.
@@ -242,6 +254,9 @@ message ErrorEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 10;    
 }
 
 // StatusEvent is the message sent when a device-status mac-command was sent
@@ -277,6 +292,9 @@ message StatusEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 10;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 11;    
 }
 
 // LocationEvent is the message sent when a geolocation resolve was returned.
@@ -309,6 +327,9 @@ message LocationEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 10;    
 }
 
 // IntegrationEvent is the message that can be sent by an integration.
@@ -341,6 +362,9 @@ message IntegrationEvent {
 
     // Published at timestamp.
     google.protobuf.Timestamp published_at = 9;
+
+    // Application ID list. The param is using by global integrations only
+    repeated uint64 applications = 10;    
 }
 
 
