@@ -561,6 +561,9 @@ message ReEncryptedDeviceQueueItem {
 
     // Payload is of type confirmed.
     bool confirmed = 4;
+
+    // non-encrypted FRMPayload bytes.
+    bytes non_encr_pl = 5;
 }
 
 

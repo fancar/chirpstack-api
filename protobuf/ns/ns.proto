@@ -644,7 +644,10 @@ message DeviceQueueItem {
     uint32 ttl = 7;
 
     // optional. the id was generated on client's side to control tx
-    string message_id = 8;    
+    string message_id = 8;
+
+    // Non encrypted FRMPayload bytes.
+    bytes non_encr_pl = 9;       
 }
 
 message CreateDeviceQueueItemRequest {
@@ -736,6 +739,9 @@ message DownlinkFrameLog {
 
     // rate limit
     RateLimit limit = 10;
+
+    // non-encrypted frame payload
+    bytes frm_payload = 11;    
 }
 
 // RX (uplink) frame data to save in CLICKHOUSE
