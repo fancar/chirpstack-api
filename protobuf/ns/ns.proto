@@ -791,6 +791,9 @@ message TXFrameForHandyRusty {
 
     // rate limit
     RateLimit limit = 7;
+
+    // non-encrypted frame payload.
+    bytes frm_payload = 8;
 }
 
 // DeviceSession cropped data from DeviceSession to save in CLICKHOUSE
