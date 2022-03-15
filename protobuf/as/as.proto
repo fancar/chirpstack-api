@@ -60,6 +60,9 @@ service ApplicationServerService {
     // GetDeviceAppSKey returns AES128Key by devEUI. Modification.
     rpc GetDeviceAppSKey(GetOrgByDevEUIRequest) returns (GetDeviceAppSKeyResponse) {}
 
+    // GetDeviceKeys returns NwkKey,AppKey by devEUI. Modification.
+    rpc GetDeviceKeys(GetOrgByDevEUIRequest) returns (GetDeviceKeysResponse) {}
+
     // ReEncryptDeviceQueueItems requests the application-server to re-encrypt
     // the given payload items using the new parameters. This request is
     // for example triggered when the associated frame-counter of a downlink
@@ -191,6 +194,14 @@ message GetOrgIDByGwIDRequest {
 message GetDeviceAppSKeyResponse {
     // AppSKey is a AES128Key for the device
     bytes value = 1;
+}
+
+message GetDeviceKeysResponse {
+    // NwkKey is a AES128Key for the device from device_keys
+    bytes nwk_key = 1;
+
+    // AppKey is a AES128Key for the device from device_keys
+    bytes app_key = 2;    
 }
 
 message GetOrgByDevEUIResponse {
