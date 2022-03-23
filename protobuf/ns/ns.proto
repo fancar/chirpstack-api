@@ -765,7 +765,10 @@ message RXFrameForHandyRusty {
     string ctx_id = 6;
 
     // rate limit
-    RateLimit limit = 7;   
+    RateLimit limit = 7;
+
+    // current device_class  string: "A", "B", "C"
+    string class = 8;    
 }
 
 // TX (downlink) frame data to save in CLICKHOUSE
