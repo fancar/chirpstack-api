@@ -383,7 +383,10 @@ message HandleUplinkDataRequest {
     double snr = 17;
 
     // average Received signal strength indication for last 20 packets in device_session
-    double rssi = 18;       
+    double rssi = 18;
+
+    // current class of the device: string: "A", "B", "C"
+    string class = 19;
 }
 
 message HandleProprietaryUplinkRequest {

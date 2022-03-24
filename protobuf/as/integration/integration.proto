@@ -114,6 +114,9 @@ message UplinkEvent {
 
     // Application ID list. The param is using by global integrations only
     repeated uint64 applications = 22;
+
+    // current class of the device: string: "A", "B", "C"
+    string class = 23;
 }
 
 // JoinEvent is the message sent when a device joined the network.
