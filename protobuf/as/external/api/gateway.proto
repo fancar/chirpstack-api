@@ -363,6 +363,12 @@ message GatewayMonItem {
 
 	//Operational status label
 	string op_status_label = 11;
+
+	// packets has been recieved for last minute
+	int32 rx_count = 12;
+
+	// packets has been transmitted for last minute
+	int32 tx_count = 13;		
 }
 
 message StatsItemActilityStyled {

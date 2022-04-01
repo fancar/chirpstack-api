@@ -737,6 +737,16 @@
         "opStatusLabel": {
           "type": "string",
           "title": "Operational status label"
+        },
+        "rxCount": {
+          "type": "integer",
+          "format": "int32",
+          "title": "packets has been recieved for last minute"
+        },
+        "txCount": {
+          "type": "integer",
+          "format": "int32",
+          "title": "packets has been transmitted for last minute"
         }
       },
       "title": "for monitoring list"
