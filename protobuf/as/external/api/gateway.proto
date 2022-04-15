@@ -327,6 +327,13 @@ message GatewayListItem {
 
 	//operational status code
 	int64 op_status_code = 15;
+
+	//gateway profile id (UUID)
+	string gateway_profile_id = 16; 
+	
+	//gateway profile name 
+	string gateway_profile_name = 17; 
+	
 }
 
 // for monitoring list

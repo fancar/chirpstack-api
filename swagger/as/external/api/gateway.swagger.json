@@ -686,6 +686,14 @@
           "type": "string",
           "format": "int64",
           "title": "operational status code"
+        },
+        "gatewayProfileId": {
+          "type": "string",
+          "title": "gateway profile id (UUID)"
+        },
+        "gatewayProfileName": {
+          "type": "string",
+          "title": "gateway profile name"
         }
       }
     },
