@@ -57,7 +57,11 @@ interface INetworkServerServiceService extends grpc.ServiceDefinition<grpc.Untyp
   getMulticastQueueItemsForMulticastGroup: grpc.MethodDefinition<ns_ns_pb.GetMulticastQueueItemsForMulticastGroupRequest, ns_ns_pb.GetMulticastQueueItemsForMulticastGroupResponse>;
   getVersion: grpc.MethodDefinition<google_protobuf_empty_pb.Empty, ns_ns_pb.GetVersionResponse>;
   getADRAlgorithms: grpc.MethodDefinition<google_protobuf_empty_pb.Empty, ns_ns_pb.GetADRAlgorithmsResponse>;
+<<<<<<< HEAD
   getDeviceForExport: grpc.MethodDefinition<ns_ns_pb.GetDeviceRequest, ns_ns_pb.GetDeviceForExportResponse>;
+=======
+  clearDeviceNonces: grpc.MethodDefinition<ns_ns_pb.ClearDeviceNoncesRequest, google_protobuf_empty_pb.Empty>;
+>>>>>>> master
 }
 
 export const NetworkServerServiceService: INetworkServerServiceService;
@@ -112,7 +116,11 @@ export interface INetworkServerServiceServer extends grpc.UntypedServiceImplemen
   getMulticastQueueItemsForMulticastGroup: grpc.handleUnaryCall<ns_ns_pb.GetMulticastQueueItemsForMulticastGroupRequest, ns_ns_pb.GetMulticastQueueItemsForMulticastGroupResponse>;
   getVersion: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, ns_ns_pb.GetVersionResponse>;
   getADRAlgorithms: grpc.handleUnaryCall<google_protobuf_empty_pb.Empty, ns_ns_pb.GetADRAlgorithmsResponse>;
+<<<<<<< HEAD
   getDeviceForExport: grpc.handleUnaryCall<ns_ns_pb.GetDeviceRequest, ns_ns_pb.GetDeviceForExportResponse>;
+=======
+  clearDeviceNonces: grpc.handleUnaryCall<ns_ns_pb.ClearDeviceNoncesRequest, google_protobuf_empty_pb.Empty>;
+>>>>>>> master
 }
 
 export class NetworkServerServiceClient extends grpc.Client {
@@ -262,7 +270,13 @@ export class NetworkServerServiceClient extends grpc.Client {
   getADRAlgorithms(argument: google_protobuf_empty_pb.Empty, callback: grpc.requestCallback<ns_ns_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
   getADRAlgorithms(argument: google_protobuf_empty_pb.Empty, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
   getADRAlgorithms(argument: google_protobuf_empty_pb.Empty, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetADRAlgorithmsResponse>): grpc.ClientUnaryCall;
+<<<<<<< HEAD
   getDeviceForExport(argument: ns_ns_pb.GetDeviceRequest, callback: grpc.requestCallback<ns_ns_pb.GetDeviceForExportResponse>): grpc.ClientUnaryCall;
   getDeviceForExport(argument: ns_ns_pb.GetDeviceRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetDeviceForExportResponse>): grpc.ClientUnaryCall;
   getDeviceForExport(argument: ns_ns_pb.GetDeviceRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<ns_ns_pb.GetDeviceForExportResponse>): grpc.ClientUnaryCall;
+=======
+  clearDeviceNonces(argument: ns_ns_pb.ClearDeviceNoncesRequest, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  clearDeviceNonces(argument: ns_ns_pb.ClearDeviceNoncesRequest, metadataOrOptions: grpc.Metadata | grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+  clearDeviceNonces(argument: ns_ns_pb.ClearDeviceNoncesRequest, metadata: grpc.Metadata | null, options: grpc.CallOptions | null, callback: grpc.requestCallback<google_protobuf_empty_pb.Empty>): grpc.ClientUnaryCall;
+>>>>>>> master
 }
