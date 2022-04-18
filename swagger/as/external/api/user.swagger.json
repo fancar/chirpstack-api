@@ -473,6 +473,11 @@
           "format": "date-time",
           "description": "Last update timestamp."
         },
+        "loginAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "last login at timestamp."
+        },
         "name": {
           "type": "string",
           "title": "user's name"

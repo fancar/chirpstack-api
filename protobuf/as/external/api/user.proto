@@ -126,6 +126,9 @@ message UserListItem {
 	// Last update timestamp.
 	google.protobuf.Timestamp updated_at = 9;
 
+	// last login at timestamp.
+	google.protobuf.Timestamp login_at = 16;	
+
 	// user's name
 	string name = 10;
 
