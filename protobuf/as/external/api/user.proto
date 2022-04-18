@@ -101,6 +101,9 @@ message User {
 
 	// user's phone
 	string phone = 12;
+
+	// last login at timestamp.
+	google.protobuf.Timestamp login_at = 13;
 }
 
 message UserListItem {
