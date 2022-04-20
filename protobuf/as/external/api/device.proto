@@ -12,6 +12,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "common/common.proto";
 import "as/external/api/frameLog.proto";
+import "ns/ns.proto";
 
 
 // DeviceService is the service managing the devices.
@@ -455,6 +456,32 @@ message DeviceActivation {
 
     // Downlink application frame-counter.
     uint32 a_f_cnt_down = 10;
+
+    // RX1 data-rate offset
+    uint32 RX1DROffset = 11; 
+
+    // RX2 data-rate
+    uint32 RX2DR = 12;
+
+    // RX2 frequency
+    uint32 RX2Frequency = 13;
+    
+    // tx power index
+    int32 TXPowerIndex = 14;
+
+    // data rate
+    int32 DR = 15;
+
+    // adaptive data rate
+    bool ADR = 16;
+
+    // number of retransmissions
+    uint32 nb_trans = 17;
+
+    // enabled channels
+    repeated int32 enabled_uplink_channels = 18;
+
+    repeated ns.ExtraChannels extra_uplink_channels = 19;            
 }
 
 message ActivateDeviceRequest {

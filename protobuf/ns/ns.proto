@@ -420,6 +420,40 @@ message DeviceActivation {
 
     // Skip frame-counter checks (this is insecure, but could be helpful for debugging).
     bool skip_f_cnt_check = 9;
+
+    // RX1 data-rate offset
+    uint32 RX1DROffset = 10; 
+
+    // RX2 data-rate
+    uint32 RX2DR = 11;
+
+    // RX2 frequency
+    uint32 RX2Frequency = 12;
+    
+    // tx power index
+    int32 TXPowerIndex = 13;
+
+    // data rate
+    int32 DR = 14;
+
+    // adaptive data rate
+    bool ADR = 15;
+
+    // number of retransmissions
+    uint32 nb_trans = 16;
+
+    // enabled channels
+    repeated int32 enabled_uplink_channels = 17;   
+
+    repeated ExtraChannels extra_uplink_channels = 18;
+}
+
+
+message ExtraChannels {
+    uint32 index = 1;
+    uint32 frequency = 2;
+    uint32 minDR = 3;
+    uint32 maxDR = 4;
 }
 
 message ActivateDeviceRequest {

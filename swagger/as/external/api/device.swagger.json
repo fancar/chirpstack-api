@@ -732,6 +732,55 @@
           "type": "integer",
           "format": "int64",
           "description": "Downlink application frame-counter."
+        },
+        "RX1DROffset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RX1 data-rate offset"
+        },
+        "RX2DR": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RX2 data-rate"
+        },
+        "RX2Frequency": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RX2 frequency"
+        },
+        "TXPowerIndex": {
+          "type": "integer",
+          "format": "int32",
+          "title": "tx power index"
+        },
+        "DR": {
+          "type": "integer",
+          "format": "int32",
+          "title": "data rate"
+        },
+        "ADR": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "adaptive data rate"
+        },
+        "nbTrans": {
+          "type": "integer",
+          "format": "int64",
+          "title": "number of retransmissions"
+        },
+        "enabledUplinkChannels": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "enabled channels"
+        },
+        "extraUplinkChannels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/nsExtraChannels"
+          }
         }
       }
     },
@@ -1451,6 +1500,27 @@
         "lrFHSSModulationInfo": {
           "$ref": "#/definitions/gwLRFHSSModulationInfo",
           "description": "LR-FHSS modulation information."
+        }
+      }
+    },
+    "nsExtraChannels": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "frequency": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "minDR": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxDR": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
