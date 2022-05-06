@@ -117,6 +117,9 @@ message UplinkEvent {
 
     // current class of the device: string: "A", "B", "C"
     string class = 23;
+
+    // organization ID.
+    uint64 organization_id = 24 [json_name = "organizationID"];    
 }
 
 // JoinEvent is the message sent when a device joined the network.
