@@ -15,6 +15,23 @@
     "application/json"
   ],
   "paths": {
+    "/api/gateway-count": {
+      "get": {
+        "summary": "CountGateways returns counts of gateways grouped by gateway-profiles.",
+        "operationId": "CountGateways",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCountGatewaysResponse"
+            }
+          }
+        },
+        "tags": [
+          "GatewayProfileService"
+        ]
+      }
+    },
     "/api/gateway-profiles": {
       "get": {
         "summary": "List returns the existing gateway-profiles.",
@@ -183,6 +200,18 @@
     }
   },
   "definitions": {
+    "apiCountGatewaysResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
     "apiCreateGatewayProfileRequest": {
       "type": "object",
       "properties": {

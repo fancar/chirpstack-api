@@ -177,6 +177,9 @@ service NetworkServerService {
     //   * These are clear older DevNonce records from device activation records
     //   * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
     rpc ClearDeviceNonces(ClearDeviceNoncesRequest) returns (google.protobuf.Empty) {}
+
+    // CountGateways returns gw counts by gateway_profile use
+    rpc CountGateways(google.protobuf.Empty) returns (CountGatewaysResponse) {}
 }
 
 enum RXWindow {
@@ -1119,4 +1122,8 @@ message ADRAlgorithm {
 message ClearDeviceNoncesRequest {
     // Device EUI (8 bytes).
     bytes dev_eui = 1;
+}
+
+message CountGatewaysResponse {
+    map<string, int64> data = 1;
 }

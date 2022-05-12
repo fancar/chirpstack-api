@@ -52,6 +52,13 @@ service GatewayProfileService {
 			get: "/api/gateway-profiles"
 		};
 	}
+
+    // CountGateways returns counts of gateways grouped by gateway-profiles.
+    rpc CountGateways(google.protobuf.Empty) returns (CountGatewaysResponse) {
+        option (google.api.http) = {
+            get: "/api/gateway-count"
+        };
+    }    
 }
 
 message GatewayProfile {
@@ -191,4 +198,8 @@ message ListGatewayProfilesResponse {
     int64 total_count = 1;
 
     repeated GatewayProfileListItem result = 2;
+}
+
+message CountGatewaysResponse {
+    map<string, int64> data = 1;
 }
