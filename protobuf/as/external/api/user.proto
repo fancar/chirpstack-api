@@ -104,6 +104,9 @@ message User {
 
 	// last login at timestamp.
 	google.protobuf.Timestamp login_at = 13;
+
+	// mark as LDAP-user, if true - allow him to login with name@domain via LDAP
+	bool login_with_ldap = 14;
 }
 
 message UserListItem {

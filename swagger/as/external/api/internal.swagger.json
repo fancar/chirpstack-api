@@ -862,6 +862,11 @@
           "type": "string",
           "format": "date-time",
           "description": "last login at timestamp."
+        },
+        "loginWithLdap": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "mark as LDAP-user, if true - allow him to login with name@domain via LDAP"
         }
       }
     },
