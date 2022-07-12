@@ -786,7 +786,123 @@ message DownlinkFrameLog {
     bytes frm_payload = 11;    
 }
 
+message DeviceActivationContext {
+    // Assigned Device Address.
+    bytes dev_addr = 1;
+
+    // Application session key (envelope).
+    common.KeyEnvelope app_s_key = 2;
+}
+
+
+// StreamUplink msg for streaming uplinks via redis stream
+message StreamUplink {
+    // DevEUI EUI (8 bytes).
+    bytes dev_eui = 1;
+
+    // Join EUI used for OTAA activation (8 bytes).
+    bytes join_eui = 2;
+
+    // Frame-counter.
+    uint32 f_cnt = 3;
+
+    // Frame port.
+    uint32 f_port = 4;
+
+    // ADR enabled.
+    bool adr = 5;
+
+    // Data-rate.
+    uint32 dr = 6;
+
+    // TX meta-data.
+    gw.UplinkTXInfo tx_info = 7;
+
+    // RX meta-data.
+    repeated gw.UplinkRXInfo rx_info = 8;
+
+    // Received data (encrypted frm payload).
+    bytes data = 9;
+
+    // Device activation context.
+    // This field is only set on the first uplink frame when the security
+    // context has changed (e.g. a new OTAA (re)activation).
+    DeviceActivationContext device_activation_context = 10;
+
+    // Uplink was of type confirmed.
+    bool confirmed_uplink = 11;
+
+    // true if recieved more than 2 minutes after
+    bool late = 12;
+
+    // Mic. Modification
+    bytes mic = 13;    
+
+    // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR
+    google.protobuf.Timestamp time = 14;
+
+
+    // limit for current uplink packet
+    ns.RateLimit limit = 15;
+
+    // average Packet Error Rate for last 20 packets in device_session
+    double per = 16;
+
+    // average Signal to Noise Ratio for last 20 packets in device_session
+    double snr = 17;
+
+    // average Received signal strength indication for last 20 packets in device_session
+    double rssi = 18;
+
+    // current class of the device: string: "A", "B", "C"
+    string class = 19;
+    
+    // PHYPayload src from RXInfo
+    bytes phy_payload = 20;
+    
+    // additional information from current device-session
+    DeviceSession device_session = 21;
+    
+    // context id of the frame handling. In case to find it in ns-logs
+    string ctx_id = 22;
+
+    // Received data (non encrypted frm payload).
+    bytes unencrypted_data = 23;
+
+    // organization id of the device
+    int64 orgid = 24;  
+
+    // organization id of main gateway (according to best signal)
+    int64 gw_orgid = 25;  
+}
+
+// StreamDownlink msg for streaming acked downlinks via redis stream
+message StreamDownlink {
+    // PHYPayload.
+    bytes phy_payload = 1;
+
+    // TX meta-data.
+    gw.DownlinkTXInfo tx_info = 2;
+
+
+    // Downlink ID (UUID).
+    bytes downlink_id = 3 [json_name = "downlinkID"];
+
+    // Gateway ID.
+    bytes gateway_id = 4 [json_name = "gatewayID"];
+
+    // some information from current device-session
+    DeviceSession device_session = 5;
+
+    // rate limit
+    RateLimit limit = 6;
+
+    // non-encrypted frame payload.
+    bytes frm_payload = 7;
+}
+
 // RX (uplink) frame data to save in CLICKHOUSE
+// deprecated TODO: remove it
 message RXFrameForHandyRusty {
     // PHYPayload.
     bytes phy_payload = 1;
@@ -814,6 +930,7 @@ message RXFrameForHandyRusty {
 }
 
 // TX (downlink) frame data to save in CLICKHOUSE
+// deprecated TODO: remove it
 message TXFrameForHandyRusty {
     // PHYPayload.
     bytes phy_payload = 1;
