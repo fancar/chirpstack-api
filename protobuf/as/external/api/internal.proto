@@ -107,8 +107,49 @@ service InternalService {
         option(google.api.http) = {
             get: "/api/internal/info"
         };
-    }    
+    }
+
+    // GetMainCounters returns main app-server metrics
+    rpc GetMainCounters(GetMainCountersRequest) returns (GetMainCountersResponse) {
+        option(google.api.http) = {
+            get: "/api/internal/monitoring/counters"
+        };
+    } 
 }
+
+
+message GetMainCountersRequest {
+    // Aggregation interval.  One of "second", "minute", "hour", "day", "week",
+    // "month", "quarter", "year".  Case insensitive.
+    string interval = 1;
+
+    // Timestamp to start from.
+    google.protobuf.Timestamp start_timestamp = 2;
+
+    // Timestamp until to get from.
+    google.protobuf.Timestamp end_timestamp = 3;
+}
+
+
+message MainCounters {
+    // Timestamp of the (aggregated) measurement.
+    google.protobuf.Timestamp timestamp = 1;
+
+    // counter of uplinks recieved by as from ns in total
+    int32 rx_count = 2;
+
+    // counter of uplinks sent by as to integrations in total
+    int32 rx_count_sent = 3;
+
+    // counter of uplinks unable to sent by as to integrations in total
+    int32 rx_count_err = 4;    
+}
+
+message GetMainCountersResponse {
+    repeated MainCounters result = 1;   
+}
+
+
 
 message GetInfoResponse {
     //api version 

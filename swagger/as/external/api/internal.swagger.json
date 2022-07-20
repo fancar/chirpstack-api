@@ -333,6 +333,48 @@
         ]
       }
     },
+    "/api/internal/monitoring/counters": {
+      "get": {
+        "summary": "GetMainCounters returns main app-server metrics",
+        "operationId": "GetMainCounters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetMainCountersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "interval",
+            "description": "Aggregation interval.  One of \"second\", \"minute\", \"hour\", \"day\", \"week\",\n\"month\", \"quarter\", \"year\".  Case insensitive.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startTimestamp",
+            "description": "Timestamp to start from.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endTimestamp",
+            "description": "Timestamp until to get from.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "InternalService"
+        ]
+      }
+    },
     "/api/internal/oidc/login": {
       "get": {
         "summary": "OpenID Connect login.",
@@ -592,6 +634,17 @@
         }
       }
     },
+    "apiGetMainCountersResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiMainCounters"
+          }
+        }
+      }
+    },
     "apiGlobalSearchResponse": {
       "type": "object",
       "properties": {
@@ -700,6 +753,31 @@
         "jwt": {
           "type": "string",
           "description": "The JWT tag to be used to access application-server interfaces."
+        }
+      }
+    },
+    "apiMainCounters": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the (aggregated) measurement."
+        },
+        "rxCount": {
+          "type": "integer",
+          "format": "int32",
+          "title": "counter of uplinks recieved by as from ns in total"
+        },
+        "rxCountSent": {
+          "type": "integer",
+          "format": "int32",
+          "title": "counter of uplinks sent by as to integrations in total"
+        },
+        "rxCountErr": {
+          "type": "integer",
+          "format": "int32",
+          "title": "counter of uplinks unable to sent by as to integrations in total"
         }
       }
     },
