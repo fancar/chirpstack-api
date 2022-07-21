@@ -119,7 +119,7 @@ service InternalService {
 
 
 message GetMainCountersRequest {
-    // Aggregation interval.  One of "second", "minute", "hour", "day", "week",
+    // Aggregation interval.  One of "minute", "hour", "day", "week",
     // "month", "quarter", "year".  Case insensitive.
     string interval = 1;
 
