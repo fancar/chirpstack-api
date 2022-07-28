@@ -375,7 +375,19 @@ message GatewayMonItem {
 	int32 rx_count = 12;
 
 	// packets has been transmitted for last minute
-	int32 tx_count = 13;		
+	int32 tx_count = 13;
+
+    // metadata: disk1 space used (%)
+    string disk1 = 14;
+
+    // metadata: disk1 partirion name
+    string disk1_name = 15;
+
+    // metadata: disk1 space used (%)
+    string disk2 = 16;
+
+    // metadata: disk1 partirion name
+    string disk2_name = 17;
 }
 
 message StatsItemActilityStyled {

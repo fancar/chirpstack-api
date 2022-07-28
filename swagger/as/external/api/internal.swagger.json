@@ -348,7 +348,7 @@
         "parameters": [
           {
             "name": "interval",
-            "description": "Aggregation interval.  One of \"second\", \"minute\", \"hour\", \"day\", \"week\",\n\"month\", \"quarter\", \"year\".  Case insensitive.",
+            "description": "Aggregation interval.  One of \"minute\", \"hour\", \"day\", \"week\",\n\"month\", \"quarter\", \"year\".  Case insensitive.",
             "in": "query",
             "required": false,
             "type": "string"

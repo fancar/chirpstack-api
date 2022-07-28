@@ -755,6 +755,22 @@
           "type": "integer",
           "format": "int32",
           "title": "packets has been transmitted for last minute"
+        },
+        "disk1": {
+          "type": "string",
+          "title": "metadata: disk1 space used (%)"
+        },
+        "disk1Name": {
+          "type": "string",
+          "title": "metadata: disk1 partirion name"
+        },
+        "disk2": {
+          "type": "string",
+          "title": "metadata: disk1 space used (%)"
+        },
+        "disk2Name": {
+          "type": "string",
+          "title": "metadata: disk1 partirion name"
         }
       },
       "title": "for monitoring list"

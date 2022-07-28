@@ -29,7 +29,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type GetMainCountersRequest struct {
-	// Aggregation interval.  One of "second", "minute", "hour", "day", "week",
+	// Aggregation interval.  One of "minute", "hour", "day", "week",
 	// "month", "quarter", "year".  Case insensitive.
 	Interval string `protobuf:"bytes,1,opt,name=interval,proto3" json:"interval,omitempty"`
 	// Timestamp to start from.
