@@ -524,6 +524,14 @@
         "footer": {
           "type": "string",
           "description": "Footer html."
+        },
+        "topNavColor": {
+          "type": "string",
+          "description": "Top nav bar color."
+        },
+        "tabsColor": {
+          "type": "string",
+          "description": "Tabs color."
         }
       }
     },
