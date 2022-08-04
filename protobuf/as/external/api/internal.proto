@@ -362,6 +362,12 @@ message Branding {
 
     // Footer html.
 	string footer = 2;
+
+     // Top nav bar color.
+	string top_nav_color = 3;
+
+    // Tabs color.
+	string tabs_color = 4;
 }
 
 message OpenIDConnect {
