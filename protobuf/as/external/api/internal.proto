@@ -368,6 +368,12 @@ message Branding {
 
     // Tabs color.
 	string tabs_color = 4;
+
+    // Page title.
+	string meta_title = 5;
+
+    // Seo description.
+	string meta_description = 6;
 }
 
 message OpenIDConnect {

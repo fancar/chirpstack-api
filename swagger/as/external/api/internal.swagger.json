@@ -532,6 +532,14 @@
         "tabsColor": {
           "type": "string",
           "description": "Tabs color."
+        },
+        "metaTitle": {
+          "type": "string",
+          "description": "Page title."
+        },
+        "metaDescription": {
+          "type": "string",
+          "description": "Seo description."
         }
       }
     },
