@@ -689,7 +689,13 @@ message DeviceQueueItem {
     string message_id = 8;
 
     // Non encrypted FRMPayload bytes.
-    bytes non_encr_pl = 9;       
+    bytes non_encr_pl = 9;
+
+    // created at timestamp.
+    google.protobuf.Timestamp created_at = 10;
+
+    // timeout after timestamp.
+    google.protobuf.Timestamp timeout_after = 11;    
 }
 
 message CreateDeviceQueueItemRequest {

@@ -9,6 +9,7 @@ option java_outer_classname = "DeviceQueueProto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 
 // DeviceQueueService is the service managing the downlink data queue.
@@ -84,7 +85,13 @@ message DeviceQueueItem {
     string message_id = 8;
 
     // temp for kafka routings
-    string owner = 9;    
+    string owner = 9;
+
+    // created at timestamp.
+    google.protobuf.Timestamp created_at = 10;
+
+    // timeout after timestamp.
+    google.protobuf.Timestamp timeout_after = 11;    
 }
 
 message EnqueueDeviceQueueItemRequest {

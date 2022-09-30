@@ -212,6 +212,16 @@
         "owner": {
           "type": "string",
           "title": "temp for kafka routings"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "created at timestamp."
+        },
+        "timeoutAfter": {
+          "type": "string",
+          "format": "date-time",
+          "description": "timeout after timestamp."
         }
       }
     },
