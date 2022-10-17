@@ -159,6 +159,9 @@ message ServiceProfile {
 
     // if true - allows processing confirmed downlinks
     bool allow_tx_confirmed = 40;
+
+    // max size of downlink queue for devices that use the sp
+    uint32 dl_queue_max_size = 41;   
 }
 
 message DeviceProfile {

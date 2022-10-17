@@ -464,6 +464,11 @@
           "type": "boolean",
           "format": "boolean",
           "title": "if true - allows processing confirmed downlinks"
+        },
+        "dlQueueMaxSize": {
+          "type": "integer",
+          "format": "int64",
+          "title": "max size of downlink queue for devices that use the sp"
         }
       }
     },
