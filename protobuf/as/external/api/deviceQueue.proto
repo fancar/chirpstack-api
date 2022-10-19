@@ -92,11 +92,20 @@ message DeviceQueueItem {
 
     // timeout after timestamp.
     google.protobuf.Timestamp timeout_after = 11;    
+
+    // Set this to true when you don't need to recieve current fCnt
+    // and\or you need to onboard a lot of downlinks to the server.
+    // as fast as it possible. The errors are availible in stats 
+    // you can find it according to the downlink-uuid from the answer.
+    bool background_task = 12;
 }
 
 message EnqueueDeviceQueueItemRequest {
     // Queue-item object to enqueue.
     DeviceQueueItem device_queue_item = 1;
+
+    // downlink message ID (UUID string). ! Generated for background tasks !
+    string msg_id = 2;
 }
 
 message EnqueueDeviceQueueItemResponse {

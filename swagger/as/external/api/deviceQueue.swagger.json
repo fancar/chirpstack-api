@@ -222,6 +222,11 @@
           "type": "string",
           "format": "date-time",
           "description": "timeout after timestamp."
+        },
+        "backgroundTask": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Set this to true when you don't need to recieve current fCnt\nand\\or you need to onboard a lot of downlinks to the server.\nas fast as it possible. The errors are availible in stats \nyou can find it according to the downlink-uuid from the answer."
         }
       }
     },
@@ -291,6 +296,10 @@
         "deviceQueueItem": {
           "$ref": "#/definitions/apiDeviceQueueItem",
           "description": "Queue-item object to enqueue."
+        },
+        "msgId": {
+          "type": "string",
+          "title": "downlink message ID (UUID string). ! Generated for background tasks !"
         }
       }
     },
