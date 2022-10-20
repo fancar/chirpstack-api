@@ -415,6 +415,9 @@ message HandleErrorRequest {
 
     // Frame-counter (if applicable) related to the error.
     uint32 f_cnt = 5;
+
+    // Optional. the id can be generated on client's side or on A.S. to control tx
+    string message_id = 6;
 }
 
 message HandleDownlinkACKRequest {
@@ -427,7 +430,7 @@ message HandleDownlinkACKRequest {
     // Frame was acknowledged?
     bool acknowledged = 3;
 
-    // optional. the id was generated on client's side to control tx
+    // optional. the id can be generated on client's side or on A.S. to control tx
     string message_id = 4;    
 }
 
