@@ -98,6 +98,7 @@ message EnqueueDeviceQueueItemRequest {
     // Queue-item object to enqueue.
     DeviceQueueItem device_queue_item = 1;
 
+    // !Please do not call method in parallel when it set to true!
     // If set to true - enqueue on air . If false - background enqueue
     // Set this to true when you really need to recieve current fCnt
     // ! CAUTION ! The mode is very slow! 
@@ -105,7 +106,6 @@ message EnqueueDeviceQueueItemRequest {
     // then encrypt payload and put it to ns queue. 
     // If you have to onboard a lot of downlinks to the server 
     // as fast as possible - please DO NOT use the feature! 
-    //
     // If you set it to false the errors will be sent as ErrorEvents 
     // via messages that A.S. sends to your applications
     // you can match it according to the downlink-uuid recieved from the answer.
@@ -168,6 +168,19 @@ message EnqueueDeviceQueueActilityItemRequest {
 
     // Time to live (in seconds). You canspecify the maximum time in queue for the item
     uint32 ttl = 7;
+
+    // !Please do not call method in parallel when it set to true!
+    // If set to true - enqueue on air . If false - background enqueue
+    // Set this to true when you really need to recieve current fCnt
+    // ! CAUTION ! The mode is very slow! 
+    // It has to connect to NS, get current fcnt,
+    // then encrypt payload and put it to ns queue. 
+    // If you have to onboard a lot of downlinks to the server 
+    // as fast as possible - please DO NOT use the feature! 
+    // If you set it to false the errors will be sent as ErrorEvents 
+    // via messages that A.S. sends to your applications
+    // you can match it according to the downlink-uuid recieved from the answer.
+    bool get_fcnt = 8;    
 }
 
 message EnqueueDeviceQueueActilityItemResponse {
@@ -177,6 +190,9 @@ message EnqueueDeviceQueueActilityItemResponse {
     string payload_hex = 3;
     string target_ports = 4;
     string status = 5;
+
+    // downlink message ID (UUID string). ! Generated for background tasks !
+    string msg_id = 6;       
 }
 
 message GetNextDownlinkFCntRequest {

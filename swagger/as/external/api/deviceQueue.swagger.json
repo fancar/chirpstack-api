@@ -259,6 +259,11 @@
           "type": "integer",
           "format": "int64",
           "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
+        },
+        "getFcnt": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "!Please do not call method in parallel when it set to true!\nIf set to true - enqueue on air . If false - background enqueue\nSet this to true when you really need to recieve current fCnt\n! CAUTION ! The mode is very slow! \nIt has to connect to NS, get current fcnt,\nthen encrypt payload and put it to ns queue. \nIf you have to onboard a lot of downlinks to the server \nas fast as possible - please DO NOT use the feature! \nIf you set it to false the errors will be sent as ErrorEvents \nvia messages that A.S. sends to your applications\nyou can match it according to the downlink-uuid recieved from the answer."
         }
       }
     },
@@ -282,6 +287,10 @@
         },
         "status": {
           "type": "string"
+        },
+        "msgId": {
+          "type": "string",
+          "title": "downlink message ID (UUID string). ! Generated for background tasks !"
         }
       }
     },
@@ -295,8 +304,7 @@
         "getFcnt": {
           "type": "boolean",
           "format": "boolean",
-          "description": "If you set it to false the errors will be sent as ErrorEvents \nvia messages that A.S. sends to your applications\nyou can match it according to the downlink-uuid recieved from the answer.",
-          "title": "If set to true - enqueue on air . If false - background enqueue\nSet this to true when you really need to recieve current fCnt\n! CAUTION ! The mode is very slow! \nIt has to connect to NS, get current fcnt,\nthen encrypt payload and put it to ns queue. \nIf you have to onboard a lot of downlinks to the server \nas fast as possible - please DO NOT use the feature!"
+          "description": "!Please do not call method in parallel when it set to true!\nIf set to true - enqueue on air . If false - background enqueue\nSet this to true when you really need to recieve current fCnt\n! CAUTION ! The mode is very slow! \nIt has to connect to NS, get current fcnt,\nthen encrypt payload and put it to ns queue. \nIf you have to onboard a lot of downlinks to the server \nas fast as possible - please DO NOT use the feature! \nIf you set it to false the errors will be sent as ErrorEvents \nvia messages that A.S. sends to your applications\nyou can match it according to the downlink-uuid recieved from the answer."
         }
       }
     },
