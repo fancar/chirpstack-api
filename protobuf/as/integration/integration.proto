@@ -262,7 +262,10 @@ message ErrorEvent {
     google.protobuf.Timestamp published_at = 9;
 
     // Application ID list. The param is using by global integrations only
-    repeated uint64 applications = 10;    
+    repeated uint64 applications = 10;
+
+    // id of DL message. In case the error is about downlink message
+    string message_id = 11;     
 }
 
 // StatusEvent is the message sent when a device-status mac-command was sent

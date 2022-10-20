@@ -78,7 +78,7 @@ message DeviceQueueItem {
     // this object into binary form.
     string json_object = 5;
 
-    // Time to live (in seconds). You canspecify the maximum time in queue for the item
+    // Time to live (in seconds). You can specify the maximum time in queue for the item
     uint32 ttl = 7; 
 
     // optional. the id will be shown in ack messages
@@ -98,15 +98,23 @@ message EnqueueDeviceQueueItemRequest {
     // Queue-item object to enqueue.
     DeviceQueueItem device_queue_item = 1;
 
-    // Set this to true when you don't need to recieve current fCnt
-    // and\or you need to onboard a lot of downlinks to the server.
-    // as fast as it possible. The errors are availible in stats 
-    // you can find it according to the downlink-uuid from the answer.
-    bool background_task = 2;    
+    // If set to true - enqueue on air . If false - background enqueue
+    // Set this to true when you really need to recieve current fCnt
+    // ! CAUTION ! The mode is very slow! 
+    // It has to connect to NS, get current fcnt,
+    // then encrypt payload and put it to ns queue. 
+    // If you have to onboard a lot of downlinks to the server 
+    // as fast as possible - please DO NOT use the feature! 
+    //
+    // If you set it to false the errors will be sent as ErrorEvents 
+    // via messages that A.S. sends to your applications
+    // you can match it according to the downlink-uuid recieved from the answer.
+    bool get_fcnt = 2;    
 }
 
 message EnqueueDeviceQueueItemResponse {
     // Frame-counter for the enqueued payload.
+    // it allways zero if get_fcnt in request is false
     uint32 f_cnt = 1;
 
     // downlink message ID (UUID string). ! Generated for background tasks !

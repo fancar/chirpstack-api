@@ -203,7 +203,7 @@
         "ttl": {
           "type": "integer",
           "format": "int64",
-          "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
+          "title": "Time to live (in seconds). You can specify the maximum time in queue for the item"
         },
         "messageId": {
           "type": "string",
@@ -292,10 +292,11 @@
           "$ref": "#/definitions/apiDeviceQueueItem",
           "description": "Queue-item object to enqueue."
         },
-        "backgroundTask": {
+        "getFcnt": {
           "type": "boolean",
           "format": "boolean",
-          "description": "Set this to true when you don't need to recieve current fCnt\nand\\or you need to onboard a lot of downlinks to the server.\nas fast as it possible. The errors are availible in stats \nyou can find it according to the downlink-uuid from the answer."
+          "description": "If you set it to false the errors will be sent as ErrorEvents \nvia messages that A.S. sends to your applications\nyou can match it according to the downlink-uuid recieved from the answer.",
+          "title": "If set to true - enqueue on air . If false - background enqueue\nSet this to true when you really need to recieve current fCnt\n! CAUTION ! The mode is very slow! \nIt has to connect to NS, get current fcnt,\nthen encrypt payload and put it to ns queue. \nIf you have to onboard a lot of downlinks to the server \nas fast as possible - please DO NOT use the feature!"
         }
       }
     },
@@ -305,7 +306,7 @@
         "fCnt": {
           "type": "integer",
           "format": "int64",
-          "description": "Frame-counter for the enqueued payload."
+          "title": "Frame-counter for the enqueued payload.\nit allways zero if get_fcnt in request is false"
         },
         "msgId": {
           "type": "string",
