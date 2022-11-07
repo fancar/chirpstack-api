@@ -331,6 +331,9 @@ message ListOrganizationUsersRequest {
 
 	// sort direction
 	string order = 5;	
+
+	// search condition
+	string search = 6;	
 }
 
 message ListOrganizationUsersResponse {

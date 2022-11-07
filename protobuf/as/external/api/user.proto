@@ -251,6 +251,9 @@ message ListUserRequest {
 
 	// sort direction
 	string order = 4;	
+
+	// search condition
+	string search = 5;	
 }
 
 message ListUserResponse {
