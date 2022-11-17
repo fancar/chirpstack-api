@@ -365,6 +365,36 @@ service ApplicationService {
             post: "/api/applications/{application_id}/integrations/mqtt/certificate"
         };
     }
+
+    // CreateMQTTIntegration creates the application-integration.
+    rpc CreateMQTTIntegration(CreateMQTTIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            post: "/api/applications/{integration.application_id}/integrations/mqtt"
+            body: "*"
+        };
+    }
+
+    // GetMQTTIntegration returns the application-integration.
+    rpc GetMQTTIntegration(GetMQTTIntegrationRequest) returns (GetMQTTIntegrationResponse) {
+        option(google.api.http) = {
+            get: "/api/applications/{application_id}/integrations/mqtt"
+        };
+    }
+
+    // UpdateMQTTIntegration updates the application-integration.
+    rpc UpdateMQTTIntegration(UpdateMQTTIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            put: "/api/applications/{integration.application_id}/integrations/mqtt"
+            body: "*"
+        };
+    }
+
+    // DeleteMQTTIntegration deletes the application-integration.
+    rpc DeleteMQTTIntegration(DeleteMQTTIntegrationRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            delete: "/api/applications/{application_id}/integrations/mqtt"
+        };
+    }    
 }
 
 enum IntegrationKind {
@@ -380,6 +410,7 @@ enum IntegrationKind {
     MQTT_GLOBAL = 9;
     KAFKA = 10;
     LARTECH = 11; // kafka with cfg preset on ui (lpwan)
+    MQTT = 12;    
 }
 
 enum Marshaler {
@@ -388,6 +419,7 @@ enum Marshaler {
     JSON_V3 = 2;
     ACTILITY_JSON = 3; // modificaton for ex.actility customers
     LAR_TECH = 4; // modification for lar.tech integration
+    JSON_FULL = 5; // full json, including txInfo etc.
 }
 
 message Application {
@@ -1160,4 +1192,63 @@ message GenerateMQTTIntegrationClientCertificateResponse {
 
     // Expires at defines the expiration date of the certificate.
     google.protobuf.Timestamp expires_at = 4;
+}
+
+
+message CreateMQTTIntegrationRequest {
+    // Integration object to create.
+    MQTTIntegration integration = 1;
+}
+
+message GetMQTTIntegrationRequest {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message GetMQTTIntegrationResponse {
+    // Integration object.
+    MQTTIntegration integration = 1;
+}
+
+message UpdateMQTTIntegrationRequest {
+    // Integration object to update.
+    MQTTIntegration integration = 1;
+}
+
+message DeleteMQTTIntegrationRequest {
+    // The id of the application.
+    int64 application_id = 1 [json_name = "applicationID"];
+}
+
+message MQTTIntegration {
+    // Application ID.
+    int64 application_id = 1 [json_name = "applicationID"];
+
+    // mqtt server address 
+    string server = 2;
+
+    string username = 3;
+
+    string password = 4;
+
+    // maximum reconnect interval in seconds
+    uint32 max_reconnect_interval = 5;
+
+    uint32 QoS = 6;    
+
+    bool clean_session = 7;
+
+    string client_id = 8;
+
+    string ca_cert = 9;
+
+    string tls_cert = 10;
+
+    string tls_key = 11;
+
+    string event_topic_template = 12;
+
+    string command_topic_template = 13;
+
+    bool retain_events = 14;
 }

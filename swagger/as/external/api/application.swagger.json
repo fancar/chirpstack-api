@@ -530,6 +530,58 @@
         ]
       }
     },
+    "/api/applications/{application_id}/integrations/mqtt": {
+      "get": {
+        "summary": "GetMQTTIntegration returns the application-integration.",
+        "operationId": "GetMQTTIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetMQTTIntegrationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteMQTTIntegration deletes the application-integration.",
+        "operationId": "DeleteMQTTIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
     "/api/applications/{application_id}/integrations/mqtt/certificate": {
       "post": {
         "summary": "GenerateMQTTIntegrationClientCertificate generates an application ID specific TLS certificate\nto connect to the MQTT broker.",
@@ -1241,6 +1293,74 @@
         ]
       }
     },
+    "/api/applications/{integration.application_id}/integrations/mqtt": {
+      "post": {
+        "summary": "CreateMQTTIntegration creates the application-integration.",
+        "operationId": "CreateMQTTIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "integration.application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateMQTTIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "put": {
+        "summary": "UpdateMQTTIntegration updates the application-integration.",
+        "operationId": "UpdateMQTTIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "integration.application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateMQTTIntegrationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
     "/api/applications/{integration.application_id}/integrations/mydevices": {
       "post": {
         "summary": "CreateMyDevicesIntegration creates a MyDevices application-integration.",
@@ -1675,6 +1795,15 @@
         }
       }
     },
+    "apiCreateMQTTIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiMQTTIntegration",
+          "description": "Integration object to create."
+        }
+      }
+    },
     "apiCreateMyDevicesIntegrationRequest": {
       "type": "object",
       "properties": {
@@ -1818,6 +1947,15 @@
       "properties": {
         "integration": {
           "$ref": "#/definitions/apiLoRaCloudIntegration",
+          "description": "Integration object."
+        }
+      }
+    },
+    "apiGetMQTTIntegrationResponse": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiMQTTIntegration",
           "description": "Integration object."
         }
       }
@@ -2003,7 +2141,8 @@
         "PILOT_THINGS",
         "MQTT_GLOBAL",
         "KAFKA",
-        "LARTECH"
+        "LARTECH",
+        "MQTT"
       ],
       "default": "HTTP"
     },
@@ -2250,6 +2389,61 @@
         }
       }
     },
+    "apiMQTTIntegration": {
+      "type": "object",
+      "properties": {
+        "applicationID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Application ID."
+        },
+        "server": {
+          "type": "string",
+          "title": "mqtt server address"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "maxReconnectInterval": {
+          "type": "integer",
+          "format": "int64",
+          "title": "maximum reconnect interval in seconds"
+        },
+        "QoS": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cleanSession": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "caCert": {
+          "type": "string"
+        },
+        "tlsCert": {
+          "type": "string"
+        },
+        "tlsKey": {
+          "type": "string"
+        },
+        "eventTopicTemplate": {
+          "type": "string"
+        },
+        "commandTopicTemplate": {
+          "type": "string"
+        },
+        "retainEvents": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
     "apiMarshaler": {
       "type": "string",
       "enum": [
@@ -2257,7 +2451,8 @@
         "PROTOBUF",
         "JSON_V3",
         "ACTILITY_JSON",
-        "LAR_TECH"
+        "LAR_TECH",
+        "JSON_FULL"
       ],
       "default": "JSON"
     },
@@ -2376,6 +2571,15 @@
         "integration": {
           "$ref": "#/definitions/apiLoRaCloudIntegration",
           "description": "Integration object."
+        }
+      }
+    },
+    "apiUpdateMQTTIntegrationRequest": {
+      "type": "object",
+      "properties": {
+        "integration": {
+          "$ref": "#/definitions/apiMQTTIntegration",
+          "description": "Integration object to update."
         }
       }
     },

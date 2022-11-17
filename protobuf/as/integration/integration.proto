@@ -48,78 +48,87 @@ enum ErrorType {
 
 // UplinkEvent is the message sent when an uplink payload has been received.
 message UplinkEvent {
-    // Application ID.
-    uint64 application_id = 1 [json_name = "applicationID"];
+    // Network-Server (frequency plan) ID.
+    uint32 ns_id = 1 [json_name = "nsID"];
 
-    // Application name.
-    string application_name = 2;
+    // organization ID.
+    uint32 organization_id = 2 [json_name = "orgID"];
+
+    // application ID.
+    uint64 application_id = 3 [json_name = "appID"];
+
+    // time when the message been published by the as. Service field. Used in logs!
+    google.protobuf.Timestamp published_at = 4;
 
     // Device name.
-    string device_name = 3;
+    string device_name = 5;
 
     // Device EUI.
-    bytes dev_eui = 4 [json_name = "devEUI"];
-
-    // Receiving gateway RX info.
-    repeated gw.UplinkRXInfo rx_info = 5;
+    bytes dev_eui = 6 [json_name = "devEUI"];
 
     // TX info.
-    gw.UplinkTXInfo tx_info = 6;
+    gw.UplinkTXInfo tx_info = 7;
 
     // Device has ADR bit set.
-    bool adr = 7;
+    bool adr = 8;
 
     // Data-rate.
-    uint32 dr = 8;
+    uint32 dr = 9;
 
     // Frame counter.
-    uint32 f_cnt = 9;
+    uint32 f_cnt = 10;
 
     // Frame port.
-    uint32 f_port = 10;
+    uint32 f_port = 11;
 
     // FRMPayload data.
-    bytes data = 11;
+    bytes data = 12;
 
     // JSON string containing the decoded object.
     // Note that this is only set when a codec is configured in the Device Profile.
-    string object_json = 12 [json_name = "objectJSON"];
+    string object_json = 13 [json_name = "objectJSON"];
 
     // User-defined device tags.
-    map<string, string> tags = 13;
+    map<string, string> tags = 14;
 
-    // Uplink was of type confirmed.
-    bool confirmed_uplink = 14;
+    // True if the uplink type is confirmed 
+    bool confirmed = 15;
 
     // Device address.
-    bytes dev_addr = 15;
+    bytes dev_addr = 16;
 
     // mic for legacy. actility users. Modification
-    bytes mic = 16;
+    bytes mic = 17;
 
     // true if packer late for more than 2min. Modification
-    bool late = 17;
+    bool late = 18;
 
     // time frame(s) recieved. Can be gps\fts\by server for packet with best SNR. Modification
-    google.protobuf.Timestamp time = 18;    
-
-    // Published at timestamp.
-    google.protobuf.Timestamp published_at = 19;
+    google.protobuf.Timestamp time = 19;
 
     // Device Profile UUID as string
-    string device_profile_id = 20 [json_name = "deviceProfileID"];
+    string device_profile_id = 20 [json_name = "dpID"];
 
-    // Device Profile name
-    string device_profile_name = 21;
+    // Service Profile UUID as string
+    string service_profile_id = 21 [json_name = "spID"];
+
+    // Routing Profile UUID as string
+    int32 routing_profile_id = 22 [json_name = "rpID"];
 
     // Application ID list. The param is using by global integrations only
-    repeated uint64 applications = 22;
+    repeated uint64 applications = 23;
 
     // current class of the device: string: "A", "B", "C"
-    string class = 23;
+    string class = 24;
 
-    // organization ID.
-    uint64 organization_id = 24 [json_name = "organizationID"];    
+    // battery level last time recieved
+    google.protobuf.Timestamp bat_time = 25;
+
+    // battery level
+    float bat_level = 26;    
+
+    // Receiving gateway RX info.
+    repeated gw.UplinkRXInfo rx_info = 50;      
 }
 
 // JoinEvent is the message sent when a device joined the network.
@@ -465,4 +474,110 @@ enum LartechDeliveryStatus {
     ACCESS_DENIED = 5;  // DL не может быть отправлен (нет прав)
     INTERNAL_ERROR = 6; // DL не отправлен из-за отсутствия ответа от БС
     CANCELLED = 7;  // Не используется
+}
+
+
+// DEFAULT MESSAGES
+
+// UplinkDefault is the message sent when an uplink payload has been received.
+message UplinkDefault {
+    // Network-Server (frequency plan) ID.
+    uint32 ns_id = 1 [json_name = "nsID"];
+
+    // organization ID.
+    uint32 organization_id = 2 [json_name = "orgID"];
+
+    // Device name.
+    string device_name = 3;
+
+    // Device EUI. HEX-string
+    string dev_eui = 4 [json_name = "devEUI"];
+
+    // Device has ADR bit set.
+    bool adr = 5;
+
+    // Data-rate.
+    uint32 dr = 6;
+
+    // Frame counter.
+    uint32 f_cnt = 7;
+
+    // Frame port.
+    uint32 f_port = 8;
+
+    // FRMPayload data. HEX-string
+    string data = 9;
+
+    // User-defined device tags.
+    map<string, string> tags = 10;
+
+    // True if the uplink type is confirmed 
+    bool confirmed = 11;
+
+    // Device address.
+    string dev_addr = 12;
+
+    // mic for legacy. actility users. Modification
+    string mic = 13;
+
+    // true if packer late for more than 2min. Modification
+    bool late = 14;
+
+    // time when the frame(s) had been recieved. Can be gps\fts\by server for packet with best SNR.
+    google.protobuf.Timestamp time = 15;
+
+    // Device Profile UUID as string
+    string device_profile_id = 16 [json_name = "dpID"];
+
+    // Service Profile UUID as string
+    string service_profile_id = 17 [json_name = "spID"];
+
+    // current class of the device: string: "A", "B", "C"
+    string class = 18;
+
+    // battery level last time recieved
+    google.protobuf.Timestamp bat_time = 19;
+
+    // battery level
+    float bat_level = 20;    
+
+    // Receiving gateway RX info.
+    repeated UplinkRXInfoDefault rx_info = 50;      
+}
+
+
+message UplinkRXInfoDefault {
+    // Gateway ID.
+    string gateway_id = 1 [json_name = "gatewayID"];
+
+    // RSSI.
+    int32 rssi = 2;
+
+    // LoRa SNR.
+    double lora_snr = 3 [json_name = "loRaSNR"];
+
+    // Channel.
+    uint32 channel = 4;
+
+    // Location.
+    common.Location location = 5;
+
+    // Fine-timestamp type.
+    gw.FineTimestampType fine_timestamp_type = 6;
+
+    // Fine-timestamp data.
+    oneof fine_timestamp {
+        // Encrypted fine-timestamp data.
+        gw.EncryptedFineTimestamp encrypted_fine_timestamp = 7;
+
+        // Plain fine-timestamp data.
+        gw.PlainFineTimestamp plain_fine_timestamp = 8;
+    }
+
+    // Gateway specific context.
+    string context = 9;
+
+    // Uplink ID (UUID bytes).
+    // Unique and random ID which can be used to correlate the uplink across multiple logs.
+    string uplink_id = 10 [json_name = "uplinkID"];
 }
