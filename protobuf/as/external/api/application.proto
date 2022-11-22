@@ -1224,7 +1224,7 @@ message MQTTIntegration {
     // Application ID.
     int64 application_id = 1 [json_name = "applicationID"];
 
-    // mqtt server address 
+    // mqtt server address e.g. tcp://localhost:1883
     string server = 2;
 
     string username = 3;
@@ -1236,6 +1236,13 @@ message MQTTIntegration {
 
     uint32 QoS = 6;    
 
+    // If true - a non persistent connection (clean session)
+    // In this mode the broker doesn’t store any subscription information
+    // or undelivered messages for the client.
+    // This mode is ideal when the client only publishes messages. 
+    // False: It can also connect as a durable client using a persistent connection.
+    // In this mode the broker will store subscription information, and undelivered messages for the client.
+    // In order for the broker to store session information for a client a client id must be used.
     bool clean_session = 7;
 
     string client_id = 8;
@@ -1246,9 +1253,17 @@ message MQTTIntegration {
 
     string tls_key = 11;
 
+    // if empty - default server's template will be in use
     string event_topic_template = 12;
 
+    // if empty - default server's template will be in use
     string command_topic_template = 13;
 
+    // it will be send events as retrain.
+    // So it will be last 'good' message recieving by another clients just entered
     bool retain_events = 14;
+
+    // Marshaler.
+    // This defines the marshaler that is used to encode the event payload.
+    Marshaler marshaler = 16;    
 }
