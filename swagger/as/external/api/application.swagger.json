@@ -2416,11 +2416,6 @@
           "type": "integer",
           "format": "int64"
         },
-        "cleanSession": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "If true - a non persistent connection (clean session)\nIn this mode the broker doesn’t store any subscription information\nor undelivered messages for the client.\nThis mode is ideal when the client only publishes messages. \nFalse: It can also connect as a durable client using a persistent connection.\nIn this mode the broker will store subscription information, and undelivered messages for the client.\nIn order for the broker to store session information for a client a client id must be used."
-        },
         "clientId": {
           "type": "string"
         },

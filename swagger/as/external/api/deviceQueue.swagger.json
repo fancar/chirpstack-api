@@ -184,7 +184,7 @@
         "fCnt": {
           "type": "integer",
           "format": "int64",
-          "title": "Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
+          "title": "Optional. Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
         },
         "fPort": {
           "type": "integer",
@@ -198,7 +198,7 @@
         },
         "jsonObject": {
           "type": "string",
-          "description": "JSON object (string).\nOnly use this when an application codec has been configured that can convert\nthis object into binary form."
+          "description": "Optional. JSON object (string).\nOnly use this when an application codec has been configured that can convert\nthis object into binary form."
         },
         "ttl": {
           "type": "integer",
@@ -207,21 +207,21 @@
         },
         "messageId": {
           "type": "string",
-          "title": "optional. the id will be shown in ack messages"
+          "title": "Optional. the id will be generated on server side if empty\nlater on in case of error you'll recieve the message with the ID"
         },
         "owner": {
           "type": "string",
-          "title": "temp for kafka routings"
+          "title": "Optional field"
         },
         "createdAt": {
           "type": "string",
           "format": "date-time",
-          "description": "created at timestamp."
+          "title": "service field for queue listing"
         },
         "timeoutAfter": {
           "type": "string",
           "format": "date-time",
-          "description": "timeout after timestamp."
+          "title": "service field for queue listing"
         }
       }
     },
