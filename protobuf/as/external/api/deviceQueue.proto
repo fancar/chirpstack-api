@@ -92,7 +92,10 @@ message DeviceQueueItem {
     google.protobuf.Timestamp created_at = 10;
 
     // service field for queue listing
-    google.protobuf.Timestamp timeout_after = 11;    
+    google.protobuf.Timestamp timeout_after = 11;
+
+    // id of the application. Optional. For validation purposes 
+    uint32 application_id = 12 [json_name = "applicationID"];    
 }
 
 // DownlinkItemHex data payload as hex-string

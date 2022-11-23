@@ -222,6 +222,11 @@
           "type": "string",
           "format": "date-time",
           "title": "service field for queue listing"
+        },
+        "applicationID": {
+          "type": "integer",
+          "format": "int64",
+          "title": "id of the application. Optional. For validation purposes"
         }
       }
     },
