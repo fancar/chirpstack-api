@@ -266,17 +266,16 @@ func (m *DownlinkItemHex) GetMessageId() string {
 type EnqueueDeviceQueueItemRequest struct {
 	// Queue-item object to enqueue.
 	DeviceQueueItem *DeviceQueueItem `protobuf:"bytes,1,opt,name=device_queue_item,json=deviceQueueItem,proto3" json:"device_queue_item,omitempty"`
-	// !Please do not call method in parallel when it set to true!
+	// ! CAUTION ! The mode is slow!
+	// ! Please do not call the method in parallel when get_fcnt set to true!
 	// If set to true - enqueue on air . If false - background enqueue
 	// Set this to true when you really need to recieve current fCnt
-	// ! CAUTION ! The mode is very slow!
 	// It has to connect to NS, get current fcnt,
 	// then encrypt payload and put it to ns queue.
 	// If you have to onboard a lot of downlinks to the server
 	// as fast as possible - please DO NOT use the feature!
 	// If you set it to false the errors will be sent as ErrorEvents
-	// via messages that A.S. sends to your applications
-	// you can match it according to the downlink-uuid recieved from the answer.
+	// you can match it according to the message_id recieved
 	GetFcnt              bool     `protobuf:"varint,2,opt,name=get_fcnt,json=getFcnt,proto3" json:"get_fcnt,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

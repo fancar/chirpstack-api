@@ -44,6 +44,7 @@ type Device struct {
 	// Device-profile name.
 	DeviceProfileName string `protobuf:"bytes,13,opt,name=device_profile_name,json=deviceProfileName,proto3" json:"device_profile_name,omitempty"`
 	// Skip frame-counter checks (this is insecure, but could be helpful for debugging).
+	// deprecated. Use f_cnt_automatic_reset in DeviceProfile instead
 	SkipFCntCheck bool `protobuf:"varint,6,opt,name=skip_f_cnt_check,json=skipFCntCheck,proto3" json:"skip_f_cnt_check,omitempty"`
 	// Reference altitude.
 	// When using geolocation, this altitude will be used as a reference

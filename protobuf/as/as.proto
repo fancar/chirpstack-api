@@ -90,6 +90,9 @@ service ApplicationServerService {
 
     // UpdateSPonDevice (TEMP for ADR MIGRATE) update SP for device in local db.
     rpc UpdateSPonDevice(UpdateSPonDeviceRequest) returns (google.protobuf.Empty) {}
+
+    // NewAppSKey returns and saves AppSKey (AES128Key) according to join_server config (if kek is enabled). Modification.
+    rpc NewAppSKey(NewAppSKeyRequest) returns (GetDeviceAppSKeyResponse) {}    
 }
 
 
@@ -186,6 +189,18 @@ message GetOrgByDevEUIRequest {
     string dev_eui = 1 [json_name = "devEUI"];   
 }
 
+message NewAppSKeyRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+
+    // Assigned Device Address.
+    bytes dev_addr = 2;
+    
+    // AESKey is a AES128Key recieved from NS. Normaly (without KEK)
+    //  it's just will be saved as AppSKey
+    common.KeyEnvelope aes_key_envelope = 3;        
+}
+
 message GetOrgIDByGwIDRequest {
     // Gateway ID (HEX encoded).
     string id = 1;  
@@ -201,7 +216,7 @@ message GetDeviceKeysResponse {
     bytes nwk_key = 1;
 
     // AppKey is a AES128Key for the device from device_keys
-    bytes app_key = 2;    
+    bytes app_key = 2;
 }
 
 message GetOrgByDevEUIResponse {

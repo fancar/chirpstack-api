@@ -175,6 +175,7 @@ message Device {
     string device_profile_name = 13 [json_name = "deviceProfileName"];
 
     // Skip frame-counter checks (this is insecure, but could be helpful for debugging).
+    // deprecated. Use f_cnt_automatic_reset in DeviceProfile instead
     bool skip_f_cnt_check = 6;
 
     // Reference altitude.

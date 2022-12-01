@@ -879,7 +879,10 @@ message StreamUplink {
     int64 orgid = 24;  
 
     // organization id of main gateway (according to best signal)
-    int64 gw_orgid = 25;  
+    int64 gw_orgid = 25;
+
+    // Device address (DevAddr).
+    bytes dev_addr = 26;    
 }
 
 // StreamDownlink msg for streaming acked downlinks via redis stream

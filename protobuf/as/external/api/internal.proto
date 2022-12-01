@@ -119,8 +119,8 @@ service InternalService {
 
 
 message GetMainCountersRequest {
-    // Aggregation interval.  One of "minute", "hour", "day", "week",
-    // "month", "quarter", "year".  Case insensitive.
+    // Aggregation interval.  One of "minute", "hour", "day", "month".
+    // Case insensitive.
     string interval = 1;
 
     // Timestamp to start from.

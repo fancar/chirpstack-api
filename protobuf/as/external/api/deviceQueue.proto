@@ -127,17 +127,16 @@ message EnqueueDeviceQueueItemRequest {
     // Queue-item object to enqueue.
     DeviceQueueItem device_queue_item = 1;
 
-    // !Please do not call method in parallel when it set to true!
+    // ! CAUTION ! The mode is slow! 
+    // ! Please do not call the method in parallel when get_fcnt set to true!
     // If set to true - enqueue on air . If false - background enqueue
     // Set this to true when you really need to recieve current fCnt
-    // ! CAUTION ! The mode is very slow! 
     // It has to connect to NS, get current fcnt,
     // then encrypt payload and put it to ns queue. 
     // If you have to onboard a lot of downlinks to the server 
     // as fast as possible - please DO NOT use the feature! 
     // If you set it to false the errors will be sent as ErrorEvents 
-    // via messages that A.S. sends to your applications
-    // you can match it according to the downlink-uuid recieved from the answer.
+    // you can match it according to the message_id recieved
     bool get_fcnt = 2;    
 }
 
