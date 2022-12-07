@@ -191,7 +191,7 @@ message GetOrgByDevEUIRequest {
 
 message NewAppSKeyRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    bytes dev_eui = 1 [json_name = "devEUI"];
 
     // Assigned Device Address.
     bytes dev_addr = 2;
