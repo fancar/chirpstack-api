@@ -450,6 +450,9 @@ message DeviceActivation {
     repeated int32 enabled_uplink_channels = 17;   
 
     repeated ExtraChannels extra_uplink_channels = 18;
+
+    // application session key is for encode frm payload
+    bytes app_s_key = 19;   
 }
 
 
