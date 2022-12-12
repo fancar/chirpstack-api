@@ -75,7 +75,7 @@ service NetworkServerService {
     rpc GetDeviceActivation(GetDeviceActivationRequest) returns (GetDeviceActivationResponse) {}
 
     // CreateDeviceQueueItem creates the given device-queue item.
-    rpc CreateDeviceQueueItem(CreateDeviceQueueItemRequest) returns (google.protobuf.Empty) {}
+    rpc CreateDeviceQueueItem(CreateDeviceQueueItemRequest) returns (FCntInResponse) {}
 
     // FlushDeviceQueueForDevEUI flushes the device-queue for the given DevEUI.
     rpc FlushDeviceQueueForDevEUI(FlushDeviceQueueForDevEUIRequest) returns (google.protobuf.Empty) {}
@@ -85,6 +85,7 @@ service NetworkServerService {
 
     // GetNextDownlinkFCntForDevEUI returns the next FCnt that must be used.
     // This also takes device-queue items for the given DevEUI into consideration.
+    // deprecated. As encryption had been moved to NS
     rpc GetNextDownlinkFCntForDevEUI(GetNextDownlinkFCntForDevEUIRequest) returns (GetNextDownlinkFCntForDevEUIResponse) {}
 
     // GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.
@@ -680,6 +681,7 @@ message DeviceQueueItem {
     // is a gap between the activation and the delivery of the AppSKey to the
     // application-server, there is a possibility that the application-server
     // tries to enqueue payloads encrypted with the old session-key.
+    // deprecated
     bytes dev_addr = 6;
 
     // Time to live (in seconds). You canspecify the maximum time in queue for the item
@@ -730,6 +732,11 @@ message GetNextDownlinkFCntForDevEUIRequest {
 
 message GetNextDownlinkFCntForDevEUIResponse {
     // The frame-counter to use.
+    uint32 f_cnt = 1;
+}
+
+message FCntInResponse {
+    // The frame-counter.
     uint32 f_cnt = 1;
 }
 
