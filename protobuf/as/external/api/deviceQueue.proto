@@ -22,6 +22,14 @@ service DeviceQueueService {
         };
     }
 
+    // EnqueueHex adds the given item to the device-queue with hex-payload.
+    rpc EnqueueHex(EnqueueDeviceQueueItemHexRequest) returns (EnqueueDeviceQueueItemResponse) {
+        option(google.api.http) = {
+            post: "/api/devices/{dev_eui}/queue_hex"
+            body: "*"
+        };
+    }
+
     // Flush flushes the downlink device-queue.
     rpc Flush(FlushDeviceQueueRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
@@ -61,9 +69,10 @@ message DeviceQueueItem {
     // Please note that this must not be used to guarantee a delivery.
     bool confirmed = 2;
 
-    // Optional. Downlink frame-counter.
-    // This will be automatically set on enquue.
-    // If you encrypt data on your side - specify the fCnt here
+    // Optional. Downlink frame-counter. Us it only if you encrypt payload byself!
+    // By default=0, means it will be set to queue as is and encrypted right before send the dl.
+    // Specify the excact next fCnt here. Otherwise it will be droped.
+    // if fCnt>0 set, we send data as is, without encryption.
     uint32 f_cnt = 6;
 
     // FPort used (must be > 0)
@@ -123,20 +132,42 @@ message DownlinkItemHex {
     string message_id = 6;  
 }
 
+message EnqueueDeviceQueueItemHexRequest {
+    // Device EUI (HEX encoded).
+    string dev_eui = 1 [json_name = "devEUI"];
+
+    // Queue-item object to enqueue.
+    DownlinkItemHex device_queue_item = 2;
+
+    // ! CAUTION !
+    // Set this to true when you really need to recieve next fCnt 
+    // or you want to know the enqueue-status immediately (eg development purposes)
+    // ! Please do not call the method in parallel if the flag set it to true. 
+    // It can be painfully slow.
+    // The flag basicaly means 'put it right into queue'.
+    // ! The next fCnt be returned only if you set f_cnt parmeter. 
+    // Otherwise it allways be 0.
+    // If you set it to false. It will be processed asynchronously.
+    // In case of process with error - it will be sent as ErrorEvents via you apps.
+    // You can match it by the message_id parameter.
+    bool get_fcnt = 3;    
+}
+
 message EnqueueDeviceQueueItemRequest {
     // Queue-item object to enqueue.
     DeviceQueueItem device_queue_item = 1;
 
-    // ! CAUTION ! The mode is slow! 
-    // ! Please do not call the method in parallel when get_fcnt set to true!
-    // If set to true - enqueue on air . If false - background enqueue
-    // Set this to true when you really need to recieve current fCnt
-    // It has to connect to NS, get current fcnt,
-    // then encrypt payload and put it to ns queue. 
-    // If you have to onboard a lot of downlinks to the server 
-    // as fast as possible - please DO NOT use the feature! 
-    // If you set it to false the errors will be sent as ErrorEvents 
-    // you can match it according to the message_id recieved
+    // ! CAUTION !
+    // Set this to true when you really need to recieve next fCnt 
+    // or you want to know the enqueue-status immediately (eg development purposes)
+    // ! Please do not call the method in parallel if the flag set it to true. 
+    // It can be painfully slow.
+    // The flag basicaly means 'put it right into queue'.
+    // ! The next fCnt be returned only if you set f_cnt parmeter. 
+    // Otherwise it allways be 0.
+    // If you set it to false. It will be processed asynchronously.
+    // In case of process with error - it will be sent as ErrorEvents via you apps.
+    // You can match it by the message_id parameter.
     bool get_fcnt = 2;    
 }
 
@@ -197,17 +228,17 @@ message EnqueueDeviceQueueActilityItemRequest {
     // Time to live (in seconds). You canspecify the maximum time in queue for the item
     uint32 ttl = 7;
 
-    // !Please do not call method in parallel when it set to true!
-    // If set to true - enqueue on air . If false - background enqueue
-    // Set this to true when you really need to recieve current fCnt
-    // ! CAUTION ! The mode is very slow! 
-    // It has to connect to NS, get current fcnt,
-    // then encrypt payload and put it to ns queue. 
-    // If you have to onboard a lot of downlinks to the server 
-    // as fast as possible - please DO NOT use the feature! 
-    // If you set it to false the errors will be sent as ErrorEvents 
-    // via messages that A.S. sends to your applications
-    // you can match it according to the downlink-uuid recieved from the answer.
+    // ! CAUTION !
+    // Set this to true when you really need to recieve next fCnt 
+    // or you want to know the enqueue-status immediately (eg development purposes)
+    // ! Please do not call the method in parallel if the flag set it to true. 
+    // It can be painfully slow.
+    // The flag basicaly means 'put it right into queue'.
+    // ! The next fCnt be returned only if you set f_cnt parmeter. 
+    // Otherwise it allways be 0.
+    // If you set it to false. It will be processed asynchronously.
+    // In case of process with error - it will be sent as ErrorEvents via you apps.
+    // You can match it by the message_id parameter.
     bool get_fcnt = 8;    
 }
 

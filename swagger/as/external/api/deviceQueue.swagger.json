@@ -133,6 +133,40 @@
         ]
       }
     },
+    "/api/devices/{dev_eui}/queue_hex": {
+      "post": {
+        "summary": "EnqueueHex adds the given item to the device-queue with hex-payload.",
+        "operationId": "EnqueueHex",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiEnqueueDeviceQueueItemResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dev_eui",
+            "description": "Device EUI (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiEnqueueDeviceQueueItemHexRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DeviceQueueService"
+        ]
+      }
+    },
     "/api/devices/{device_queue_item.dev_eui}/queue": {
       "post": {
         "summary": "Enqueue adds the given item to the device-queue.",
@@ -184,7 +218,7 @@
         "fCnt": {
           "type": "integer",
           "format": "int64",
-          "title": "Optional. Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
+          "description": "Optional. Downlink frame-counter. Us it only if you encrypt payload byself!\nBy default=0, means it will be set to queue as is and encrypted right before send the dl.\nSpecify the excact next fCnt here. Otherwise it will be droped.\nif fCnt\u003e0 set, we send data as is, without encryption."
         },
         "fPort": {
           "type": "integer",
@@ -230,6 +264,40 @@
         }
       }
     },
+    "apiDownlinkItemHex": {
+      "type": "object",
+      "properties": {
+        "confirmed": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
+        },
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Optional. Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
+        },
+        "fPort": {
+          "type": "integer",
+          "format": "int64",
+          "title": "FPort used (must be \u003e 0)"
+        },
+        "data": {
+          "type": "string",
+          "title": "hex-encoded string"
+        },
+        "ttl": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Optional. Time to live (in seconds). You can specify the maximum time in queue for the item"
+        },
+        "messageId": {
+          "type": "string",
+          "title": "Optional. the id will be generated on server side if empty\nlater on in case of error you'll recieve the message with the ID"
+        }
+      },
+      "title": "DownlinkItemHex data payload as hex-string"
+    },
     "apiEnqueueDeviceQueueActilityItemRequest": {
       "type": "object",
       "properties": {
@@ -268,7 +336,7 @@
         "getFcnt": {
           "type": "boolean",
           "format": "boolean",
-          "description": "!Please do not call method in parallel when it set to true!\nIf set to true - enqueue on air . If false - background enqueue\nSet this to true when you really need to recieve current fCnt\n! CAUTION ! The mode is very slow! \nIt has to connect to NS, get current fcnt,\nthen encrypt payload and put it to ns queue. \nIf you have to onboard a lot of downlinks to the server \nas fast as possible - please DO NOT use the feature! \nIf you set it to false the errors will be sent as ErrorEvents \nvia messages that A.S. sends to your applications\nyou can match it according to the downlink-uuid recieved from the answer."
+          "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
         }
       }
     },
@@ -299,6 +367,24 @@
         }
       }
     },
+    "apiEnqueueDeviceQueueItemHexRequest": {
+      "type": "object",
+      "properties": {
+        "devEUI": {
+          "type": "string",
+          "description": "Device EUI (HEX encoded)."
+        },
+        "deviceQueueItem": {
+          "$ref": "#/definitions/apiDownlinkItemHex",
+          "description": "Queue-item object to enqueue."
+        },
+        "getFcnt": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
+        }
+      }
+    },
     "apiEnqueueDeviceQueueItemRequest": {
       "type": "object",
       "properties": {
@@ -309,7 +395,7 @@
         "getFcnt": {
           "type": "boolean",
           "format": "boolean",
-          "description": "!Please do not call method in parallel when it set to true!\nIf set to true - enqueue on air . If false - background enqueue\nSet this to true when you really need to recieve current fCnt\n! CAUTION ! The mode is very slow! \nIt has to connect to NS, get current fcnt,\nthen encrypt payload and put it to ns queue. \nIf you have to onboard a lot of downlinks to the server \nas fast as possible - please DO NOT use the feature! \nIf you set it to false the errors will be sent as ErrorEvents \nvia messages that A.S. sends to your applications\nyou can match it according to the downlink-uuid recieved from the answer."
+          "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
         }
       }
     },

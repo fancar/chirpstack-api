@@ -650,7 +650,7 @@
         "skipFCntCheck": {
           "type": "boolean",
           "format": "boolean",
-          "description": "Skip frame-counter checks (this is insecure, but could be helpful for debugging)."
+          "title": "Skip frame-counter checks (this is insecure, but could be helpful for debugging).\ndeprecated. Use f_cnt_automatic_reset in DeviceProfile instead"
         },
         "referenceAltitude": {
           "type": "number",
