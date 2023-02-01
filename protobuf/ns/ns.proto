@@ -918,6 +918,9 @@ message StreamDownlink {
 
     // non-encrypted frame payload.
     bytes frm_payload = 7;
+
+    // true if frm_payload is encrypted by client
+    bool encrypted = 8;    
 }
 
 // RX (uplink) frame data to save in CLICKHOUSE
