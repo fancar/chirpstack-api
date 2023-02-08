@@ -414,12 +414,12 @@ enum IntegrationKind {
 }
 
 enum Marshaler {
-    JSON = 0;
+    JSON = 0; // full json, including txInfo etc.
     PROTOBUF = 1;
     JSON_V3 = 2;
     ACTILITY_JSON = 3; // modificaton for ex.actility customers
     LAR_TECH = 4; // modification for lar.tech integration
-    JSON_FULL = 5; // full json, including txInfo etc.
+    JSON_SHRINKED = 5; // smaller json
 }
 
 message Application {

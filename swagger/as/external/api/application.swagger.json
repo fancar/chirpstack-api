@@ -2455,7 +2455,7 @@
         "JSON_V3",
         "ACTILITY_JSON",
         "LAR_TECH",
-        "JSON_FULL"
+        "JSON_SHRINKED"
       ],
       "default": "JSON"
     },
