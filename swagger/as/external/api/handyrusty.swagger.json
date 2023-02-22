@@ -374,6 +374,14 @@
             "format": "boolean"
           },
           {
+            "name": "isOk",
+            "description": "http status == 200.",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
             "name": "start",
             "description": "You can specify start DateTime point.",
             "in": "query",
