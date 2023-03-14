@@ -627,6 +627,10 @@ message UplinkDefault {
     // true - means battery level is unavailible. When bat_level value is 0)
     bool no_bat_lvl = 22;
 
+    // JSON string containing the decoded object.
+    // Note that this is only set when a codec is configured in the Device Profile.
+    string object_json = 23 [json_name = "objectJSON"];
+
     // Receiving gateway RX info.
     repeated UplinkRXInfoDefault rx_info = 50;      
 }
