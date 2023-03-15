@@ -20,6 +20,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 )
 
@@ -30,6 +31,7 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
+var _ = metadata.Join
 
 var (
 	filter_DataStreamService_GetGatewayTaskResult_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
@@ -62,6 +64,7 @@ func request_DataStreamService_GetGatewayTaskResult_0(ctx context.Context, marsh
 // RegisterDataStreamServiceHandlerServer registers the http handlers for service DataStreamService to "mux".
 // UnaryRPC     :call DataStreamServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDataStreamServiceHandlerFromEndpoint instead.
 func RegisterDataStreamServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DataStreamServiceServer) error {
 
 	mux.Handle("GET", pattern_DataStreamService_GetGatewayTaskResult_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
