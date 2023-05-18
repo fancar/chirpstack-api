@@ -5769,6 +5769,13 @@ to connect to the MQTT broker.</p></td>
                   <td><p>Organization ID. </p></td>
                 </tr>
               
+                <tr>
+                  <td>ns_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>network_server id </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5795,13 +5802,6 @@ to connect to the MQTT broker.</p></td>
               
                 <tr>
                   <td>total</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>rows</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -5837,7 +5837,7 @@ to connect to the MQTT broker.</p></td>
             
               <tr>
                 <td>GetGateways</td>
-                <td><a href="#api.DataExportRequest">DataExportRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><a href="#api.StreamResponse">StreamResponse</a> stream</td>
                 <td><p>GetGateways Export gateways
   (!) websocket required! The endpoint does not work from a web-swagger.</p></td>
@@ -5845,7 +5845,7 @@ to connect to the MQTT broker.</p></td>
             
               <tr>
                 <td>GetUsers</td>
-                <td><a href="#api.DataExportRequest">DataExportRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><a href="#api.StreamResponse">StreamResponse</a> stream</td>
                 <td><p>GetUsers Export users
   (!) websocket required! The endpoint does not work from a web-swagger.</p></td>

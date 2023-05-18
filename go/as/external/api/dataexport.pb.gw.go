@@ -15,6 +15,7 @@ import (
 
 	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
+	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/utilities"
 	"google.golang.org/grpc"
@@ -33,20 +34,9 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 var _ = metadata.Join
 
-var (
-	filter_DataExportService_GetGateways_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_DataExportService_GetGateways_0(ctx context.Context, marshaler runtime.Marshaler, client DataExportServiceClient, req *http.Request, pathParams map[string]string) (DataExportService_GetGatewaysClient, runtime.ServerMetadata, error) {
-	var protoReq DataExportRequest
+	var protoReq empty.Empty
 	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DataExportService_GetGateways_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
 
 	stream, err := client.GetGateways(ctx, &protoReq)
 	if err != nil {
@@ -61,20 +51,9 @@ func request_DataExportService_GetGateways_0(ctx context.Context, marshaler runt
 
 }
 
-var (
-	filter_DataExportService_GetUsers_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_DataExportService_GetUsers_0(ctx context.Context, marshaler runtime.Marshaler, client DataExportServiceClient, req *http.Request, pathParams map[string]string) (DataExportService_GetUsersClient, runtime.ServerMetadata, error) {
-	var protoReq DataExportRequest
+	var protoReq empty.Empty
 	var metadata runtime.ServerMetadata
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DataExportService_GetUsers_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
 
 	stream, err := client.GetUsers(ctx, &protoReq)
 	if err != nil {

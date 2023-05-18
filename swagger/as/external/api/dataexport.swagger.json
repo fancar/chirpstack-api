@@ -35,6 +35,14 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "nsId",
+            "description": "network_server id.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -54,16 +62,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "orgId",
-            "description": "Organization ID.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
         "tags": [
           "DataExportService"
         ]
@@ -81,16 +79,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "orgId",
-            "description": "Organization ID.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
         "tags": [
           "DataExportService"
         ]
@@ -106,10 +94,6 @@
           "format": "int64"
         },
         "total": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "rows": {
           "type": "integer",
           "format": "int64"
         },
