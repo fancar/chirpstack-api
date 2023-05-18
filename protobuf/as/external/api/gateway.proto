@@ -389,10 +389,10 @@ message GatewayMonItem {
     // metadata: disk1 partirion name
     string disk2_name = 17;
 
-    // metadata: disk1 partirion name
+    // metadata: lte_type
     string lte_type = 18;
 
-    // metadata: disk1 partirion name
+    // metadata: lte_level
     string lte_level = 19;
 }
 
