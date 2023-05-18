@@ -388,6 +388,12 @@ message GatewayMonItem {
 
     // metadata: disk1 partirion name
     string disk2_name = 17;
+
+    // metadata: disk1 partirion name
+    string lte_type = 18;
+
+    // metadata: disk1 partirion name
+    string lte_level = 19;
 }
 
 message StatsItemActilityStyled {
