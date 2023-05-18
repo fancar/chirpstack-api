@@ -1,6 +1,6 @@
 module github.com/brocaar/chirpstack-api/go/v3
 
-go 1.16
+go 1.20
 
 require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
