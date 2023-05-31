@@ -771,6 +771,14 @@
         "disk2Name": {
           "type": "string",
           "title": "metadata: disk1 partirion name"
+        },
+        "lteType": {
+          "type": "string",
+          "title": "metadata: lte_type"
+        },
+        "lteLevel": {
+          "type": "string",
+          "title": "metadata: lte_level"
         }
       },
       "title": "for monitoring list"
