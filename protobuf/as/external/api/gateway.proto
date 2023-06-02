@@ -174,9 +174,6 @@ message Gateway {
     // Mobile phone number of SIM-card for the device
     string phone = 15;
 
-    // Service-profile ID (UUID string, optional).
-    string service_profile_id = 16 [json_name = "serviceProfileID"];
-
     // operational_status code (according to dictionary table)
     int64 op_status_code = 17;
 

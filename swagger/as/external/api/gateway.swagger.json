@@ -584,10 +584,6 @@
           "type": "string",
           "title": "Mobile phone number of SIM-card for the device"
         },
-        "serviceProfileID": {
-          "type": "string",
-          "description": "Service-profile ID (UUID string, optional)."
-        },
         "opStatusCode": {
           "type": "string",
           "format": "int64",
