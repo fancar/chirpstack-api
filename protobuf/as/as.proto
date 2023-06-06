@@ -92,10 +92,11 @@ service ApplicationServerService {
     rpc UpdateSPonDevice(UpdateSPonDeviceRequest) returns (google.protobuf.Empty) {}
 
     // NewAppSKey returns and saves AppSKey (AES128Key) according to join_server config (if kek is enabled). Modification.
-    rpc NewAppSKey(NewAppSKeyRequest) returns (GetDeviceAppSKeyResponse) {}    
+    rpc NewAppSKey(NewAppSKeyRequest) returns (GetDeviceAppSKeyResponse) {}
+
+    // CheckJwt checks if the JWT recieved is valid
+    rpc CheckJwt(CheckJwtRequest) returns (CheckJwtResponse) {}
 }
-
-
 
 message UpdateSPonDeviceRequest {
     // dev_eui of the device
@@ -629,4 +630,17 @@ message GatewayTaskResult {
         // stdin chunk
         bytes chunk = 2;
     }
+}
+
+message CheckJwtRequest {
+    // the string represents jwt token to check
+    string token = 1;
+}
+
+message CheckJwtResponse {
+    // true if the user is active (enabled) the jwt belongs to
+    bool is_active = 1;
+
+    // true - if the jwt belons to a user with admin writes
+    bool is_admin = 2;
 }
