@@ -3,6 +3,7 @@
 import grpc
 
 from chirpstack_api.as_pb.external.api import internal_pb2 as chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2
+from chirpstack_api.handyrusty import hr_pb2 as chirpstack__api_dot_handyrusty_dot_hr__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
@@ -61,10 +62,30 @@ class InternalServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetDevicesSummaryRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetDevicesSummaryResponse.FromString,
                 )
+        self.GetDevicesSummaryLog = channel.unary_unary(
+                '/api.InternalService/GetDevicesSummaryLog',
+                request_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetDeviceCountersRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetDeviceCountersResponse.FromString,
+                )
+        self.GetGatewaysSummaryLog = channel.unary_unary(
+                '/api.InternalService/GetGatewaysSummaryLog',
+                request_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetGatewayCountersRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetGatewayCountersResponse.FromString,
+                )
         self.GetGatewaysSummary = channel.unary_unary(
                 '/api.InternalService/GetGatewaysSummary',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetGatewaysSummaryRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetGatewaysSummaryResponse.FromString,
+                )
+        self.GetInfo = channel.unary_unary(
+                '/api.InternalService/GetInfo',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetInfoResponse.FromString,
+                )
+        self.GetMainCounters = channel.unary_unary(
+                '/api.InternalService/GetMainCounters',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetMainCountersRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetMainCountersResponse.FromString,
                 )
 
 
@@ -135,8 +156,36 @@ class InternalServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDevicesSummaryLog(self, request, context):
+        """GetDevicesSummaryLog returns log of aggregated summary.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGatewaysSummaryLog(self, request, context):
+        """GetGatewaysSummaryLog returns log of aggregated summary.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetGatewaysSummary(self, request, context):
         """GetGatewaysSummary returns an aggregated summary of the gateways.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetInfo(self, request, context):
+        """GetInfo returns summary about versions and so on.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMainCounters(self, request, context):
+        """GetMainCounters returns main app-server metrics
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -190,10 +239,30 @@ def add_InternalServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetDevicesSummaryRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetDevicesSummaryResponse.SerializeToString,
             ),
+            'GetDevicesSummaryLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDevicesSummaryLog,
+                    request_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetDeviceCountersRequest.FromString,
+                    response_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetDeviceCountersResponse.SerializeToString,
+            ),
+            'GetGatewaysSummaryLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGatewaysSummaryLog,
+                    request_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetGatewayCountersRequest.FromString,
+                    response_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.GetGatewayCountersResponse.SerializeToString,
+            ),
             'GetGatewaysSummary': grpc.unary_unary_rpc_method_handler(
                     servicer.GetGatewaysSummary,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetGatewaysSummaryRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetGatewaysSummaryResponse.SerializeToString,
+            ),
+            'GetInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetInfo,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetInfoResponse.SerializeToString,
+            ),
+            'GetMainCounters': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMainCounters,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetMainCountersRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetMainCountersResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -360,6 +429,40 @@ class InternalService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetDevicesSummaryLog(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.InternalService/GetDevicesSummaryLog',
+            chirpstack__api_dot_handyrusty_dot_hr__pb2.GetDeviceCountersRequest.SerializeToString,
+            chirpstack__api_dot_handyrusty_dot_hr__pb2.GetDeviceCountersResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGatewaysSummaryLog(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.InternalService/GetGatewaysSummaryLog',
+            chirpstack__api_dot_handyrusty_dot_hr__pb2.GetGatewayCountersRequest.SerializeToString,
+            chirpstack__api_dot_handyrusty_dot_hr__pb2.GetGatewayCountersResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def GetGatewaysSummary(request,
             target,
             options=(),
@@ -373,5 +476,39 @@ class InternalService(object):
         return grpc.experimental.unary_unary(request, target, '/api.InternalService/GetGatewaysSummary',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetGatewaysSummaryRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetGatewaysSummaryResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.InternalService/GetInfo',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetInfoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetMainCounters(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.InternalService/GetMainCounters',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetMainCountersRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetMainCountersResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

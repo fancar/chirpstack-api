@@ -3,6 +3,7 @@
 import grpc
 
 from chirpstack_api.as_pb.external.api import gateway_pb2 as chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2
+from chirpstack_api.handyrusty import hr_pb2 as chirpstack__api_dot_handyrusty_dot_hr__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
@@ -46,10 +47,20 @@ class GatewayServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayResponse.FromString,
                 )
+        self.GetGatewayLogs = channel.unary_unary(
+                '/api.GatewayService/GetGatewayLogs',
+                request_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayResponse.FromString,
+                )
         self.ListActilityStyled = channel.unary_unary(
                 '/api.GatewayService/ListActilityStyled',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.FromString,
+                )
+        self.ListMon = channel.unary_unary(
+                '/api.GatewayService/ListMon',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListMonResponse.FromString,
                 )
         self.GetStats = channel.unary_unary(
                 '/api.GatewayService/GetStats',
@@ -70,6 +81,11 @@ class GatewayServiceStub(object):
                 '/api.GatewayService/StreamFrameLogs',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.StreamGatewayFrameLogsRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.StreamGatewayFrameLogsResponse.FromString,
+                )
+        self.GetTaskResults = channel.unary_unary(
+                '/api.GatewayService/GetTaskResults',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetTaskResultsResponse.FromString,
                 )
 
 
@@ -119,8 +135,22 @@ class GatewayServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetGatewayLogs(self, request, context):
+        """GetGatewayLogs returns logs of statistics state changed.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ListActilityStyled(self, request, context):
         """ListActilityStyled lists the gateways with legacy [Actility] json-format.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListMon(self, request, context):
+        """ListMon lists all gateways with the metrics for monitoring purposes
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -154,7 +184,14 @@ class GatewayServiceServicer(object):
         """StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.
         Notes:
         * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.
-        * This endpoint does not work from a web-browser.
+        (!) websocket required! The endpoint does not work from a web-swagger.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTaskResults(self, request, context):
+        """GetTaskResults lists the gateway tasks had been done by ExecCommand in background mode
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -193,10 +230,20 @@ def add_GatewayServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayResponse.SerializeToString,
             ),
+            'GetGatewayLogs': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGatewayLogs,
+                    request_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayRequest.FromString,
+                    response_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayResponse.SerializeToString,
+            ),
             'ListActilityStyled': grpc.unary_unary_rpc_method_handler(
                     servicer.ListActilityStyled,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.SerializeToString,
+            ),
+            'ListMon': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListMon,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListMonResponse.SerializeToString,
             ),
             'GetStats': grpc.unary_unary_rpc_method_handler(
                     servicer.GetStats,
@@ -217,6 +264,11 @@ def add_GatewayServiceServicer_to_server(servicer, server):
                     servicer.StreamFrameLogs,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.StreamGatewayFrameLogsRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.StreamGatewayFrameLogsResponse.SerializeToString,
+            ),
+            'GetTaskResults': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTaskResults,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetTaskResultsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -332,6 +384,23 @@ class GatewayService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetGatewayLogs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.GatewayService/GetGatewayLogs',
+            chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayRequest.SerializeToString,
+            chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def ListActilityStyled(request,
             target,
             options=(),
@@ -345,6 +414,23 @@ class GatewayService(object):
         return grpc.experimental.unary_unary(request, target, '/api.GatewayService/ListActilityStyled',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListMon(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.GatewayService/ListMon',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListMonResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -413,5 +499,22 @@ class GatewayService(object):
         return grpc.experimental.unary_stream(request, target, '/api.GatewayService/StreamFrameLogs',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.StreamGatewayFrameLogsRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.StreamGatewayFrameLogsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTaskResults(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.GatewayService/GetTaskResults',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetGatewayRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.GetTaskResultsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

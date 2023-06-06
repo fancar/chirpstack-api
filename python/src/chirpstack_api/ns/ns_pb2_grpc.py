@@ -114,7 +114,7 @@ class NetworkServerServiceStub(object):
         self.CreateDeviceQueueItem = channel.unary_unary(
                 '/ns.NetworkServerService/CreateDeviceQueueItem',
                 request_serializer=chirpstack__api_dot_ns_dot_ns__pb2.CreateDeviceQueueItemRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.FCntInResponse.FromString,
                 )
         self.FlushDeviceQueueForDevEUI = channel.unary_unary(
                 '/ns.NetworkServerService/FlushDeviceQueueForDevEUI',
@@ -261,17 +261,20 @@ class NetworkServerServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.FromString,
                 )
-<<<<<<< HEAD
         self.GetDeviceForExport = channel.unary_unary(
                 '/ns.NetworkServerService/GetDeviceForExport',
                 request_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceForExportResponse.FromString,
-=======
+                )
         self.ClearDeviceNonces = channel.unary_unary(
                 '/ns.NetworkServerService/ClearDeviceNonces',
                 request_serializer=chirpstack__api_dot_ns_dot_ns__pb2.ClearDeviceNoncesRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
->>>>>>> master
+                )
+        self.CountGateways = channel.unary_unary(
+                '/ns.NetworkServerService/CountGateways',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.CountGatewaysResponse.FromString,
                 )
 
 
@@ -436,6 +439,7 @@ class NetworkServerServiceServicer(object):
     def GetNextDownlinkFCntForDevEUI(self, request, context):
         """GetNextDownlinkFCntForDevEUI returns the next FCnt that must be used.
         This also takes device-queue items for the given DevEUI into consideration.
+        deprecated. As encryption had been moved to NS
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -628,15 +632,24 @@ class NetworkServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-<<<<<<< HEAD
     def GetDeviceForExport(self, request, context):
         """GetDeviceForExport gets device for export purps
-=======
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ClearDeviceNonces(self, request, context):
         """ClearDeviceNonces deletes the device older activation records for the given DevEUI.
         * These are clear older DevNonce records from device activation records
         * These clears all DevNonce records but keeps latest 20 records for maintain device activation status
->>>>>>> master
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CountGateways(self, request, context):
+        """CountGateways returns gw counts by gateway_profile use
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -743,7 +756,7 @@ def add_NetworkServerServiceServicer_to_server(servicer, server):
             'CreateDeviceQueueItem': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateDeviceQueueItem,
                     request_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.CreateDeviceQueueItemRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.FCntInResponse.SerializeToString,
             ),
             'FlushDeviceQueueForDevEUI': grpc.unary_unary_rpc_method_handler(
                     servicer.FlushDeviceQueueForDevEUI,
@@ -890,17 +903,20 @@ def add_NetworkServerServiceServicer_to_server(servicer, server):
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetADRAlgorithmsResponse.SerializeToString,
             ),
-<<<<<<< HEAD
             'GetDeviceForExport': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDeviceForExport,
                     request_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceRequest.FromString,
                     response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceForExportResponse.SerializeToString,
-=======
+            ),
             'ClearDeviceNonces': grpc.unary_unary_rpc_method_handler(
                     servicer.ClearDeviceNonces,
                     request_deserializer=chirpstack__api_dot_ns_dot_ns__pb2.ClearDeviceNoncesRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
->>>>>>> master
+            ),
+            'CountGateways': grpc.unary_unary_rpc_method_handler(
+                    servicer.CountGateways,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=chirpstack__api_dot_ns_dot_ns__pb2.CountGatewaysResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1249,7 +1265,7 @@ class NetworkServerService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/CreateDeviceQueueItem',
             chirpstack__api_dot_ns_dot_ns__pb2.CreateDeviceQueueItemRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            chirpstack__api_dot_ns_dot_ns__pb2.FCntInResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1747,11 +1763,7 @@ class NetworkServerService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-<<<<<<< HEAD
     def GetDeviceForExport(request,
-=======
-    def ClearDeviceNonces(request,
->>>>>>> master
             target,
             options=(),
             channel_credentials=None,
@@ -1761,14 +1773,42 @@ class NetworkServerService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-<<<<<<< HEAD
         return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/GetDeviceForExport',
             chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceRequest.SerializeToString,
             chirpstack__api_dot_ns_dot_ns__pb2.GetDeviceForExportResponse.FromString,
-=======
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ClearDeviceNonces(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/ClearDeviceNonces',
             chirpstack__api_dot_ns_dot_ns__pb2.ClearDeviceNoncesRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
->>>>>>> master
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CountGateways(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ns.NetworkServerService/CountGateways',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            chirpstack__api_dot_ns_dot_ns__pb2.CountGatewaysResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

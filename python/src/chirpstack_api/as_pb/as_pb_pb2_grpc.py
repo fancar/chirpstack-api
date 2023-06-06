@@ -86,6 +86,11 @@ class ApplicationServerServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.FromString,
                 )
+        self.GetDeviceKeys = channel.unary_unary(
+                '/as.ApplicationServerService/GetDeviceKeys',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceKeysResponse.FromString,
+                )
         self.ReEncryptDeviceQueueItems = channel.unary_unary(
                 '/as.ApplicationServerService/ReEncryptDeviceQueueItems',
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.SerializeToString,
@@ -120,6 +125,16 @@ class ApplicationServerServiceStub(object):
                 '/as.ApplicationServerService/UpdateSPonDevice',
                 request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.UpdateSPonDeviceRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.NewAppSKey = channel.unary_unary(
+                '/as.ApplicationServerService/NewAppSKey',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.NewAppSKeyRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.FromString,
+                )
+        self.CheckJwt = channel.unary_unary(
+                '/as.ApplicationServerService/CheckJwt',
+                request_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CheckJwtRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CheckJwtResponse.FromString,
                 )
 
 
@@ -225,6 +240,13 @@ class ApplicationServerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDeviceKeys(self, request, context):
+        """GetDeviceKeys returns NwkKey,AppKey by devEUI. Modification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ReEncryptDeviceQueueItems(self, request, context):
         """ReEncryptDeviceQueueItems requests the application-server to re-encrypt
         the given payload items using the new parameters. This request is
@@ -276,6 +298,20 @@ class ApplicationServerServiceServicer(object):
 
     def UpdateSPonDevice(self, request, context):
         """UpdateSPonDevice (TEMP for ADR MIGRATE) update SP for device in local db.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def NewAppSKey(self, request, context):
+        """NewAppSKey returns and saves AppSKey (AES128Key) according to join_server config (if kek is enabled). Modification.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CheckJwt(self, request, context):
+        """CheckJwt checks if the JWT recieved is valid
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -354,6 +390,11 @@ def add_ApplicationServerServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.SerializeToString,
             ),
+            'GetDeviceKeys': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDeviceKeys,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceKeysResponse.SerializeToString,
+            ),
             'ReEncryptDeviceQueueItems': grpc.unary_unary_rpc_method_handler(
                     servicer.ReEncryptDeviceQueueItems,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.ReEncryptDeviceQueueItemsRequest.FromString,
@@ -388,6 +429,16 @@ def add_ApplicationServerServiceServicer_to_server(servicer, server):
                     servicer.UpdateSPonDevice,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.UpdateSPonDeviceRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'NewAppSKey': grpc.unary_unary_rpc_method_handler(
+                    servicer.NewAppSKey,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.NewAppSKeyRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.SerializeToString,
+            ),
+            'CheckJwt': grpc.unary_unary_rpc_method_handler(
+                    servicer.CheckJwt,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CheckJwtRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_as__pb__pb2.CheckJwtResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -639,6 +690,23 @@ class ApplicationServerService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def GetDeviceKeys(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/GetDeviceKeys',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetOrgByDevEUIRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceKeysResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def ReEncryptDeviceQueueItems(request,
             target,
             options=(),
@@ -754,5 +822,39 @@ class ApplicationServerService(object):
         return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/UpdateSPonDevice',
             chirpstack__api_dot_as__pb_dot_as__pb__pb2.UpdateSPonDeviceRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def NewAppSKey(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/NewAppSKey',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.NewAppSKeyRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.GetDeviceAppSKeyResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CheckJwt(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/as.ApplicationServerService/CheckJwt',
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.CheckJwtRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_as__pb__pb2.CheckJwtResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

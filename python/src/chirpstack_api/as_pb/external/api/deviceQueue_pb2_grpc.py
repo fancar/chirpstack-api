@@ -21,6 +21,11 @@ class DeviceQueueServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemResponse.FromString,
                 )
+        self.EnqueueHex = channel.unary_unary(
+                '/api.DeviceQueueService/EnqueueHex',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemHexRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemResponse.FromString,
+                )
         self.Flush = channel.unary_unary(
                 '/api.DeviceQueueService/Flush',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.FlushDeviceQueueRequest.SerializeToString,
@@ -49,6 +54,13 @@ class DeviceQueueServiceServicer(object):
 
     def Enqueue(self, request, context):
         """Enqueue adds the given item to the device-queue.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EnqueueHex(self, request, context):
+        """EnqueueHex adds the given item to the device-queue with hex-payload.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -89,6 +101,11 @@ def add_DeviceQueueServiceServicer_to_server(servicer, server):
             'Enqueue': grpc.unary_unary_rpc_method_handler(
                     servicer.Enqueue,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemResponse.SerializeToString,
+            ),
+            'EnqueueHex': grpc.unary_unary_rpc_method_handler(
+                    servicer.EnqueueHex,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemHexRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemResponse.SerializeToString,
             ),
             'Flush': grpc.unary_unary_rpc_method_handler(
@@ -135,6 +152,23 @@ class DeviceQueueService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/api.DeviceQueueService/Enqueue',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def EnqueueHex(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.DeviceQueueService/EnqueueHex',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemHexRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_deviceQueue__pb2.EnqueueDeviceQueueItemResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

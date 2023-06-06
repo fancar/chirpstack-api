@@ -2,7 +2,7 @@ GOOGLEAPIS_PATH := "/googleapis"
 IMPORT_AS := import \"as_pb/
 PACKAGE_NAME := import \"chirpstack-api/
 
-all: requirements version pre-build common gw geo nc ns fuota as as-integration as-external-api
+all: requirements version pre-build common hr gw geo nc ns fuota as as-integration as-external-api
 
 requirements:
 	pip install grpcio-tools
@@ -21,10 +21,14 @@ pre-build:
 	sed -i 's@^import "gw/@$(PACKAGE_NAME)gw/@g' `find proto/chirpstack-api -type f -name "*.proto*"`
 	sed -i 's@^import "as_pb/@$(PACKAGE_NAME)as_pb/@g' `find proto/chirpstack-api -type f -name "*.proto*"`
 	sed -i 's@^import "ns/@$(PACKAGE_NAME)ns/@g' `find proto/chirpstack-api -type f -name "*.proto*"`
+	sed -i 's@^import "handyrusty/@$(PACKAGE_NAME)handyrusty/@g' `find proto/chirpstack-api -type f -name "*.proto*"`
 	mkdir -p src
 
 common:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/common/common.proto
+
+hr:
+	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/handyrusty/hr.proto
 
 gw:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/gw/gw.proto
@@ -52,16 +56,21 @@ as-external-api:
 	$(eval PROTOC_GEN := python -m grpc_tools.protoc -I=proto -I=$(GOOGLEAPIS_PATH) --python_out=src --grpc_python_out=src)
 
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/application.proto
-	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/frameLog.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/dataexport.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/datastream.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/device.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/deviceProfile.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/deviceQueue.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/dictionary.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/frameLog.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/gateway.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/gatewayProfile.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/handyrusty.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/internal.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/multicastGroup.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/networkServer.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/organization.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/profiles.proto
+	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/routingProfile.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/serviceProfile.proto
 	$(PROTOC_GEN) proto/chirpstack-api/as_pb/external/api/user.proto
