@@ -487,6 +487,11 @@
         "serviceProfileID": {
           "type": "string",
           "description": "Service Profile ID.\nAfter creation, this can not be updated."
+        },
+        "organizationID": {
+          "type": "string",
+          "format": "int64",
+          "title": "for logging purposes"
         }
       }
     },

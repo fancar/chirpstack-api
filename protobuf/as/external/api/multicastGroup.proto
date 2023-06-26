@@ -133,6 +133,9 @@ message MulticastGroup {
     // Service Profile ID.
     // After creation, this can not be updated.
     string service_profile_id = 12 [json_name = "serviceProfileID"];
+
+    // for logging purposes
+    int64 organization_id = 13 [json_name = "organizationID"];
 }
 
 message MulticastGroupListItem {
