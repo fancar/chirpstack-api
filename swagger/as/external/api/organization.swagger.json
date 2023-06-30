@@ -4,9 +4,10 @@
     "title": "as/external/api/organization.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "OrganizationService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/organizations": {
       "get": {
         "summary": "Get organization list.",
-        "operationId": "List",
+        "operationId": "OrganizationService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListOrganizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -53,21 +60,21 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "userId",
-            "description": "optional parameter. Get organizations by the user's membership.",
+            "description": "optional parameter. Get organizations by the user's membership",
             "in": "query",
             "required": false,
             "type": "string",
@@ -80,12 +87,18 @@
       },
       "post": {
         "summary": "Create a new organization.",
-        "operationId": "Create",
+        "operationId": "OrganizationService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateOrganizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -107,12 +120,18 @@
     "/api/organizations/{id}": {
       "get": {
         "summary": "Get data for a particular organization.",
-        "operationId": "Get",
+        "operationId": "OrganizationService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetOrganizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -132,12 +151,19 @@
       },
       "delete": {
         "summary": "Delete an organization.",
-        "operationId": "Delete",
+        "operationId": "OrganizationService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -159,12 +185,19 @@
     "/api/organizations/{organization.id}": {
       "put": {
         "summary": "Update an existing organization.",
-        "operationId": "Update",
+        "operationId": "OrganizationService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -182,7 +215,42 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateOrganizationRequest"
+              "type": "object",
+              "properties": {
+                "organization": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Organization name."
+                    },
+                    "displayName": {
+                      "type": "string",
+                      "description": "Organization display name."
+                    },
+                    "canHaveGateways": {
+                      "type": "boolean",
+                      "title": "Can the organization create and \"own\" Gateways?"
+                    },
+                    "maxGatewayCount": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Max. gateway count for organization.\nWhen set to 0, the organization can have unlimited gateways."
+                    },
+                    "maxDeviceCount": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Max. device count for organization.\nWhen set to 0, the organization can have unlimited devices."
+                    },
+                    "gwOnly": {
+                      "type": "boolean",
+                      "title": "When the organization has gateways but doesn't have any devices\nyou can switch the flag on.\nit allows org's users to see the frames from/to devices in wireless logger\nthat have been recieved/transmitted by owned gateways"
+                    }
+                  },
+                  "description": "Organization object to update.",
+                  "title": "Organization object to update."
+                }
+              }
             }
           }
         ],
@@ -191,21 +259,27 @@
         ]
       }
     },
-    "/api/organizations/{organization_id}/users": {
+    "/api/organizations/{organizationID}/users": {
       "get": {
         "summary": "Get organization's user list.",
-        "operationId": "ListUsers",
+        "operationId": "OrganizationService_ListUsers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListOrganizationUsersResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "organization_id",
+            "name": "organizationID",
             "description": "Organization ID.",
             "in": "path",
             "required": true,
@@ -230,21 +304,21 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "search",
-            "description": "search condition.",
+            "description": "search condition",
             "in": "query",
             "required": false,
             "type": "string"
@@ -255,21 +329,27 @@
         ]
       }
     },
-    "/api/organizations/{organization_id}/users/{user_id}": {
+    "/api/organizations/{organizationID}/users/{userID}": {
       "get": {
         "summary": "Get data for a particular organization user.",
-        "operationId": "GetUser",
+        "operationId": "OrganizationService_GetUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetOrganizationUserResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "organization_id",
+            "name": "organizationID",
             "description": "Organization ID.",
             "in": "path",
             "required": true,
@@ -277,7 +357,7 @@
             "format": "int64"
           },
           {
-            "name": "user_id",
+            "name": "userID",
             "description": "User ID.",
             "in": "path",
             "required": true,
@@ -291,18 +371,25 @@
       },
       "delete": {
         "summary": "Delete a user from an organization.",
-        "operationId": "DeleteUser",
+        "operationId": "OrganizationService_DeleteUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "organization_id",
+            "name": "organizationID",
             "description": "Organization ID.",
             "in": "path",
             "required": true,
@@ -310,7 +397,7 @@
             "format": "int64"
           },
           {
-            "name": "user_id",
+            "name": "userID",
             "description": "User ID.",
             "in": "path",
             "required": true,
@@ -323,21 +410,28 @@
         ]
       }
     },
-    "/api/organizations/{organization_user.organization_id}/users": {
+    "/api/organizations/{organizationUser.organizationID}/users": {
       "post": {
         "summary": "Add a new user to an organization. The user is matched based on email, not user id.",
-        "operationId": "AddUser",
+        "operationId": "OrganizationService_AddUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "organization_user.organization_id",
+            "name": "organizationUser.organizationID",
             "description": "Organization ID.",
             "in": "path",
             "required": true,
@@ -349,7 +443,65 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiAddOrganizationUserRequest"
+              "type": "object",
+              "properties": {
+                "organizationUser": {
+                  "type": "object",
+                  "properties": {
+                    "userID": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "User ID."
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "description": "User is admin within the context of the organization.\nThere is no need to set the is_device_admin and is_gateway_admin flags."
+                    },
+                    "isDeviceAdmin": {
+                      "type": "boolean",
+                      "description": "User is able to modify device related resources (applications,\ndevice-profiles, devices, multicast-groups)."
+                    },
+                    "isGatewayAdmin": {
+                      "type": "boolean",
+                      "description": "User is able to modify gateways."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email (only used on get and when adding a user to an organization)."
+                    },
+                    "isActive": {
+                      "type": "boolean",
+                      "title": "false if the user inactive"
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Optional note to store with the user."
+                    },
+                    "name": {
+                      "type": "string",
+                      "title": "user's name"
+                    },
+                    "surname": {
+                      "type": "string",
+                      "title": "user's last name"
+                    },
+                    "company": {
+                      "type": "string",
+                      "title": "the company where the employee is working at"
+                    },
+                    "position": {
+                      "type": "string",
+                      "title": "user's position and subdivision in the company"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "title": "user's phone"
+                    }
+                  },
+                  "description": "Organization-user object to create.",
+                  "title": "Organization-user object to create."
+                }
+              }
             }
           }
         ],
@@ -358,21 +510,28 @@
         ]
       }
     },
-    "/api/organizations/{organization_user.organization_id}/users/{organization_user.user_id}": {
+    "/api/organizations/{organizationUser.organizationID}/users/{organizationUser.userID}": {
       "put": {
         "summary": "Update a user in an organization.",
-        "operationId": "UpdateUser",
+        "operationId": "OrganizationService_UpdateUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "organization_user.organization_id",
+            "name": "organizationUser.organizationID",
             "description": "Organization ID.",
             "in": "path",
             "required": true,
@@ -380,7 +539,7 @@
             "format": "int64"
           },
           {
-            "name": "organization_user.user_id",
+            "name": "organizationUser.userID",
             "description": "User ID.",
             "in": "path",
             "required": true,
@@ -392,7 +551,60 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateOrganizationUserRequest"
+              "type": "object",
+              "properties": {
+                "organizationUser": {
+                  "type": "object",
+                  "properties": {
+                    "isAdmin": {
+                      "type": "boolean",
+                      "description": "User is admin within the context of the organization.\nThere is no need to set the is_device_admin and is_gateway_admin flags."
+                    },
+                    "isDeviceAdmin": {
+                      "type": "boolean",
+                      "description": "User is able to modify device related resources (applications,\ndevice-profiles, devices, multicast-groups)."
+                    },
+                    "isGatewayAdmin": {
+                      "type": "boolean",
+                      "description": "User is able to modify gateways."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email (only used on get and when adding a user to an organization)."
+                    },
+                    "isActive": {
+                      "type": "boolean",
+                      "title": "false if the user inactive"
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Optional note to store with the user."
+                    },
+                    "name": {
+                      "type": "string",
+                      "title": "user's name"
+                    },
+                    "surname": {
+                      "type": "string",
+                      "title": "user's last name"
+                    },
+                    "company": {
+                      "type": "string",
+                      "title": "the company where the employee is working at"
+                    },
+                    "position": {
+                      "type": "string",
+                      "title": "user's position and subdivision in the company"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "title": "user's phone"
+                    }
+                  },
+                  "description": "Organization-user object to update.",
+                  "title": "Organization-user object to update."
+                }
+              }
             }
           }
         ],
@@ -403,15 +615,6 @@
     }
   },
   "definitions": {
-    "apiAddOrganizationUserRequest": {
-      "type": "object",
-      "properties": {
-        "organizationUser": {
-          "$ref": "#/definitions/apiOrganizationUser",
-          "description": "Organization-user object to create."
-        }
-      }
-    },
     "apiCreateOrganizationRequest": {
       "type": "object",
       "properties": {
@@ -481,6 +684,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiOrganizationListItem"
           }
         }
@@ -497,6 +701,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiOrganizationUserListItem"
           }
         }
@@ -520,7 +725,6 @@
         },
         "canHaveGateways": {
           "type": "boolean",
-          "format": "boolean",
           "title": "Can the organization create and \"own\" Gateways?"
         },
         "maxGatewayCount": {
@@ -535,7 +739,6 @@
         },
         "gwOnly": {
           "type": "boolean",
-          "format": "boolean",
           "title": "When the organization has gateways but doesn't have any devices\nyou can switch the flag on.\nit allows org's users to see the frames from/to devices in wireless logger\nthat have been recieved/transmitted by owned gateways"
         }
       }
@@ -558,7 +761,6 @@
         },
         "canHaveGateways": {
           "type": "boolean",
-          "format": "boolean",
           "title": "Can the organization create and \"own\" Gateways?"
         },
         "createdAt": {
@@ -598,17 +800,14 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is admin within the context of the organization.\nThere is no need to set the is_device_admin and is_gateway_admin flags."
         },
         "isDeviceAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify device related resources (applications,\ndevice-profiles, devices, multicast-groups)."
         },
         "isGatewayAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify gateways."
         },
         "email": {
@@ -617,7 +816,6 @@
         },
         "isActive": {
           "type": "boolean",
-          "format": "boolean",
           "title": "false if the user inactive"
         },
         "note": {
@@ -660,17 +858,14 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is admin within the context of the organization.\nThere is no need to set the is_device_admin and is_gateway_admin flags."
         },
         "isDeviceAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify device related resources (applications,\ndevice-profiles, devices, multicast-groups)."
         },
         "isGatewayAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify gateways."
         },
         "createdAt": {
@@ -685,7 +880,6 @@
         },
         "isActive": {
           "type": "boolean",
-          "format": "boolean",
           "title": "false if the user inactive"
         },
         "name": {
@@ -715,21 +909,31 @@
         }
       }
     },
-    "apiUpdateOrganizationRequest": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "organization": {
-          "$ref": "#/definitions/apiOrganization",
-          "description": "Organization object to update."
+        "@type": {
+          "type": "string"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "apiUpdateOrganizationUserRequest": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "organizationUser": {
-          "$ref": "#/definitions/apiOrganizationUser",
-          "description": "Organization-user object to update."
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

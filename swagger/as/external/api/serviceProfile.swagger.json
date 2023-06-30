@@ -4,9 +4,10 @@
     "title": "as/external/api/serviceProfile.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "ServiceProfileService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/service-profiles": {
       "get": {
         "summary": "List lists the available service-profiles.",
-        "operationId": "List",
+        "operationId": "ServiceProfileService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListServiceProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -62,14 +69,14 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -81,12 +88,18 @@
       },
       "post": {
         "summary": "Create creates the given service-profile.",
-        "operationId": "Create",
+        "operationId": "ServiceProfileService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateServiceProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -108,12 +121,18 @@
     "/api/service-profiles/{id}": {
       "get": {
         "summary": "Get returns the service-profile matching the given id.",
-        "operationId": "Get",
+        "operationId": "ServiceProfileService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetServiceProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -132,12 +151,19 @@
       },
       "delete": {
         "summary": "Delete deletes the service-profile matching the given id.",
-        "operationId": "Delete",
+        "operationId": "ServiceProfileService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -155,21 +181,28 @@
         ]
       }
     },
-    "/api/service-profiles/{service_profile.id}": {
+    "/api/service-profiles/{serviceProfile.id}": {
       "put": {
         "summary": "Update updates the given serviceprofile.",
-        "operationId": "Update",
+        "operationId": "ServiceProfileService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "service_profile.id",
+            "name": "serviceProfile.id",
             "description": "Service-profile ID (UUID string).\nThis will be automatically set on create.",
             "in": "path",
             "required": true,
@@ -180,7 +213,190 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateServiceProfileRequest"
+              "type": "object",
+              "properties": {
+                "serviceProfile": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Service-profile name."
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Service-profile description."
+                    },
+                    "deviceCountLimit": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Maximum device count limit for service-profile."
+                    },
+                    "organizationID": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "Organization ID to which the service-profile is assigned."
+                    },
+                    "networkServerID": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "Network-server ID on which the service-profile is provisioned."
+                    },
+                    "ulRate": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "Token bucket filling rate, including ACKs (packet/h)."
+                    },
+                    "ulBucketSize": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Token bucket burst size."
+                    },
+                    "ulRatePolicy": {
+                      "$ref": "#/definitions/apiRatePolicy",
+                      "description": "Drop or mark when exceeding ULRate."
+                    },
+                    "ulRateUnit": {
+                      "$ref": "#/definitions/apiRateUnit",
+                      "title": "Uplink rate unit (per hour, per day, per week, per month, per year)"
+                    },
+                    "dlRate": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "Token bucket filling rate, including ACKs (packet/h)."
+                    },
+                    "dlBucketSize": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Token bucket burst size."
+                    },
+                    "dlRatePolicy": {
+                      "$ref": "#/definitions/apiRatePolicy",
+                      "description": "Drop or mark when exceeding DLRate."
+                    },
+                    "dlRateUnit": {
+                      "$ref": "#/definitions/apiRateUnit",
+                      "title": "Downlink rate unit (per hour, per day, per week, per month, per year)"
+                    },
+                    "addGWMetaData": {
+                      "type": "boolean",
+                      "description": "GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS."
+                    },
+                    "devStatusReqFreq": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Frequency to initiate an End-Device status request (request/day)."
+                    },
+                    "reportDevStatusBattery": {
+                      "type": "boolean",
+                      "description": "Report End-Device battery level to AS."
+                    },
+                    "reportDevStatusMargin": {
+                      "type": "boolean",
+                      "description": "Report End-Device margin to AS."
+                    },
+                    "drMin": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Minimum allowed data rate. Used for ADR."
+                    },
+                    "drMax": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "Maximum allowed data rate. Used for ADR.\nif adr=fixed - the value as fixed DataRate in use"
+                    },
+                    "channelMask": {
+                      "type": "string",
+                      "format": "byte",
+                      "description": "Channel mask. sNS does not have to obey (i.e., informative)."
+                    },
+                    "prAllowed": {
+                      "type": "boolean",
+                      "description": "Passive Roaming allowed."
+                    },
+                    "hrAllowed": {
+                      "type": "boolean",
+                      "description": "Handover Roaming allowed."
+                    },
+                    "raAllowed": {
+                      "type": "boolean",
+                      "description": "Roaming Activation allowed."
+                    },
+                    "nwkGeoLoc": {
+                      "type": "boolean",
+                      "description": "Enable network geolocation service."
+                    },
+                    "targetPER": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Target Packet Error Rate."
+                    },
+                    "minGWDiversity": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Minimum number of receiving GWs (informative)."
+                    },
+                    "gwsPrivate": {
+                      "type": "boolean",
+                      "description": "Gateways under this service-profile are private.\nThis means that these gateways can only be used by devices under the\nsame service-profile."
+                    },
+                    "isDisabled": {
+                      "type": "boolean",
+                      "title": "Disabled service profile if set true"
+                    },
+                    "minTXPowerIndex": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "Minimum TX power index that can't be overlaped by ADR."
+                    },
+                    "maxTXPowerIndex": {
+                      "type": "integer",
+                      "format": "int32",
+                      "title": "Maximum TX power index that can't be overlaped by ADR.\nif adr=fixed - the value as fixed TxPowerIndex will be in use"
+                    },
+                    "maxNbTrans": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "the maximum number of transmissions."
+                    },
+                    "minNbTrans": {
+                      "type": "integer",
+                      "format": "int32",
+                      "title": "the minimum number of transmissions.\nif adr=fixed - the value as fixed TxPowerIndex in use"
+                    },
+                    "adrAlgorithmID": {
+                      "type": "string",
+                      "title": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'.\nif 'fixed' set - hardset values in use"
+                    },
+                    "uplinksOnly": {
+                      "type": "boolean",
+                      "title": "if true only uplink events are passing to client's applications"
+                    },
+                    "sendToApps": {
+                      "type": "boolean",
+                      "title": "if true - allows passing data to client's applications"
+                    },
+                    "allowRxConfirmed": {
+                      "type": "boolean",
+                      "title": "if true - allows processing confirmed uplinks"
+                    },
+                    "allowTxUnconfirmed": {
+                      "type": "boolean",
+                      "title": "if true - allows processing unconfirmed downlinks"
+                    },
+                    "allowTxConfirmed": {
+                      "type": "boolean",
+                      "title": "if true - allows processing confirmed downlinks"
+                    },
+                    "dlQueueMaxSize": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "max size of downlink queue for devices that use the sp"
+                    }
+                  },
+                  "description": "Service-profile object to update.",
+                  "title": "Service-profile object to update."
+                }
+              }
             }
           }
         ],
@@ -249,6 +465,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiServiceProfileListItem"
           }
         }
@@ -343,7 +560,6 @@
         },
         "addGWMetaData": {
           "type": "boolean",
-          "format": "boolean",
           "description": "GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS."
         },
         "devStatusReqFreq": {
@@ -353,12 +569,10 @@
         },
         "reportDevStatusBattery": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Report End-Device battery level to AS."
         },
         "reportDevStatusMargin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Report End-Device margin to AS."
         },
         "drMin": {
@@ -378,22 +592,18 @@
         },
         "prAllowed": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Passive Roaming allowed."
         },
         "hrAllowed": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Handover Roaming allowed."
         },
         "raAllowed": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Roaming Activation allowed."
         },
         "nwkGeoLoc": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Enable network geolocation service."
         },
         "targetPER": {
@@ -408,12 +618,10 @@
         },
         "gwsPrivate": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Gateways under this service-profile are private.\nThis means that these gateways can only be used by devices under the\nsame service-profile."
         },
         "isDisabled": {
           "type": "boolean",
-          "format": "boolean",
           "title": "Disabled service profile if set true"
         },
         "minTXPowerIndex": {
@@ -442,27 +650,22 @@
         },
         "uplinksOnly": {
           "type": "boolean",
-          "format": "boolean",
           "title": "if true only uplink events are passing to client's applications"
         },
         "sendToApps": {
           "type": "boolean",
-          "format": "boolean",
           "title": "if true - allows passing data to client's applications"
         },
         "allowRxConfirmed": {
           "type": "boolean",
-          "format": "boolean",
           "title": "if true - allows processing confirmed uplinks"
         },
         "allowTxUnconfirmed": {
           "type": "boolean",
-          "format": "boolean",
           "title": "if true - allows processing unconfirmed downlinks"
         },
         "allowTxConfirmed": {
           "type": "boolean",
-          "format": "boolean",
           "title": "if true - allows processing confirmed downlinks"
         },
         "dlQueueMaxSize": {
@@ -524,17 +727,35 @@
         },
         "isDisabled": {
           "type": "boolean",
-          "format": "boolean",
           "title": "Disabled service profile if set true"
         }
       }
     },
-    "apiUpdateServiceProfileRequest": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "serviceProfile": {
-          "$ref": "#/definitions/apiServiceProfile",
-          "description": "Service-profile object to update."
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

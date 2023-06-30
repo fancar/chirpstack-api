@@ -4,9 +4,10 @@
     "title": "as/external/api/device.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "DeviceService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/devices": {
       "get": {
         "summary": "List returns the available devices.",
-        "operationId": "List",
+        "operationId": "DeviceService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListDeviceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -74,15 +81,22 @@
             "type": "string"
           },
           {
+            "name": "tags",
+            "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -97,28 +111,28 @@
           },
           {
             "name": "deviceName",
-            "description": "device name.",
+            "description": "device name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "devEui",
-            "description": "dev_eui.",
+            "description": "dev_eui",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "serviceProfileName",
-            "description": "service profile name.",
+            "description": "service profile name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "routingProfileName",
-            "description": "routing profile name.",
+            "description": "routing profile name",
             "in": "query",
             "required": false,
             "type": "string"
@@ -130,12 +144,19 @@
       },
       "post": {
         "summary": "Create creates the given device.",
-        "operationId": "Create",
+        "operationId": "DeviceService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -154,21 +175,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}": {
+    "/api/devices/{devEUI}": {
       "get": {
         "summary": "Get returns the device matching the given DevEUI.",
-        "operationId": "Get",
+        "operationId": "DeviceService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDeviceResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -181,18 +208,25 @@
       },
       "delete": {
         "summary": "Delete deletes the device matching the given DevEUI.",
-        "operationId": "Delete",
+        "operationId": "DeviceService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -204,21 +238,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/activation": {
+    "/api/devices/{devEUI}/activation": {
       "get": {
         "summary": "GetActivation returns the current activation details of the device (OTAA and ABP).",
-        "operationId": "GetActivation",
+        "operationId": "DeviceService_GetActivation",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDeviceActivationResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -231,18 +271,25 @@
       },
       "delete": {
         "summary": "Deactivate de-activates the device.",
-        "operationId": "Deactivate",
+        "operationId": "DeviceService_Deactivate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -254,21 +301,28 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/devnonce": {
+    "/api/devices/{devEUI}/devnonce": {
       "delete": {
         "summary": "ClearDeviceNonces deletes the device older activation records for the given DevEUI.\n  * These are clear older DevNonce records from device activation records in Network Server\n  * These clears all DevNonce records but keeps latest 20 records for maintain device activation status",
-        "operationId": "ClearDeviceNonces",
+        "operationId": "DeviceService_ClearDeviceNonces",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -280,21 +334,36 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/events": {
+    "/api/devices/{devEUI}/events": {
       "get": {
         "summary": "StreamEventLogs stream the device events (uplink payloads, ACKs, joins, errors).\n  * This endpoint is intended for debugging only.\n  * This endpoint does not work from a web-browser.",
-        "operationId": "StreamEventLogs",
+        "operationId": "DeviceService_StreamEventLogs",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamDeviceEventLogsResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiStreamDeviceEventLogsResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiStreamDeviceEventLogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -306,21 +375,36 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/frames": {
+    "/api/devices/{devEUI}/frames": {
       "get": {
         "summary": "StreamFrameLogs streams the uplink and downlink frame-logs for the given DevEUI.\n  * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.\n  * This endpoint does not work from a web-browser.",
-        "operationId": "StreamFrameLogs",
+        "operationId": "DeviceService_StreamFrameLogs",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamDeviceFrameLogsResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiStreamDeviceFrameLogsResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiStreamDeviceFrameLogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -332,21 +416,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/getRandomDevAddr": {
+    "/api/devices/{devEUI}/getRandomDevAddr": {
       "post": {
         "summary": "GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.",
-        "operationId": "GetRandomDevAddr",
+        "operationId": "DeviceService_GetRandomDevAddr",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetRandomDevAddrResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -358,21 +448,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/keys": {
+    "/api/devices/{devEUI}/keys": {
       "get": {
         "summary": "GetKeys returns the device-keys for the given DevEUI.",
-        "operationId": "GetKeys",
+        "operationId": "DeviceService_GetKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDeviceKeysResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -385,18 +481,25 @@
       },
       "delete": {
         "summary": "DeleteKeys deletes the device-keys for the given DevEUI.",
-        "operationId": "DeleteKeys",
+        "operationId": "DeviceService_DeleteKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -408,21 +511,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/stats": {
+    "/api/devices/{devEUI}/stats": {
       "get": {
         "summary": "GetStats returns the device stats.",
-        "operationId": "GetStats",
+        "operationId": "DeviceService_GetStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDeviceStatsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "DevEUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -457,21 +566,28 @@
         ]
       }
     },
-    "/api/devices/{device.dev_eui}": {
+    "/api/devices/{device.devEUI}": {
       "put": {
         "summary": "Update updates the device matching the given DevEUI.",
-        "operationId": "Update",
+        "operationId": "DeviceService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "device.dev_eui",
+            "name": "device.devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -482,7 +598,76 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateDeviceRequest"
+              "type": "object",
+              "properties": {
+                "device": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the device (if left blank, it will be set to the DevEUI)."
+                    },
+                    "routingProfileID": {
+                      "type": "string",
+                      "format": "int64",
+                      "title": "ID of the routing profile to which the device must be added.\nIt is possible to move a device to a different profile on update,"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the device."
+                    },
+                    "deviceProfileID": {
+                      "type": "string",
+                      "description": "DeviceProfileID attached to the device."
+                    },
+                    "deviceProfileName": {
+                      "type": "string",
+                      "description": "Device-profile name."
+                    },
+                    "skipFCntCheck": {
+                      "type": "boolean",
+                      "title": "Skip frame-counter checks (this is insecure, but could be helpful for debugging).\ndeprecated. Use f_cnt_automatic_reset in DeviceProfile instead"
+                    },
+                    "referenceAltitude": {
+                      "type": "number",
+                      "format": "double",
+                      "description": "Reference altitude.\nWhen using geolocation, this altitude will be used as a reference\n(when supported by the geolocation-server) to increase geolocation\naccuracy."
+                    },
+                    "variables": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Variables (user defined).\nThese variables can be used together with integrations to store tokens /\nsecrets that must be configured per device. These variables are not\nexposed in the event payloads."
+                    },
+                    "tags": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Tags (user defined).\nThese tags are exposed in the event payloads or to integration. Tags are\nintended for aggregation and filtering."
+                    },
+                    "isDisabled": {
+                      "type": "boolean",
+                      "description": "Device is disabled."
+                    },
+                    "serviceProfileID": {
+                      "type": "string",
+                      "title": "ID(uuid) of the service profile to which the device must be added.\nIt is possible to move a device to a different profile on update,"
+                    },
+                    "location": {
+                      "$ref": "#/definitions/commonLocation",
+                      "description": "Device location."
+                    },
+                    "keepQueue": {
+                      "type": "boolean",
+                      "title": "If true - do not flush the device-queue during join"
+                    }
+                  },
+                  "description": "Device object to update.",
+                  "title": "Device object to update."
+                }
+              }
             }
           }
         ],
@@ -491,21 +676,28 @@
         ]
       }
     },
-    "/api/devices/{device_activation.dev_eui}/activate": {
+    "/api/devices/{deviceActivation.devEUI}/activate": {
       "post": {
         "summary": "Activate (re)activates the device with the given parameters (for ABP or for importing OTAA activations).",
-        "operationId": "Activate",
+        "operationId": "DeviceService_Activate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "device_activation.dev_eui",
+            "name": "deviceActivation.devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -516,7 +708,98 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiActivateDeviceRequest"
+              "type": "object",
+              "properties": {
+                "deviceActivation": {
+                  "type": "object",
+                  "properties": {
+                    "devAddr": {
+                      "type": "string",
+                      "description": "Device address (HEX encoded)."
+                    },
+                    "appSKey": {
+                      "type": "string",
+                      "description": "Application session key (HEX encoded)."
+                    },
+                    "nwkSEncKey": {
+                      "type": "string",
+                      "description": "Network session encryption key (HEX encoded)."
+                    },
+                    "sNwkSIntKey": {
+                      "type": "string",
+                      "description": "Serving network session integrity key (HEX encoded)."
+                    },
+                    "fNwkSIntKey": {
+                      "type": "string",
+                      "description": "Forwarding network session integrity key (HEX encoded)."
+                    },
+                    "fCntUp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Uplink frame-counter."
+                    },
+                    "nFCntDown": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Downlink network frame-counter."
+                    },
+                    "aFCntDown": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Downlink application frame-counter."
+                    },
+                    "RX1DROffset": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "RX1 data-rate offset"
+                    },
+                    "RX2DR": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "RX2 data-rate"
+                    },
+                    "RX2Frequency": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "RX2 frequency"
+                    },
+                    "TXPowerIndex": {
+                      "type": "integer",
+                      "format": "int32",
+                      "title": "tx power index"
+                    },
+                    "DR": {
+                      "type": "integer",
+                      "format": "int32",
+                      "title": "data rate"
+                    },
+                    "ADR": {
+                      "type": "boolean",
+                      "title": "adaptive data rate"
+                    },
+                    "nbTrans": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "number of retransmissions"
+                    },
+                    "enabledUplinkChannels": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "format": "int32"
+                      },
+                      "title": "enabled channels"
+                    },
+                    "extraUplinkChannels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/nsExtraChannels"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         ],
@@ -525,21 +808,28 @@
         ]
       }
     },
-    "/api/devices/{device_keys.dev_eui}/keys": {
+    "/api/devices/{deviceKeys.devEUI}/keys": {
       "post": {
         "summary": "CreateKeys creates the given device-keys.",
-        "operationId": "CreateKeys",
+        "operationId": "DeviceService_CreateKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "device_keys.dev_eui",
+            "name": "deviceKeys.devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -550,7 +840,28 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiCreateDeviceKeysRequest"
+              "type": "object",
+              "properties": {
+                "deviceKeys": {
+                  "type": "object",
+                  "properties": {
+                    "nwkKey": {
+                      "type": "string",
+                      "title": "Network root key (HEX encoded).\nNote: For LoRaWAN 1.0.x, use this field for the LoRaWAN 1.0.x 'AppKey`!"
+                    },
+                    "appKey": {
+                      "type": "string",
+                      "title": "Application root key (HEX encoded).\nNote: This field only needs to be set for LoRaWAN 1.1.x devices!"
+                    },
+                    "genAppKey": {
+                      "type": "string",
+                      "description": "Gen application key (HEX encoded).\nThis is an optional key that only must be set for LORaWAN 1.0.x devices\nthat implement the remote multicast setup specification."
+                    }
+                  },
+                  "description": "Device-keys object to create.",
+                  "title": "Device-keys object to create."
+                }
+              }
             }
           }
         ],
@@ -560,18 +871,25 @@
       },
       "put": {
         "summary": "UpdateKeys updates the device-keys.",
-        "operationId": "UpdateKeys",
+        "operationId": "DeviceService_UpdateKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "device_keys.dev_eui",
+            "name": "deviceKeys.devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -582,7 +900,28 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateDeviceKeysRequest"
+              "type": "object",
+              "properties": {
+                "deviceKeys": {
+                  "type": "object",
+                  "properties": {
+                    "nwkKey": {
+                      "type": "string",
+                      "title": "Network root key (HEX encoded).\nNote: For LoRaWAN 1.0.x, use this field for the LoRaWAN 1.0.x 'AppKey`!"
+                    },
+                    "appKey": {
+                      "type": "string",
+                      "title": "Application root key (HEX encoded).\nNote: This field only needs to be set for LoRaWAN 1.1.x devices!"
+                    },
+                    "genAppKey": {
+                      "type": "string",
+                      "description": "Gen application key (HEX encoded).\nThis is an optional key that only must be set for LORaWAN 1.0.x devices\nthat implement the remote multicast setup specification."
+                    }
+                  },
+                  "description": "Device-keys object to update.",
+                  "title": "Device-keys object to update."
+                }
+              }
             }
           }
         ],
@@ -593,23 +932,6 @@
     }
   },
   "definitions": {
-    "apiActivateDeviceRequest": {
-      "type": "object",
-      "properties": {
-        "deviceActivation": {
-          "$ref": "#/definitions/apiDeviceActivation"
-        }
-      }
-    },
-    "apiCreateDeviceKeysRequest": {
-      "type": "object",
-      "properties": {
-        "deviceKeys": {
-          "$ref": "#/definitions/apiDeviceKeys",
-          "description": "Device-keys object to create."
-        }
-      }
-    },
     "apiCreateDeviceRequest": {
       "type": "object",
       "properties": {
@@ -649,7 +971,6 @@
         },
         "skipFCntCheck": {
           "type": "boolean",
-          "format": "boolean",
           "title": "Skip frame-counter checks (this is insecure, but could be helpful for debugging).\ndeprecated. Use f_cnt_automatic_reset in DeviceProfile instead"
         },
         "referenceAltitude": {
@@ -673,7 +994,6 @@
         },
         "isDisabled": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Device is disabled."
         },
         "serviceProfileID": {
@@ -686,7 +1006,6 @@
         },
         "keepQueue": {
           "type": "boolean",
-          "format": "boolean",
           "title": "If true - do not flush the device-queue during join"
         }
       }
@@ -760,7 +1079,6 @@
         },
         "ADR": {
           "type": "boolean",
-          "format": "boolean",
           "title": "adaptive data rate"
         },
         "nbTrans": {
@@ -779,6 +1097,7 @@
         "extraUplinkChannels": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/nsExtraChannels"
           }
         }
@@ -845,12 +1164,10 @@
         },
         "deviceStatusExternalPowerSource": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Device is connected to an external power source."
         },
         "deviceStatusBatteryLevelUnavailable": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Device battery status is unavailable."
         },
         "deviceStatusBatteryLevel": {
@@ -873,7 +1190,6 @@
         },
         "isDisabled": {
           "type": "boolean",
-          "format": "boolean",
           "title": "device is_disabled option"
         },
         "serviceProfileName": {
@@ -1034,6 +1350,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiDeviceStats"
           }
         }
@@ -1059,6 +1376,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiDeviceListItem"
           },
           "description": "Devices within this result-set."
@@ -1100,24 +1418,6 @@
         }
       }
     },
-    "apiUpdateDeviceKeysRequest": {
-      "type": "object",
-      "properties": {
-        "deviceKeys": {
-          "$ref": "#/definitions/apiDeviceKeys",
-          "description": "Device-keys object to update."
-        }
-      }
-    },
-    "apiUpdateDeviceRequest": {
-      "type": "object",
-      "properties": {
-        "device": {
-          "$ref": "#/definitions/apiDevice",
-          "description": "Device object to update."
-        }
-      }
-    },
     "apiUplinkFrameLog": {
       "type": "object",
       "properties": {
@@ -1128,6 +1428,7 @@
         "rxInfo": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/gwUplinkRXInfo"
           },
           "description": "RX information of the uplink."
@@ -1343,7 +1644,8 @@
       }
     },
     "gwImmediatelyTimingInfo": {
-      "type": "object"
+      "type": "object",
+      "description": "Not implemented yet."
     },
     "gwLRFHSSModulationInfo": {
       "type": "object",
@@ -1383,7 +1685,6 @@
         },
         "polarizationInversion": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Polarization inversion."
         }
       }
@@ -1527,65 +1828,30 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpcCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "httpCode": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
           "type": "string"
         },
-        "httpStatus": {
-          "type": "string"
-        },
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "apiStreamDeviceEventLogsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/apiStreamDeviceEventLogsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of apiStreamDeviceEventLogsResponse"
-    },
-    "apiStreamDeviceFrameLogsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/apiStreamDeviceFrameLogsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of apiStreamDeviceFrameLogsResponse"
     }
   }
 }

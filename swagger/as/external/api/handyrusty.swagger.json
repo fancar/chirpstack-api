@@ -4,9 +4,10 @@
     "title": "as/external/api/handyrusty.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "HandyRustyService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -17,12 +18,18 @@
   "paths": {
     "/api/handy-rusty/current-state": {
       "get": {
-        "operationId": "GetCurrentState",
+        "operationId": "HandyRustyService_GetCurrentState",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetCurrentStateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -34,19 +41,25 @@
     "/api/handy-rusty/device/stats/last-14-days": {
       "get": {
         "summary": "Get stats for device from clickhouse for last 14 days",
-        "operationId": "GetDeviceStatsLastTwoweeks",
+        "operationId": "HandyRustyService_GetDeviceStatsLastTwoweeks",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetDeviceStatsLastTwoweeksResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
             "name": "devEui",
-            "description": "Device EUI.",
+            "description": "Device EUI",
             "in": "query",
             "required": false,
             "type": "string"
@@ -60,19 +73,25 @@
     "/api/handy-rusty/device/stats/last-14-days-aggregated": {
       "get": {
         "summary": "Get stats for device from clickhouse for last 14 days aggregated by day",
-        "operationId": "GetDeviceStatsLastTwoweeksAggregated",
+        "operationId": "HandyRustyService_GetDeviceStatsLastTwoweeksAggregated",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetDeviceStatsLastTwoweeksResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
             "name": "devEui",
-            "description": "Device EUI.",
+            "description": "Device EUI",
             "in": "query",
             "required": false,
             "type": "string"
@@ -86,19 +105,25 @@
     "/api/handy-rusty/device/stats/last-24-hours": {
       "get": {
         "summary": "Get stats for device from clickhouse current and for last 24 hours",
-        "operationId": "GetDeviceStats",
+        "operationId": "HandyRustyService_GetDeviceStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetDeviceStatsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
             "name": "devEui",
-            "description": "Device EUI.",
+            "description": "Device EUI",
             "in": "query",
             "required": false,
             "type": "string"
@@ -112,12 +137,18 @@
     "/api/handy-rusty/device/stats/last-24-hours/for-list": {
       "post": {
         "summary": "Get stats for device from clickhouse current and for last 24 hours to show in list",
-        "operationId": "GetAveragesForDeviceList",
+        "operationId": "HandyRustyService_GetAveragesForDeviceList",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetAveragesForDeviceListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -139,12 +170,18 @@
     "/api/handy-rusty/frames/counters": {
       "post": {
         "summary": "GetFrameCounters returns frame counters by type for the given range. Aggregation: day",
-        "operationId": "GetFrameCounters",
+        "operationId": "HandyRustyService_GetFrameCounters",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetFrameCountersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -166,12 +203,18 @@
     "/api/handy-rusty/frames/logs/device-frames": {
       "post": {
         "summary": "GetDeviceFramesLog returns an array with recieved and transmitted device's frames",
-        "operationId": "GetDeviceFramesLog",
+        "operationId": "HandyRustyService_GetDeviceFramesLog",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetDeviceFramesLogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -193,19 +236,34 @@
     "/api/handy-rusty/frames/logs/device-frames/csv": {
       "get": {
         "summary": "StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.\n  * The data is transferred by chunks (stream);\n  * This endpoint does not work from a web-browser!",
-        "operationId": "StreamDeviceFramesLogCSV",
+        "operationId": "HandyRustyService_StreamDeviceFramesLogCSV",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/hrStreamDeviceFramesLogCSVResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/hrStreamDeviceFramesLogCSVResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of hrStreamDeviceFramesLogCSVResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
             "name": "offset",
-            "description": "you can specify offset (for pagination).",
+            "description": "you can specify offset (for pagination)",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -213,7 +271,7 @@
           },
           {
             "name": "limit",
-            "description": "you can specify rows limit.",
+            "description": "you can specify rows limit",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -221,21 +279,28 @@
           },
           {
             "name": "start",
-            "description": "You can specify start DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "description": "You can specify start DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "end",
-            "description": "You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "description": "You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters",
+            "description": "Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "organizationId",
-            "description": "You can set the id to 0 if admin.",
+            "description": "You can set the id to 0 if admin",
             "in": "query",
             "required": false,
             "type": "string",
@@ -253,8 +318,7 @@
             "description": "for internal use. Will be ignored from external api.",
             "in": "query",
             "required": false,
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -265,12 +329,18 @@
     "/api/handy-rusty/frames/speed": {
       "post": {
         "summary": "GetFrameSpeed returns an array with rx+tx frames per minute measurments",
-        "operationId": "GetFrameSpeed",
+        "operationId": "HandyRustyService_GetFrameSpeed",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetFrameSpeedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -291,12 +361,18 @@
     },
     "/api/handy-rusty/gateway/stats": {
       "get": {
-        "operationId": "GetGwStats",
+        "operationId": "HandyRustyService_GetGwStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetGwStatsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -316,19 +392,25 @@
     },
     "/api/handy-rusty/integration/replies": {
       "get": {
-        "operationId": "GetIntegrationReplies",
+        "operationId": "HandyRustyService_GetIntegrationReplies",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetIntegrationRepliesResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
             "name": "offset",
-            "description": "you can specify offset (for pagination).",
+            "description": "you can specify offset (for pagination)",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -336,7 +418,7 @@
           },
           {
             "name": "limit",
-            "description": "you can specify rows limit.",
+            "description": "you can specify rows limit",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -344,7 +426,7 @@
           },
           {
             "name": "organisationId",
-            "description": "id of organization where integration linked to.",
+            "description": "id of organization where integration linked to",
             "in": "query",
             "required": false,
             "type": "string",
@@ -352,7 +434,7 @@
           },
           {
             "name": "routingProfileId",
-            "description": "id of routing profile.",
+            "description": "id of routing profile",
             "in": "query",
             "required": false,
             "type": "string",
@@ -360,26 +442,24 @@
           },
           {
             "name": "devEui",
-            "description": "Device EUI.",
+            "description": "Device EUI",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "isError",
-            "description": "http status != 200.",
+            "description": "http status != 200",
             "in": "query",
             "required": false,
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           {
             "name": "isOk",
-            "description": "http status == 200.",
+            "description": "http status == 200",
             "in": "query",
             "required": false,
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           {
             "name": "start",
@@ -406,12 +486,18 @@
     "/api/handy-rusty/rc/exec-command": {
       "post": {
         "summary": "ExecCommand sends the command to execute on gw. It waits 30 sec for an answer from gw",
-        "operationId": "ExecCommand",
+        "operationId": "HandyRustyService_ExecCommand",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gwGatewayCommandExecResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -597,6 +683,7 @@
         "rxInfo": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrRXInfo"
           },
           "title": "RXInfo an array with info from BS recieved the frame"
@@ -712,7 +799,6 @@
         },
         "backgroundTask": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Background task execution. If set true, the result will be saved in app-db.\n Allows to get large amount of data from devices asynchronously."
         }
       }
@@ -820,6 +906,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrAveragesForDeviceList"
           }
         }
@@ -878,7 +965,6 @@
         },
         "gwOnly": {
           "type": "boolean",
-          "format": "boolean",
           "description": "for internal use. Will be ignored from external api."
         }
       }
@@ -894,6 +980,7 @@
         "data": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrDeviceFrameLog"
           },
           "title": "the array of selected device-frames logs"
@@ -906,6 +993,7 @@
         "stats": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrDeviceStats"
           }
         }
@@ -1000,6 +1088,7 @@
         "counters": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrFrameCounters"
           },
           "title": "list counters with frame counters by type"
@@ -1025,6 +1114,7 @@
         "counters": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrFrameSpeed"
           },
           "title": "list counters with frames speed"
@@ -1062,6 +1152,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrIntegrationReply"
           },
           "title": "the array of selected replies"
@@ -1177,53 +1268,30 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpcCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "httpCode": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
           "type": "string"
         },
-        "httpStatus": {
-          "type": "string"
-        },
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "hrStreamDeviceFramesLogCSVResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/hrStreamDeviceFramesLogCSVResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of hrStreamDeviceFramesLogCSVResponse"
     }
   }
 }

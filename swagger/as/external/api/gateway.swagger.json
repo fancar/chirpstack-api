@@ -4,9 +4,10 @@
     "title": "as/external/api/gateway.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "GatewayService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/gateway-status/{id}": {
       "get": {
         "summary": "GetStatus returns the gateway status for the requested mac address.",
-        "operationId": "GetStatus",
+        "operationId": "GatewayService_GetStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetGatewayStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -44,12 +51,18 @@
     "/api/gateways": {
       "get": {
         "summary": "List lists the gateways.",
-        "operationId": "List",
+        "operationId": "GatewayService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListGatewayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -87,14 +100,14 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -106,12 +119,19 @@
       },
       "post": {
         "summary": "Create creates the given gateway.",
-        "operationId": "Create",
+        "operationId": "GatewayService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -133,12 +153,18 @@
     "/api/gateways/logs": {
       "post": {
         "summary": "GetGatewayLogs returns logs of statistics state changed.",
-        "operationId": "GetGatewayLogs",
+        "operationId": "GatewayService_GetGatewayLogs",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrLogsGatewayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -160,12 +186,19 @@
     "/api/gateways/{gateway.id}": {
       "put": {
         "summary": "Update updates the gateway matching the given mac address.",
-        "operationId": "Update",
+        "operationId": "GatewayService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -182,7 +215,97 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateGatewayRequest"
+              "type": "object",
+              "properties": {
+                "gateway": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Gateway name."
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Gateway description."
+                    },
+                    "location": {
+                      "$ref": "#/definitions/commonLocation",
+                      "description": "Gateway location."
+                    },
+                    "organizationID": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "Organization ID to which the gateway belongs.\nThis can't be changed after creating the gateway."
+                    },
+                    "discoveryEnabled": {
+                      "type": "boolean",
+                      "description": "Set to true to enable gateway discovery."
+                    },
+                    "networkServerID": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "Network-server ID on which the gateway is provisioned."
+                    },
+                    "gatewayProfileID": {
+                      "type": "string",
+                      "description": "Gateway-profile ID (UUID string, optional)."
+                    },
+                    "boards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/definitions/apiGatewayBoard"
+                      },
+                      "description": "Gateway boards configuration (optional).\nThis is (currently) only needed when the gateway supports the fine-timestamp\nand you you would like to add the FPGA ID to the gateway meta-data or would\nlike Network Server to decrypt the fine-timestamp."
+                    },
+                    "tags": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Tags (user defined)."
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Metadata (provided by the gateway)."
+                    },
+                    "address": {
+                      "type": "string",
+                      "title": "Address where the device is"
+                    },
+                    "serno": {
+                      "type": "string",
+                      "title": "Serno - serial number of the device"
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "title": "the status calculated by last_seen_at parameter (now - stats_interval*1.5 \u003c= last_seen)"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "title": "Mobile phone number of SIM-card for the device"
+                    },
+                    "opStatusCode": {
+                      "type": "string",
+                      "format": "int64",
+                      "title": "operational_status code (according to dictionary table)"
+                    },
+                    "opStatusLabel": {
+                      "type": "string",
+                      "title": "operational_status label (according to dictionary table). Do not modify here"
+                    },
+                    "networkServerName": {
+                      "type": "string",
+                      "description": "Network-server Name on which the gateway is provisioned."
+                    }
+                  },
+                  "description": "Gateway object to update.",
+                  "title": "Gateway object to update."
+                }
+              }
             }
           }
         ],
@@ -191,47 +314,36 @@
         ]
       }
     },
-    "/api/gateways/{gateway_id}/frames": {
+    "/api/gateways/{gatewayID}/frames": {
       "get": {
         "summary": "StreamFrameLogs streams the uplink and downlink frame-logs for the given gateway ID.\nNotes:\n  * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.\n  (!) websocket required! The endpoint does not work from a web-swagger.",
-        "operationId": "StreamFrameLogs",
+        "operationId": "GatewayService_StreamFrameLogs",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamGatewayFrameLogsResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiStreamGatewayFrameLogsResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiStreamGatewayFrameLogsResponse"
             }
-          }
-        },
-        "parameters": [
-          {
-            "name": "gateway_id",
-            "description": "Gateway ID (HEX encoded).",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GatewayService"
-        ]
-      }
-    },
-    "/api/gateways/{gateway_id}/generate-certificate": {
-      "post": {
-        "summary": "GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.\nThis endpoint can ony be used when Network Server is configured with a gateway\nCA certificate and key, which is used for signing the TLS certificate. The returned TLS\ncertificate will have the Gateway ID as Common Name.",
-        "operationId": "GenerateGatewayClientCertificate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
+          },
+          "default": {
+            "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/apiGenerateGatewayClientCertificateResponse"
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "gateway_id",
+            "name": "gatewayID",
             "description": "Gateway ID (HEX encoded).",
             "in": "path",
             "required": true,
@@ -243,21 +355,27 @@
         ]
       }
     },
-    "/api/gateways/{gateway_id}/pings/last": {
+    "/api/gateways/{gatewayID}/pings/last": {
       "get": {
         "summary": "GetLastPing returns the last emitted ping and gateways receiving this ping.",
-        "operationId": "GetLastPing",
+        "operationId": "GatewayService_GetLastPing",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetLastPingResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "gateway_id",
+            "name": "gatewayID",
             "description": "Gateway ID (HEX encoded).",
             "in": "path",
             "required": true,
@@ -269,21 +387,27 @@
         ]
       }
     },
-    "/api/gateways/{gateway_id}/stats": {
+    "/api/gateways/{gatewayID}/stats": {
       "get": {
         "summary": "GetStats lists the gateway stats given the query parameters.",
-        "operationId": "GetStats",
+        "operationId": "GatewayService_GetStats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetGatewayStatsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "gateway_id",
+            "name": "gatewayID",
             "description": "Gateway ID (HEX encoded).",
             "in": "path",
             "required": true,
@@ -318,15 +442,53 @@
         ]
       }
     },
+    "/api/gateways/{gatewayId}/generate-certificate": {
+      "post": {
+        "summary": "GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.\nThis endpoint can ony be used when Network Server is configured with a gateway\nCA certificate and key, which is used for signing the TLS certificate. The returned TLS\ncertificate will have the Gateway ID as Common Name.",
+        "operationId": "GatewayService_GenerateGatewayClientCertificate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGenerateGatewayClientCertificateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gatewayId",
+            "description": "Gateway ID (HEX encoded).",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GatewayService"
+        ]
+      }
+    },
     "/api/gateways/{id}": {
       "get": {
         "summary": "Get returns the gateway for the requested mac address.",
-        "operationId": "Get",
+        "operationId": "GatewayService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetGatewayResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -345,12 +507,19 @@
       },
       "delete": {
         "summary": "Delete deletes the gateway matching the given mac address.",
-        "operationId": "Delete",
+        "operationId": "GatewayService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -371,12 +540,18 @@
     "/api/gateways/{id}/task-results": {
       "get": {
         "summary": "GetTaskResults lists the gateway tasks had been done by ExecCommand in background mode",
-        "operationId": "GetTaskResults",
+        "operationId": "GatewayService_GetTaskResults",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetTaskResultsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -397,12 +572,18 @@
     "/api/monitoring/gateways": {
       "get": {
         "summary": "ListMon lists all gateways with the metrics for monitoring purposes",
-        "operationId": "ListMon",
+        "operationId": "GatewayService_ListMon",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListMonResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -414,12 +595,18 @@
     "/api/monitoring/gateways/actility_styled": {
       "get": {
         "summary": "ListActilityStyled lists the gateways with legacy [Actility] json-format.",
-        "operationId": "ListActilityStyled",
+        "operationId": "GatewayService_ListActilityStyled",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListGwActilityStyledResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -457,14 +644,14 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -534,7 +721,6 @@
         },
         "discoveryEnabled": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to true to enable gateway discovery."
         },
         "networkServerID": {
@@ -549,6 +735,7 @@
         "boards": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGatewayBoard"
           },
           "description": "Gateway boards configuration (optional).\nThis is (currently) only needed when the gateway supports the fine-timestamp\nand you you would like to add the FPGA ID to the gateway meta-data or would\nlike Network Server to decrypt the fine-timestamp."
@@ -577,7 +764,6 @@
         },
         "active": {
           "type": "boolean",
-          "format": "boolean",
           "title": "the status calculated by last_seen_at parameter (now - stats_interval*1.5 \u003c= last_seen)"
         },
         "phone": {
@@ -671,7 +857,6 @@
         },
         "active": {
           "type": "boolean",
-          "format": "boolean",
           "title": "the status calculated from last_seen_at parameter"
         },
         "opStatusLabel": {
@@ -735,7 +920,6 @@
         },
         "active": {
           "type": "boolean",
-          "format": "boolean",
           "title": "the status calculated from last_seen_at parameter"
         },
         "opStatusLabel": {
@@ -911,6 +1095,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGatewayStats"
           }
         }
@@ -925,7 +1110,6 @@
         },
         "active": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Gateway status."
         },
         "lastSeenAt": {
@@ -956,6 +1140,7 @@
         "pingRX": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiPingRX"
           },
           "description": "Gateways and meta-data of reception."
@@ -968,6 +1153,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGwTaskResults"
           }
         }
@@ -1057,6 +1243,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGatewayListItem"
           },
           "description": "Nodes within this result-set."
@@ -1074,6 +1261,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGwItemActilityStyled"
           },
           "title": "result array"
@@ -1086,6 +1274,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGatewayMonItem"
           },
           "description": "Nodes within this result-set."
@@ -1157,15 +1346,6 @@
         }
       }
     },
-    "apiUpdateGatewayRequest": {
-      "type": "object",
-      "properties": {
-        "gateway": {
-          "$ref": "#/definitions/apiGateway",
-          "description": "Gateway object to update."
-        }
-      }
-    },
     "apiUplinkFrameLog": {
       "type": "object",
       "properties": {
@@ -1176,6 +1356,7 @@
         "rxInfo": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/gwUplinkRXInfo"
           },
           "description": "RX information of the uplink."
@@ -1391,7 +1572,8 @@
       }
     },
     "gwImmediatelyTimingInfo": {
-      "type": "object"
+      "type": "object",
+      "description": "Not implemented yet."
     },
     "gwLRFHSSModulationInfo": {
       "type": "object",
@@ -1431,7 +1613,6 @@
         },
         "polarizationInversion": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Polarization inversion."
         }
       }
@@ -1604,6 +1785,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrLogsGwItem"
           },
           "title": "result array"
@@ -1632,53 +1814,30 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpcCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "httpCode": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
           "type": "string"
         },
-        "httpStatus": {
-          "type": "string"
-        },
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "apiStreamGatewayFrameLogsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/apiStreamGatewayFrameLogsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of apiStreamGatewayFrameLogsResponse"
     }
   }
 }

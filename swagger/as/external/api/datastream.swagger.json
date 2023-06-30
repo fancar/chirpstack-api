@@ -4,9 +4,10 @@
     "title": "as/external/api/datastream.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "DataStreamService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,19 +19,34 @@
     "/api/datastream/gateways/task-result": {
       "get": {
         "summary": "GetGatewayTaskResult get results for gateway that previously recieved during\n  ExecCommand in background mode\n  (!) websocket required! The endpoint does not work from a web-swagger.",
-        "operationId": "GetGatewayTaskResult",
+        "operationId": "DataStreamService_GetGatewayTaskResult",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiDataStreamResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiDataStreamResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiDataStreamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
             "name": "id",
-            "description": "ID of an item requested.",
+            "description": "ID of an item requested",
             "in": "query",
             "required": false,
             "type": "string",
@@ -68,53 +84,30 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpcCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "httpCode": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
           "type": "string"
         },
-        "httpStatus": {
-          "type": "string"
-        },
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "apiDataStreamResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/apiDataStreamResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of apiDataStreamResponse"
     }
   }
 }

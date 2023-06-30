@@ -4,9 +4,10 @@
     "title": "as/external/api/networkServer.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "NetworkServerService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/network-servers": {
       "get": {
         "summary": "List lists the available network-servers.",
-        "operationId": "List",
+        "operationId": "NetworkServerService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListNetworkServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -54,14 +61,14 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -73,12 +80,18 @@
       },
       "post": {
         "summary": "Create creates the given network-server.",
-        "operationId": "Create",
+        "operationId": "NetworkServerService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateNetworkServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -100,12 +113,18 @@
     "/api/network-servers/{id}": {
       "get": {
         "summary": "Get returns the network-server matching the given id.",
-        "operationId": "Get",
+        "operationId": "NetworkServerService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetNetworkServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -125,12 +144,19 @@
       },
       "delete": {
         "summary": "Delete deletes the network-server matching the given id.",
-        "operationId": "Delete",
+        "operationId": "NetworkServerService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -149,21 +175,28 @@
         ]
       }
     },
-    "/api/network-servers/{network_server.id}": {
+    "/api/network-servers/{networkServer.id}": {
       "put": {
         "summary": "Update updates the given network-server.",
-        "operationId": "Update",
+        "operationId": "NetworkServerService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "network_server.id",
+            "name": "networkServer.id",
             "description": "Network-server ID.",
             "in": "path",
             "required": true,
@@ -175,7 +208,67 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateNetworkServerRequest"
+              "type": "object",
+              "properties": {
+                "networkServer": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Network-server name."
+                    },
+                    "server": {
+                      "type": "string",
+                      "description": "Network-server server.\nFormat: hostname:ip (e.g. localhost:8000)."
+                    },
+                    "caCert": {
+                      "type": "string",
+                      "description": "CA certificate (optional)."
+                    },
+                    "tlsCert": {
+                      "type": "string",
+                      "description": "TLS (client) certificate for connecting to the network-server (optional)."
+                    },
+                    "tlsKey": {
+                      "type": "string",
+                      "description": "TLS (client) key for connecting to the network-server (optional)."
+                    },
+                    "routingProfileCACert": {
+                      "type": "string",
+                      "description": "Routing-profile ca certificate (used by the network-server to connect\nback to the application-server) (optional)."
+                    },
+                    "routingProfileTLSCert": {
+                      "type": "string",
+                      "description": "Routing-profile TLS certificate (used by the network-server to connect\nback to the application-server) (optional)."
+                    },
+                    "routingProfileTLSKey": {
+                      "type": "string",
+                      "description": "Routing-profile TLS key (used by the network-server to connect\nback to the application-server) (optional)."
+                    },
+                    "gatewayDiscoveryEnabled": {
+                      "type": "boolean",
+                      "description": "Enable gateway discovery for this network-server."
+                    },
+                    "gatewayDiscoveryInterval": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The number of times per day the gateway discovery 'ping' must be\nbroadcasted per gateway."
+                    },
+                    "gatewayDiscoveryTXFrequency": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The frequency (Hz) of the gateway discovery 'ping'."
+                    },
+                    "gatewayDiscoveryDR": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The data-rate of the gateway discovery 'ping'."
+                    }
+                  },
+                  "description": "Network-server object to update.",
+                  "title": "Network-server object to update."
+                }
+              }
             }
           }
         ],
@@ -184,21 +277,27 @@
         ]
       }
     },
-    "/api/network-servers/{network_server_id}/adr-algorithms": {
+    "/api/network-servers/{networkServerId}/adr-algorithms": {
       "get": {
         "summary": "GetADRAlgorithms returns the available ADR algorithms.",
-        "operationId": "GetADRAlgorithms",
+        "operationId": "NetworkServerService_GetADRAlgorithms",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetADRAlgorithmsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "network_server_id",
+            "name": "networkServerId",
             "description": "Network-server ID. Deprecated",
             "in": "path",
             "required": true,
@@ -251,6 +350,7 @@
         "adrAlgorithms": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiADRAlgorithm"
           }
         }
@@ -294,6 +394,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiNetworkServerListItem"
           },
           "description": "Network-servers within the result-set."
@@ -342,7 +443,6 @@
         },
         "gatewayDiscoveryEnabled": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Enable gateway discovery for this network-server."
         },
         "gatewayDiscoveryInterval": {
@@ -390,12 +490,31 @@
         }
       }
     },
-    "apiUpdateNetworkServerRequest": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "networkServer": {
-          "$ref": "#/definitions/apiNetworkServer",
-          "description": "Network-server object to update."
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

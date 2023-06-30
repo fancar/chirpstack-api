@@ -4,9 +4,10 @@
     "title": "as/external/api/user.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "UserService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/user-logs": {
       "get": {
         "summary": "ListLogs returns a list of user-activity logs",
-        "operationId": "ListLogs",
+        "operationId": "UserService_ListLogs",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListUserLogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -46,7 +53,7 @@
           },
           {
             "name": "organizationId",
-            "description": "an organization where the user action been detected.",
+            "description": "an organization where the user action been detected",
             "in": "query",
             "required": false,
             "type": "string",
@@ -54,21 +61,21 @@
           },
           {
             "name": "search",
-            "description": "search field by username.",
+            "description": "search field by username",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -82,12 +89,18 @@
     "/api/users": {
       "get": {
         "summary": "Get user list.",
-        "operationId": "List",
+        "operationId": "UserService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -110,21 +123,21 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "search",
-            "description": "search condition.",
+            "description": "search condition",
             "in": "query",
             "required": false,
             "type": "string"
@@ -136,12 +149,18 @@
       },
       "post": {
         "summary": "Create a new user.",
-        "operationId": "Create",
+        "operationId": "UserService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -163,12 +182,18 @@
     "/api/users/{id}": {
       "get": {
         "summary": "Get data for a particular user.",
-        "operationId": "Get",
+        "operationId": "UserService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -188,12 +213,19 @@
       },
       "delete": {
         "summary": "Delete a user.",
-        "operationId": "Delete",
+        "operationId": "UserService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -215,12 +247,19 @@
     "/api/users/{user.id}": {
       "put": {
         "summary": "Update an existing user.",
-        "operationId": "Update",
+        "operationId": "UserService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -238,7 +277,66 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateUserRequest"
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "sessionTTL": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "The session timeout, in minutes."
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "description": "Set to true to make the user a global administrator."
+                    },
+                    "isActive": {
+                      "type": "boolean",
+                      "description": "Set to false to disable the user."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "E-mail of the user."
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Optional note to store with the user."
+                    },
+                    "name": {
+                      "type": "string",
+                      "title": "user's name"
+                    },
+                    "surname": {
+                      "type": "string",
+                      "title": "user's last name"
+                    },
+                    "company": {
+                      "type": "string",
+                      "title": "the company where the employee is working at"
+                    },
+                    "position": {
+                      "type": "string",
+                      "title": "user's position and subdivision in the company"
+                    },
+                    "phone": {
+                      "type": "string",
+                      "title": "user's phone"
+                    },
+                    "loginAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "last login at timestamp."
+                    },
+                    "loginWithLdap": {
+                      "type": "boolean",
+                      "title": "mark as LDAP-user, if true - allow him to login with name@domain via LDAP"
+                    }
+                  },
+                  "description": "User object to update.",
+                  "title": "User object to update."
+                }
+              }
             }
           }
         ],
@@ -247,21 +345,28 @@
         ]
       }
     },
-    "/api/users/{user_id}/password": {
+    "/api/users/{userId}/password": {
       "put": {
         "summary": "UpdatePassword updates a password.",
-        "operationId": "UpdatePassword",
+        "operationId": "UserService_UpdatePassword",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "user_id",
+            "name": "userId",
             "description": "User ID.",
             "in": "path",
             "required": true,
@@ -273,7 +378,13 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateUserPasswordRequest"
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "description": "New pasword."
+                }
+              }
             }
           }
         ],
@@ -298,6 +409,7 @@
         "organizations": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiUserOrganization"
           },
           "description": "Add the user to the following organizations."
@@ -344,6 +456,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiUserLogListItem"
           },
           "description": "Result-set."
@@ -361,32 +474,10 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiUserListItem"
           },
           "description": "Result-set."
-        }
-      }
-    },
-    "apiUpdateUserPasswordRequest": {
-      "type": "object",
-      "properties": {
-        "userId": {
-          "type": "string",
-          "format": "int64",
-          "description": "User ID."
-        },
-        "password": {
-          "type": "string",
-          "description": "New pasword."
-        }
-      }
-    },
-    "apiUpdateUserRequest": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/apiUser",
-          "description": "User object to update."
         }
       }
     },
@@ -405,12 +496,10 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to true to make the user a global administrator."
         },
         "isActive": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to false to disable the user."
         },
         "email": {
@@ -448,7 +537,6 @@
         },
         "loginWithLdap": {
           "type": "boolean",
-          "format": "boolean",
           "title": "mark as LDAP-user, if true - allow him to login with name@domain via LDAP"
         }
       }
@@ -472,12 +560,10 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to true to make the user a global administrator."
         },
         "isActive": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to false to disable the user."
         },
         "createdAt": {
@@ -573,18 +659,43 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is admin within the context of the organization.\nThere is no need to set the is_device_admin and is_gateway_admin flags."
         },
         "isDeviceAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify device related resources (applications,\ndevice-profiles, devices, multicast-groups)."
         },
         "isGatewayAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify gateways."
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

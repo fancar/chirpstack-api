@@ -4,9 +4,10 @@
     "title": "as/external/api/dataexport.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "DataExportService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,27 @@
     "/api/dataexport/devices": {
       "get": {
         "summary": "GetDevices Export devices\n  (!) websocket required! The endpoint does not work from a web-swagger.",
-        "operationId": "GetDevices",
+        "operationId": "DataExportService_GetDevices",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiStreamResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiStreamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -38,7 +54,7 @@
           },
           {
             "name": "nsId",
-            "description": "network_server id.",
+            "description": "network_server id",
             "in": "query",
             "required": false,
             "type": "string",
@@ -53,12 +69,27 @@
     "/api/dataexport/gateways": {
       "get": {
         "summary": "GetGateways Export gateways\n  (!) websocket required! The endpoint does not work from a web-swagger.",
-        "operationId": "GetGateways",
+        "operationId": "DataExportService_GetGateways",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiStreamResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiStreamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -70,12 +101,27 @@
     "/api/dataexport/users": {
       "get": {
         "summary": "GetUsers Export users\n  (!) websocket required! The endpoint does not work from a web-swagger.",
-        "operationId": "GetUsers",
+        "operationId": "DataExportService_GetUsers",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/apiStreamResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/apiStreamResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of apiStreamResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -106,53 +152,30 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpcCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "httpCode": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
           "type": "string"
         },
-        "httpStatus": {
-          "type": "string"
-        },
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "apiStreamResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/apiStreamResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of apiStreamResponse"
     }
   }
 }

@@ -1,0 +1,445 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "nc/nc.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "NetworkControllerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "commonLocation": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Latitude."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Longitude."
+        },
+        "altitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Altitude."
+        },
+        "source": {
+          "$ref": "#/definitions/commonLocationSource",
+          "description": "Location source."
+        },
+        "accuracy": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Accuracy (in meters)."
+        }
+      }
+    },
+    "commonLocationSource": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "GPS",
+        "CONFIG",
+        "GEO_RESOLVER_TDOA",
+        "GEO_RESOLVER_RSSI",
+        "GEO_RESOLVER_GNSS",
+        "GEO_RESOLVER_WIFI"
+      ],
+      "default": "UNKNOWN",
+      "description": " - UNKNOWN: Unknown.\n - GPS: GPS.\n - CONFIG: Manually configured.\n - GEO_RESOLVER_TDOA: Geo resolver (TDOA).\n - GEO_RESOLVER_RSSI: Geo resolver (RSSI).\n - GEO_RESOLVER_GNSS: Geo resolver (GNSS).\n - GEO_RESOLVER_WIFI: Geo resolver (WIFI)."
+    },
+    "commonModulation": {
+      "type": "string",
+      "enum": [
+        "LORA",
+        "FSK",
+        "LR_FHSS"
+      ],
+      "default": "LORA",
+      "title": "- LORA: LoRa\n - FSK: FSK\n - LR_FHSS: LR-FHSS"
+    },
+    "gwCRCStatus": {
+      "type": "string",
+      "enum": [
+        "NO_CRC",
+        "BAD_CRC",
+        "CRC_OK"
+      ],
+      "default": "NO_CRC",
+      "description": " - NO_CRC: No CRC.\n - BAD_CRC: Bad CRC.\n - CRC_OK: CRC OK."
+    },
+    "gwDelayTimingInfo": {
+      "type": "object",
+      "properties": {
+        "delay": {
+          "type": "string",
+          "description": "Delay (duration).\nThe delay will be added to the gateway internal timing, provided by the context object."
+        }
+      }
+    },
+    "gwDownlinkTXInfo": {
+      "type": "object",
+      "properties": {
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID.\nDeprecated: replaced by gateway_id in DownlinkFrame."
+        },
+        "frequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "TX frequency (in Hz)."
+        },
+        "power": {
+          "type": "integer",
+          "format": "int32",
+          "description": "TX power (in dBm)."
+        },
+        "modulation": {
+          "$ref": "#/definitions/commonModulation",
+          "description": "Modulation."
+        },
+        "loRaModulationInfo": {
+          "$ref": "#/definitions/gwLoRaModulationInfo",
+          "description": "LoRa modulation information."
+        },
+        "fskModulationInfo": {
+          "$ref": "#/definitions/gwFSKModulationInfo",
+          "description": "FSK modulation information."
+        },
+        "board": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The board identifier for emitting the frame."
+        },
+        "antenna": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The antenna identifier for emitting the frame."
+        },
+        "timing": {
+          "$ref": "#/definitions/gwDownlinkTiming",
+          "description": "Timing defines the downlink timing to use."
+        },
+        "immediatelyTimingInfo": {
+          "$ref": "#/definitions/gwImmediatelyTimingInfo",
+          "description": "Immediately timing information."
+        },
+        "delayTimingInfo": {
+          "$ref": "#/definitions/gwDelayTimingInfo",
+          "description": "Context based delay timing information."
+        },
+        "gpsEpochTimingInfo": {
+          "$ref": "#/definitions/gwGPSEpochTimingInfo",
+          "description": "GPS Epoch timing information."
+        },
+        "context": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway specific context.\nIn case of a Class-A downlink, this contains a copy of the uplink context."
+        }
+      }
+    },
+    "gwDownlinkTiming": {
+      "type": "string",
+      "enum": [
+        "IMMEDIATELY",
+        "DELAY",
+        "GPS_EPOCH"
+      ],
+      "default": "IMMEDIATELY",
+      "description": " - IMMEDIATELY: Send the downlink immediately.\n - DELAY: Send downlink at the given delay (based on provided context).\n - GPS_EPOCH: Send at given GPS epoch value."
+    },
+    "gwEncryptedFineTimestamp": {
+      "type": "object",
+      "properties": {
+        "aesKeyIndex": {
+          "type": "integer",
+          "format": "int64",
+          "description": "AES key index used for encrypting the fine timestamp."
+        },
+        "encryptedNS": {
+          "type": "string",
+          "format": "byte",
+          "description": "Encrypted 'main' fine-timestamp (ns precision part of the timestamp)."
+        },
+        "fpgaID": {
+          "type": "string",
+          "format": "byte",
+          "description": "FPGA ID."
+        }
+      }
+    },
+    "gwFSKModulationInfo": {
+      "type": "object",
+      "properties": {
+        "frequencyDeviation": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency deviation."
+        },
+        "datarate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "FSK datarate (bits / sec)."
+        }
+      }
+    },
+    "gwFineTimestampType": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "ENCRYPTED",
+        "PLAIN"
+      ],
+      "default": "NONE",
+      "description": " - NONE: No fine-timestamp available.\n - ENCRYPTED: Encrypted fine-timestamp.\n - PLAIN: Plain fine-timestamp."
+    },
+    "gwGPSEpochTimingInfo": {
+      "type": "object",
+      "properties": {
+        "timeSinceGPSEpoch": {
+          "type": "string",
+          "description": "Duration since GPS Epoch."
+        }
+      }
+    },
+    "gwImmediatelyTimingInfo": {
+      "type": "object",
+      "description": "Not implemented yet."
+    },
+    "gwLRFHSSModulationInfo": {
+      "type": "object",
+      "properties": {
+        "operatingChannelWidth": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Operating channel width (OCW) in Hz."
+        },
+        "codeRate": {
+          "type": "string",
+          "description": "Code-rate."
+        },
+        "gridSteps": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Hopping grid number of steps."
+        }
+      }
+    },
+    "gwLoRaModulationInfo": {
+      "type": "object",
+      "properties": {
+        "bandwidth": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Bandwidth."
+        },
+        "spreadingFactor": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Speading-factor."
+        },
+        "codeRate": {
+          "type": "string",
+          "description": "Code-rate."
+        },
+        "polarizationInversion": {
+          "type": "boolean",
+          "description": "Polarization inversion."
+        }
+      }
+    },
+    "gwPlainFineTimestamp": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Full timestamp."
+        }
+      }
+    },
+    "gwUplinkFrameSet": {
+      "type": "object",
+      "properties": {
+        "phyPayload": {
+          "type": "string",
+          "format": "byte",
+          "description": "PHYPayload."
+        },
+        "txInfo": {
+          "$ref": "#/definitions/gwUplinkTXInfo",
+          "description": "TX meta-data."
+        },
+        "rxInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/gwUplinkRXInfo"
+          },
+          "description": "RX meta-data set."
+        }
+      }
+    },
+    "gwUplinkRXInfo": {
+      "type": "object",
+      "properties": {
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID."
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RX time (only set when the gateway has a GPS module)."
+        },
+        "timeSinceGPSEpoch": {
+          "type": "string",
+          "description": "RX time since GPS epoch (only set when the gateway has a GPS module)."
+        },
+        "rssi": {
+          "type": "integer",
+          "format": "int32",
+          "description": "RSSI."
+        },
+        "loRaSNR": {
+          "type": "number",
+          "format": "double",
+          "description": "LoRa SNR."
+        },
+        "channel": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Channel."
+        },
+        "rfChain": {
+          "type": "integer",
+          "format": "int64",
+          "description": "RF Chain."
+        },
+        "board": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Board."
+        },
+        "antenna": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Antenna."
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "description": "Location."
+        },
+        "fineTimestampType": {
+          "$ref": "#/definitions/gwFineTimestampType",
+          "description": "Fine-timestamp type."
+        },
+        "encryptedFineTimestamp": {
+          "$ref": "#/definitions/gwEncryptedFineTimestamp",
+          "description": "Encrypted fine-timestamp data."
+        },
+        "plainFineTimestamp": {
+          "$ref": "#/definitions/gwPlainFineTimestamp",
+          "description": "Plain fine-timestamp data."
+        },
+        "context": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway specific context."
+        },
+        "uplinkID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Uplink ID (UUID bytes).\nUnique and random ID which can be used to correlate the uplink across multiple logs."
+        },
+        "crcStatus": {
+          "$ref": "#/definitions/gwCRCStatus",
+          "description": "CRC status."
+        }
+      }
+    },
+    "gwUplinkTXInfo": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency (Hz)."
+        },
+        "modulation": {
+          "$ref": "#/definitions/commonModulation",
+          "description": "Modulation."
+        },
+        "loRaModulationInfo": {
+          "$ref": "#/definitions/gwLoRaModulationInfo",
+          "description": "LoRa modulation information."
+        },
+        "fskModulationInfo": {
+          "$ref": "#/definitions/gwFSKModulationInfo",
+          "description": "FSK modulation information."
+        },
+        "lrFHSSModulationInfo": {
+          "$ref": "#/definitions/gwLRFHSSModulationInfo",
+          "description": "LR-FHSS modulation information."
+        }
+      }
+    },
+    "ncMType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "JOIN_REQUEST",
+        "JOIN_ACCEPT",
+        "UNCONFIRMED_DATA_UP",
+        "UNCONFIRMED_DATA_DOWN",
+        "CONFIRMED_DATA_UP",
+        "CONFIRMED_DATA_DOWN",
+        "REJOIN_REQUEST"
+      ],
+      "default": "UNKNOWN"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,9 +4,10 @@
     "title": "as/external/api/dictionary.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "DictionaryService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -15,21 +16,27 @@
     "application/json"
   ],
   "paths": {
-    "/api/dictionary/{dic_type}": {
+    "/api/dictionary/{dicType}": {
       "get": {
         "summary": "GetDictionary returns dictionary by dictionary type",
-        "operationId": "GetDictionary",
+        "operationId": "DictionaryService_GetDictionary",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDictionaryResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dic_type",
+            "name": "dicType",
             "description": "type of a dictionary",
             "in": "path",
             "required": true,
@@ -63,7 +70,6 @@
         },
         "isActual": {
           "type": "boolean",
-          "format": "boolean",
           "title": "if true the item is active"
         }
       }
@@ -78,7 +84,36 @@
         "dict": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiDictionary"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
           }
         }
       }

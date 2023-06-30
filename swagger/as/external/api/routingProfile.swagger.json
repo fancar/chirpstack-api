@@ -4,9 +4,10 @@
     "title": "as/external/api/routingProfile.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "RoutingProfileService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/routing-profiles": {
       "get": {
         "summary": "List lists the available routing-profiles.",
-        "operationId": "List",
+        "operationId": "RoutingProfileService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListRoutingProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -54,7 +61,7 @@
           },
           {
             "name": "search",
-            "description": "Search on name or Routing Profile. Case-insencitive. regexp available.",
+            "description": "Search on name or Routing Profile. Case-insencitive. regexp available",
             "in": "query",
             "required": false,
             "type": "string"
@@ -66,12 +73,18 @@
       },
       "post": {
         "summary": "Create creates the given routing-profile.",
-        "operationId": "Create",
+        "operationId": "RoutingProfileService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateRoutingProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -93,12 +106,18 @@
     "/api/routing-profiles/{id}": {
       "get": {
         "summary": "Get returns the routing-profile matching the given id.",
-        "operationId": "Get",
+        "operationId": "RoutingProfileService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetRoutingProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -118,12 +137,19 @@
       },
       "delete": {
         "summary": "Delete deletes the routing-profile matching the given id.",
-        "operationId": "Delete",
+        "operationId": "RoutingProfileService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -142,21 +168,28 @@
         ]
       }
     },
-    "/api/routing-profiles/{routing_profile.id}": {
+    "/api/routing-profiles/{routingProfile.id}": {
       "put": {
         "summary": "Update updates the given routing-profile.",
-        "operationId": "Update",
+        "operationId": "RoutingProfileService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "routing_profile.id",
+            "name": "routingProfile.id",
             "description": "Routing-profile ID.",
             "in": "path",
             "required": true,
@@ -168,7 +201,47 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateRoutingProfileRequest"
+              "type": "object",
+              "properties": {
+                "routingProfile": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Routing-profile name."
+                    },
+                    "description": {
+                      "type": "string",
+                      "title": "Routing profile description"
+                    },
+                    "organizationID": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "Organization ID."
+                    },
+                    "applications": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "int64"
+                      },
+                      "title": "Application services related to appropriate routing profile"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Created at timestamp."
+                    },
+                    "devCnt": {
+                      "type": "string",
+                      "format": "int64",
+                      "title": "Devices with RP"
+                    }
+                  },
+                  "description": "Routing-profile object to update.",
+                  "title": "Routing-profile object to update."
+                }
+              }
             }
           }
         ],
@@ -218,6 +291,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiRoutingProfile"
           }
         }
@@ -264,12 +338,31 @@
         }
       }
     },
-    "apiUpdateRoutingProfileRequest": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "routingProfile": {
-          "$ref": "#/definitions/apiRoutingProfile",
-          "description": "Routing-profile object to update."
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

@@ -4,9 +4,10 @@
     "title": "as/external/api/internal.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "InternalService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/internal/api-keys": {
       "get": {
         "summary": "ListAPIKeys lists the available API keys.",
-        "operationId": "ListAPIKeys",
+        "operationId": "InternalService_ListAPIKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListAPIKeysResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -49,8 +56,7 @@
             "description": "Return only admin keys.",
             "in": "query",
             "required": false,
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           {
             "name": "organizationID",
@@ -70,14 +76,14 @@
           },
           {
             "name": "orderBy",
-            "description": "sort list by name.",
+            "description": "sort list by name",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "order",
-            "description": "sort direction.",
+            "description": "sort direction",
             "in": "query",
             "required": false,
             "type": "string"
@@ -89,12 +95,18 @@
       },
       "post": {
         "summary": "CreateAPIKey creates the given API key.",
-        "operationId": "CreateAPIKey",
+        "operationId": "InternalService_CreateAPIKey",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateAPIKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -116,12 +128,19 @@
     "/api/internal/api-keys/{id}": {
       "delete": {
         "summary": "DeleteAPIKey deletes the API key.",
-        "operationId": "DeleteAPIKey",
+        "operationId": "InternalService_DeleteAPIKey",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -142,12 +161,18 @@
     "/api/internal/devices/summary": {
       "get": {
         "summary": "GetDevicesSummary returns an aggregated summary of the devices.",
-        "operationId": "GetDevicesSummary",
+        "operationId": "InternalService_GetDevicesSummary",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetDevicesSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -169,19 +194,25 @@
     "/api/internal/devices/summarylog": {
       "get": {
         "summary": "GetDevicesSummaryLog returns log of aggregated summary.",
-        "operationId": "GetDevicesSummaryLog",
+        "operationId": "InternalService_GetDevicesSummaryLog",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetDeviceCountersResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
             "name": "organizationId",
-            "description": "Id (number). If Zero - all organisations (allowed for admin).",
+            "description": "Id (number). If Zero - all organisations (allowed for admin)",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -189,21 +220,21 @@
           },
           {
             "name": "start",
-            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "end",
-            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "aggregation",
-            "description": "aggregation of the data: HOUR,DAY,WEEK,MONTH.",
+            "description": "aggregation of the data: HOUR,DAY,WEEK,MONTH",
             "in": "query",
             "required": false,
             "type": "string"
@@ -217,12 +248,18 @@
     "/api/internal/gateways/summary": {
       "get": {
         "summary": "GetGatewaysSummary returns an aggregated summary of the gateways.",
-        "operationId": "GetGatewaysSummary",
+        "operationId": "InternalService_GetGatewaysSummary",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetGatewaysSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -244,19 +281,25 @@
     "/api/internal/gateways/summarylog": {
       "get": {
         "summary": "GetGatewaysSummaryLog returns log of aggregated summary.",
-        "operationId": "GetGatewaysSummaryLog",
+        "operationId": "InternalService_GetGatewaysSummaryLog",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/hrGetGatewayCountersResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
             "name": "organizationId",
-            "description": "Id (number). If Zero - all organisations (allowed for admin).",
+            "description": "Id (number). If Zero - all organisations (allowed for admin)",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -264,21 +307,21 @@
           },
           {
             "name": "start",
-            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "end",
-            "description": "format RFC3339: 2006-01-02T15:04:05.000Z.",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "aggregation",
-            "description": "aggregation of the data: HOUR,DAY,WEEK,MONTH.",
+            "description": "aggregation of the data: HOUR,DAY,WEEK,MONTH",
             "in": "query",
             "required": false,
             "type": "string"
@@ -292,12 +335,18 @@
     "/api/internal/info": {
       "get": {
         "summary": "GetInfo returns summary about versions and so on.",
-        "operationId": "GetInfo",
+        "operationId": "InternalService_GetInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -309,12 +358,18 @@
     "/api/internal/login": {
       "post": {
         "summary": "Log in a user",
-        "operationId": "Login",
+        "operationId": "InternalService_Login",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiLoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -336,12 +391,18 @@
     "/api/internal/monitoring/counters": {
       "get": {
         "summary": "GetMainCounters returns main app-server metrics",
-        "operationId": "GetMainCounters",
+        "operationId": "InternalService_GetMainCounters",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetMainCountersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -378,12 +439,18 @@
     "/api/internal/oidc/login": {
       "get": {
         "summary": "OpenID Connect login.",
-        "operationId": "OpenIDConnectLogin",
+        "operationId": "InternalService_OpenIDConnectLogin",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiOpenIDConnectLoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -411,12 +478,18 @@
     "/api/internal/profile": {
       "get": {
         "summary": "Get the current user's profile",
-        "operationId": "Profile",
+        "operationId": "InternalService_Profile",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -428,12 +501,18 @@
     "/api/internal/search": {
       "get": {
         "summary": "Perform a global search.",
-        "operationId": "GlobalSearch",
+        "operationId": "InternalService_GlobalSearch",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGlobalSearchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -470,12 +549,18 @@
     "/api/internal/settings": {
       "get": {
         "summary": "Get the global settings.",
-        "operationId": "Settings",
+        "operationId": "InternalService_Settings",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiSettingsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -499,7 +584,6 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Is global admin key."
         },
         "organizationID": {
@@ -646,6 +730,7 @@
         },
         "redis": {
           "type": "string",
+          "description": "mosquito version\n string mosquito = 9;",
           "title": "redis version"
         }
       }
@@ -656,6 +741,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiMainCounters"
           }
         }
@@ -667,6 +753,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiGlobalSearchResult"
           }
         },
@@ -745,6 +832,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiAPIKey"
           }
         }
@@ -802,7 +890,6 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Enable OpenID Connect authentication."
         },
         "loginURL": {
@@ -842,17 +929,14 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is admin within the context of this organization.\nThere is no need to set the is_device_admin and is_gateway_admin flags."
         },
         "isDeviceAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify device related resources (applications,\ndevice-profiles, devices, multicast-groups)."
         },
         "isGatewayAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "User is able to modify gateways."
         },
         "createdAt": {
@@ -878,6 +962,7 @@
         "organizations": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiOrganizationLink"
           },
           "description": "Organizations to which the user is associated."
@@ -916,12 +1001,10 @@
         },
         "isAdmin": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to true to make the user a global administrator."
         },
         "isActive": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set to false to disable the user."
         },
         "email": {
@@ -959,7 +1042,6 @@
         },
         "loginWithLdap": {
           "type": "boolean",
-          "format": "boolean",
           "title": "mark as LDAP-user, if true - allow him to login with name@domain via LDAP"
         }
       }
@@ -1006,6 +1088,7 @@
         "counters": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrDeviceCounters"
           }
         }
@@ -1022,9 +1105,38 @@
         "counters": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/hrDeviceCounters"
           },
           "title": "log of counters"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

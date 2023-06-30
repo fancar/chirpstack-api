@@ -4,9 +4,10 @@
     "title": "as/external/api/multicastGroup.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "MulticastGroupService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -18,12 +19,18 @@
     "/api/multicast-groups": {
       "get": {
         "summary": "List lists the available multicast-groups.",
-        "operationId": "List",
+        "operationId": "MulticastGroupService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListMulticastGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -80,12 +87,18 @@
       },
       "post": {
         "summary": "Create creates the given multicast-group.",
-        "operationId": "Create",
+        "operationId": "MulticastGroupService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiCreateMulticastGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -107,12 +120,18 @@
     "/api/multicast-groups/{id}": {
       "get": {
         "summary": "Get returns a multicast-group given an ID.",
-        "operationId": "Get",
+        "operationId": "MulticastGroupService_Get",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetMulticastGroupResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -131,12 +150,19 @@
       },
       "delete": {
         "summary": "Delete deletes a multicast-group given an ID.",
-        "operationId": "Delete",
+        "operationId": "MulticastGroupService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -154,21 +180,28 @@
         ]
       }
     },
-    "/api/multicast-groups/{multicast_group.id}": {
+    "/api/multicast-groups/{multicastGroup.id}": {
       "put": {
         "summary": "Update updates the given multicast-group.",
-        "operationId": "Update",
+        "operationId": "MulticastGroupService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "multicast_group.id",
+            "name": "multicastGroup.id",
             "description": "ID (string formatted UUID).\nThis will be generated automatically on create.",
             "in": "path",
             "required": true,
@@ -179,7 +212,65 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiUpdateMulticastGroupRequest"
+              "type": "object",
+              "properties": {
+                "multicastGroup": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Multicast-group name."
+                    },
+                    "mcAddr": {
+                      "type": "string",
+                      "description": "Multicast address (HEX encoded DevAddr)."
+                    },
+                    "mcNwkSKey": {
+                      "type": "string",
+                      "description": "Multicast network session key (HEX encoded AES128 key)."
+                    },
+                    "mcAppSKey": {
+                      "type": "string",
+                      "description": "Multicast application session key (HEX encoded AES128 key)."
+                    },
+                    "fCnt": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Frame-counter."
+                    },
+                    "groupType": {
+                      "$ref": "#/definitions/apiMulticastGroupType",
+                      "description": "Multicast type."
+                    },
+                    "dr": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Data-rate."
+                    },
+                    "frequency": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Frequency (Hz)."
+                    },
+                    "pingSlotPeriod": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Ping-slot period.\nMandatory for Class-B multicast groups."
+                    },
+                    "serviceProfileID": {
+                      "type": "string",
+                      "description": "Service Profile ID.\nAfter creation, this can not be updated."
+                    },
+                    "organizationID": {
+                      "type": "string",
+                      "format": "int64",
+                      "title": "for logging purposes"
+                    }
+                  },
+                  "description": "Multicast-group object to update.",
+                  "title": "Multicast-group object to update."
+                }
+              }
             }
           }
         ],
@@ -188,21 +279,28 @@
         ]
       }
     },
-    "/api/multicast-groups/{multicast_group_id}/devices": {
+    "/api/multicast-groups/{multicastGroupID}/devices": {
       "post": {
         "summary": "AddDevice adds the given device to the multicast-group.",
-        "operationId": "AddDevice",
+        "operationId": "MulticastGroupService_AddDevice",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "multicast_group_id",
+            "name": "multicastGroupID",
             "description": "Multicast-group ID (string formatted UUID).",
             "in": "path",
             "required": true,
@@ -213,7 +311,13 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiAddDeviceToMulticastGroupRequest"
+              "type": "object",
+              "properties": {
+                "devEUI": {
+                  "type": "string",
+                  "description": "Device EUI (HEX encoded string).\nNote that the device and the multicast-group must share the same\napplication ID."
+                }
+              }
             }
           }
         ],
@@ -222,28 +326,35 @@
         ]
       }
     },
-    "/api/multicast-groups/{multicast_group_id}/devices/{dev_eui}": {
+    "/api/multicast-groups/{multicastGroupID}/devices/{devEUI}": {
       "delete": {
         "summary": "RemoveDevice removes the given device from the multicast-group.",
-        "operationId": "RemoveDevice",
+        "operationId": "MulticastGroupService_RemoveDevice",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "multicast_group_id",
+            "name": "multicastGroupID",
             "description": "Multicast-group ID (string formatted UUID).",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded string).",
             "in": "path",
             "required": true,
@@ -255,21 +366,27 @@
         ]
       }
     },
-    "/api/multicast-groups/{multicast_group_id}/queue": {
+    "/api/multicast-groups/{multicastGroupID}/queue": {
       "get": {
         "summary": "ListQueue lists the items in the multicast-group queue.",
-        "operationId": "ListQueue",
+        "operationId": "MulticastGroupService_ListQueue",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListMulticastGroupQueueItemsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "multicast_group_id",
+            "name": "multicastGroupID",
             "description": "Multicast-group ID (string formatted UUID).",
             "in": "path",
             "required": true,
@@ -282,18 +399,25 @@
       },
       "delete": {
         "summary": "FlushQueue flushes the multicast-group queue.",
-        "operationId": "FlushQueue",
+        "operationId": "MulticastGroupService_FlushQueue",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "multicast_group_id",
+            "name": "multicastGroupID",
             "description": "Multicast-group ID (string formatted UUID).",
             "in": "path",
             "required": true,
@@ -305,21 +429,27 @@
         ]
       }
     },
-    "/api/multicast-groups/{multicast_queue_item.multicast_group_id}/queue": {
+    "/api/multicast-groups/{multicastQueueItem.multicastGroupID}/queue": {
       "post": {
         "summary": "Enqueue adds the given item to the multicast-queue.",
-        "operationId": "Enqueue",
+        "operationId": "MulticastGroupService_Enqueue",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiEnqueueMulticastQueueItemResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "multicast_queue_item.multicast_group_id",
+            "name": "multicastQueueItem.multicastGroupID",
             "description": "Multicast-group ID (string formatted UUID).",
             "in": "path",
             "required": true,
@@ -330,7 +460,31 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiEnqueueMulticastQueueItemRequest"
+              "type": "object",
+              "properties": {
+                "multicastQueueItem": {
+                  "type": "object",
+                  "properties": {
+                    "fCnt": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Downlink frame-counter.\nThis will be automatically set on enqueue."
+                    },
+                    "fPort": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "FPort used (must be \u003e 0)."
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "byte",
+                      "description": "Base64 encoded data."
+                    }
+                  },
+                  "description": "Multicast queue-item object to enqueue.",
+                  "title": "Multicast queue-item object to enqueue."
+                }
+              }
             }
           }
         ],
@@ -341,19 +495,6 @@
     }
   },
   "definitions": {
-    "apiAddDeviceToMulticastGroupRequest": {
-      "type": "object",
-      "properties": {
-        "multicastGroupID": {
-          "type": "string",
-          "description": "Multicast-group ID (string formatted UUID)."
-        },
-        "devEUI": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded string).\nNote that the device and the multicast-group must share the same\napplication ID."
-        }
-      }
-    },
     "apiCreateMulticastGroupRequest": {
       "type": "object",
       "properties": {
@@ -369,15 +510,6 @@
         "id": {
           "type": "string",
           "description": "ID of created group (string formatted UUID)."
-        }
-      }
-    },
-    "apiEnqueueMulticastQueueItemRequest": {
-      "type": "object",
-      "properties": {
-        "multicastQueueItem": {
-          "$ref": "#/definitions/apiMulticastQueueItem",
-          "description": "Multicast queue-item object to enqueue."
         }
       }
     },
@@ -416,6 +548,7 @@
         "multicastQueueItems": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiMulticastQueueItem"
           }
         }
@@ -432,6 +565,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiMulticastGroupListItem"
           }
         }
@@ -549,12 +683,31 @@
         }
       }
     },
-    "apiUpdateMulticastGroupRequest": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "multicastGroup": {
-          "$ref": "#/definitions/apiMulticastGroup",
-          "description": "Multicast-group object to update."
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

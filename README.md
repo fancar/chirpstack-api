@@ -1,4 +1,4 @@
-# ChirpStack API
+# IoT Server API (ChirpStack fork)
 
 ![Tests](https://github.com/brocaar/chirpstack-api/actions/workflows/main.yml/badge.svg?branch=master)
 
@@ -56,7 +56,7 @@ These instructions require [Docker](https://docs.docker.com/install/) and
 # (re)generate all client libraries
 make all
 
-# only (re)generate go client library
+# only (re)generate go client library and swagger
 make go
 
 # only (re)generate JavaScript / Typescript
@@ -64,9 +64,6 @@ make js
 
 # only (re)generate Python client library
 make python
-
-# only (re)generate Swagger definitions
-make swagger
 
 # only (re)generate Java definitions
 make java

@@ -4,9 +4,10 @@
     "title": "as/external/api/deviceQueue.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
+  "tags": [
+    {
+      "name": "DeviceQueueService"
+    }
   ],
   "consumes": [
     "application/json"
@@ -15,21 +16,27 @@
     "application/json"
   ],
   "paths": {
-    "/api/devices/{dev_eui}/fcnt": {
+    "/api/devices/{devEUI}/fcnt": {
       "get": {
         "summary": "GetNextDownlinkFCnt returns next downlink f-counter for the device\nused by clients who encrypt payload data themself",
-        "operationId": "GetNextDownlinkFCnt",
+        "operationId": "DeviceQueueService_GetNextDownlinkFCnt",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiGetNextDownlinkFCntResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -41,21 +48,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/queue": {
+    "/api/devices/{devEUI}/queue": {
       "get": {
         "summary": "List lists the items in the device-queue.",
-        "operationId": "List",
+        "operationId": "DeviceQueueService_List",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiListDeviceQueueItemsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -66,8 +79,7 @@
             "description": "Return only the count, not the result-set.",
             "in": "query",
             "required": false,
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -76,18 +88,25 @@
       },
       "delete": {
         "summary": "Flush flushes the downlink device-queue.",
-        "operationId": "Flush",
+        "operationId": "DeviceQueueService_Flush",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -99,21 +118,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/queue/actilitystyle": {
+    "/api/devices/{devEUI}/queue/actilitystyle": {
       "post": {
         "summary": "ActilityEnqueue adds the given item to the device-queue with actility-styled request\\response.",
-        "operationId": "ActilityEnqueue",
+        "operationId": "DeviceQueueService_ActilityEnqueue",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiEnqueueDeviceQueueActilityItemResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -124,7 +149,39 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiEnqueueDeviceQueueActilityItemRequest"
+              "type": "object",
+              "properties": {
+                "confirmDownlink": {
+                  "type": "boolean",
+                  "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
+                },
+                "flushDownlinkQueue": {
+                  "type": "boolean",
+                  "description": "Indicates to flush the LRC downlink queue before adding the new message to the queue.\nDefault is false."
+                },
+                "payloadHex": {
+                  "type": "string",
+                  "description": "Payload of the message in hexadecimal format."
+                },
+                "targetPorts": {
+                  "type": "string",
+                  "description": "LoRa port(s) targetted by the message."
+                },
+                "fCnt": {
+                  "type": "integer",
+                  "format": "int64",
+                  "title": "Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
+                },
+                "ttl": {
+                  "type": "integer",
+                  "format": "int64",
+                  "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
+                },
+                "getFcnt": {
+                  "type": "boolean",
+                  "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
+                }
+              }
             }
           }
         ],
@@ -133,21 +190,27 @@
         ]
       }
     },
-    "/api/devices/{dev_eui}/queue_hex": {
+    "/api/devices/{devEUI}/queue_hex": {
       "post": {
         "summary": "EnqueueHex adds the given item to the device-queue with hex-payload.",
-        "operationId": "EnqueueHex",
+        "operationId": "DeviceQueueService_EnqueueHex",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiEnqueueDeviceQueueItemResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "dev_eui",
+            "name": "devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -158,7 +221,17 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiEnqueueDeviceQueueItemHexRequest"
+              "type": "object",
+              "properties": {
+                "deviceQueueItem": {
+                  "$ref": "#/definitions/apiDownlinkItemHex",
+                  "description": "Queue-item object to enqueue."
+                },
+                "getFcnt": {
+                  "type": "boolean",
+                  "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
+                }
+              }
             }
           }
         ],
@@ -167,21 +240,27 @@
         ]
       }
     },
-    "/api/devices/{device_queue_item.dev_eui}/queue": {
+    "/api/devices/{deviceQueueItem.devEUI}/queue": {
       "post": {
         "summary": "Enqueue adds the given item to the device-queue.",
-        "operationId": "Enqueue",
+        "operationId": "DeviceQueueService_Enqueue",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/apiEnqueueDeviceQueueItemResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "device_queue_item.dev_eui",
+            "name": "deviceQueueItem.devEUI",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -192,7 +271,71 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiEnqueueDeviceQueueItemRequest"
+              "type": "object",
+              "properties": {
+                "deviceQueueItem": {
+                  "type": "object",
+                  "properties": {
+                    "confirmed": {
+                      "type": "boolean",
+                      "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
+                    },
+                    "fCnt": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Optional. Downlink frame-counter. Us it only if you encrypt payload byself!\nBy default=0, means it will be set to queue as is and encrypted right before send the dl.\nSpecify the excact next fCnt here. Otherwise it will be droped.\nif fCnt\u003e0 set, we send data as is, without encryption."
+                    },
+                    "fPort": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "FPort used (must be \u003e 0)"
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "byte",
+                      "description": "Base64 encoded data.\nOr use the json_object field when an application codec has been configured."
+                    },
+                    "jsonObject": {
+                      "type": "string",
+                      "description": "Optional. JSON object (string).\nOnly use this when an application codec has been configured that can convert\nthis object into binary form."
+                    },
+                    "ttl": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "Time to live (in seconds). You can specify the maximum time in queue for the item"
+                    },
+                    "messageId": {
+                      "type": "string",
+                      "title": "Optional. the id will be generated on server side if empty\nlater on in case of error you'll recieve the message with the ID"
+                    },
+                    "owner": {
+                      "type": "string",
+                      "title": "Optional field"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "service field for queue listing"
+                    },
+                    "timeoutAfter": {
+                      "type": "string",
+                      "format": "date-time",
+                      "title": "service field for queue listing"
+                    },
+                    "applicationID": {
+                      "type": "integer",
+                      "format": "int64",
+                      "title": "id of the application. Optional. For validation purposes"
+                    }
+                  },
+                  "description": "Queue-item object to enqueue.",
+                  "title": "Queue-item object to enqueue."
+                },
+                "getFcnt": {
+                  "type": "boolean",
+                  "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
+                }
+              }
             }
           }
         ],
@@ -212,7 +355,6 @@
         },
         "confirmed": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
         },
         "fCnt": {
@@ -269,7 +411,6 @@
       "properties": {
         "confirmed": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
         },
         "fCnt": {
@@ -298,59 +439,15 @@
       },
       "title": "DownlinkItemHex data payload as hex-string"
     },
-    "apiEnqueueDeviceQueueActilityItemRequest": {
-      "type": "object",
-      "properties": {
-        "devEUI": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded)."
-        },
-        "confirmDownlink": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "Set this to true when an acknowledgement from the device is required.\nPlease note that this must not be used to guarantee a delivery."
-        },
-        "flushDownlinkQueue": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "Indicates to flush the LRC downlink queue before adding the new message to the queue.\nDefault is false."
-        },
-        "payloadHex": {
-          "type": "string",
-          "description": "Payload of the message in hexadecimal format."
-        },
-        "targetPorts": {
-          "type": "string",
-          "description": "LoRa port(s) targetted by the message."
-        },
-        "fCnt": {
-          "type": "integer",
-          "format": "int64",
-          "title": "Downlink frame-counter.\nThis will be automatically set on enquue.\nIf you encrypt data on your side - specify the fCnt here"
-        },
-        "ttl": {
-          "type": "integer",
-          "format": "int64",
-          "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
-        },
-        "getFcnt": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
-        }
-      }
-    },
     "apiEnqueueDeviceQueueActilityItemResponse": {
       "type": "object",
       "properties": {
         "confirmDownlink": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Frame-counter for the enqueued payload."
         },
         "flushDownlinkQueue": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
         "payloadHex": {
           "type": "string"
@@ -364,38 +461,6 @@
         "msgId": {
           "type": "string",
           "title": "downlink message ID (UUID string). ! Generated for background tasks !"
-        }
-      }
-    },
-    "apiEnqueueDeviceQueueItemHexRequest": {
-      "type": "object",
-      "properties": {
-        "devEUI": {
-          "type": "string",
-          "description": "Device EUI (HEX encoded)."
-        },
-        "deviceQueueItem": {
-          "$ref": "#/definitions/apiDownlinkItemHex",
-          "description": "Queue-item object to enqueue."
-        },
-        "getFcnt": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
-        }
-      }
-    },
-    "apiEnqueueDeviceQueueItemRequest": {
-      "type": "object",
-      "properties": {
-        "deviceQueueItem": {
-          "$ref": "#/definitions/apiDeviceQueueItem",
-          "description": "Queue-item object to enqueue."
-        },
-        "getFcnt": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "! CAUTION !\nSet this to true when you really need to recieve next fCnt \nor you want to know the enqueue-status immediately (eg development purposes)\n! Please do not call the method in parallel if the flag set it to true. \nIt can be painfully slow.\nThe flag basicaly means 'put it right into queue'.\n! The next fCnt be returned only if you set f_cnt parmeter. \nOtherwise it allways be 0.\nIf you set it to false. It will be processed asynchronously.\nIn case of process with error - it will be sent as ErrorEvents via you apps.\nYou can match it by the message_id parameter."
         }
       }
     },
@@ -429,6 +494,7 @@
         "deviceQueueItems": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/apiDeviceQueueItem"
           },
           "description": "The device queue items."
@@ -437,6 +503,34 @@
           "type": "integer",
           "format": "int64",
           "description": "Total number of items in the queue."
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     }

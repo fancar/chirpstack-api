@@ -1,0 +1,1801 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ns/ns.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "NetworkServerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "commonLocation": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Latitude."
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Longitude."
+        },
+        "altitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Altitude."
+        },
+        "source": {
+          "$ref": "#/definitions/commonLocationSource",
+          "description": "Location source."
+        },
+        "accuracy": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Accuracy (in meters)."
+        }
+      }
+    },
+    "commonLocationSource": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "GPS",
+        "CONFIG",
+        "GEO_RESOLVER_TDOA",
+        "GEO_RESOLVER_RSSI",
+        "GEO_RESOLVER_GNSS",
+        "GEO_RESOLVER_WIFI"
+      ],
+      "default": "UNKNOWN",
+      "description": " - UNKNOWN: Unknown.\n - GPS: GPS.\n - CONFIG: Manually configured.\n - GEO_RESOLVER_TDOA: Geo resolver (TDOA).\n - GEO_RESOLVER_RSSI: Geo resolver (RSSI).\n - GEO_RESOLVER_GNSS: Geo resolver (GNSS).\n - GEO_RESOLVER_WIFI: Geo resolver (WIFI)."
+    },
+    "commonMType": {
+      "type": "string",
+      "enum": [
+        "JoinRequest",
+        "JoinAccept",
+        "UnconfirmedDataUp",
+        "UnconfirmedDataDown",
+        "ConfirmedDataUp",
+        "ConfirmedDataDown",
+        "RejoinRequest",
+        "Proprietary"
+      ],
+      "default": "JoinRequest",
+      "description": " - JoinRequest: JoinRequest.\n - JoinAccept: JoinAccept.\n - UnconfirmedDataUp: UnconfirmedDataUp.\n - UnconfirmedDataDown: UnconfirmedDataDown.\n - ConfirmedDataUp: ConfirmedDataUp.\n - ConfirmedDataDown: ConfirmedDataDown.\n - RejoinRequest: RejoinRequest.\n - Proprietary: Proprietary."
+    },
+    "commonModulation": {
+      "type": "string",
+      "enum": [
+        "LORA",
+        "FSK",
+        "LR_FHSS"
+      ],
+      "default": "LORA",
+      "title": "- LORA: LoRa\n - FSK: FSK\n - LR_FHSS: LR-FHSS"
+    },
+    "commonRegion": {
+      "type": "string",
+      "enum": [
+        "EU868",
+        "US915",
+        "CN779",
+        "EU433",
+        "AU915",
+        "CN470",
+        "AS923",
+        "AS923_2",
+        "AS923_3",
+        "AS923_4",
+        "KR920",
+        "IN865",
+        "RU864",
+        "ISM2400"
+      ],
+      "default": "EU868",
+      "title": "- EU868: EU868\n - US915: US915\n - CN779: CN779\n - EU433: EU433\n - AU915: AU915\n - CN470: CN470\n - AS923: AS923\n - AS923_2: AS923 with -1.80 MHz frequency offset\n - AS923_3: AS923 with -6.60 MHz frequency offset\n - AS923_4: AS923 with -5.90 MHz frequency offset\n - KR920: KR920\n - IN865: IN865\n - RU864: RU864\n - ISM2400: ISM2400 (LoRaWAN 2.4 GHz)"
+    },
+    "gwCRCStatus": {
+      "type": "string",
+      "enum": [
+        "NO_CRC",
+        "BAD_CRC",
+        "CRC_OK"
+      ],
+      "default": "NO_CRC",
+      "description": " - NO_CRC: No CRC.\n - BAD_CRC: Bad CRC.\n - CRC_OK: CRC OK."
+    },
+    "gwDelayTimingInfo": {
+      "type": "object",
+      "properties": {
+        "delay": {
+          "type": "string",
+          "description": "Delay (duration).\nThe delay will be added to the gateway internal timing, provided by the context object."
+        }
+      }
+    },
+    "gwDownlinkTXInfo": {
+      "type": "object",
+      "properties": {
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID.\nDeprecated: replaced by gateway_id in DownlinkFrame."
+        },
+        "frequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "TX frequency (in Hz)."
+        },
+        "power": {
+          "type": "integer",
+          "format": "int32",
+          "description": "TX power (in dBm)."
+        },
+        "modulation": {
+          "$ref": "#/definitions/commonModulation",
+          "description": "Modulation."
+        },
+        "loRaModulationInfo": {
+          "$ref": "#/definitions/gwLoRaModulationInfo",
+          "description": "LoRa modulation information."
+        },
+        "fskModulationInfo": {
+          "$ref": "#/definitions/gwFSKModulationInfo",
+          "description": "FSK modulation information."
+        },
+        "board": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The board identifier for emitting the frame."
+        },
+        "antenna": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The antenna identifier for emitting the frame."
+        },
+        "timing": {
+          "$ref": "#/definitions/gwDownlinkTiming",
+          "description": "Timing defines the downlink timing to use."
+        },
+        "immediatelyTimingInfo": {
+          "$ref": "#/definitions/gwImmediatelyTimingInfo",
+          "description": "Immediately timing information."
+        },
+        "delayTimingInfo": {
+          "$ref": "#/definitions/gwDelayTimingInfo",
+          "description": "Context based delay timing information."
+        },
+        "gpsEpochTimingInfo": {
+          "$ref": "#/definitions/gwGPSEpochTimingInfo",
+          "description": "GPS Epoch timing information."
+        },
+        "context": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway specific context.\nIn case of a Class-A downlink, this contains a copy of the uplink context."
+        }
+      }
+    },
+    "gwDownlinkTiming": {
+      "type": "string",
+      "enum": [
+        "IMMEDIATELY",
+        "DELAY",
+        "GPS_EPOCH"
+      ],
+      "default": "IMMEDIATELY",
+      "description": " - IMMEDIATELY: Send the downlink immediately.\n - DELAY: Send downlink at the given delay (based on provided context).\n - GPS_EPOCH: Send at given GPS epoch value."
+    },
+    "gwEncryptedFineTimestamp": {
+      "type": "object",
+      "properties": {
+        "aesKeyIndex": {
+          "type": "integer",
+          "format": "int64",
+          "description": "AES key index used for encrypting the fine timestamp."
+        },
+        "encryptedNS": {
+          "type": "string",
+          "format": "byte",
+          "description": "Encrypted 'main' fine-timestamp (ns precision part of the timestamp)."
+        },
+        "fpgaID": {
+          "type": "string",
+          "format": "byte",
+          "description": "FPGA ID."
+        }
+      }
+    },
+    "gwFSKModulationInfo": {
+      "type": "object",
+      "properties": {
+        "frequencyDeviation": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency deviation."
+        },
+        "datarate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "FSK datarate (bits / sec)."
+        }
+      }
+    },
+    "gwFineTimestampType": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "ENCRYPTED",
+        "PLAIN"
+      ],
+      "default": "NONE",
+      "description": " - NONE: No fine-timestamp available.\n - ENCRYPTED: Encrypted fine-timestamp.\n - PLAIN: Plain fine-timestamp."
+    },
+    "gwGPSEpochTimingInfo": {
+      "type": "object",
+      "properties": {
+        "timeSinceGPSEpoch": {
+          "type": "string",
+          "description": "Duration since GPS Epoch."
+        }
+      }
+    },
+    "gwImmediatelyTimingInfo": {
+      "type": "object",
+      "description": "Not implemented yet."
+    },
+    "gwLRFHSSModulationInfo": {
+      "type": "object",
+      "properties": {
+        "operatingChannelWidth": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Operating channel width (OCW) in Hz."
+        },
+        "codeRate": {
+          "type": "string",
+          "description": "Code-rate."
+        },
+        "gridSteps": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Hopping grid number of steps."
+        }
+      }
+    },
+    "gwLoRaModulationInfo": {
+      "type": "object",
+      "properties": {
+        "bandwidth": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Bandwidth."
+        },
+        "spreadingFactor": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Speading-factor."
+        },
+        "codeRate": {
+          "type": "string",
+          "description": "Code-rate."
+        },
+        "polarizationInversion": {
+          "type": "boolean",
+          "description": "Polarization inversion."
+        }
+      }
+    },
+    "gwPlainFineTimestamp": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Full timestamp."
+        }
+      }
+    },
+    "gwUplinkRXInfo": {
+      "type": "object",
+      "properties": {
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID."
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RX time (only set when the gateway has a GPS module)."
+        },
+        "timeSinceGPSEpoch": {
+          "type": "string",
+          "description": "RX time since GPS epoch (only set when the gateway has a GPS module)."
+        },
+        "rssi": {
+          "type": "integer",
+          "format": "int32",
+          "description": "RSSI."
+        },
+        "loRaSNR": {
+          "type": "number",
+          "format": "double",
+          "description": "LoRa SNR."
+        },
+        "channel": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Channel."
+        },
+        "rfChain": {
+          "type": "integer",
+          "format": "int64",
+          "description": "RF Chain."
+        },
+        "board": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Board."
+        },
+        "antenna": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Antenna."
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "description": "Location."
+        },
+        "fineTimestampType": {
+          "$ref": "#/definitions/gwFineTimestampType",
+          "description": "Fine-timestamp type."
+        },
+        "encryptedFineTimestamp": {
+          "$ref": "#/definitions/gwEncryptedFineTimestamp",
+          "description": "Encrypted fine-timestamp data."
+        },
+        "plainFineTimestamp": {
+          "$ref": "#/definitions/gwPlainFineTimestamp",
+          "description": "Plain fine-timestamp data."
+        },
+        "context": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway specific context."
+        },
+        "uplinkID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Uplink ID (UUID bytes).\nUnique and random ID which can be used to correlate the uplink across multiple logs."
+        },
+        "crcStatus": {
+          "$ref": "#/definitions/gwCRCStatus",
+          "description": "CRC status."
+        }
+      }
+    },
+    "gwUplinkTXInfo": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency (Hz)."
+        },
+        "modulation": {
+          "$ref": "#/definitions/commonModulation",
+          "description": "Modulation."
+        },
+        "loRaModulationInfo": {
+          "$ref": "#/definitions/gwLoRaModulationInfo",
+          "description": "LoRa modulation information."
+        },
+        "fskModulationInfo": {
+          "$ref": "#/definitions/gwFSKModulationInfo",
+          "description": "FSK modulation information."
+        },
+        "lrFHSSModulationInfo": {
+          "$ref": "#/definitions/gwLRFHSSModulationInfo",
+          "description": "LR-FHSS modulation information."
+        }
+      }
+    },
+    "nsADRAlgorithm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ADR algorithm ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "ADR algorithm name."
+        }
+      }
+    },
+    "nsAggregationInterval": {
+      "type": "string",
+      "enum": [
+        "SECOND",
+        "MINUTE",
+        "HOUR",
+        "DAY",
+        "WEEK",
+        "MONTH",
+        "QUARTER",
+        "YEAR"
+      ],
+      "default": "SECOND"
+    },
+    "nsCountGatewaysResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "nsCreateDeviceProfileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the created device-profile."
+        }
+      }
+    },
+    "nsCreateGatewayProfileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the create configuration object."
+        }
+      }
+    },
+    "nsCreateMulticastGroupResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "Multicast-group ID."
+        }
+      }
+    },
+    "nsCreateRoutingProfileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the created routing-profile."
+        }
+      }
+    },
+    "nsCreateServiceProfileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the created service-profile."
+        }
+      }
+    },
+    "nsDevice": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string",
+          "format": "byte",
+          "description": "DevEUI."
+        },
+        "deviceProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device-profile ID."
+        },
+        "serviceProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Service-profile ID."
+        },
+        "routingProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Routing-profile ID."
+        },
+        "skipFCntCheck": {
+          "type": "boolean",
+          "description": "Skip frame-counter check.\nNote that turning this on is insecure and is intended for debugging only."
+        },
+        "referenceAltitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Reference altitude.\nWhen using geolocation, this altitude will be used as a reference\n(when supported by the geolocation-server) to increase geolocation\naccuracy."
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "description": "If true - the device is disabled."
+        },
+        "keepQueue": {
+          "type": "boolean",
+          "title": "If true - do not flush the device-queue during join"
+        }
+      }
+    },
+    "nsDeviceActivation": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string",
+          "format": "byte",
+          "description": "DevEUI."
+        },
+        "devAddr": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device address (DevAddr)."
+        },
+        "sNwkSIntKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "SNwkSIntKey (serving network-server session integrity key)."
+        },
+        "fNwkSIntKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "FNwkSIntKey (forwarding network-server session integrity key)."
+        },
+        "nwkSEncKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "NwkSEncKey (network-server session encryption key)."
+        },
+        "fCntUp": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The next expected uplink frame-counter."
+        },
+        "nFCntDown": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The network frame-counter used for the next downlink frame."
+        },
+        "aFCntDown": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The application frame-counter used for the next downlink frame (LoRaWAN 1.1)."
+        },
+        "skipFCntCheck": {
+          "type": "boolean",
+          "description": "Skip frame-counter checks (this is insecure, but could be helpful for debugging)."
+        },
+        "RX1DROffset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RX1 data-rate offset"
+        },
+        "RX2DR": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RX2 data-rate"
+        },
+        "RX2Frequency": {
+          "type": "integer",
+          "format": "int64",
+          "title": "RX2 frequency"
+        },
+        "TXPowerIndex": {
+          "type": "integer",
+          "format": "int32",
+          "title": "tx power index"
+        },
+        "DR": {
+          "type": "integer",
+          "format": "int32",
+          "title": "data rate"
+        },
+        "ADR": {
+          "type": "boolean",
+          "title": "adaptive data rate"
+        },
+        "nbTrans": {
+          "type": "integer",
+          "format": "int64",
+          "title": "number of retransmissions"
+        },
+        "enabledUplinkChannels": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "enabled channels"
+        },
+        "extraUplinkChannels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsExtraChannels"
+          }
+        },
+        "appSKey": {
+          "type": "string",
+          "format": "byte",
+          "title": "application session key is for encode frm payload"
+        }
+      }
+    },
+    "nsDeviceProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device-profile ID."
+        },
+        "supportsClassB": {
+          "type": "boolean",
+          "description": "End-Device supports Class B."
+        },
+        "classBTimeout": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum delay for the End-Device to answer a MAC request or a confirmed DL frame (mandatory if class B mode supported)."
+        },
+        "pingSlotPeriod": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Mandatory if class B mode supported."
+        },
+        "pingSlotDr": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Mandatory if class B mode supported."
+        },
+        "pingSlotFreq": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Mandatory if class B mode supported."
+        },
+        "supportsClassC": {
+          "type": "boolean",
+          "description": "End-Device supports Class C."
+        },
+        "classCTimeout": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum delay for the End-Device to answer a MAC request or a confirmed DL frame (mandatory if class C mode supported)."
+        },
+        "macVersion": {
+          "type": "string",
+          "description": "Version of the LoRaWAN supported by the End-Device."
+        },
+        "regParamsRevision": {
+          "type": "string",
+          "description": "Revision of the Regional Parameters document supported by the End-Device."
+        },
+        "rxDelay1": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Class A RX1 delay (For ABP initialization  only! mandatory for ABP)."
+        },
+        "rxDrOffset1": {
+          "type": "integer",
+          "format": "int64",
+          "description": "RX1 data rate offset (For ABP initialization  only! mandatory for ABP)."
+        },
+        "rxDatarate2": {
+          "type": "integer",
+          "format": "int64",
+          "description": "RX2 data rate (For ABP initialization  only! mandatory for ABP)."
+        },
+        "rxFreq2": {
+          "type": "integer",
+          "format": "int64",
+          "description": "RX2 channel frequency (For ABP initialization  only! mandatory for ABP)."
+        },
+        "factoryPresetFreqs": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": "List of factory-preset frequencies (mandatory for ABP)."
+        },
+        "maxEirp": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Deprecated. Moved to SP. Maximum EIRP supported by the End-Device."
+        },
+        "maxDutyCycle": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum duty cycle supported by the End-Device."
+        },
+        "supportsJoin": {
+          "type": "boolean",
+          "description": "End-Device supports Join (OTAA) or not (ABP)."
+        },
+        "rfRegion": {
+          "type": "string",
+          "description": "RF region name."
+        },
+        "supports32bitFCnt": {
+          "type": "boolean",
+          "description": "End-Device uses 32bit FCnt (mandatory for LoRaWAN 1.0 End-Device)."
+        },
+        "joinAcceptDelay1": {
+          "type": "integer",
+          "format": "int64",
+          "title": "delay between the end of join request message\nand start of RX1 window to recieve a Join Accept\ndefault 5000ms"
+        },
+        "joinAcceptDelay2": {
+          "type": "integer",
+          "format": "int64",
+          "title": "delay between the end of join request message\nand start of RX2 window to recieve a Join Accept\ndefault 6000ms"
+        },
+        "fCntAutomaticReset": {
+          "type": "boolean",
+          "title": "allow autoreset for low counters recieved\n(for ABP devices only)"
+        },
+        "cmdSwitches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsMacCommandSwitch"
+          }
+        },
+        "adrAlgorithmId": {
+          "type": "string",
+          "title": "Deprecated. Moved to SP. \nTODO: remove it"
+        },
+        "rx1Delay": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Class A RX1 delay. If not set (-1) - default value from NS cfg in use\nRX2 delay will be +1s to the rx1_delay"
+        },
+        "rx1DrOffset": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RX1 data rate offset. If not set (-1) - default value from NS cfg in use"
+        },
+        "rx2Datarate": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RX2 data rate. If not set (-1) - default value from NS cfg in use"
+        },
+        "rx2Freq": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RX2 channel frequency. If not set (-1) - default value from NS cfg in use"
+        }
+      }
+    },
+    "nsDeviceQueueItem": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string",
+          "format": "byte",
+          "description": "DevEUI of the device."
+        },
+        "frmPayload": {
+          "type": "string",
+          "format": "byte",
+          "description": "The encrypted FRMPayload bytes."
+        },
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The FCnt of the payload."
+        },
+        "fPort": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The FPort of the payload."
+        },
+        "confirmed": {
+          "type": "boolean",
+          "description": "When set to true, ChirpStack Network Server will wait for the device to ack the\nreceived frame."
+        },
+        "devAddr": {
+          "type": "string",
+          "format": "byte",
+          "title": "Device address (as known by the application-server).\nIt will be used to validate that the application-server is\nusing the correct security context of the device. As on OTAA, there\nis a gap between the activation and the delivery of the AppSKey to the\napplication-server, there is a possibility that the application-server\ntries to enqueue payloads encrypted with the old session-key.\ndeprecated"
+        },
+        "ttl": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Time to live (in seconds). You canspecify the maximum time in queue for the item"
+        },
+        "messageId": {
+          "type": "string",
+          "title": "optional. the id was generated on client's side to control tx"
+        },
+        "nonEncrPl": {
+          "type": "string",
+          "format": "byte",
+          "description": "Non encrypted FRMPayload bytes."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "created at timestamp."
+        },
+        "timeoutAfter": {
+          "type": "string",
+          "format": "date-time",
+          "description": "timeout after timestamp."
+        }
+      }
+    },
+    "nsDownlinkFrameLog": {
+      "type": "object",
+      "properties": {
+        "phyPayload": {
+          "type": "string",
+          "format": "byte",
+          "description": "PHYPayload."
+        },
+        "txInfo": {
+          "$ref": "#/definitions/gwDownlinkTXInfo",
+          "description": "TX meta-data."
+        },
+        "token": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Token (uint16 value).\nDeprecated: replaced by downlink_id."
+        },
+        "downlinkID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Downlink ID (UUID)."
+        },
+        "gatewayID": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID."
+        },
+        "mType": {
+          "$ref": "#/definitions/commonMType",
+          "description": "Message type."
+        },
+        "devAddr": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device address (optional)."
+        },
+        "devEui": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device EUI (optional)."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Published at timestamp."
+        },
+        "limit": {
+          "$ref": "#/definitions/nsRateLimit",
+          "title": "rate limit"
+        },
+        "frmPayload": {
+          "type": "string",
+          "format": "byte",
+          "title": "non-encrypted frame payload"
+        }
+      }
+    },
+    "nsExtraChannels": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "frequency": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "minDR": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxDR": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "nsFCntInResponse": {
+      "type": "object",
+      "properties": {
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The frame-counter."
+        }
+      }
+    },
+    "nsGateway": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID (8 bytes EUI64)."
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "description": "Gateway location."
+        },
+        "gatewayProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the gateway-profile (optional)."
+        },
+        "boards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsGatewayBoard"
+          },
+          "description": "Gateway boards configuration (optional).\nThis is (currently) only needed when the gateway supports the fine-timestamp\nand you you would like to add the FPGA ID to the gateway meta-data or would\nlike ChirpStack Network Server to decrypt the fine-timestamp."
+        },
+        "routingProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Routing Profile ID.\nThe routing-profile ID defines to which application-server statistical\ndata for this gateway is forwarded."
+        },
+        "serviceProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Service-profile ID (optional)."
+        },
+        "suspended": {
+          "type": "boolean",
+          "title": "if suspended flag is set then all received packets from devices related to\nthis gateway are droped (UL, DL) without any logging"
+        }
+      }
+    },
+    "nsGatewayBoard": {
+      "type": "object",
+      "properties": {
+        "fpgaId": {
+          "type": "string",
+          "format": "byte",
+          "description": "FPGA ID of the gateway (8 bytes) (optional)."
+        },
+        "fineTimestampKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "Fine-timestamp AES decryption key (16 bytes) (optional)."
+        }
+      }
+    },
+    "nsGatewayProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the gateway-profile."
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": "Default channels (channels specified by the LoRaWAN Regional Parameters\nspecification) enabled for this configuration."
+        },
+        "extraChannels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsGatewayProfileExtraChannel"
+          },
+          "description": "Extra channels added to the channel-configuration (in case the LoRaWAN\nregion supports adding custom channels)."
+        },
+        "statsInterval": {
+          "type": "string",
+          "description": "Stats interval.\nThis defines the (expected) stats interval which the gateways using this\ngateway-profile are using."
+        },
+        "downlinkTxPower": {
+          "type": "integer",
+          "format": "int32",
+          "description": "gateway-profile.\nDownlink TX Power (dBm)    \nif (-1) default value from network-server will be used."
+        }
+      }
+    },
+    "nsGatewayProfileExtraChannel": {
+      "type": "object",
+      "properties": {
+        "modulation": {
+          "$ref": "#/definitions/commonModulation",
+          "description": "Modulation."
+        },
+        "frequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency."
+        },
+        "bandwidth": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Bandwidth."
+        },
+        "bitrate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Bitrate (in case of FSK modulation)."
+        },
+        "spreadingFactors": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": "Spreading factors (in case of LoRa modulation)."
+        }
+      }
+    },
+    "nsGatewayStats": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the (aggregated) measurement."
+        },
+        "rxPacketsReceived": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Packets received by the gateway."
+        },
+        "rxPacketsReceivedOk": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Packets received by the gateway that passed the CRC check."
+        },
+        "txPacketsReceived": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Packets received by the gateway for transmission."
+        },
+        "txPacketsEmitted": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Packets transmitted by the gateway."
+        }
+      }
+    },
+    "nsGenerateGatewayClientCertificateResponse": {
+      "type": "object",
+      "properties": {
+        "tlsCert": {
+          "type": "string",
+          "format": "byte",
+          "description": "TLS certificate."
+        },
+        "tlsKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "TLS key."
+        },
+        "caCert": {
+          "type": "string",
+          "format": "byte",
+          "description": "CA certificate."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Expires at defines the expiration date of the certificate."
+        }
+      }
+    },
+    "nsGetADRAlgorithmsResponse": {
+      "type": "object",
+      "properties": {
+        "adrAlgorithms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsADRAlgorithm"
+          }
+        }
+      }
+    },
+    "nsGetDeviceActivationResponse": {
+      "type": "object",
+      "properties": {
+        "deviceActivation": {
+          "$ref": "#/definitions/nsDeviceActivation",
+          "description": "Device-activation object."
+        }
+      }
+    },
+    "nsGetDeviceForExportResponse": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string",
+          "format": "byte",
+          "description": "DevEUI."
+        },
+        "supportsClassB": {
+          "type": "boolean",
+          "title": "it the device support class B. Data from device_profie"
+        },
+        "supportsClassC": {
+          "type": "boolean",
+          "title": "it the device support class C. Data from device_profie"
+        },
+        "MACVersion": {
+          "type": "string",
+          "title": "Data from device_profie"
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "title": "Data from device_profie"
+        },
+        "supportsJoin": {
+          "type": "boolean",
+          "title": "Data from device_profie. If true - device is OTAA, otherwise ABP"
+        },
+        "nwkSEncKey": {
+          "type": "string",
+          "title": "nwkSEncKey from last device_activation"
+        }
+      }
+    },
+    "nsGetDeviceProfileResponse": {
+      "type": "object",
+      "properties": {
+        "deviceProfile": {
+          "$ref": "#/definitions/nsDeviceProfile",
+          "description": "Device-profile object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        }
+      }
+    },
+    "nsGetDeviceQueueItemsForDevEUIResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsDeviceQueueItem"
+          },
+          "description": "The device queue items."
+        },
+        "totalCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Total number of items in the queue."
+        }
+      }
+    },
+    "nsGetDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "$ref": "#/definitions/nsDevice",
+          "description": "Device object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        }
+      }
+    },
+    "nsGetGatewayProfileResponse": {
+      "type": "object",
+      "properties": {
+        "gatewayProfile": {
+          "$ref": "#/definitions/nsGatewayProfile",
+          "description": "Gateway-profile object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        }
+      }
+    },
+    "nsGetGatewayResponse": {
+      "type": "object",
+      "properties": {
+        "gateway": {
+          "$ref": "#/definitions/nsGateway",
+          "description": "Gateway object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        },
+        "firstSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "First seen timestamp."
+        },
+        "lastSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last seen timestamp."
+        }
+      }
+    },
+    "nsGetGatewayStatsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsGatewayStats"
+          }
+        }
+      }
+    },
+    "nsGetMulticastGroupResponse": {
+      "type": "object",
+      "properties": {
+        "multicastGroup": {
+          "$ref": "#/definitions/nsMulticastGroup",
+          "description": "Multicast-group."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        }
+      }
+    },
+    "nsGetMulticastQueueItemsForMulticastGroupResponse": {
+      "type": "object",
+      "properties": {
+        "multicastQueueItems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsMulticastQueueItem"
+          }
+        }
+      }
+    },
+    "nsGetNextDownlinkFCntForDevEUIResponse": {
+      "type": "object",
+      "properties": {
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The frame-counter to use."
+        }
+      }
+    },
+    "nsGetRandomDevAddrResponse": {
+      "type": "object",
+      "properties": {
+        "devAddr": {
+          "type": "string",
+          "format": "byte",
+          "description": "Random device address (DevAddr).\nNote that this includes the NetID prefix of the network-server."
+        }
+      }
+    },
+    "nsGetRoutingProfileResponse": {
+      "type": "object",
+      "properties": {
+        "routingProfile": {
+          "$ref": "#/definitions/nsRoutingProfile",
+          "description": "Routing-profile object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        }
+      }
+    },
+    "nsGetServiceProfileResponse": {
+      "type": "object",
+      "properties": {
+        "serviceProfile": {
+          "$ref": "#/definitions/nsServiceProfile",
+          "description": "Service-profile object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Created at timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp."
+        }
+      }
+    },
+    "nsGetVersionResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "ChirpStack Network Server version."
+        },
+        "region": {
+          "$ref": "#/definitions/commonRegion",
+          "description": "Region configured for this network-server."
+        }
+      }
+    },
+    "nsMacCommandSwitch": {
+      "type": "object",
+      "properties": {
+        "cid": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Command identifier (specified by the LoRaWAN specs).\nsee https://github.com/brocaar/lorawan/blob/master/mac_commands.go\nfor example 10 is 0x0A which is DLChannelReq command"
+        },
+        "enabled": {
+          "type": "boolean",
+          "title": "if true the MACcommand with the identifier will be allowed"
+        }
+      }
+    },
+    "nsMulticastGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "Multicast-group ID.\nNote: this can be set on create. When left blank, a random ID will\nbe generated."
+        },
+        "mcAddr": {
+          "type": "string",
+          "format": "byte",
+          "description": "Multicast Address for this group."
+        },
+        "mcNwkSKey": {
+          "type": "string",
+          "format": "byte",
+          "description": "Multicast network session key."
+        },
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frame-counter (downlink)."
+        },
+        "groupType": {
+          "$ref": "#/definitions/nsMulticastGroupType",
+          "description": "Multicast-group type (Class-B or Class-C)."
+        },
+        "dr": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Data-rate."
+        },
+        "frequency": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency (Hz)."
+        },
+        "pingSlotPeriod": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Ping-slot period.\nMandatory for Class-B multicast groups."
+        },
+        "serviceProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Service-profile ID."
+        },
+        "routingProfileId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Routing-profile ID."
+        }
+      }
+    },
+    "nsMulticastGroupType": {
+      "type": "string",
+      "enum": [
+        "CLASS_C",
+        "CLASS_B"
+      ],
+      "default": "CLASS_C",
+      "description": " - CLASS_C: Class-C.\n - CLASS_B: Class-B."
+    },
+    "nsMulticastQueueItem": {
+      "type": "object",
+      "properties": {
+        "multicastGroupId": {
+          "type": "string",
+          "format": "byte",
+          "description": "Multicast-group id."
+        },
+        "fCnt": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frame-counter of payload."
+        },
+        "fPort": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frame-port of payload."
+        },
+        "frmPayload": {
+          "type": "string",
+          "format": "byte",
+          "description": "Encrypted FRMPayload bytes."
+        }
+      }
+    },
+    "nsRateLimit": {
+      "type": "string",
+      "enum": [
+        "Unlimited",
+        "Dropped",
+        "Marked"
+      ],
+      "default": "Unlimited",
+      "title": "- Unlimited: Unlimited - common state\n - Dropped: Dropped - droped when limit reached\n - Marked: Marked - don't drop just mark that limit reached"
+    },
+    "nsRatePolicy": {
+      "type": "string",
+      "enum": [
+        "Drop",
+        "Mark"
+      ],
+      "default": "Drop",
+      "title": "- Drop: Drop\n - Mark: Mark"
+    },
+    "nsRateUnit": {
+      "type": "string",
+      "enum": [
+        "Hour",
+        "Day",
+        "Week",
+        "Month",
+        "Year"
+      ],
+      "default": "Hour",
+      "title": "- Hour: Per Hour\n - Day: Per Day\n - Week: Per Week\n - Month: Per Month\n - Year: Per Year"
+    },
+    "nsRoutingProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "ID of the routing profile."
+        },
+        "asId": {
+          "type": "string",
+          "description": "Application-server ID."
+        },
+        "caCert": {
+          "type": "string",
+          "description": "CA certificate for connecting to the AS."
+        },
+        "tlsCert": {
+          "type": "string",
+          "description": "TLS certificate for connecting to the AS."
+        },
+        "tlsKey": {
+          "type": "string",
+          "description": "TLS key for connecting to the AS.\nNote: when retrieving the routing-profile, the tls_key is not returned\nfor security reasons. When updating the routing-profile, an empty tls_key\ndoes not clear the certificate, unless the tls_cert is also left blank."
+        }
+      }
+    },
+    "nsServiceProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "Service-profile ID."
+        },
+        "ulRate": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Token bucket filling rate, including ACKs (packet/h)."
+        },
+        "ulBucketSize": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Token bucket burst size."
+        },
+        "ulRatePolicy": {
+          "$ref": "#/definitions/nsRatePolicy",
+          "description": "Drop or mark when exceeding ULRate."
+        },
+        "ulRateUnit": {
+          "$ref": "#/definitions/nsRateUnit",
+          "title": "Uplink rate unit (per hour, per day, per week, per month, per year)"
+        },
+        "dlRate": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Token bucket filling rate, including ACKs (packet/h)."
+        },
+        "dlBucketSize": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Token bucket burst size."
+        },
+        "dlRatePolicy": {
+          "$ref": "#/definitions/nsRatePolicy",
+          "description": "Drop or mark when exceeding DLRate."
+        },
+        "dlRateUnit": {
+          "$ref": "#/definitions/nsRateUnit",
+          "title": "Downlink rate unit (per hour, per day, per week, per month, per year)"
+        },
+        "addGwMetadata": {
+          "type": "boolean",
+          "description": "GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS."
+        },
+        "devStatusReqFreq": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Frequency to initiate an End-Device status request (request/day)."
+        },
+        "reportDevStatusBattery": {
+          "type": "boolean",
+          "description": "Report End-Device battery level to AS."
+        },
+        "reportDevStatusMargin": {
+          "type": "boolean",
+          "description": "Report End-Device margin to AS."
+        },
+        "drMin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Minimum allowed data rate. Used for ADR."
+        },
+        "drMax": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum allowed data rate. Used for ADR."
+        },
+        "channelMask": {
+          "type": "string",
+          "format": "byte",
+          "description": "Channel mask. sNS does not have to obey (i.e., informative)."
+        },
+        "prAllowed": {
+          "type": "boolean",
+          "description": "Passive Roaming allowed."
+        },
+        "hrAllowed": {
+          "type": "boolean",
+          "description": "Handover Roaming allowed."
+        },
+        "raAllowed": {
+          "type": "boolean",
+          "description": "Roaming Activation allowed."
+        },
+        "nwkGeoLoc": {
+          "type": "boolean",
+          "description": "Enable network geolocation service."
+        },
+        "targetPer": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Target Packet Error Rate."
+        },
+        "minGwDiversity": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Minimum number of receiving GWs (informative)."
+        },
+        "gwsPrivate": {
+          "type": "boolean",
+          "description": "Gateways under this service-profile are private.\nThis means that these gateways can only be used by devices under the\nsame service-profile."
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "title": "Service profile is disabled if true. UL DL packets droped and logged as DROP"
+        },
+        "adrAlgorithmId": {
+          "type": "string",
+          "description": "ADR algorithm ID.\nIn case this is left blank, or is configured to a non-existing ADR\nalgorithm (plugin), then it falls back to 'default'."
+        },
+        "minTxPowerIndex": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Minimum TX power index that can't be overlaped by ADR."
+        },
+        "maxTxPowerIndex": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Maximum TX power index that can't be overlaped by ADR.\nif adr=fixed - the value as fixed TxPowerIndex will be in use"
+        },
+        "maxNbTrans": {
+          "type": "integer",
+          "format": "int32",
+          "description": "MAX NbTrans\nthe maximum number of transmissions."
+        },
+        "minNbTrans": {
+          "type": "integer",
+          "format": "int32",
+          "description": "MIN NbTrans\nthe mininum number of transmissions."
+        },
+        "allowRxConfirmed": {
+          "type": "boolean",
+          "title": "if true - allows processing confirmed uplinks"
+        },
+        "allowTxUnconfirmed": {
+          "type": "boolean",
+          "title": "if true - allows processing unconfirmed downlinks"
+        },
+        "allowTxConfirmed": {
+          "type": "boolean",
+          "title": "if true - allows processing confirmed downlinks"
+        },
+        "dlQueueMaxSize": {
+          "type": "integer",
+          "format": "int64",
+          "title": "max size of downlink queue for devices that use the sp"
+        }
+      }
+    },
+    "nsStreamFrameLogsForDeviceResponse": {
+      "type": "object",
+      "properties": {
+        "uplinkFrameSet": {
+          "$ref": "#/definitions/nsUplinkFrameLog",
+          "description": "Contains an uplink frame."
+        },
+        "downlinkFrame": {
+          "$ref": "#/definitions/nsDownlinkFrameLog",
+          "description": "Contains a downlink frame."
+        }
+      }
+    },
+    "nsStreamFrameLogsForGatewayResponse": {
+      "type": "object",
+      "properties": {
+        "uplinkFrameSet": {
+          "$ref": "#/definitions/nsUplinkFrameLog",
+          "description": "Contains an uplink frame."
+        },
+        "downlinkFrame": {
+          "$ref": "#/definitions/nsDownlinkFrameLog",
+          "description": "Contains a downlink frame."
+        }
+      }
+    },
+    "nsUplinkFrameLog": {
+      "type": "object",
+      "properties": {
+        "phyPayload": {
+          "type": "string",
+          "format": "byte",
+          "description": "PHYPayload."
+        },
+        "txInfo": {
+          "$ref": "#/definitions/gwUplinkTXInfo",
+          "description": "TX meta-data."
+        },
+        "rxInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/gwUplinkRXInfo"
+          },
+          "description": "RX meta-data."
+        },
+        "mType": {
+          "$ref": "#/definitions/commonMType",
+          "description": "Message type."
+        },
+        "devAddr": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device address (optional)."
+        },
+        "devEui": {
+          "type": "string",
+          "format": "byte",
+          "description": "Device EUI (optional)."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Published at timestamp."
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

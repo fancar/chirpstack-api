@@ -7,7 +7,7 @@ go:
 	docker-compose run --rm chirpstack-api-go
 
 swagger:
-	docker-compose run --rm chirpstack-api-swagger
+	@echo "swagger command is deprecated. use just 'make go' instead"
 
 js:
 	docker-compose run --rm chirpstack-api-js
