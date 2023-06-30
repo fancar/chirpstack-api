@@ -7,11 +7,10 @@ managed:
       - buf.build/googleapis/googleapis
       - buf.build/grpc-ecosystem/grpc-gateway
 plugins:
-  # - plugin: go
-  #   out: go
-  #   opt: 
-  #     - plugins=grpc
-  #     - paths=source_relative
+  - plugin: go
+    out: go
+    opt: 
+      - paths=source_relative
 
   - plugin: go-grpc
     out: go
@@ -28,9 +27,3 @@ plugins:
     out: swagger
     opt:
       # - json_names_for_fields=false # legacy format from v1
-
-  # - plugin: go-grpc
-  #   out: go
-  #   opt:
-  #     - paths=source_relative
-  #     - require_unimplemented_servers=false
