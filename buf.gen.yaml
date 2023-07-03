@@ -26,4 +26,5 @@ plugins:
   - plugin: openapiv2
     out: swagger
     opt:
+      # json_names_for_fields=true
       # - json_names_for_fields=false # legacy format from v1

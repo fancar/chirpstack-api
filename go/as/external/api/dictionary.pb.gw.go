@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 var (
-	filter_DictionaryService_GetDictionary_0 = &utilities.DoubleArray{Encoding: map[string]int{"dic_type": 0, "dicType": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_DictionaryService_GetDictionary_0 = &utilities.DoubleArray{Encoding: map[string]int{"dic_type": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_DictionaryService_GetDictionary_0(ctx context.Context, marshaler runtime.Marshaler, client DictionaryServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {

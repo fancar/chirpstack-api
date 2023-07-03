@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/dictionary/{dicType}": {
+    "/api/dictionary/{dic_type}": {
       "get": {
         "summary": "GetDictionary returns dictionary by dictionary type",
         "operationId": "DictionaryService_GetDictionary",
@@ -36,7 +36,7 @@
         },
         "parameters": [
           {
-            "name": "dicType",
+            "name": "dic_type",
             "description": "type of a dictionary",
             "in": "path",
             "required": true,
@@ -77,7 +77,7 @@
     "apiGetDictionaryResponse": {
       "type": "object",
       "properties": {
-        "dicType": {
+        "dic_type": {
           "type": "string",
           "title": "type of a dictionary"
         },

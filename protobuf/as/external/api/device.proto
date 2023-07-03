@@ -303,7 +303,7 @@ message CreateDeviceRequest {
 
 message GetDeviceRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetDeviceResponse {
@@ -396,7 +396,7 @@ message ListDeviceResponse {
 
 message DeleteDeviceRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 
@@ -412,7 +412,7 @@ message CreateDeviceKeysRequest {
 
 message GetDeviceKeysRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetDeviceKeysResponse {
@@ -427,7 +427,7 @@ message UpdateDeviceKeysRequest {
 
 message DeleteDeviceKeysRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message DeviceActivation {
@@ -491,12 +491,12 @@ message ActivateDeviceRequest {
 
 message DeactivateDeviceRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetDeviceActivationRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetDeviceActivationResponse {
@@ -506,7 +506,7 @@ message GetDeviceActivationResponse {
 
 message GetRandomDevAddrRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetRandomDevAddrResponse {
@@ -539,7 +539,7 @@ message DeviceStats {
 
 message GetDeviceStatsRequest {
     // DevEUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 
 	// Aggregation interval.  One of "second", "minute", "hour", "day", "week",
 	// "month", "quarter", "year".  Case insensitive.
@@ -558,7 +558,7 @@ message GetDeviceStatsResponse {
 
 message StreamDeviceFrameLogsRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message StreamDeviceFrameLogsResponse {
@@ -573,7 +573,7 @@ message StreamDeviceFrameLogsResponse {
 
 message StreamDeviceEventLogsRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message StreamDeviceEventLogsResponse {
@@ -592,5 +592,5 @@ message StreamDeviceEventLogsResponse {
 
 message ClearDeviceNoncesRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }

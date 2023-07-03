@@ -240,7 +240,7 @@ message DeleteGatewayRequest {
 
 message GenerateGatewayClientCertificateRequest {
     // Gateway ID (HEX encoded).
-    string gateway_id = 1;
+    string gateway_id = 1 [json_name = "gatewayID"];
 }
 
 message GenerateGatewayClientCertificateResponse {

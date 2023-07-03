@@ -738,7 +738,7 @@ func local_request_DeviceService_GetRandomDevAddr_0(ctx context.Context, marshal
 }
 
 var (
-	filter_DeviceService_GetStats_0 = &utilities.DoubleArray{Encoding: map[string]int{"dev_eui": 0, "devEUI": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_DeviceService_GetStats_0 = &utilities.DoubleArray{Encoding: map[string]int{"dev_eui": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_DeviceService_GetStats_0(ctx context.Context, marshaler runtime.Marshaler, client DeviceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {

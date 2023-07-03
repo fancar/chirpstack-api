@@ -175,7 +175,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}": {
+    "/api/devices/{dev_eui}": {
       "get": {
         "summary": "Get returns the device matching the given DevEUI.",
         "operationId": "DeviceService_Get",
@@ -195,7 +195,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -226,7 +226,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -238,7 +238,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/activation": {
+    "/api/devices/{dev_eui}/activation": {
       "get": {
         "summary": "GetActivation returns the current activation details of the device (OTAA and ABP).",
         "operationId": "DeviceService_GetActivation",
@@ -258,7 +258,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -289,7 +289,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -301,7 +301,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/devnonce": {
+    "/api/devices/{dev_eui}/devnonce": {
       "delete": {
         "summary": "ClearDeviceNonces deletes the device older activation records for the given DevEUI.\n  * These are clear older DevNonce records from device activation records in Network Server\n  * These clears all DevNonce records but keeps latest 20 records for maintain device activation status",
         "operationId": "DeviceService_ClearDeviceNonces",
@@ -322,7 +322,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -334,7 +334,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/events": {
+    "/api/devices/{dev_eui}/events": {
       "get": {
         "summary": "StreamEventLogs stream the device events (uplink payloads, ACKs, joins, errors).\n  * This endpoint is intended for debugging only.\n  * This endpoint does not work from a web-browser.",
         "operationId": "DeviceService_StreamEventLogs",
@@ -363,7 +363,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -375,7 +375,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/frames": {
+    "/api/devices/{dev_eui}/frames": {
       "get": {
         "summary": "StreamFrameLogs streams the uplink and downlink frame-logs for the given DevEUI.\n  * These are the raw LoRaWAN frames and this endpoint is intended for debugging only.\n  * This endpoint does not work from a web-browser.",
         "operationId": "DeviceService_StreamFrameLogs",
@@ -404,7 +404,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -416,7 +416,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/getRandomDevAddr": {
+    "/api/devices/{dev_eui}/getRandomDevAddr": {
       "post": {
         "summary": "GetRandomDevAddr returns a random DevAddr taking the NwkID prefix into account.",
         "operationId": "DeviceService_GetRandomDevAddr",
@@ -436,7 +436,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -448,7 +448,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/keys": {
+    "/api/devices/{dev_eui}/keys": {
       "get": {
         "summary": "GetKeys returns the device-keys for the given DevEUI.",
         "operationId": "DeviceService_GetKeys",
@@ -468,7 +468,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -499,7 +499,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "Device EUI (HEX encoded).",
             "in": "path",
             "required": true,
@@ -511,7 +511,7 @@
         ]
       }
     },
-    "/api/devices/{devEUI}/stats": {
+    "/api/devices/{dev_eui}/stats": {
       "get": {
         "summary": "GetStats returns the device stats.",
         "operationId": "DeviceService_GetStats",
@@ -531,7 +531,7 @@
         },
         "parameters": [
           {
-            "name": "devEUI",
+            "name": "dev_eui",
             "description": "DevEUI (HEX encoded).",
             "in": "path",
             "required": true,

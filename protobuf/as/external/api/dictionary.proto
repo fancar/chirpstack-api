@@ -20,7 +20,7 @@ service DictionaryService {
 
 message GetDictionaryRequest {
 	// type of a dictionary
-	string dic_type = 1;
+	string dic_type = 1 [json_name = "dic_type"];
 
 	// type of store. For future use.
 	string store = 2;
@@ -28,7 +28,7 @@ message GetDictionaryRequest {
 
 message GetDictionaryResponse {
 	// type of a dictionary
-	string dic_type = 1;
+	string dic_type = 1 [json_name = "dic_type"];
 
 	repeated Dictionary dict = 2;
 }
