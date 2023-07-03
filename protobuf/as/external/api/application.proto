@@ -609,7 +609,7 @@ message CreateHTTPIntegrationRequest {
 
 message GetHTTPIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetHTTPIntegrationResponse {
@@ -624,7 +624,7 @@ message UpdateHTTPIntegrationRequest {
 
 message DeleteHTTPIntegrationRequest {
 	// The id of the application.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message CreateKafkaIntegrationRequest {
@@ -634,7 +634,7 @@ message CreateKafkaIntegrationRequest {
 
 message GetKafkaIntegrationRequest {
     // Application ID.
-    int64 application_id = 1 [json_name = "applicationID"];
+    int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetKafkaIntegrationResponse {
@@ -649,7 +649,7 @@ message UpdateKafkaIntegrationRequest {
 
 message DeleteKafkaIntegrationRequest {
     // The id of the application.
-    int64 application_id = 1 [json_name = "applicationID"];
+    int64 application_id = 1 [json_name = "application_id"];
 }
 
 message KafkaIntegration {
@@ -744,7 +744,7 @@ message KafkaWriter {
 
 message ListIntegrationRequest {
 	// The id of the application.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message IntegrationListItem {
@@ -816,7 +816,7 @@ message CreateInfluxDBIntegrationRequest {
 
 message GetInfluxDBIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetInfluxDBIntegrationResponse {
@@ -831,7 +831,7 @@ message UpdateInfluxDBIntegrationRequest {
 
 message DeleteInfluxDBIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message ThingsBoardIntegration {
@@ -849,7 +849,7 @@ message CreateThingsBoardIntegrationRequest {
 
 message GetThingsBoardIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetThingsBoardIntegrationResponse {
@@ -864,7 +864,7 @@ message UpdateThingsBoardIntegrationRequest {
 
 message DeleteThingsBoardIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message MyDevicesIntegration {
@@ -882,7 +882,7 @@ message CreateMyDevicesIntegrationRequest {
 
 message GetMyDevicesIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetMyDevicesIntegrationResponse {
@@ -897,7 +897,7 @@ message UpdateMyDevicesIntegrationRequest {
 
 message DeleteMyDevicesIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message LoRaCloudIntegration {
@@ -988,7 +988,7 @@ message CreateLoRaCloudIntegrationRequest {
 
 message GetLoRaCloudIntegrationRequest {
     // Application ID.
-    int64 application_id = 1 [json_name = "applicationID"];
+    int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetLoRaCloudIntegrationResponse {
@@ -1003,7 +1003,7 @@ message UpdateLoRaCloudIntegrationRequest {
 
 message DeleteLoRaCloudIntegrationRequest {
     // Application ID.
-    int64 application_id = 1 [json_name = "applicationID"];
+    int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GCPPubSubIntegration {
@@ -1034,7 +1034,7 @@ message CreateGCPPubSubIntegrationRequest {
 
 message GetGCPPubSubIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetGCPPubSubIntegrationResponse {
@@ -1049,7 +1049,7 @@ message UpdateGCPPubSubIntegrationRequest {
 
 message DeleteGCPPubSubIntegrationRequest {
 	// The id of the application.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message AWSSNSIntegration {
@@ -1080,7 +1080,7 @@ message CreateAWSSNSIntegrationRequest {
 
 message GetAWSSNSIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetAWSSNSIntegrationResponse {
@@ -1095,7 +1095,7 @@ message UpdateAWSSNSIntegrationRequest {
 
 message DeleteAWSSNSIntegrationRequest {
 	// The id of the application.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message AzureServiceBusIntegration {
@@ -1121,7 +1121,7 @@ message CreateAzureServiceBusIntegrationRequest {
 
 message GetAzureServiceBusIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetAzureServiceBusIntegrationResponse {
@@ -1136,7 +1136,7 @@ message UpdateAzureServiceBusIntegrationRequest {
 
 message DeleteAzureServiceBusIntegrationRequest {
 	// The id of the application.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message PilotThingsIntegration {
@@ -1157,7 +1157,7 @@ message CreatePilotThingsIntegrationRequest {
 
 message GetPilotThingsIntegrationRequest {
 	// Application ID.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetPilotThingsIntegrationResponse {
@@ -1172,7 +1172,7 @@ message UpdatePilotThingsIntegrationRequest {
 
 message DeletePilotThingsIntegrationRequest {
 	// The id of the application.
-	int64 application_id = 1 [json_name = "applicationID"];
+	int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GenerateMQTTIntegrationClientCertificateRequest {
@@ -1202,7 +1202,7 @@ message CreateMQTTIntegrationRequest {
 
 message GetMQTTIntegrationRequest {
     // Application ID.
-    int64 application_id = 1 [json_name = "applicationID"];
+    int64 application_id = 1 [json_name = "application_id"];
 }
 
 message GetMQTTIntegrationResponse {
@@ -1217,7 +1217,7 @@ message UpdateMQTTIntegrationRequest {
 
 message DeleteMQTTIntegrationRequest {
     // The id of the application.
-    int64 application_id = 1 [json_name = "applicationID"];
+    int64 application_id = 1 [json_name = "application_id"];
 }
 
 message MQTTIntegration {

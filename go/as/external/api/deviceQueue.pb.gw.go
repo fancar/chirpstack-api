@@ -220,7 +220,7 @@ func local_request_DeviceQueueService_Flush_0(ctx context.Context, marshaler run
 }
 
 var (
-	filter_DeviceQueueService_List_0 = &utilities.DoubleArray{Encoding: map[string]int{"dev_eui": 0, "devEUI": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_DeviceQueueService_List_0 = &utilities.DoubleArray{Encoding: map[string]int{"dev_eui": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_DeviceQueueService_List_0(ctx context.Context, marshaler runtime.Marshaler, client DeviceQueueServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {

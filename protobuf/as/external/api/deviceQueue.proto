@@ -134,7 +134,7 @@ message DownlinkItemHex {
 
 message EnqueueDeviceQueueItemHexRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 
     // Queue-item object to enqueue.
     DownlinkItemHex device_queue_item = 2;
@@ -182,12 +182,12 @@ message EnqueueDeviceQueueItemResponse {
 
 message FlushDeviceQueueRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message ListDeviceQueueItemsRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 
     // Return only the count, not the result-set.
     bool count_only = 2;
@@ -204,7 +204,7 @@ message ListDeviceQueueItemsResponse {
 
 message EnqueueDeviceQueueActilityItemRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 
     // Set this to true when an acknowledgement from the device is required.
     // Please note that this must not be used to guarantee a delivery.
@@ -256,7 +256,7 @@ message EnqueueDeviceQueueActilityItemResponse {
 
 message GetNextDownlinkFCntRequest {
     // Device EUI (HEX encoded).
-    string dev_eui = 1 [json_name = "devEUI"];
+    string dev_eui = 1 [json_name = "dev_eui"];
 }
 
 message GetNextDownlinkFCntResponse {

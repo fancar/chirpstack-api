@@ -197,559 +197,6 @@
         ]
       }
     },
-    "/api/applications/{applicationID}/integrations": {
-      "get": {
-        "summary": "ListIntegrations lists all configured integrations.",
-        "operationId": "ApplicationService_ListIntegrations",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/aws-sns": {
-      "get": {
-        "summary": "GetAWSSNSIntegration returns the AWS SNS application-integration.",
-        "operationId": "ApplicationService_GetAWSSNSIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetAWSSNSIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteAWSSNSIntegration deletes the AWS SNS application-integration.",
-        "operationId": "ApplicationService_DeleteAWSSNSIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/azure-service-bus": {
-      "get": {
-        "summary": "GetAzureServiceBusIntegration returns the Azure Service-Bus application-integration.",
-        "operationId": "ApplicationService_GetAzureServiceBusIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetAzureServiceBusIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteAzureServiceBusIntegration deletes the Azure Service-Bus application-integration.",
-        "operationId": "ApplicationService_DeleteAzureServiceBusIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/gcp-pub-sub": {
-      "get": {
-        "summary": "GetGCPPubSubIntegration returns the GCP PubSub application-integration.",
-        "operationId": "ApplicationService_GetGCPPubSubIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetGCPPubSubIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteGCPPubSubIntegration deletes the GCP PubSub application-integration.",
-        "operationId": "ApplicationService_DeleteGCPPubSubIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/http": {
-      "get": {
-        "summary": "GetHTTPIntegration returns the HTTP application-integration.",
-        "operationId": "ApplicationService_GetHTTPIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetHTTPIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteIntegration deletes the HTTP application-integration.",
-        "operationId": "ApplicationService_DeleteHTTPIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/influxdb": {
-      "get": {
-        "summary": "GetInfluxDBIntegration returns the InfluxDB application-integration.",
-        "operationId": "ApplicationService_GetInfluxDBIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetInfluxDBIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteInfluxDBIntegration deletes the InfluxDB application-integration.",
-        "operationId": "ApplicationService_DeleteInfluxDBIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/kafka": {
-      "get": {
-        "summary": "GetKafkaIntegration returns the application-integration.",
-        "operationId": "ApplicationService_GetKafkaIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetKafkaIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteKafkaIntegration deletes the application-integration.",
-        "operationId": "ApplicationService_DeleteKafkaIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/loracloud": {
-      "get": {
-        "summary": "GetLoRaCloudIntegration returns the LoRaCloud application-integration.",
-        "operationId": "ApplicationService_GetLoRaCloudIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetLoRaCloudIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteLoRaCloudIntegration deletes the LoRaCloud application-integration.",
-        "operationId": "ApplicationService_DeleteLoRaCloudIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
-    "/api/applications/{applicationID}/integrations/mqtt": {
-      "get": {
-        "summary": "GetMQTTIntegration returns the application-integration.",
-        "operationId": "ApplicationService_GetMQTTIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiGetMQTTIntegrationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "Application ID.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      },
-      "delete": {
-        "summary": "DeleteMQTTIntegration deletes the application-integration.",
-        "operationId": "ApplicationService_DeleteMQTTIntegration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "applicationID",
-            "description": "The id of the application.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "ApplicationService"
-        ]
-      }
-    },
     "/api/applications/{applicationID}/integrations/mqtt/certificate": {
       "post": {
         "summary": "GenerateMQTTIntegrationClientCertificate generates an application ID specific TLS certificate\nto connect to the MQTT broker.",
@@ -783,7 +230,560 @@
         ]
       }
     },
-    "/api/applications/{applicationID}/integrations/mydevices": {
+    "/api/applications/{application_id}/integrations": {
+      "get": {
+        "summary": "ListIntegrations lists all configured integrations.",
+        "operationId": "ApplicationService_ListIntegrations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/aws-sns": {
+      "get": {
+        "summary": "GetAWSSNSIntegration returns the AWS SNS application-integration.",
+        "operationId": "ApplicationService_GetAWSSNSIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAWSSNSIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteAWSSNSIntegration deletes the AWS SNS application-integration.",
+        "operationId": "ApplicationService_DeleteAWSSNSIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/azure-service-bus": {
+      "get": {
+        "summary": "GetAzureServiceBusIntegration returns the Azure Service-Bus application-integration.",
+        "operationId": "ApplicationService_GetAzureServiceBusIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAzureServiceBusIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteAzureServiceBusIntegration deletes the Azure Service-Bus application-integration.",
+        "operationId": "ApplicationService_DeleteAzureServiceBusIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/gcp-pub-sub": {
+      "get": {
+        "summary": "GetGCPPubSubIntegration returns the GCP PubSub application-integration.",
+        "operationId": "ApplicationService_GetGCPPubSubIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetGCPPubSubIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteGCPPubSubIntegration deletes the GCP PubSub application-integration.",
+        "operationId": "ApplicationService_DeleteGCPPubSubIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/http": {
+      "get": {
+        "summary": "GetHTTPIntegration returns the HTTP application-integration.",
+        "operationId": "ApplicationService_GetHTTPIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetHTTPIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteIntegration deletes the HTTP application-integration.",
+        "operationId": "ApplicationService_DeleteHTTPIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/influxdb": {
+      "get": {
+        "summary": "GetInfluxDBIntegration returns the InfluxDB application-integration.",
+        "operationId": "ApplicationService_GetInfluxDBIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetInfluxDBIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteInfluxDBIntegration deletes the InfluxDB application-integration.",
+        "operationId": "ApplicationService_DeleteInfluxDBIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/kafka": {
+      "get": {
+        "summary": "GetKafkaIntegration returns the application-integration.",
+        "operationId": "ApplicationService_GetKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetKafkaIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteKafkaIntegration deletes the application-integration.",
+        "operationId": "ApplicationService_DeleteKafkaIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/loracloud": {
+      "get": {
+        "summary": "GetLoRaCloudIntegration returns the LoRaCloud application-integration.",
+        "operationId": "ApplicationService_GetLoRaCloudIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetLoRaCloudIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteLoRaCloudIntegration deletes the LoRaCloud application-integration.",
+        "operationId": "ApplicationService_DeleteLoRaCloudIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/mqtt": {
+      "get": {
+        "summary": "GetMQTTIntegration returns the application-integration.",
+        "operationId": "ApplicationService_GetMQTTIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetMQTTIntegrationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "Application ID.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      },
+      "delete": {
+        "summary": "DeleteMQTTIntegration deletes the application-integration.",
+        "operationId": "ApplicationService_DeleteMQTTIntegration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_id",
+            "description": "The id of the application.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApplicationService"
+        ]
+      }
+    },
+    "/api/applications/{application_id}/integrations/mydevices": {
       "get": {
         "summary": "GetMyDevicesIntegration returns the MyDevices application-integration.",
         "operationId": "ApplicationService_GetMyDevicesIntegration",
@@ -803,7 +803,7 @@
         },
         "parameters": [
           {
-            "name": "applicationID",
+            "name": "application_id",
             "description": "Application ID.",
             "in": "path",
             "required": true,
@@ -835,7 +835,7 @@
         },
         "parameters": [
           {
-            "name": "applicationID",
+            "name": "application_id",
             "description": "Application ID.",
             "in": "path",
             "required": true,
@@ -848,7 +848,7 @@
         ]
       }
     },
-    "/api/applications/{applicationID}/integrations/pilot-things": {
+    "/api/applications/{application_id}/integrations/pilot-things": {
       "get": {
         "summary": "GetPilotThingsIntegration returns the Pilot Things application-integration.",
         "operationId": "ApplicationService_GetPilotThingsIntegration",
@@ -868,7 +868,7 @@
         },
         "parameters": [
           {
-            "name": "applicationID",
+            "name": "application_id",
             "description": "Application ID.",
             "in": "path",
             "required": true,
@@ -900,7 +900,7 @@
         },
         "parameters": [
           {
-            "name": "applicationID",
+            "name": "application_id",
             "description": "The id of the application.",
             "in": "path",
             "required": true,
@@ -913,7 +913,7 @@
         ]
       }
     },
-    "/api/applications/{applicationID}/integrations/thingsboard": {
+    "/api/applications/{application_id}/integrations/thingsboard": {
       "get": {
         "summary": "GetThingsBoardIntegration returns the ThingsBoard application-integration.",
         "operationId": "ApplicationService_GetThingsBoardIntegration",
@@ -933,7 +933,7 @@
         },
         "parameters": [
           {
-            "name": "applicationID",
+            "name": "application_id",
             "description": "Application ID.",
             "in": "path",
             "required": true,
@@ -965,7 +965,7 @@
         },
         "parameters": [
           {
-            "name": "applicationID",
+            "name": "application_id",
             "description": "Application ID.",
             "in": "path",
             "required": true,
