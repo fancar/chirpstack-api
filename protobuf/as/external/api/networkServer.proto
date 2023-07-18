@@ -103,6 +103,9 @@ message NetworkServer {
 
     // The data-rate of the gateway discovery 'ping'.
     uint32 gateway_discovery_dr = 13 [json_name = "gatewayDiscoveryDR"];
+
+    //  description.
+    string description = 14;
 }
 
 message NetworkServerListItem {

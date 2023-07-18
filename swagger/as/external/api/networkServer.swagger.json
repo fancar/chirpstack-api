@@ -263,6 +263,10 @@
                       "type": "integer",
                       "format": "int64",
                       "description": "The data-rate of the gateway discovery 'ping'."
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "description."
                     }
                   },
                   "description": "Network-server object to update.",
@@ -459,6 +463,10 @@
           "type": "integer",
           "format": "int64",
           "description": "The data-rate of the gateway discovery 'ping'."
+        },
+        "description": {
+          "type": "string",
+          "description": "description."
         }
       }
     },

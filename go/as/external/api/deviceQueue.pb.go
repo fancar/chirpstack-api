@@ -286,15 +286,15 @@ type EnqueueDeviceQueueItemHexRequest struct {
 	// Queue-item object to enqueue.
 	DeviceQueueItem *DownlinkItemHex `protobuf:"bytes,2,opt,name=device_queue_item,json=deviceQueueItem,proto3" json:"device_queue_item,omitempty"`
 	// ! CAUTION !
-	// Set this to true when you really need to recieve next fCnt
-	// or you want to know the enqueue-status immediately (eg development purposes)
-	// ! Please do not call the method in parallel if the flag set it to true.
-	// It can be painfully slow.
-	// The flag basicaly means 'put it right into queue'.
-	// ! The next fCnt be returned only if you set f_cnt parmeter.
+	// Set this to true ONLY if you really need to recieve the next fCnt
+	// (eg you want to know the enqueue-status immediately or in case of some development purposes)
+	// ! Please do not call the method in parallel if the flag set it to true as
+	// it can be painfully slow.
+	// The flag basicaly means 'put the message right into the main queue'.
+	// ! The next fCnt value be returned only if you set f_cnt parmeter.
 	// Otherwise it allways be 0.
-	// If you set it to false. It will be processed asynchronously.
-	// In case of process with error - it will be sent as ErrorEvents via you apps.
+	// If you set it to false it will be processed asynchronously via preprocessing queue.
+	// In case of process with error later on it will sent the error as ErrorEvents via your integration.
 	// You can match it by the message_id parameter.
 	GetFcnt bool `protobuf:"varint,3,opt,name=get_fcnt,json=getFcnt,proto3" json:"get_fcnt,omitempty"`
 }
