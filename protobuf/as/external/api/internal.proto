@@ -46,10 +46,26 @@ service InternalService {
         };
     }
 
+    // UpdateAPIKey updates the given API key.
+    rpc UpdateAPIKey(UpdateAPIKeyRequest) returns (google.protobuf.Empty) {
+        option(google.api.http) = {
+            put: "/api/internal/api-keys"
+            body: "*"
+        };
+    }
+
     // DeleteAPIKey deletes the API key.
     rpc DeleteAPIKey(DeleteAPIKeyRequest) returns (google.protobuf.Empty) {
         option(google.api.http) = {
             delete: "/api/internal/api-keys/{id}"
+        };
+    }
+
+
+    // GetAPIKey returns API key object by the given id
+    rpc GetAPIKey(GetAPIKeyRequest) returns (GetAPIKeyResponse) {
+        option(google.api.http) = {
+            get: "/api/internal/api-keys/{id}"
         };
     }
 
@@ -195,9 +211,17 @@ message APIKey {
 
     //  description.
     string description = 6;
+
+    // Set to false to disable the key.
+    bool is_active = 7;
 }
 
 message CreateAPIKeyRequest {
+    // The API key to create.
+    APIKey api_key = 1;
+}
+
+message UpdateAPIKeyRequest {
     // The API key to create.
     APIKey api_key = 1;
 }
@@ -214,6 +238,23 @@ message DeleteAPIKeyRequest {
     // API key ID.
     string id = 1;
 }
+
+message GetAPIKeyRequest {
+    // API key ID.
+    string id = 1;
+}
+
+message GetAPIKeyResponse {
+    // The API key object
+    APIKey api_key = 1;
+
+    // Created at timestamp.
+    google.protobuf.Timestamp created_at = 2;
+
+    // Last update timestamp.
+    google.protobuf.Timestamp updated_at = 3;
+}
+
 
 message ListAPIKeysRequest {
     // Required! Max number of items to return.

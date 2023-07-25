@@ -25,7 +25,9 @@ const (
 	InternalService_Profile_FullMethodName               = "/api.InternalService/Profile"
 	InternalService_GlobalSearch_FullMethodName          = "/api.InternalService/GlobalSearch"
 	InternalService_CreateAPIKey_FullMethodName          = "/api.InternalService/CreateAPIKey"
+	InternalService_UpdateAPIKey_FullMethodName          = "/api.InternalService/UpdateAPIKey"
 	InternalService_DeleteAPIKey_FullMethodName          = "/api.InternalService/DeleteAPIKey"
+	InternalService_GetAPIKey_FullMethodName             = "/api.InternalService/GetAPIKey"
 	InternalService_ListAPIKeys_FullMethodName           = "/api.InternalService/ListAPIKeys"
 	InternalService_Settings_FullMethodName              = "/api.InternalService/Settings"
 	InternalService_OpenIDConnectLogin_FullMethodName    = "/api.InternalService/OpenIDConnectLogin"
@@ -49,8 +51,12 @@ type InternalServiceClient interface {
 	GlobalSearch(ctx context.Context, in *GlobalSearchRequest, opts ...grpc.CallOption) (*GlobalSearchResponse, error)
 	// CreateAPIKey creates the given API key.
 	CreateAPIKey(ctx context.Context, in *CreateAPIKeyRequest, opts ...grpc.CallOption) (*CreateAPIKeyResponse, error)
+	// UpdateAPIKey updates the given API key.
+	UpdateAPIKey(ctx context.Context, in *UpdateAPIKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// DeleteAPIKey deletes the API key.
 	DeleteAPIKey(ctx context.Context, in *DeleteAPIKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Get api_key by given id
+	GetAPIKey(ctx context.Context, in *GetAPIKeyRequest, opts ...grpc.CallOption) (*GetAPIKeyResponse, error)
 	// ListAPIKeys lists the available API keys.
 	ListAPIKeys(ctx context.Context, in *ListAPIKeysRequest, opts ...grpc.CallOption) (*ListAPIKeysResponse, error)
 	// Get the global settings.
@@ -115,9 +121,27 @@ func (c *internalServiceClient) CreateAPIKey(ctx context.Context, in *CreateAPIK
 	return out, nil
 }
 
+func (c *internalServiceClient) UpdateAPIKey(ctx context.Context, in *UpdateAPIKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, InternalService_UpdateAPIKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *internalServiceClient) DeleteAPIKey(ctx context.Context, in *DeleteAPIKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, InternalService_DeleteAPIKey_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *internalServiceClient) GetAPIKey(ctx context.Context, in *GetAPIKeyRequest, opts ...grpc.CallOption) (*GetAPIKeyResponse, error) {
+	out := new(GetAPIKeyResponse)
+	err := c.cc.Invoke(ctx, InternalService_GetAPIKey_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -217,8 +241,12 @@ type InternalServiceServer interface {
 	GlobalSearch(context.Context, *GlobalSearchRequest) (*GlobalSearchResponse, error)
 	// CreateAPIKey creates the given API key.
 	CreateAPIKey(context.Context, *CreateAPIKeyRequest) (*CreateAPIKeyResponse, error)
+	// UpdateAPIKey updates the given API key.
+	UpdateAPIKey(context.Context, *UpdateAPIKeyRequest) (*emptypb.Empty, error)
 	// DeleteAPIKey deletes the API key.
 	DeleteAPIKey(context.Context, *DeleteAPIKeyRequest) (*emptypb.Empty, error)
+	// Get api_key by given id
+	GetAPIKey(context.Context, *GetAPIKeyRequest) (*GetAPIKeyResponse, error)
 	// ListAPIKeys lists the available API keys.
 	ListAPIKeys(context.Context, *ListAPIKeysRequest) (*ListAPIKeysResponse, error)
 	// Get the global settings.
@@ -256,8 +284,14 @@ func (UnimplementedInternalServiceServer) GlobalSearch(context.Context, *GlobalS
 func (UnimplementedInternalServiceServer) CreateAPIKey(context.Context, *CreateAPIKeyRequest) (*CreateAPIKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAPIKey not implemented")
 }
+func (UnimplementedInternalServiceServer) UpdateAPIKey(context.Context, *UpdateAPIKeyRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAPIKey not implemented")
+}
 func (UnimplementedInternalServiceServer) DeleteAPIKey(context.Context, *DeleteAPIKeyRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAPIKey not implemented")
+}
+func (UnimplementedInternalServiceServer) GetAPIKey(context.Context, *GetAPIKeyRequest) (*GetAPIKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAPIKey not implemented")
 }
 func (UnimplementedInternalServiceServer) ListAPIKeys(context.Context, *ListAPIKeysRequest) (*ListAPIKeysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAPIKeys not implemented")
@@ -371,6 +405,24 @@ func _InternalService_CreateAPIKey_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InternalService_UpdateAPIKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAPIKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InternalServiceServer).UpdateAPIKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InternalService_UpdateAPIKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InternalServiceServer).UpdateAPIKey(ctx, req.(*UpdateAPIKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _InternalService_DeleteAPIKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteAPIKeyRequest)
 	if err := dec(in); err != nil {
@@ -385,6 +437,24 @@ func _InternalService_DeleteAPIKey_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(InternalServiceServer).DeleteAPIKey(ctx, req.(*DeleteAPIKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InternalService_GetAPIKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAPIKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InternalServiceServer).GetAPIKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InternalService_GetAPIKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InternalServiceServer).GetAPIKey(ctx, req.(*GetAPIKeyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -575,8 +645,16 @@ var InternalService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _InternalService_CreateAPIKey_Handler,
 		},
 		{
+			MethodName: "UpdateAPIKey",
+			Handler:    _InternalService_UpdateAPIKey_Handler,
+		},
+		{
 			MethodName: "DeleteAPIKey",
 			Handler:    _InternalService_DeleteAPIKey_Handler,
+		},
+		{
+			MethodName: "GetAPIKey",
+			Handler:    _InternalService_GetAPIKey_Handler,
 		},
 		{
 			MethodName: "ListAPIKeys",
