@@ -159,7 +159,7 @@
     },
     "/api/internal/api-keys/{id}": {
       "get": {
-        "summary": "Get api_key by given id",
+        "summary": "GetAPIKey returns API key object by the given id",
         "operationId": "InternalService_GetAPIKey",
         "responses": {
           "200": {

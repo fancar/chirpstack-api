@@ -32,9 +32,20 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
+var (
+	filter_DataExportService_GetGateways_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_DataExportService_GetGateways_0(ctx context.Context, marshaler runtime.Marshaler, client DataExportServiceClient, req *http.Request, pathParams map[string]string) (DataExportService_GetGatewaysClient, runtime.ServerMetadata, error) {
-	var protoReq emptypb.Empty
+	var protoReq DataExportRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_DataExportService_GetGateways_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	stream, err := client.GetGateways(ctx, &protoReq)
 	if err != nil {

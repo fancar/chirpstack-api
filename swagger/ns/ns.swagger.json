@@ -995,6 +995,75 @@
         }
       }
     },
+    "nsGatewayMeta": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "byte",
+          "description": "Gateway ID (8 bytes EUI64)."
+        },
+        "routingProfileId": {
+          "type": "string",
+          "format": "byte",
+          "title": "the routing profile id is about routing to as. Nothing to do with rp in as itself"
+        },
+        "gatewayProfileId": {
+          "type": "string",
+          "format": "byte"
+        },
+        "serviceProfileId": {
+          "type": "string",
+          "format": "byte"
+        },
+        "isPrivate": {
+          "type": "boolean",
+          "title": "private gateways serve only devices with the same profile"
+        },
+        "suspended": {
+          "type": "boolean"
+        },
+        "boards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/nsGatewayBoard"
+          },
+          "description": "Gateway boards configuration (optional).\nThis is (currently) only needed when the gateway supports the fine-timestamp\nand you you would like to add the FPGA ID to the gateway meta-data or would\nlike ChirpStack Network Server to decrypt the fine-timestamp."
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "description": "Gateway location."
+        },
+        "firstSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "First seen timestamp."
+        },
+        "lastUplinkAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last uplink timestamp."
+        },
+        "lastStatsAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last statistics recieved at"
+        },
+        "gpsSeenAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last gps location recieved at the time within stats packet"
+        },
+        "metaData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "meta data recieved within stats packet"
+        }
+      }
+    },
     "nsGatewayProfile": {
       "type": "object",
       "properties": {
@@ -1228,6 +1297,15 @@
         }
       }
     },
+    "nsGetGatewayMetaResponse": {
+      "type": "object",
+      "properties": {
+        "gatewayMeta": {
+          "$ref": "#/definitions/nsGatewayMeta",
+          "description": "Gateway object."
+        }
+      }
+    },
     "nsGetGatewayProfileResponse": {
       "type": "object",
       "properties": {
@@ -1250,10 +1328,6 @@
     "nsGetGatewayResponse": {
       "type": "object",
       "properties": {
-        "gateway": {
-          "$ref": "#/definitions/nsGateway",
-          "description": "Gateway object."
-        },
         "createdAt": {
           "type": "string",
           "format": "date-time",
@@ -1264,15 +1338,13 @@
           "format": "date-time",
           "description": "Last update timestamp."
         },
-        "firstSeenAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "First seen timestamp."
+        "gateway": {
+          "$ref": "#/definitions/nsGateway",
+          "description": "Gateway object."
         },
-        "lastSeenAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Last seen timestamp."
+        "meta": {
+          "$ref": "#/definitions/nsGatewayMeta",
+          "title": "meta information from redis"
         }
       }
     },

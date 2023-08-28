@@ -55,7 +55,7 @@ type InternalServiceClient interface {
 	UpdateAPIKey(ctx context.Context, in *UpdateAPIKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// DeleteAPIKey deletes the API key.
 	DeleteAPIKey(ctx context.Context, in *DeleteAPIKeyRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Get api_key by given id
+	// GetAPIKey returns API key object by the given id
 	GetAPIKey(ctx context.Context, in *GetAPIKeyRequest, opts ...grpc.CallOption) (*GetAPIKeyResponse, error)
 	// ListAPIKeys lists the available API keys.
 	ListAPIKeys(ctx context.Context, in *ListAPIKeysRequest, opts ...grpc.CallOption) (*ListAPIKeysResponse, error)
@@ -245,7 +245,7 @@ type InternalServiceServer interface {
 	UpdateAPIKey(context.Context, *UpdateAPIKeyRequest) (*emptypb.Empty, error)
 	// DeleteAPIKey deletes the API key.
 	DeleteAPIKey(context.Context, *DeleteAPIKeyRequest) (*emptypb.Empty, error)
-	// Get api_key by given id
+	// GetAPIKey returns API key object by the given id
 	GetAPIKey(context.Context, *GetAPIKeyRequest) (*GetAPIKeyResponse, error)
 	// ListAPIKeys lists the available API keys.
 	ListAPIKeys(context.Context, *ListAPIKeysRequest) (*ListAPIKeysResponse, error)

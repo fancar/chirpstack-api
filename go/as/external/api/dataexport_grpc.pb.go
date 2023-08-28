@@ -32,7 +32,7 @@ type DataExportServiceClient interface {
 	// GetGateways Export gateways
 	//
 	//	(!) websocket required! The endpoint does not work from a web-swagger.
-	GetGateways(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (DataExportService_GetGatewaysClient, error)
+	GetGateways(ctx context.Context, in *DataExportRequest, opts ...grpc.CallOption) (DataExportService_GetGatewaysClient, error)
 	// GetUsers Export users
 	//
 	//	(!) websocket required! The endpoint does not work from a web-swagger.
@@ -51,7 +51,7 @@ func NewDataExportServiceClient(cc grpc.ClientConnInterface) DataExportServiceCl
 	return &dataExportServiceClient{cc}
 }
 
-func (c *dataExportServiceClient) GetGateways(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (DataExportService_GetGatewaysClient, error) {
+func (c *dataExportServiceClient) GetGateways(ctx context.Context, in *DataExportRequest, opts ...grpc.CallOption) (DataExportService_GetGatewaysClient, error) {
 	stream, err := c.cc.NewStream(ctx, &DataExportService_ServiceDesc.Streams[0], DataExportService_GetGateways_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
@@ -154,7 +154,7 @@ type DataExportServiceServer interface {
 	// GetGateways Export gateways
 	//
 	//	(!) websocket required! The endpoint does not work from a web-swagger.
-	GetGateways(*emptypb.Empty, DataExportService_GetGatewaysServer) error
+	GetGateways(*DataExportRequest, DataExportService_GetGatewaysServer) error
 	// GetUsers Export users
 	//
 	//	(!) websocket required! The endpoint does not work from a web-swagger.
@@ -170,7 +170,7 @@ type DataExportServiceServer interface {
 type UnimplementedDataExportServiceServer struct {
 }
 
-func (UnimplementedDataExportServiceServer) GetGateways(*emptypb.Empty, DataExportService_GetGatewaysServer) error {
+func (UnimplementedDataExportServiceServer) GetGateways(*DataExportRequest, DataExportService_GetGatewaysServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetGateways not implemented")
 }
 func (UnimplementedDataExportServiceServer) GetUsers(*emptypb.Empty, DataExportService_GetUsersServer) error {
@@ -193,7 +193,7 @@ func RegisterDataExportServiceServer(s grpc.ServiceRegistrar, srv DataExportServ
 }
 
 func _DataExportService_GetGateways_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(emptypb.Empty)
+	m := new(DataExportRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}

@@ -72,6 +72,7 @@ const (
 	NetworkServerService_GetDeviceForExport_FullMethodName                      = "/ns.NetworkServerService/GetDeviceForExport"
 	NetworkServerService_ClearDeviceNonces_FullMethodName                       = "/ns.NetworkServerService/ClearDeviceNonces"
 	NetworkServerService_CountGateways_FullMethodName                           = "/ns.NetworkServerService/CountGateways"
+	NetworkServerService_GetGatewayMeta_FullMethodName                          = "/ns.NetworkServerService/GetGatewayMeta"
 )
 
 // NetworkServerServiceClient is the client API for NetworkServerService service.
@@ -191,6 +192,8 @@ type NetworkServerServiceClient interface {
 	ClearDeviceNonces(ctx context.Context, in *ClearDeviceNoncesRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// CountGateways returns gw counts by gateway_profile use
 	CountGateways(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CountGatewaysResponse, error)
+	// GetGatewayMeta returns meta data for a particular gateway.
+	GetGatewayMeta(ctx context.Context, in *GetGatewayRequest, opts ...grpc.CallOption) (*GetGatewayMetaResponse, error)
 }
 
 type networkServerServiceClient struct {
@@ -715,6 +718,15 @@ func (c *networkServerServiceClient) CountGateways(ctx context.Context, in *empt
 	return out, nil
 }
 
+func (c *networkServerServiceClient) GetGatewayMeta(ctx context.Context, in *GetGatewayRequest, opts ...grpc.CallOption) (*GetGatewayMetaResponse, error) {
+	out := new(GetGatewayMetaResponse)
+	err := c.cc.Invoke(ctx, NetworkServerService_GetGatewayMeta_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NetworkServerServiceServer is the server API for NetworkServerService service.
 // All implementations must embed UnimplementedNetworkServerServiceServer
 // for forward compatibility
@@ -832,6 +844,8 @@ type NetworkServerServiceServer interface {
 	ClearDeviceNonces(context.Context, *ClearDeviceNoncesRequest) (*emptypb.Empty, error)
 	// CountGateways returns gw counts by gateway_profile use
 	CountGateways(context.Context, *emptypb.Empty) (*CountGatewaysResponse, error)
+	// GetGatewayMeta returns meta data for a particular gateway.
+	GetGatewayMeta(context.Context, *GetGatewayRequest) (*GetGatewayMetaResponse, error)
 	mustEmbedUnimplementedNetworkServerServiceServer()
 }
 
@@ -994,6 +1008,9 @@ func (UnimplementedNetworkServerServiceServer) ClearDeviceNonces(context.Context
 }
 func (UnimplementedNetworkServerServiceServer) CountGateways(context.Context, *emptypb.Empty) (*CountGatewaysResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountGateways not implemented")
+}
+func (UnimplementedNetworkServerServiceServer) GetGatewayMeta(context.Context, *GetGatewayRequest) (*GetGatewayMetaResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayMeta not implemented")
 }
 func (UnimplementedNetworkServerServiceServer) mustEmbedUnimplementedNetworkServerServiceServer() {}
 
@@ -1950,6 +1967,24 @@ func _NetworkServerService_CountGateways_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NetworkServerService_GetGatewayMeta_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGatewayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServerServiceServer).GetGatewayMeta(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkServerService_GetGatewayMeta_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServerServiceServer).GetGatewayMeta(ctx, req.(*GetGatewayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NetworkServerService_ServiceDesc is the grpc.ServiceDesc for NetworkServerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2156,6 +2191,10 @@ var NetworkServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CountGateways",
 			Handler:    _NetworkServerService_CountGateways_Handler,
+		},
+		{
+			MethodName: "GetGatewayMeta",
+			Handler:    _NetworkServerService_GetGatewayMeta_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

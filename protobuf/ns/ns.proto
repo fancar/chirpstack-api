@@ -181,6 +181,9 @@ service NetworkServerService {
 
     // CountGateways returns gw counts by gateway_profile use
     rpc CountGateways(google.protobuf.Empty) returns (CountGatewaysResponse) {}
+
+    // GetGatewayMeta returns meta data for a particular gateway.
+    rpc GetGatewayMeta(GetGatewayRequest) returns (GetGatewayMetaResponse) {}    
 }
 
 enum RXWindow {
@@ -551,6 +554,47 @@ message Gateway {
     bool suspended = 7;
 }
 
+message GatewayMeta {
+    // Gateway ID (8 bytes EUI64).
+    bytes id = 1;
+
+    // the routing profile id is about routing to as. Nothing to do with rp in as itself
+    bytes routing_profile_id = 2;
+
+    bytes gateway_profile_id = 3;
+
+    bytes service_profile_id = 4;
+
+    // private gateways serve only devices with the same profile
+    bool is_private = 5;
+
+    bool suspended = 6;
+
+    // Gateway boards configuration (optional).
+    // This is (currently) only needed when the gateway supports the fine-timestamp
+    // and you you would like to add the FPGA ID to the gateway meta-data or would
+    // like ChirpStack Network Server to decrypt the fine-timestamp.
+    repeated GatewayBoard boards = 7;
+
+    // Gateway location.
+    common.Location location = 8;
+
+    // First seen timestamp.
+    google.protobuf.Timestamp first_seen_at = 9;
+
+    // Last uplink timestamp.
+    google.protobuf.Timestamp last_uplink_at = 10;
+
+    // last statistics recieved at
+    google.protobuf.Timestamp last_stats_at = 11;
+
+    // last gps location recieved at the time within stats packet
+    google.protobuf.Timestamp gps_seen_at = 12;
+
+    // meta data recieved within stats packet
+    map<string, string> meta_data = 13; 
+}
+
 message GatewayBoard {
     // FPGA ID of the gateway (8 bytes) (optional).
     bytes fpga_id = 1;
@@ -569,21 +613,23 @@ message GetGatewayRequest {
     bytes id = 1;
 }
 
-message GetGatewayResponse {
+message GetGatewayMetaResponse {
     // Gateway object.
-    Gateway gateway = 1;
+    GatewayMeta gateway_meta = 1;
+}
 
+message GetGatewayResponse {
     // Created at timestamp.
-    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp created_at = 1;
 
     // Last update timestamp.
-    google.protobuf.Timestamp updated_at = 3;
+    google.protobuf.Timestamp updated_at = 2;
 
-    // First seen timestamp.
-    google.protobuf.Timestamp first_seen_at = 4;
+    // Gateway object.
+    Gateway gateway = 3;
 
-    // Last seen timestamp.
-    google.protobuf.Timestamp last_seen_at = 5;
+    // meta information from redis
+    GatewayMeta meta = 4;
 }
 
 message UpdateGatewayRequest {

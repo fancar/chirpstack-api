@@ -93,6 +93,24 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "orgId",
+            "description": "Organization ID.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "nsId",
+            "description": "network_server id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "DataExportService"
         ]

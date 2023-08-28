@@ -12,7 +12,7 @@ service DataExportService {
 
     // GetGateways Export gateways
     //   (!) websocket required! The endpoint does not work from a web-swagger.
-    rpc GetGateways(google.protobuf.Empty) returns (stream StreamResponse) {
+    rpc GetGateways(DataExportRequest) returns (stream StreamResponse) {
         option (google.api.http) = {
             get: "/api/dataexport/gateways"
         };
