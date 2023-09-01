@@ -28,7 +28,6 @@ const (
 	GatewayService_Delete_FullMethodName                           = "/api.GatewayService/Delete"
 	GatewayService_List_FullMethodName                             = "/api.GatewayService/List"
 	GatewayService_GetGatewayLogs_FullMethodName                   = "/api.GatewayService/GetGatewayLogs"
-	GatewayService_ListActilityStyled_FullMethodName               = "/api.GatewayService/ListActilityStyled"
 	GatewayService_ListMon_FullMethodName                          = "/api.GatewayService/ListMon"
 	GatewayService_GetStats_FullMethodName                         = "/api.GatewayService/GetStats"
 	GatewayService_GetLastPing_FullMethodName                      = "/api.GatewayService/GetLastPing"
@@ -55,8 +54,6 @@ type GatewayServiceClient interface {
 	List(ctx context.Context, in *ListGatewayRequest, opts ...grpc.CallOption) (*ListGatewayResponse, error)
 	// GetGatewayLogs returns logs of statistics state changed.
 	GetGatewayLogs(ctx context.Context, in *handyrusty.LogsGatewayRequest, opts ...grpc.CallOption) (*handyrusty.LogsGatewayResponse, error)
-	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
-	ListActilityStyled(ctx context.Context, in *ListGatewayRequest, opts ...grpc.CallOption) (*ListGwActilityStyledResponse, error)
 	// ListMon lists all gateways with the metrics for monitoring purposes
 	ListMon(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ListMonResponse, error)
 	// GetStats lists the gateway stats given the query parameters.
@@ -142,15 +139,6 @@ func (c *gatewayServiceClient) List(ctx context.Context, in *ListGatewayRequest,
 func (c *gatewayServiceClient) GetGatewayLogs(ctx context.Context, in *handyrusty.LogsGatewayRequest, opts ...grpc.CallOption) (*handyrusty.LogsGatewayResponse, error) {
 	out := new(handyrusty.LogsGatewayResponse)
 	err := c.cc.Invoke(ctx, GatewayService_GetGatewayLogs_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gatewayServiceClient) ListActilityStyled(ctx context.Context, in *ListGatewayRequest, opts ...grpc.CallOption) (*ListGwActilityStyledResponse, error) {
-	out := new(ListGwActilityStyledResponse)
-	err := c.cc.Invoke(ctx, GatewayService_ListActilityStyled_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -252,8 +240,6 @@ type GatewayServiceServer interface {
 	List(context.Context, *ListGatewayRequest) (*ListGatewayResponse, error)
 	// GetGatewayLogs returns logs of statistics state changed.
 	GetGatewayLogs(context.Context, *handyrusty.LogsGatewayRequest) (*handyrusty.LogsGatewayResponse, error)
-	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
-	ListActilityStyled(context.Context, *ListGatewayRequest) (*ListGwActilityStyledResponse, error)
 	// ListMon lists all gateways with the metrics for monitoring purposes
 	ListMon(context.Context, *emptypb.Empty) (*ListMonResponse, error)
 	// GetStats lists the gateway stats given the query parameters.
@@ -299,9 +285,6 @@ func (UnimplementedGatewayServiceServer) List(context.Context, *ListGatewayReque
 }
 func (UnimplementedGatewayServiceServer) GetGatewayLogs(context.Context, *handyrusty.LogsGatewayRequest) (*handyrusty.LogsGatewayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGatewayLogs not implemented")
-}
-func (UnimplementedGatewayServiceServer) ListActilityStyled(context.Context, *ListGatewayRequest) (*ListGwActilityStyledResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListActilityStyled not implemented")
 }
 func (UnimplementedGatewayServiceServer) ListMon(context.Context, *emptypb.Empty) (*ListMonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMon not implemented")
@@ -460,24 +443,6 @@ func _GatewayService_GetGatewayLogs_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GatewayService_ListActilityStyled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListGatewayRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GatewayServiceServer).ListActilityStyled(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GatewayService_ListActilityStyled_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServiceServer).ListActilityStyled(ctx, req.(*ListGatewayRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GatewayService_ListMon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -623,10 +588,6 @@ var GatewayService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGatewayLogs",
 			Handler:    _GatewayService_GetGatewayLogs_Handler,
-		},
-		{
-			MethodName: "ListActilityStyled",
-			Handler:    _GatewayService_ListActilityStyled_Handler,
 		},
 		{
 			MethodName: "ListMon",

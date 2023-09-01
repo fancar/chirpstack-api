@@ -68,13 +68,6 @@ service GatewayService {
 		};
 	}
 
-	// ListActilityStyled lists the gateways with legacy [Actility] json-format.
-	rpc ListActilityStyled(ListGatewayRequest) returns (ListGwActilityStyledResponse) {
-		option (google.api.http) = {
-			get: "/api/monitoring/gateways/actility_styled"
-		};
-	}
-
 	// ListMon lists all gateways with the metrics for monitoring purposes
 	rpc ListMon(google.protobuf.Empty) returns (ListMonResponse) {
 		option (google.api.http) = {
@@ -168,7 +161,7 @@ message Gateway {
     // Serno - serial number of the device
     string serno = 13;
 
-    // the status calculated by last_seen_at parameter (now - stats_interval*1.5 <= last_seen)
+    // the status calculated by last_seen_at parameter (now - stats_interval*2 <= last_seen)
     bool active = 14;
 
     // Mobile phone number of SIM-card for the device
@@ -314,7 +307,7 @@ message GatewayListItem {
     string network_server_name = 11;
 
     // the status of radio (if the packet forwarder is running)
-    string radio = 12;
+    bool radio = 12;
 
     // the status calculated from last_seen_at parameter
     bool active = 13;     
@@ -393,36 +386,6 @@ message GatewayMonItem {
     string lte_level = 19;
 }
 
-message StatsItemActilityStyled {
-	// Create timestamp.
-	google.protobuf.Timestamp creation_time = 1 [json_name = "creationTime"];
-
-	// CNX: it works, DISC: unreachable, NEVERCNX: never seen
-	string connection_state = 2 [json_name = "connectionState"];
-
-	// present errors on GW: ACTIVE, BACKHAUL_CNX_ERROR
-	string health_state = 3 [json_name = "healthState"];
-}
-
-message GwItemActilityStyled {
-	// ID. (max hex as integer)
-	string ref = 1;
-	
-	// GW ID (last 4 bytes MSB)
-	string id = 2;
-	
-	// name of the gateway
-	string name = 3;
-
-	// state of the gw: ACTIVE or SUSPENDED
-	string administration_state = 4 [json_name = "administrationState"];
-
-	// name of the gateway
-	string owner = 5;
-
-	StatsItemActilityStyled statistics = 6;     
-}
-
 
 message ListGatewayResponse {
 	// Total number of nodes available within the result-set.
@@ -437,13 +400,6 @@ message ListMonResponse {
 	repeated GatewayMonItem result = 1;
 }
 
-message ListGwActilityStyledResponse {
-	// Total number of nodes available within the result-set.
-	int64 total_count = 1;
-
-	// result array
-	repeated GwItemActilityStyled result = 2;
-}
 
 message UpdateGatewayRequest {
 	// Gateway object to update.

@@ -492,10 +492,10 @@ message HandleGatewayStatsRequest {
     // Stats ID (UUID).
     bytes stats_id = 2;
 
-    // Timestamp.
+    // Timestamp. Deprecated
     google.protobuf.Timestamp time = 3;
 
-    // Gateway location.
+    // Gateway location. If not zeroes - location has been changed
     common.Location location = 4;
 
     // Uplink frames received.
@@ -510,7 +510,7 @@ message HandleGatewayStatsRequest {
     // Downlink emitted.
     uint32 tx_packets_emitted = 8;
 
-    // Gateway metadata.
+    // Gateway metadata. Deprecated
     map<string, string> metadata = 9;
 
     // Tx packets per frequency.
@@ -527,6 +527,12 @@ message HandleGatewayStatsRequest {
 
     // Tx packets per status.
     map<string, uint32> tx_packets_per_status = 14;
+
+    // the notification in case the gw back online
+    bool back_online = 15;
+
+    // the notification in case the radio just switched on
+    bool radio_is_back_on = 16;
 }
 
 message HandleTxAckRequest {
