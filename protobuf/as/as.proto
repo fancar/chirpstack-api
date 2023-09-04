@@ -528,11 +528,8 @@ message HandleGatewayStatsRequest {
     // Tx packets per status.
     map<string, uint32> tx_packets_per_status = 14;
 
-    // the notification in case the gw back online
-    bool back_online = 15;
-
-    // the notification in case the radio just switched on
-    bool radio_is_back_on = 16;
+    // true if radio forwarder is running on the gateway
+    bool radio = 15;
 }
 
 message HandleTxAckRequest {
