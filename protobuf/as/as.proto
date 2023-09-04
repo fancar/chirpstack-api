@@ -528,8 +528,8 @@ message HandleGatewayStatsRequest {
     // Tx packets per status.
     map<string, uint32> tx_packets_per_status = 14;
 
-    // true if radio forwarder is running on the gateway
-    bool radio = 15;
+    // if radio forwarder is running on the gateway . Running\Disabled\Stopped
+    string radio = 15;
 }
 
 message HandleTxAckRequest {
