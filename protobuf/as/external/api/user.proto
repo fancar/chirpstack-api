@@ -283,9 +283,9 @@ message ListUserLogsRequest {
 	// sort direction
 	string order = 6;
 
-    // DateTime from search. Works only with date_to
+    // RFC3339 UTC '1985-04-12T23:20:50.52Z' Works only with dateTo
     google.protobuf.Timestamp date_from = 7;
-    // DateTime from search. Works only with date_from
+    // RFC3339 UTC. Works only with dateFrom
     google.protobuf.Timestamp date_to = 8;    
 }
 

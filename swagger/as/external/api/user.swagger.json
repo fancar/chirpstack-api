@@ -82,7 +82,7 @@
           },
           {
             "name": "dateFrom",
-            "description": "DateTime from search. Works only with date_to",
+            "description": "RFC3339 UTC '1985-04-12T23:20:50.52Z' Works only with dateTo",
             "in": "query",
             "required": false,
             "type": "string",
@@ -90,7 +90,7 @@
           },
           {
             "name": "dateTo",
-            "description": "DateTime from search. Works only with date_from",
+            "description": "RFC3339 UTC. Works only with dateFrom",
             "in": "query",
             "required": false,
             "type": "string",

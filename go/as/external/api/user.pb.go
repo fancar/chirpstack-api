@@ -1017,9 +1017,9 @@ type ListUserLogsRequest struct {
 	OrderBy string `protobuf:"bytes,5,opt,name=orderBy,proto3" json:"orderBy,omitempty"`
 	// sort direction
 	Order string `protobuf:"bytes,6,opt,name=order,proto3" json:"order,omitempty"`
-	// DateTime from search. Works only with date_to
+	// RFC3339 UTC '1985-04-12T23:20:50.52Z' Works only with dateTo
 	DateFrom *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=date_from,json=dateFrom,proto3" json:"date_from,omitempty"`
-	// DateTime from search. Works only with date_from
+	// RFC3339 UTC. Works only with dateFrom
 	DateTo *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=date_to,json=dateTo,proto3" json:"date_to,omitempty"`
 }
 
