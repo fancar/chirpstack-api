@@ -79,6 +79,22 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "dateFrom",
+            "description": "DateTime from search. Works only with date_to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "dateTo",
+            "description": "DateTime from search. Works only with date_from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
           }
         ],
         "tags": [

@@ -281,7 +281,12 @@ message ListUserLogsRequest {
 	string orderBy = 5;		
 
 	// sort direction
-	string order = 6;		
+	string order = 6;
+
+    // DateTime from search. Works only with date_to
+    google.protobuf.Timestamp date_from = 7;
+    // DateTime from search. Works only with date_from
+    google.protobuf.Timestamp date_to = 8;    
 }
 
 message ListUserLogsResponse {
