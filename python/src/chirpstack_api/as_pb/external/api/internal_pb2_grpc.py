@@ -37,10 +37,20 @@ class InternalServiceStub(object):
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.CreateAPIKeyRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.CreateAPIKeyResponse.FromString,
                 )
+        self.UpdateAPIKey = channel.unary_unary(
+                '/api.InternalService/UpdateAPIKey',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.UpdateAPIKeyRequest.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
         self.DeleteAPIKey = channel.unary_unary(
                 '/api.InternalService/DeleteAPIKey',
                 request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.DeleteAPIKeyRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.GetAPIKey = channel.unary_unary(
+                '/api.InternalService/GetAPIKey',
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetAPIKeyRequest.SerializeToString,
+                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetAPIKeyResponse.FromString,
                 )
         self.ListAPIKeys = channel.unary_unary(
                 '/api.InternalService/ListAPIKeys',
@@ -121,8 +131,22 @@ class InternalServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateAPIKey(self, request, context):
+        """UpdateAPIKey updates the given API key.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def DeleteAPIKey(self, request, context):
         """DeleteAPIKey deletes the API key.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAPIKey(self, request, context):
+        """GetAPIKey returns API key object by the given id
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -214,10 +238,20 @@ def add_InternalServiceServicer_to_server(servicer, server):
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.CreateAPIKeyRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.CreateAPIKeyResponse.SerializeToString,
             ),
+            'UpdateAPIKey': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateAPIKey,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.UpdateAPIKeyRequest.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
             'DeleteAPIKey': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteAPIKey,
                     request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.DeleteAPIKeyRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetAPIKey': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAPIKey,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetAPIKeyRequest.FromString,
+                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetAPIKeyResponse.SerializeToString,
             ),
             'ListAPIKeys': grpc.unary_unary_rpc_method_handler(
                     servicer.ListAPIKeys,
@@ -344,6 +378,23 @@ class InternalService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def UpdateAPIKey(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.InternalService/UpdateAPIKey',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.UpdateAPIKeyRequest.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def DeleteAPIKey(request,
             target,
             options=(),
@@ -357,6 +408,23 @@ class InternalService(object):
         return grpc.experimental.unary_unary(request, target, '/api.InternalService/DeleteAPIKey',
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.DeleteAPIKeyRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAPIKey(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/api.InternalService/GetAPIKey',
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetAPIKeyRequest.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_internal__pb2.GetAPIKeyResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

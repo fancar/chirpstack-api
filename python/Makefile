@@ -2,7 +2,7 @@ GOOGLEAPIS_PATH := "/googleapis"
 IMPORT_AS := import \"as_pb/
 PACKAGE_NAME := import \"chirpstack-api/
 
-all: requirements version pre-build common hr gw geo nc ns fuota as as-integration as-external-api
+all: requirements version pre-build common hr gw geo nc ns as as-integration as-external-api
 
 requirements:
 	pip install grpcio-tools
@@ -42,9 +42,6 @@ nc:
 ns:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/ns/profiles.proto
 	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/ns/ns.proto
-
-fuota:
-	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/fuota/fuota.proto
 
 as:
 	python -m grpc_tools.protoc -I=proto --python_out=src --grpc_python_out=src proto/chirpstack-api/as_pb/as_pb.proto

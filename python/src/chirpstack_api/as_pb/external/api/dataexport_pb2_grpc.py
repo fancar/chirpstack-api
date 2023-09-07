@@ -18,7 +18,7 @@ class DataExportServiceStub(object):
         """
         self.GetGateways = channel.unary_stream(
                 '/api.DataExportService/GetGateways',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_dataexport__pb2.DataExportRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_dataexport__pb2.StreamResponse.FromString,
                 )
         self.GetUsers = channel.unary_stream(
@@ -66,7 +66,7 @@ def add_DataExportServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetGateways': grpc.unary_stream_rpc_method_handler(
                     servicer.GetGateways,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_dataexport__pb2.DataExportRequest.FromString,
                     response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_dataexport__pb2.StreamResponse.SerializeToString,
             ),
             'GetUsers': grpc.unary_stream_rpc_method_handler(
@@ -102,7 +102,7 @@ class DataExportService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/api.DataExportService/GetGateways',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_dataexport__pb2.DataExportRequest.SerializeToString,
             chirpstack__api_dot_as__pb_dot_external_dot_api_dot_dataexport__pb2.StreamResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

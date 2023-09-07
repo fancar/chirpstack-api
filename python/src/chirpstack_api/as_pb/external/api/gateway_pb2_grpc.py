@@ -52,11 +52,6 @@ class GatewayServiceStub(object):
                 request_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayRequest.SerializeToString,
                 response_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayResponse.FromString,
                 )
-        self.ListActilityStyled = channel.unary_unary(
-                '/api.GatewayService/ListActilityStyled',
-                request_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
-                response_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.FromString,
-                )
         self.ListMon = channel.unary_unary(
                 '/api.GatewayService/ListMon',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
@@ -137,13 +132,6 @@ class GatewayServiceServicer(object):
 
     def GetGatewayLogs(self, request, context):
         """GetGatewayLogs returns logs of statistics state changed.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ListActilityStyled(self, request, context):
-        """ListActilityStyled lists the gateways with legacy [Actility] json-format.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -234,11 +222,6 @@ def add_GatewayServiceServicer_to_server(servicer, server):
                     servicer.GetGatewayLogs,
                     request_deserializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayRequest.FromString,
                     response_serializer=chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayResponse.SerializeToString,
-            ),
-            'ListActilityStyled': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListActilityStyled,
-                    request_deserializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.FromString,
-                    response_serializer=chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.SerializeToString,
             ),
             'ListMon': grpc.unary_unary_rpc_method_handler(
                     servicer.ListMon,
@@ -397,23 +380,6 @@ class GatewayService(object):
         return grpc.experimental.unary_unary(request, target, '/api.GatewayService/GetGatewayLogs',
             chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayRequest.SerializeToString,
             chirpstack__api_dot_handyrusty_dot_hr__pb2.LogsGatewayResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ListActilityStyled(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/api.GatewayService/ListActilityStyled',
-            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGatewayRequest.SerializeToString,
-            chirpstack__api_dot_as__pb_dot_external_dot_api_dot_gateway__pb2.ListGwActilityStyledResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

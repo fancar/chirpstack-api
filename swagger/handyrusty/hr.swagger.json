@@ -76,22 +76,22 @@
         "gatewayID": {
           "type": "string",
           "format": "byte",
-          "description": "Gateway ID."
+          "title": "Gateway ID. base64 encoded byte-array"
         },
         "execID": {
           "type": "string",
           "format": "byte",
-          "description": "Execution request ID (UUID)."
+          "title": "Execution request ID (UUID). base64 encoded byte-array"
         },
         "stdout": {
           "type": "string",
           "format": "byte",
-          "description": "Standard output."
+          "title": "Standard output. base64 encoded byte-array"
         },
         "stderr": {
           "type": "string",
           "format": "byte",
-          "description": "Standard error."
+          "title": "Standard error. base64 encoded byte-array"
         },
         "error": {
           "type": "string",

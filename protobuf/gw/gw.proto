@@ -499,16 +499,16 @@ message GatewayCommandExecRequest {
 }
 
 message GatewayCommandExecResponse {
-    // Gateway ID.
+    // Gateway ID. base64 encoded byte-array
     bytes gateway_id = 1 [json_name = "gatewayID"];
 
-    // Execution request ID (UUID).
+    // Execution request ID (UUID). base64 encoded byte-array
     bytes exec_id = 2 [json_name = "execID"];
 
-    // Standard output.
+    // Standard output. base64 encoded byte-array
     bytes stdout = 3;
 
-    // Standard error.
+    // Standard error. base64 encoded byte-array
     bytes stderr = 4;
 
     // Error message.
