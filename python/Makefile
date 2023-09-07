@@ -28,7 +28,8 @@ common:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/common/common.proto
 
 hr:
-	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/handyrusty/hr.proto
+	# python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/handyrusty/hr.proto
+	python -m grpc_tools.protoc -I=proto -I=$(GOOGLEAPIS_PATH) --python_out=src --grpc_python_out=src proto/chirpstack-api/handyrusty/hr.proto
 
 gw:
 	python -m grpc_tools.protoc -I=proto --python_out=src proto/chirpstack-api/gw/gw.proto
