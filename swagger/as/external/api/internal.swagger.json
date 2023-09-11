@@ -694,6 +694,10 @@
         "metaDescription": {
           "type": "string",
           "description": "Seo description."
+        },
+        "mode": {
+          "type": "string",
+          "description": "mode description."
         }
       }
     },

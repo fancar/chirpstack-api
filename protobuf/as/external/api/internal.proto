@@ -418,6 +418,9 @@ message Branding {
 
     // Seo description.
 	string meta_description = 6;
+
+    // mode description.
+    string mode = 7;    
 }
 
 message OpenIDConnect {
