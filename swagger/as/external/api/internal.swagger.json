@@ -67,14 +67,6 @@
             "format": "int64"
           },
           {
-            "name": "applicationID",
-            "description": "Filter on application ID.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
             "name": "orderBy",
             "description": "sort list by name",
             "in": "query",
@@ -652,11 +644,6 @@
           "type": "string",
           "format": "int64",
           "description": "Organization ID.\nIn case this API key is to manage resources within a single organization\nset this to the ID of this organization."
-        },
-        "applicationID": {
-          "type": "string",
-          "format": "int64",
-          "title": "Application ID.\nIn case the API key is to manage resources within an application, set\nthis to the ID of this application.message"
         },
         "description": {
           "type": "string",
