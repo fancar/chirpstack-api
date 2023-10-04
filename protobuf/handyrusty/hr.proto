@@ -62,7 +62,9 @@ service HandyRustyService {
     rpc GetDeviceStatsLastTwoweeksAggregated(GetDeviceStatsRequest) returns (GetDeviceStatsLastTwoweeksResponse) {}      
 
     // Get stats for device from clickhouse for last 14 days aggregated by day
-    rpc GetAveragesForDeviceList(GetAveragesForDeviceListRequest) returns (GetAveragesForDeviceListResponse) {}    
+    rpc GetAveragesForDeviceList(GetAveragesForDeviceListRequest) returns (GetAveragesForDeviceListResponse) {}  
+
+    rpc CountDeviceFramesPerDevEui(CountDeviceFramesPerDevEuiRequest) returns (CountDeviceFramesPerDevEuiResponse) {} 
 }
 
 message GetAveragesForDeviceListRequest {
@@ -568,4 +570,35 @@ message GetGwStatsResponse {
 
     // last month radio availability %
     float radio_month = 3; 
+}
+
+message CountDeviceFramesPerDevEuiRequest {
+    // id of rhe organnization
+    uint32 organization_id = 1;
+
+    // comma separated list of dev_eui strings
+    repeated string devices = 2;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string start = 3;
+
+    // format RFC3339: 2006-01-02T15:04:05.000Z
+    string end = 4;
+
+
+}
+
+message CountDeviceFramesPerDevEuiResponse {
+    repeated PerDeviceFramesCounters resilt = 1;
+}
+
+ 
+message PerDeviceFramesCounters {
+    string dev_eui = 1;
+
+    uint32 join_req_cnt = 2;
+
+    uint32 ul_cnt = 3;
+
+    uint32 dl_cnt = 4;
 }

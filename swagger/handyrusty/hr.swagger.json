@@ -132,6 +132,18 @@
         }
       }
     },
+    "hrCountDeviceFramesPerDevEuiResponse": {
+      "type": "object",
+      "properties": {
+        "resilt": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/hrPerDeviceFramesCounters"
+          }
+        }
+      }
+    },
     "hrDeviceCounters": {
       "type": "object",
       "properties": {
@@ -696,6 +708,26 @@
         "gatewayID": {
           "type": "string",
           "description": "Gateway ID (HEX encoded)."
+        }
+      }
+    },
+    "hrPerDeviceFramesCounters": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string"
+        },
+        "joinReqCnt": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ulCnt": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dlCnt": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },

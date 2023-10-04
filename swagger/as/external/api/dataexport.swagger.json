@@ -66,6 +66,64 @@
         ]
       }
     },
+    "/api/dataexport/devices/count_frames": {
+      "get": {
+        "summary": "CountDeviceFramesPerDevEui counts frames for device-list and\\or period between start and end",
+        "operationId": "DataExportService_CountDeviceFramesPerDevEui",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/hrCountDeviceFramesPerDevEuiResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "description": "id of rhe organnization",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "devices",
+            "description": "comma separated list of dev_eui strings",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "start",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "description": "format RFC3339: 2006-01-02T15:04:05.000Z",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DataExportService"
+        ]
+      }
+    },
     "/api/dataexport/gateways": {
       "get": {
         "summary": "GetGateways Export gateways\n  (!) websocket required! The endpoint does not work from a web-swagger.",
@@ -164,6 +222,38 @@
         "chunk": {
           "type": "string",
           "format": "byte"
+        }
+      }
+    },
+    "hrCountDeviceFramesPerDevEuiResponse": {
+      "type": "object",
+      "properties": {
+        "resilt": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/hrPerDeviceFramesCounters"
+          }
+        }
+      }
+    },
+    "hrPerDeviceFramesCounters": {
+      "type": "object",
+      "properties": {
+        "devEui": {
+          "type": "string"
+        },
+        "joinReqCnt": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ulCnt": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dlCnt": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },

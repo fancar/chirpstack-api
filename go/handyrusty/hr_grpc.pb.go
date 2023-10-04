@@ -38,6 +38,7 @@ const (
 	HandyRustyService_GetDeviceStatsLastTwoweeks_FullMethodName           = "/hr.HandyRustyService/GetDeviceStatsLastTwoweeks"
 	HandyRustyService_GetDeviceStatsLastTwoweeksAggregated_FullMethodName = "/hr.HandyRustyService/GetDeviceStatsLastTwoweeksAggregated"
 	HandyRustyService_GetAveragesForDeviceList_FullMethodName             = "/hr.HandyRustyService/GetAveragesForDeviceList"
+	HandyRustyService_CountDeviceFramesPerDevEui_FullMethodName           = "/hr.HandyRustyService/CountDeviceFramesPerDevEui"
 )
 
 // HandyRustyServiceClient is the client API for HandyRustyService service.
@@ -78,6 +79,7 @@ type HandyRustyServiceClient interface {
 	GetDeviceStatsLastTwoweeksAggregated(ctx context.Context, in *GetDeviceStatsRequest, opts ...grpc.CallOption) (*GetDeviceStatsLastTwoweeksResponse, error)
 	// Get stats for device from clickhouse for last 14 days aggregated by day
 	GetAveragesForDeviceList(ctx context.Context, in *GetAveragesForDeviceListRequest, opts ...grpc.CallOption) (*GetAveragesForDeviceListResponse, error)
+	CountDeviceFramesPerDevEui(ctx context.Context, in *CountDeviceFramesPerDevEuiRequest, opts ...grpc.CallOption) (*CountDeviceFramesPerDevEuiResponse, error)
 }
 
 type handyRustyServiceClient struct {
@@ -264,6 +266,15 @@ func (c *handyRustyServiceClient) GetAveragesForDeviceList(ctx context.Context, 
 	return out, nil
 }
 
+func (c *handyRustyServiceClient) CountDeviceFramesPerDevEui(ctx context.Context, in *CountDeviceFramesPerDevEuiRequest, opts ...grpc.CallOption) (*CountDeviceFramesPerDevEuiResponse, error) {
+	out := new(CountDeviceFramesPerDevEuiResponse)
+	err := c.cc.Invoke(ctx, HandyRustyService_CountDeviceFramesPerDevEui_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HandyRustyServiceServer is the server API for HandyRustyService service.
 // All implementations must embed UnimplementedHandyRustyServiceServer
 // for forward compatibility
@@ -302,6 +313,7 @@ type HandyRustyServiceServer interface {
 	GetDeviceStatsLastTwoweeksAggregated(context.Context, *GetDeviceStatsRequest) (*GetDeviceStatsLastTwoweeksResponse, error)
 	// Get stats for device from clickhouse for last 14 days aggregated by day
 	GetAveragesForDeviceList(context.Context, *GetAveragesForDeviceListRequest) (*GetAveragesForDeviceListResponse, error)
+	CountDeviceFramesPerDevEui(context.Context, *CountDeviceFramesPerDevEuiRequest) (*CountDeviceFramesPerDevEuiResponse, error)
 	mustEmbedUnimplementedHandyRustyServiceServer()
 }
 
@@ -359,6 +371,9 @@ func (UnimplementedHandyRustyServiceServer) GetDeviceStatsLastTwoweeksAggregated
 }
 func (UnimplementedHandyRustyServiceServer) GetAveragesForDeviceList(context.Context, *GetAveragesForDeviceListRequest) (*GetAveragesForDeviceListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAveragesForDeviceList not implemented")
+}
+func (UnimplementedHandyRustyServiceServer) CountDeviceFramesPerDevEui(context.Context, *CountDeviceFramesPerDevEuiRequest) (*CountDeviceFramesPerDevEuiResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountDeviceFramesPerDevEui not implemented")
 }
 func (UnimplementedHandyRustyServiceServer) mustEmbedUnimplementedHandyRustyServiceServer() {}
 
@@ -682,6 +697,24 @@ func _HandyRustyService_GetAveragesForDeviceList_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HandyRustyService_CountDeviceFramesPerDevEui_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountDeviceFramesPerDevEuiRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HandyRustyServiceServer).CountDeviceFramesPerDevEui(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HandyRustyService_CountDeviceFramesPerDevEui_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HandyRustyServiceServer).CountDeviceFramesPerDevEui(ctx, req.(*CountDeviceFramesPerDevEuiRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HandyRustyService_ServiceDesc is the grpc.ServiceDesc for HandyRustyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -752,6 +785,10 @@ var HandyRustyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAveragesForDeviceList",
 			Handler:    _HandyRustyService_GetAveragesForDeviceList_Handler,
+		},
+		{
+			MethodName: "CountDeviceFramesPerDevEui",
+			Handler:    _HandyRustyService_CountDeviceFramesPerDevEui_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

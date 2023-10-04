@@ -8,6 +8,7 @@ package api
 
 import (
 	context "context"
+	handyrusty "github.com/brocaar/chirpstack-api/go/v3/handyrusty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,9 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DataExportService_GetGateways_FullMethodName = "/api.DataExportService/GetGateways"
-	DataExportService_GetUsers_FullMethodName    = "/api.DataExportService/GetUsers"
-	DataExportService_GetDevices_FullMethodName  = "/api.DataExportService/GetDevices"
+	DataExportService_GetGateways_FullMethodName                = "/api.DataExportService/GetGateways"
+	DataExportService_GetUsers_FullMethodName                   = "/api.DataExportService/GetUsers"
+	DataExportService_GetDevices_FullMethodName                 = "/api.DataExportService/GetDevices"
+	DataExportService_CountDeviceFramesPerDevEui_FullMethodName = "/api.DataExportService/CountDeviceFramesPerDevEui"
 )
 
 // DataExportServiceClient is the client API for DataExportService service.
@@ -41,6 +43,8 @@ type DataExportServiceClient interface {
 	//
 	//	(!) websocket required! The endpoint does not work from a web-swagger.
 	GetDevices(ctx context.Context, in *DataExportRequest, opts ...grpc.CallOption) (DataExportService_GetDevicesClient, error)
+	// CountDeviceFramesPerDevEui counts frames for device-list and\or period between start and end
+	CountDeviceFramesPerDevEui(ctx context.Context, in *handyrusty.CountDeviceFramesPerDevEuiRequest, opts ...grpc.CallOption) (*handyrusty.CountDeviceFramesPerDevEuiResponse, error)
 }
 
 type dataExportServiceClient struct {
@@ -147,6 +151,15 @@ func (x *dataExportServiceGetDevicesClient) Recv() (*StreamResponse, error) {
 	return m, nil
 }
 
+func (c *dataExportServiceClient) CountDeviceFramesPerDevEui(ctx context.Context, in *handyrusty.CountDeviceFramesPerDevEuiRequest, opts ...grpc.CallOption) (*handyrusty.CountDeviceFramesPerDevEuiResponse, error) {
+	out := new(handyrusty.CountDeviceFramesPerDevEuiResponse)
+	err := c.cc.Invoke(ctx, DataExportService_CountDeviceFramesPerDevEui_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DataExportServiceServer is the server API for DataExportService service.
 // All implementations must embed UnimplementedDataExportServiceServer
 // for forward compatibility
@@ -163,6 +176,8 @@ type DataExportServiceServer interface {
 	//
 	//	(!) websocket required! The endpoint does not work from a web-swagger.
 	GetDevices(*DataExportRequest, DataExportService_GetDevicesServer) error
+	// CountDeviceFramesPerDevEui counts frames for device-list and\or period between start and end
+	CountDeviceFramesPerDevEui(context.Context, *handyrusty.CountDeviceFramesPerDevEuiRequest) (*handyrusty.CountDeviceFramesPerDevEuiResponse, error)
 	mustEmbedUnimplementedDataExportServiceServer()
 }
 
@@ -178,6 +193,9 @@ func (UnimplementedDataExportServiceServer) GetUsers(*emptypb.Empty, DataExportS
 }
 func (UnimplementedDataExportServiceServer) GetDevices(*DataExportRequest, DataExportService_GetDevicesServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetDevices not implemented")
+}
+func (UnimplementedDataExportServiceServer) CountDeviceFramesPerDevEui(context.Context, *handyrusty.CountDeviceFramesPerDevEuiRequest) (*handyrusty.CountDeviceFramesPerDevEuiResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountDeviceFramesPerDevEui not implemented")
 }
 func (UnimplementedDataExportServiceServer) mustEmbedUnimplementedDataExportServiceServer() {}
 
@@ -255,13 +273,36 @@ func (x *dataExportServiceGetDevicesServer) Send(m *StreamResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _DataExportService_CountDeviceFramesPerDevEui_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(handyrusty.CountDeviceFramesPerDevEuiRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DataExportServiceServer).CountDeviceFramesPerDevEui(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DataExportService_CountDeviceFramesPerDevEui_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DataExportServiceServer).CountDeviceFramesPerDevEui(ctx, req.(*handyrusty.CountDeviceFramesPerDevEuiRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DataExportService_ServiceDesc is the grpc.ServiceDesc for DataExportService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DataExportService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "api.DataExportService",
 	HandlerType: (*DataExportServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CountDeviceFramesPerDevEui",
+			Handler:    _DataExportService_CountDeviceFramesPerDevEui_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetGateways",

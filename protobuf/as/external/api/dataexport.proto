@@ -6,6 +6,7 @@ option go_package = "github.com/brocaar/chirpstack-api/go/v3/as/external/api";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "handyrusty/hr.proto";
 
 // DataExportService the service manages all data exports
 service DataExportService {
@@ -32,7 +33,14 @@ service DataExportService {
         option (google.api.http) = {
             get: "/api/dataexport/devices"
         };
-    }  
+    }
+
+    // CountDeviceFramesPerDevEui counts frames for device-list and\or period between start and end
+    rpc CountDeviceFramesPerDevEui(hr.CountDeviceFramesPerDevEuiRequest) returns (hr.CountDeviceFramesPerDevEuiResponse) {
+        option (google.api.http) = {
+            get: "/api/dataexport/devices/count_frames"
+        };
+    }     
 }
 
 message DataExportRequest {
