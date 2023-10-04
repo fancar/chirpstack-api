@@ -135,7 +135,7 @@
     "hrCountDeviceFramesPerDevEuiResponse": {
       "type": "object",
       "properties": {
-        "resilt": {
+        "result": {
           "type": "array",
           "items": {
             "type": "object",

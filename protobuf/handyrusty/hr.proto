@@ -589,7 +589,7 @@ message CountDeviceFramesPerDevEuiRequest {
 }
 
 message CountDeviceFramesPerDevEuiResponse {
-    repeated PerDeviceFramesCounters resilt = 1;
+    repeated PerDeviceFramesCounters result = 1;
 }
 
  
