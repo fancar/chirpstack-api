@@ -27,8 +27,8 @@ const (
 	HandyRustyService_GetFrameCounters_FullMethodName                     = "/hr.HandyRustyService/GetFrameCounters"
 	HandyRustyService_GetFrameSpeed_FullMethodName                        = "/hr.HandyRustyService/GetFrameSpeed"
 	HandyRustyService_ExecCommand_FullMethodName                          = "/hr.HandyRustyService/ExecCommand"
-	HandyRustyService_GetDeviceFramesLog_FullMethodName                   = "/hr.HandyRustyService/GetDeviceFramesLog"
-	HandyRustyService_StreamDeviceFramesLogCSV_FullMethodName             = "/hr.HandyRustyService/StreamDeviceFramesLogCSV"
+	HandyRustyService_GetDeviceFrames_FullMethodName                      = "/hr.HandyRustyService/GetDeviceFrames"
+	HandyRustyService_StreamDeviceFramesCSV_FullMethodName                = "/hr.HandyRustyService/StreamDeviceFramesCSV"
 	HandyRustyService_GetCurrentState_FullMethodName                      = "/hr.HandyRustyService/GetCurrentState"
 	HandyRustyService_StoreIntegrationReplies_FullMethodName              = "/hr.HandyRustyService/StoreIntegrationReplies"
 	HandyRustyService_GetIntegrationReplies_FullMethodName                = "/hr.HandyRustyService/GetIntegrationReplies"
@@ -57,10 +57,10 @@ type HandyRustyServiceClient interface {
 	GetFrameSpeed(ctx context.Context, in *GetFrameSpeedRequest, opts ...grpc.CallOption) (*GetFrameSpeedResponse, error)
 	// ExecCommand sends command to the gateway and returns the answer
 	ExecCommand(ctx context.Context, in *ExecCommandRequest, opts ...grpc.CallOption) (*gw.GatewayCommandExecResponse, error)
-	// GetDeviceFramesLog returns an array with device-frame logs
-	GetDeviceFramesLog(ctx context.Context, in *GetDeviceFramesLogRequest, opts ...grpc.CallOption) (*GetDeviceFramesLogResponse, error)
-	// StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
-	StreamDeviceFramesLogCSV(ctx context.Context, in *GetDeviceFramesLogRequest, opts ...grpc.CallOption) (HandyRustyService_StreamDeviceFramesLogCSVClient, error)
+	// GetDeviceFrames returns an array with device-frame logs
+	GetDeviceFrames(ctx context.Context, in *GetDeviceFramesRequest, opts ...grpc.CallOption) (*GetDeviceFramesResponse, error)
+	// StreamDeviceFramesCSV streams the frame-logs from handyrusty CH-storage.
+	StreamDeviceFramesCSV(ctx context.Context, in *GetDeviceFramesRequest, opts ...grpc.CallOption) (HandyRustyService_StreamDeviceFramesCSVClient, error)
 	// GetCurrentState returns items for monitoring purposes.
 	GetCurrentState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetCurrentStateResponse, error)
 	// Store to clickhouse replies of integration event notifications
@@ -144,21 +144,21 @@ func (c *handyRustyServiceClient) ExecCommand(ctx context.Context, in *ExecComma
 	return out, nil
 }
 
-func (c *handyRustyServiceClient) GetDeviceFramesLog(ctx context.Context, in *GetDeviceFramesLogRequest, opts ...grpc.CallOption) (*GetDeviceFramesLogResponse, error) {
-	out := new(GetDeviceFramesLogResponse)
-	err := c.cc.Invoke(ctx, HandyRustyService_GetDeviceFramesLog_FullMethodName, in, out, opts...)
+func (c *handyRustyServiceClient) GetDeviceFrames(ctx context.Context, in *GetDeviceFramesRequest, opts ...grpc.CallOption) (*GetDeviceFramesResponse, error) {
+	out := new(GetDeviceFramesResponse)
+	err := c.cc.Invoke(ctx, HandyRustyService_GetDeviceFrames_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *handyRustyServiceClient) StreamDeviceFramesLogCSV(ctx context.Context, in *GetDeviceFramesLogRequest, opts ...grpc.CallOption) (HandyRustyService_StreamDeviceFramesLogCSVClient, error) {
-	stream, err := c.cc.NewStream(ctx, &HandyRustyService_ServiceDesc.Streams[0], HandyRustyService_StreamDeviceFramesLogCSV_FullMethodName, opts...)
+func (c *handyRustyServiceClient) StreamDeviceFramesCSV(ctx context.Context, in *GetDeviceFramesRequest, opts ...grpc.CallOption) (HandyRustyService_StreamDeviceFramesCSVClient, error) {
+	stream, err := c.cc.NewStream(ctx, &HandyRustyService_ServiceDesc.Streams[0], HandyRustyService_StreamDeviceFramesCSV_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &handyRustyServiceStreamDeviceFramesLogCSVClient{stream}
+	x := &handyRustyServiceStreamDeviceFramesCSVClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -168,17 +168,17 @@ func (c *handyRustyServiceClient) StreamDeviceFramesLogCSV(ctx context.Context, 
 	return x, nil
 }
 
-type HandyRustyService_StreamDeviceFramesLogCSVClient interface {
-	Recv() (*StreamDeviceFramesLogCSVResponse, error)
+type HandyRustyService_StreamDeviceFramesCSVClient interface {
+	Recv() (*StreamDeviceFramesCSVResponse, error)
 	grpc.ClientStream
 }
 
-type handyRustyServiceStreamDeviceFramesLogCSVClient struct {
+type handyRustyServiceStreamDeviceFramesCSVClient struct {
 	grpc.ClientStream
 }
 
-func (x *handyRustyServiceStreamDeviceFramesLogCSVClient) Recv() (*StreamDeviceFramesLogCSVResponse, error) {
-	m := new(StreamDeviceFramesLogCSVResponse)
+func (x *handyRustyServiceStreamDeviceFramesCSVClient) Recv() (*StreamDeviceFramesCSVResponse, error) {
+	m := new(StreamDeviceFramesCSVResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -291,10 +291,10 @@ type HandyRustyServiceServer interface {
 	GetFrameSpeed(context.Context, *GetFrameSpeedRequest) (*GetFrameSpeedResponse, error)
 	// ExecCommand sends command to the gateway and returns the answer
 	ExecCommand(context.Context, *ExecCommandRequest) (*gw.GatewayCommandExecResponse, error)
-	// GetDeviceFramesLog returns an array with device-frame logs
-	GetDeviceFramesLog(context.Context, *GetDeviceFramesLogRequest) (*GetDeviceFramesLogResponse, error)
-	// StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
-	StreamDeviceFramesLogCSV(*GetDeviceFramesLogRequest, HandyRustyService_StreamDeviceFramesLogCSVServer) error
+	// GetDeviceFrames returns an array with device-frame logs
+	GetDeviceFrames(context.Context, *GetDeviceFramesRequest) (*GetDeviceFramesResponse, error)
+	// StreamDeviceFramesCSV streams the frame-logs from handyrusty CH-storage.
+	StreamDeviceFramesCSV(*GetDeviceFramesRequest, HandyRustyService_StreamDeviceFramesCSVServer) error
 	// GetCurrentState returns items for monitoring purposes.
 	GetCurrentState(context.Context, *emptypb.Empty) (*GetCurrentStateResponse, error)
 	// Store to clickhouse replies of integration event notifications
@@ -339,11 +339,11 @@ func (UnimplementedHandyRustyServiceServer) GetFrameSpeed(context.Context, *GetF
 func (UnimplementedHandyRustyServiceServer) ExecCommand(context.Context, *ExecCommandRequest) (*gw.GatewayCommandExecResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExecCommand not implemented")
 }
-func (UnimplementedHandyRustyServiceServer) GetDeviceFramesLog(context.Context, *GetDeviceFramesLogRequest) (*GetDeviceFramesLogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceFramesLog not implemented")
+func (UnimplementedHandyRustyServiceServer) GetDeviceFrames(context.Context, *GetDeviceFramesRequest) (*GetDeviceFramesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceFrames not implemented")
 }
-func (UnimplementedHandyRustyServiceServer) StreamDeviceFramesLogCSV(*GetDeviceFramesLogRequest, HandyRustyService_StreamDeviceFramesLogCSVServer) error {
-	return status.Errorf(codes.Unimplemented, "method StreamDeviceFramesLogCSV not implemented")
+func (UnimplementedHandyRustyServiceServer) StreamDeviceFramesCSV(*GetDeviceFramesRequest, HandyRustyService_StreamDeviceFramesCSVServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamDeviceFramesCSV not implemented")
 }
 func (UnimplementedHandyRustyServiceServer) GetCurrentState(context.Context, *emptypb.Empty) (*GetCurrentStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrentState not implemented")
@@ -496,42 +496,42 @@ func _HandyRustyService_ExecCommand_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HandyRustyService_GetDeviceFramesLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeviceFramesLogRequest)
+func _HandyRustyService_GetDeviceFrames_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDeviceFramesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HandyRustyServiceServer).GetDeviceFramesLog(ctx, in)
+		return srv.(HandyRustyServiceServer).GetDeviceFrames(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HandyRustyService_GetDeviceFramesLog_FullMethodName,
+		FullMethod: HandyRustyService_GetDeviceFrames_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HandyRustyServiceServer).GetDeviceFramesLog(ctx, req.(*GetDeviceFramesLogRequest))
+		return srv.(HandyRustyServiceServer).GetDeviceFrames(ctx, req.(*GetDeviceFramesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HandyRustyService_StreamDeviceFramesLogCSV_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetDeviceFramesLogRequest)
+func _HandyRustyService_StreamDeviceFramesCSV_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetDeviceFramesRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(HandyRustyServiceServer).StreamDeviceFramesLogCSV(m, &handyRustyServiceStreamDeviceFramesLogCSVServer{stream})
+	return srv.(HandyRustyServiceServer).StreamDeviceFramesCSV(m, &handyRustyServiceStreamDeviceFramesCSVServer{stream})
 }
 
-type HandyRustyService_StreamDeviceFramesLogCSVServer interface {
-	Send(*StreamDeviceFramesLogCSVResponse) error
+type HandyRustyService_StreamDeviceFramesCSVServer interface {
+	Send(*StreamDeviceFramesCSVResponse) error
 	grpc.ServerStream
 }
 
-type handyRustyServiceStreamDeviceFramesLogCSVServer struct {
+type handyRustyServiceStreamDeviceFramesCSVServer struct {
 	grpc.ServerStream
 }
 
-func (x *handyRustyServiceStreamDeviceFramesLogCSVServer) Send(m *StreamDeviceFramesLogCSVResponse) error {
+func (x *handyRustyServiceStreamDeviceFramesCSVServer) Send(m *StreamDeviceFramesCSVResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -747,8 +747,8 @@ var HandyRustyService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _HandyRustyService_ExecCommand_Handler,
 		},
 		{
-			MethodName: "GetDeviceFramesLog",
-			Handler:    _HandyRustyService_GetDeviceFramesLog_Handler,
+			MethodName: "GetDeviceFrames",
+			Handler:    _HandyRustyService_GetDeviceFrames_Handler,
 		},
 		{
 			MethodName: "GetCurrentState",
@@ -793,8 +793,8 @@ var HandyRustyService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "StreamDeviceFramesLogCSV",
-			Handler:       _HandyRustyService_StreamDeviceFramesLogCSV_Handler,
+			StreamName:    "StreamDeviceFramesCSV",
+			Handler:       _HandyRustyService_StreamDeviceFramesCSV_Handler,
 			ServerStreams: true,
 		},
 	},

@@ -31,11 +31,11 @@ service HandyRustyService {
     // ExecCommand sends command to the gateway and returns the answer
     rpc ExecCommand(ExecCommandRequest) returns (gw.GatewayCommandExecResponse) {}
 
-    // GetDeviceFramesLog returns an array with device-frame logs
-    rpc GetDeviceFramesLog(GetDeviceFramesLogRequest) returns (GetDeviceFramesLogResponse) {}
+    // GetDeviceFrames returns an array with device-frame logs
+    rpc GetDeviceFrames(GetDeviceFramesRequest) returns (GetDeviceFramesResponse) {}
 
-    // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
-    rpc StreamDeviceFramesLogCSV(GetDeviceFramesLogRequest) returns (stream StreamDeviceFramesLogCSVResponse) {}
+    // StreamDeviceFramesCSV streams the frame-logs from handyrusty CH-storage.
+    rpc StreamDeviceFramesCSV(GetDeviceFramesRequest) returns (stream StreamDeviceFramesCSVResponse) {}
 
     // GetCurrentState returns items for monitoring purposes.
     rpc GetCurrentState(google.protobuf.Empty) returns (GetCurrentStateResponse) {}
@@ -286,7 +286,7 @@ message GetCurrentStateResponse {
     int64 wl_last_packet_unix = 2;
 }
 
-message StreamDeviceFramesLogCSVResponse {
+message StreamDeviceFramesCSVResponse {
     oneof size {
         uint32 current = 1;
         uint32 total = 2;
@@ -298,7 +298,7 @@ message StreamDeviceFramesLogCSVResponse {
     }
 }
 
-message GetDeviceFramesLogRequest {
+message GetDeviceFramesRequest {
     // you can specify offset (for pagination)
     uint32 offset = 1;
 
@@ -311,8 +311,8 @@ message GetDeviceFramesLogRequest {
     // You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
     string end = 4;
 
-    // Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr
-    map<string, string> filters = 5;
+    // Additional sql filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr
+    map<string, ListOfString> filters = 5;
 
     // You can set the id to 0 if admin
     int64 organization_id = 6;
@@ -321,10 +321,17 @@ message GetDeviceFramesLogRequest {
     string timezone = 7 [json_name = "timeZone"];
 
     // for internal use. Will be ignored from external api.
-    bool gw_only = 8;        
+    bool gw_only = 8;
+
+    // get total number of packets according to the filter except limit\offset. For pagination purposes
+    bool get_total = 9;     
 }
 
-message GetDeviceFramesLogResponse {
+message ListOfString {
+   repeated string values = 1;
+}
+
+message GetDeviceFramesResponse {
     // total numner of selected rows
     uint32 items_total = 1;
      // the array of selected device-frames logs

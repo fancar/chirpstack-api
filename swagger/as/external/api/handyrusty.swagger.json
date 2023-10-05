@@ -202,13 +202,13 @@
     },
     "/api/handy-rusty/frames/logs/device-frames": {
       "post": {
-        "summary": "GetDeviceFramesLog returns an array with recieved and transmitted device's frames",
-        "operationId": "HandyRustyService_GetDeviceFramesLog",
+        "summary": "GetDeviceFrames returns an array with recieved and transmitted device's frames",
+        "operationId": "HandyRustyService_GetDeviceFrames",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/hrGetDeviceFramesLogResponse"
+              "$ref": "#/definitions/hrGetDeviceFramesResponse"
             }
           },
           "default": {
@@ -224,7 +224,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/hrGetDeviceFramesLogRequest"
+              "$ref": "#/definitions/hrGetDeviceFramesRequest"
             }
           }
         ],
@@ -235,8 +235,8 @@
     },
     "/api/handy-rusty/frames/logs/device-frames/csv": {
       "get": {
-        "summary": "StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.\n  * The data is transferred by chunks (stream);\n  * This endpoint does not work from a web-browser!",
-        "operationId": "HandyRustyService_StreamDeviceFramesLogCSV",
+        "summary": "StreamDeviceFramesCSV streams the frame-logs from handyrusty CH-storage.\n  * The data is transferred by chunks (stream);\n  * This endpoint does not work from a web-browser!",
+        "operationId": "HandyRustyService_StreamDeviceFramesCSV",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -244,13 +244,13 @@
               "type": "object",
               "properties": {
                 "result": {
-                  "$ref": "#/definitions/hrStreamDeviceFramesLogCSVResponse"
+                  "$ref": "#/definitions/hrStreamDeviceFramesCSVResponse"
                 },
                 "error": {
                   "$ref": "#/definitions/rpcStatus"
                 }
               },
-              "title": "Stream result of hrStreamDeviceFramesLogCSVResponse"
+              "title": "Stream result of hrStreamDeviceFramesCSVResponse"
             }
           },
           "default": {
@@ -293,10 +293,9 @@
           },
           {
             "name": "filters",
-            "description": "Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "description": "Additional sql filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
-            "required": false,
-            "type": "string"
+            "required": false
           },
           {
             "name": "organizationId",
@@ -316,6 +315,13 @@
           {
             "name": "gwOnly",
             "description": "for internal use. Will be ignored from external api.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "getTotal",
+            "description": "get total number of packets according to the filter except limit\\offset. For pagination purposes",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -926,7 +932,7 @@
         }
       }
     },
-    "hrGetDeviceFramesLogRequest": {
+    "hrGetDeviceFramesRequest": {
       "type": "object",
       "properties": {
         "offset": {
@@ -950,9 +956,9 @@
         "filters": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/hrListOfString"
           },
-          "title": "Additional sql filters (key,value): allowed: direction,devEUI,mType,gw,devAddr"
+          "title": "Additional sql filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr"
         },
         "organizationId": {
           "type": "string",
@@ -966,10 +972,14 @@
         "gwOnly": {
           "type": "boolean",
           "description": "for internal use. Will be ignored from external api."
+        },
+        "getTotal": {
+          "type": "boolean",
+          "title": "get total number of packets according to the filter except limit\\offset. For pagination purposes"
         }
       }
     },
-    "hrGetDeviceFramesLogResponse": {
+    "hrGetDeviceFramesResponse": {
       "type": "object",
       "properties": {
         "itemsTotal": {
@@ -1191,6 +1201,17 @@
         }
       }
     },
+    "hrListOfString": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "hrRXInfo": {
       "type": "object",
       "properties": {
@@ -1244,7 +1265,7 @@
       },
       "title": "for RXInfo item in uplink frames"
     },
-    "hrStreamDeviceFramesLogCSVResponse": {
+    "hrStreamDeviceFramesCSVResponse": {
       "type": "object",
       "properties": {
         "current": {

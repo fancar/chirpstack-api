@@ -451,7 +451,7 @@
         }
       }
     },
-    "hrGetDeviceFramesLogResponse": {
+    "hrGetDeviceFramesResponse": {
       "type": "object",
       "properties": {
         "itemsTotal": {
@@ -674,6 +674,17 @@
         }
       }
     },
+    "hrListOfString": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "hrLogsGatewayResponse": {
       "type": "object",
       "properties": {
@@ -793,7 +804,7 @@
         }
       }
     },
-    "hrStreamDeviceFramesLogCSVResponse": {
+    "hrStreamDeviceFramesCSVResponse": {
       "type": "object",
       "properties": {
         "current": {

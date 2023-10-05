@@ -37,18 +37,18 @@ service HandyRustyService {
         };
     }
 
-    // GetDeviceFramesLog returns an array with recieved and transmitted device's frames
-    rpc GetDeviceFramesLog(hr.GetDeviceFramesLogRequest) returns (hr.GetDeviceFramesLogResponse) {
+    // GetDeviceFrames returns an array with recieved and transmitted device's frames
+    rpc GetDeviceFrames(hr.GetDeviceFramesRequest) returns (hr.GetDeviceFramesResponse) {
         option(google.api.http) = {
             post: "/api/handy-rusty/frames/logs/device-frames"
             body: "*"
         };
     }
 
-    // StreamDeviceFramesLogCSV streams the frame-logs from handyrusty CH-storage.
+    // StreamDeviceFramesCSV streams the frame-logs from handyrusty CH-storage.
     //   * The data is transferred by chunks (stream);
     //   * This endpoint does not work from a web-browser!
-    rpc StreamDeviceFramesLogCSV(hr.GetDeviceFramesLogRequest) returns (stream hr.StreamDeviceFramesLogCSVResponse) {
+    rpc StreamDeviceFramesCSV(hr.GetDeviceFramesRequest) returns (stream hr.StreamDeviceFramesCSVResponse) {
         option (google.api.http) = {
             get: "/api/handy-rusty/frames/logs/device-frames/csv"
             // body: "*"
