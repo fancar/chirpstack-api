@@ -583,7 +583,7 @@ message CountDeviceFramesPerDevEuiRequest {
     // id of rhe organnization
     uint32 organization_id = 1;
 
-    // comma separated list of dev_eui strings
+    // list of dev_eui (hex strings)
     repeated string devices = 2;
 
     // format RFC3339: 2006-01-02T15:04:05.000Z
