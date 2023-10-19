@@ -311,7 +311,7 @@ message GetDeviceFramesRequest {
     // You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
     string end = 4;
 
-    // Additional sql filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr
+    // Additional sql IN filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr
     map<string, ListOfString> filters = 5;
 
     // You can set the id to 0 if admin
@@ -324,7 +324,10 @@ message GetDeviceFramesRequest {
     bool gw_only = 8;
 
     // get total number of packets according to the filter except limit\offset. For pagination purposes
-    bool get_total = 9;     
+    bool get_total = 9;
+
+    // simple map of filters for csv GET request allows to pass it as url parameters
+    map<string, string> csv_filters = 10;
 }
 
 message ListOfString {

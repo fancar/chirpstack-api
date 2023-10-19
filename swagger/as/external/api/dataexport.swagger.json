@@ -95,7 +95,7 @@
           },
           {
             "name": "devices",
-            "description": "comma separated list of dev_eui strings",
+            "description": "list of dev_eui (hex strings)",
             "in": "query",
             "required": false,
             "type": "array",
