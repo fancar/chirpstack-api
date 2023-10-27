@@ -293,9 +293,10 @@
           },
           {
             "name": "filters",
-            "description": "Additional sql filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "description": "map of filters. Allowed values for: direction,devEUI,mType,gw,devAddr\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
-            "required": false
+            "required": false,
+            "type": "string"
           },
           {
             "name": "organizationId",
@@ -327,11 +328,10 @@
             "type": "boolean"
           },
           {
-            "name": "csvFilters",
-            "description": "simple map of filters for csv GET request to pass as url parameter\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "name": "inFilters",
+            "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
-            "required": false,
-            "type": "string"
+            "required": false
           }
         ],
         "tags": [
@@ -963,9 +963,9 @@
         "filters": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/hrListOfString"
+            "type": "string"
           },
-          "title": "Additional sql filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr"
+          "title": "map of filters. Allowed values for: direction,devEUI,mType,gw,devAddr"
         },
         "organizationId": {
           "type": "string",
@@ -984,12 +984,12 @@
           "type": "boolean",
           "title": "get total number of packets according to the filter except limit\\offset. For pagination purposes"
         },
-        "csvFilters": {
+        "inFilters": {
           "type": "object",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/hrListOfString"
           },
-          "title": "simple map of filters for csv GET request to pass as url parameter"
+          "description": "Additional sql IN filters. works the same way as filters {\"filter_name:\"filter_value\"}\nexcept you send not value but '\"filter_name: {values:[\"some\",\"list\",\"of\",\"values\"]}'."
         }
       }
     },

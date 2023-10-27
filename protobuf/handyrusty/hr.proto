@@ -311,8 +311,8 @@ message GetDeviceFramesRequest {
     // You can specify end DateTime point. format RFC3339: 2006-01-02T15:04:05.000Z
     string end = 4;
 
-    // Additional sql IN filters (key,value): allowed lists of: direction,devEUI,mType,gw,devAddr
-    map<string, ListOfString> filters = 5;
+    // map of filters. Allowed values for: direction,devEUI,mType,gw,devAddr
+    map<string, string> filters = 5;
 
     // You can set the id to 0 if admin
     int64 organization_id = 6;
@@ -326,8 +326,9 @@ message GetDeviceFramesRequest {
     // get total number of packets according to the filter except limit\offset. For pagination purposes
     bool get_total = 9;
 
-    // simple map of filters for csv GET request allows to pass it as url parameters
-    map<string, string> csv_filters = 10;
+    // Additional sql IN filters. works the same way as filters {"filter_name:"filter_value"}
+    // except you send not value but '"filter_name: {values:["some","list","of","values"]}'.
+    map<string, ListOfString> in_filters = 10;
 }
 
 message ListOfString {
