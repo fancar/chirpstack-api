@@ -302,6 +302,9 @@ message OrganizationLink {
 
     // Last update timestamp.
 	google.protobuf.Timestamp updated_at = 5;
+
+    // CanHaveGateways true if the organization can have gateways
+    bool can_have_gateways = 8;    
 }
 
 message LoginRequest {

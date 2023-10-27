@@ -1028,6 +1028,10 @@
           "type": "string",
           "format": "date-time",
           "description": "Last update timestamp."
+        },
+        "canHaveGateways": {
+          "type": "boolean",
+          "title": "CanHaveGateways true if the organization can have gateways"
         }
       },
       "description": "Defines an organization to which an user is associated."
