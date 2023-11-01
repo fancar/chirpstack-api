@@ -329,9 +329,23 @@
           },
           {
             "name": "inFilters",
-            "description": "This is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
+            "description": "Additional sql IN filters. works the same way as filters {\"filter_name:\"filter_value\"}\nexcept you send not value but '\"filter_name: {values:[\"some\",\"list\",\"of\",\"values\"]}'.\nCAUTION(!) WE DO NOT RECOMMEND TO USE IT WITHIN GET requests\n\nThis is a request variable of the map type. The query format is \"map_name[key]=value\", e.g. If the map name is Age, the key type is string, and the value type is integer, the query parameter is expressed as Age[\"bob\"]=18",
             "in": "query",
             "required": false
+          },
+          {
+            "name": "order",
+            "description": "sort direction DESC or ASC (DESC by default)",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reverse",
+            "description": "if true - sort direction will be reversed",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -989,7 +1003,15 @@
           "additionalProperties": {
             "$ref": "#/definitions/hrListOfString"
           },
-          "description": "Additional sql IN filters. works the same way as filters {\"filter_name:\"filter_value\"}\nexcept you send not value but '\"filter_name: {values:[\"some\",\"list\",\"of\",\"values\"]}'."
+          "title": "Additional sql IN filters. works the same way as filters {\"filter_name:\"filter_value\"}\nexcept you send not value but '\"filter_name: {values:[\"some\",\"list\",\"of\",\"values\"]}'.\nCAUTION(!) WE DO NOT RECOMMEND TO USE IT WITHIN GET requests"
+        },
+        "order": {
+          "type": "string",
+          "title": "sort direction DESC or ASC (DESC by default)"
+        },
+        "reverse": {
+          "type": "boolean",
+          "title": "if true - sort direction will be reversed"
         }
       }
     },

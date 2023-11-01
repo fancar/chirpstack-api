@@ -328,7 +328,14 @@ message GetDeviceFramesRequest {
 
     // Additional sql IN filters. works the same way as filters {"filter_name:"filter_value"}
     // except you send not value but '"filter_name: {values:["some","list","of","values"]}'.
+    // CAUTION(!) WE DO NOT RECOMMEND TO USE IT WITHIN GET requests
     map<string, ListOfString> in_filters = 10;
+
+    // sort direction DESC or ASC (DESC by default)
+    string order = 11;
+
+    // if true - output will be reversed. The query still will be processed according to the 'order' value
+    bool reverse = 12;    
 }
 
 message ListOfString {
