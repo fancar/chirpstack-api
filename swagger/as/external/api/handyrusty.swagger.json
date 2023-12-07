@@ -342,7 +342,7 @@
           },
           {
             "name": "reverse",
-            "description": "if true - sort direction will be reversed",
+            "description": "if true - output will be reversed. The query still will be processed according to the 'order' value",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1011,7 +1011,7 @@
         },
         "reverse": {
           "type": "boolean",
-          "title": "if true - sort direction will be reversed"
+          "title": "if true - output will be reversed. The query still will be processed according to the 'order' value"
         }
       }
     },

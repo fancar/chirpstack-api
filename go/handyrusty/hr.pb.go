@@ -1382,7 +1382,7 @@ type GetDeviceFramesRequest struct {
 	InFilters map[string]*ListOfString `protobuf:"bytes,10,rep,name=in_filters,json=inFilters,proto3" json:"in_filters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// sort direction DESC or ASC (DESC by default)
 	Order string `protobuf:"bytes,11,opt,name=order,proto3" json:"order,omitempty"`
-	// if true - sort direction will be reversed
+	// if true - output will be reversed. The query still will be processed according to the 'order' value
 	Reverse bool `protobuf:"varint,12,opt,name=reverse,proto3" json:"reverse,omitempty"`
 }
 

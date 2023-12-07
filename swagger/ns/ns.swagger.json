@@ -1061,6 +1061,11 @@
             "type": "string"
           },
           "title": "meta data recieved within stats packet"
+        },
+        "statsDuration": {
+          "type": "integer",
+          "format": "int64",
+          "title": "duration between stats packets (in seconds)"
         }
       }
     },

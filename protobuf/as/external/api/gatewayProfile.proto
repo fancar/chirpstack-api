@@ -79,11 +79,6 @@ message GatewayProfile {
     // region supports adding custom channels).
     repeated GatewayProfileExtraChannel extra_channels = 5;
 
-    // Stats interval.
-    // This defines the (expected) stats interval which the gateways using this
-    // gateway-profile are using.
-    google.protobuf.Duration stats_interval = 6;
-
     // Reference Design
     string design = 7;    
 

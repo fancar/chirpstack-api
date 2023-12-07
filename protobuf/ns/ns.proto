@@ -593,6 +593,9 @@ message GatewayMeta {
 
     // meta data recieved within stats packet
     map<string, string> meta_data = 13; 
+
+    // duration between stats packets (in seconds)
+    uint32 stats_duration = 14;
 }
 
 message GatewayBoard {
