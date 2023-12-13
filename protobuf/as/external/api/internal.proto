@@ -393,6 +393,8 @@ message SettingsResponse {
 
     // OpenID Connect settings.
     OpenIDConnect openid_connect = 3;
+
+    ToolsEnabled tools_enabled = 4;
 }
 
 message Branding {
@@ -430,6 +432,14 @@ message OpenIDConnect {
 
     // Logout url.
     string logout_url = 4 [json_name = "logoutURL"];
+}
+
+message ToolsEnabled {
+    bool bs_checker = 1;
+    bool lora_maps = 2;
+    bool help = 3;
+    bool CTT = 4;
+    bool spectrum_analyzer = 5;
 }
 
 message OpenIDConnectLoginRequest {

@@ -1067,6 +1067,29 @@
         "openidConnect": {
           "$ref": "#/definitions/apiOpenIDConnect",
           "description": "OpenID Connect settings."
+        },
+        "toolsEnabled": {
+          "$ref": "#/definitions/apiToolsEnabled"
+        }
+      }
+    },
+    "apiToolsEnabled": {
+      "type": "object",
+      "properties": {
+        "bsChecker": {
+          "type": "boolean"
+        },
+        "loraMaps": {
+          "type": "boolean"
+        },
+        "help": {
+          "type": "boolean"
+        },
+        "CTT": {
+          "type": "boolean"
+        },
+        "spectrumAnalyzer": {
+          "type": "boolean"
         }
       }
     },
