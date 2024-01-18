@@ -252,6 +252,9 @@ message OrganizationUser {
 
 	// user's phone
 	string phone = 13;
+
+	// number of organizations the user is member of.
+	int32 org_cnt = 14;
 }
 
 message OrganizationUserListItem {

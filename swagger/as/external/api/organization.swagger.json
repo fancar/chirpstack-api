@@ -496,6 +496,11 @@
                     "phone": {
                       "type": "string",
                       "title": "user's phone"
+                    },
+                    "orgCnt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "number of organizations the user is member of."
                     }
                   },
                   "description": "Organization-user object to create.",
@@ -599,6 +604,11 @@
                     "phone": {
                       "type": "string",
                       "title": "user's phone"
+                    },
+                    "orgCnt": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "number of organizations the user is member of."
                     }
                   },
                   "description": "Organization-user object to update.",
@@ -841,6 +851,11 @@
         "phone": {
           "type": "string",
           "title": "user's phone"
+        },
+        "orgCnt": {
+          "type": "integer",
+          "format": "int32",
+          "description": "number of organizations the user is member of."
         }
       }
     },
