@@ -77,9 +77,6 @@ message ServiceProfile {
     // Downlink rate unit (per hour, per day, per week, per month, per year)
     RateUnit dl_rate_unit = 30;
 
-    // GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS.
-    bool add_gw_metadata = 8 [json_name = "addGWMetaData"];
-
     // Frequency to initiate an End-Device status request (request/day).
     uint32 dev_status_req_freq = 9;
 

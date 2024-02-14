@@ -858,10 +858,6 @@
           "$ref": "#/definitions/nsRateUnit",
           "title": "Downlink rate unit (per hour, per day, per week, per month, per year)"
         },
-        "addGwMetadata": {
-          "type": "boolean",
-          "description": "GW metadata (RSSI, SNR, GW geoloc., etc.) are added to the packet sent to AS."
-        },
         "devStatusReqFreq": {
           "type": "integer",
           "format": "int64",
