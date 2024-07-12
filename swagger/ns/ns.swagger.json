@@ -1243,6 +1243,11 @@
         "nwkSEncKey": {
           "type": "string",
           "title": "nwkSEncKey from last device_activation"
+        },
+        "lastSeenDownlink": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Last downlink sent timestamp"
         }
       }
     },

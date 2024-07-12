@@ -388,6 +388,9 @@ message GetDeviceForExportResponse {
 
     // nwkSEncKey from last device_activation
     string nwk_s_enc_key = 7;
+
+    // Last downlink sent timestamp
+    google.protobuf.Timestamp last_seen_downlink = 8;    
 }
 
 message UpdateDeviceRequest {
