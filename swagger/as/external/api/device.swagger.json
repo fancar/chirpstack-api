@@ -153,6 +153,13 @@
               "type": "string"
             },
             "collectionFormat": "multi"
+          },
+          {
+            "name": "deviceProfileID",
+            "description": "DeviceProfile ID to filter on (string formatted UUID).",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

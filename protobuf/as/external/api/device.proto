@@ -387,6 +387,9 @@ message ListDeviceRequest {
 
     // list of dev_eui (as hex strings) for IN-clause sql filter
     repeated string devices = 16;
+
+    // DeviceProfile ID to filter on (string formatted UUID).
+    string device_profile_id = 17 [json_name = "deviceProfileID"];    
 }
 
 message ListDeviceResponse {
