@@ -139,3 +139,7 @@ message Location {
     // Accuracy (in meters).
     uint32 accuracy = 5;
 }
+
+message ListOfString {
+   repeated string values = 1;
+}

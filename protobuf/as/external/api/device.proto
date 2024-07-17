@@ -382,6 +382,11 @@ message ListDeviceRequest {
 
     //routing profile name
     string routing_profile_name = 14;
+
+    string device_profile_name = 15;
+
+    // list of dev_eui (as hex strings) for IN-clause sql filter
+    repeated string devices = 16;
 }
 
 message ListDeviceResponse {
