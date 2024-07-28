@@ -96,20 +96,17 @@ message DeviceProfileListItem {
     // Device-profile name.
     string name = 2;
 
-    // Organization ID.
-    int64 organization_id = 3 [json_name = "organizationID"];
-
     // Network-server ID.
-    int64 network_server_id = 4 [json_name = "networkServerID"];
+    int64 network_server_id = 3 [json_name = "networkServerID"];
 
     // Created at timestamp.
-    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp created_at = 4;
 
     // Last update timestamp.
-    google.protobuf.Timestamp updated_at = 6;
+    google.protobuf.Timestamp updated_at = 5;
 
     // Network-server name.
-    string network_server_name = 7;
+    string network_server_name = 6;
 }
 
 message ListDeviceProfileRequest {
@@ -121,15 +118,12 @@ message ListDeviceProfileRequest {
 
     // Organization id to filter on.
     int64 organization_id = 3 [json_name = "organizationID"];
-
-    // Application id to filter on.
-    int64 application_id = 4 [json_name = "applicationID"];
     
 	// sort list by name
-	string orderBy = 5;		
+	string orderBy = 4;		
 
 	// sort direction
-	string order = 6;	
+	string order = 5;	
 }
 
 message ListDeviceProfileResponse {

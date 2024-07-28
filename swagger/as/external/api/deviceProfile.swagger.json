@@ -60,14 +60,6 @@
             "format": "int64"
           },
           {
-            "name": "applicationID",
-            "description": "Application id to filter on.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
             "name": "orderBy",
             "description": "sort list by name",
             "in": "query",
@@ -636,11 +628,6 @@
         "name": {
           "type": "string",
           "description": "Device-profile name."
-        },
-        "organizationID": {
-          "type": "string",
-          "format": "int64",
-          "description": "Organization ID."
         },
         "networkServerID": {
           "type": "string",
