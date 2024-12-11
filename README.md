@@ -1,5 +1,14 @@
 # IoT Server API (ChirpStack fork)
 
+## mqtt examples
+
+### ernet msg status: relay_on
+ mosquitto_pub -h localhost -p 1883 -t "application/561/device/867723030031587/event/up" -m '{"nsID":1,"orgID":101,"deviceName":"STM32_debugger#1","devEUI":"867723030031587","adr":true,"dr":5,"fCnt":190063,"fPort":10,"data":"c195a905dcdeb16601","tags":{},"confirmed":false,"devAddr":"69a5fb72","mic":"9770e7c0","late":false,"time":"2024-08-08T14:25:53.226804552Z","dpID":"2a753a4c-bc9b-4121-8a1e-84566b78cf16","spID":"b2a1d0fc-1782-4d41-837f-a60c29d51516","class":"C","batTime":"2024-02-29T16:34:10.413614Z","batLevel":100,"extPower":false,"noBatLvl":false,"objectJSON":"{\"C_PM\":1.5,\"C_SI\":100,\"C_SSU\":\"Останов\",\"C_TFA\":0.1,\"C_TFB\":0.2,\"C_TFC\":0.3,\"C_V1\":10,\"C_V3\":-5.0,\"C_V5\":3,\"C_VCHPCH\":50.0,\"C_VNAB\":380,\"C_VNBC\":370,\"C_VNCA\":360,\"device\":\"Thingenix RS485\"}","rxInfo":[{"gatewayID":"46584254c0001614","rssi":-25,"loRaSNR":8.75,"channel":0,"location":{"latitude":55,"longitude":38,"altitude":0,"source":"UNKNOWN","accuracy":0},"fineTimestampType":"NONE","context":"00000000000000000055000096618fdb","uplinkID":"123233025d304f9e86633c561a61f6e0"}]}'
+### ernet msg status: relay_off
+mosquitto_pub -h localhost -p 1883 -t "application/561/device/867723030031587/event/up" -m 
+'{"nsID":1,"orgID":101,"deviceName":"STM32_debugger#1","devEUI":"867723030031587","adr":true,"dr":5,"fCnt":190063,"fPort":10,"data":"c195a905dcdeb16600","tags":{},"confirmed":false,"devAddr":"69a5fb72","mic":"9770e7c0","late":false,"time":"2024-08-08T14:25:53.226804552Z","dpID":"2a753a4c-bc9b-4121-8a1e-84566b78cf16","spID":"b2a1d0fc-1782-4d41-837f-a60c29d51516","class":"C","batTime":"2024-02-29T16:34:10.413614Z","batLevel":100,"extPower":false,"noBatLvl":false,"objectJSON":"{\"C_PM\":1.5,\"C_SI\":100,\"C_SSU\":\"Останов\",\"C_TFA\":0.1,\"C_TFB\":0.2,\"C_TFC\":0.3,\"C_V1\":10,\"C_V3\":-5.0,\"C_V5\":3,\"C_VCHPCH\":50.0,\"C_VNAB\":380,\"C_VNBC\":370,\"C_VNCA\":360,\"device\":\"Thingenix RS485\"}","rxInfo":[{"gatewayID":"46584254c0001614","rssi":-25,"loRaSNR":8.75,"channel":0,"location":{"latitude":55,"longitude":38,"altitude":0,"source":"UNKNOWN","accuracy":0},"fineTimestampType":"NONE","context":"00000000000000000055000096618fdb","uplinkID":"123233025d304f9e86633c561a61f6e0"}]}'
+
+
 ![Tests](https://github.com/brocaar/chirpstack-api/actions/workflows/main.yml/badge.svg?branch=master)
 
 This repository contains the [Protobuf](https://developers.google.com/protocol-buffers/)

@@ -1256,5 +1256,8 @@ message MQTTIntegration {
 
     // Marshaler.
     // This defines the marshaler that is used to encode the event payload.
-    Marshaler marshaler = 14;    
+    Marshaler marshaler = 14;
+
+    // skip verify if ca CN name equals the server destination address
+    bool insecure_skip_verify = 15;
 }

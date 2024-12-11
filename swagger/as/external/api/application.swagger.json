@@ -2353,6 +2353,10 @@
                     "marshaler": {
                       "$ref": "#/definitions/apiMarshaler",
                       "description": "Marshaler.\nThis defines the marshaler that is used to encode the event payload."
+                    },
+                    "insecureSkipVerify": {
+                      "type": "boolean",
+                      "title": "skip verify if ca CN name equals the server destination address"
                     }
                   },
                   "description": "Integration object to create.",
@@ -2449,6 +2453,10 @@
                     "marshaler": {
                       "$ref": "#/definitions/apiMarshaler",
                       "description": "Marshaler.\nThis defines the marshaler that is used to encode the event payload."
+                    },
+                    "insecureSkipVerify": {
+                      "type": "boolean",
+                      "title": "skip verify if ca CN name equals the server destination address"
                     }
                   },
                   "description": "Integration object to update.",
@@ -3565,6 +3573,10 @@
         "marshaler": {
           "$ref": "#/definitions/apiMarshaler",
           "description": "Marshaler.\nThis defines the marshaler that is used to encode the event payload."
+        },
+        "insecureSkipVerify": {
+          "type": "boolean",
+          "title": "skip verify if ca CN name equals the server destination address"
         }
       }
     },
