@@ -268,7 +268,9 @@ message ListAPIKeysRequest {
 	string orderBy = 6;		
 
 	// sort direction
-	string order = 7;	
+	string order = 7;
+
+    string name = 8;
 }
 
 message ListAPIKeysResponse {
