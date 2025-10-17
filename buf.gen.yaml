@@ -37,3 +37,13 @@ plugins:
 
   - plugin: buf.build/grpc/python
     out: python
+
+  # Python plugins - генерируем в python/v4/chirpstack_api/ (protobuf 4.x)
+  - plugin: buf.build/protocolbuffers/python
+    out: python/v4/chirpstack_api
+
+  - plugin: buf.build/protocolbuffers/pyi
+    out: python/v4/chirpstack_api
+
+  - plugin: buf.build/grpc/python
+    out: python/v4/chirpstack_api
