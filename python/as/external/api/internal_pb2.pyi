@@ -121,20 +121,22 @@ class GetAPIKeyResponse(_message.Message):
     def __init__(self, api_key: _Optional[_Union[APIKey, _Mapping]] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., updated_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class ListAPIKeysRequest(_message.Message):
-    __slots__ = ("limit", "offset", "is_admin", "organization_id", "orderBy", "order")
+    __slots__ = ("limit", "offset", "is_admin", "organization_id", "orderBy", "order", "name")
     LIMIT_FIELD_NUMBER: _ClassVar[int]
     OFFSET_FIELD_NUMBER: _ClassVar[int]
     IS_ADMIN_FIELD_NUMBER: _ClassVar[int]
     ORGANIZATION_ID_FIELD_NUMBER: _ClassVar[int]
     ORDERBY_FIELD_NUMBER: _ClassVar[int]
     ORDER_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
     limit: int
     offset: int
     is_admin: bool
     organization_id: int
     orderBy: str
     order: str
-    def __init__(self, limit: _Optional[int] = ..., offset: _Optional[int] = ..., is_admin: _Optional[bool] = ..., organization_id: _Optional[int] = ..., orderBy: _Optional[str] = ..., order: _Optional[str] = ...) -> None: ...
+    name: str
+    def __init__(self, limit: _Optional[int] = ..., offset: _Optional[int] = ..., is_admin: _Optional[bool] = ..., organization_id: _Optional[int] = ..., orderBy: _Optional[str] = ..., order: _Optional[str] = ..., name: _Optional[str] = ...) -> None: ...
 
 class ListAPIKeysResponse(_message.Message):
     __slots__ = ("total_count", "result")

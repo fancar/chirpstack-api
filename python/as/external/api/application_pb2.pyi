@@ -781,7 +781,7 @@ class DeleteMQTTIntegrationRequest(_message.Message):
     def __init__(self, application_id: _Optional[int] = ...) -> None: ...
 
 class MQTTIntegration(_message.Message):
-    __slots__ = ("application_id", "server", "username", "password", "max_reconnect_interval", "QoS", "client_id", "ca_cert", "tls_cert", "tls_key", "event_topic_template", "command_topic_template", "retain_events", "marshaler")
+    __slots__ = ("application_id", "server", "username", "password", "max_reconnect_interval", "QoS", "client_id", "ca_cert", "tls_cert", "tls_key", "event_topic_template", "command_topic_template", "retain_events", "marshaler", "insecure_skip_verify")
     APPLICATION_ID_FIELD_NUMBER: _ClassVar[int]
     SERVER_FIELD_NUMBER: _ClassVar[int]
     USERNAME_FIELD_NUMBER: _ClassVar[int]
@@ -796,6 +796,7 @@ class MQTTIntegration(_message.Message):
     COMMAND_TOPIC_TEMPLATE_FIELD_NUMBER: _ClassVar[int]
     RETAIN_EVENTS_FIELD_NUMBER: _ClassVar[int]
     MARSHALER_FIELD_NUMBER: _ClassVar[int]
+    INSECURE_SKIP_VERIFY_FIELD_NUMBER: _ClassVar[int]
     application_id: int
     server: str
     username: str
@@ -810,4 +811,5 @@ class MQTTIntegration(_message.Message):
     command_topic_template: str
     retain_events: bool
     marshaler: Marshaler
-    def __init__(self, application_id: _Optional[int] = ..., server: _Optional[str] = ..., username: _Optional[str] = ..., password: _Optional[str] = ..., max_reconnect_interval: _Optional[int] = ..., QoS: _Optional[int] = ..., client_id: _Optional[str] = ..., ca_cert: _Optional[str] = ..., tls_cert: _Optional[str] = ..., tls_key: _Optional[str] = ..., event_topic_template: _Optional[str] = ..., command_topic_template: _Optional[str] = ..., retain_events: _Optional[bool] = ..., marshaler: _Optional[_Union[Marshaler, str]] = ...) -> None: ...
+    insecure_skip_verify: bool
+    def __init__(self, application_id: _Optional[int] = ..., server: _Optional[str] = ..., username: _Optional[str] = ..., password: _Optional[str] = ..., max_reconnect_interval: _Optional[int] = ..., QoS: _Optional[int] = ..., client_id: _Optional[str] = ..., ca_cert: _Optional[str] = ..., tls_cert: _Optional[str] = ..., tls_key: _Optional[str] = ..., event_topic_template: _Optional[str] = ..., command_topic_template: _Optional[str] = ..., retain_events: _Optional[bool] = ..., marshaler: _Optional[_Union[Marshaler, str]] = ..., insecure_skip_verify: _Optional[bool] = ...) -> None: ...

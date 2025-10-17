@@ -54,38 +54,34 @@ class DeleteDeviceProfileRequest(_message.Message):
     def __init__(self, id: _Optional[str] = ...) -> None: ...
 
 class DeviceProfileListItem(_message.Message):
-    __slots__ = ("id", "name", "organization_id", "network_server_id", "created_at", "updated_at", "network_server_name")
+    __slots__ = ("id", "name", "network_server_id", "created_at", "updated_at", "network_server_name")
     ID_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
-    ORGANIZATION_ID_FIELD_NUMBER: _ClassVar[int]
     NETWORK_SERVER_ID_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
     UPDATED_AT_FIELD_NUMBER: _ClassVar[int]
     NETWORK_SERVER_NAME_FIELD_NUMBER: _ClassVar[int]
     id: str
     name: str
-    organization_id: int
     network_server_id: int
     created_at: _timestamp_pb2.Timestamp
     updated_at: _timestamp_pb2.Timestamp
     network_server_name: str
-    def __init__(self, id: _Optional[str] = ..., name: _Optional[str] = ..., organization_id: _Optional[int] = ..., network_server_id: _Optional[int] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., updated_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., network_server_name: _Optional[str] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., name: _Optional[str] = ..., network_server_id: _Optional[int] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., updated_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., network_server_name: _Optional[str] = ...) -> None: ...
 
 class ListDeviceProfileRequest(_message.Message):
-    __slots__ = ("limit", "offset", "organization_id", "application_id", "orderBy", "order")
+    __slots__ = ("limit", "offset", "organization_id", "orderBy", "order")
     LIMIT_FIELD_NUMBER: _ClassVar[int]
     OFFSET_FIELD_NUMBER: _ClassVar[int]
     ORGANIZATION_ID_FIELD_NUMBER: _ClassVar[int]
-    APPLICATION_ID_FIELD_NUMBER: _ClassVar[int]
     ORDERBY_FIELD_NUMBER: _ClassVar[int]
     ORDER_FIELD_NUMBER: _ClassVar[int]
     limit: int
     offset: int
     organization_id: int
-    application_id: int
     orderBy: str
     order: str
-    def __init__(self, limit: _Optional[int] = ..., offset: _Optional[int] = ..., organization_id: _Optional[int] = ..., application_id: _Optional[int] = ..., orderBy: _Optional[str] = ..., order: _Optional[str] = ...) -> None: ...
+    def __init__(self, limit: _Optional[int] = ..., offset: _Optional[int] = ..., organization_id: _Optional[int] = ..., orderBy: _Optional[str] = ..., order: _Optional[str] = ...) -> None: ...
 
 class ListDeviceProfileResponse(_message.Message):
     __slots__ = ("total_count", "result")

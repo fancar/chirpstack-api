@@ -148,7 +148,7 @@ class GetDeviceResponse(_message.Message):
     def __init__(self, device: _Optional[_Union[Device, _Mapping]] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., last_seen_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., first_uplink_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., device_status_battery: _Optional[int] = ..., device_status_margin: _Optional[int] = ..., location: _Optional[_Union[_common_pb2.Location, _Mapping]] = ...) -> None: ...
 
 class ListDeviceRequest(_message.Message):
-    __slots__ = ("limit", "offset", "routing_profile_id", "search", "multicast_group_id", "service_profile_id", "tags", "orderBy", "order", "organization_id", "device_name", "dev_eui", "service_profile_name", "routing_profile_name")
+    __slots__ = ("limit", "offset", "routing_profile_id", "search", "multicast_group_id", "service_profile_id", "tags", "orderBy", "order", "organization_id", "device_name", "dev_eui", "service_profile_name", "routing_profile_name", "device_profile_name", "devices", "device_profile_id")
     class TagsEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
@@ -170,6 +170,9 @@ class ListDeviceRequest(_message.Message):
     DEV_EUI_FIELD_NUMBER: _ClassVar[int]
     SERVICE_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
     ROUTING_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
+    DEVICE_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
+    DEVICES_FIELD_NUMBER: _ClassVar[int]
+    DEVICE_PROFILE_ID_FIELD_NUMBER: _ClassVar[int]
     limit: int
     offset: int
     routing_profile_id: int
@@ -184,7 +187,10 @@ class ListDeviceRequest(_message.Message):
     dev_eui: str
     service_profile_name: str
     routing_profile_name: str
-    def __init__(self, limit: _Optional[int] = ..., offset: _Optional[int] = ..., routing_profile_id: _Optional[int] = ..., search: _Optional[str] = ..., multicast_group_id: _Optional[str] = ..., service_profile_id: _Optional[str] = ..., tags: _Optional[_Mapping[str, str]] = ..., orderBy: _Optional[str] = ..., order: _Optional[str] = ..., organization_id: _Optional[int] = ..., device_name: _Optional[str] = ..., dev_eui: _Optional[str] = ..., service_profile_name: _Optional[str] = ..., routing_profile_name: _Optional[str] = ...) -> None: ...
+    device_profile_name: str
+    devices: _containers.RepeatedScalarFieldContainer[str]
+    device_profile_id: str
+    def __init__(self, limit: _Optional[int] = ..., offset: _Optional[int] = ..., routing_profile_id: _Optional[int] = ..., search: _Optional[str] = ..., multicast_group_id: _Optional[str] = ..., service_profile_id: _Optional[str] = ..., tags: _Optional[_Mapping[str, str]] = ..., orderBy: _Optional[str] = ..., order: _Optional[str] = ..., organization_id: _Optional[int] = ..., device_name: _Optional[str] = ..., dev_eui: _Optional[str] = ..., service_profile_name: _Optional[str] = ..., routing_profile_name: _Optional[str] = ..., device_profile_name: _Optional[str] = ..., devices: _Optional[_Iterable[str]] = ..., device_profile_id: _Optional[str] = ...) -> None: ...
 
 class ListDeviceResponse(_message.Message):
     __slots__ = ("total_count", "result")
