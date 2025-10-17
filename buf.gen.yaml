@@ -7,6 +7,7 @@ managed:
       - buf.build/googleapis/googleapis
       - buf.build/grpc-ecosystem/grpc-gateway
 plugins:
+  # Go plugins
   - plugin: go
     out: go
     opt: 
@@ -23,12 +24,14 @@ plugins:
       - paths=source_relative
       - logtostderr=true
 
+  # OpenAPI/Swagger
   - plugin: openapiv2
     out: swagger
     opt:
       # json_names_for_fields=true
       # - json_names_for_fields=false # legacy format from v1
 
+  # Python plugins - генерируем прямо в python/
   - plugin: buf.build/protocolbuffers/python
     out: python
 
@@ -37,3 +40,17 @@ plugins:
 
   - plugin: buf.build/grpc/python
     out: python
+
+  # JavaScript plugins (закомментированы - нужен отдельный плагин)
+  # - plugin: buf.build/protocolbuffers/js
+  #   out: js
+  #   opt:
+  #     - import_style=commonjs
+
+  # Rust plugins (если нужно)
+  # - plugin: rust
+  #   out: rust
+
+  # Java plugins (если нужно)
+  # - plugin: java
+  #   out: java

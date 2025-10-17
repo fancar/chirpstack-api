@@ -220,7 +220,7 @@ class GetDeviceResponse(_message.Message):
     def __init__(self, device: _Optional[_Union[Device, _Mapping]] = ..., created_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., updated_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class GetDeviceForExportResponse(_message.Message):
-    __slots__ = ("dev_eui", "supports_class_b", "supports_class_c", "MAC_version", "is_disabled", "supports_join", "nwk_s_enc_key")
+    __slots__ = ("dev_eui", "supports_class_b", "supports_class_c", "MAC_version", "is_disabled", "supports_join", "nwk_s_enc_key", "last_seen_downlink")
     DEV_EUI_FIELD_NUMBER: _ClassVar[int]
     SUPPORTS_CLASS_B_FIELD_NUMBER: _ClassVar[int]
     SUPPORTS_CLASS_C_FIELD_NUMBER: _ClassVar[int]
@@ -228,6 +228,7 @@ class GetDeviceForExportResponse(_message.Message):
     IS_DISABLED_FIELD_NUMBER: _ClassVar[int]
     SUPPORTS_JOIN_FIELD_NUMBER: _ClassVar[int]
     NWK_S_ENC_KEY_FIELD_NUMBER: _ClassVar[int]
+    LAST_SEEN_DOWNLINK_FIELD_NUMBER: _ClassVar[int]
     dev_eui: bytes
     supports_class_b: bool
     supports_class_c: bool
@@ -235,7 +236,8 @@ class GetDeviceForExportResponse(_message.Message):
     is_disabled: bool
     supports_join: bool
     nwk_s_enc_key: str
-    def __init__(self, dev_eui: _Optional[bytes] = ..., supports_class_b: _Optional[bool] = ..., supports_class_c: _Optional[bool] = ..., MAC_version: _Optional[str] = ..., is_disabled: _Optional[bool] = ..., supports_join: _Optional[bool] = ..., nwk_s_enc_key: _Optional[str] = ...) -> None: ...
+    last_seen_downlink: _timestamp_pb2.Timestamp
+    def __init__(self, dev_eui: _Optional[bytes] = ..., supports_class_b: _Optional[bool] = ..., supports_class_c: _Optional[bool] = ..., MAC_version: _Optional[str] = ..., is_disabled: _Optional[bool] = ..., supports_join: _Optional[bool] = ..., nwk_s_enc_key: _Optional[str] = ..., last_seen_downlink: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class UpdateDeviceRequest(_message.Message):
     __slots__ = ("device",)
