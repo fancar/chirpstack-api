@@ -389,7 +389,11 @@ message ListDeviceRequest {
     repeated string devices = 16;
 
     // DeviceProfile ID to filter on (string formatted UUID).
-    string device_profile_id = 17 [json_name = "deviceProfileID"];    
+    string device_profile_id = 17 [json_name = "deviceProfileID"];
+
+    // When true, use exact match for device_name filter.
+    // When false, use partial match (ilike).
+    bool device_name_exact = 18 [json_name = "deviceNameExact"];
 }
 
 message ListDeviceResponse {

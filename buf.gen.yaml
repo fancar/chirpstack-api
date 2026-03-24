@@ -29,15 +29,6 @@ plugins:
       # json_names_for_fields=true
       # - json_names_for_fields=false # legacy format from v1
 
-  - plugin: buf.build/protocolbuffers/python
-    out: python
-
-  - plugin: buf.build/protocolbuffers/pyi
-    out: python
-
-  - plugin: buf.build/grpc/python
-    out: python
-
   # Python plugins - генерируем в python/v4/chirpstack_api/ (protobuf 4.x)
   - plugin: buf.build/protocolbuffers/python
     out: python/v4/chirpstack_api

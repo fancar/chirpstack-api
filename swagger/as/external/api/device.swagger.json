@@ -160,6 +160,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "deviceNameExact",
+            "description": "When true, use exact match for device_name filter.\nWhen false, use partial match (ilike).",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
