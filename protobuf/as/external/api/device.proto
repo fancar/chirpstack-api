@@ -553,8 +553,8 @@ message GetDeviceStatsRequest {
     // DevEUI (HEX encoded).
     string dev_eui = 1 [json_name = "dev_eui"];
 
-	// Aggregation interval.  One of "second", "minute", "hour", "day", "week",
-	// "month", "quarter", "year".  Case insensitive.
+	// Aggregation interval.  One of minute", "hour", "day",
+	// "month", Case insensitive.
 	string interval = 2;
 
 	// Timestamp to start from.
