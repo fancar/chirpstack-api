@@ -1,6 +1,6 @@
-module github.com/brocaar/chirpstack-api/go/v3
+module github.com/fancar/chirpstack-api/go/v3
 
-go 1.20
+go 1.26
 
 require (
 	github.com/bufbuild/buf v1.23.0

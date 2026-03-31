@@ -570,7 +570,7 @@
           },
           {
             "name": "interval",
-            "description": "Aggregation interval.  One of minute\", \"hour\", \"day\",\n\"month\", Case insensitive.",
+            "description": "Aggregation interval.  One of minute\", \"hour\", \"day\", \"month\", Case insensitive.",
             "in": "query",
             "required": false,
             "type": "string"
