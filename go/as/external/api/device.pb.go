@@ -1902,8 +1902,8 @@ type GetDeviceStatsRequest struct {
 
 	// DevEUI (HEX encoded).
 	DevEui string `protobuf:"bytes,1,opt,name=dev_eui,proto3" json:"dev_eui,omitempty"`
-	// Aggregation interval.  One of "second", "minute", "hour", "day", "week",
-	// "month", "quarter", "year".  Case insensitive.
+	// Aggregation interval.  One of minute", "hour", "day",
+	// "month", Case insensitive.
 	Interval string `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
 	// Timestamp to start from.
 	StartTimestamp *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=start_timestamp,json=startTimestamp,proto3" json:"start_timestamp,omitempty"`
