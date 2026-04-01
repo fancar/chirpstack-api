@@ -552,6 +552,9 @@ message DeviceFrameLog {
 
     // billing limit: "" - within range limit, "M" - marked as overlimit, "D" - droped because of overlimit
     string limit = 24;
+
+    // current device class: "A", "B", "C"
+    string class = 25;
 }
 
 // for RXInfo item in uplink frames
