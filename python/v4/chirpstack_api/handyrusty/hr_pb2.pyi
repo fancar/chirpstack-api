@@ -438,6 +438,7 @@ class DeviceFrameLog(_message.Message):
     CONFFCNT_FIELD_NUMBER: _ClassVar[int]
     SP_FACT_FIELD_NUMBER: _ClassVar[int]
     LIMIT_FIELD_NUMBER: _ClassVar[int]
+    CLASS_FIELD_NUMBER: _ClassVar[int]
     direction: str
     date_time: str
     date: str
@@ -462,7 +463,7 @@ class DeviceFrameLog(_message.Message):
     ConfFCnt: int
     sp_fact: int
     limit: str
-    def __init__(self, direction: _Optional[str] = ..., date_time: _Optional[str] = ..., date: _Optional[str] = ..., mType: _Optional[str] = ..., dev_addr: _Optional[str] = ..., devEUI: _Optional[str] = ..., rxRssi: _Optional[int] = ..., rx_snr: _Optional[float] = ..., rx_channel: _Optional[int] = ..., rx_rf_chain: _Optional[int] = ..., gw: _Optional[str] = ..., tx_info: _Optional[str] = ..., rx_info: _Optional[_Iterable[_Union[RXInfo, _Mapping]]] = ..., phy_payloadJSON: _Optional[str] = ..., airtime: _Optional[float] = ..., esp: _Optional[float] = ..., late: _Optional[int] = ..., frm_payload: _Optional[str] = ..., FCntUp: _Optional[int] = ..., NFCntDown: _Optional[int] = ..., AFCntDown: _Optional[int] = ..., ConfFCnt: _Optional[int] = ..., sp_fact: _Optional[int] = ..., limit: _Optional[str] = ...) -> None: ...
+    def __init__(self, direction: _Optional[str] = ..., date_time: _Optional[str] = ..., date: _Optional[str] = ..., mType: _Optional[str] = ..., dev_addr: _Optional[str] = ..., devEUI: _Optional[str] = ..., rxRssi: _Optional[int] = ..., rx_snr: _Optional[float] = ..., rx_channel: _Optional[int] = ..., rx_rf_chain: _Optional[int] = ..., gw: _Optional[str] = ..., tx_info: _Optional[str] = ..., rx_info: _Optional[_Iterable[_Union[RXInfo, _Mapping]]] = ..., phy_payloadJSON: _Optional[str] = ..., airtime: _Optional[float] = ..., esp: _Optional[float] = ..., late: _Optional[int] = ..., frm_payload: _Optional[str] = ..., FCntUp: _Optional[int] = ..., NFCntDown: _Optional[int] = ..., AFCntDown: _Optional[int] = ..., ConfFCnt: _Optional[int] = ..., sp_fact: _Optional[int] = ..., limit: _Optional[str] = ..., **kwargs) -> None: ...
 
 class RXInfo(_message.Message):
     __slots__ = ("GatewayID", "Rssi", "LoraSnr", "Channel", "RfChain", "Board", "Antenna", "Location", "FineTimestampType", "GpsTimestamp", "FineTimestamp", "Context", "UplinkID")

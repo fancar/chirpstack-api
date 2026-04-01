@@ -274,6 +274,10 @@
         "limit": {
           "type": "string",
           "title": "billing limit: \"\" - within range limit, \"M\" - marked as overlimit, \"D\" - droped because of overlimit"
+        },
+        "class": {
+          "type": "string",
+          "title": "current device class: \"A\", \"B\", \"C\""
         }
       },
       "title": "for storage"
