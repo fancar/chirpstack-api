@@ -6,7 +6,7 @@ from as.external.api import application_pb2 as as_dot_external_dot_api_dot_appli
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class ApplicationServiceStub(object):
+class ApplicationServiceStub:
     """ApplicationService is the service managing applications.
     """
 
@@ -273,7 +273,7 @@ class ApplicationServiceStub(object):
                 _registered_method=True)
 
 
-class ApplicationServiceServicer(object):
+class ApplicationServiceServicer:
     """ApplicationService is the service managing applications.
     """
 
@@ -901,7 +901,7 @@ def add_ApplicationServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class ApplicationService(object):
+class ApplicationService:
     """ApplicationService is the service managing applications.
     """
 

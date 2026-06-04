@@ -6,7 +6,7 @@ from as.external.api import device_pb2 as as_dot_external_dot_api_dot_device__pb
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class DeviceServiceStub(object):
+class DeviceServiceStub:
     """DeviceService is the service managing the devices.
     """
 
@@ -103,7 +103,7 @@ class DeviceServiceStub(object):
                 _registered_method=True)
 
 
-class DeviceServiceServicer(object):
+class DeviceServiceServicer:
     """DeviceService is the service managing the devices.
     """
 
@@ -328,7 +328,7 @@ def add_DeviceServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class DeviceService(object):
+class DeviceService:
     """DeviceService is the service managing the devices.
     """
 

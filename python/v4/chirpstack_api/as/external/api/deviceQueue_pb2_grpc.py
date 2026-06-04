@@ -6,7 +6,7 @@ from as.external.api import deviceQueue_pb2 as as_dot_external_dot_api_dot_devic
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class DeviceQueueServiceStub(object):
+class DeviceQueueServiceStub:
     """DeviceQueueService is the service managing the downlink data queue.
     """
 
@@ -48,7 +48,7 @@ class DeviceQueueServiceStub(object):
                 _registered_method=True)
 
 
-class DeviceQueueServiceServicer(object):
+class DeviceQueueServiceServicer:
     """DeviceQueueService is the service managing the downlink data queue.
     """
 
@@ -136,7 +136,7 @@ def add_DeviceQueueServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class DeviceQueueService(object):
+class DeviceQueueService:
     """DeviceQueueService is the service managing the downlink data queue.
     """
 

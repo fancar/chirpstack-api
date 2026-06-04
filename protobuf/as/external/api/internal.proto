@@ -382,7 +382,37 @@ message GlobalSearchResult {
     int64 routing_profile_id = 11 [json_name = "routingProfileID"];
 
     // Routing profile name.
-    string routing_profile_name = 12;    
+    string routing_profile_name = 12;
+
+    // Network-server id.
+    int64 network_server_id = 13 [json_name = "networkServerID"];
+
+    // Network-server name.
+    string network_server_name = 14;
+
+    // Service-profile id (UUID).
+    string service_profile_id = 15 [json_name = "serviceProfileID"];
+
+    // Service-profile name.
+    string service_profile_name = 16;
+
+    // Device-profile id (UUID).
+    string device_profile_id = 17 [json_name = "deviceProfileID"];
+
+    // Device-profile name.
+    string device_profile_name = 18;
+
+    // Gateway-profile id (UUID).
+    string gateway_profile_id = 19 [json_name = "gatewayProfileID"];
+
+    // Gateway-profile name.
+    string gateway_profile_name = 20;
+
+    // User id.
+    int64 user_id = 21 [json_name = "userID"];
+
+    // User name (email).
+    string user_name = 22;
 }
 
 message SettingsResponse {

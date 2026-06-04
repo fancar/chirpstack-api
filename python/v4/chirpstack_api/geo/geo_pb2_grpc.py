@@ -5,7 +5,7 @@ import grpc
 from geo import geo_pb2 as geo_dot_geo__pb2
 
 
-class GeolocationServerServiceStub(object):
+class GeolocationServerServiceStub:
     """GeolocationServerService implements a geolocation-server service.
     """
 
@@ -27,7 +27,7 @@ class GeolocationServerServiceStub(object):
                 _registered_method=True)
 
 
-class GeolocationServerServiceServicer(object):
+class GeolocationServerServiceServicer:
     """GeolocationServerService implements a geolocation-server service.
     """
 
@@ -67,7 +67,7 @@ def add_GeolocationServerServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class GeolocationServerService(object):
+class GeolocationServerService:
     """GeolocationServerService implements a geolocation-server service.
     """
 

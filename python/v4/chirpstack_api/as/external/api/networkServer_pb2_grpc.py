@@ -6,7 +6,7 @@ from as.external.api import networkServer_pb2 as as_dot_external_dot_api_dot_net
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class NetworkServerServiceStub(object):
+class NetworkServerServiceStub:
     """NetworkServerService is the service managing network-servers.
     """
 
@@ -48,7 +48,7 @@ class NetworkServerServiceStub(object):
                 _registered_method=True)
 
 
-class NetworkServerServiceServicer(object):
+class NetworkServerServiceServicer:
     """NetworkServerService is the service managing network-servers.
     """
 
@@ -135,7 +135,7 @@ def add_NetworkServerServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class NetworkServerService(object):
+class NetworkServerService:
     """NetworkServerService is the service managing network-servers.
     """
 

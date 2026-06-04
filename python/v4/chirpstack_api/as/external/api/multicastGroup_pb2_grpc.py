@@ -6,7 +6,7 @@ from as.external.api import multicastGroup_pb2 as as_dot_external_dot_api_dot_mu
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class MulticastGroupServiceStub(object):
+class MulticastGroupServiceStub:
     """MulticastGroupService is the service managing multicast-groups.
     """
 
@@ -68,7 +68,7 @@ class MulticastGroupServiceStub(object):
                 _registered_method=True)
 
 
-class MulticastGroupServiceServicer(object):
+class MulticastGroupServiceServicer:
     """MulticastGroupService is the service managing multicast-groups.
     """
 
@@ -203,7 +203,7 @@ def add_MulticastGroupServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class MulticastGroupService(object):
+class MulticastGroupService:
     """MulticastGroupService is the service managing multicast-groups.
     """
 

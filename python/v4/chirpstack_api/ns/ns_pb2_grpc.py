@@ -6,7 +6,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from ns import ns_pb2 as ns_dot_ns__pb2
 
 
-class NetworkServerServiceStub(object):
+class NetworkServerServiceStub:
     """NetworkServerService provides the network-server API methods.
     """
 
@@ -283,7 +283,7 @@ class NetworkServerServiceStub(object):
                 _registered_method=True)
 
 
-class NetworkServerServiceServicer(object):
+class NetworkServerServiceServicer:
     """NetworkServerService provides the network-server API methods.
     """
 
@@ -943,7 +943,7 @@ def add_NetworkServerServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class NetworkServerService(object):
+class NetworkServerService:
     """NetworkServerService provides the network-server API methods.
     """
 

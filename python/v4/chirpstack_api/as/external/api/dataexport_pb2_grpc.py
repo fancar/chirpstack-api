@@ -7,7 +7,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from handyrusty import hr_pb2 as handyrusty_dot_hr__pb2
 
 
-class DataExportServiceStub(object):
+class DataExportServiceStub:
     """DataExportService the service manages all data exports
     """
 
@@ -39,7 +39,7 @@ class DataExportServiceStub(object):
                 _registered_method=True)
 
 
-class DataExportServiceServicer(object):
+class DataExportServiceServicer:
     """DataExportService the service manages all data exports
     """
 
@@ -105,7 +105,7 @@ def add_DataExportServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class DataExportService(object):
+class DataExportService:
     """DataExportService the service manages all data exports
     """
 

@@ -7,7 +7,7 @@ from gw import gw_pb2 as gw_dot_gw__pb2
 from handyrusty import hr_pb2 as handyrusty_dot_hr__pb2
 
 
-class HandyRustyServiceStub(object):
+class HandyRustyServiceStub:
     """HandyRustyService provides the "handy-rusty additional enforta tools" API methods.
     """
 
@@ -109,7 +109,7 @@ class HandyRustyServiceStub(object):
                 _registered_method=True)
 
 
-class HandyRustyServiceServicer(object):
+class HandyRustyServiceServicer:
     """HandyRustyService provides the "handy-rusty additional enforta tools" API methods.
     """
 
@@ -339,7 +339,7 @@ def add_HandyRustyServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class HandyRustyService(object):
+class HandyRustyService:
     """HandyRustyService provides the "handy-rusty additional enforta tools" API methods.
     """
 

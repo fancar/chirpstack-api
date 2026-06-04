@@ -6,7 +6,7 @@ from as.external.api import organization_pb2 as as_dot_external_dot_api_dot_orga
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class OrganizationServiceStub(object):
+class OrganizationServiceStub:
     """OrganizationService is the service managing the organization access.
     """
 
@@ -68,7 +68,7 @@ class OrganizationServiceStub(object):
                 _registered_method=True)
 
 
-class OrganizationServiceServicer(object):
+class OrganizationServiceServicer:
     """OrganizationService is the service managing the organization access.
     """
 
@@ -203,7 +203,7 @@ def add_OrganizationServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class OrganizationService(object):
+class OrganizationService:
     """OrganizationService is the service managing the organization access.
     """
 

@@ -6,7 +6,7 @@ from as.external.api import serviceProfile_pb2 as as_dot_external_dot_api_dot_se
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class ServiceProfileServiceStub(object):
+class ServiceProfileServiceStub:
     """ServiceProfileService is the service managing service-profiles.
     """
 
@@ -43,7 +43,7 @@ class ServiceProfileServiceStub(object):
                 _registered_method=True)
 
 
-class ServiceProfileServiceServicer(object):
+class ServiceProfileServiceServicer:
     """ServiceProfileService is the service managing service-profiles.
     """
 
@@ -118,7 +118,7 @@ def add_ServiceProfileServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class ServiceProfileService(object):
+class ServiceProfileService:
     """ServiceProfileService is the service managing service-profiles.
     """
 

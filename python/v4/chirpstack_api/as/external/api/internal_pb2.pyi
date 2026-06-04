@@ -207,7 +207,7 @@ class GlobalSearchResponse(_message.Message):
     def __init__(self, result: _Optional[_Iterable[_Union[GlobalSearchResult, _Mapping]]] = ..., total_count: _Optional[int] = ...) -> None: ...
 
 class GlobalSearchResult(_message.Message):
-    __slots__ = ("kind", "score", "organization_id", "organization_name", "application_id", "application_name", "device_dev_eui", "device_name", "gateway_mac", "gateway_name", "routing_profile_id", "routing_profile_name")
+    __slots__ = ("kind", "score", "organization_id", "organization_name", "application_id", "application_name", "device_dev_eui", "device_name", "gateway_mac", "gateway_name", "routing_profile_id", "routing_profile_name", "network_server_id", "network_server_name", "service_profile_id", "service_profile_name", "device_profile_id", "device_profile_name", "gateway_profile_id", "gateway_profile_name", "user_id", "user_name")
     KIND_FIELD_NUMBER: _ClassVar[int]
     SCORE_FIELD_NUMBER: _ClassVar[int]
     ORGANIZATION_ID_FIELD_NUMBER: _ClassVar[int]
@@ -220,6 +220,16 @@ class GlobalSearchResult(_message.Message):
     GATEWAY_NAME_FIELD_NUMBER: _ClassVar[int]
     ROUTING_PROFILE_ID_FIELD_NUMBER: _ClassVar[int]
     ROUTING_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
+    NETWORK_SERVER_ID_FIELD_NUMBER: _ClassVar[int]
+    NETWORK_SERVER_NAME_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_PROFILE_ID_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
+    DEVICE_PROFILE_ID_FIELD_NUMBER: _ClassVar[int]
+    DEVICE_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
+    GATEWAY_PROFILE_ID_FIELD_NUMBER: _ClassVar[int]
+    GATEWAY_PROFILE_NAME_FIELD_NUMBER: _ClassVar[int]
+    USER_ID_FIELD_NUMBER: _ClassVar[int]
+    USER_NAME_FIELD_NUMBER: _ClassVar[int]
     kind: str
     score: float
     organization_id: int
@@ -232,7 +242,17 @@ class GlobalSearchResult(_message.Message):
     gateway_name: str
     routing_profile_id: int
     routing_profile_name: str
-    def __init__(self, kind: _Optional[str] = ..., score: _Optional[float] = ..., organization_id: _Optional[int] = ..., organization_name: _Optional[str] = ..., application_id: _Optional[int] = ..., application_name: _Optional[str] = ..., device_dev_eui: _Optional[str] = ..., device_name: _Optional[str] = ..., gateway_mac: _Optional[str] = ..., gateway_name: _Optional[str] = ..., routing_profile_id: _Optional[int] = ..., routing_profile_name: _Optional[str] = ...) -> None: ...
+    network_server_id: int
+    network_server_name: str
+    service_profile_id: str
+    service_profile_name: str
+    device_profile_id: str
+    device_profile_name: str
+    gateway_profile_id: str
+    gateway_profile_name: str
+    user_id: int
+    user_name: str
+    def __init__(self, kind: _Optional[str] = ..., score: _Optional[float] = ..., organization_id: _Optional[int] = ..., organization_name: _Optional[str] = ..., application_id: _Optional[int] = ..., application_name: _Optional[str] = ..., device_dev_eui: _Optional[str] = ..., device_name: _Optional[str] = ..., gateway_mac: _Optional[str] = ..., gateway_name: _Optional[str] = ..., routing_profile_id: _Optional[int] = ..., routing_profile_name: _Optional[str] = ..., network_server_id: _Optional[int] = ..., network_server_name: _Optional[str] = ..., service_profile_id: _Optional[str] = ..., service_profile_name: _Optional[str] = ..., device_profile_id: _Optional[str] = ..., device_profile_name: _Optional[str] = ..., gateway_profile_id: _Optional[str] = ..., gateway_profile_name: _Optional[str] = ..., user_id: _Optional[int] = ..., user_name: _Optional[str] = ...) -> None: ...
 
 class SettingsResponse(_message.Message):
     __slots__ = ("server_name", "branding", "openid_connect", "tools_enabled")

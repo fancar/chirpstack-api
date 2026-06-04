@@ -6,7 +6,7 @@ from as.external.api import routingProfile_pb2 as as_dot_external_dot_api_dot_ro
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class RoutingProfileServiceStub(object):
+class RoutingProfileServiceStub:
     """RoutingProfileService is the service managing as-routing-profiles.
     """
 
@@ -43,7 +43,7 @@ class RoutingProfileServiceStub(object):
                 _registered_method=True)
 
 
-class RoutingProfileServiceServicer(object):
+class RoutingProfileServiceServicer:
     """RoutingProfileService is the service managing as-routing-profiles.
     """
 
@@ -118,7 +118,7 @@ def add_RoutingProfileServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class RoutingProfileService(object):
+class RoutingProfileService:
     """RoutingProfileService is the service managing as-routing-profiles.
     """
 

@@ -7,7 +7,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from handyrusty import hr_pb2 as handyrusty_dot_hr__pb2
 
 
-class GatewayServiceStub(object):
+class GatewayServiceStub:
     """GatewayService is the service managing the gateways.
     """
 
@@ -84,7 +84,7 @@ class GatewayServiceStub(object):
                 _registered_method=True)
 
 
-class GatewayServiceServicer(object):
+class GatewayServiceServicer:
     """GatewayService is the service managing the gateways.
     """
 
@@ -261,7 +261,7 @@ def add_GatewayServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class GatewayService(object):
+class GatewayService:
     """GatewayService is the service managing the gateways.
     """
 

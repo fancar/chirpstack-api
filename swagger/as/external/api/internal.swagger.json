@@ -904,6 +904,48 @@
         "routingProfileName": {
           "type": "string",
           "description": "Routing profile name."
+        },
+        "networkServerID": {
+          "type": "string",
+          "format": "int64",
+          "description": "Network-server id."
+        },
+        "networkServerName": {
+          "type": "string",
+          "description": "Network-server name."
+        },
+        "serviceProfileID": {
+          "type": "string",
+          "description": "Service-profile id (UUID)."
+        },
+        "serviceProfileName": {
+          "type": "string",
+          "description": "Service-profile name."
+        },
+        "deviceProfileID": {
+          "type": "string",
+          "description": "Device-profile id (UUID)."
+        },
+        "deviceProfileName": {
+          "type": "string",
+          "description": "Device-profile name."
+        },
+        "gatewayProfileID": {
+          "type": "string",
+          "description": "Gateway-profile id (UUID)."
+        },
+        "gatewayProfileName": {
+          "type": "string",
+          "description": "Gateway-profile name."
+        },
+        "userID": {
+          "type": "string",
+          "format": "int64",
+          "description": "User id."
+        },
+        "userName": {
+          "type": "string",
+          "description": "User name (email)."
         }
       }
     },

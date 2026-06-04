@@ -6,7 +6,7 @@ from as.external.api import deviceProfile_pb2 as as_dot_external_dot_api_dot_dev
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class DeviceProfileServiceStub(object):
+class DeviceProfileServiceStub:
     """DeviceProfileService is the service managing device-profiles.
     """
 
@@ -43,7 +43,7 @@ class DeviceProfileServiceStub(object):
                 _registered_method=True)
 
 
-class DeviceProfileServiceServicer(object):
+class DeviceProfileServiceServicer:
     """DeviceProfileService is the service managing device-profiles.
     """
 
@@ -118,7 +118,7 @@ def add_DeviceProfileServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class DeviceProfileService(object):
+class DeviceProfileService:
     """DeviceProfileService is the service managing device-profiles.
     """
 

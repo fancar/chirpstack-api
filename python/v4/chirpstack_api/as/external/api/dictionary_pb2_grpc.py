@@ -5,7 +5,7 @@ import grpc
 from as.external.api import dictionary_pb2 as as_dot_external_dot_api_dot_dictionary__pb2
 
 
-class DictionaryServiceStub(object):
+class DictionaryServiceStub:
     """DictionaryService the service manages all dictionaries
     """
 
@@ -22,7 +22,7 @@ class DictionaryServiceStub(object):
                 _registered_method=True)
 
 
-class DictionaryServiceServicer(object):
+class DictionaryServiceServicer:
     """DictionaryService the service manages all dictionaries
     """
 
@@ -49,7 +49,7 @@ def add_DictionaryServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class DictionaryService(object):
+class DictionaryService:
     """DictionaryService the service manages all dictionaries
     """
 

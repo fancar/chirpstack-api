@@ -6,7 +6,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from nc import nc_pb2 as nc_dot_nc__pb2
 
 
-class NetworkControllerServiceStub(object):
+class NetworkControllerServiceStub:
     """NetworkControllerService is the server to be implemeted by the network-controller.
     """
 
@@ -38,7 +38,7 @@ class NetworkControllerServiceStub(object):
                 _registered_method=True)
 
 
-class NetworkControllerServiceServicer(object):
+class NetworkControllerServiceServicer:
     """NetworkControllerService is the server to be implemeted by the network-controller.
     """
 
@@ -106,7 +106,7 @@ def add_NetworkControllerServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class NetworkControllerService(object):
+class NetworkControllerService:
     """NetworkControllerService is the server to be implemeted by the network-controller.
     """
 

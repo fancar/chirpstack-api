@@ -6,7 +6,7 @@ from as.external.api import user_pb2 as as_dot_external_dot_api_dot_user__pb2
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
-class UserServiceStub(object):
+class UserServiceStub:
     """UserService is the service managing the user access.
     """
 
@@ -53,7 +53,7 @@ class UserServiceStub(object):
                 _registered_method=True)
 
 
-class UserServiceServicer(object):
+class UserServiceServicer:
     """UserService is the service managing the user access.
     """
 
@@ -152,7 +152,7 @@ def add_UserServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class UserService(object):
+class UserService:
     """UserService is the service managing the user access.
     """
 

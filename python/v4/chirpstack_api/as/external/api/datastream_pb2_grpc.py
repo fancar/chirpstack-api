@@ -5,7 +5,7 @@ import grpc
 from as.external.api import datastream_pb2 as as_dot_external_dot_api_dot_datastream__pb2
 
 
-class DataStreamServiceStub(object):
+class DataStreamServiceStub:
     """DataStreamService the service manages all data streams
     """
 
@@ -22,7 +22,7 @@ class DataStreamServiceStub(object):
                 _registered_method=True)
 
 
-class DataStreamServiceServicer(object):
+class DataStreamServiceServicer:
     """DataStreamService the service manages all data streams
     """
 
@@ -51,7 +51,7 @@ def add_DataStreamServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class DataStreamService(object):
+class DataStreamService:
     """DataStreamService the service manages all data streams
     """
 
